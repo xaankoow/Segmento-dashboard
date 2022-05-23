@@ -1,7 +1,7 @@
 import React from "react";
-import AuthButton from "../../component/authButton/AuthButton";
-import AuthInput from "../../component/authInput/AuthInput";
-import Authmenu from "../../component/authNavMenu/Authmenu";
+import AuthButton from "../../component/Auth/authButton/AuthButton";
+import AuthInput from "../../component/Auth/authInput/AuthInput";
+import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
 import { TextButton } from "../register/Register";
 // css
 import "./validateEmail.css";

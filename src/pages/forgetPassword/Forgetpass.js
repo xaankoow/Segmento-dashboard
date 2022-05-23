@@ -1,10 +1,10 @@
 import { ReportGmailerrorred } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthButton from "../../component/authButton/AuthButton";
-import AuthInput from "../../component/authInput/AuthInput";
-import Authmenu from "../../component/authNavMenu/Authmenu";
-import Timer from "../../component/timer/Timer";
+import AuthButton from "../../component/Auth/authButton/AuthButton";
+import AuthInput from "../../component/Auth/authInput/AuthInput";
+import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
+import Timer from "../../component/Auth/timer/Timer";
 import { TextButton } from "../register/Register";
 import "./forgetpass.css";
 
@@ -19,19 +19,22 @@ export default function Forgetpass() {
   //display timer
   const [display, setDisplay] = useState("");
   // getTextButton accept code button
-const[getTextButton,setgetTextButton]=useState("دریافت کد")
-  const handleChange = (e) => {
+  const [getTextButton, setgetTextButton] = useState("دریافت کد");
+   const handleChange = (e) => {
     let { id, value } = e.target;
     setcode(value);
-    console.log(e);
     setemailInputValue(value);
   };
   //  active emailcode box
   const handlerClickButton = (e) => {
-    if (emailInputValue.length > 10) setDisabled(false);
-    setInterval(() => {
+    if (emailInputValue.length > 10) {
       
-    }, 120000);
+      setDisabled(false);
+      setgetTextButton("دریافت مجدد کد")
+    }
+    // setInterval(() => {
+    //   setgetTextButton("دریافت مجدد کد")
+    // }, 120000);
   };
   //  active passwordbox
   const handlerClickButtonAccept = (e) => {
@@ -50,7 +53,6 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
       setChechValue(false);
     }
   };
-
 
   return (
     <div className="registerContainer">
@@ -82,13 +84,11 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
                 {!disabled && <Timer display={display} />}
                 <TextButton.Provider value={getTextButton}>
                   <AuthButton
-                    widthValue={"100px"}
-                    bgcolor={
-                      !disabledpass
-                        ? "#009FB9"
-                        : disabled
-                        ? "#0A65CD"
-                        : "#D3D5E2"
+                    widthValue={getTextButton !== "تایید کد" && "139px"}
+                    bgcolor={ 
+                      
+                         "#0A65CD"
+                       
                     }
                     handlerClick={handlerClickButton}
                   />

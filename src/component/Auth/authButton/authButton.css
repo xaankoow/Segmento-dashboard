@@ -6,6 +6,7 @@
    color: white !important;
    height: 40px !important;
    box-shadow: unset !important;
+   border: unset;
 }
 
 .registerButton:hover {
