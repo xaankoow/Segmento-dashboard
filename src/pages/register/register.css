@@ -1,0 +1,73 @@
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 50%;
+    
+}
+
+.mainbox {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.registerContainer {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../../public/img/vector.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.registerBox {
+    padding: 0px 30px 0px 120px;
+}
+
+.imgBox {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.registerButtonBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   width: 83%;
+}
+
+.registerButtonBox :nth-child(2) {
+    color: #001F43;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.btnsBox {
+    display: flex;
+    gap: 20px;
+    width: 50%;
+}
+
+.googleButton {
+    width: 147px;
+    height: 40px;
+    border: 0px;
+    color: white !important;
+    background-color: #D3D5E2;
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+        text-decoration: none !important;
+}
+
+.googleIcon {
+    color: #7D7D7D !important;
+    width: 24px !important;
+    height: 24px !important;
+}

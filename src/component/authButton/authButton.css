@@ -1,0 +1,21 @@
+.registerButton {
+   font-family: IRANSans, serif !important;
+   padding: 8px, 20px, 8px, 20px !important;
+   border-radius: 9px !important;
+   background-color: #0A65CD;
+   color: white !important;
+   height: 40px !important;
+   box-shadow: unset !important;
+}
+
+.registerButton:hover {
+   background-color: #0AC7E2 !important;
+}
+
+.registerButton:checked {
+   background-color: #009FB9 !important;
+}
+.registerButton:focus {
+   background-color: #009FB9 !important;
+}
+

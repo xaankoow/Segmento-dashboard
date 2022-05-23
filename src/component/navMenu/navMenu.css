@@ -1,0 +1,13 @@
+ul{
+    display: flex;
+    gap: 1.5rem;
+    
+}
+li{
+    display: flex;
+    gap: 0.5rem;
+    color: #063468;
+}
+li:hover{
+       filter: saturate(25);
+}
