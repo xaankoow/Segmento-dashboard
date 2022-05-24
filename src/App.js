@@ -5,6 +5,7 @@ import "./App.css";
 import Forgetpass from "./pages/forgetPassword/Forgetpass";
 import{Routes,Route} from "react-router-dom";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
+import { ToastContainer } from "react-toastify";
 
 
 export default function App() {
@@ -17,6 +18,8 @@ export default function App() {
         <Route path="/forgetPassword" element={<Forgetpass/>}/>
         <Route path="/ValidateEmail" element={<ValidateEmail/>}/>
       </Routes>
+
+      <ToastContainer/>
     </div>
   );
 }

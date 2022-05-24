@@ -5,8 +5,18 @@ import AuthInput from "../../component/authInput/AuthInput";
 import GoogleIcon from "@mui/icons-material/Google";
 import "./register.css";
 import AuthButton from "../../component/authButton/AuthButton";
+import { useDispatch } from "react-redux";
+import { registerUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 export const TextButton = React.createContext();
 export default function Register() {
+
+  const dispatch =useDispatch();
+
+  const [name,setname]=useState("")
+  const [email,setEmail]=useState("")
+  const [password1,setPassword1]=useState("")
+  const [password2,setPassword2]=useState("")
+
   return (
     <div className="registerContainer">
       <div className="registerBox">
@@ -21,12 +31,14 @@ export default function Register() {
               textLabelInput="نام و نام خانوادگی"
               width={"560px"}
               typeInput="text"
+              reduxHandleChange={setNameRedux}
               
             />
             <AuthInput
               textLabelInput="ایمیل"
               width={"560px"}
               typeInput="email"
+              reduxHandleChange={setEmailRedux}
             />
             <div>
               <AuthInput
@@ -34,12 +46,14 @@ export default function Register() {
                 width={"260px"}
                 typeInput="password"
                 isPassword={true}
-              />
+                reduxHandleChange={setPasswordRedux}
+                />
               <AuthInput
                 textLabelInput=" تکرار گذرواژه  "
                 width={"260px"}
                 typeInput="password"
                 isPassword={true}
+                reduxHandleChange={setPasswordConfirmRedux}
               />
             </div>
             <div className="registerButtonBox">
@@ -52,7 +66,7 @@ export default function Register() {
                     <AuthButton
                       widthValue={"86px"}
                       bgcolor="#0A65CD"
-                    
+                      reduxHandleClick={registerUserAction}
                     />
                   </TextButton.Provider>
                 </Link>

@@ -1,9 +1,11 @@
 import { ReportGmailerrorred } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AuthButton from "../../component/authButton/AuthButton";
 import AuthInput from "../../component/authInput/AuthInput";
 import Authmenu from "../../component/authNavMenu/Authmenu";
+import { changePasswordAction, checkVerifyEmailAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 import Timer from "../../component/timer/Timer";
 import { TextButton } from "../register/Register";
 import "./forgetpass.css";
@@ -51,6 +53,9 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
     }
   };
 
+  //unlock section form
+  const unlockStep = useSelector(state => state.forgotPasswordStep)
+
 
   return (
     <div className="registerContainer">
@@ -75,7 +80,8 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
                 textLabelInput="ایمیل"
                 width={"260px"}
                 typeInput="email"
-                handleChange={handleChange}
+                // handleChange={handleChange}
+                reduxHandleChange={setEmailRedux}
                 chechvalue={chechvalue}
               />
               <div>
@@ -90,7 +96,8 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
                         ? "#0A65CD"
                         : "#D3D5E2"
                     }
-                    handlerClick={handlerClickButton}
+                    // handlerClick={handlerClickButton}
+                    reduxHandleClick={sendForgotPasswordEmailCodeAction}
                   />
                 </TextButton.Provider>
               </div>
@@ -102,30 +109,34 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
                   <AuthInput
                     width={"30px"}
                     notCheckValue={true}
-                    disabled={disabled}
-                    handleChange={handleChange}
+                    disabled={unlockStep > 0 ? false : true}
+                    // handleChange={handleChange}
                     chechvalue={chechvalue}
+                    reduxHandleChange={setAuth1Redux}
                   />
                   <AuthInput
                     width={"30px"}
                     notCheckValue={true}
-                    disabled={disabled}
-                    handleChange={handleChange}
+                    disabled={unlockStep > 0 ? false : true}
+                    // handleChange={handleChange}
                     chechvalue={chechvalue}
+                    reduxHandleChange={setAuth2Redux}
                   />
                   <AuthInput
                     width={"30px"}
                     notCheckValue={true}
-                    disabled={disabled}
-                    handleChange={handleChange}
+                    disabled={unlockStep > 0 ? false : true}
+                    // handleChange={handleChange}
                     chechvalue={chechvalue}
+                    reduxHandleChange={setAuth3Redux}
                   />
                   <AuthInput
                     width={"30px"}
                     notCheckValue={true}
-                    disabled={disabled}
-                    handleChange={handleChange}
+                    disabled={unlockStep > 0 ? false : true}
+                    // handleChange={handleChange}
                     chechvalue={chechvalue}
+                    reduxHandleChange={setAuth4Redux}
                   />
                 </div>
               </div>
@@ -133,8 +144,8 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
                 <TextButton.Provider value={"تایید کد"}>
                   <AuthButton
                     widthValue={"90px"}
-                    handlerClick={handlerClickButtonAccept}
-                    disabled={disabled}
+                    reduxHandleClick={checkVerifyEmailAction}
+                    disabled={unlockStep > 0 ? false : true}
                     bgcolor={
                       !disabledpass
                         ? "#009FB9"
@@ -152,8 +163,9 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
                 width={"273px"}
                 typeInput="password"
                 isPassword={true}
-                disabled={disabledpass}
+                disabled={unlockStep > 1 ? false : true}
                 chechvalue={chechvalue}
+                reduxHandleChange={setPasswordRedux}
               />
               <div className="recheckPss">
                 <AuthInput
@@ -161,8 +173,9 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
                   width={"273px"}
                   typeInput="password"
                   isPassword={true}
-                  disabled={disabledpass}
+                  disabled={unlockStep > 1 ? false : true}
                   chechvalue={chechvalue}
+                  reduxHandleChange={setPasswordConfirmRedux}
                 />
                 <div className="ErrorBadgeBox">
                   <img
@@ -178,8 +191,9 @@ const[getTextButton,setgetTextButton]=useState("دریافت کد")
               <TextButton.Provider value={"ذخیره گذرواژه و ورود"}>
                 <AuthButton
                   bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}
-                  handlerClick={checkInputValue}
-                  disabled={disabledpass}
+                  // handlerClick={checkInputValue}
+                  disabled={unlockStep > 1 ? false : true}
+                  reduxHandleClick={changePasswordAction}
                 />
               </TextButton.Provider>
               <div>

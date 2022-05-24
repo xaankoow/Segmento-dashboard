@@ -2,6 +2,7 @@ import React from "react";
 import AuthButton from "../../component/authButton/AuthButton";
 import AuthInput from "../../component/authInput/AuthInput";
 import Authmenu from "../../component/authNavMenu/Authmenu";
+import { checkVerifyEmailAction, registerUserAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
 // css
 import "./validateEmail.css";
@@ -30,17 +31,17 @@ export default function ValidateEmail() {
         <div className="validateEmailChildBox">
           <span>کد فعال سازی</span>
           <div>
-            <AuthInput width={"30px"} notCheckValue={true} />
-            <AuthInput width={"30px"} notCheckValue={true} />
-            <AuthInput width={"30px"} notCheckValue={true} />
-            <AuthInput width={"30px"} notCheckValue={true} />
+            <AuthInput width={"30px"} notCheckValue={true} reduxHandleChange={setAuth1Redux}/>
+            <AuthInput width={"30px"} notCheckValue={true} reduxHandleChange={setAuth2Redux}/>
+            <AuthInput width={"30px"} notCheckValue={true} reduxHandleChange={setAuth3Redux}/>
+            <AuthInput width={"30px"} notCheckValue={true} reduxHandleChange={setAuth4Redux}/>
           </div>
         </div>
         <div className="validateEmailChildBox2">
           <img src="/img/back.svg" alt="back" />
           <div className="validateButton">
             <TextButton.Provider value={"تایید ایمیل"}>
-              <AuthButton widthValue={"107px"} bgcolor={"#0A65CD"} />
+              <AuthButton widthValue={"107px"} bgcolor={"#0A65CD"} reduxHandleClick={checkVerifyEmailAction}/>
             </TextButton.Provider>
           </div>
           <span className="getemailtext">دریافت مجدد کد</span>

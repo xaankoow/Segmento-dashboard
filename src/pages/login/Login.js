@@ -5,6 +5,7 @@ import Authmenu from '../../component/authNavMenu/Authmenu'
 import GoogleIcon from "@mui/icons-material/Google";
 import { TextButton } from '../register/Register'
 import { Link } from 'react-router-dom';
+import { loginUserAction, setEmailRedux, setNameRedux, setPasswordRedux } from '../../component/Redux/Action';
 
 export default function Login() {
   return (
@@ -17,14 +18,14 @@ export default function Login() {
       </Link>        
         <div className="mainbox">
           <div className="inputBox">
-                       <AuthInput textLabelInput="ایمیل" width={"560px"}  typeInput="email"/>
-                         <AuthInput textLabelInput="گذرواژه " width={"560px"} typeInput="password" isPassword={true}  />
+                       <AuthInput textLabelInput="ایمیل" width={"560px"}  typeInput="email" reduxHandleChange={setEmailRedux}/>
+                         <AuthInput textLabelInput="گذرواژه " width={"560px"} typeInput="password" isPassword={true}  reduxHandleChange={setPasswordRedux}/>
                         
             <div className="registerButtonBox">
               <div className="btnsBox">
                 <Link to={"/"}>
                 <TextButton.Provider value={"ورود"}>
-                  <AuthButton widthValue={"66px"} bgcolor="#0A65CD"/>
+                  <AuthButton widthValue={"66px"} bgcolor="#0A65CD" reduxHandleClick={loginUserAction}/>
                 </TextButton.Provider>
                 </Link>
                 <button className="googleButton">

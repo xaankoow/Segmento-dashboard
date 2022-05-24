@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "3cf43edf-d8da-48b8-a20c-3216cb513a6f",
+		"name": "test3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": { 
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"token\", jsonData[\"data\"][\"token\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "remember",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "با دریافت ایمیل و پسورد کاربر وارد سایت میشود ."
+			},
+			"response": []
+		},
+		{
+			"name": "register Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "ba",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ba@ga.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				},
+				"description": "بر اساس نام و ایمیل و پسورد کاربر ثبت نام میکند"
+			},
+			"response": []
+		},
+		{
+			"name": "resendCode Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mobile",
+							"value": "09379154922",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/resendCode",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"resendCode"
+					]
+				},
+				"description": "بر اساس شماره موبایل کد مجدد برای کاربر ایمیل میشود و کاربر با تایید ایمیل وارد میشود ."
+			},
+			"response": []
+		},
+		{
+			"name": "resendEmail Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "pouria3.xaankoo@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/email/verify/resend",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"email",
+						"verify",
+						"resend"
+					]
+				},
+				"description": "بر اساس شماره موبایل کد مجدد برای کاربر ایمیل میشود و کاربر با تایید ایمیل وارد میشود ."
+			},
+			"response": []
+		},
+		{
+			"name": "logout Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/auth/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"logout"
+					]
+				},
+				"description": "خروج کاربر"
+			},
+			"response": []
+		},
+		{
+			"name": "changePhoneNumber Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mobile",
+							"value": "09128605411",
+							"type": "text"
+						},
+						{
+							"key": "mobile",
+							"value": "+989128605411",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/changePhoneNumber",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"changePhoneNumber"
+					]
+				},
+				"description": "خروج کاربر"
+			},
+			"response": []
+		},
+		{
+			"name": "verifyPhoneNumber Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "1531",
+							"type": "text"
+						},
+						{
+							"key": "mobile",
+							"value": "09016559282",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/verifyPhoneNumber",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"verifyPhoneNumber"
+					]
+				},
+				"description": "خروج کاربر"
+			},
+			"response": []
+		},
+		{
+			"name": "verifyEmail Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "7856",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "pouria.xaankoo@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/verifyEmail",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"verifyEmail"
+					]
+				},
+				"description": "خروج کاربر"
+			},
+			"response": []
+		}
+	]
+}

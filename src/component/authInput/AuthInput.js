@@ -1,5 +1,6 @@
 import { borderBottom } from "@mui/system";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./authInput.css";
 export default function AuthInput({
   textLabelInput,
@@ -8,6 +9,7 @@ export default function AuthInput({
   isPassword,
   notCheckValue,
   handleChange,
+  reduxHandleChange,
   disabled,
   chechvalue
   
@@ -19,6 +21,16 @@ export default function AuthInput({
     }
   const [isSeePssword, setSeePassword] = useState(typeInput);
   const [valueInput, setInputValue] = useState("");
+
+  //redux options
+
+  const dispatch =useDispatch()
+
+
+
+
+
+
    return (
     <>
       <div class="input-wrapper">
@@ -33,7 +45,8 @@ export default function AuthInput({
           style={{ width: `${width}`,pointerEvents:disabled && "none",backgroundColor:disabled && "#F2F5F7", borderBottom:chechvalue ? " 3px solid #cd0a0a" :""}}
           onChange={(e) => {
             setInputValue(e.target.value);
-            handleChange(e);
+            dispatch(reduxHandleChange(e.target.value))
+            // handleChange(e);
           }}
         />
         <label for="user">{textLabelInput}</label>
