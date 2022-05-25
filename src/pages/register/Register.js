@@ -10,11 +10,11 @@ export default function Register() {
   return (
     <div className="registerContainer">
       <div className="registerBox">
-        <Link to={"/login"}>
+        
           <TextButton.Provider value={"ورود"}>
-            <Authmenu />
+            <Authmenu buttonLink={"/login"}/>
           </TextButton.Provider>
-        </Link>
+       
         <div className="mainbox">
           <div className="inputBox">
             <AuthInput
@@ -31,13 +31,13 @@ export default function Register() {
             <div>
               <AuthInput
                 textLabelInput="گذرواژه "
-                width={"260px"}
+                width={"258px"}
                 typeInput="password"
                 isPassword={true}
               />
               <AuthInput
                 textLabelInput=" تکرار گذرواژه  "
-                width={"260px"}
+                width={"258px"}
                 typeInput="password"
                 isPassword={true}
               />

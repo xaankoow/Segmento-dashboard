@@ -20,7 +20,7 @@ export default function Forgetpass() {
   const [display, setDisplay] = useState("");
   // getTextButton accept code button
   const [getTextButton, setgetTextButton] = useState("دریافت کد");
-   const handleChange = (e) => {
+  const handleChange = (e) => {
     let { id, value } = e.target;
     setcode(value);
     setemailInputValue(value);
@@ -28,9 +28,8 @@ export default function Forgetpass() {
   //  active emailcode box
   const handlerClickButton = (e) => {
     if (emailInputValue.length > 10) {
-      
       setDisabled(false);
-      setgetTextButton("دریافت مجدد کد")
+      setgetTextButton("دریافت مجدد کد");
     }
     // setInterval(() => {
     //   setgetTextButton("دریافت مجدد کد")
@@ -57,11 +56,9 @@ export default function Forgetpass() {
   return (
     <div className="registerContainer">
       <div className="registerBox">
-        <Link to={"/login"}>
-          <TextButton.Provider value={"ورود"}>
-            <Authmenu />
-          </TextButton.Provider>
-        </Link>
+        <TextButton.Provider value={"ورود"}>
+          <Authmenu  buttonLink={"/login"} />
+        </TextButton.Provider>
         <div className="mainbox">
           <div className="activePassConteiner">
             <div className="mohtava">
@@ -85,11 +82,7 @@ export default function Forgetpass() {
                 <TextButton.Provider value={getTextButton}>
                   <AuthButton
                     widthValue={getTextButton !== "تایید کد" && "139px"}
-                    bgcolor={ 
-                      
-                         "#0A65CD"
-                       
-                    }
+                    bgcolor={"#0A65CD"}
                     handlerClick={handlerClickButton}
                   />
                 </TextButton.Provider>
@@ -166,7 +159,7 @@ export default function Forgetpass() {
                 />
                 <div className="ErrorBadgeBox">
                   <img
-                    src="/img/ErrorBadge.svg"
+                    sdivrc="/img/ErrorBadge.svg"
                     alt="ErrorBadge"
                     className="ErrorBadgeImage"
                   />
@@ -180,6 +173,7 @@ export default function Forgetpass() {
                   bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}
                   handlerClick={checkInputValue}
                   disabled={disabledpass}
+                  widthValue={"162px"}
                 />
               </TextButton.Provider>
               <div>

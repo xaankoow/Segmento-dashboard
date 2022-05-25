@@ -10,11 +10,11 @@ export default function Login() {
   return (
     <div className="registerContainer">
       <div className="registerBox">
-      <Link to={"/"}>
+     
         <TextButton.Provider value={"ثبت نام"}>
-          <Authmenu />
+          <Authmenu buttonLink={"/"}/>
         </TextButton.Provider>
-      </Link>        
+            
         <div className="mainbox">
           <div className="inputBox">
                        <AuthInput textLabelInput="ایمیل" width={"560px"}  typeInput="email"/>

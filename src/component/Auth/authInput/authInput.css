@@ -28,13 +28,13 @@
   .imageInputIcon{
     position: absolute;
     left: 15px;
-    top: 18px;
+    top: 15px;
     cursor: pointer;
   }
  .imageInputIcon2{
     position: absolute;
-    left: 15px;
-    top: 18px;
+    right: 15px;
+    top: 15px;
     cursor: pointer;
   }
   input {
@@ -42,7 +42,7 @@
     color: #555;
     outline: none;
     border: 1px solid #D3D5E2;
-    padding: 0px 8px;
+    padding: 0px 10px;
     height: 45px;
     border-radius: 3px;
     position: relative;
