@@ -1,7 +1,7 @@
 import React from 'react'
-import AuthButton from '../../component/authButton/AuthButton'
-import AuthInput from '../../component/authInput/AuthInput'
-import Authmenu from '../../component/authNavMenu/Authmenu'
+import AuthButton from '../../component/Auth/authButton/AuthButton'
+import AuthInput from '../../component/Auth/authInput/AuthInput'
+import Authmenu from '../../component/Auth/authNavMenu/Authmenu'
 import GoogleIcon from "@mui/icons-material/Google";
 import { TextButton } from '../register/Register'
 import { Link } from 'react-router-dom';
@@ -40,7 +40,7 @@ export default function Login() {
             </div>
           </div>
           <div className="imgBox">
-            <img src="/img/FrameLogin.png" alt="registerFrame" />
+            <img src="/img/login.svg" alt="registerFrame" />
             <img src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
         </div>

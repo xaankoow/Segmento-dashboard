@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Authmenu from "../../component/authNavMenu/Authmenu";
-import AuthInput from "../../component/authInput/AuthInput";
+import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
+import AuthInput from "../../component/Auth/authInput/AuthInput";
 import GoogleIcon from "@mui/icons-material/Google";
 import "./register.css";
-import AuthButton from "../../component/authButton/AuthButton";
+import AuthButton from "../../component/Auth/authButton/AuthButton";
 import { useDispatch } from "react-redux";
 import { registerUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 export const TextButton = React.createContext();

@@ -11,14 +11,13 @@ export default function AuthInput({
   handleChange,
   reduxHandleChange,
   disabled,
-  chechvalue
-  
+  chechvalue,
 }) {
-    // check email to be correct
-    const validateEmail=(email)=> {
-      var re = /\S+@\S+\.\S+/;
-      return re.test(email);
-    }
+  // check email to be correct
+  const validateEmail = (email) => {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
   const [isSeePssword, setSeePassword] = useState(typeInput);
   const [valueInput, setInputValue] = useState("");
 
@@ -41,8 +40,13 @@ export default function AuthInput({
             !valueInput
               ? notCheckValue === false
               : notCheckValue && "notCheckValue"
-               }
-          style={{ width: `${width}`,pointerEvents:disabled && "none",backgroundColor:disabled && "#F2F5F7", borderBottom:chechvalue ? " 3px solid #cd0a0a" :""}}
+          }
+          style={{
+            width: `${width}`,
+            pointerEvents: disabled && "none",
+            backgroundColor: disabled && "#F2F5F7",
+            borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
+          }}
           onChange={(e) => {
             setInputValue(e.target.value);
             dispatch(reduxHandleChange(e.target.value))
@@ -59,8 +63,7 @@ export default function AuthInput({
               setSeePassword(isSeePssword === "password" ? "text" : "password")
             }
           />
-        ) : (
-          typeInput==="email"&& validateEmail(valueInput)? 
+        ) : typeInput === "email" && validateEmail(valueInput) ? (
           valueInput && (
             <img
               src="/img/tick.svg"
@@ -68,23 +71,22 @@ export default function AuthInput({
               style={notCheckValue && { display: "none" }}
               className="imageInputIcon"
             />
-          ) : <img
-          src="/img/tick.svg"
-          alt="RevealPassword"
-          style={notCheckValue && { display: "none" }}
-          className="imageInputIcon2"
-        />
-
+          )
+        ) : (
+         ""
         )}
-        {
-           typeInput==="text" &&  valueInput ? <img
-           src="/img/tick.svg"
-           alt="RevealPassword"
-           style={notCheckValue && { display: "none" }}
-           className="imageInputIcon"
-         /> :""
-        }
+         {valueInput && typeInput === "text" ? (
+          <img
+            src="/img/tick.svg"
+            alt="RevealPassword"
+            style={notCheckValue && { display: "none" }}
+            className="imageInputIcon"
+          />
+        ) : (
+          ""
+        )}
        
+
         {/* {isPassword && setPassArray(valueInput)} */}
         {/* {passArray[0]==passArray[1] ? "" :  } */}
       </div>

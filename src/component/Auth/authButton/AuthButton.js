@@ -1,30 +1,23 @@
 import React, { useContext } from "react";
-import { Button } from "@material-ui/core";
-import { TextButton } from "../../pages/register/Register";
+import { TextButton } from "../../../pages/register/Register";
 import "./authButton.css";
 import { useDispatch } from "react-redux";
 
-export default function AuthButton({
-   widthValue, 
-   bgcolor, 
-   handlerClick,
-   reduxHandleClick,
-   disabled }
-   ) {
+export default function AuthButton({ widthValue, bgcolor, handlerClick,reduxHandleClick,disabled,padding }) {
   const value = useContext(TextButton);
   const dispatch=useDispatch()
   return (
-    <Button
+    <button
       variant="contained"
       className="registerButton"
       disabled={disabled}
-      style={{ width: `${widthValue}`, backgroundColor: `${bgcolor}` }}
+      style={{ width: `${widthValue}`, backgroundColor: `${bgcolor}` ,padding :`${padding}`}}
       onClick={(e) =>  {
         // handlerClick();
         dispatch(reduxHandleClick())
       }}
           >
       {value}
-    </Button>
+    </button>
   );
 }
