@@ -6,6 +6,7 @@ import{Routes,Route} from "react-router-dom";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login";
+import DashboardBody from "./component/Dashboard/DashboardBody";
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/forgetPassword" element={<Forgetpass/>}/>
         <Route path="/ValidateEmail" element={<ValidateEmail/>}/>
+        <Route path="/dashboard" element={<DashboardBody/>}/>
       </Routes>
 
       <ToastContainer/>

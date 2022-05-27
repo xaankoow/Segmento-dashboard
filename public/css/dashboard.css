@@ -1,0 +1,57 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+#DASHBOARD {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(245, 247, 247, 1);
+}
+#DASHBOARD .nav_head {
+    background-color: rgb(255, 255, 255);
+    height: 65px;
+    /* height: 6%; */
+    width: 100%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+#DASHBOARD .body {
+    position: absolute;
+    background-color: rgb(168, 82, 82);
+    /* height: 954px; */
+    height: 754px;
+    /* height: 91%; */
+    width: 100%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+#DASHBOARD .body .body_container{
+    position: relative;
+    background-color: rgb(168, 82, 82);
+    /* height: 954px; */
+    height: 754px;
+    /* height: 91%; */
+    width: 100%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+/* #DASHBOARD .main {
+    background-color: rgb(255, 255, 255);
+    height: 65px;
+    width: 100%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+#DASHBOARD .list_hover {
+    background-color: rgb(255, 255, 255);
+    height: 65px;
+    width: 100%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+#DASHBOARD .nav_right {
+    position: absolute;
+    right: 0px;
+    background-color: rgb(255, 255, 255);
+    width: 54px;
+    height: 100%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+} */
