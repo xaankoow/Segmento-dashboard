@@ -16,26 +16,19 @@
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 }
 #DASHBOARD .body {
-    position: absolute;
-    background-color: rgb(168, 82, 82);
-    /* height: 954px; */
-    height: 754px;
-    /* height: 91%; */
-    width: 100%;
-    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
-}
-#DASHBOARD .body .body_container{
     position: relative;
     background-color: rgb(168, 82, 82);
-    /* height: 954px; */
-    height: 754px;
+    height: 954px;
+    top: 6px;
+    /* height: 754px; */
     /* height: 91%; */
     width: 100%;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 }
-/* #DASHBOARD .main {
+
+ #DASHBOARD .main {
     background-color: rgb(255, 255, 255);
-    height: 65px;
+    height: 954px;
     width: 100%;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 }
@@ -54,4 +47,4 @@
     width: 54px;
     height: 100%;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
-} */
+}
