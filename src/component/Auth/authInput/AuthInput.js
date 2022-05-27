@@ -10,6 +10,8 @@ export default function AuthInput({
   handleChange,
   disabled,
   chechvalue,
+  maxlength,
+  pressNumber,
 }) {
   // check email to be correct
   const validateEmail = (email) => {
@@ -18,12 +20,20 @@ export default function AuthInput({
   };
   const [isSeePssword, setSeePassword] = useState(typeInput);
   const [valueInput, setInputValue] = useState("");
+  // to be just number when we type
+  const pressNumberValue = (event) => {
+    if (!/[0-9]/.test(event.key)) {
+      event.preventDefault();
+    }
+  };
   return (
     <>
       <div class="input-wrapper">
         <input
           type={isSeePssword}
           required
+          maxlength={maxlength}
+          onKeyPress={pressNumber && pressNumberValue}
           className={
             !valueInput
               ? notCheckValue === false
@@ -34,7 +44,7 @@ export default function AuthInput({
             pointerEvents: disabled && "none",
             backgroundColor: disabled && "#F2F5F7",
             borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
-            textAlign: typeInput === "email" ? "left" : "right",
+            textAlign: typeInput === "email" && "left",
             direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {

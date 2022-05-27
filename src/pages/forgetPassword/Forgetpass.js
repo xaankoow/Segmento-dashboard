@@ -9,6 +9,31 @@ import { TextButton } from "../register/Register";
 import "./forgetpass.css";
 
 export default function Forgetpass() {
+  useEffect(() => {
+    let myInterval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(myInterval);
+          setDisabledCodeButton(false);
+          setMinutes(1);
+          setSeconds(59);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(59);
+        }
+      }
+    }, 1000);
+    return () => {
+      clearInterval(myInterval);
+    };
+  });
+  // timer
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(59);
+  // value of input
   const [valusecode, setcode] = useState("");
   const [emailInputValue, setemailInputValue] = useState("");
   // enable codebox
@@ -16,10 +41,18 @@ export default function Forgetpass() {
   // enable pass
   const [disabledpass, setDisabledPass] = useState(true);
   const [chechvalue, setChechValue] = useState(false);
+  // check email to be correct format
+  const [chechValueEmail, setChechValueEmail] = useState(false);
+  const validateEmail = (email) => {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
   //display timer
   const [display, setDisplay] = useState("");
   // getTextButton accept code button
   const [getTextButton, setgetTextButton] = useState("دریافت کد");
+  // get code disabled
+  const [disabledcodeButton, setDisabledCodeButton] = useState(false);
   const handleChange = (e) => {
     let { id, value } = e.target;
     setcode(value);
@@ -27,16 +60,19 @@ export default function Forgetpass() {
   };
   //  active emailcode box
   const handlerClickButton = (e) => {
-    if (emailInputValue.length > 10) {
+    if (emailInputValue.length > 10 && validateEmail(valusecode)) {
       setDisabled(false);
+      setDisabledCodeButton(true);
       setgetTextButton("دریافت مجدد کد");
+      setChechValueEmail(false);
+    } else {
+      setChechValueEmail(true);
     }
-    // setInterval(() => {
-    //   setgetTextButton("دریافت مجدد کد")
-    // }, 120000);
   };
+
   //  active passwordbox
   const handlerClickButtonAccept = (e) => {
+    setDisabledCodeButton(true);
     // ? problemmmmmmmmmmmmmmmmmmmmmmmmmm
     if (valusecode.length) {
       setDisabledPass(false);
@@ -57,7 +93,7 @@ export default function Forgetpass() {
     <div className="registerContainer">
       <div className="registerBox">
         <TextButton.Provider value={"ورود"}>
-          <Authmenu  buttonLink={"/login"} />
+          <Authmenu buttonLink={"/login"} />
         </TextButton.Provider>
         <div className="mainbox">
           <div className="activePassConteiner">
@@ -75,15 +111,23 @@ export default function Forgetpass() {
                 width={"260px"}
                 typeInput="email"
                 handleChange={handleChange}
-                chechvalue={chechvalue}
+                chechvalue={chechValueEmail}
+                disabled={disabledcodeButton}
               />
               <div>
-                {!disabled && <Timer display={display} />}
+                {disabledcodeButton && (
+                  <Timer
+                    display={display}
+                    minutes={minutes}
+                    seconds={seconds}
+                  />
+                )}
                 <TextButton.Provider value={getTextButton}>
                   <AuthButton
                     widthValue={getTextButton !== "تایید کد" && "139px"}
                     bgcolor={"#0A65CD"}
                     handlerClick={handlerClickButton}
+                    disabled={disabledcodeButton}
                   />
                 </TextButton.Provider>
               </div>
@@ -98,6 +142,8 @@ export default function Forgetpass() {
                     disabled={disabled}
                     handleChange={handleChange}
                     chechvalue={chechvalue}
+                    maxlength="1"
+                    pressNumber={true}
                   />
                   <AuthInput
                     width={"30px"}
@@ -105,6 +151,8 @@ export default function Forgetpass() {
                     disabled={disabled}
                     handleChange={handleChange}
                     chechvalue={chechvalue}
+                    maxlength="1"
+                    pressNumber={true}
                   />
                   <AuthInput
                     width={"30px"}
@@ -112,6 +160,8 @@ export default function Forgetpass() {
                     disabled={disabled}
                     handleChange={handleChange}
                     chechvalue={chechvalue}
+                    maxlength="1"
+                    pressNumber={true}
                   />
                   <AuthInput
                     width={"30px"}
@@ -119,6 +169,8 @@ export default function Forgetpass() {
                     disabled={disabled}
                     handleChange={handleChange}
                     chechvalue={chechvalue}
+                    maxlength="1"
+                    pressNumber={true}
                   />
                 </div>
               </div>

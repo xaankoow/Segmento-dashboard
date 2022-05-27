@@ -30,10 +30,11 @@ export default function ValidateEmail() {
         <div className="validateEmailChildBox">
           <span>کد فعال سازی</span>
           <div>
-            <AuthInput width={"30px"} notCheckValue={true} />
-            <AuthInput width={"30px"} notCheckValue={true} />
-            <AuthInput width={"30px"} notCheckValue={true} />
-            <AuthInput width={"30px"} notCheckValue={true} />
+            <AuthInput width={"30px"} notCheckValue={true}   maxlength="1"pressNumber={true}/>
+            <AuthInput width={"30px"} notCheckValue={true}   maxlength="1"pressNumber={true}/>
+            <AuthInput width={"30px"} notCheckValue={true}   maxlength="1" pressNumber={true}/>
+            <AuthInput width={"30px"} notCheckValue={true}   maxlength="1"pressNumber={true}/>
+                    
           </div>
         </div>
         <div className="validateEmailChildBox2">
