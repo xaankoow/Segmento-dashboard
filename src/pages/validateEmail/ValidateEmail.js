@@ -31,10 +31,10 @@ export default function ValidateEmail() {
         <div className="validateEmailChildBox">
           <span>کد فعال سازی</span>
           <div>
-            <AuthInput width={"30px"} notCheckValue={true} reduxHandleChange={setAuth1Redux}/>
-            <AuthInput width={"30px"} notCheckValue={true} reduxHandleChange={setAuth2Redux}/>
-            <AuthInput width={"30px"} notCheckValue={true} reduxHandleChange={setAuth3Redux}/>
-            <AuthInput width={"30px"} notCheckValue={true} reduxHandleChange={setAuth4Redux}/>
+            <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth1Redux}/>
+            <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth2Redux}/>
+            <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth3Redux}/>
+            <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth4Redux}/>
           </div>
         </div>
         <div className="validateEmailChildBox2">

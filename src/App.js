@@ -1,11 +1,11 @@
 import React from "react";
 import Register from "./pages/register/Register";
-import Login from "./pages/login/Login";
 import "./App.css";
 import Forgetpass from "./pages/forgetPassword/Forgetpass";
 import{Routes,Route} from "react-router-dom";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
+import Login from "./pages/login/Login";
 
 
 export default function App() {
