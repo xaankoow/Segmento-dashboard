@@ -38,14 +38,27 @@
     cursor: pointer;
   }
   input {
-    font-size: 13px;
+    /* font-size: 13px; */
     color: #555;
     outline: none;
-    border: 1px solid #D3D5E2;
-    padding: 0px 10px;
-    height: 45px;
+    border: 1.5px solid rgba(211, 213, 226, 1);
+    /* padding: 0px 10px; */
+    /* height: px; */
+    background-color: white;
     border-radius: 3px;
     position: relative;
+  }
+  .verify_email_cod{
+    width: 50px;
+    height: 50px;
+  }
+  .forgot_password_input{
+    width: 260px;
+    height: 45px;
+    font-size: 14px;
+    padding: 0px 6px;
+
+
   }
   input:invalid + label {
     -webkit-transform: translateY(0);

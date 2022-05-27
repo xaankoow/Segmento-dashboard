@@ -21,6 +21,9 @@ span,
 label,
 textarea {
   font-family: IRANSans, serif !important;
+  color: rgba(0, 31, 67, 1);
+
+
 }
 input::placeholder{
   font-family: IRANSans, serif !important;

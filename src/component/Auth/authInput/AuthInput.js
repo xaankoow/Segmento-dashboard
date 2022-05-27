@@ -13,6 +13,7 @@ export default function AuthInput({
   disabled,
   chechvalue,
   maxlength,
+  classes,
   pressNumber,
 }) {
   // check email to be correct
@@ -42,11 +43,12 @@ export default function AuthInput({
           required
           maxlength={maxlength}
           onKeyPress={pressNumber && pressNumberValue}
-          className={
-            !valueInput
-              ? notCheckValue === false
-              : notCheckValue && "notCheckValue"
-          }
+          // className={
+          //   !valueInput
+          //     ? notCheckValue === false
+          //     : notCheckValue && "notCheckValue"
+          // }
+          className={classes}
           style={{
             width: `${width}`,
             pointerEvents: disabled && "none",
@@ -61,7 +63,7 @@ export default function AuthInput({
             // handleChange(e);
           }}
         />
-        <label for="user">{textLabelInput}</label>
+        <label className="" for="user">{textLabelInput}</label>
         {isPassword ? (
           <img
             src="/img/RevealPassword.svg"
