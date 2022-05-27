@@ -7,6 +7,7 @@ li{
     display: flex;
     gap: 0.5rem;
     color: #063468;
+    padding: 0px 5px;
 }
 li:hover{
        filter: saturate(25);

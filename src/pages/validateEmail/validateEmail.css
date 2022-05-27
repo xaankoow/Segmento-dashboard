@@ -26,6 +26,7 @@
 }
 .getemailtext{
     text-decoration: underline;
+    text-underline-position: under;
 }
 .validateEmailIconBox{
     display: flex;

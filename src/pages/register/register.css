@@ -38,20 +38,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-   width: 83%;
+   width: 580px;
 }
 
 .registerButtonBox :nth-child(2) {
     color: #001F43;
     font-size: 14px;
     text-decoration: underline;
+    text-underline-position: under;
 }
 
 .btnsBox {
     display: flex;
     gap: 20px;
-    width: 50%;
-}
+    }
 
 .googleButton {
     width: 147px;
