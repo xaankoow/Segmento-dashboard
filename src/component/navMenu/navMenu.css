@@ -13,3 +13,15 @@ li:hover{
        filter: saturate(25);
        cursor: pointer;
 }
+.emkanatIcon{
+    background-image: url("../../../public/img/emkanatIcons.png");
+}
+.videoIcon{
+    background-image: url("../../../public/img/videoIcon.png")
+}
+.gheimatIcon{
+    background-image: url("../../../public/img/gheimatIcon.png")
+}
+.workwithusIcon{
+    background-image: url("../../../public/img/workwithusIcon.png")
+}

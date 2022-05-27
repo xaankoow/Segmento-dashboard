@@ -21,7 +21,7 @@ width: 45%;
 display: flex;
 flex-direction: column;
 justify-content: center;
-padding-right: 35px;
+margin-right: 2.5rem;
 }
 .activecodeBox .activecodeChildBox{
     display: flex;
@@ -46,6 +46,7 @@ padding-right: 35px;
 /* ساب کاربری ندارم! */
 .span{
     text-decoration: underline;
+    text-underline-position: under;
 }
 .ErrorBadgeBox{
     display: flex;

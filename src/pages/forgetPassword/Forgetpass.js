@@ -124,7 +124,7 @@ export default function Forgetpass() {
                 )}
                 <TextButton.Provider value={getTextButton}>
                   <AuthButton
-                    widthValue={getTextButton !== "تایید کد" && "139px"}
+                    widthValue={getTextButton !== "دریافت کد" ? "139px" :"103px"}
                     bgcolor={"#0A65CD"}
                     handlerClick={handlerClickButton}
                     disabled={disabledcodeButton}
