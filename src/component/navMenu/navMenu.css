@@ -10,4 +10,5 @@ li{
 }
 li:hover{
        filter: saturate(25);
+       cursor: pointer;
 }

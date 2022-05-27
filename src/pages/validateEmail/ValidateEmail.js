@@ -12,7 +12,7 @@ export default function ValidateEmail() {
     <div className="registerContainer">
       <div className="registerBox">
         <TextButton.Provider value={"ورود"}>
-          <Authmenu />
+          <Authmenu buttonLink={"/login"}/>
         </TextButton.Provider>
       </div>
       <div className="main-validate-Email-box">

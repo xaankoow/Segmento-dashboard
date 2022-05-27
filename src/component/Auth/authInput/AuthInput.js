@@ -46,6 +46,8 @@ export default function AuthInput({
             pointerEvents: disabled && "none",
             backgroundColor: disabled && "#F2F5F7",
             borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
+            textAlign: typeInput === "email" ? "left" : "right",
+            direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
             setInputValue(e.target.value);
@@ -69,13 +71,13 @@ export default function AuthInput({
               src="/img/tick.svg"
               alt="RevealPassword"
               style={notCheckValue && { display: "none" }}
-              className="imageInputIcon"
+              className="imageInputIcon2"
             />
           )
         ) : (
-         ""
+          ""
         )}
-         {valueInput && typeInput === "text" ? (
+        {valueInput && typeInput === "text" ? (
           <img
             src="/img/tick.svg"
             alt="RevealPassword"
@@ -85,7 +87,6 @@ export default function AuthInput({
         ) : (
           ""
         )}
-       
 
         {/* {isPassword && setPassArray(valueInput)} */}
         {/* {passArray[0]==passArray[1] ? "" :  } */}

@@ -7,10 +7,12 @@
    height: 40px !important;
    box-shadow: unset !important;
    border: unset;
+   z-index: 2;
 }
 
 .registerButton:hover {
    background-color: #0AC7E2 !important;
+   cursor: pointer;
 }
 
 .registerButton:checked {
