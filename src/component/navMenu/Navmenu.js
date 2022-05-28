@@ -5,7 +5,7 @@ export default function Navmenu() {
     <>
       <ul>
         <li>
-          <img src="/img/emkanatIcons.png" alt="emkanatIcons" />
+          <img src="img/emkanatIcons.png" alt="emkanatIcons"/>
           امکانات
         </li>
         <li>

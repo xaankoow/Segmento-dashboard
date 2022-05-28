@@ -1,0 +1,21 @@
+.activecodeChildBox span{
+    color: #D3D5E2;
+}
+.activecodeChildBox .input_wrapper{
+    background: #4a83a8 ;
+    border: 0px !important;
+}
+
+.forgetpassBox input{
+    /* background-color: white; */
+border: none !important;
+}
+.forgetpassBox input:disabled{
+    
+border: none !important;
+}
+.forgetpassBox input:disabled label{
+
+    color: #D3D5E2;
+
+}

@@ -8,6 +8,7 @@
    display: flex;
    flex-direction: column;
    gap: 5px;
+   padding: 0px 10px;
 }
 .mainbox .activecodeBox {
     display: flex;
@@ -21,7 +22,7 @@ width: 45%;
 display: flex;
 flex-direction: column;
 justify-content: center;
-padding-right: 35px;
+/* margin-right: 2.5rem; */
 }
 .activecodeBox .activecodeChildBox{
     display: flex;
@@ -33,9 +34,9 @@ padding-right: 35px;
 .forgetpassBox{
     margin: 40px 0px;
     width: 100%;
+    /* background-color: #C42B1C; */
     display: flex;
     justify-content: space-between;
-    
 }
 .storePssBox{
     display: flex;
@@ -46,6 +47,7 @@ padding-right: 35px;
 /* ساب کاربری ندارم! */
 .span{
     text-decoration: underline;
+    text-underline-position: under;
 }
 .ErrorBadgeBox{
     display: flex;

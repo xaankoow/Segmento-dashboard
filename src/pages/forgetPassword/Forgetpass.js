@@ -6,6 +6,7 @@ import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
 import Timer from "../../component/Auth/timer/Timer";
+import Nav from "../../component/navMenu/Nav";
 import { changePasswordAction, checkVerifyEmailAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
 import "./forgetpass.css";
@@ -101,9 +102,10 @@ export default function Forgetpass() {
 
       <div className="registerContainer">
         <div className="registerBox">
-          <TextButton.Provider value={"ورود"}>
+        {/* <Nav/> */}
+          {/* <TextButton.Provider value={"ورود"}>
             <Authmenu buttonLink={"/login"} />
-          </TextButton.Provider>
+          </TextButton.Provider> */}
           <div className="mainbox">
             <div className="activePassConteiner">
               <div className="mohtava">
@@ -151,7 +153,7 @@ export default function Forgetpass() {
               <div className="activecodeBox">
                 <div className="activecodeChildBox">
                   <span>کد فعال سازی</span>
-                  <div>
+                  <div className="salam">
                     <AuthInput
                       classes={"verify_email_cod"}
                       notCheckValue={true}

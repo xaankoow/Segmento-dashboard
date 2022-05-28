@@ -1,0 +1,35 @@
+/* DEFAULT BTN STYLE*/
+.btn-style {
+    /* width: 170px; */
+    /* height: 50px; */
+    background-color: rgba(10, 101, 205, 1);
+    /* font-size: 1rem; */
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 20px;
+  }
+.btn-style:hover {
+  background-color: #0AC7E2 !important;
+  cursor: pointer;
+}
+.btn-style:active {
+  background-color: #009FB9 !important;
+}
+
+/* .input_verify_email_cod_container .input-wrapper input{
+  width: 50px ;
+  height: 50px;
+margin: 0px 20px;
+} */
+.salam .input-wrapper{
+ margin: 0px 10px;
+}
+.salam .input-wrapper:first-child{
+ margin-right: 0px !important;
+}

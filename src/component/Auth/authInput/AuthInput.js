@@ -37,7 +37,7 @@ export default function AuthInput({
   };
   return (
     <>
-      <div class="input-wrapper">
+      <div className="input-wrapper">
         <input
           type={isSeePssword}
           required

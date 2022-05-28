@@ -7,6 +7,7 @@ import "./register.css";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import { useDispatch } from "react-redux";
 import { registerUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
+import Nav from "../../component/navMenu/Nav";
 export const TextButton = React.createContext();
 export default function Register() {
 
@@ -20,11 +21,11 @@ export default function Register() {
   return (
     <div className="registerContainer">
       <div className="registerBox">
-        
-          <TextButton.Provider value={"ورود"}>
+      {/* <Nav/> */}
+          {/* <TextButton.Provider value={"ورود"}>
             <Authmenu buttonLink={"/login"}/>
-          </TextButton.Provider>
-       
+          </TextButton.Provider> */}
+       {/* <Nav/> */}
         <div className="mainbox">
           <div className="inputBox">
             <AuthInput
@@ -40,7 +41,7 @@ export default function Register() {
               typeInput="email"
               reduxHandleChange={setEmailRedux}
             />
-            <div>
+            <div className="forgetpassBox">
               <AuthInput
                 textLabelInput="گذرواژه "
                 width={"258px"}
@@ -57,9 +58,6 @@ export default function Register() {
               />
             </div>
             <div className="registerButtonBox">
-             
-
-              
               <div className="btnsBox">
               <Link to={"ValidateEmail"}>
                   <TextButton.Provider value={"عضویت"}>

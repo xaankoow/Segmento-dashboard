@@ -1,20 +1,21 @@
 import React from 'react'
 import AuthButton from '../../component/Auth/authButton/AuthButton'
 import AuthInput from '../../component/Auth/authInput/AuthInput'
-import Authmenu from '../../component/Auth/authNavMenu/Authmenu'
+// import Authmenu from '../../component/Auth/authNavMenu/Authmenu'
 import GoogleIcon from "@mui/icons-material/Google";
 import { TextButton } from '../register/Register'
 import { Link } from 'react-router-dom';
 import { loginUserAction, setEmailRedux, setNameRedux, setPasswordRedux } from '../../component/Redux/Action';
+import Nav from '../../component/navMenu/Nav';
 
 export default function Login() {
   return (
     <div className="registerContainer">
+      {/* <Nav/> */}
       <div className="registerBox">
-     
-        <TextButton.Provider value={"ثبت نام"}>
+        {/* <TextButton.Provider value={"ثبت نام"}>
           <Authmenu buttonLink={"/"}/>
-        </TextButton.Provider>
+        </TextButton.Provider> */}
             
         <div className="mainbox">
           <div className="inputBox">

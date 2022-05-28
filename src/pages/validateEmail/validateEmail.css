@@ -1,9 +1,10 @@
 .main-validate-Email-box{
     width: 100%;
     text-align: center;
-    height: 700px;
+    height: 650px;
     position: absolute;
     top: 133px;
+    overflow: hidden;
 }
 .validateEmailContai{
     line-height: 30px;

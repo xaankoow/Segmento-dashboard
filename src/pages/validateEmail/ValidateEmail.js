@@ -2,6 +2,7 @@ import React from "react";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
+import Nav from "../../component/navMenu/Nav";
 import { checkVerifyEmailAction, registerUserAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
 // css
@@ -10,11 +11,12 @@ import "./validateEmail.css";
 export default function ValidateEmail() {
   return (
     <div className="registerContainer">
-      <div className="registerBox">
-        <TextButton.Provider value={"ورود"}>
+      {/* <div className="registerBox"> */}
+      {/* <Nav/> */}
+        {/* <TextButton.Provider value={"ورود"}>
           <Authmenu buttonLink={"/login"}/>
-        </TextButton.Provider>
-      </div>
+        </TextButton.Provider> */}
+      {/* </div> */}
       <div className="main-validate-Email-box">
         <div className="validateEmailContai">
           <p>
@@ -30,7 +32,7 @@ export default function ValidateEmail() {
         </div>
         <div className="validateEmailChildBox">
           <span>کد فعال سازی</span>
-          <div>
+          <div className="input_verify_email_cod_container">
             <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth1Redux}/>
             <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth2Redux}/>
             <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth3Redux}/>
