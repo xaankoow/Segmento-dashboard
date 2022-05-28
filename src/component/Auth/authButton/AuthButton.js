@@ -3,15 +3,15 @@ import { TextButton } from "../../../pages/register/Register";
 import "./authButton.css";
 import { useDispatch } from "react-redux";
 
-export default function AuthButton({ widthValue, bgcolor, handlerClick,reduxHandleClick,disabled,padding }) {
+export default function AuthButton({ widthValue, bgcolor, handlerClick,reduxHandleClick,disabled,padding,classes }) {
   const value = useContext(TextButton);
   const dispatch=useDispatch()
   return (
     <button
       variant="contained"
-      className="registerButton"
+      className={"btn-style"}
       disabled={disabled}
-      style={{ width: `${widthValue}`, backgroundColor: `${bgcolor}` ,padding :`${padding}`}}
+      style={{ }}
       onClick={(e) =>  {
         // handlerClick();
         dispatch(reduxHandleClick())

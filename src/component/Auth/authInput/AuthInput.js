@@ -48,11 +48,13 @@ export default function AuthInput({
           //     ? notCheckValue === false
           //     : notCheckValue && "notCheckValue"
           // }
+          name={typeInput}
+          disabled={disabled}
           className={classes}
           style={{
             width: `${width}`,
             pointerEvents: disabled && "none",
-            backgroundColor: disabled && "#F2F5F7",
+            // backgroundColor: disabled && "#F2F5F7",
             borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
             textAlign: typeInput === "email" && "left",
             direction: typeInput === "email" ? "ltr" : "rtl",
@@ -63,7 +65,7 @@ export default function AuthInput({
             // handleChange(e);
           }}
         />
-        <label className="" for="user">{textLabelInput}</label>
+        <label className={disabled?"lockStyle":""} for="user">{textLabelInput}</label>
         {isPassword ? (
           <img
             src="/img/RevealPassword.svg"

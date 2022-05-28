@@ -26,7 +26,7 @@ export default function Login() {
               <div className="btnsBox">
                 <Link to={"/"}>
                 <TextButton.Provider value={"ورود"}>
-                  <AuthButton widthValue={"66px"} bgcolor="#0A65CD" reduxHandleClick={loginUserAction}/>
+                  <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction}/>
                 </TextButton.Provider>
                 </Link>
                 <button className="googleButton">

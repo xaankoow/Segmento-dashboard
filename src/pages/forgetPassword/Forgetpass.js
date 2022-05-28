@@ -137,12 +137,12 @@ export default function Forgetpass() {
                   )}
                   <TextButton.Provider value={getTextButton}>
                     <AuthButton
-                      widthValue={getTextButton !== "تایید کد" && "139px"}
-                      bgcolor={
+                      // widthValue={getTextButton !== "تایید کد" && "139px"}
+                      // bgcolor={
 
-                        "#0A65CD"
+                      //   "#0A65CD"
 
-                      }
+                      // }
                       // handlerClick={handlerClickButton}
                       reduxHandleClick={sendForgotPasswordEmailCodeAction}
                       disabled={disabledcodeButton}
@@ -152,7 +152,7 @@ export default function Forgetpass() {
               </div>
               <div className="activecodeBox">
                 <div className="activecodeChildBox">
-                  <span>کد فعال سازی</span>
+                  <span className={unlockStep > 0 ? "" : "lockStyle"}>کد فعال سازی</span>
                   <div className="salam">
                     <AuthInput
                       classes={"verify_email_cod"}

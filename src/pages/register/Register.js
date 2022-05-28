@@ -62,8 +62,9 @@ export default function Register() {
               <Link to={"ValidateEmail"}>
                   <TextButton.Provider value={"عضویت"}>
                     <AuthButton
-                      widthValue={"86px"}
-                      bgcolor="#0A65CD"
+                      // widthValue={"86px"}
+                      // bgcolor="#0A65CD"
+                      classes={"btn-style"}
                       reduxHandleClick={registerUserAction}
                     />
                   </TextButton.Provider>

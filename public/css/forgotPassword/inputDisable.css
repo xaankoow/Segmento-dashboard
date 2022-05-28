@@ -1,21 +1,45 @@
-.activecodeChildBox span{
-    color: #D3D5E2;
-}
-.activecodeChildBox .input_wrapper{
-    background: #4a83a8 ;
+/* .activecodeChildBox span {
+    font-size: 14px;
+    color: rgba(211, 213, 226, 1);
+} */
+.activecodeChildBox .input_wrapper {
+    background: #4a83a8;
     border: 0px !important;
 }
+/* .activecodeChildBox .input_wrapper input{
+    background-color: #4a83a8 !important;
+    border: 0px !important;
+} */
 
-.forgetpassBox input{
+.forgetpassBox input {
     /* background-color: white; */
-border: none !important;
+    border: none !important;
 }
-.forgetpassBox input:disabled{
-    
-border: none !important;
+.forgetpassBox input:disabled {
+    border: none !important;
 }
-.forgetpassBox input:disabled label{
+.forgetpassBox input:disabled label {
+    color: #d3d5e2;
+}
 
-    color: #D3D5E2;
+button:disabled {
+    color: rgba(255, 255, 255, 1);
 
+    background-color: rgba(211, 213, 226, 1);
+
+    /* background-color: #F2F5F7 !important; */
+    cursor: default !important;
+}
+input:disabled {
+    cursor: default !important;
+    border: none;
+    background: rgba(242, 245, 247, 1);
+}
+
+.SpanStyle{
+font-size: 14px;
+}
+
+.lockStyle{
+color: rgba(211, 213, 226, 1);
 }
