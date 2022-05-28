@@ -44,14 +44,14 @@ export default function Register() {
             <div className="forgetpassBox">
               <AuthInput
                 textLabelInput="گذرواژه "
-                width={"258px"}
+                width={"270px"}
                 typeInput="password"
                 isPassword={true}
                 reduxHandleChange={setPasswordRedux}
                 />
               <AuthInput
                 textLabelInput=" تکرار گذرواژه  "
-                width={"258px"}
+                width={"270px"}
                 typeInput="password"
                 isPassword={true}
                 reduxHandleChange={setPasswordConfirmRedux}

@@ -277,6 +277,62 @@ export const checkVerifyEmailAction = () => {
 
 
 
+//CHECK EMAIL COD 
+export const checkVerifyEmailForgotPasswordAction = () => {
+    return async (dispatch, getState) => {
+        const state = { ...getState() }
+
+        const internal_email = state.email;
+        const internal_auth1 = state.auth1;
+        const internal_auth2 = state.auth2;
+        const internal_auth3 = state.auth3;
+        const internal_auth4 = state.auth4;
+
+
+        if (internal_email && internal_auth1 && internal_auth2 && internal_auth3 && internal_auth4) {
+
+            const toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+            let toastMessage = "";
+            try {
+                const code = internal_auth1 + internal_auth2 + internal_auth3 + internal_auth4;
+                let formdata = new FormData();
+                formdata.append("code", code)
+                formdata.append("email", internal_email)
+                // let check_verify_email = async () => {
+                const { data, status } = await verifyEmailChangePassword(formdata);
+                // debugger
+                if (status == 200 && data.status == true) {
+                    state.forgotPasswordStep = 2;
+                    state.checkVerifyRegister = true;
+                    toast.update(toastPromise, { render: "اعتبار سنجی ایمیل انجام شد", type: "success", isLoading: false, autoClose: 3000 })
+                    // return Promise.resolve();
+                } else {
+                    // return Promise.reject();
+                    data.errors.forEach(element => {
+                        toastMessage += element + " / ";
+                    });
+                    toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                }
+                // }
+                // showPromisToast(check_verify_email(),"checkVerifyEmail")
+            } catch (error) {
+                error.response.data.errors.forEach(element => {
+                    toastMessage += element + " / ";
+                });
+                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+
+            }
+
+
+            await dispatch({ type: "VERIFY_EMAIL_FORGOT_PASSWORD", payload: state })
+        }
+        else {
+            showInputErrorToast();
+        }
+    }
+}
+
+
 //SEND EMAIL COD FOR FORGOT PASSWORD SECTION
 export const sendForgotPasswordEmailCodeAction = () => {
     return async (dispatch, getState) => {

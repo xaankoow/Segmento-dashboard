@@ -7,7 +7,7 @@ import AuthInput from "../../component/Auth/authInput/AuthInput";
 import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
 import Timer from "../../component/Auth/timer/Timer";
 import Nav from "../../component/navMenu/Nav";
-import { changePasswordAction, checkVerifyEmailAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
+import { changePasswordAction, checkVerifyEmailAction, checkVerifyEmailForgotPasswordAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
 import "./forgetpass.css";
 
@@ -200,7 +200,7 @@ export default function Forgetpass() {
                   <TextButton.Provider value={"تایید کد"}>
                     <AuthButton
                       widthValue={"90px"}
-                      reduxHandleClick={checkVerifyEmailAction}
+                      reduxHandleClick={checkVerifyEmailForgotPasswordAction}
                       disabled={unlockStep > 0 ? false : true}
                       bgcolor={
                         !disabledpass

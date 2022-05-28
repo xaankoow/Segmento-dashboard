@@ -65,10 +65,11 @@
     align-items: center;
     text-decoration: none !important;
     font-size: 14px;
-    padding: 8px 20px;
+    /* padding: 8px 20px; */
 }
 .googleButton span{
-
+    
+    padding: 8px 20px 8px 10px;
     color: white !important;
 }
 
@@ -76,5 +77,5 @@
     color: #7d7d7d !important;
     width: 24px !important;
     height: 24px !important;
-    padding-right: 10px;
+    padding-left: 20px;
 }

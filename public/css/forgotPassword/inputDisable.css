@@ -13,7 +13,7 @@
 
 .forgetpassBox input {
     /* background-color: white; */
-    border: none !important;
+    /* border: none !important; */
 }
 .forgetpassBox input:disabled {
     border: none !important;

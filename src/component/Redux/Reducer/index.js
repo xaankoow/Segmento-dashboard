@@ -8,7 +8,7 @@ export const userReducer = (state =
         auth2:"",
         auth3:"",
         auth4:"",
-        forgotPasswordStep: 0,
+        forgotPasswordStep: 3,
         checkRegisterComplete: false,
         checkVerifyRegister: false
     }, action) => {
@@ -30,6 +30,8 @@ export const userReducer = (state =
         case "SEND_CODE_EMAIL":
             return { ...action.payload }
         case "VERIFY_EMAIL":
+            return { ...action.payload }
+        case "VERIFY_EMAIL_FORGOT_PASSWORD":
             return { ...action.payload }
         case "SEND_CODE_EMAIL_FORGOTPASSWORD":
             return { ...action.payload }
