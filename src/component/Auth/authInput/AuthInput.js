@@ -51,13 +51,14 @@ export default function AuthInput({
           name={typeInput}
           disabled={disabled}
           className={classes}
+          dir="auto"
           style={{
             width: `${width}`,
             pointerEvents: disabled && "none",
             // backgroundColor: disabled && "#F2F5F7",
             borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
-            textAlign: typeInput === "email" && "left",
-            direction: typeInput === "email" ? "ltr" : "rtl",
+            // textAlign: typeInput === "email" && "left",
+            // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
             setInputValue(e.target.value);
@@ -66,6 +67,8 @@ export default function AuthInput({
           }}
         />
         <label className={disabled?"lockStyle":""} for="user">{textLabelInput}</label>
+        <span className="error_down_input">اطلاعات نامعتبر</span>
+
         {/* {isPassword ? (
           <img
             src="/img/RevealPassword.svg"
