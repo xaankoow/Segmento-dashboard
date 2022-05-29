@@ -66,7 +66,7 @@ export default function AuthInput({
           }}
         />
         <label className={disabled?"lockStyle":""} for="user">{textLabelInput}</label>
-        {isPassword ? (
+        {/* {isPassword ? (
           <img
             src="/img/RevealPassword.svg"
             alt="RevealPassword"
@@ -86,8 +86,8 @@ export default function AuthInput({
           )
         ) : (
           ""
-        )}
-        {valueInput && typeInput === "text" ? (
+        )} */}
+        {/* {valueInput && typeInput === "text" ? (
           <img
             src="/img/tick.svg"
             alt="RevealPassword"
@@ -96,7 +96,7 @@ export default function AuthInput({
           />
         ) : (
           ""
-        )}
+        )} */}
 
         {/* {isPassword && setPassArray(valueInput)} */}
         {/* {passArray[0]==passArray[1] ? "" :  } */}

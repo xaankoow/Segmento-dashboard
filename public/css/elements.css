@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 8px 20px;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.08s ease-in-out;
 }
 .btn-style:hover {
   background-color: #0ac7e2 !important;

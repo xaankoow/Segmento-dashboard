@@ -43,6 +43,7 @@ export const showPromisToast = (fun,message) => {
         ,
         {
             hideProgressBar: true,
+            rtl:true,
             pending: 'درحال ارسال درخواست شما به سرور',
             success:()=>"ss",
             error: ()=>"ama"
@@ -52,14 +53,15 @@ export const showPromisToast = (fun,message) => {
 
 export const showInputErrorToast = (message) => {
     // toast.info('لطفا فیلد هارا با دقت پرکنید', {
-        // debugger
-    toast.info(message!=""?message:'لطفا فیلد هارا با دقت پرکنید', {
+        debugger
+    toast.info(message!=undefined?message:'لطفا فیلد هارا با دقت پرکنید', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        // rtl:true,
+        progress: undefined
     });
 }

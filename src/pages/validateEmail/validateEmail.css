@@ -38,6 +38,7 @@
 .getemailtext{
     position: absolute;
     text-decoration: underline;
+    text-underline-position: under;
     top: 0px;
     left: 0px;
     padding: 9px 0px;

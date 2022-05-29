@@ -52,6 +52,8 @@
   .verify_email_cod{
     width: 50px;
     height: 50px;
+    text-align: center;
+    font-size: 14px;
   }
   .forgot_password_input{
     width: 260px;

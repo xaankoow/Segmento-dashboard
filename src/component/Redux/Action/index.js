@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { registerUser, loginUser, verifyEmail, checkVerifyEmail, verifyEmailChangePassword, logout, changePassword, checkVerifyEmailChangePassword } from "../../service/userService"
+import { handleNextInput } from "../../Utils/focusNextInput";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
 
 
@@ -9,28 +10,32 @@ export const setAuth1Redux = (auth1) => {
     return async (dispatch, getState) => {
         let state = { ...getState() }
         state.auth1 = auth1;
-        await dispatch({ type: "SET_NAME", payload: state })
+        handleNextInput(0)
+        await dispatch({ type: "SET_AUTH", payload: state })
     }
 }
 export const setAuth2Redux = (auth2) => {
     return async (dispatch, getState) => {
         let state = { ...getState() }
         state.auth2 = auth2;
-        await dispatch({ type: "SET_NAME", payload: state })
+        handleNextInput(4)
+        await dispatch({ type: "SET_AUTH", payload: state })
     }
 }
 export const setAuth3Redux = (auth3) => {
     return async (dispatch, getState) => {
         let state = { ...getState() }
         state.auth3 = auth3;
-        await dispatch({ type: "SET_NAME", payload: state })
+        handleNextInput(3)
+        await dispatch({ type: "SET_AUTH", payload: state })
     }
 }
 export const setAuth4Redux = (auth4) => {
     return async (dispatch, getState) => {
         let state = { ...getState() }
         state.auth4 = auth4;
-        await dispatch({ type: "SET_NAME", payload: state })
+        handleNextInput(2)
+        await dispatch({ type: "SET_AUTH", payload: state })
     }
 }
 
@@ -174,8 +179,8 @@ export const loginUserAction = () => {
                 });
                 toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
             }
-        }
-        else {
+        }else {
+            // debugger
             showInputErrorToast();
         }
 
@@ -347,7 +352,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
 
                 const toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
 
-                const toastMessage = "";
+                var toastMessage = "";
                 try {
                     
                     let formdata = new FormData();
@@ -377,8 +382,9 @@ export const sendForgotPasswordEmailCodeAction = () => {
                     // const dd=data.error[0]
                     // showPromisToast(send_code_email_forgotPassword(),data.error[0])
                 } catch (error) {
+                    // debugger
                     error.response.data.errors.forEach(element => {
-                        toastMessage += element;
+                        toastMessage += element + ".";
                     });
                     toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
 

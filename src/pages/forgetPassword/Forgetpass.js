@@ -183,7 +183,7 @@ export default function Forgetpass() {
                   <span className={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?"lockStyle" :"" : "lockStyle"}>کد فعال سازی</span>
                   <div className="verify_cod_container">
                     <AuthInput
-                      classes={"verify_email_cod"}
+                      classes={"verify_email_cod input_selector_4"}
                       notCheckValue={true}
                       disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
                       // handleChange={handleChange}
@@ -193,7 +193,7 @@ export default function Forgetpass() {
                       pressNumber={true}
                     />
                     <AuthInput
-                      classes={"verify_email_cod"}
+                      classes={"verify_email_cod input_selector_3"}
                       notCheckValue={true}
                       disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
                       // handleChange={handleChange}
@@ -203,7 +203,7 @@ export default function Forgetpass() {
                       pressNumber={true}
                     />
                     <AuthInput
-                      classes={"verify_email_cod"}
+                      classes={"verify_email_cod input_selector_2"}
                       notCheckValue={true}
                       disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
                       // handleChange={handleChange}
