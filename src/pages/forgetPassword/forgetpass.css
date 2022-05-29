@@ -75,3 +75,13 @@ justify-content: center;
       bottom: 0px;
       left: 0;
   }
+
+  .container_btn_timer{
+      display: flex;
+      align-items: center;
+  }
+  .container_btn_timer span{
+      padding: 0px 10px;
+      text-decoration: underline;
+  }
+

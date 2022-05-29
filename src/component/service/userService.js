@@ -32,12 +32,19 @@ export const checkVerifyEmail = emailCod => {
     return http.post(`${config.xaankooApi}/api/v1/auth/verifyEmail`,emailCod, headerCheckVerifyEmail);
 }
 
-export const verifyEmailChangePassword = emailCod => {
+export const verifyEmailChangePassword = email => {
     const headerCheckVerifyEmail = {
         "type": "noauth",
         "Accept": "application/json"
     }
-    return http.post(`${config.xaankooApi}/api/v1/auth/verifyCode`,emailCod, headerCheckVerifyEmail);
+    return http.post(`${config.xaankooApi}/api/v1/auth/forgot-password`,email, headerCheckVerifyEmail);
+}
+export const checkVerifyEmailChangePassword = emailCode => {
+    const headerCheckVerifyEmail = {
+        "type": "noauth",
+        "Accept": "application/json"
+    }
+    return http.post(`${config.xaankooApi}/api/v1/auth/verifyCode`,emailCode, headerCheckVerifyEmail);
 }
 
 export const changePassword = user => {

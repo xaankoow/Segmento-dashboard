@@ -50,8 +50,10 @@ export const showPromisToast = (fun,message) => {
     )
 }
 
-export const showInputErrorToast = () => {
-    toast.info('لطفا فیلد هارا با دقت پرکنید', {
+export const showInputErrorToast = (message) => {
+    // toast.info('لطفا فیلد هارا با دقت پرکنید', {
+        // debugger
+    toast.info(message!=""?message:'لطفا فیلد هارا با دقت پرکنید', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,

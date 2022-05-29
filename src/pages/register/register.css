@@ -30,7 +30,21 @@
 .imgBox {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    height: 578px;
+    /* gap: 50px; */
+}
+.imgBox .sun{
+width: 80px;
+height: 80px;
+}
+.imgBox .sun{
+width: 80px;
+height: 80px;
+}
+.imgBox img:last-child{
+    margin-top: 35px;
+/* width: 80px; */
+/* height: 80px; */
 }
 
 .registerButtonBox {
@@ -78,4 +92,9 @@
     width: 24px !important;
     height: 24px !important;
     padding-left: 20px;
+}
+
+
+.remove_margin{
+    margin: 0px !important;
 }

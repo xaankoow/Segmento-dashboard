@@ -41,7 +41,7 @@ export default function Register() {
               typeInput="email"
               reduxHandleChange={setEmailRedux}
             />
-            <div className="forgetpassBox">
+            <div className="forgetpassBox remove_margin">
               <AuthInput
                 textLabelInput="گذرواژه "
                 width={"270px"}

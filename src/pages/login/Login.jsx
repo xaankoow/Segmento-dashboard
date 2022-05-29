@@ -41,6 +41,7 @@ export default function Login() {
             </div>
           </div>
           <div className="imgBox">
+            <img src="/img/FrameloginSun.png" className='sun' alt="registerFrame" />
             <img src="/img/login.svg" alt="registerFrame" />
             <img src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>

@@ -31,12 +31,17 @@
   height: 50px;
 margin: 0px 20px;
 } */
-.salam .input-wrapper {
+.verify_cod_container .input-wrapper {
   margin: 0px 10px;
 }
-.salam .input-wrapper {
+.verify_cod_container .input-wrapper {
   margin: 0px 10px;
 }
-.salam .input-wrapper:first-child {
+.verify_cod_container .input-wrapper:first-child {
   margin-right: 0px !important;
+}
+
+
+.btn_complete{
+  background-color: #009FB9 ;
 }

@@ -2,8 +2,8 @@
     width: 100%;
     text-align: center;
     height: 650px;
-    position: absolute;
-    top: 133px;
+    /* position: absolute; */
+    /* top: 133px; */
     overflow: hidden;
 }
 .validateEmailContai{
@@ -43,14 +43,14 @@
     padding: 9px 0px;
 }
 .validateEmailIconBox{
-    position: absolute;
+    position: relative;
     width: 100%;
     text-align: center;
-    bottom: 0px;
+    top: 100px;
 }
 .validateEmailIconBox img{
 margin:0px 8px;
 }
-.validateButton{
+.validateButton button{
     margin: auto;
 }

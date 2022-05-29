@@ -32,18 +32,18 @@ export default function ValidateEmail() {
         </div>
         <div className="validateEmailChildBox">
           <span>کد فعال سازی</span>
-          <div className="input_verify_email_cod_container">
-            <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth1Redux}/>
-            <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth2Redux}/>
-            <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth3Redux}/>
-            <AuthInput width={"30px"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth4Redux}/>
+          <div className="verify_cod_container">
+            <AuthInput classes={"verify_email_cod"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth1Redux}/>
+            <AuthInput classes={"verify_email_cod"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth2Redux}/>
+            <AuthInput classes={"verify_email_cod"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth3Redux}/>
+            <AuthInput classes={"verify_email_cod"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth4Redux}/>
           </div>
         </div>
         <div className="validateEmailChildBox2">
           <img src="/img/back.svg" alt="back" />
           <div className="validateButton">
             <TextButton.Provider value={"تایید ایمیل"}>
-              <AuthButton widthValue={"107px"} bgcolor={"#0A65CD"} reduxHandleClick={checkVerifyEmailAction}/>
+              <AuthButton bgcolor={"#0A65CD"} reduxHandleClick={checkVerifyEmailAction}/>
             </TextButton.Provider>
           </div>
           <span className="getemailtext">دریافت مجدد کد</span>

@@ -9,7 +9,7 @@ export default function AuthButton({ widthValue, bgcolor, handlerClick,reduxHand
   return (
     <button
       variant="contained"
-      className={"btn-style"}
+      className={`btn-style ${classes}`}
       disabled={disabled}
       style={{ }}
       onClick={(e) =>  {

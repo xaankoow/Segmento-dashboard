@@ -16,6 +16,7 @@
     /* border: none !important; */
 }
 .forgetpassBox input:disabled {
+    color: #D3D5E2 !important;
     border: none !important;
 }
 .forgetpassBox input:disabled label {
@@ -23,17 +24,21 @@
 }
 
 button:disabled {
-    color: rgba(255, 255, 255, 1);
-
-    background-color: rgba(211, 213, 226, 1);
-
-    /* background-color: #F2F5F7 !important; */
+    color: rgba(255, 255, 255, 1) !important;
+    background-color: rgba(211, 213, 226, 1) !important;
     cursor: default !important;
+}
+button:disabled:hover {
+    background-color: rgba(211, 213, 226, 1) !important;
+}
+button:disabled:active {
+    background-color: rgba(211, 213, 226, 1) !important;
 }
 input:disabled {
     cursor: default !important;
     border: none;
-    background: rgba(242, 245, 247, 1);
+    color: #D3D5E2;
+    background-color: #F2F5F7;
 }
 
 .SpanStyle{

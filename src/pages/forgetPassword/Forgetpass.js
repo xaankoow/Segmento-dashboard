@@ -1,4 +1,4 @@
-import { ReportGmailerrorred } from "@mui/icons-material";
+import { Flag, ReportGmailerrorred } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -12,27 +12,42 @@ import { TextButton } from "../register/Register";
 import "./forgetpass.css";
 
 export default function Forgetpass() {
+
+  const  {forgotPasswordStep,handleResendCode} = useSelector(state => state)
+
   useEffect(() => {
-    let myInterval = setInterval(() => {
-      if (seconds > 0) {
-        setSeconds(seconds - 1);
-      }
-      if (seconds === 0) {
-        if (minutes === 0) {
-          clearInterval(myInterval);
-          setDisabledCodeButton(false);
-          setMinutes(1);
-          setSeconds(59);
-        } else {
-          setMinutes(minutes - 1);
-          setSeconds(59);
+    if (handleResendCode==false) {
+      
+      let myInterval = setInterval(() => {
+        if (seconds > 0) {
+          setSeconds(seconds - 1);
         }
-      }
-    }, 1000);
-    return () => {
-      clearInterval(myInterval);
-    };
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(myInterval);
+            setDisabledCodeButton(false);
+            setMinutes(1);
+            setSeconds(59);
+          } else {
+            setMinutes(minutes - 1);
+            setSeconds(59);
+          }
+        }
+      }, 1000);
+      return () => {
+        clearInterval(myInterval);
+      };
+    }
   });
+
+  const clearTimerValue=()=>{
+    if (minutes !=1||seconds!=59) {
+      
+      setMinutes(1);
+      setSeconds(59);
+    }
+  }
+
   // timer
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(59);
@@ -93,7 +108,7 @@ export default function Forgetpass() {
   };
 
   //unlock section form
-  const unlockStep = useSelector(state => state.forgotPasswordStep)
+  // const checkResend = useSelector(state => state.handleResendCode)
 
 
   return (
@@ -102,7 +117,7 @@ export default function Forgetpass() {
 
       <div className="registerContainer">
         <div className="registerBox">
-        {/* <Nav/> */}
+          {/* <Nav/> */}
           {/* <TextButton.Provider value={"ورود"}>
             <Authmenu buttonLink={"/login"} />
           </TextButton.Provider> */}
@@ -119,24 +134,36 @@ export default function Forgetpass() {
               <div className="emailboForget">
                 <AuthInput
                   textLabelInput="ایمیل"
-                  classes={"forgot_password_input"}
+                  classes={`forgot_password_input`}
                   typeInput="email"
                   // handleChange={handleChange}
                   reduxHandleChange={setEmailRedux}
                   // chechvalue={chechvalue}
                   chechvalue={chechValueEmail}
-                  disabled={disabledcodeButton}
+                  disabled={forgotPasswordStep == 2 ?true :false }
                 />
-                <div>
-                  {disabledcodeButton && (
-                    <Timer
-                      display={display}
-                      minutes={minutes}
-                      seconds={seconds}
-                    />
-                  )}
+
+
+
+                <div className="container_btn_timer">
+                  {/* {true && (
+                      <Timer
+                        display={display}
+                        minutes={minutes}
+                        seconds={seconds}
+                      />
+                    )} */}
+                  {handleResendCode == true ?clearTimerValue() : 
+                 
+                  <Timer
+                    display={display}
+                    minutes={minutes}
+                    seconds={seconds}
+                  />
+                   } 
                   <TextButton.Provider value={getTextButton}>
                     <AuthButton
+                      classes={ forgotPasswordStep > 0 ? "btn_complete" : ""}
                       // widthValue={getTextButton !== "تایید کد" && "139px"}
                       // bgcolor={
 
@@ -145,19 +172,20 @@ export default function Forgetpass() {
                       // }
                       // handlerClick={handlerClickButton}
                       reduxHandleClick={sendForgotPasswordEmailCodeAction}
-                      disabled={disabledcodeButton}
+                      disabled={handleResendCode == true ?forgotPasswordStep == 2 ?true :false: true}
                     />
                   </TextButton.Provider>
+
                 </div>
               </div>
               <div className="activecodeBox">
                 <div className="activecodeChildBox">
-                  <span className={unlockStep > 0 ? "" : "lockStyle"}>کد فعال سازی</span>
-                  <div className="salam">
+                  <span className={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?"lockStyle" :"" : "lockStyle"}>کد فعال سازی</span>
+                  <div className="verify_cod_container">
                     <AuthInput
                       classes={"verify_email_cod"}
                       notCheckValue={true}
-                      disabled={unlockStep > 0 ? false : true}
+                      disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
                       // handleChange={handleChange}
                       chechvalue={chechvalue}
                       reduxHandleChange={setAuth1Redux}
@@ -167,7 +195,7 @@ export default function Forgetpass() {
                     <AuthInput
                       classes={"verify_email_cod"}
                       notCheckValue={true}
-                      disabled={unlockStep > 0 ? false : true}
+                      disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
                       // handleChange={handleChange}
                       chechvalue={chechvalue}
                       reduxHandleChange={setAuth2Redux}
@@ -177,7 +205,7 @@ export default function Forgetpass() {
                     <AuthInput
                       classes={"verify_email_cod"}
                       notCheckValue={true}
-                      disabled={unlockStep > 0 ? false : true}
+                      disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
                       // handleChange={handleChange}
                       chechvalue={chechvalue}
                       reduxHandleChange={setAuth3Redux}
@@ -187,7 +215,7 @@ export default function Forgetpass() {
                     <AuthInput
                       classes={"verify_email_cod"}
                       notCheckValue={true}
-                      disabled={unlockStep > 0 ? false : true}
+                      disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
                       // handleChange={handleChange}
                       chechvalue={chechvalue}
                       reduxHandleChange={setAuth4Redux}
@@ -199,9 +227,10 @@ export default function Forgetpass() {
                 <div className="acceptCodeBox">
                   <TextButton.Provider value={"تایید کد"}>
                     <AuthButton
-                      widthValue={"90px"}
+                      // widthValue={"90px"}
                       reduxHandleClick={checkVerifyEmailForgotPasswordAction}
-                      disabled={unlockStep > 0 ? false : true}
+                      disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
+                      classes={ forgotPasswordStep > 1 ?forgotPasswordStep == 2 ?"" :"btn_complete" : ""}
                       bgcolor={
                         !disabledpass
                           ? "#009FB9"
@@ -219,7 +248,7 @@ export default function Forgetpass() {
                   classes={"forgot_password_input"}
                   typeInput="password"
                   isPassword={true}
-                  disabled={unlockStep > 1 ? false : true}
+                  disabled={ forgotPasswordStep > 1 ? false : true}
                   chechvalue={chechvalue}
                   reduxHandleChange={setPasswordRedux}
                 />
@@ -229,7 +258,7 @@ export default function Forgetpass() {
                     classes={"forgot_password_input"}
                     typeInput="password"
                     isPassword={true}
-                    disabled={unlockStep > 1 ? false : true}
+                    disabled={ forgotPasswordStep > 1 ? false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setPasswordConfirmRedux}
                   />
@@ -249,7 +278,7 @@ export default function Forgetpass() {
                     bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}
                     // handlerClick={checkInputValue}
                     widthValue={"162px"}
-                    disabled={unlockStep > 1 ? false : true}
+                    disabled={ forgotPasswordStep > 1 ? false : true}
                     reduxHandleClick={changePasswordAction}
                   />
                 </TextButton.Provider>
