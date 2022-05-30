@@ -1,4 +1,5 @@
 import React from 'react'
+import SidebarHover from './DashboaedComponents/SidebarHover'
 
 export default function DashboardBody() {
   return (
@@ -9,7 +10,9 @@ export default function DashboardBody() {
       </div>
       <div className='body'>
           <div className='main'></div>
-          <div className='list_hover'></div>
+          <div className='list_hover'>
+            <SidebarHover/>
+          </div>
           <div className='nav_right'>
             <div className='top'>
             <div className='scroller'></div>
