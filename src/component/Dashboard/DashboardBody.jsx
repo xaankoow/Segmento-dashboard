@@ -11,9 +11,11 @@ export default function DashboardBody() {
         <div className='main'></div>
         <div className='list_hover'></div>
         <div className='nav_right'>
-          <div className='top'>
             <div className='scroller'></div>
-            <div className='dashboard'></div>
+          <div className='top'>
+            <div className='dashboard input_focus'>
+              <div className='testBack'></div>
+            </div>
             <div className='analyze'></div>
             <div className='news'></div>
             <div className='servise'></div>
