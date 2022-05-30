@@ -2,12 +2,18 @@
     margin: 0px;
     padding: 0px;
 }
+
+.app {
+    padding: 0px !important;
+}
+
 #DASHBOARD {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(245, 247, 247, 1);
+    background-color: #F5F7F7;
 }
+
 #DASHBOARD .nav_head {
     background-color: rgb(255, 255, 255);
     height: 65px;
@@ -15,36 +21,91 @@
     width: 100%;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 }
+
 #DASHBOARD .body {
+    display: flex;
+    flex-direction: row-reverse;
     position: relative;
-    background-color: rgb(168, 82, 82);
+    /* background-color: rgb(168, 82, 82); */
+    /* background-color: #F5F7F7; */
+
     height: 954px;
     top: 6px;
-    /* height: 754px; */
-    /* height: 91%; */
     width: 100%;
-    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15); */
 }
 
- #DASHBOARD .main {
-    background-color: rgb(255, 255, 255);
-    height: 954px;
-    width: 100%;
+#DASHBOARD .main {
+    background-color: #FFFFFF;
+    height: 100%;
+    flex-grow: 1;
+    z-index: 1;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+    margin: 6px 8px 0px 8px;
+    border-radius: 9px;
 }
 
 #DASHBOARD .list_hover {
-    background-color: rgb(255, 255, 255);
-    height: 65px;
-    width: 100%;
+    background-color: #FCFCFB;
+    width: 256px;
+    height: 100%;
+    margin-top: 8px;
+    border-radius: 9px 0px 0px 9px;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 }
 
 #DASHBOARD .nav_right {
-    position: absolute;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     right: 0px;
-    background-color: rgb(255, 255, 255);
+    background-color: #FCFCFB;
+    box-shadow: 0px 4px 15px 0px #00000026;
+    margin-top: 8px;
     width: 54px;
     height: 100%;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+#DASHBOARD .nav_right .top div {
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* box-sizing: border-box; */
+    width: 32px;
+    height: 32px;
+    /* padding: 28px 0px; */
+    margin: 28px 0px;
+}
+
+#DASHBOARD .nav_right .top div:first {
+    margin: 16px 0px !important;
+}
+
+#DASHBOARD .nav_right .top .scroller {
+    position: absolute;
+    width: 2px;
+}
+
+#DASHBOARD .nav_right .top .dashboard {
+    background-image: url(../img/dashboard/nav_right/dashboard.svg);
+}
+#DASHBOARD .nav_right .top .analyze {
+    background-image: url(../img/dashboard/nav_right/analyze.svg);
+}
+#DASHBOARD .nav_right .top .news {
+    background-image: url(../img/dashboard/nav_right/news.svg);
+}
+
+#DASHBOARD .nav_right .top .servise {
+    background-image: url(../img/dashboard/nav_right/servise.svg);
+}
+#DASHBOARD .nav_right .top .youtub {
+    background-image: url(../img/dashboard/nav_right/youtub.svg);
+}
+
+#DASHBOARD .nav_right .top .linkedin {
+    background-image: url(../img/dashboard/nav_right/linkedin.svg);
 }

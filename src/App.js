@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Nav />
+      {/* <Nav /> */}
       <Routes>
         <Route exact path="/" element={<Register />} />
         <Route path="login" element={<Login />} />
