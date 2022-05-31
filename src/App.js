@@ -8,6 +8,9 @@ import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
 import Nav from "./component/navMenu/Nav";
+import Modal from 'react-modal'
+import HandleModal from "./component/Utils/handleModal";
+// import ModalContainer from "./component/Utils/ModalContainer";
 
 
 export default function App() {
@@ -31,6 +34,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <Modal/>
       {/* <Nav /> */}
       <Routes>
         <Route exact path="/" element={<Register />} />
@@ -39,7 +43,8 @@ export default function App() {
         <Route path="ValidateEmail" element={<ValidateEmail />} />
         <Route path="dashboard" element={<DashboardBody />} />
       </Routes>
-
+      <HandleModal/>
+      {/* <ModalContainer/> */}
       <ToastContainer rtl />
     </div>
   );

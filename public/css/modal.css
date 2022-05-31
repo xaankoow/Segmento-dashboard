@@ -1,0 +1,185 @@
+/* .modal{
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.7);
+} */
+/* .Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: papayawhip;
+} */
+
+.ReactModal__Overlay {
+    background-color: rgba(217, 217, 217, 0.6) !important;
+}
+
+.ReactModal__Content {
+    box-sizing: border-box;
+    width: 907px;
+    /* height: 432px; */
+    padding: 0px 10px !important;
+    z-index: 10000000 !important;
+    overflow: hidden !important;
+}
+
+.ReactModal__Content header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 44px;
+    width: 100%;
+    border-radius: 9px;
+    margin: 10px 0px;
+    border: 1px solid #F2F5F7;
+    padding: 0px 18px 0px 14px;
+}
+
+.ReactModal__Content body {
+    box-sizing: border-box;
+    /* height: 408px; */
+    width: 100%;
+    border-radius: 9px;
+    border: 1px solid #F2F5F7;
+    padding: 18px;
+}
+
+.ReactModal__Content footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    border-radius: 9px;
+    margin: 10px 0px;
+}
+
+
+/* head modal css */
+.ReactModal__Content header .info {
+    position: relative;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    top: 3.5px;
+    right: 12px;
+    background-image: url(../img/modal/head/info.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.ReactModal__Content header .close_modal_ico {
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    background-image: url(../img/modal/head/closeModal.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+
+/* body modal css */
+.ReactModal__Content body .text_information {
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #083C78;
+}
+
+.ReactModal__Content body .main_contnt_modal {
+    margin-top: -19px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ReactModal__Content body .ul_text_container ul {
+    display: inline-block;
+}
+
+.ReactModal__Content body .ul_text_container ul:last-of-type {
+    display: inline-block;
+    margin-right: 117px;
+}
+
+.ReactModal__Content body .ul_text_container ul li {
+    display: list-item !important;
+    font-size: 18px;
+    /* padding-right: 21px; */
+    background: url(../img/modal/body/discList.svg) no-repeat right ;
+    list-style-type: none;
+    color: #083C78;
+    /* padding-bottom: 18px; */
+    padding: 18px 21px;
+}
+
+.ReactModal__Content body .input-wrapper {
+    width: 100%;
+}
+
+
+
+
+/* container input step 2 */
+
+.ReactModal__Content body .container_input_step2{
+    display: flex;
+}
+.ReactModal__Content body .container_input_step2:nth-of-type(2){
+    margin-bottom: 33px;
+}
+.ReactModal__Content body .container_input_step3 .input-wrapper:nth-of-type(1){
+    margin-bottom: 33px;
+}
+.ReactModal__Content body .container_input_step2 .arrpw{
+    width: 20px;
+    height: 20px;
+    padding: 12.5px 3px;
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* background-image: url(../img/modal/body/arrow.svg); */
+}
+.ReactModal__Content body .container_input_step2 .input-wrapper{
+    flex-grow: 1;
+}
+
+
+
+
+
+
+/* footer modal css */
+.ReactModal__Content footer .back_ico {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-image: url(../img/modal/footer/moveBack.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.ReactModal__Content footer .forward-ico {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin-right: 14px;
+    background-image: url(../img/modal/footer/moveForward.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
