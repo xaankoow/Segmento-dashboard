@@ -121,15 +121,99 @@
 }
 #DASHBOARD .SidebarHoverBox:hover{
     color: #0A65CD;
+    cursor: pointer;
 }
-#DASHBOARD .SidebarHoverBox :hover + .Icons{
-    background-image:url(../img/dashboard/sidebarHover/sidebarIcon.svg);
-}
+
 #DASHBOARD .SidebarHoverBox .Icons{
     background-image:url(../img/dashboard/sidebarHover/sidebarIcon1.svg);
     width: 17.98px;
     height: 18.21px;
 }
+#DASHBOARD .headercontainer{
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0px 20px;
+height: 100%;
+}
+#DASHBOARD .headercontainer .right_header_box{
+    display: flex;
+    align-items: center;
+    gap: 29px;
+}
+#DASHBOARD .headercontainer .right_header_box_logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#DASHBOARD .headercontainer .right_header_box .menuimage{
+    background-image:url(../img/dashboard/header/menuicon.svg);
+    width: 24px;
+    height: 24px;
+}
+#DASHBOARD .headercontainer .right_header_box .Iconimage{
+    background-image:url(../img/dashboard/header/segmento-logofa.svg);
+    width: 29px;
+    height: 30px;
+}
+
+#DASHBOARD .headercontainer .left_header_box .userImage{
+    border-radius: 3px;
+    width: 40px;
+    height: 40px;
+}
+#DASHBOARD .headercontainer .left_header_box{
+    display: flex;
+    align-items: center;
+    gap: 49px;
+}
+#DASHBOARD .headercontainer .left_header_box_item1{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#DASHBOARD .headercontainer .left_header_box .username{
+    font-size: 14px;
+}
+#DASHBOARD .headercontainer .left_header_box .eshteraktalaee{
+    font-size: 10px;
+}
+#DASHBOARD .headercontainer .left_header_box_item2{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+}
+#DASHBOARD .headercontainer .left_header_box_item3{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#DASHBOARD .headercontainer .ImageIconSetting{
+    background-image:url(../img/dashboard/header/notif.svg);
+    background-position: center;
+    background-size: cover;
+    width: 24px;
+    height: 22px;
+}
+#DASHBOARD .headercontainer .ImageIconNotif{
+    background-image:url(../img/dashboard/header/message.svg);
+    background-position: center;
+    background-size: cover;
+    width: 24px;
+    height: 22px;
+}
+
+
+#DASHBOARD .headercontainer .ImageIconMessage{
+    background-image:url(../img/dashboard/header/notif.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 22px;
+}
+
 
 
 

@@ -1,12 +1,14 @@
 import React from 'react'
 import SidebarHover from './DashboaedComponents/SidebarHover'
+import DashboardHeader from './DashboaedComponents/DashboardHeader';
+
 
 export default function DashboardBody() {
   return (
 
     <div id='DASHBOARD'>
       <div className='nav_head'>
-
+        <DashboardHeader/>
       </div>
       <div className='body'>
           <div className='main'></div>
