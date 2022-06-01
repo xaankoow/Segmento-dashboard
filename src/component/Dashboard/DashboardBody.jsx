@@ -1,22 +1,32 @@
 import React from 'react'
-// import Modal from '../Utils/Modal'
+import DashboardHeader from './DashboaedComponents/DashboardHeader';
+import ItemSidebarHover from './DashboaedComponents/SidebarComponents/ItemSidebarHover';
+import EasyStart from './EasyStart/EasyStart';
+
 
 export default function DashboardBody() {
+  const itemsHoverMenu=["گزارش های منتخب","خرید اشتراک","شروع آسان","خبرخوان","آموزش","پیشنهادات و تخفیف ها","پشتیبانی و تیکت","انتخاب سرویس"]
   return (
 
     <div id='DASHBOARD'>
       <div className='nav_head'>
-
+        <DashboardHeader/>
       </div>
       <div className='body'>
-        <div className='main'></div>
-        <div className='list_hover'></div>
-        <div className='nav_right'>
-          <div className='scroller'></div>
-          <div className='top'>
-            <div className='dashboard input_focus'>
-              <div className='testBack'></div>
-            </div>
+          <div className='main'>
+            <EasyStart/>
+          </div>
+          <div className='list_hover'>
+           {
+             itemsHoverMenu.map(item=>{
+               return  <ItemSidebarHover text={item} icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"} textColor={"#002145"} textHover={"#0A65CD"}/>
+              })
+           }
+          </div>
+          <div className='nav_right'>
+            <div className='top'>
+            <div className='scroller'></div>
+            <div className='dashboard'></div>
             <div className='analyze'></div>
             <div className='news'></div>
             <div className='servise'></div>
