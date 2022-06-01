@@ -204,6 +204,7 @@
 	width: 100%;
 	align-items: center;
 	padding: 4px 0px;
+	cursor: pointer;
 }
 
 #DASHBOARD .headercontainer .userHeaderProfInfo .dropdowItem .arrow {
@@ -242,8 +243,8 @@
 
 #DASHBOARD .headercontainer .underline {
 	width: 196px;
-	background-color: 1px solid #d3d5e2;
-	margin: 10px 0px 0px 0px;
+	border-bottom: 1px solid #d3d5e2;
+	margin: 10px 0px 5px 0px;
 }
 
 #DASHBOARD .headercontainer .left_header_box .username {
@@ -299,23 +300,29 @@
 	border: 1px solid #d3d5e2;
 	border-radius: 9px;
 }
-
 #DASHBOARD .EasyStartcontactus {
 	display: flex;
 	margin: 34px 28px 28px 28px;
 	justify-content: space-between;
 	align-items: center;
 	padding: 44px 28px;
+	
 }
 #DASHBOARD .EasyStartcontactus span {
 	font-size: 14px;
 }
 
-#DASHBOARD .EasyStartBoxContent {
+#DASHBOARD .EasyStartBoxContentBox {
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	margin: 28px;
+	margin: 48px 28px 28px 28px;
+}
+
+#DASHBOARD .EasyStartBoxContent {
+	display: flex;
+	flex-direction: column;
+	border-top: unset !important;
 }
 
 #DASHBOARD .EasyStartTitle {
@@ -325,10 +332,9 @@
 	background: #ffce47;
 	font-size: 18px;
 	padding: 20px 0px;
+	position: absolute;
 	width: 100%;
-	top: 0px;
-	right: 0;
-	left: 0;
+	top:-20px;
 	border-radius: 8px 8px 0px 0px;
 	z-index: 2px;
 }
@@ -338,7 +344,7 @@
 	flex-direction: column;
 	gap: 5px;
 	font-size: 14px;
-	margin: 44px 28px 0px 28px;
+	margin: 77px 28px 0px 28px;
 }
 #DASHBOARD .EasyStartBoxContent .imageBox {
 	display: flex;
@@ -350,7 +356,7 @@
 	width: 160px;
 	height: 160px;
 	position: absolute;
-	top: -40px;
+	top: -30px;
 	left: 40px;
 }
 #DASHBOARD .EasyStartBoxContent button {

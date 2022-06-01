@@ -23,7 +23,7 @@ const DashboardHeader = () => {
                     </div>
                     </div>
                     <div className='userHeaderProfInfo'>
-                        <hr className='underline'/>
+                        <div className='underline'/>
                      <div className='dropdowItem'>
                           <div className='dropdowItemText'>
                               <img src="../img/dashboard/header/manage_accounts.svg" alt="manage_accounts" />
