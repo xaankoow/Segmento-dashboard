@@ -13,9 +13,9 @@ export default function AuthButton({ widthValue, style, handlerClick,reduxHandle
       className={`btn-style ${classes}`}
       disabled={disabled}
 
-      style={{backgroundColor:"#0A65CD26"}}
+      style={style}
       onClick={(e) =>  {
-        // handlerClick();
+        handlerClick();
         dispatch(reduxHandleClick())
       }}
           >
