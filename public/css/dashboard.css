@@ -93,7 +93,6 @@
 	background-image: url(../img/dashboard/nav_right/dashboard.svg);
 }
 
-
 #DASHBOARD .nav_right .top .analyze {
 	background-image: url(../img/dashboard/nav_right/analyze.svg);
 }
@@ -299,62 +298,62 @@
 #DASHBOARD .EasyStartBox {
 	border: 1px solid #d3d5e2;
 	border-radius: 9px;
- }
-
-#DASHBOARD .EasyStartcontactus{
-    display: flex;
-    margin: 34px 28px 28px 28px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 44px 28px;
-}
-#DASHBOARD .EasyStartcontactus span{
-    font-size:14px;
 }
 
-#DASHBOARD .EasyStartBoxContent{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin: 28px;
+#DASHBOARD .EasyStartcontactus {
+	display: flex;
+	margin: 34px 28px 28px 28px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 44px 28px;
+}
+#DASHBOARD .EasyStartcontactus span {
+	font-size: 14px;
 }
 
-#DASHBOARD .EasyStartTitle{
-display: flex;
-align-items: center;
-justify-content: center;
-background: #FFCE47;
-font-size: 18px;
-padding: 20px 0px;
-width: 100%;
-top: 0px;
-right: 0;
-left: 0;
-border-radius: 8px 8px 0px 0px;
-z-index: 2px;
+#DASHBOARD .EasyStartBoxContent {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin: 28px;
 }
 
-#DASHBOARD .EasyStartBoxSapn{
-   display: flex;
-   flex-direction: column;
-   gap: 5px;
-   font-size: 14px;
-   margin: 44px 28px 0px 28px;
+#DASHBOARD .EasyStartTitle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #ffce47;
+	font-size: 18px;
+	padding: 20px 0px;
+	width: 100%;
+	top: 0px;
+	right: 0;
+	left: 0;
+	border-radius: 8px 8px 0px 0px;
+	z-index: 2px;
 }
-#DASHBOARD .EasyStartBoxContent .imageBox{
-    display: flex;
-    justify-content: left;
-    position: relative;
-    height: 100px;
+
+#DASHBOARD .EasyStartBoxSapn {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	font-size: 14px;
+	margin: 44px 28px 0px 28px;
 }
-#DASHBOARD .EasyStartBoxContent img{
-    width: 160px;
-    height: 160px;
-    position: absolute;
-    top: -40px;
-    left: 40px;
-  }
-  #DASHBOARD .EasyStartBoxContent button{
-      width: 130px;
-      margin: 0px 28px 28px 0px;
-  }
+#DASHBOARD .EasyStartBoxContent .imageBox {
+	display: flex;
+	justify-content: left;
+	position: relative;
+	height: 100px;
+}
+#DASHBOARD .EasyStartBoxContent img {
+	width: 160px;
+	height: 160px;
+	position: absolute;
+	top: -40px;
+	left: 40px;
+}
+#DASHBOARD .EasyStartBoxContent button {
+	width: 130px;
+	margin: 0px 28px 28px 0px;
+}
