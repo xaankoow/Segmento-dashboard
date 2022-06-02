@@ -33,9 +33,9 @@ export default function App() {
   // }, [codVerifyEmail_4])
 
   return (
-    <Fragment>
-        {/* <Modal /> */}
-        {/* <Nav /> */}
+    <div>
+      {/* <Modal /> */}
+      {/* <Nav /> */}
 
 
       <div className="app">
@@ -44,6 +44,7 @@ export default function App() {
           <Route exact path={"login"} element={<Nav />} />
           <Route exact path={"register"} element={<Nav />} />
           <Route exact path={"forgotPassword"} element={<Nav />} />
+          <Route exact path={"ValidateEmail"} element={<Nav />} />
 
         </Routes>
         <Routes>
@@ -51,17 +52,19 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="forgotPassword" element={<Forgotpass />} />
           <Route path="ValidateEmail" element={<ValidateEmail />} />
-          <Route path="dashboard" element={<DashboardBody />} />
         </Routes>
 
-      <Routes>
-      </Routes>
-
-
-        <HandleModal />
-        {/* <ModalContainer/> */}
-        <ToastContainer rtl />
+        <Routes>
+          <Route path="dashboard" element={<DashboardBody />} />
+          <Route path="aa" element={<DashboardBody />} />
+        </Routes>
       </div>
-    </Fragment>
+
+
+
+      <HandleModal />
+      {/* <ModalContainer/> */}
+      <ToastContainer rtl />
+    </div>
   );
 }
