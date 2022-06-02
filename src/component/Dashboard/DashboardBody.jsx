@@ -1,8 +1,7 @@
 import React from 'react'
 import DashboardHeader from './DashboaedComponents/DashboardHeader';
 import ItemSidebarHover from './DashboaedComponents/SidebarComponents/ItemSidebarHover';
-import EasyStart from './DashboaedComponents/EasyStart/EasyStart';
-import PopUp from './DashboaedComponents/PopUp/PopUp';
+import PopUp from '../Utils/PopUp/PopUp';
 
 
 export default function DashboardBody() {

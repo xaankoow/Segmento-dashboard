@@ -2,7 +2,6 @@ import React from "react";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
-import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { checkVerifyEmailAction, registerUserAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
 // css

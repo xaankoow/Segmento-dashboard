@@ -7,8 +7,7 @@ import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
-// import NavDashboard from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
-import Nav from "./component/navMenu/Nav";
+// import Nav from "./component/navMenu/Nav";
 import Modal from 'react-modal'
 import HandleModal from "./component/Utils/handleModal";
 // import ModalContainer from "./component/Utils/ModalContainer";
