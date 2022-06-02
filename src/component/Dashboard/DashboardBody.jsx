@@ -1,7 +1,7 @@
 import React from 'react'
 import DashboardHeader from './DashboaedComponents/DashboardHeader';
 import ItemSidebarHover from './DashboaedComponents/SidebarComponents/ItemSidebarHover';
-import EasyStart from './EasyStart/EasyStart';
+import PopUp from '../Utils/PopUp/PopUp';
 
 
 export default function DashboardBody() {
@@ -14,7 +14,7 @@ export default function DashboardBody() {
       </div>
       <div className='body'>
           <div className='main'>
-            <EasyStart/>
+            <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/>
           </div>
           <div className='list_hover'>
            {
