@@ -8,7 +8,7 @@ import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
 import Timer from "../../component/Auth/timer/Timer";
 import { changePasswordAction, checkVerifyEmailAction, checkVerifyEmailForgotPasswordAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
-import "./forgetpass.css";
+import "./forgotpass.css";
 
 export default function Forgetpass() {
 

@@ -5,8 +5,8 @@ import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
 export default function HandleModal({ handleClose, checkClose }) {
 
-  const [showModal, setShowModal] = useState(false);
-  const [stepModal, setStepModal] = useState(5);
+  const [showModal, setShowModal] = useState(true);
+  const [stepModal, setStepModal] = useState(1);
   const [free, setFree] = useState(false);
 
   const customStyles = {
