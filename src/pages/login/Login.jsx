@@ -16,28 +16,28 @@ export default function Login() {
         {/* <TextButton.Provider value={"ثبت نام"}>
           <Authmenu buttonLink={"/"}/>
         </TextButton.Provider> */}
-            
+
         <div className="mainbox">
           <div className="inputBox">
-                       <AuthInput textLabelInput="ایمیل" width={"560px"}  typeInput="email" reduxHandleChange={setEmailRedux}/>
-                         <AuthInput textLabelInput="گذرواژه " width={"560px"} typeInput="password" isPassword={true}  reduxHandleChange={setPasswordRedux}/>
-                        
+            <AuthInput textLabelInput="ایمیل" width={"560px"} typeInput="email" reduxHandleChange={setEmailRedux} />
+            <AuthInput textLabelInput="گذرواژه " width={"560px"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} />
+
             <div className="registerButtonBox">
               <div className="btnsBox">
                 {/* <Link to={"/"}> */}
                 <TextButton.Provider value={"ورود"}>
-                  <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction}/>
+                  <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} />
                 </TextButton.Provider>
                 {/* </Link> */}
                 <button className="googleButton">
                   <span>حساب گوگل </span> <GoogleIcon className="googleIcon" />
                 </button>
               </div>
-              <Link to={"/forgetPassword"}>
+              <Link to={"/forgotPassword"}>
                 <div>
-                     <span>گذرواژه خود را فراموش کرده‌اید؟</span>
-                 </div>
-             </Link>
+                  <span>گذرواژه خود را فراموش کرده‌اید؟</span>
+                </div>
+              </Link>
             </div>
           </div>
           <div className="imgBox">
