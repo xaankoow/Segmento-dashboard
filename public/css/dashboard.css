@@ -318,7 +318,7 @@
 	position: relative;
 	margin: 48px 28px 28px 28px;
 
-	
+
 }
 
 #DASHBOARD .EasyStartBoxContent {
@@ -364,4 +364,39 @@
 #DASHBOARD .EasyStartBoxContent button {
 	width: 130px;
 	margin: 0px 28px 28px 0px;
+}
+
+/* dashboard pop up */
+
+#DASHBOARD .popUpContainer{
+	background: #FAFAFA;
+	/* dialog */
+	box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+	border-radius: 9px;
+	Width:384.92px;
+    Height:301.12px;
+}
+#DASHBOARD .popUpContainer .popUpContent{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 7px;
+}
+#DASHBOARD .popUpContainer .PopUpBox{
+	border-radius: 9px;
+	display: flex;
+	justify-content: center;
+}
+
+#DASHBOARD .popUpContainer .title{
+    font-size: 20px;
+	margin-top: 13px;
+}
+
+
+#DASHBOARD .popUpContainer .buttonText{
+	color: #0A65CD;
+	margin: 20px 0px 16px 0px;
+	cursor: pointer;
 }

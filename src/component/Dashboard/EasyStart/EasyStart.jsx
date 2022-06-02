@@ -4,6 +4,7 @@ import React from 'react';
 const EasyStart = () => {
     return (
         <>
+
            <div className='EasyStartBox EasyStartcontactus'>
                <span>برای راهنمایی و مشاوره استفاده از امکانات سگمنتو تماس بگیرید :  </span>
                <button className="btn_style">مشاوره و تماس</button>
@@ -14,6 +15,7 @@ const EasyStart = () => {
                </div>
                 <div className='EasyStartBox EasyStartBoxContent'>
                         
+
                         <div className='EasyStartBoxSapn'>
                             <span className=''>   
                                 برای شروع آسان و نحوه استفاده ابزار های موجود در پلتفرم سگمنتو گام به گام مراحل رو 
@@ -25,7 +27,7 @@ const EasyStart = () => {
                         <div className='imageBox'>
                         <img src="../img/dashboard/EasyStartPage/EasySart.svg" alt="EasyStartPage" />
                         </div>
-                        <button className="btn_style"><span></span> شروع کن </button>
+                        <button className="btn-style"><span></span> شروع کن </button>
                 </div>
            </div>
         </>
