@@ -7,7 +7,7 @@ import "./register.css";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import { useDispatch } from "react-redux";
 import { registerUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
-import Nav from "../../component/navMenu/Nav";
+import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 export const TextButton = React.createContext();
 export default function Register() {
 

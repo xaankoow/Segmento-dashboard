@@ -7,7 +7,7 @@ import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
-import Nav from "./component/navMenu/Nav";
+import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 
 
 export default function App() {

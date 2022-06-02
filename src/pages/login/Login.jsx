@@ -6,7 +6,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { TextButton } from '../register/Register'
 import { Link } from 'react-router-dom';
 import { loginUserAction, setEmailRedux, setNameRedux, setPasswordRedux } from '../../component/Redux/Action';
-import Nav from '../../component/navMenu/Nav';
+import Nav from '../../component/Dashboard/DashboaedComponents/navMenu/Nav';
 
 export default function Login() {
   return (
