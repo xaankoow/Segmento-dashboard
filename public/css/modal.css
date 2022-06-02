@@ -1,0 +1,379 @@
+/* .modal{
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.7);
+} */
+/* .Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: papayawhip;
+} */
+
+.ReactModal__Overlay {
+    background-color: rgba(217, 217, 217, 0.6) !important;
+}
+
+.ReactModal__Content {
+    box-sizing: border-box;
+    width: 907px;
+    /* height: 432px; */
+    padding: 0px 10px !important;
+    z-index: 10000000 !important;
+    overflow: hidden !important;
+}
+
+.ReactModal__Content header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 44px;
+    width: 100%;
+    border-radius: 9px;
+    margin: 10px 0px;
+    border: 1px solid #F2F5F7;
+    padding: 0px 18px 0px 14px;
+}
+
+.ReactModal__Content body {
+    box-sizing: border-box;
+    /* height: 408px; */
+    width: 100%;
+    border-radius: 9px;
+    border: 1px solid #F2F5F7;
+    padding: 18px;
+}
+
+.ReactModal__Content footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    border-radius: 9px;
+    margin: 10px 0px;
+}
+
+
+/* head modal css */
+.ReactModal__Content header .info {
+    position: relative;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    top: 3.5px;
+    right: 12px;
+    background-image: url(../img/modal/head/info.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.ReactModal__Content header .close_modal_ico {
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    background-image: url(../img/modal/head/closeModal.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.ReactModal__Content header .close_suport_container {
+    display: flex;
+    align-items: center;
+}
+
+.ReactModal__Content header .close_suport_container button {
+    margin-left: 10px;
+}
+
+
+/* body modal css */
+.ReactModal__Content body .text_information {
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #083C78;
+}
+
+.ReactModal__Content body .main_contnt_modal {
+    margin-top: -19px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ReactModal__Content body .ul_text_container ul {
+    display: inline-block;
+}
+
+.ReactModal__Content body .ul_text_container ul:last-of-type {
+    display: inline-block;
+    margin-right: 117px;
+}
+
+.ReactModal__Content body .ul_text_container ul li {
+    display: list-item !important;
+    font-size: 18px;
+    /* padding-right: 21px; */
+    background: url(../img/modal/body/discList.svg) no-repeat right;
+    list-style-type: none;
+    color: #083C78;
+    /* padding-bottom: 18px; */
+    padding: 18px 21px;
+}
+
+.ReactModal__Content body .input-wrapper {
+    width: 100%;
+}
+
+
+
+
+/* container input step 2 */
+
+.ReactModal__Content body .container_input_step2 {
+    display: flex;
+}
+
+.ReactModal__Content body .container_input_step2:nth-of-type(2) {
+    margin-bottom: 33px;
+}
+
+.ReactModal__Content body .container_input_step3 .input-wrapper:nth-of-type(1) {
+    margin-bottom: 33px;
+}
+
+.ReactModal__Content body .container_input_step2 .arrpw {
+    width: 20px;
+    height: 20px;
+    padding: 12.5px 3px;
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* background-image: url(../img/modal/body/arrow.svg); */
+}
+
+.ReactModal__Content body .container_input_step2 .input-wrapper {
+    flex-grow: 1;
+}
+
+
+.ReactModal__Content .plans_body_container {
+    border: none;
+}
+
+/* .ReactModal__Content .plans_body_container div:nth-child(1) {
+    display: flex;
+} */
+
+.ReactModal__Content .plans_body_container .plan_cards_container {
+    display: flex;
+    justify-content: space-between;
+}
+.ReactModal__Content .plans_body_container .plan_card {
+    width: 265px;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: white;
+    padding: 13px 8px 20px 8px;
+    text-align: center;
+    transition: all 1s ease;
+}
+
+.ReactModal__Content .plans_body_container .plan_card .input_apply_token_container {
+position: relative;
+}
+
+.ReactModal__Content .plans_body_container .plan_card .apply_token_ico {
+    position: absolute;
+    background-image: url(../img/modal/body/arrow_apply_token.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    left: 17px;
+    top: 10px;
+    transition: all 5s ease;
+}
+
+.ReactModal__Content .plans_body_container .plan_card::after {
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    background: linear-gradient(0deg, rgba(10, 101, 205, 0.8) 5%, rgba(125, 125, 125, 0.15) 50%);
+    content: '';
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.ReactModal__Content .plans_body_container .plan_card:hover {
+    box-shadow: 0px 8px 16px 0px #00000024;
+}
+
+
+
+/* title color gold plan */
+.ReactModal__Content .plans_body_container .gold .title {
+    color: #FFCE47;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 13px 0px;
+}
+.ReactModal__Content .plans_body_container .gold hr {
+    border: 1px solid #FFCE47;
+    width: 100%;
+    margin: 23px 0px 13px 0px;
+}
+
+
+
+
+/* title color silver plan */
+.ReactModal__Content .plans_body_container .silver {
+margin: 0px 39px;
+}
+.ReactModal__Content .plans_body_container .silver .title {
+    color: #7D7D7D;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 13px 0px;
+}
+.ReactModal__Content .plans_body_container .silver hr {
+    border: 1px solid #7D7D7D;
+    width: 100%;
+    margin: 23px 0px 13px 0px;
+}
+
+/* title color bronze plan */
+.ReactModal__Content .plans_body_container .bronze .title {
+    color: #BF8970;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 13px 0px;
+}
+.ReactModal__Content .plans_body_container .bronze hr {
+    border: 1px solid #BF8970;
+    width: 100%;
+    margin: 23px 0px 13px 0px;
+}
+
+
+
+
+
+.ReactModal__Content .plans_body_container .plan div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding: 12px 8px;
+    border: 1px solid #F2F5F7;
+    border-radius: 3px;
+    color: #7D7D7D;
+    margin-bottom: 7px;
+}
+
+.ReactModal__Content .plans_body_container .plan div p {
+    display: flex;
+    align-items: center;
+}
+
+.ReactModal__Content .plans_body_container .plan div .circle {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    color: #00000006;
+    border: 1px solid #00000072;
+    margin-left: 8px;
+}
+
+.ReactModal__Content .plans_body_container .plan div .off_price {
+    font-size: 10px;
+    font-weight: 400;
+    color: #7D7D7D;
+}
+
+.ReactModal__Content .plans_body_container .price {
+    width: 100%;
+    height: 40px;
+    margin: 36px 0px 24px 0px;
+    background-color: #F2F5F7;
+    border-radius: 3px;
+}
+
+.ReactModal__Content .plans_body_container .price p {
+    /* box-sizing: border-box; */
+    font-size: 14px;
+    font-weight: 400;
+    color: #7D7D7D;
+    padding: 11px 0px;
+}
+
+.ReactModal__Content .plans_body_container .price p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #7D7D7D;
+}
+
+
+
+
+
+
+
+
+/* footer modal css */
+.ReactModal__Content footer .back_ico {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-image: url(../img/modal/footer/moveBack.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.ReactModal__Content footer .forward-ico {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin-right: 14px;
+    background-image: url(../img/modal/footer/moveForward.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.ReactModal__Content footer .forward-14_free_ico {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin-right: 14px;
+    background-image: url(../img/modal/footer/arrow_14_free.svg);
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

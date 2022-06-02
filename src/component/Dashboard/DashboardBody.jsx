@@ -33,15 +33,17 @@ export default function DashboardBody() {
             <div className='servise'></div>
             <div className='youtub'></div>
             <div className='linkedin'></div>
-            </div>
-            <div className='down'>
-              <div className='support'></div>
-              <div className='information'></div>
-              <div className='line'></div>
-              <div className='xaankoo_logo'></div>
-            </div>
           </div>
+          <div className='down'>
+            <div className='support'></div>
+            <div className='information'></div>
+            <div className='line'></div>
+            {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
+          </div>
+          <div className='xaankoo_logo'></div>
+        </div>
       </div>
+      {/* <Modal/> */}
     </div>
   )
 }

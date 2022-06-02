@@ -15,6 +15,7 @@ export default function AuthInput({
   maxlength,
   classes,
   pressNumber,
+  direction
 }) {
   // check email to be correct
   const validateEmail = (email) => {
@@ -53,6 +54,7 @@ export default function AuthInput({
           className={classes}
           dir="auto"
           style={{
+            direction,
             width: `${width}`,
             pointerEvents: disabled && "none",
             // backgroundColor: disabled && "#F2F5F7",
