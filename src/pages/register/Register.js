@@ -59,7 +59,7 @@ export default function Register() {
             </div>
             <div className="registerButtonBox">
               <div className="btnsBox">
-              <Link to={"ValidateEmail"}>
+              {/* <Link to={"ValidateEmail"}> */}
                   <TextButton.Provider value={"عضویت"}>
                     <AuthButton
                       // widthValue={"86px"}
@@ -68,7 +68,7 @@ export default function Register() {
                       reduxHandleClick={registerUserAction}
                     />
                   </TextButton.Provider>
-                </Link>
+                {/* </Link> */}
                 <button className="googleButton">
                   <span>حساب گوگل </span> <GoogleIcon className="googleIcon" />
                 </button>

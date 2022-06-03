@@ -81,8 +81,9 @@ export const resetStateRedux = () => {
 // REGISTER USER
 export const registerUserAction = () => {
     return async (dispatch, getState) => {
+        debugger
         const state = { ...getState() }
-
+        
         if (state.fullName && state.email && state.password && state.passwordConfirm) {
             let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
             let toastMessage = "";
@@ -93,7 +94,6 @@ export const registerUserAction = () => {
                 formdata.append("email", state.email)
                 formdata.append("password", state.password)
                 formdata.append("password_confirmation", state.passwordConfirm)
-
                 // let register_user =async () => {
                 const { data, status } = await registerUser(formdata);
 

@@ -10,6 +10,7 @@ import DashboardBody from "./component/Dashboard/DashboardBody";
 // import Nav from "./component/navMenu/Nav";
 import Modal from 'react-modal'
 import HandleModal from "./component/Utils/handleModal";
+import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
 
@@ -33,29 +34,39 @@ export default function App() {
   // }, [codVerifyEmail_4])
 
   return (
-    <Fragment>
-        {/* <Modal /> */}
-        {/* <Nav /> */}
+    <div>
+      {/* <Modal /> */}
+      {/* <Nav /> */}
 
 
       <div className="app">
         
         <Routes>
+          <Route exact path={"/"} element={<Nav />} />
+          <Route exact path={"login"} element={<Nav />} />
+          <Route exact path={"register"} element={<Nav />} />
+          <Route exact path={"forgotPassword"} element={<Nav />} />
+          <Route exact path={"ValidateEmail"} element={<Nav />} />
+
+        </Routes>
+        <Routes>
           <Route exact path="/" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="forgotPassword" element={<Forgotpass />} />
           <Route path="ValidateEmail" element={<ValidateEmail />} />
-          <Route path="dashboard" element={<DashboardBody />} />
         </Routes>
 
-      <Routes>
-      </Routes>
-
-
-        <HandleModal />
-        {/* <ModalContainer/> */}
-        <ToastContainer rtl />
+        <Routes>
+          <Route path="dashboard" element={<DashboardBody />} />
+          <Route path="aa" element={<DashboardBody />} />
+        </Routes>
       </div>
-    </Fragment>
+
+
+
+      <HandleModal />
+      {/* <ModalContainer/> */}
+      <ToastContainer rtl />
+    </div>
   );
 }
