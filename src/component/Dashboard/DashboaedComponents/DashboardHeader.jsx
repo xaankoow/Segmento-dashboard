@@ -1,10 +1,13 @@
 import React from 'react';
+import { useState } from 'react';
 
-const DashboardHeader = () => {
+const DashboardHeader = ({setCloseNav}) => {
+    
+    
     return (
         <div className='headercontainer'>
             <div className='right_header_box'>
-                <div className='menuimage'></div>
+                <div className='menuimage' onClick={()=>setCloseNav()}></div>
                 <div className='right_header_box_logo'>
                     <div className='Iconimage'></div>
                     <span className=''>سگمنتو segmento</span>
