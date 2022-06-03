@@ -11,12 +11,13 @@ import DashboardBody from "./component/Dashboard/DashboardBody";
 import Modal from 'react-modal'
 import HandleModal from "./component/Utils/handleModal";
 import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
+import { useSelector } from "react-redux";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
 
 export default function App() {
 
-
+  const {forceUpdate} = useSelector(state=>state)
 
 
   //HANDLE SELECT NEXT INPUT IN FORM FORGOTPASSWORD AND VERIFYEMAIL
@@ -35,11 +36,6 @@ export default function App() {
 
   return (
       <div className="app">
-    {/* <div> */}
-      {/* <Modal /> */}
-      {/* <Nav /> */}
-
-
         <Routes>
           <Route exact path={"/"} element={<Nav path={"login"}/>} />
           <Route exact path={"login"} element={<Nav path={""}/>} />
@@ -57,15 +53,11 @@ export default function App() {
 
         <Routes>
           <Route path="dashboard" element={<DashboardBody />} />
-          <Route path="aa" element={<DashboardBody />} />
         </Routes>
-      {/* </div> */}
 
-
-
-      <HandleModal />
-      {/* <ModalContainer/> */}
+      {/* <HandleModal /> */}
       <ToastContainer rtl />
+      {forceUpdate}
     </div>
   );
 }

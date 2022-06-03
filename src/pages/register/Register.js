@@ -31,8 +31,7 @@ export default function Register() {
       navigate("ValidateEmail", { replace: false })
     }
   }, [checkRegisterComplete])
-
-
+  
   return (
     <div className="registerContainer">
       <div className="registerBox">

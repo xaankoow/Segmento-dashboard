@@ -12,6 +12,7 @@ export const userReducer = (state =
         checkRegisterComplete: false,
         checkVerifyRegister: false,
         handleResendCode: true,
+        forceUpdate:0,
         user:{}
     }, action) => {
     switch (action.type) {

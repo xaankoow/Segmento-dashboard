@@ -1,6 +1,15 @@
 import axios from "axios";
 import {toast} from 'react-toastify'
 
+const token=localStorage.getItem("token");
+
+// debugger
+
+if (token!="undefined"&&token!=null&&token) {
+    axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
+}
+
+
 axios.interceptors.response.use(null,error=>{
     const expectedError=error.response&&error.response.status>=400&&error.response.status<500;
     if(!expectedError){

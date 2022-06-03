@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { registerUser, loginUser, verifyEmail, checkVerifyEmail, verifyEmailChangePassword, logout, changePassword, checkVerifyEmailChangePassword } from "../../service/userService"
+import { registerUser, loginUser, verifyEmail, checkVerifyEmail, verifyEmailChangePassword, logout, changePassword, checkVerifyEmailChangePassword, findUser } from "../../service/userService"
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
 
@@ -83,7 +83,7 @@ export const registerUserAction = () => {
     return async (dispatch, getState) => {
         debugger
         const state = { ...getState() }
-        
+
         if (state.fullName && state.email && state.password && state.passwordConfirm) {
             let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
             let toastMessage = "";
@@ -165,7 +165,15 @@ export const loginUserAction = () => {
                     // Navigate("/dashboard");
                     // const json=JSON.parse(data.data.user)
                     localStorage.setItem("token", data.data.token);
+                    // localStorage.setItem("userId", data.data.user.uuid);
                     // localStorage.setItem("user", json);
+                    // debugger
+                    const d = new Date();
+                    d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
+                    let expires = "expires=" + d.toUTCString();
+                    document.cookie = "user_name=" + data.data.user.name + ";" + expires;
+                    document.cookie = "user_email=" + data.data.user.email + ";" + expires;
+                    state.forceUpdate+=1;
                     toast.update(toastPromise, { render: "با موفقیت وارد شدید", type: "success", isLoading: false, autoClose: 3000 })
                 } else {
                     data.errors.forEach(element => {
@@ -179,7 +187,7 @@ export const loginUserAction = () => {
                 });
                 toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
             }
-        }else {
+        } else {
             // debugger
             showInputErrorToast();
         }
@@ -343,7 +351,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
     return async (dispatch, getState) => {
 
         const state = { ...getState() }
-        
+
         const stateEmail = state.email;
 
         if (stateEmail) {
@@ -354,15 +362,15 @@ export const sendForgotPasswordEmailCodeAction = () => {
 
                 var toastMessage = "";
                 try {
-                    
+
                     let formdata = new FormData();
                     formdata.append("email", stateEmail)
                     const { data, status } = await verifyEmailChangePassword(formdata);
                     // let send_code_email_forgotPassword = async () => {
-                        if (status == 200 && data.status == true) {
-                            state.forgotPasswordStep = 1;
-                            state.handleResendCode = false;
-                            setTimeout(() => {
+                    if (status == 200 && data.status == true) {
+                        state.forgotPasswordStep = 1;
+                        state.handleResendCode = false;
+                        setTimeout(() => {
                             let state = { ...getState() }
                             state.handleResendCode = true;
                             dispatch({ type: "DISABLE_TIMER", payload: state })
@@ -460,69 +468,82 @@ export const changePasswordAction = () => {
 }
 export const logoutAction = () => {
     return async (dispatch, getState) => {
-        let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+        const toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
 
-        let toastMessage = "";
+        var toastMessage = "";
 
-        let state = { ...getState() }
+        const state = { ...getState() }
+        // let user= getCookie("user_name")
 
-        try {
-            const { data, status } = await logout();
+        // try {
+        //     const { data, status } = await logout();
+        //     if (status == 200 && data.status == true) {
+        //         localStorage.removeItem("token")
+        //         document.cookie = "user_name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        //         document.cookie = "user_email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        //         toast.update(toastPromise, { render: "از حساب خود خارج شدید", type: "success", isLoading: false, autoClose: 3000 })
+        //     } else {
+        //         data.errors.forEach(element => {
+        //             toastMessage += element;
+        //         });
+        //         toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+        //     }
+        // } catch (error) {
+        //     error.response.data.errors.forEach(element => {
+        //         toastMessage += element;
+        //     });
+        //     toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+        // }
 
-            if (status == 200 && data.status == true) {
-                localStorage.removeItem("token")
-                toast.update(toastPromise, { render: "از حساب خود خارج شدید", type: "success", isLoading: false, autoClose: 3000 })
-            } else {
-                data.errors.forEach(element => {
-                    toastMessage += element;
-                });
-                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-            }
-
-
-        } catch (error) {
-            error.response.data.errors.forEach(element => {
-                toastMessage += element;
-            });
-            toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-        }
-
+        localStorage.removeItem("token")
+        document.cookie = "user_name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "user_email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        toast.update(toastPromise, { render: "از حساب خود خارج شدید", type: "success", isLoading: false, autoClose: 3000 })
+        state.forceUpdate+=1;
         await dispatch({ type: "CHANGE_PASSWORD", payload: state })
     }
 }
 export const findUserAction = () => {
     return async (dispatch, getState) => {
 
-        let state = { ...getState() }
+        const state = { ...getState() }
 
-        const internal_user=state.user;
+        const internal_user = state.user;
+        const token = localStorage.getItem("userId")
 
-        if (internal_user) {
-            
-        }else{
+        // if (internal_user) {
+
+        // }else{
+        if (token != "undefined" && token != null) {
 
             try {
-                const { data, status } = await logout();
-    
-                if (status == 200 && data.status == true) {
-                    localStorage.removeItem("token")
-                    toast.update(toastPromise, { render: "از حساب خود خارج شدید", type: "success", isLoading: false, autoClose: 3000 })
-                } else {
-                    data.errors.forEach(element => {
-                        toastMessage += element;
-                    });
-                    toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                }
-    
-    
+                const dd = await findUser(token);
+                debugger
+
+                // if (status == 200 && data.status == true) {
+                //     debugger
+                //     console.log("find user")
+                //     // toast.update(toastPromise, { render: "وارد حساب کاربری شدید", type: "success", isLoading: false, autoClose: 3000 })
+                // } else {
+                //     // data.errors.forEach(element => {
+                //     //     toastMessage += element;
+                //     // });
+                //     // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                //     console.log(data.errors)
+                // }
+
+                await dispatch({ type: "FIND_USER", payload: state })
+
             } catch (error) {
-                error.response.data.errors.forEach(element => {
-                    toastMessage += element;
-                });
-                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                // error.response.data.errors.forEach(element => {
+                //     toastMessage += element;
+                // });
+                // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                console.log(error)
             }
         }
-        
-        await dispatch({ type: "CHANGE_PASSWORD", payload: state })
+
     }
+
+    // }
 }

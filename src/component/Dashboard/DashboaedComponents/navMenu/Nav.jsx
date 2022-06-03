@@ -1,8 +1,32 @@
 import React, { useEffect } from 'react'
-import { Route, Routes } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
+import { findUserAction } from '../../../Redux/Action'
+import getCookie from '../../../Utils/findUser'
 
 export default function Nav({path}) {
+
+
+  // const dispatch=useDispatch();
+  // useEffect(() => {
+  //     dispatch(findUserAction())
+  // }, [])
+  
+  // let user=get
+  const navigate=useNavigate();
+
+
+  let user= getCookie("user_name")
+
+  // debugger
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard",{replace:true})
+    }
+  }, [user])
+  
+  
   console.log(window.location.pathname)
   return (
     <div id='nav-option-head'>
