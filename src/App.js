@@ -39,13 +39,7 @@ export default function App() {
 
 
       <div className="app">
-        <Routes>
-          <Route exact path={"/"} element={<Nav />} />
-          <Route exact path={"login"} element={<Nav />} />
-          <Route exact path={"register"} element={<Nav />} />
-          <Route exact path={"forgotPassword"} element={<Nav />} />
-
-        </Routes>
+        
         <Routes>
           <Route exact path="/" element={<Register />} />
           <Route path="login" element={<Login />} />
