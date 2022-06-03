@@ -10,6 +10,7 @@ import DashboardBody from "./component/Dashboard/DashboardBody";
 // import Nav from "./component/navMenu/Nav";
 import Modal from 'react-modal'
 import HandleModal from "./component/Utils/handleModal";
+import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
 
@@ -33,20 +34,20 @@ export default function App() {
   // }, [codVerifyEmail_4])
 
   return (
-    <div>
+      <div className="app">
+    {/* <div> */}
       {/* <Modal /> */}
       {/* <Nav /> */}
 
 
-      <div className="app">
         <Routes>
-          <Route exact path={"/"} element={<Nav />} />
-          <Route exact path={"login"} element={<Nav />} />
-          <Route exact path={"register"} element={<Nav />} />
-          <Route exact path={"forgotPassword"} element={<Nav />} />
-          <Route exact path={"ValidateEmail"} element={<Nav />} />
-
+          <Route exact path={"/"} element={<Nav path={"login"}/>} />
+          <Route exact path={"login"} element={<Nav path={""}/>} />
+          <Route exact path={"forgotPassword"} element={<Nav path={"login"}/>} />
+          <Route exact path={"ValidateEmail"} element={<Nav path={"login"}/>} />
         </Routes>
+
+        
         <Routes>
           <Route exact path="/" element={<Register />} />
           <Route path="login" element={<Login />} />
@@ -58,7 +59,7 @@ export default function App() {
           <Route path="dashboard" element={<DashboardBody />} />
           <Route path="aa" element={<DashboardBody />} />
         </Routes>
-      </div>
+      {/* </div> */}
 
 
 

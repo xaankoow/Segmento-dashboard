@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router'
 import { BrowserRouter, Link } from 'react-router-dom'
 
-export default function Nav() {
+export default function Nav({path}) {
   console.log(window.location.pathname)
   return (
     <div id='nav-option-head'>
@@ -26,11 +26,16 @@ export default function Nav() {
       </div>
       <div>
 
-        <Routes>
-          <Route exact path={"login"} element={<Link to={"/"} className='btn-style'>ثبت نام</Link>} />
+        {/* <Routes>
+          <Route path={"login"} element={<Link to={"/"} className='btn-style'>ثبت نام</Link>} />
           <Route path={"forgotpassword"} element={<Link to={"/"} className='btn-style'>ثبت نام</Link>} />
           <Route exact path={"*"} element={<Link to={"/login"} className='btn-style'>ورود</Link>} />
-        </Routes>
+        </Routes> */}
+
+          {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
+          {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
+          <Link to={`/${path}`} className='btn-style'>{path=="login"?"ورود":"ثبت نام"}</Link>
+
       </div>
     </div>
   )

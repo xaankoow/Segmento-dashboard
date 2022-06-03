@@ -490,3 +490,39 @@ export const logoutAction = () => {
         await dispatch({ type: "CHANGE_PASSWORD", payload: state })
     }
 }
+export const findUserAction = () => {
+    return async (dispatch, getState) => {
+
+        let state = { ...getState() }
+
+        const internal_user=state.user;
+
+        if (internal_user) {
+            
+        }else{
+
+            try {
+                const { data, status } = await logout();
+    
+                if (status == 200 && data.status == true) {
+                    localStorage.removeItem("token")
+                    toast.update(toastPromise, { render: "از حساب خود خارج شدید", type: "success", isLoading: false, autoClose: 3000 })
+                } else {
+                    data.errors.forEach(element => {
+                        toastMessage += element;
+                    });
+                    toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                }
+    
+    
+            } catch (error) {
+                error.response.data.errors.forEach(element => {
+                    toastMessage += element;
+                });
+                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+            }
+        }
+        
+        await dispatch({ type: "CHANGE_PASSWORD", payload: state })
+    }
+}
