@@ -33,21 +33,43 @@ export default function DashboardBody() {
           </div>
           <div className='nav_right'>
             <div className='top'>
-            <div className='scroller'></div>
-            <div className='dashboard'></div>
-            <div className='analyze'></div>
-            <div className='news'></div>
-            <div className='servise'></div>
-            <div className='youtub'></div>
-            <div className='linkedin'></div>
+           
+              <div className='nav_right_box'>
+              <div className='dashboard'></div>
+              </div>
+              <div className='nav_right_box'>
+                <div className='analyze'></div>
+              </div>
+              <div className='nav_right_box'>
+                <div className='news'></div>
+              </div>
+              <div className='nav_right_box'>
+                <div className='servise'></div>
+              </div>
+              <div className='nav_right_box'>
+                <div className='youtub'></div>
+              </div>
+              <div className='nav_right_box'>
+                <div className='linkedin'></div>
+              </div>
+              
           </div>
           <div className='down'>
-            <div className='support'></div>
-            <div className='information'></div>
+            <div className='dropDownBox '>
+              <div className='support'></div>
+              <div className='support_dropDown dropDownBox1'><span>منابع و راهنمایی ها</span></div>
+            </div>
+
+            <div className='dropDownBox'>
+              <div className='information'></div>
+              <div className='support_dropDown dropDownBox2'><span>منابع و راهنمایی ها</span></div>
+            </div>
+            
             <div className='line'></div>
             {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
+            <div className='xaankoo_logo'></div>
+          
           </div>
-          <div className='xaankoo_logo'></div>
         </div>
       </div>
       {/* <Modal/> */}
