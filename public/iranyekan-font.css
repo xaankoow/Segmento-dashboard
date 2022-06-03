@@ -1,0 +1,10 @@
+@font-face {
+    font-family: IRANSans;
+    src: url('font/IRANSans.ttf');
+    src: url('font/IRANSans_UltraLight.ttf') format('embedded-opentype'),
+    url('https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.woff2') format('woff2'),
+    url('https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.woff') format('woff'),
+    url('font/IRANSans.ttf') format('truetype');
+    font-weight: normal;
+}
+

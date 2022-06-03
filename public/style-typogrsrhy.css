@@ -1,0 +1,35 @@
+@import url(shabnam-font.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
+body {
+  font-family: IRANSans, serif !important;
+  font-weight: 300;
+  margin: 0;
+  direction: rtl;
+}
+*{
+  font-family: IRANSans, serif !important;
+
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+button,
+span,
+label,
+textarea {
+  font-family: IRANSans, serif !important;
+  color: rgba(0, 31, 67, 1);
+}
+input::placeholder{
+  font-family: IRANSans, serif !important;
+}
+a{
+  text-decoration: none;
+  color: #001F43;
+}
+a:checked{
+  color: #001F43;
+}

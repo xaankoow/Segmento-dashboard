@@ -1,0 +1,32 @@
+.registerButton {
+   font-family: IRANSans, serif !important;
+   padding: 8px, 20px, 8px, 20px !important;
+   border-radius: 9px !important;
+   background-color: #0A65CD;
+   color: white !important;
+   height: 40px !important;
+   box-shadow: unset !important;
+   border: unset;
+   z-index: 2;
+}
+
+.registerButton:hover {
+   background-color: #0AC7E2 !important;
+   cursor: pointer;
+}
+
+.registerButton:checked {
+   background-color: #009FB9 !important;
+}
+.registerButton:focus {
+   background-color: #009FB9 !important;
+}
+.registerButton:disabled{
+   background-color: #D3D5E2 !important;
+}
+.registerButton:disabled:hover{
+   background-color: #D3D5E2 !important;
+   cursor: auto;
+}
+
+

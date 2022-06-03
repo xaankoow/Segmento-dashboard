@@ -1,0 +1,87 @@
+.mainbox .emailboForget {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0px 20px 0px;
+}
+.mohtava{
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   /* padding: 0px 10px; */
+}
+.mainbox .activecodeBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    position: relative;
+}
+.mainbox  .activePassConteiner{
+width: 538px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+/* margin-right: 2.5rem; */
+}
+.activecodeBox .activecodeChildBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    
+}
+.forgetpassBox{
+    margin: 40px 0px;
+    width: 100%;
+    /* background-color: #C42B1C; */
+    display: flex;
+    justify-content: space-between;
+}
+.storePssBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding:0px 10px 0px 5px; */
+}
+/* ساب کاربری ندارم! */
+.span{
+    text-decoration: underline;
+    text-underline-position: under;
+}
+.ErrorBadgeBox{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #C42B1C;
+   margin: 0px 10px;
+   top: 35px;
+   position: absolute;
+   display: none;
+  }
+  .ErrorBadgeImage{
+    background-color: #C42B1C;
+    border-radius: 50%;
+    padding: 3px;
+  }
+  .recheckPss{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+  }
+  .acceptCodeBox{
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+  }
+
+  .container_btn_timer{
+      display: flex;
+      align-items: center;
+  }
+  .container_btn_timer span{
+      padding: 0px 10px;
+      text-decoration: underline;
+  }
+

@@ -1,0 +1,546 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+/* .app {
+	padding: 0px !important;
+} */
+
+#DASHBOARD {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	background-color: #f5f7f7;
+}
+
+#DASHBOARD .nav_head {
+	background-color: rgb(255, 255, 255);
+	height: 65px;
+	/* height: 6%; */
+	width: 100%;
+	box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+#DASHBOARD .body {
+	display: flex;
+	flex-direction: row-reverse;
+	position: relative;
+	/* background-color: rgb(168, 82, 82); */
+	/* background-color: #F5F7F7; */
+
+	height: 954px;
+	top: 6px;
+	width: 100%;
+	/* box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15); */
+}
+
+#DASHBOARD .main {
+	background-color: #ffffff;
+	height: 100%;
+	flex-grow: 1;
+	z-index: 1;
+	box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+	margin: 6px 8px 0px 8px;
+	border-radius: 9px;
+}
+
+#DASHBOARD .list_hover {
+	background-color: #fcfcfb;
+	width: 256px;
+	height: 100%;
+	margin-top: 8px;
+	border-radius: 9px 0px 0px 9px;
+	box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+	padding-top: 20px;
+}
+
+#DASHBOARD .nav_right {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    right: 0px;
+    background-color: #FCFCFB;
+    box-shadow: 0px 4px 15px 0px #00000026;
+    margin-top: 8px;
+    width: 54px;
+    /* height: 90%; */
+    /* padding: 0px 12px; */
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+#DASHBOARD .nav_right .top div:hover  .testBack{
+    background-color: #0A65CD !important;
+
+}
+#DASHBOARD .nav_right .top{
+    position: relative;
+}
+#DASHBOARD .nav_right .top div{
+    /* position: relative; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    margin: 28px 0px;
+    z-index: 50;
+    /* padding: 6px 9px; */
+}
+#DASHBOARD .nav_right .down{
+ position: absolute;
+ /* bottom: 31px; */
+ bottom: 49px;
+}
+#DASHBOARD .nav_right .down div{
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    margin: 18px 0px;
+}
+
+#DASHBOARD .nav_right .top div:first-child {
+    margin-top: 16px !important;
+}
+
+#DASHBOARD .nav_right .scroller {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    border-radius: 1px;
+    width: 2px;
+    height: 20px;
+    z-index: 5px;
+    background-color: #0A65CD;
+    transition: all 4s ease-in-out;
+}
+
+#DASHBOARD .nav_right .testBack{
+    /* position: absolute; */
+    /* position: relative; */
+    /* right: -9px; */
+    /* top: -6px; */
+    /* margin: auto; */
+    width: 41px !important;
+    height: 36px !important;
+    border-radius: 3px;
+    /* padding: 10px !important; */
+    background-color: #f2f5f78c;
+    z-index: 5 !important;
+
+}
+#DASHBOARD .nav_right .input_focus{
+    /* box-sizing: border-box !important; */
+    /* background-color: aquamarine; */
+    /* box-sizing: border-box; */
+    /* background: black; */
+    /* background-size: 100% !important; */
+    /* padding: 16px 8px !important; */
+    /* background-color: #193547; */
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	right: 0px;
+	background-color: #fcfcfb;
+	box-shadow: 0px 4px 15px 0px #00000026;
+	margin-top: 8px;
+	width: 54px;
+	height: 100%;
+	box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+#DASHBOARD .nav_right .top div {
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* box-sizing: border-box; */
+	width: 32px;
+	height: 32px;
+	/* padding: 28px 0px; */
+	margin: 28px 0px;
+}
+
+#DASHBOARD .nav_right .top div:first {
+	margin: 16px 0px !important;
+}
+
+#DASHBOARD .nav_right .top .scroller {
+	position: absolute;
+	width: 2px;
+}
+
+#DASHBOARD .nav_right .top .dashboard {
+	background-image: url(../img/dashboard/nav_right/dashboard.svg);
+}
+
+#DASHBOARD .nav_right .top .analyze {
+	background-image: url(../img/dashboard/nav_right/analyze.svg);
+}
+
+#DASHBOARD .nav_right .top .news {
+	background-image: url(../img/dashboard/nav_right/news.svg);
+}
+
+#DASHBOARD .nav_right .top .servise {
+	background-image: url(../img/dashboard/nav_right/servise.svg);
+}
+
+#DASHBOARD .nav_right .top .youtub {
+	background-image: url(../img/dashboard/nav_right/youtub.svg);
+}
+
+#DASHBOARD .nav_right .top .linkedin {
+	background-image: url(../img/dashboard/nav_right/linkedin.svg);
+}
+
+
+
+/* remove! */
+#DASHBOARD .nav_right .down .support {
+    background-image: url(../img/dashboard/nav_right/support.svg);
+}
+
+#DASHBOARD .nav_right .down .information {
+    background-image: url(../img/dashboard/nav_right/information.svg);
+}
+
+#DASHBOARD .nav_right .down .line {
+    width: 30px;
+    height: 1px;
+    background-color: #D3D5E2;
+}
+
+#DASHBOARD .nav_right .xaankoo_logo {
+    /* width: 100%; */
+    /* height: 44px; */
+    overflow: hidden;
+    width: 52px;
+    height: 44px;
+    margin-bottom: 11px;
+    background-image: url(../img/dashboard/nav_right/xaankoo-logo.svg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SidebarHover */
+#DASHBOARD .SidebarHoverBox {
+	display: flex;
+	align-items: center;
+	gap: 13px;
+	color: #002145;
+	margin: 18px 20px 18px 0px;
+	font-size: 14px;
+}
+
+#DASHBOARD .SidebarHoverBox:hover span {
+	cursor: pointer;
+	color: #0071ff;
+}
+
+#DASHBOARD .SidebarHoverBox:hover img {
+	filter: saturate(11);
+}
+
+#DASHBOARD .headercontainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 20px;
+	height: 100%;
+}
+
+#DASHBOARD .headercontainer .right_header_box {
+	display: flex;
+	align-items: center;
+	gap: 29px;
+}
+
+#DASHBOARD .headercontainer .right_header_box_logo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+#DASHBOARD .headercontainer .right_header_box .menuimage {
+	background-image: url(../img/dashboard/header/menuicon.svg);
+	width: 24px;
+	height: 24px;
+}
+
+#DASHBOARD .headercontainer .right_header_box .Iconimage {
+	background-image: url(../img/dashboard/header/segmento-logofa.svg);
+	width: 29px;
+	height: 30px;
+}
+
+#DASHBOARD .headercontainer .left_header_box .userImage {
+	border-radius: 5px;
+}
+
+#DASHBOARD .headercontainer .left_header_box {
+	display: flex;
+	align-items: center;
+	gap: 49px;
+}
+
+#DASHBOARD .headercontainer .userProfBox {
+	z-index: 10;
+	position: relative;
+	padding: 5px;
+	background-color: white;
+}
+
+#DASHBOARD .headercontainer .userHeaderProfInfo {
+	display: none;
+	position: absolute;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	border-radius: 3px;
+	width: 100%;
+}
+/* drop down */
+#DASHBOARD .dropdown {
+	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+	border-radius: 3px;
+}
+
+#DASHBOARD .headercontainer .userHeaderProfInfo .dropdowItem {
+	display: flex;
+	font-size: 10px;
+	justify-content: space-between;
+	width: 100%;
+	align-items: center;
+	padding: 4px 0px;
+	cursor: pointer;
+}
+
+#DASHBOARD .headercontainer .userHeaderProfInfo .dropdowItem .arrow {
+	margin-left: 10px;
+}
+
+#DASHBOARD .headercontainer .userHeaderProfInfo .dropdowItem:hover {
+	background: rgba(10, 101, 205, 0.15);
+}
+
+#DASHBOARD .headercontainer .dropdowItemText {
+	display: flex;
+	align-items: center;
+}
+
+#DASHBOARD .headercontainer .dropdowItemText img {
+	margin: 0px 10px 0px 5px;
+}
+
+#DASHBOARD .headercontainer .userProfBox:hover {
+	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+	border-radius: 3px;
+}
+
+#DASHBOARD .headercontainer .userProfBox:hover .userHeaderProfInfo {
+	display: flex;
+	right: 0;
+	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+}
+
+#DASHBOARD .headercontainer .left_header_box_item1 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+#DASHBOARD .headercontainer .underline {
+	width: 196px;
+	border-bottom: 1px solid #d3d5e2;
+	margin: 10px 0px 5px 0px;
+}
+
+#DASHBOARD .headercontainer .left_header_box .username {
+	font-size: 14px;
+}
+
+#DASHBOARD .headercontainer .left_header_box .eshteraktalaee {
+	font-size: 10px;
+}
+
+#DASHBOARD .headercontainer .left_header_box_item2 {
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	gap: 10px;
+	margin-top: 5px;
+}
+
+#DASHBOARD .headercontainer .left_header_box_item3 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-left: 29px;
+}
+
+#DASHBOARD .headercontainer .left_header_box_item3 .notifIconBox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	font-size: 8px;
+	color: white !important;
+}
+
+#DASHBOARD .headercontainer .left_header_box_item3 .notifIconBox .notifNumber {
+	position: absolute;
+	padding: 2px;
+	left: 14px;
+	top: -4px;
+	text-align: center;
+	color: white;
+	border-radius: 50%;
+	background: #ff7278;
+}
+
+#DASHBOARD .headercontainer .left_header_box_item3 img:hover {
+	cursor: pointer;
+}
+
+/* easy start */
+
+#DASHBOARD .EasyStartBox {
+	border: 1px solid #d3d5e2;
+	border-radius: 9px;
+}
+#DASHBOARD .EasyStartcontactus {
+	display: flex;
+	margin: 34px 28px 28px 28px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 44px 28px;
+	
+}
+#DASHBOARD .EasyStartcontactus span {
+	font-size: 14px;
+}
+
+#DASHBOARD .EasyStartBoxContentBox {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin: 48px 28px 28px 28px;
+
+
+}
+
+#DASHBOARD .EasyStartBoxContent {
+	display: flex;
+	flex-direction: column;
+	border-top: unset !important;
+}
+
+#DASHBOARD .EasyStartTitle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #ffce47;
+	font-size: 18px;
+	padding: 20px 0px;
+	position: absolute;
+	width: 100%;
+	top:-20px;
+	border-radius: 8px 8px 0px 0px;
+	z-index: 2px;
+}
+
+#DASHBOARD .EasyStartBoxSapn {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	font-size: 14px;
+	margin: 77px 28px 0px 28px;
+}
+#DASHBOARD .EasyStartBoxContent .imageBox {
+	display: flex;
+	justify-content: left;
+	position: relative;
+	height: 100px;
+}
+#DASHBOARD .EasyStartBoxContent img {
+	width: 160px;
+	height: 160px;
+	position: absolute;
+	top: -30px;
+	left: 40px;
+}
+#DASHBOARD .EasyStartBoxContent button {
+	width: 130px;
+	margin: 0px 28px 28px 0px;
+}
+
+/* dashboard pop up */
+
+#DASHBOARD .popUpContainer{
+	background: #FAFAFA;
+	/* dialog */
+	box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+	border-radius: 9px;
+	Width:384.92px;
+    Height:301.12px;
+}
+#DASHBOARD .popUpContainer .popUpContent{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 7px;
+}
+#DASHBOARD .popUpContainer .PopUpBox{
+	border-radius: 9px;
+	display: flex;
+	justify-content: center;
+}
+
+#DASHBOARD .popUpContainer .title{
+    font-size: 20px;
+	margin-top: 13px;
+}
+
+
+#DASHBOARD .popUpContainer .buttonText{
+	color: #0A65CD;
+	margin: 20px 0px 16px 0px;
+	cursor: pointer;
+}
+#DASHBOARD .EasyStartBoxContent img{
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top: -40px;
+    left: 40px;
+  }
+  #DASHBOARD .EasyStartBoxContent button{
+      width: 130px;
+      margin: 0px 28px 28px 0px;
+  }

@@ -1,0 +1,47 @@
+/* DEFAULT BTN STYLE*/
+.btn-style *{
+  font-size: 14px !important;
+}
+.btn-style {
+  background-color: rgba(10, 101, 205, 1);
+  font-size: 14px !important;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  transition: all 0.08s ease-in-out;
+}
+.btn-style:hover {
+  background-color: #0ac7e2 !important;
+  cursor: pointer;
+}
+.btn-style:active {
+  background-color: #009fb9 !important;
+}
+.input_defult_style{
+
+}
+
+/* .input_verify_email_cod_container .input-wrapper input{
+  width: 50px ;
+  height: 50px;
+margin: 0px 20px;
+} */
+.verify_cod_container .input-wrapper {
+  margin: 0px 10px;
+}
+.verify_cod_container .input-wrapper {
+  margin: 0px 10px;
+}
+.verify_cod_container .input-wrapper:first-child {
+  margin-right: 0px !important;
+}
+
+
+.btn_complete{
+  background-color: #009FB9 ;
+}

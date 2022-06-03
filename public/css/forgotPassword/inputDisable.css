@@ -1,0 +1,50 @@
+/* .activecodeChildBox span {
+    font-size: 14px;
+    color: rgba(211, 213, 226, 1);
+} */
+.activecodeChildBox .input_wrapper {
+    background: #4a83a8;
+    border: 0px !important;
+}
+/* .activecodeChildBox .input_wrapper input{
+    background-color: #4a83a8 !important;
+    border: 0px !important;
+} */
+
+.forgetpassBox input {
+    /* background-color: white; */
+    /* border: none !important; */
+}
+.forgetpassBox input:disabled {
+    color: #D3D5E2 !important;
+    border: none !important;
+}
+.forgetpassBox input:disabled label {
+    color: #d3d5e2;
+}
+
+button:disabled {
+    color: rgba(255, 255, 255, 1) !important;
+    background-color: rgba(211, 213, 226, 1) !important;
+    cursor: default !important;
+}
+button:disabled:hover {
+    background-color: rgba(211, 213, 226, 1) !important;
+}
+button:disabled:active {
+    background-color: rgba(211, 213, 226, 1) !important;
+}
+input:disabled {
+    cursor: default !important;
+    border: none;
+    color: #D3D5E2;
+    background-color: #F2F5F7;
+}
+
+.SpanStyle{
+font-size: 14px;
+}
+
+.lockStyle{
+color: rgba(211, 213, 226, 1);
+}

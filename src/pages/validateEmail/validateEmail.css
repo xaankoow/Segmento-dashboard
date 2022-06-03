@@ -1,0 +1,57 @@
+.main-validate-Email-box{
+    width: 100%;
+    text-align: center;
+    height: 650px;
+    /* position: absolute; */
+    /* top: 133px; */
+    overflow: hidden;
+}
+.validateEmailContai{
+    line-height: 30px;
+}
+.validateEmailContai p{
+    width: 666px;
+    font-size: 18px;
+    margin: auto;
+}
+.validateEmailChildBox{
+    margin: 80px 0px 30px 0px;
+   display: flex;
+   gap: 10px;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.validateEmailChildBox2{
+    width: 667px;
+    height: 40px;
+    position: relative;
+    text-align: center;
+    margin: auto;
+}
+.validateEmailChildBox2 img{
+    position: absolute;
+    padding: 8px 0px;
+    right: 0px;
+    top: 0px;
+}
+.getemailtext{
+    position: absolute;
+    text-decoration: underline;
+    text-underline-position: under;
+    top: 0px;
+    left: 0px;
+    padding: 9px 0px;
+}
+.validateEmailIconBox{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    top: 100px;
+}
+.validateEmailIconBox img{
+margin:0px 8px;
+}
+.validateButton button{
+    margin: auto;
+}

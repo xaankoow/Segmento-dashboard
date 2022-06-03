@@ -1,0 +1,103 @@
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 560px;
+    gap: 2rem;
+}
+
+.mainbox {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.registerContainer {
+    padding: 0px 102px 0px 120px;
+}
+/* .registerContainer {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../../public/img/vector.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+
+/* .registerBox {
+    padding: 0px 102px 0px 120px;
+} */
+
+.imgBox {
+    display: flex;
+    flex-direction: column;
+    height: 578px;
+    /* gap: 50px; */
+}
+.imgBox .sun{
+width: 80px;
+height: 80px;
+}
+.imgBox .sun{
+width: 80px;
+height: 80px;
+}
+.imgBox img:last-child{
+    margin-top: 35px;
+/* width: 80px; */
+/* height: 80px; */
+}
+
+.registerButtonBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* width: 580px; */
+}
+
+.registerButtonBox :nth-child(2) {
+    color: #001f43;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+.btnsBox {
+    display: flex;
+    gap: 20px;
+}
+
+.googleButton {
+    /* width: 147px; */
+    /* height: 40px; */
+    border: 0px;
+    color: white !important;
+    background-color: #d3d5e2;
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none !important;
+    font-size: 14px;
+    /* padding: 8px 20px; */
+}
+.googleButton span{
+    
+    padding: 8px 20px 8px 10px;
+    color: white !important;
+}
+
+.googleIcon {
+    color: #7d7d7d !important;
+    width: 24px !important;
+    height: 24px !important;
+    padding-left: 20px;
+}
+
+
+.remove_margin{
+    margin: 0px !important;
+}
