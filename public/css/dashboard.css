@@ -37,6 +37,7 @@
 
 #DASHBOARD .main {
 	background-color: #ffffff;
+	position: relative;
 	height: 100%;
 	flex-grow: 1;
 	z-index: 1;
@@ -53,6 +54,7 @@
 	border-radius: 9px 0px 0px 9px;
 	box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 	padding-top: 20px;
+	transition: left 2s 2s;
 }
 
 #DASHBOARD .nav_right {
@@ -102,42 +104,42 @@
 	align-items: center;
 	position: absolute;
 	/* bottom: 31px; */
-	bottom:230px;
+	bottom:15px;
 }
 
 /* tooltip  */
 
 #DASHBOARD .nav_right .down .dropDownBox{
 	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-#DASHBOARD .nav_right .down .dropDownBox1{
-	display: none;
-}
 
 #DASHBOARD .nav_right .down .dropDownBox:hover .dropDownBox1{
-	display: block;
+	display: flex;
 }
 
-#DASHBOARD .nav_right .down .dropDownBox2 .support_dropDown{
-	display: none;
-}
-
-#DASHBOARD .nav_right .down .dropDownBox2:hover{
-	display: block;
+#DASHBOARD .nav_right .down .dropDownBox:hover .dropDownBox2{
+	display: flex;
 }
 
 #DASHBOARD .nav_right .down .dropDownBox span:hover{
 	background: rgba(10, 101, 205, 0.15);
-	width: 100%;
-	padding: 5px 0px;
+	
 }
-
+#DASHBOARD .nav_right .down .dropDownBox span{
+	width:100%;
+	padding: 5px 3px;
+}
 #DASHBOARD .nav_right .down .dropDownBox .support_dropDown{
 	position: absolute;
+	z-index: 5;
 	width: 100px;
     height: 37px;
-	display: flex;
+	display: none;
 	align-items: center;
 	justify-content: center;
 	background: #FFFFFF;
@@ -145,13 +147,13 @@
    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
    font-size: 10px;
    top: 0;
-   right:35px;
+   right:45px;
 }
 
 #DASHBOARD .nav_right .down div {
 	background-repeat: no-repeat;
 	background-size: cover;
-	margin: 10px 0px;
+	margin: 6px 0px;
 	cursor: pointer;
 }
 
@@ -269,7 +271,7 @@
 	height: 30px;
 }
 
-#DASHBOARD .nav_right .down .support:hover {
+#DASHBOARD .nav_right .down .dropDownBox:hover .support{
 	filter: saturate(11);
 }
 
@@ -278,7 +280,7 @@
 	width: 30px;
 	height: 30px;
 }
-#DASHBOARD .nav_right .down .information:hover{
+#DASHBOARD .nav_right .down .dropDownBox:hover .information{
 	filter: saturate(11);
 }
 

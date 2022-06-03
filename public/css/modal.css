@@ -18,6 +18,8 @@
 
 .ReactModal__Overlay {
     background-color: rgba(217, 217, 217, 0.6) !important;
+    z-index: 10;
+    position: absolute !important;
 }
 
 .ReactModal__Content {
