@@ -3,9 +3,9 @@ import Modal from 'react-modal'
 import AuthInput from '../Auth/authInput/AuthInput'
 import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
-export default function HandleModal({ handleClose, checkClose }) {
+export default function HandleModal({ handleClose, checkClose,showModal,setShowModal }) {
 
-  const [showModal, setShowModal] = useState(false);
+  
   const [stepModal, setStepModal] = useState(1);
   const [free, setFree] = useState(false);
 

@@ -3,16 +3,28 @@ import DashboardHeader from './DashboaedComponents/DashboardHeader';
 import ItemSidebarHover from './DashboaedComponents/SidebarComponents/ItemSidebarHover';
 import PopUp from '../Utils/PopUp/PopUp';
 import { useState } from 'react';
+import EasyStart from './DashboaedComponents/EasyStart/EasyStart';
+import HandleModal from './../Utils/handleModal';
 
 
 export default function DashboardBody() {
+  const[showModal,setShowModal]=useState(false)
   // DashboardHeader nav icon that close the left sidebar
   const[closeNav,setCloseNav]=useState(false);
   const closeNavItem=()=>{
     setCloseNav(!closeNav)
   }
   // end
-  
+  // icon Handler  when click in navHover
+  const iconClickHandler=()=>{
+    if(closeNav)
+    setCloseNav(!closeNav)
+  }
+  // end
+  // showing modal
+  const startButtonClick=()=>{
+    setShowModal(true)
+  }
   const itemsHoverMenu=["گزارش های منتخب","خرید اشتراک","شروع آسان","خبرخوان","آموزش","پیشنهادات و تخفیف ها","پشتیبانی و تیکت","انتخاب سرویس"]
   return (
 
@@ -22,14 +34,18 @@ export default function DashboardBody() {
       </div>
       <div className='body'>
           <div className='main'>
-            <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/>
+            {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
+             <EasyStart startButtonClick={startButtonClick}/>
+             {
+               showModal && <HandleModal showModal={showModal} setShowModal={setShowModal}/>
+             }
           </div>
-          <div className='list_hover' style={{display:closeNav?'none':"block",opacity:closeNav?0:1}}>
-           {
-             itemsHoverMenu.map(item=>{
-               return  <ItemSidebarHover text={item} icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"} textColor={"#002145"} textHover={"#0A65CD"}/>
-              })
-           }
+          <div className='list_hover' style={{width:closeNav?'60px':"256px"}}>
+            {
+              itemsHoverMenu.map(item=>{
+                return  <ItemSidebarHover text={!closeNav && item} icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"} textColor={"#002145"} textHover={"#0A65CD"} iconClickHandler={iconClickHandler}/>
+                })
+            }
           </div>
           <div className='nav_right'>
             <div className='top'>
@@ -57,7 +73,7 @@ export default function DashboardBody() {
           <div className='down'>
             <div className='dropDownBox '>
               <div className='support'></div>
-              <div className='support_dropDown dropDownBox1'><span>منابع و راهنمایی ها</span></div>
+              <div className='support_dropDown dropDownBox1'><span> پشتیبانی و تیکت </span></div>
             </div>
 
             <div className='dropDownBox'>
