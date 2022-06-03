@@ -38,7 +38,8 @@ export default function DashboardBody() {
             {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
              <EasyStart startButtonClick={startButtonClick}/>
              {
-               showModal && <HandleModal showModal={showModal} setShowModal={setShowModal}/>
+              //  showModal && <HandleModal showModal={showModal} setShowModal={setShowModal}/>
+               showModal ? <HandleModal showModal={showModal} setShowModal={setShowModal}/>:null
              }
           </div>
           <div className='list_hover' style={{width:closeNav?'60px':"256px"}}>
