@@ -8,7 +8,7 @@ import { applyDiscountAction } from '../Redux/Action/plan';
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
 
-  const [stepModal, setStepModal] = useState(4);
+  const [stepModal, setStepModal] = useState(6);
   const [discount ,setDiscount]=useState("sample-code");
   const [plan ,setPlan]=useState("");
   const [free, setFree] = useState(false);
@@ -39,6 +39,13 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
         return "افزودن صفحات تجاری";
       case 4:
         return "انتخاب اشتراک";
+      case 5:
+        if (free) {
+          return "14 روز رایگان";
+        }
+        return "خرید اشتراک";
+      case 6:
+        return "خوش آمدید به سگمنتو";
 
       default:
         break;
@@ -98,7 +105,32 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
   // console.log(discount);
   useEffect(() => {
     const containerRow = document.querySelectorAll(".container_row");
-    console.log(containerRow);
+    if (containerRow.length !=0) {
+      for (let i = 0; i < containerRow.length; i++) {
+        if (containerRow[i].classList.contains("style_selected_plan")) {
+          
+          containerRow[i].classList.remove("style_selected_plan");
+        }
+      }
+      switch (plan) {
+        case "bronze_1":
+          containerRow[0].classList.add("style_selected_plan");
+          break;
+        case "bronze_3":
+          containerRow[1].classList.add("style_selected_plan");
+          break;
+        case "bronze_6":
+          containerRow[2].classList.add("style_selected_plan");
+          break;
+        case "bronze_12":
+          containerRow[3].classList.add("style_selected_plan");
+          break;
+      
+        default:
+          break;
+      }
+      // debugger
+    }
   }, [plan])
   
 
@@ -230,12 +262,12 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
       <Fragment>
         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
         <div className='report'>
-          <div><span>طلایی</span><span>اشتراک:</span></div>
-          <div><span>3 ماهه</span><span>مدت اشتراک:</span></div>
-          <div><span>747 هزار تومان</span><span>قیمت اشتراک:</span></div>
-          <div><span>15 درصد</span><span>تخفیف سگمنتو:</span></div>
-          <div><span>35 هزار تومان</span><span>مقدار تخفیف:</span></div>
-          <div><span>600 هزار تومان</span><span>قیمت نهایی و پرداخت</span></div>
+          <div className='title'><span>اشتراک:</span><span>طلایی </span></div>
+          <div className='date'><span>مدت اشتراک:</span><span>3 ماهه </span></div>
+          <div className='plan_price'><span>قیمت اشتراک:</span><span>747 هزار تومان </span></div>
+          <div  className="discount"><span>تخفیف سگمنتو:</span><span>15 درصد </span></div>
+          <div className='price_discount'><span>مقدار تخفیف:</span><span>35 هزار تومان </span></div>
+          <div className='final_price'><span>قیمت نهایی و پرداخت</span><span>600 هزار تومان </span></div>
         </div>
         <AuthButton textButton={"خرید اشتراک"} />
       </Fragment>
@@ -276,7 +308,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           </body>
 
         ) : stepModal == 5 && free == false ? (
-          <body className='plans_body_container'>
+          <body className=' report_container'>
 
             {handleShowTryFreePlan()}
           </body>
