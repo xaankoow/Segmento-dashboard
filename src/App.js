@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 
 export default function App() {
 
-  const {forceUpdate} = useSelector(state=>state)
+  const {forceUpdate} = useSelector(state=>state.userState)
 
 
   //HANDLE SELECT NEXT INPUT IN FORM FORGOTPASSWORD AND VERIFYEMAIL
@@ -37,16 +37,20 @@ export default function App() {
   return (
       <div className="app">
         <Routes>
-          <Route exact path={"/"} element={<Nav path={"login"}/>} />
+          <Route exact path={"/"} element={<Nav path={"register"}/>} />
+          <Route exact path={"register"} element={<Nav path={""}/>} />
+          <Route exact path={"forgotPassword"} element={<Nav path={""}/>} />
+          <Route exact path={"ValidateEmail"} element={<Nav path={""}/>} />
+          {/* <Route exact path={"/"} element={<Nav path={"login"}/>} />
           <Route exact path={"login"} element={<Nav path={""}/>} />
           <Route exact path={"forgotPassword"} element={<Nav path={"login"}/>} />
-          <Route exact path={"ValidateEmail"} element={<Nav path={"login"}/>} />
+          <Route exact path={"ValidateEmail"} element={<Nav path={"login"}/>} /> */}
         </Routes>
 
         
         <Routes>
-          <Route exact path="/" element={<Register />} />
-          <Route path="login" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="forgotPassword" element={<Forgotpass />} />
           <Route path="ValidateEmail" element={<ValidateEmail />} />
         </Routes>

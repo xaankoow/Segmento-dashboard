@@ -12,7 +12,7 @@ import "./forgotpass.css";
 
 export default function Forgetpass() {
 
-  const  {forgotPasswordStep,handleResendCode} = useSelector(state => state)
+  const  {forgotPasswordStep,handleResendCode} = useSelector(state => state.userState)
 
   useEffect(() => {
     if (handleResendCode==false) {

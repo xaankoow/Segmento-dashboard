@@ -8,7 +8,7 @@ import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromis
 
 export const setAuth1Redux = (auth1) => {
     return async (dispatch, getState) => {
-        let state = { ...getState() }
+        let state = { ...getState().userState }
         state.auth1 = auth1;
         handleNextInput(0)
         await dispatch({ type: "SET_AUTH", payload: state })
@@ -16,7 +16,7 @@ export const setAuth1Redux = (auth1) => {
 }
 export const setAuth2Redux = (auth2) => {
     return async (dispatch, getState) => {
-        let state = { ...getState() }
+        let state = { ...getState().userState }
         state.auth2 = auth2;
         handleNextInput(4)
         await dispatch({ type: "SET_AUTH", payload: state })
@@ -24,7 +24,7 @@ export const setAuth2Redux = (auth2) => {
 }
 export const setAuth3Redux = (auth3) => {
     return async (dispatch, getState) => {
-        let state = { ...getState() }
+        let state = { ...getState().userState }
         state.auth3 = auth3;
         handleNextInput(3)
         await dispatch({ type: "SET_AUTH", payload: state })
@@ -32,7 +32,7 @@ export const setAuth3Redux = (auth3) => {
 }
 export const setAuth4Redux = (auth4) => {
     return async (dispatch, getState) => {
-        let state = { ...getState() }
+        let state = { ...getState().userState }
         state.auth4 = auth4;
         handleNextInput(2)
         await dispatch({ type: "SET_AUTH", payload: state })
@@ -41,7 +41,7 @@ export const setAuth4Redux = (auth4) => {
 
 export const setNameRedux = (fullName) => {
     return async (dispatch, getState) => {
-        let state = { ...getState() }
+        let state = { ...getState().userState }
         state.fullName = fullName;
         await dispatch({ type: "SET_NAME", payload: state })
     }
@@ -49,14 +49,14 @@ export const setNameRedux = (fullName) => {
 
 export const setEmailRedux = (email) => {
     return async (dispatch, getState) => {
-        let state = { ...getState() }
+        let state = { ...getState().userState }
         state.email = email;
         await dispatch({ type: "SET_EMAIL", payload: state })
     }
 }
 export const setPasswordRedux = (password) => {
     return async (dispatch, getState) => {
-        let state = { ...getState() }
+        let state = { ...getState().userState }
         state.password = password;
         await dispatch({ type: "SET_PASSWORD", payload: state })
     }
@@ -64,7 +64,7 @@ export const setPasswordRedux = (password) => {
 
 export const setPasswordConfirmRedux = (passwordConfirm) => {
     return async (dispatch, getState) => {
-        let state = { ...getState() }
+        let state = { ...getState().userState }
         state.passwordConfirm = passwordConfirm;
         await dispatch({ type: "SET_PASSWORD_CONFIRM", payload: state })
     }
@@ -82,7 +82,7 @@ export const resetStateRedux = () => {
 export const registerUserAction = () => {
     return async (dispatch, getState) => {
         debugger
-        const state = { ...getState() }
+        const state = { ...getState().userState }
 
         if (state.fullName && state.email && state.password && state.passwordConfirm) {
             let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
@@ -148,10 +148,11 @@ export const registerUserAction = () => {
 export const loginUserAction = () => {
     return async (dispatch, getState) => {
         //  
-        const state = { ...getState() }
+        const state = { ...getState().userState }
         if (state.email && state.password) {
             let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
 
+            debugger
             let formdata = new FormData();
             formdata.append("email", state.email)
             formdata.append("password", state.password)
@@ -192,7 +193,7 @@ export const loginUserAction = () => {
             showInputErrorToast();
         }
 
-        await dispatch({ type: "LOGIN_USER", payload: { ...getState() } })
+        await dispatch({ type: "LOGIN_USER", payload: { ...getState().userState } })
     }
 }
 
@@ -201,10 +202,10 @@ export const sendCodEmailAction = (email, demoResolve) => {
     return async (dispatch, getState) => {
         const toastPromiseSendCode = toast.loading("درحال ارسال درخواست شما به سرور")
         const toastMessage = "";
-        const state = { ...getState() }
+        const state = { ...getState().userState }
         const internal_email=state.email;
         if (internal_email) {
-            let state = { ...getState() }
+            let state = { ...getState().userState }
             let formdata = new FormData();
             formdata.append("email", internal_email)
             // let send_code_email = async () => {
@@ -243,7 +244,7 @@ export const sendCodEmailAction = (email, demoResolve) => {
 //CHECK EMAIL COD 
 export const checkVerifyEmailAction = () => {
     return async (dispatch, getState) => {
-        const state = { ...getState() }
+        const state = { ...getState().userState }
 
         const internal_email = state.email;
         const internal_auth1 = state.auth1;
@@ -324,7 +325,7 @@ export const checkVerifyEmailAction = () => {
 //CHECK EMAIL COD 
 export const checkVerifyEmailForgotPasswordAction = () => {
     return async (dispatch, getState) => {
-        const state = { ...getState() }
+        const state = { ...getState().userState }
 
         const internal_email = state.email;
         const internal_auth1 = state.auth1;
@@ -381,7 +382,7 @@ export const checkVerifyEmailForgotPasswordAction = () => {
 export const sendForgotPasswordEmailCodeAction = () => {
     return async (dispatch, getState) => {
 
-        const state = { ...getState() }
+        const state = { ...getState().userState }
 
         const stateEmail = state.email;
 
@@ -402,7 +403,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
                         state.forgotPasswordStep = 1;
                         state.handleResendCode = false;
                         setTimeout(() => {
-                            let state = { ...getState() }
+                            let state = { ...getState().userState }
                             state.handleResendCode = true;
                             dispatch({ type: "DISABLE_TIMER", payload: state })
                         }, 5000);
@@ -445,7 +446,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
 export const changePasswordAction = () => {
     return async (dispatch, getState) => {
 
-        const state = { ...getState() }
+        const state = { ...getState().userState }
 
 
         const internal_email = state.email;
@@ -503,7 +504,7 @@ export const logoutAction = () => {
 
         var toastMessage = "";
 
-        const state = { ...getState() }
+        const state = { ...getState().userState }
         // let user= getCookie("user_name")
 
         // try {
@@ -537,7 +538,7 @@ export const logoutAction = () => {
 export const findUserAction = () => {
     return async (dispatch, getState) => {
 
-        const state = { ...getState() }
+        const state = { ...getState().userState }
 
         const internal_user = state.user;
         const token = localStorage.getItem("userId")

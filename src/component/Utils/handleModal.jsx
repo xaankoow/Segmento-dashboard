@@ -3,21 +3,23 @@ import Modal from 'react-modal'
 import AuthInput from '../Auth/authInput/AuthInput'
 import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
-export default function HandleModal({ handleClose, checkClose,showModal,setShowModal }) {
+export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
-  
-  const [stepModal, setStepModal] = useState(1);
+
+  const [stepModal, setStepModal] = useState(4);
+  const [discount ,setDiscount]=useState("");
   const [free, setFree] = useState(false);
 
   const customStyles = {
     content: {
-      top: '50%',
+      top: '43vh',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      backgrounColor: "red"
+      backgrounColor: "red",
+      'z-index': '100'
     },
   };
 
@@ -97,22 +99,34 @@ export default function HandleModal({ handleClose, checkClose,showModal,setShowM
         </p>
         <div className='plan_cards_container'>
           <div className='bronze plan_card'>
-            <span className='title'>طلایی</span>
+            <span className='title'>برنزی</span>
             <hr />
             <div className='plan'>
-              <div>
-                <p><span className='circle'></span>1 ماهه</p>
+              <div className='container_row'>
+                <div>
+                  <input type="radio" name="radio" id="" />
+                  <p> 1 ماهه</p>
+                </div>
               </div>
-              <div>
-                <p><span className='circle'></span>3 ماهه</p>
+              <div className='container_row'>
+                <div>
+                  <input type="radio" name="radio" id="" />
+                  <p> 3 ماهه</p>
+                </div>
                 <span className='off_price'>15 درصد تخفیف</span>
               </div>
-              <div>
-                <p><span className='circle'></span>6 ماهه</p>
+              <div className='container_row'>
+                <div>
+                  <input type="radio" name="radio" id="" />
+                  <p> 6 ماهه</p>
+                </div>
                 <span className='off_price'>فقط پرداخت 5 ماه</span>
               </div>
-              <div>
-                <p><span className='circle'></span>12 ماهه</p>
+              <div className='container_row'>
+                <div>
+                  <input type="radio" name="radio" id="" />
+                  <p> 12 ماهه</p>
+                </div>
                 <span className='off_price'>فقط پرداخت 10 ماه</span>
               </div>
             </div>
@@ -131,7 +145,7 @@ export default function HandleModal({ handleClose, checkClose,showModal,setShowM
               <span className='apply_token_ico'></span>
             </div>
           </div>
-          <div className='silver plan_card'>
+          {/* <div className='silver plan_card'>
             <span className='title'>نقره ای</span>
             <hr />
             <div className='plan'>
@@ -194,7 +208,7 @@ export default function HandleModal({ handleClose, checkClose,showModal,setShowM
             // isPassword={true}
             // reduxHandleChange={setPasswordConfirmRedux}
             />
-          </div>
+          </div> */}
 
         </div>
       </Fragment>
@@ -221,8 +235,8 @@ export default function HandleModal({ handleClose, checkClose,showModal,setShowM
   return (
     <div className='modal'>
       <Modal
-        isOpen={showModal}
-        parentSelector={()=>document.querySelector(".app #DASHBOARD .body .main")}
+        isOpen={true}
+        parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
         // onAfterOpen={afterOpenModal}
         // onRequestClose={closeModal}
         style={customStyles}
@@ -257,7 +271,8 @@ export default function HandleModal({ handleClose, checkClose,showModal,setShowM
           </body>
         ) : null}
         <footer>
-          <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span>
+          {stepModal != 0 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : null}
+
           <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>
           {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
         </footer>
