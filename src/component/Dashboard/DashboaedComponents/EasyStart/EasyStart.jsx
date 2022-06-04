@@ -1,13 +1,13 @@
 
 import React from 'react';
 
-const EasyStart = () => {
+const EasyStart = ({startButtonClick}) => {
     return (
         <>
 
            <div className='EasyStartBox EasyStartcontactus'>
                <span>برای راهنمایی و مشاوره استفاده از امکانات سگمنتو تماس بگیرید :  </span>
-               <button className="btn_style">مشاوره و تماس</button>
+               <button className="btn-style">مشاوره و تماس</button>
            </div> 
            <div className="EasyStartBoxContentBox">
                 <div className='EasyStartTitle'>
@@ -27,7 +27,7 @@ const EasyStart = () => {
                         <div className='imageBox'>
                         <img src="../img/dashboard/EasyStartPage/EasySart.svg" alt="EasyStartPage" />
                         </div>
-                        <button className="btn-style"><span></span> شروع کن </button>
+                        <button className="btn-style" onClick={()=>startButtonClick()}> شروع کن </button>
                 </div>
            </div>
         </>

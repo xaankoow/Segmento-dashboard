@@ -11,7 +11,9 @@ export const userReducer = (state =
         forgotPasswordStep: 0,
         checkRegisterComplete: false,
         checkVerifyRegister: false,
-        handleResendCode: true
+        handleResendCode: true,
+        forceUpdate:0,
+        user:{}
     }, action) => {
     switch (action.type) {
         case "SET_AUTH":
@@ -41,6 +43,8 @@ export const userReducer = (state =
         case "CHANGE_PASSWORD":
             return { ...action.payload }
         case "DISABLE_TIMER":
+            return { ...action.payload }
+        case "FIND_USER":
             return { ...action.payload }
 
         case "RESET_STATE":

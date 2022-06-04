@@ -3,9 +3,9 @@ import { TextButton } from "../../../pages/register/Register";
 import "./authButton.css";
 import { useDispatch } from "react-redux";
 
-export default function AuthButton({ widthValue, style, handlerClick,reduxHandleClick,disabled,padding,classes,textButton }) {
+export default function AuthButton({ widthValue, style, handlerClick, reduxHandleClick, disabled, padding, classes, textButton }) {
   const value = useContext(TextButton);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   // debugger
   return (
     <button
@@ -14,12 +14,22 @@ export default function AuthButton({ widthValue, style, handlerClick,reduxHandle
       disabled={disabled}
 
       style={style}
-      onClick={(e) =>  {
-        handlerClick();
-        dispatch(reduxHandleClick())
-      }}
-          >
-      {value!=undefined?value:textButton}
+      onClick={handlerClick != undefined && reduxHandleClick != undefined ? (
+        (e) => {
+          handlerClick()
+          dispatch(reduxHandleClick())
+        }
+      ) : handlerClick != undefined ? (
+        (e) => {
+          handlerClick()
+        }
+      ) : (
+        (e) => {
+          dispatch(reduxHandleClick())
+        }
+      )}
+    >
+      {value != undefined ? value : textButton}
     </button>
   );
 }
