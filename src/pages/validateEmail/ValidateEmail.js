@@ -1,13 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
-import { checkVerifyEmailAction, registerUserAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux } from "../../component/Redux/Action";
+import { checkVerifyEmailAction, registerUserAction, sendCodEmailAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
 // css
 import "./validateEmail.css";
 
 export default function ValidateEmail() {
+  const dispatch =useDispatch();
   return (
     <div className="registerContainer">
       {/* <div className="registerBox"> */}
@@ -39,13 +42,15 @@ export default function ValidateEmail() {
           </div>
         </div>
         <div className="validateEmailChildBox2">
+          <Link to={"/"} >
           <img src="/img/back.svg" alt="back" />
+          </Link>
           <div className="validateButton">
             <TextButton.Provider value={"تایید ایمیل"}>
               <AuthButton bgcolor={"#0A65CD"} reduxHandleClick={checkVerifyEmailAction}/>
             </TextButton.Provider>
           </div>
-          <span className="getemailtext">دریافت مجدد کد</span>
+          <Link to={"#"} onClick={()=>dispatch(sendCodEmailAction())} className="getemailtext">دریافت مجدد کد</Link>
         </div>
         <div className="validateEmailIconBox">
           <img src="/img/contactUs.svg" alt="contactUs" />
