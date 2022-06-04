@@ -295,12 +295,22 @@ margin: 0px 39px;
     margin-bottom: 7px;
     cursor: pointer;
 }
+
 .ReactModal__Content .plans_body_container .plan div div {
     padding: 0px ;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     /* justify-content: space-between; */
+}
+.ReactModal__Content .plans_body_container .plan div input:checked + p {
+color: rgba(10, 101, 205, 1);
+}
+.ReactModal__Content .plans_body_container .plan .selectPlanTag {
+display: none;
+}
+.ReactModal__Content .plans_body_container .plan .selectPlanTag {
+display: none;
 }
 
 /* .ReactModal__Content .plans_body_container .plan div p {

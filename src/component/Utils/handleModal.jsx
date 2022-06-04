@@ -1,14 +1,19 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import AuthInput from '../Auth/authInput/AuthInput'
 import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { applyDiscountAction } from '../Redux/Action/plan';
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
 
   const [stepModal, setStepModal] = useState(4);
-  const [discount ,setDiscount]=useState("");
+  const [discount ,setDiscount]=useState("sample-code");
+  const [plan ,setPlan]=useState("");
   const [free, setFree] = useState(false);
+
+  const dispatch=useDispatch();
 
   const customStyles = {
     content: {
@@ -90,6 +95,12 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
     )
   }
 
+  // console.log(discount);
+  useEffect(() => {
+    const containerRow = document.querySelectorAll(".container_row");
+    console.log(containerRow);
+  }, [plan])
+  
 
   const handleShowPlans = () => {
     return (
@@ -102,36 +113,36 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
             <span className='title'>برنزی</span>
             <hr />
             <div className='plan'>
-              <div className='container_row'>
+              <div className='container_row' onClick={()=>{setPlan("bronze_1")}}>
                 <div>
-                  <input type="radio" name="radio" id="" />
+                  <input type="radio" name="radio" id="" checked={plan=="bronze_1"?true:false}/>
                   <p> 1 ماهه</p>
                 </div>
               </div>
-              <div className='container_row'>
+              <div className='container_row' onClick={()=>setPlan("bronze_3")}>
                 <div>
-                  <input type="radio" name="radio" id="" />
+                  <input type="radio" name="radio" id="" checked={plan=="bronze_3"?true:false}/>
                   <p> 3 ماهه</p>
                 </div>
                 <span className='off_price'>15 درصد تخفیف</span>
               </div>
-              <div className='container_row'>
+              <div className='container_row' onClick={()=>setPlan("bronze_6")}>
                 <div>
-                  <input type="radio" name="radio" id="" />
+                  <input type="radio" name="radio" id="" checked={plan=="bronze_6"?true:false}/>
                   <p> 6 ماهه</p>
                 </div>
                 <span className='off_price'>فقط پرداخت 5 ماه</span>
               </div>
-              <div className='container_row'>
+              <div className='container_row' onClick={()=>setPlan("bronze_12")}>
                 <div>
-                  <input type="radio" name="radio" id="" />
+                  <input type="radio" name="radio" id="" checked={plan=="bronze_12"?true:false}/>
                   <p> 12 ماهه</p>
                 </div>
                 <span className='off_price'>فقط پرداخت 10 ماه</span>
               </div>
             </div>
             <div className='price'>
-              <p>79 هزار تومان ماهانه</p>
+              <p style={plan.substring(0,1)=="b"?{color:"rgba(10, 101, 205, 1)"}:null}>79 هزار تومان ماهانه</p>
             </div>
             <div className='input_apply_token_container'>
               <AuthInput
@@ -142,7 +153,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
-              <span className='apply_token_ico'></span>
+              <span className='apply_token_ico' onClick={()=>dispatch(applyDiscountAction(discount))}></span>
             </div>
           </div>
           {/* <div className='silver plan_card'>
