@@ -59,12 +59,6 @@ export default function App() {
         </Routes>
 
            
-            <Routes>
-              <Route exact path="/" element={<Register />} />
-              <Route path="login" element={<Login />} />
-              <Route path="forgotPassword" element={<Forgotpass />} />
-              <Route path="ValidateEmail" element={<ValidateEmail />} />
-            </Routes>
         </div>
         <Routes>
           <Route path="dashboard" element={<DashboardBody />} />
@@ -72,7 +66,7 @@ export default function App() {
 
       {/* <HandleModal /> */}
       <ToastContainer rtl />
-      {forceUpdate}
+      {forceUpdate?"":""}
     </div>
   );
 }

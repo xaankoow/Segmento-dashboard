@@ -8,7 +8,7 @@ import { applyDiscountAction } from '../Redux/Action/plan';
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
 
-  const [stepModal, setStepModal] = useState(6);
+  const [stepModal, setStepModal] = useState(1);
   const [discount ,setDiscount]=useState("sample-code");
   const [plan ,setPlan]=useState("");
   const [free, setFree] = useState(false);

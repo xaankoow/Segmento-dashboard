@@ -130,6 +130,10 @@ export default function Forgetpass() {
                 </span>
               </div>
               <div className="items-center flex justify-between mt-10 mb-5">
+                <div className="w-50">
+
+               
+
                 <AuthInput
                   textLabelInput="ایمیل"
                   classes={`forgot_password_input`}
@@ -139,7 +143,8 @@ export default function Forgetpass() {
                   // chechvalue={chechvalue}
                   chechvalue={chechValueEmail}
                   disabled={forgotPasswordStep == 2 ?true :false }
-                />
+                  />
+                  </div>
 
 
 
