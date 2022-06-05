@@ -5,7 +5,7 @@ import { BrowserRouter, Link } from 'react-router-dom'
 export default function Nav() {
   console.log(window.location.pathname)
   return (
-    <div id='nav-option-head'>
+    <div id='nav-option-head' className='md:w-11/12 2xl:w-10/12'>
       <div className='container_nav_logo'>
         <div>
           <span className='logo_nav option_segmento_logo' />

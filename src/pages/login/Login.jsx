@@ -10,17 +10,17 @@ import Nav from '../../component/Dashboard/DashboaedComponents/navMenu/Nav';
 
 export default function Login() {
   return (
-    <div className="registerContainer">
+    <div className="md:w-11/12 2xl:w-10/12">
       {/* <Nav/> */}
-      <div className="registerBox">
+     
         {/* <TextButton.Provider value={"ثبت نام"}>
           <Authmenu buttonLink={"/"}/>
         </TextButton.Provider> */}
 
-        <div className="mainbox">
-          <div className="inputBox">
-            <AuthInput textLabelInput="ایمیل" width={"560px"} typeInput="email" reduxHandleChange={setEmailRedux} />
-            <AuthInput textLabelInput="گذرواژه " width={"560px"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} />
+        <div className="gap-10 flex items-center  md:flex-col md:flex-col-reverse justify-between 2xl:py-10 md:py-10 min-w-full">
+          <div className="w-7/12 flex flex-col items-center gap-8 md:min-w-full">
+            <AuthInput textLabelInput="ایمیل" width={"100%"} typeInput="email" reduxHandleChange={setEmailRedux} />
+            <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} />
 
             <div className="registerButtonBox">
               <div className="btnsBox">
@@ -40,13 +40,13 @@ export default function Login() {
               </Link>
             </div>
           </div>
-          <div className="imgBox">
-            <img src="/img/FrameloginSun.png" className='sun' alt="registerFrame" />
-            <img src="/img/login.svg" alt="registerFrame" />
-            <img src="/img/businessesIcon.png" alt="businessesIcon" />
+          <div className="flex flex-col gap-4">
+            <img className="w-20" src="/img/FrameloginSun.png" alt="registerFrame" />
+            <img className="w-80" src="/img/login.svg" alt="registerFrame" />
+            <img className="w-80" src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
         </div>
-      </div>
+      
     </div>
   )
 }

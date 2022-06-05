@@ -19,39 +19,38 @@ export default function Register() {
   const [password2,setPassword2]=useState("")
 
   return (
-    <div className="registerContainer">
-      <div className="registerBox">
+    <div className="md:w-11/12 2xl:w-10/12">
+     
       {/* <Nav/> */}
           {/* <TextButton.Provider value={"ورود"}>
             <Authmenu buttonLink={"/login"}/>
           </TextButton.Provider> */}
        {/* <Nav/> */}
-        <div className="mainbox">
-          <div className="inputBox">
+        <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-20 md:py-10 min-w-full">
+          <div className="w-7/12 flex flex-col items-center gap-8 md:min-w-full">
             <AuthInput
               textLabelInput="نام و نام خانوادگی"
-              width={"560px"}
+              width={"100%"}
               typeInput="text"
               reduxHandleChange={setNameRedux}
-              
             />
             <AuthInput
               textLabelInput="ایمیل"
-              width={"560px"}
+              width={"100%"}
               typeInput="email"
               reduxHandleChange={setEmailRedux}
             />
-            <div className="forgetpassBox remove_margin">
+            <div className="flex justify-between gap-3 w-full">
               <AuthInput
                 textLabelInput="گذرواژه "
-                width={"270px"}
+                width={"100%"}
                 typeInput="password"
                 isPassword={true}
                 reduxHandleChange={setPasswordRedux}
                 />
               <AuthInput
                 textLabelInput=" تکرار گذرواژه  "
-                width={"270px"}
+                width={"100%"}
                 typeInput="password"
                 isPassword={true}
                 reduxHandleChange={setPasswordConfirmRedux}
@@ -80,12 +79,12 @@ export default function Register() {
               </Link>
             </div>
           </div>
-          <div className="imgBox">
-            <img src="/img/registerFrame.svg" alt="registerFrame" />
-            <img src="/img/businessesIcon.png" alt="businessesIcon" />
+          <div className="flex flex-col items-center gap-4">
+            <img className="w-80" src="/img/registerFrame.svg" alt="registerFrame" />
+            <img className="w-80"  src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
         </div>
-      </div>
+      
     </div>
   );
 }

@@ -111,17 +111,16 @@ export default function Forgetpass() {
 
 
   return (
-    <div>
+   
 
 
-      <div className="registerContainer">
-        <div className="registerBox">
+      <div className="md:w-11/12 2xl:w-10/12">
           {/* <Nav/> */}
           {/* <TextButton.Provider value={"ورود"}>
             <Authmenu buttonLink={"/login"} />
           </TextButton.Provider> */}
-          <div className="mainbox">
-            <div className="activePassConteiner">
+          <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-5 md:py-5 min-w-full">
+            <div className="flex flex-col justify-center">
               <div className="mohtava">
                 <span>گذرواژه خود را فراموش کرده اید . هیچ ایرادی نداره</span>
                 <span>برامون بنویسین تا ما یک کد فعال سازی ارسال کنیم .</span>
@@ -130,7 +129,7 @@ export default function Forgetpass() {
                   سادگی
                 </span>
               </div>
-              <div className="emailboForget">
+              <div className="items-center flex justify-between mt-10 mb-5">
                 <AuthInput
                   textLabelInput="ایمیل"
                   classes={`forgot_password_input`}
@@ -180,7 +179,7 @@ export default function Forgetpass() {
               <div className="activecodeBox">
                 <div className="activecodeChildBox">
                   <span className={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?"lockStyle" :"" : "lockStyle"}>کد فعال سازی</span>
-                  <div className="verify_cod_container">
+                  <div className="flex items-center gap-4">
                     <AuthInput
                       classes={"verify_email_cod input_selector_4"}
                       notCheckValue={true}
@@ -241,7 +240,7 @@ export default function Forgetpass() {
                   </TextButton.Provider>
                 </div>
               </div>
-              <div className="forgetpassBox">
+              <div className="flex gap-4 justify-between my-10">
                 <AuthInput
                   textLabelInput="گذرواژه "
                   classes={"forgot_password_input"}
@@ -288,13 +287,13 @@ export default function Forgetpass() {
                 </div>
               </div>
             </div>
-            <div className="imgBox">
-              <img src="/img/registerFrame.svg" alt="registerFrame" />
-              <img src="/img/businessesIcon.png" alt="businessesIcon" />
+            <div className="flex flex-col items-center gap-4">
+              <img className="w-80" src="/img/registerFrame.svg" alt="registerFrame" />
+              <img className="w-80" src="/img/businessesIcon.png" alt="businessesIcon" />
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      
+   
   );
 }

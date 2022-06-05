@@ -40,22 +40,22 @@ export default function App() {
 
 
       <div className="app">
-        
-        <Routes>
-          <Route exact path={"/"} element={<Nav />} />
-          <Route exact path={"login"} element={<Nav />} />
-          <Route exact path={"register"} element={<Nav />} />
-          <Route exact path={"forgotPassword"} element={<Nav />} />
-          <Route exact path={"ValidateEmail"} element={<Nav />} />
+        <div className="flex flex-col items-center w-screen">
+            <Routes>
+              <Route exact path={"/"} element={<Nav />} />
+              <Route exact path={"login"} element={<Nav />} />
+              <Route exact path={"register"} element={<Nav />} />
+              <Route exact path={"forgotPassword"} element={<Nav />} />
+              <Route exact path={"ValidateEmail"} element={<Nav />} />
 
-        </Routes>
-        <Routes>
-          <Route exact path="/" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="forgotPassword" element={<Forgotpass />} />
-          <Route path="ValidateEmail" element={<ValidateEmail />} />
-        </Routes>
-
+            </Routes>
+            <Routes>
+              <Route exact path="/" element={<Register />} />
+              <Route path="login" element={<Login />} />
+              <Route path="forgotPassword" element={<Forgotpass />} />
+              <Route path="ValidateEmail" element={<ValidateEmail />} />
+            </Routes>
+        </div>
         <Routes>
           <Route path="dashboard" element={<DashboardBody />} />
           <Route path="aa" element={<DashboardBody />} />

@@ -1,4 +1,4 @@
-.mainbox .emailboForget {
+ .emailboForget {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,14 +10,14 @@
    gap: 5px;
    /* padding: 0px 10px; */
 }
-.mainbox .activecodeBox {
+.activecodeBox {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
     position: relative;
 }
-.mainbox  .activePassConteiner{
+ .activePassConteiner{
 width: 538px;
 display: flex;
 flex-direction: column;
