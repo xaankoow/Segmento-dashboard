@@ -11,12 +11,13 @@ import DashboardBody from "./component/Dashboard/DashboardBody";
 import Modal from 'react-modal'
 import HandleModal from "./component/Utils/handleModal";
 import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
+import { useSelector } from "react-redux";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
 
 export default function App() {
 
-
+  const {forceUpdate} = useSelector(state=>state.userState)
 
 
   //HANDLE SELECT NEXT INPUT IN FORM FORGOTPASSWORD AND VERIFYEMAIL
@@ -34,21 +35,30 @@ export default function App() {
   // }, [codVerifyEmail_4])
 
   return (
-    <div>
-      {/* <Modal /> */}
-      {/* <Nav /> */}
-
-
       <div className="app">
         <div className="flex flex-col items-center w-screen">
-            <Routes>
-              <Route exact path={"/"} element={<Nav />} />
-              <Route exact path={"login"} element={<Nav />} />
-              <Route exact path={"register"} element={<Nav />} />
-              <Route exact path={"forgotPassword"} element={<Nav />} />
-              <Route exact path={"ValidateEmail"} element={<Nav />} />
+           
+              
+        <Routes>
+          <Route exact path={"/"} element={<Nav path={"register"}/>} />
+          <Route exact path={"register"} element={<Nav path={""}/>} />
+          <Route exact path={"forgotPassword"} element={<Nav path={""}/>} />
+          <Route exact path={"ValidateEmail"} element={<Nav path={""}/>} />
+          {/* <Route exact path={"/"} element={<Nav path={"login"}/>} />
+          <Route exact path={"login"} element={<Nav path={""}/>} />
+          <Route exact path={"forgotPassword"} element={<Nav path={"login"}/>} />
+          <Route exact path={"ValidateEmail"} element={<Nav path={"login"}/>} /> */}
+        </Routes>
 
-            </Routes>
+        
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="forgotPassword" element={<Forgotpass />} />
+          <Route path="ValidateEmail" element={<ValidateEmail />} />
+        </Routes>
+
+           
             <Routes>
               <Route exact path="/" element={<Register />} />
               <Route path="login" element={<Login />} />
@@ -58,15 +68,11 @@ export default function App() {
         </div>
         <Routes>
           <Route path="dashboard" element={<DashboardBody />} />
-          <Route path="aa" element={<DashboardBody />} />
         </Routes>
-      </div>
 
-
-
-      <HandleModal />
-      {/* <ModalContainer/> */}
+      {/* <HandleModal /> */}
       <ToastContainer rtl />
+      {forceUpdate}
     </div>
   );
 }

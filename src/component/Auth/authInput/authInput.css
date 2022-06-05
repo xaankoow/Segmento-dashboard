@@ -73,7 +73,7 @@
   }
 
 label {
-  color: #001F43;
+  color: #001f43;
   font-size: 14px;
   text-transform: uppercase;
   position: absolute;
@@ -108,11 +108,11 @@ label {
   cursor: pointer;
 }
 
-input {
+.input-wrapper input {
   font-size: 13px;
   color: #555;
   outline: none;
-  border: 1px solid #D3D5E2;
+  border: 1px solid #d3d5e2;
   padding: 0px 10px;
   height: 45px;
   border-radius: 3px;
@@ -120,7 +120,7 @@ input {
   box-sizing: border-box;
 }
 
-input:invalid+label {
+input:invalid + label {
   font-size: 12px;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -130,11 +130,10 @@ input:invalid+label {
 }
 
 input:focus {
-
-  border-bottom: 2px solid #0A65CD;
+  border-bottom: 2px solid #0a65cd;
 }
 
-input:focus+label {
+input:focus + label {
   font-size: 12px;
   -webkit-transform: translateY(-35px);
   -moz-transform: translateY(-35px);
@@ -144,7 +143,7 @@ input:focus+label {
 }
 
 .notCheckValue {
-  border-bottom: 3px solid #0F7B0F !important;
+  border-bottom: 3px solid #0f7b0f !important;
   font-size: 20px;
   text-align: center;
 }

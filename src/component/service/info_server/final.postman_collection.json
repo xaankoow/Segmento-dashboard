@@ -1,0 +1,3847 @@
+{
+	"info": {
+		"_postman_id": "e994e243-b988-4d2a-8922-c1048110362d",
+		"name": "final",
+		"description": "برای استفاده از این وب سرویس ها باید چند مقدار رو در هدر ست کنید\n\ntoken: برای ست کردن این مقدار پست از لاگین موفق به شما برگشت داده خواهد شد\n\nتوکن از نوع passport است و برای autorize باید از روش bearer استفاده کنید\n\nworkspace: این مقدار پس از ورود به پنل وثبت اولین وبسایت پر میشود",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "core",
+			"item": [
+				{
+					"name": "config",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firebaseId",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/core/config"
+					},
+					"response": []
+				}
+			],
+			"description": "در این وبسرویس اطلاعات پایه و استاتیک سامانه به شما داده میشود که میتوانید در هر بار ورود یا رفرش دریافت نمایید"
+		},
+		{
+			"name": "LoginAndRegister",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", jsonData[\"data\"][\"token\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "remember",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/auth/login",
+						"description": "با دریافت ایمیل و پسورد کاربر وارد سایت میشود ."
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ba",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ba@ga.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/auth/register",
+						"description": "بر اساس نام و ایمیل و پسورد کاربر ثبت نام میکند"
+					},
+					"response": []
+				},
+				{
+					"name": "resendCode",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "09379154922",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/auth/resendCode",
+						"description": "بر اساس شماره موبایل کد مجدد برای کاربر ایمیل میشود و کاربر با تایید ایمیل وارد میشود ."
+					},
+					"response": []
+				},
+				{
+					"name": "resendEmail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "pouria3.xaankoo@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/email/verify/resend",
+						"description": "بر اساس شماره موبایل کد مجدد برای کاربر ایمیل میشود و کاربر با تایید ایمیل وارد میشود ."
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{url}}/auth/logout",
+						"description": "خروج کاربر"
+					},
+					"response": []
+				},
+				{
+					"name": "changePhoneNumber",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "09128605411",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "+989128605411",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{url}}/auth/changePhoneNumber",
+						"description": "خروج کاربر"
+					},
+					"response": []
+				},
+				{
+					"name": "verifyPhoneNumber",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "code",
+									"value": "1531",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "09016559282",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/auth/verifyPhoneNumber",
+						"description": "خروج کاربر"
+					},
+					"response": []
+				},
+				{
+					"name": "verifyEmail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "code",
+									"value": "7856",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "pouria.xaankoo@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/auth/verifyEmail",
+						"description": "خروج کاربر"
+					},
+					"response": []
+				},
+				{
+					"name": "verifyCode",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "code",
+									"value": "1111",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/auth/verifyCode",
+						"description": "خروج کاربر"
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "s.eskandarian73@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/auth/forgot-password",
+						"description": "با دریافت ایمیل و پسورد کاربر وارد سایت میشود ."
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", jsonData[\"data\"][\"token\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "s.eskandarian73@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "1111",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/auth/change-password",
+						"description": "با دریافت ایمیل و پسورد کاربر وارد سایت میشود ."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "package",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/package",
+						"description": "پکیج ها را مرتب شده بر اساس id بر میگرداند ."
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/package/b5aa88dd-0f8a-4342-94f4-f30d7346ebd4",
+						"description": "بر اساس id پکیج منحصر به فرد را بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "title",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "body",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "day",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "extra_attributes[KEYWORD_RESEARCH]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "extra_attributes[KEYWORD_TRACKER]",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "extra_attributes[PAGE_SPEED]",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/package",
+						"description": "این روت برای ایجاد پکیج استفاده میشود"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "title2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "body",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "day",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "extra_attributes[KEYWORD_RESEARCH]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "extra_attributes[KEYWORD_TRACKER]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "extra_attributes[PAGE_SPEED]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "extra_attributes[LINK_LIMIT]",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/package/bcaab379-6e94-424a-918e-d62b0cf4977f"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/package/adac9160-5ee6-46eb-adca-41b040ed5319"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "workspace",
+			"item": [
+				{
+					"name": "index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"workspace\", jsonData[\"data\"][0][\"uuid\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/workspace",
+						"description": "این روت تمام وب سایت های کاربران را نمایش میدهد"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/workspace/{{workspace}}",
+						"description": "این روت وب سایت مورد نظر را بر اساس id نمایش میدهد"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "website",
+									"value": "http://xxxxx.xxx",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/workspace",
+						"description": "این روت یک وب سایت برای کاربر میسازد"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "website",
+									"value": "http://karnoweb.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/workspace/{{workspace}}",
+						"description": "این روت بر اساس ورودی ها وب سایت کاربر را ویرایش میکند ."
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/workspace/1",
+						"description": "این روت وب سایت مورد نظر را حذف میکند"
+					},
+					"response": []
+				},
+				{
+					"name": "byUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/workspace/byUser",
+						"description": "این روت با توجه به ورودی(id کاربر) وب سایت های کاربر را بر میگرداند ."
+					},
+					"response": []
+				},
+				{
+					"name": "speed test (test)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "url",
+									"value": "http://karnoweb.ir",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/workspace/speedMeter"
+					},
+					"response": []
+				},
+				{
+					"name": "analyze",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "website",
+									"value": "https://www.digikala.com/mag/video/storytelling-with-data-book-review/",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "website",
+									"value": "https://www.digikala.com/mag/category/ugc/talent/",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "website",
+									"value": "https://digikala.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "website",
+									"value": "https://www.w3schools.com/html/html_iframe.asp",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "website",
+									"value": "https://roocket.ir",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "website",
+									"value": "https://karnoweb.ir",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "website",
+									"value": "https://karnoweb.com",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{url}}/workspace/analyze",
+						"description": "سایت کاربر مورد نظر را انالیز میکند\n\nموارد انالیز : از تگ h1 تا h6\n\nتگ های meta\n\nتگ های image\n\nنسبت متن به تگ های html\n\niframe ها\n\nwebsiteAnalyser\n\nLinkAnalyzer\n\nwhoisAnalyzer\n\nsafeBrowserAnalyser"
+					},
+					"response": []
+				},
+				{
+					"name": "records",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "workspace_uuid",
+									"value": "{{workspace}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/workspace/records",
+						"description": "این روت تمامی تاریخچه سایت ما را بر اساس تاریخ و تایپ در دیتابیس ذخیره میکند ."
+					},
+					"response": []
+				},
+				{
+					"name": "spider (test)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "type",
+									"value": "last_queryy",
+									"description": "last_query - new_query",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/workspace/spider"
+					},
+					"response": []
+				},
+				{
+					"name": "spiderMap (test)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": "{{url}}/workspace/spiderMap"
+					},
+					"response": []
+				},
+				{
+					"name": "PageInsight",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "new_query",
+									"description": "last_query - new_query",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/workspace/page-insights",
+						"description": "این روت به کمک APi گوگل به بررسی وضعیت فعلی وب سایت می پردازد"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sentence",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/sentence",
+						"description": "این روت لیست تمام جملات را به صورت گروه بندی شده بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/sentence/2fa13624-dedd-4dfd-9b4b-9b4a58d7cd22",
+						"description": "این روت جمله مورد نظر رو بر اساس id بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "Question",
+									"description": "Other -  comparison -  Question",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "یک فایل تست برای ایجاد است ",
+									"type": "text"
+								},
+								{
+									"key": "used_by",
+									"value": "local",
+									"description": "local - google",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/sentence",
+						"description": "این روت جمله جدید می سازد"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "type",
+									"value": "Question",
+									"description": "Question - Other - comparison ",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "یک فایل تست برای تغییر است",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/sentence/46e221cb-c2fd-4cb2-862f-07d843d5f253",
+						"description": "این روت جملات را ویرایش میکند"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "description",
+								"value": "{{id}}",
+								"type": "text",
+								"description": "یک ایدی برای حذف کردن "
+							}
+						],
+						"url": "{{url}}/sentence/46e221cb-c2fd-4cb2-862f-07d843d5f253",
+						"description": "این روت جملات را حذف میکند"
+					},
+					"response": []
+				}
+			],
+			"description": "این ماژول بر اساس جملات از پیش تعریف شده ایجاد میشود که کلمه xxx به عنوان جایگزین کلید واژه در سمت کلاینت استفاده میشود ."
+		},
+		{
+			"name": "keyword",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/keyword",
+						"description": "این روت تمام کلمات کلیدی مخصوص هر وب سایت را بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/keyword/444b6d42-42d2-4413-8174-77ca319cbce1",
+						"description": "این روت کلمه کلیدی هر سایت را با توجه به ایدی بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"test2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/keyword",
+						"description": "کلمه کلیدی جدید برای وب سایت درست میکند"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/keyword/5c61cc8c-b23c-4aeb-9c7d-4fd2bf0c7b92",
+						"description": "این روت کلمه کلیدی وب سایت را ویرایش میکند"
+					},
+					"response": []
+				},
+				{
+					"name": "suggests keywords",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\": \"کره محلی\",\r\n    \"key2\": \"ماست\",\r\n    \"used_by\":\"google\",\r\n    \"type\":\"\",\r\n    \"characters\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/keyword/suggests",
+						"description": "این روت بر اساس نوع ووردی به 8 دسته تقسیم میشود\n\nدسته اول اگر یک کلمه به عنوان ورودی و تایپ از نوع لوکال باشد : از دیتابیس اطلاعات میگیریم\n\nدسته دوم اگر لیستی از کلمات به عنوان ورودی واز تایپ لوکال باشد : مانند ذسته اول برای هر کلمه از لیست کلمات این کار را انجام میدهیم\n\nدسته سوم : اگر کلمه ای به عنوان ورودی و تایپ گوگل باشد و یک شرط درست باشد : کلمه را با حروف الفبا متصل میکنیم و از گوگل خروجی بر میگردانیم .\n\nدسته چهارم :یک کلمه به عنوان ورودی و تایپ گوگل : کلمه را از کاربر میگیرد و با جملات اماده ترکیب میکند و نتایج گوگل را بر میگرداند\n\nدسته پنجم : یک لیست از کلمات را با همراه تایپ گوگل بر میگردانذ : مانند دسته چهارم با این تفاوت که برای لیستی از کلمات انجام داده میشود\n\nدسته ششم: کلمه را از کاربر میگیرد به همراه تایپ twoinput : کلمه را با جملات لوکال و حروف الفبا ترکیب میکند و نتیجه گوگل را بر میگرداند\n\nدسته هفتم : لیستی از کلمات را از کاربر به همراه تایپ twoinput : مانند دسته ششم عمل میکند\n\nدسته هشتم : کلمه را به عنوان ورودی میگرید و نتایج گوگل را هر دفع دوباره بر میگرداند."
+					},
+					"response": []
+				},
+				{
+					"name": "suggestHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"type\":\"suggest_local_string\",\r\n    \"page\": {\r\n        \"number\":1,\r\n        \"size\":1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/keyword/suggestHistory",
+						"description": "این روت بر اساس نوع ووردی به 8 دسته تقسیم میشود\n\nدسته اول اگر یک کلمه به عنوان ورودی و تایپ از نوع لوکال باشد : از دیتابیس اطلاعات میگیریم\n\nدسته دوم اگر لیستی از کلمات به عنوان ورودی واز تایپ لوکال باشد : مانند ذسته اول برای هر کلمه از لیست کلمات این کار را انجام میدهیم\n\nدسته سوم : اگر کلمه ای به عنوان ورودی و تایپ گوگل باشد و یک شرط درست باشد : کلمه را با حروف الفبا متصل میکنیم و از گوگل خروجی بر میگردانیم .\n\nدسته چهارم :یک کلمه به عنوان ورودی و تایپ گوگل : کلمه را از کاربر میگیرد و با جملات اماده ترکیب میکند و نتایج گوگل را بر میگرداند\n\nدسته پنجم : یک لیست از کلمات را با همراه تایپ گوگل بر میگردانذ : مانند دسته چهارم با این تفاوت که برای لیستی از کلمات انجام داده میشود\n\nدسته ششم: کلمه را از کاربر میگیرد به همراه تایپ twoinput : کلمه را با جملات لوکال و حروف الفبا ترکیب میکند و نتیجه گوگل را بر میگرداند\n\nدسته هفتم : لیستی از کلمات را از کاربر به همراه تایپ twoinput : مانند دسته ششم عمل میکند\n\nدسته هشتم : کلمه را به عنوان ورودی میگرید و نتایج گوگل را هر دفع دوباره بر میگرداند."
+					},
+					"response": []
+				},
+				{
+					"name": "keyword rank",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "keyword id",
+									"type": "text"
+								},
+								{
+									"key": "count",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/keyword/rank",
+						"description": "در این بخش با ارسال آیدی کیورد کاربر و تعداد آیتم مد نظر وضعیت این کلیدواژه در بین نتایج گوگل بررسی میشود"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/keyword/1",
+						"description": "این روت کلمه کلیدی وب سایت را حذف میکند"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "package",
+									"description": "package",
+									"type": "text"
+								},
+								{
+									"key": "gate",
+									"value": "",
+									"description": "Pasargad,wallet",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "",
+									"description": "0,1",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/payment"
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "{{url}}/payment/1"
+					},
+					"response": []
+				},
+				{
+					"name": "pay",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "package",
+									"type": "text"
+								},
+								{
+									"key": "uuid",
+									"value": "9cc6dc1c-8e23-4769-b6fa-8adb8f28925e",
+									"description": "package_uuid",
+									"type": "text"
+								},
+								{
+									"key": "discount_code",
+									"value": "sample-code",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/payment/pay"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "سجاد اسکندریان 2",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "من یک برنامه نویس هستم",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/sajad/Pictures/1566px-Test-Logo.svg.png"
+								}
+							]
+						},
+						"url": "{{url}}/profile/update",
+						"description": "مشخصات کاربر توسط این روت ویرایش میشود ."
+					},
+					"response": []
+				},
+				{
+					"name": "limits",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/profile/limits",
+						"description": "مشخصات کاربر توسط این روت ویرایش میشود ."
+					},
+					"response": []
+				},
+				{
+					"name": "change-password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "last_pass",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/profile/updatePassword",
+						"description": "مشخصات کاربر توسط این روت ویرایش میشود ."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "city",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/city",
+						"description": "لیست شهر ها بر اساس پروفایل کاربر"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/city/2",
+						"description": "این روت یک شهر واستان را بر اساس id بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "تبریز تست",
+									"type": "text"
+								},
+								{
+									"key": "state_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/city",
+						"description": "ایجاد کردن یک شهر توسط این روت انجام میشود"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "تبریز تست2",
+									"type": "text"
+								},
+								{
+									"key": "state_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/city/441",
+						"description": "اپدیت کردن اطلاعات یک شهر"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/city/441",
+						"description": "این روت حذف یک شهر را انجام میدهد"
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "q",
+									"value": "مش",
+									"type": "text"
+								},
+								{
+									"key": "min_length",
+									"value": "2",
+									"description": "optional default=2",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/city/search",
+						"description": "نتایج سرچ توسط این روت بر میگردد"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "robots",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/robot"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/robot/c258b4da-50fa-4706-a615-75859f3c4161"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"agents\": [\r\n        {\r\n            \"agent\": \"*\",\r\n            \"disallow\": [\r\n                \"http://test.com/public/data\",\r\n                \"http://test.com/public/users\"\r\n            ],\r\n            \"allow\": [\r\n                \"http://test.com/public/data/images\"\r\n            ]\r\n        }\r\n    ],\r\n    \"sitemaps\": [\r\n        \"http://test.com/public/blog/sitemap\",\r\n        \"http://test.com/public/shop/sitemap\"\r\n    ],\r\n    \"url\": \"http://test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/robot"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"agents\": [\r\n        {\r\n            \"agent\": \"*\",\r\n            \"disallow\": [\r\n                \"http://test.com/public/data\",\r\n                \"http://test.com/public/users\"\r\n            ],\r\n            \"allow\": [\r\n                \"http://test.com/public/data/images\"\r\n            ]\r\n        }\r\n    ],\r\n    \"sitemaps\": [\r\n        \"http://test.com/public/blog/sitemap\",\r\n        \"http://test.com/public/shop/sitemap\"\r\n    ],\r\n    \"url\": \"http://test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/robot/1"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/robot/caadbd46-9845-459e-a2c0-75a10f0ce2c6"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "disavow",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/disavow"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/disavow/0bbc67d0-5006-4038-8b0b-5104b424297f"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\" : \"www.xxx.ir\",\r\n    \"pages\" : [\"  https://www. index.php ----    \" , \"    loggin.php    \"],\r\n    \"domains\" : [\"www.aaaa.ir\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/disavow"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\" : \"www.xxxx.ir\",\r\n    \"pages\" : [\"index.php\" , \"login.php\"],\r\n    \"domains\" : [\"www.aaaa.ir\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/disavow/0bbc67d0-5006-4038-8b0b-5104b424297f"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/disavow/0bbc67d0-5006-4038-8b0b-5104b424297f"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orphane",
+			"item": [
+				{
+					"name": "check",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"link\",\r\n    \"links\": [\r\n      \"https://www.zoomit.ir/mobile/379381-look-at-fresh-galaxy-s22-sample-photos/\",\r\n                \"https://www.zoomit.ir/product/samsung-galaxy-s22-ultra/\",\r\n                \"https://www.zoomit.ir/mobile/379070-samsung-galaxy-s22-ultra-vs-galaxy-s21-ultra/\"\r\n        ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/orphan/check"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "indexer",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/indexer"
+					},
+					"response": []
+				},
+				{
+					"name": "test for google",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/indexer/google/segmento.ir"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/indexer/8d872262-d412-4ccd-bc1d-81d06dd6f951"
+					},
+					"response": []
+				},
+				{
+					"name": "send",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"links\": [\r\n        {\r\n            \"type\":\"URL_UPDATED\",\r\n            \"url\":\"https://segmento.ir/en/\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/indexer/send"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/indexer/8d872262-d412-4ccd-bc1d-81d06dd6f951"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "record",
+			"item": [
+				{
+					"name": "index",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"suggest_google_character\",\r\n    \"filter\": {\r\n        \"search_suggest_records\":\"\"\r\n    },\r\n    \"page\": {\r\n        \"number\":1,\r\n        \"size\":20\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/record",
+						"description": "این روت تمام کلمات کلیدی مخصوص هر وب سایت را بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "datatable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"suggest_google_character\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/record/datatable",
+						"description": "این روت تمام کلمات کلیدی مخصوص هر وب سایت را بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/record/1",
+						"description": "این روت کلمه کلیدی هر سایت را با توجه به ایدی بر میگرداند"
+					},
+					"response": []
+				},
+				{
+					"name": "addTagAndNoteToRecord",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\":\"1\",\r\n    \"tags\":[\"tag1\",\"tag2\"],\r\n    \"note\":\"test note\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/record/addTagAndNoteToRecord",
+						"description": "این روت بر اساس نوع ووردی به 8 دسته تقسیم میشود\n\nدسته اول اگر یک کلمه به عنوان ورودی و تایپ از نوع لوکال باشد : از دیتابیس اطلاعات میگیریم\n\nدسته دوم اگر لیستی از کلمات به عنوان ورودی واز تایپ لوکال باشد : مانند ذسته اول برای هر کلمه از لیست کلمات این کار را انجام میدهیم\n\nدسته سوم : اگر کلمه ای به عنوان ورودی و تایپ گوگل باشد و یک شرط درست باشد : کلمه را با حروف الفبا متصل میکنیم و از گوگل خروجی بر میگردانیم .\n\nدسته چهارم :یک کلمه به عنوان ورودی و تایپ گوگل : کلمه را از کاربر میگیرد و با جملات اماده ترکیب میکند و نتایج گوگل را بر میگرداند\n\nدسته پنجم : یک لیست از کلمات را با همراه تایپ گوگل بر میگردانذ : مانند دسته چهارم با این تفاوت که برای لیستی از کلمات انجام داده میشود\n\nدسته ششم: کلمه را از کاربر میگیرد به همراه تایپ twoinput : کلمه را با جملات لوکال و حروف الفبا ترکیب میکند و نتیجه گوگل را بر میگرداند\n\nدسته هفتم : لیستی از کلمات را از کاربر به همراه تایپ twoinput : مانند دسته ششم عمل میکند\n\nدسته هشتم : کلمه را به عنوان ورودی میگرید و نتایج گوگل را هر دفع دوباره بر میگرداند."
+					},
+					"response": []
+				},
+				{
+					"name": "searchWithTag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tag",
+									"value": "tag1",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/record/searchWithTag",
+						"description": "این روت بر اساس نوع ووردی به 8 دسته تقسیم میشود\n\nدسته اول اگر یک کلمه به عنوان ورودی و تایپ از نوع لوکال باشد : از دیتابیس اطلاعات میگیریم\n\nدسته دوم اگر لیستی از کلمات به عنوان ورودی واز تایپ لوکال باشد : مانند ذسته اول برای هر کلمه از لیست کلمات این کار را انجام میدهیم\n\nدسته سوم : اگر کلمه ای به عنوان ورودی و تایپ گوگل باشد و یک شرط درست باشد : کلمه را با حروف الفبا متصل میکنیم و از گوگل خروجی بر میگردانیم .\n\nدسته چهارم :یک کلمه به عنوان ورودی و تایپ گوگل : کلمه را از کاربر میگیرد و با جملات اماده ترکیب میکند و نتایج گوگل را بر میگرداند\n\nدسته پنجم : یک لیست از کلمات را با همراه تایپ گوگل بر میگردانذ : مانند دسته چهارم با این تفاوت که برای لیستی از کلمات انجام داده میشود\n\nدسته ششم: کلمه را از کاربر میگیرد به همراه تایپ twoinput : کلمه را با جملات لوکال و حروف الفبا ترکیب میکند و نتیجه گوگل را بر میگرداند\n\nدسته هفتم : لیستی از کلمات را از کاربر به همراه تایپ twoinput : مانند دسته ششم عمل میکند\n\nدسته هشتم : کلمه را به عنوان ورودی میگرید و نتایج گوگل را هر دفع دوباره بر میگرداند."
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/record/1",
+						"description": "این روت کلمه کلیدی وب سایت را حذف میکند"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GoogleFinder",
+			"item": [
+				{
+					"name": "Finder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "page-insight",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "url",
+									"value": "www.segmento.ir",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/page-insight/get-last-query"
+					},
+					"response": []
+				},
+				{
+					"name": "get-query",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"new_query\",\r\n    \"url\": \"https://segmento.ir\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/page-insight/get-query"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/page-insight/1"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/page-insight"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/page-insight/1"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/page-insight/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/user/b3c08db0-6514-4243-896a-7e4508fe3e7c"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "test bio",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test3@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "09379150001",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "test bio",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "email",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "mobile",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/user/6652e525-fab3-4ed1-ac74-77790a53c230"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/user/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "word",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/word"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/word/1"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"NUMBER\",\r\n    \"word\":\"101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/word"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"NUMBER\",\r\n    \"word\":\"102\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/word/1"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/word/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "word batch",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/word-batch"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/word-batch/1"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"word\":\"کتاب\",\r\n    \"data\":[\r\n        \"37 داستان معجزه مانند نسبت به کتاب که ندیده اید\",\r\n        \"85 خبر غلط درباره کتاب که کسی از نزدیک لمس نکرده است\",\r\n    \r\n        \"99 رخداد جدی پیرامون کتاب که کسی در جایی ندیده است\",\r\n        \"54 نکته خیلی بزرگ از کتاب که کسی کشف نکرده است\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/word-batch"
+					},
+					"response": []
+				},
+				{
+					"name": "generate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "keyword",
+									"value": "کتاب",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/word-batch/generate"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/word-batch/3b6df7df-519e-4d8b-9580-94c79a846279"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "link",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/link"
+					},
+					"response": []
+				},
+				{
+					"name": "myLinks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/link/myLinks"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/link/8de972c8-2fa2-4516-a12b-0eacf7dc5dea"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"links\" : [\r\n        \"https://segmento.ir/testpage1\",\r\n        \"https://segmento.ir/testpage2\",\r\n        \"https://segmento.ir/testpage3\",\r\n        \"https://segmento.ir/testpage4\",\r\n        \"https://segmento.ir/testpage5\",\r\n        \"https://segmento.ir/testpage6\",\r\n        \"https://segmento.ir/testpage7\",\r\n        \"https://segmento.ir/testpage8\",\r\n        \"https://segmento.ir/testpage9\",\r\n\r\n        \"https://segmento.ir/testpage11\",\r\n        \"https://segmento.ir/testpage21\",\r\n        \"https://segmento.ir/testpage31\",\r\n        \"https://segmento.ir/testpage41\",\r\n        \"https://segmento.ir/testpage51\",\r\n        \"https://segmento.ir/testpage61\",\r\n        \"https://segmento.ir/testpage71\",\r\n        \"https://segmento.ir/testpage81\",\r\n        \"https://segmento.ir/testpage91\",\r\n\r\n        \"https://segmento.ir/testpage111\",\r\n        \"https://segmento.ir/testpage211\",\r\n        \"https://segmento.ir/testpage311\",\r\n        \"https://segmento.ir/testpage411\",\r\n        \"https://segmento.ir/testpage511\",\r\n        \"https://segmento.ir/testpage611\",\r\n        \"https://segmento.ir/testpage711\",\r\n        \"https://segmento.ir/testpage811\",\r\n        \"https://segmento.ir/testpage911\",\r\n\r\n        \"https://segmento.ir/testpage9111\"\r\n        \r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/link"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/link/1"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/link/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lsi",
+			"item": [
+				{
+					"name": "lsiKeyword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "keyword",
+									"value": "امپراتوری سلجوقی ایرانی 3222",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/lsi-keyword/analyzer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lsi-keyword",
+								"analyzer"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "AIzaSyBJji8PKLX1q4KgFJg-kAFSl8XciOAqqlE",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/lsi-keyword"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/lsi-keyword/c2d4b3f7-e532-4391-a996-add5efe2e14c"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "discount",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/discount"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/discount/1"
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"sample-code\",\r\n    \"title\":\"title\",\r\n    \"description\":\"description\",\r\n    \"unit\":\"2\",\r\n    \"count\":\"2\",\r\n    \"status\":true,\r\n    \"single_use\":false,\r\n    \"value\":\"5000\",\r\n    \"type_end\":\"count\",\r\n    \"start_date\":\"2022-04-20\",\r\n    \"ended_date\":\"2022-04-20\",\r\n    \"start_time\":\"00\",\r\n    \"ended_time\":\"24\",\r\n    \"conditions\":[\r\n        {\r\n            \"key\":\"age\",\r\n            \"sign\":\">=\",\r\n            \"value\":\"23\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"sex\",\r\n            \"sign\":\"=\",\r\n            \"value\":\"1\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"workspace_count\",\r\n            \"sign\":\">=\",\r\n            \"value\":\"1\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"plan\",\r\n            \"sign\":\"=\",\r\n            \"value\":\"1\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"payments_count\",\r\n            \"sign\":\">=\",\r\n            \"value\":\"1\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"plan_day\",\r\n            \"sign\":\">=\",\r\n            \"value\":\"30\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"active_day\",\r\n            \"sign\":\"<\",\r\n            \"value\":\"10\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"create_date_range\",\r\n            \"sign\":\"=\",\r\n            \"value\":\"2022-04-01 - 2022-04-21\",\r\n            \"active\":false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/discount"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"sample-code\",\r\n    \"title\":\"title\",\r\n    \"description\":\"description\",\r\n    \"unit\":\"2\",\r\n    \"count\":\"2\",\r\n    \"status\":true,\r\n    \"single_use\":true,\r\n    \"value\":\"5000\",\r\n    \"type_end\":\"count\",\r\n    \"start_date\":\"2022-04-20\",\r\n    \"ended_date\":\"2022-04-20\",\r\n    \"start_time\":\"00\",\r\n    \"ended_time\":\"24\",\r\n    \"conditions\":[\r\n        {\r\n            \"key\":\"age\",\r\n            \"sign\":\">=\",\r\n            \"value\":\"23\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"sex\",\r\n            \"sign\":\"=\",\r\n            \"value\":\"1\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"workspace_count\",\r\n            \"sign\":\">=\",\r\n            \"value\":\"1\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"plan\",\r\n            \"sign\":\"=\",\r\n            \"value\":\"1\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"payments_count\",\r\n            \"sign\":\">=\",\r\n            \"value\":\"1\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"plan_day\",\r\n            \"sign\":\">=\",\r\n            \"value\":\"30\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"active_day\",\r\n            \"sign\":\"<\",\r\n            \"value\":\"10\",\r\n            \"active\":false\r\n        },\r\n        {\r\n            \"key\":\"create_date_range\",\r\n            \"sign\":\"=\",\r\n            \"value\":\"2022-04-01 - 2022-04-21\",\r\n            \"active\":false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/discount/1"
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/discount/1"
+					},
+					"response": []
+				},
+				{
+					"name": "check",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "workspace",
+								"value": "{{workspace}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "code",
+									"value": "sample-code",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/discount/check"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

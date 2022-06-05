@@ -58,3 +58,12 @@ export const changePassword = user => {
 export const logout = () => {
     return http.post(`${config.xaankooApi}/api/v1/auth/logout`);
 }
+
+
+export const findUser = uuid => {
+    const headerCheckVerifyEmail = {
+        // "type": "noauth",
+        "Accept": "application/json"
+    }
+    return http.get(`${config.xaankooApi}/user/${uuid}`, headerCheckVerifyEmail);
+}
