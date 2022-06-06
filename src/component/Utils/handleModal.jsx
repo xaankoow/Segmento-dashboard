@@ -5,15 +5,21 @@ import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import { applyDiscountAction } from '../Redux/Action/plan';
+
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
+  const [stepModal, setStepModal] = useState(5);
+  const [discount, setDiscount] = useState("sample-code");
+  const [plan, setPlan] = useState("");
+  const [free, setFree] = useState(true);
 
-  const [stepModal, setStepModal] = useState(6);
-  const [discount ,setDiscount]=useState("sample-code");
-  const [plan ,setPlan]=useState("");
-  const [free, setFree] = useState(false);
+  const [btn, setBtn] = useState(false);
 
-  const dispatch=useDispatch();
+  var disableInput = false;
+  var discountCheck = false;
+
+
+  const dispatch = useDispatch();
 
   const customStyles = {
     content: {
@@ -105,10 +111,10 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
   // console.log(discount);
   useEffect(() => {
     const containerRow = document.querySelectorAll(".container_row");
-    if (containerRow.length !=0) {
+    if (containerRow.length != 0) {
       for (let i = 0; i < containerRow.length; i++) {
         if (containerRow[i].classList.contains("style_selected_plan")) {
-          
+
           containerRow[i].classList.remove("style_selected_plan");
         }
       }
@@ -125,14 +131,14 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
         case "bronze_12":
           containerRow[3].classList.add("style_selected_plan");
           break;
-      
+
         default:
           break;
       }
       // debugger
     }
   }, [plan])
-  
+
 
   const handleShowPlans = () => {
     return (
@@ -145,36 +151,36 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
             <span className='title'>برنزی</span>
             <hr />
             <div className='plan'>
-              <div className='container_row' onClick={()=>{setPlan("bronze_1")}}>
+              <div className='container_row' onClick={() => { setPlan("bronze_1") }}>
                 <div>
-                  <input type="radio" name="radio" id="" checked={plan=="bronze_1"?true:false}/>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
                   <p> 1 ماهه</p>
                 </div>
               </div>
-              <div className='container_row' onClick={()=>setPlan("bronze_3")}>
+              <div className='container_row' onClick={() => setPlan("bronze_3")}>
                 <div>
-                  <input type="radio" name="radio" id="" checked={plan=="bronze_3"?true:false}/>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
                   <p> 3 ماهه</p>
                 </div>
                 <span className='off_price'>15 درصد تخفیف</span>
               </div>
-              <div className='container_row' onClick={()=>setPlan("bronze_6")}>
+              <div className='container_row' onClick={() => setPlan("bronze_6")}>
                 <div>
-                  <input type="radio" name="radio" id="" checked={plan=="bronze_6"?true:false}/>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
                   <p> 6 ماهه</p>
                 </div>
                 <span className='off_price'>فقط پرداخت 5 ماه</span>
               </div>
-              <div className='container_row' onClick={()=>setPlan("bronze_12")}>
+              <div className='container_row' onClick={() => setPlan("bronze_12")}>
                 <div>
-                  <input type="radio" name="radio" id="" checked={plan=="bronze_12"?true:false}/>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
                   <p> 12 ماهه</p>
                 </div>
                 <span className='off_price'>فقط پرداخت 10 ماه</span>
               </div>
             </div>
             <div className='price'>
-              <p style={plan.substring(0,1)=="b"?{color:"rgba(10, 101, 205, 1)"}:null}>79 هزار تومان ماهانه</p>
+              <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>79 هزار تومان ماهانه</p>
             </div>
             <div className='input_apply_token_container'>
               <AuthInput
@@ -185,7 +191,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
-              <span className='apply_token_ico' onClick={()=>dispatch(applyDiscountAction(discount))}></span>
+              <span className='apply_token_ico' onClick={() => dispatch(applyDiscountAction(discount))}></span>
             </div>
           </div>
           {/* <div className='silver plan_card'>
@@ -257,7 +263,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
       </Fragment>
     )
   }
-  const handleShowTryFreePlan = () => {
+  const handleShowBuyPlan = () => {
     return (
       <Fragment>
         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
@@ -265,11 +271,42 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           <div className='title'><span>اشتراک:</span><span>طلایی </span></div>
           <div className='date'><span>مدت اشتراک:</span><span>3 ماهه </span></div>
           <div className='plan_price'><span>قیمت اشتراک:</span><span>747 هزار تومان </span></div>
-          <div  className="discount"><span>تخفیف سگمنتو:</span><span>15 درصد </span></div>
+          <div className="discount"><span>تخفیف سگمنتو:</span><span>15 درصد </span></div>
           <div className='price_discount'><span>مقدار تخفیف:</span><span>35 هزار تومان </span></div>
           <div className='final_price'><span>قیمت نهایی و پرداخت</span><span>600 هزار تومان </span></div>
         </div>
         <AuthButton textButton={"خرید اشتراک"} />
+      </Fragment>
+    )
+  }
+  const handleShowTryFreePlan = () => {
+    return (
+      <Fragment>
+        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
+        <div className='plan_card_list_option'>
+          <div className='title'>استفاده 14 روز رایگان از تمامی امکانات سگمنتو</div>
+          <div className='list_option'>
+            <div>نمونه نوشته <span></span></div>
+            <hr />
+          </div>
+        </div>
+        <AuthButton textButton={"خرید اشتراک"} />
+      </Fragment>
+    )
+  }
+  const handleShowReport = () => {
+    return (
+      <Fragment>
+        <div className='popup'>
+          <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
+          <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
+        </div>
+        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
+        <div className='support_container'>
+          <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
+          <AuthButton textButton={"مشاوره و تماس"} />
+          <img src="./img/modal/body/report.svg" alt="" />
+        </div>
       </Fragment>
     )
   }
@@ -308,15 +345,28 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           </body>
 
         ) : stepModal == 5 && free == false ? (
-          <body className=' report_container'>
-
-            {handleShowTryFreePlan()}
+          <body className='report_container'>
+            {handleShowBuyPlan()}
           </body>
-        ) : null}
+        ) : stepModal == 6 && free == false ? (
+          <body className='final_report_container'>
+            {handleShowReport()}
+          </body>
+        )
+          : stepModal == 5 && free == true ? (
+            <body className='plan_list_option'>
+              {handleShowTryFreePlan()}
+            </body>
+          ) : stepModal == 6 && free == true ? (
+            <body className='final_report_container'>
+              {handleShowReport()}
+            </body>
+          ):""}
         <footer>
-          {stepModal != 0 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : null}
 
-          <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>
+
+          {stepModal != 0 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : null}
+          {stepModal == 4 ? <AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(false) }} textButton={"خرید اشتراک"} /> : <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>}
           {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
         </footer>
       </Modal>

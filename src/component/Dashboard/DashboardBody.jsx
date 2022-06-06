@@ -38,7 +38,7 @@ export default function DashboardBody() {
             {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
              <EasyStart startButtonClick={startButtonClick}/>
              {
-              //  showModal ? <HandleModal showModal={showModal} setShowModal={setShowModal}/>:null
+              //  showModal && <HandleModal showModal={showModal} setShowModal={setShowModal}/>
                 <HandleModal showModal={showModal} setShowModal={setShowModal}/>
              }
           </div>
