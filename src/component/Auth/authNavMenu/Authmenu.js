@@ -1,6 +1,6 @@
 import React from "react";
 import AuthButton from "../authButton/AuthButton";
-import Navmenu from "../../navMenu/Navmenu";
+import Navmenu from "../../Dashboard/DashboaedComponents/navMenu/Navmenu";
 import "./authmenu.css";
 import { Link } from "react-router-dom";
 

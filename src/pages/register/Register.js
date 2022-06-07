@@ -1,31 +1,46 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import GoogleIcon from "@mui/icons-material/Google";
 import "./register.css";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
-import Nav from "../../component/navMenu/Nav";
+// import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 export const TextButton = React.createContext();
 export default function Register() {
 
-  const dispatch =useDispatch();
 
-  const [name,setname]=useState("")
-  const [email,setEmail]=useState("")
-  const [password1,setPassword1]=useState("")
-  const [password2,setPassword2]=useState("")
+  const { checkRegisterComplete } = useSelector(state => state.userState)
 
+  const navigate = useNavigate();
+
+
+  // const dispatch = useDispatch();
+
+  // const [name, setname] = useState("")
+  // const [email, setEmail] = useState("")
+  // const [password1, setPassword1] = useState("")
+  // const [password2, setPassword2] = useState("")
+
+
+  //REGISTER COMPLETE => NAVIGATE TO VERIFY FORM
+  useEffect(() => {
+    if (checkRegisterComplete == true) {
+      navigate("/ValidateEmail")
+    }
+  }, [checkRegisterComplete])
+  
+  
   return (
     <div className="registerContainer">
       <div className="registerBox">
-      {/* <Nav/> */}
-          {/* <TextButton.Provider value={"ورود"}>
+        {/* <Nav/> */}
+        {/* <TextButton.Provider value={"ورود"}>
             <Authmenu buttonLink={"/login"}/>
           </TextButton.Provider> */}
-       {/* <Nav/> */}
+        {/* <Nav/> */}
         <div className="mainbox">
           <div className="inputBox">
             <AuthInput
@@ -33,7 +48,7 @@ export default function Register() {
               width={"560px"}
               typeInput="text"
               reduxHandleChange={setNameRedux}
-              
+
             />
             <AuthInput
               textLabelInput="ایمیل"
@@ -48,7 +63,7 @@ export default function Register() {
                 typeInput="password"
                 isPassword={true}
                 reduxHandleChange={setPasswordRedux}
-                />
+              />
               <AuthInput
                 textLabelInput=" تکرار گذرواژه  "
                 width={"270px"}
@@ -59,16 +74,16 @@ export default function Register() {
             </div>
             <div className="registerButtonBox">
               <div className="btnsBox">
-              <Link to={"ValidateEmail"}>
-                  <TextButton.Provider value={"عضویت"}>
-                    <AuthButton
-                      // widthValue={"86px"}
-                      // bgcolor="#0A65CD"
-                      classes={"btn-style"}
-                      reduxHandleClick={registerUserAction}
-                    />
-                  </TextButton.Provider>
-                </Link>
+                {/* <Link to={"ValidateEmail"}> */}
+                <TextButton.Provider value={"عضویت"}>
+                  <AuthButton
+                    // widthValue={"86px"}
+                    // bgcolor="#0A65CD"
+                    classes={"btn-style"}
+                    reduxHandleClick={registerUserAction}
+                  />
+                </TextButton.Provider>
+                {/* </Link> */}
                 <button className="googleButton">
                   <span>حساب گوگل </span> <GoogleIcon className="googleIcon" />
                 </button>
