@@ -24,11 +24,11 @@ export default function Login() {
 
             <div className="registerButtonBox">
               <div className="btnsBox">
-                {/* <Link to={"/"}> */}
+                <Link to={"/"}>
                 <TextButton.Provider value={"ورود"}>
                   <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} />
                 </TextButton.Provider>
-                {/* </Link> */}
+                </Link>
                 <button className="googleButton">
                   <span>حساب گوگل </span> <GoogleIcon className="googleIcon" />
                 </button>

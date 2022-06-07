@@ -88,7 +88,7 @@ export default function Register() {
                   <span>حساب گوگل </span> <GoogleIcon className="googleIcon" />
                 </button>
               </div>
-              <Link to={"/login"}>
+              <Link to={"/"}>
                 <div>
                   <span>حساب کاربری دارم!</span>
                 </div>

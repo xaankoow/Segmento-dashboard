@@ -33,7 +33,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
       'z-index': '100'
     },
   };
-// debugger
+  // debugger
 
   const handleShowTitleModal = () => {
     switch (stepModal) {
@@ -282,24 +282,42 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
   const handleShowTryFreePlan = () => {
     return (
       <Fragment>
-        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
+        <div className='header'>
+          <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
+        </div>
         <div className='plan_card_list_option'>
           <div className='title'>استفاده 14 روز رایگان از تمامی امکانات سگمنتو</div>
           <div className='list_option'>
-            <div>نمونه نوشته <span></span></div>
+            <div><p><span></span>نمونه نوشته</p> </div>
             <hr />
+            <div><p><span></span>نمونه نوشته</p> </div>
+            <hr />
+            <div><p><span></span>نمونه نوشته</p> </div>
+            <hr />
+            <div><p><span></span>نمونه نوشته</p> </div>
+            <hr />
+            <div><p><span></span>نمونه نوشته</p> </div>
+            <hr />
+            <div><p><span></span>نمونه نوشته</p> </div>
+            <hr />
+            <div><p><span></span>نمونه نوشته</p> </div>
           </div>
         </div>
-        <AuthButton textButton={"خرید اشتراک"} />
+        <div className='btn_read_policy_container'>
+          <div>
+            <p><input type="checkbox" name="" id="" />قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم . </p>
+            <AuthButton textButton={"خرید اشتراک"} />
+          </div>
+        </div>
       </Fragment>
     )
   }
-  const handleShowReport = () => {
+  const handleShowReport = (planType) => {
     return (
       <Fragment>
         <div className='popup'>
           <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
-          <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
+          <div className='main_popup'>{planType}</div>
         </div>
         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
         <div className='support_container'>
@@ -311,7 +329,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
     )
   }
 
-debugger
+  // debugger
   return (
     <div className='modal'>
       <Modal
@@ -350,7 +368,7 @@ debugger
           </body>
         ) : stepModal == 6 && free == false ? (
           <body className='final_report_container'>
-            {handleShowReport()}
+            {handleShowReport("اشتراک طلایی ، 3 ماهه")}
           </body>
         )
           : stepModal == 5 && free == true ? (
@@ -359,9 +377,9 @@ debugger
             </body>
           ) : stepModal == 6 && free == true ? (
             <body className='final_report_container'>
-              {handleShowReport()}
+              {handleShowReport("14 روز رایگان")}
             </body>
-          ):""}
+          ) : ""}
         <footer>
 
 
