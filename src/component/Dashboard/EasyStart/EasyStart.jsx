@@ -1,12 +1,15 @@
 
 import React from 'react';
+import AuthButton from '../../Auth/authButton/AuthButton';
+import HandleModal from '../../Utils/handleModal';
+
 
 const EasyStart = () => {
     return (
         <>
            <div className='EasyStartBox EasyStartcontactus'>
                <span>برای راهنمایی و مشاوره استفاده از امکانات سگمنتو تماس بگیرید :  </span>
-               <button className="btn_style">مشاوره و تماس</button>
+                <AuthButton handlerClick={() =>HandleModal()}  textButton={"مشاوره و تماس"} />
            </div> 
            <div className='EasyStartBox EasyStartBoxContent'>
                 <div className='EasyStartTitle'>
@@ -23,7 +26,8 @@ const EasyStart = () => {
                 <div className='imageBox'>
                 <img src="../img/dashboard/EasyStartPage/EasySart.svg" alt="EasyStartPage" />
                 </div>
-                <button className="btn_style"><span></span> شروع کن </button>
+                {/* <button className="btn_style" onClick={()=>HandleModal(true)}><span></span> شروع کن </button> */}
+                <AuthButton handlerClick={HandleModal(true)}  textButton={"شروع کن"} />
            </div>
         </>
     );

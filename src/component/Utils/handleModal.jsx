@@ -3,10 +3,10 @@ import Modal from 'react-modal'
 import AuthInput from '../Auth/authInput/AuthInput'
 import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
-export default function HandleModal({ handleClose, checkClose }) {
+export default function HandleModal(checkShow) {
 
-  const [showModal, setShowModal] = useState(true);
-  const [stepModal, setStepModal] = useState(5);
+  const [showModal, setShowModal] = useState(false);
+  const [stepModal, setStepModal] = useState(0);
   const [free, setFree] = useState(false);
 
   const customStyles = {
@@ -20,7 +20,7 @@ export default function HandleModal({ handleClose, checkClose }) {
       backgrounColor: "red"
     },
   };
-
+// debugger
 
   const handleShowTitleModal = () => {
     switch (stepModal) {
@@ -217,7 +217,7 @@ export default function HandleModal({ handleClose, checkClose }) {
     )
   }
 
-
+debugger
   return (
     <div className='modal'>
       <Modal
