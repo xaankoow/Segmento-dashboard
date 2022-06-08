@@ -3,13 +3,13 @@ import Modal from 'react-modal'
 import AuthInput from '../Auth/authInput/AuthInput'
 import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
-import { useDispatch } from 'react-redux';
-import { applyDiscountAction } from '../Redux/Action/plan';
+import { useDispatch, useSelector } from 'react-redux';
+import { applyDiscountAction, setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setSite1, setSite2, setWebAdress } from '../Redux/Action/plan';
 
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
-  const [stepModal, setStepModal] = useState(5);
-  const [discount, setDiscount] = useState("sample-code");
+  const [stepModal, setStepModal] = useState(1);
+  // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(true);
 
@@ -17,7 +17,8 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
 
   var disableInput = false;
   var discountCheck = false;
-
+  
+  const {webAdress,charKey1,charKey2,site1,site2,commercialPage1,commercialPage2,planChosen,discount,forceUpdate} =useSelector(state=>state.planState);
 
   const dispatch = useDispatch();
 
@@ -81,27 +82,27 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           <img src="./img/modal/body/siteDesignMan.svg" alt="" />
         </div>
         {stepModal == 1 ? (
-          <AuthInput textLabelInput="ایمیل" width={"100%"} typeInput="email" />
+          <AuthInput textLabelInput="ایمیل" width={"100%"} typeInput="email" reduxHandleChange={setWebAdress} value={webAdress}/>
         ) : stepModal == 2 ? (
           <Fragment>
             <div className='container_input_step2'>
-              <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" />
+              <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" reduxHandleChange={setCharKey1} value={charKey1}/>
               {/* <div className='arrow'></div> */}
               <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-              <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" />
+              <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" reduxHandleChange={setSite1} value={site1}/>
             </div>
             <div className='container_input_step2'>
-              <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" />
+              <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" reduxHandleChange={setCharKey2} value={charKey2}/>
               {/* <div className='arrow'></div> */}
               <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-              <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" />
+              <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" reduxHandleChange={setSite2} value={site2}/>
             </div>
           </Fragment>
         ) :
           stepModal == 3 ? (
             <div className='container_input_step3'>
-              <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" />
-              <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" />
+              <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage1} value={commercialPage1}/>
+              <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage2} value={commercialPage2}/>
             </div>
           ) : null}
       </Fragment>
@@ -388,6 +389,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
         </footer>
       </Modal>
+      {forceUpdate&&true}
     </div>
   )
 }
