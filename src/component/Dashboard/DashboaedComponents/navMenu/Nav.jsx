@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
 import { findUserAction } from '../../../Redux/Action'
@@ -14,10 +14,19 @@ export default function Nav({path}) {
   // }, [])
   
   // let user=get
+  const { checkRegisterComplete } = useSelector(state => state.userState)
+
   const navigate=useNavigate();
 
 
   let user= getCookie("user_name")
+  //REGISTER COMPLETE => NAVIGATE TO VERIFY FORM
+  useEffect(() => {
+    debugger
+    if (checkRegisterComplete == true) {
+      navigate("/ValidateEmail")
+    }
+  }, [checkRegisterComplete])
 
   // debugger
   useEffect(() => {

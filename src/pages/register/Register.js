@@ -12,11 +12,6 @@ export const TextButton = React.createContext();
 export default function Register() {
 
 
-  const { checkRegisterComplete } = useSelector(state => state.userState)
-
-  const navigate = useNavigate();
-
-
   // const dispatch = useDispatch();
 
   // const [name, setname] = useState("")
@@ -25,12 +20,6 @@ export default function Register() {
   // const [password2, setPassword2] = useState("")
 
 
-  //REGISTER COMPLETE => NAVIGATE TO VERIFY FORM
-  useEffect(() => {
-    if (checkRegisterComplete == true) {
-      navigate("/ValidateEmail")
-    }
-  }, [checkRegisterComplete])
   
   
   return (

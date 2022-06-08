@@ -184,11 +184,14 @@ export const loginUserAction = () => {
                             // state.email = state.email;
                             state.checkRegisterComplete = true;
                             // let send_code_email = async () => {
+                                let formdata = new FormData();
+                                formdata.append("email", state.email)
+                                formdata.append("password", state.password)
                                 const { data, status } = await verifyEmail(formdata);
                             if (status == 200 && data.status == true) {
                                 toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
                                 // return Promise.resolve();
-                                await dispatch({ type: "LOGIN_USER", payload: { ...getState().userState } })
+                                // await dispatch({ type: "LOGIN_USER", payload: { ...getState().userState } })
                             }
                             break;
                             
