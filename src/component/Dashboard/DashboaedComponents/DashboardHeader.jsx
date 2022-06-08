@@ -25,7 +25,7 @@ const DashboardHeader = ({setCloseNav}) => {
                 <div className='menuimage' onClick={()=>setCloseNav()}></div>
                 <div className='right_header_box_logo'>
                     <div className='Iconimage'></div>
-                    <span className=''>سگمنتو segmento</span>
+                    <span className=''>سگمنتو . SEGMENTO</span>
                 </div>
             </div>
             <div className='left_header_box'>

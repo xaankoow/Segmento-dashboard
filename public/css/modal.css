@@ -188,7 +188,7 @@
     background: white;
     padding: 13px 8px 20px 8px;
     text-align: center;
-    transition: all 1s ease;
+    transition: all 200ms ease-in-out;
 }
 
 .ReactModal__Content .plans_body_container .plan_card .input_apply_token_container {
