@@ -22,20 +22,20 @@ export default function Login() {
             <AuthInput textLabelInput="ایمیل" width={"100%"} typeInput="email" reduxHandleChange={setEmailRedux} />
             <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} />
 
-            <div className="registerButtonBox">
-              <div className="btnsBox">
+            <div className="flex items-center w-full justify-between">
+              <div className="flex gap-5">
                 {/* <Link to={"/"}> */}
                 <TextButton.Provider value={"ورود"}>
                   <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} />
                 </TextButton.Provider>
                 {/* </Link> */}
-                <button className="googleButton">
-                  <span>حساب گوگل </span> <GoogleIcon className="googleIcon" />
+                <button className="bg-lightGray text-white rounded-lg flex gap-2 items-center py-2 px-3">
+                  <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>
               <Link to={"/forgotPassword"}>
                 <div>
-                  <span>گذرواژه خود را فراموش کرده‌اید؟</span>
+                  <span className='underline text-sm underline-offset-8'>گذرواژه خود را فراموش کرده‌اید؟</span>
                 </div>
               </Link>
             </div>

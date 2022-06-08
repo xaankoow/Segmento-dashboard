@@ -319,50 +319,30 @@
 	filter: saturate(11);
 }
 
-#DASHBOARD .headercontainer {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0px 20px;
-	height: 100%;
-}
 
-#DASHBOARD .headercontainer .right_header_box {
-	display: flex;
-	align-items: center;
-	gap: 29px;
-}
 
-#DASHBOARD .headercontainer .right_header_box_logo {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
 
-#DASHBOARD .headercontainer .right_header_box .menuimage {
+#DASHBOARD .right_header_box .menuimage {
 	background-image: url(../img/dashboard/header/menuicon.svg);
 	width: 24px;
 	height: 24px;
 	cursor: pointer;
 }
 
-#DASHBOARD .headercontainer .right_header_box .Iconimage {
+#DASHBOARD .right_header_box .Iconimage {
 	background-image: url(../img/dashboard/header/segmento-logofa.svg);
 	width: 29px;
 	height: 30px;
 }
 
-#DASHBOARD .headercontainer .left_header_box .userImage {
-	border-radius: 5px;
-}
 
-#DASHBOARD .headercontainer .left_header_box {
+#DASHBOARD .left_header_box {
 	display: flex;
 	align-items: center;
 	gap: 49px;
 }
 
-#DASHBOARD .headercontainer .userProfBox {
+#DASHBOARD  .userProfBox {
 	z-index: 10;
 	position: relative;
 	padding: 5px;
@@ -370,23 +350,14 @@
 	width: 262px;
 }
 
-#DASHBOARD .headercontainer .userHeaderProfInfo {
-	display: none;
-	position: absolute;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: white;
-	border-radius: 3px;
-	width: 100%;
-}
+
 /* drop down */
 #DASHBOARD .dropdown {
 	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
 	border-radius: 3px;
 }
 
-#DASHBOARD .headercontainer .userHeaderProfInfo .dropdowItem {
+#DASHBOARD .dropdowItem {
 	display: flex;
 	font-size: 10px;
 	justify-content: space-between;
@@ -396,70 +367,59 @@
 	cursor: pointer;
 }
 
-#DASHBOARD .headercontainer .userHeaderProfInfo .dropdowItem .arrow {
+#DASHBOARD  .dropdowItem .arrow {
 	margin-left: 10px;
 }
 
-#DASHBOARD .headercontainer .userHeaderProfInfo .dropdowItem:hover {
+#DASHBOARD .dropdowItem:hover {
 	background: rgba(10, 101, 205, 0.15);
 }
 
-#DASHBOARD .headercontainer .dropdowItemText {
+#DASHBOARD .dropdowItemText {
 	display: flex;
 	align-items: center;
 }
 
-#DASHBOARD .headercontainer .dropdowItemText img {
+#DASHBOARD .dropdowItemText img {
 	margin: 0px 10px 0px 5px;
 }
 
-#DASHBOARD .headercontainer .userProfBox:hover {
+#DASHBOARD .userProfBox:hover {
 	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
 	border-radius: 3px;
 }
 
-#DASHBOARD .headercontainer .userProfBox:hover .userHeaderProfInfo {
+#DASHBOARD .userHeaderProfInfo{
+	background-color:white;
+}
+
+#DASHBOARD .userProfBox:hover .userHeaderProfInfo {
 	display: flex;
 	right: 0;
 	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
 }
 
-#DASHBOARD .headercontainer .left_header_box_item1 {
+#DASHBOARD .left_header_box_item1 {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 }
 
-#DASHBOARD .headercontainer .underline {
+#DASHBOARD .underline {
 	width: 196px;
 	border-bottom: 1px solid #d3d5e2;
 	margin: 10px 0px 5px 0px;
 }
 
-#DASHBOARD .headercontainer .left_header_box .username {
-	font-size: 14px;
-}
 
-#DASHBOARD .headercontainer .left_header_box .eshteraktalaee {
-	font-size: 10px;
-}
-
-#DASHBOARD .headercontainer .left_header_box_item2 {
-	display: flex;
-	align-items: center;
-	justify-content: right;
-	gap: 10px;
-	margin-top: 5px;
-}
-
-#DASHBOARD .headercontainer .left_header_box_item3 {
+#DASHBOARD .left_header_box_item3 {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	margin-left: 29px;
 }
 
-#DASHBOARD .headercontainer .left_header_box_item3 .notifIconBox {
+#DASHBOARD .left_header_box_item3 .notifIconBox {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -468,7 +428,7 @@
 	color: white !important;
 }
 
-#DASHBOARD .headercontainer .left_header_box_item3 .notifIconBox .notifNumber {
+#DASHBOARD .left_header_box_item3 .notifIconBox .notifNumber {
 	position: absolute;
 	padding: 2px;
 	left: 14px;
@@ -479,7 +439,7 @@
 	background: #ff7278;
 }
 
-#DASHBOARD .headercontainer .left_header_box_item3 img:hover {
+#DASHBOARD .left_header_box_item3 img:hover {
 	cursor: pointer;
 }
 

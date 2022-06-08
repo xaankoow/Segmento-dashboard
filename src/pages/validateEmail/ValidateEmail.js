@@ -19,9 +19,9 @@ export default function ValidateEmail() {
           <Authmenu buttonLink={"/login"}/>
         </TextButton.Provider> */}
       {/* </div> */}
-      <div className="main-validate-Email-box">
-        <div className="validateEmailContai">
-          <p>
+      <div className="w-full mt-14">
+        <div className="leading-8">
+          <p className="text-lg m-auto w-7/12 text-justify ">
             مطمعن باشین این یه متن از پیش آماده شده نیست، ما خیلی خوشحالیم که
             شما از امروز همراه ما هستی، قطعا قول میدیم هر روز شما هم اینطوری خوب
             و خوش باشه چون تلاشمون اینه کنار خلق ارزش، حس خوبی هم از کار با
@@ -32,31 +32,32 @@ export default function ValidateEmail() {
             ممکنه اشتباه کرده باشن :)
           </p>
         </div>
-        <div className="validateEmailChildBox">
+        <div className="flex flex-col justify-cneter items-center gap-3 mt-20 mb-7">
           <span>کد فعال سازی</span>
-          <div className="verify_cod_container">
+          <div className="flex gap-5">
             <AuthInput classes={"verify_email_cod input_selector_4"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth1Redux}/>
             <AuthInput classes={"verify_email_cod input_selector_3"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth2Redux}/>
             <AuthInput classes={"verify_email_cod input_selector_2"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth3Redux}/>
             <AuthInput classes={"verify_email_cod"} notCheckValue={true} maxlength="1"pressNumber={true} reduxHandleChange={setAuth4Redux}/>
           </div>
         </div>
-        <div className="validateEmailChildBox2">
+        <div className="h-10 w-7/12 m-auto text-center relative">
           <Link to={"/"} >
-          <img src="/img/back.svg" alt="back" />
+          <img src="/img/back.svg" alt="back" className="absolute py-2 top-0 right-0"/>
           </Link>
-          <div className="validateButton">
+          <div className="m-auto">
             <TextButton.Provider value={"تایید ایمیل"}>
               <AuthButton bgcolor={"#0A65CD"} reduxHandleClick={checkVerifyEmailAction}/>
             </TextButton.Provider>
           </div>
-          <Link to={"#"} onClick={()=>dispatch(sendCodEmailAction())} className="getemailtext">دریافت مجدد کد</Link>
+          <Link to={"#"} onClick={()=>dispatch(sendCodEmailAction())} className="underline underline-offset-4 absolute top-0 left-0 py-2">دریافت مجدد کد</Link>
         </div>
-        <div className="validateEmailIconBox">
+     
+      </div>
+         <div className="w-full flex gap-4 justify-center absolute bottom-5">
           <img src="/img/contactUs.svg" alt="contactUs" />
           <img src="/img/fi-rr-life-ring.svg" alt="fi-rr-life-ring.svg" />
         </div>
-      </div>
     </div>
   );
 }

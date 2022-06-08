@@ -20,6 +20,10 @@ module.exports = {
       'sm': {'max': '639px'},
       // => @media (max-width: 639px) { ... }
     },
+    colors: {
+      'lightGray':"#d3d5e2",
+      'gray':"#7D7D7D",
+    },
   },
   plugins: [],
 }

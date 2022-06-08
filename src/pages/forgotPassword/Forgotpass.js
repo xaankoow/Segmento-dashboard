@@ -121,7 +121,7 @@ export default function Forgetpass() {
           </TextButton.Provider> */}
           <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-5 md:py-5 min-w-full">
             <div className="flex flex-col justify-center">
-              <div className="mohtava">
+              <div className="flex flex-col gap-1">
                 <span>گذرواژه خود را فراموش کرده اید . هیچ ایرادی نداره</span>
                 <span>برامون بنویسین تا ما یک کد فعال سازی ارسال کنیم .</span>
                 <span>
@@ -148,14 +148,8 @@ export default function Forgetpass() {
 
 
 
-                <div className="container_btn_timer">
-                  {/* {true && (
-                      <Timer
-                        display={display}
-                        minutes={minutes}
-                        seconds={seconds}
-                      />
-                    )} */}
+                <div className="flex items-center">
+                  
                   {handleResendCode == true ?clearTimerValue() : 
                  
                   <Timer
@@ -181,8 +175,8 @@ export default function Forgetpass() {
 
                 </div>
               </div>
-              <div className="activecodeBox">
-                <div className="activecodeChildBox">
+              <div className="flex items-center justify-between mt-5 relative">
+                <div className="flex items-center gap-5 flex-col">
                   <span className={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?"lockStyle" :"" : "lockStyle"}>کد فعال سازی</span>
                   <div className="flex items-center gap-4">
                     <AuthInput
@@ -227,7 +221,7 @@ export default function Forgetpass() {
                     />
                   </div>
                 </div>
-                <div className="acceptCodeBox">
+                <div className="absolute bottom-0 left-0 ">
                   <TextButton.Provider value={"تایید کد"}>
                     <AuthButton
                       // widthValue={"90px"}
@@ -255,7 +249,7 @@ export default function Forgetpass() {
                   chechvalue={chechvalue}
                   reduxHandleChange={setPasswordRedux}
                 />
-                <div className="recheckPss">
+                <div className="flex flex-col items-start relative">
                   <AuthInput
                     textLabelInput=" تکرار گذرواژه  "
                     classes={"forgot_password_input"}
@@ -269,13 +263,13 @@ export default function Forgetpass() {
                     <img
                       sdivrc="/img/ErrorBadge.svg"
                       alt="ErrorBadge"
-                      className="ErrorBadgeImage"
+                      className="bg[#C42B1C] p-1 rounded-full"
                     />
                     <h5>گذرواژه همخوانی ندارد</h5>
                   </div>
                 </div>
               </div>
-              <div className="storePssBox">
+              <div className="flex items-center justify-between">
                 <TextButton.Provider value={"ذخیره گذرواژه و ورود"}>
                   <AuthButton
                     bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}
@@ -287,7 +281,7 @@ export default function Forgetpass() {
                 </TextButton.Provider>
                 <div>
                   <Link to={"/"}>
-                    <span className="span">حساب کاربری ندارم!</span>
+                    <span className="underline text-sm underline-offset-8">حساب کاربری ندارم!</span>
                   </Link>
                 </div>
               </div>

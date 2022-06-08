@@ -20,10 +20,10 @@ const DashboardHeader = ({setCloseNav}) => {
       
     
     return (
-        <div className='headercontainer'>
-            <div className='right_header_box'>
+        <div className='flex h-full items-center justify-between px-5'>
+            <div className='right_header_box flex items-center gap-7'>
                 <div className='menuimage' onClick={()=>setCloseNav()}></div>
-                <div className='right_header_box_logo'>
+                <div className='flex items-center gap-3'>
                     <div className='Iconimage'></div>
                     <span className=''>سگمنتو segmento</span>
                 </div>
@@ -31,17 +31,17 @@ const DashboardHeader = ({setCloseNav}) => {
             <div className='left_header_box'>
                 <div className='userProfBox'>
                     <div className='left_header_box_item1'>
-                    <img src='../img/dashboard/header/userimage.svg' className='userImage' alt='userImage'/>
+                    <img src='../img/dashboard/header/userimage.svg' className='rounded' alt='userImage'/>
                     <div className=''>
-                        <span className='username'>{user_name}</span>
-                        <div className='left_header_box_item2'>
+                        <span className='text-sm'>{user_name}</span>
+                        <div className='flex items-center justify-right mt-1 gap-3'>
                             <img src="../img/dashboard/header/Ellipse.svg" alt="Ellipse" />
-                            <span className='eshteraktalaee'>اشتراک طلایی</span>
+                            <span className='text-xs'>اشتراک طلایی</span>
                         </div>
                     </div>
                     </div>
-                    <div className='userHeaderProfInfo'>
-                        <div className='underline'/>
+                    <div className='hidden absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo'>
+                        <div className='border-b border-lightGray w-52 '/>
                      <div className='dropdowItem'>
                           <div className='dropdowItemText'>
                               <img src="../img/dashboard/header/manage_accounts.svg" alt="manage_accounts" />

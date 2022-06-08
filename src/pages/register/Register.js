@@ -71,8 +71,8 @@ export default function Register() {
                 reduxHandleChange={setPasswordConfirmRedux}
               />
             </div>
-            <div className="registerButtonBox">
-              <div className="btnsBox">
+            <div className="flex items-center w-full justify-between">
+              <div className="flex gap-5">
                 {/* <Link to={"ValidateEmail"}> */}
                 <TextButton.Provider value={"عضویت"}>
                   <AuthButton
@@ -83,13 +83,13 @@ export default function Register() {
                   />
                 </TextButton.Provider>
                 {/* </Link> */}
-                <button className="googleButton">
-                  <span>حساب گوگل </span> <GoogleIcon className="googleIcon" />
+                <button className="bg-lightGray text-white rounded-lg flex gap-2 items-center py-2 px-3">
+                  <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>
-              <Link to={"/login"}>
+              <Link to={"/"}>
                 <div>
-                  <span>حساب کاربری دارم!</span>
+                  <span className="underline text-sm underline-offset-8">حساب کاربری دارم!</span>
                 </div>
               </Link>
             </div>
