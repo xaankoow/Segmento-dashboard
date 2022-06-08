@@ -11,7 +11,7 @@ import {reducers}from '../Reducer/index'
 //   }
 export const store=createStore(
     reducers,
-    compose(applyMiddleware(thunk),!window.location.port && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object'&&window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+    compose(applyMiddleware(thunk))
     )
 
 store.subscribe(()=>console.log(store.getState()))
