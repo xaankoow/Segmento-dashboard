@@ -29,24 +29,24 @@ export default function Nav({path}) {
   
   console.log(window.location.pathname)
   return (
-    <div id='nav-option-head' className='md:w-11/12 2xl:w-10/12'>
-      <div className='container_nav_logo'>
-        <div>
+    <div id='nav-option-head' className='md:w-11/12 2xl:w-10/12 flex items-center justify-between'>
+      <div className='flex justify-around items-center'>
+        <div className="flex justify-center items-center pl-5">
           <span className='logo_nav option_segmento_logo' />
           <a href='#'>امکانات</a>
         </div>
-        <div>
+        <div className="flex justify-center items-center pl-5">
           <span className='logo_nav course_video_logo' />
           <a href='#'>ویدئو آموزشی</a>
         </div>
-        <div>
+        <div className="flex justify-center items-center pl-5">
           <span className='logo_nav diamond_price_logo' />
           <a href='#'>قیمت گذاری</a>
         </div>
-        <div>
+        <di className="flex justify-center items-center pl-5"v>
           <span className='logo_nav cookie_communicate_logo' />
           <a href='#'>همکاری با آژانس ها</a>
-        </div>
+        </di>
       </div>
       <div>
 
