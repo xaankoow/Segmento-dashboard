@@ -152,7 +152,7 @@ export const loginUserAction = () => {
         if (state.email && state.password) {
             let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
 
-            debugger
+            // debugger
             let formdata = new FormData();
             formdata.append("email", state.email)
             formdata.append("password", state.password)
@@ -161,27 +161,49 @@ export const loginUserAction = () => {
             try {
 
                 const { data, status } = await loginUser(formdata);
-                if (status == 200 && data.status == true) {
-
-                    // Navigate("/dashboard");
-                    // const json=JSON.parse(data.data.user)
-                    localStorage.setItem("token", data.data.token);
-                    // localStorage.setItem("userId", data.data.user.uuid);
-                    // localStorage.setItem("user", json);
-                    // debugger
-                    const d = new Date();
-                    d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-                    let expires = "expires=" + d.toUTCString();
-                    document.cookie = "user_name=" + data.data.user.name + ";" + expires;
-                    document.cookie = "user_email=" + data.data.user.email + ";" + expires;
-                    state.forceUpdate += 1;
-                    toast.update(toastPromise, { render: "با موفقیت وارد شدید", type: "success", isLoading: false, autoClose: 3000 })
-                } else {
-                    data.errors.forEach(element => {
-                        toastMessage += element + " / ";
-                    });
-                    toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                }
+                debugger
+                switch (data.code) {
+                    case 200:
+                        // Navigate("/dashboard");
+                        // const json=JSON.parse(data.data.user)
+                        localStorage.setItem("token", data.data.token);
+                            // localStorage.setItem("userId", data.data.user.uuid);
+                            // localStorage.setItem("user", json);
+                            // debugger
+                            const d = new Date();
+                            d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
+                            let expires = "expires=" + d.toUTCString();
+                            document.cookie = "user_name=" + data.data.user.name + ";" + expires;
+                            document.cookie = "user_email=" + data.data.user.email + ";" + expires;
+                            state.forceUpdate += 1;
+                            toast.update(toastPromise, { render: "با موفقیت وارد شدید", type: "success", isLoading: false, autoClose: 3000 })
+                            break;
+                            
+                            case 205:
+                            let toastPromiseSendCode = toast.loading("درحال ارسال درخواست شما به سرور")
+                            // state.email = state.email;
+                            state.checkRegisterComplete = true;
+                            // let send_code_email = async () => {
+                                let formdata = new FormData();
+                                formdata.append("email", state.email)
+                                formdata.append("password", state.password)
+                                const { data, status } = await verifyEmail(formdata);
+                            if (status == 200 && data.status == true) {
+                                toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
+                                // return Promise.resolve();
+                                // await dispatch({ type: "LOGIN_USER", payload: { ...getState().userState } })
+                            }
+                            break;
+                            
+                            default:
+                                break;
+                            }
+                            if (!data.status) {
+                                data.errors.forEach(element => {
+                                    toastMessage += element + " / ";
+                                });
+                                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                } 
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
@@ -203,34 +225,34 @@ export const sendCodEmailAction = (email, demoResolve) => {
         const toastPromiseSendCode = toast.loading("درحال ارسال درخواست شما به سرور")
         const toastMessage = "";
         const state = { ...getState().userState }
-        const internal_email=state.email;
+        const internal_email = state.email;
         if (internal_email) {
             let state = { ...getState().userState }
             let formdata = new FormData();
             formdata.append("email", internal_email)
             // let send_code_email = async () => {
-                const { data, status } = await verifyEmail(formdata);
+            const { data, status } = await verifyEmail(formdata);
 
-                if (status == 200 && data.status == true) {
-                    // state.forgotPasswordStep=1;
+            if (status == 200 && data.status == true) {
+                // state.forgotPasswordStep=1;
+                await dispatch({ type: "SEND_CODE_EMAIL", payload: state })
+                toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
+            } else {
+                data.errors.forEach(element => {
+                    toastMessage += element + " / ";;
+                });
+                toast.update(toastPromiseSendCode, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                if (demoResolve && demoResolve == true) {
+                    state.forgotPasswordStep = 1;
                     await dispatch({ type: "SEND_CODE_EMAIL", payload: state })
-                    toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
-                } else { 
-                    data.errors.forEach(element => {
-                        toastMessage += element + " / ";;
-                    });
-                    toast.update(toastPromiseSendCode, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                    if (demoResolve && demoResolve == true) {
-                        state.forgotPasswordStep = 1;
-                        await dispatch({ type: "SEND_CODE_EMAIL", payload: state })
-                        // return Promise.resolve()
+                    // return Promise.resolve()
 
-                    } else {
+                } else {
 
-                        // return Promise.reject();
-                    }
-                   
+                    // return Promise.reject();
                 }
+
+            }
             // }
             // showPromisToast(send_code_email(), "sendCod")
         }

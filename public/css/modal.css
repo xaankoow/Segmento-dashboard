@@ -109,6 +109,7 @@
 
 .ReactModal__Content body .main_contnt_modal {
     margin-top: -19px;
+    margin-bottom: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -177,8 +178,9 @@
     display: flex;
     justify-content: space-between;
 }
+
 .ReactModal__Content .plans_body_container .plan_card {
-    width: 265px;
+    width: 200px;
     box-sizing: border-box;
     position: relative;
     border: 1px solid transparent;
@@ -186,7 +188,7 @@
     background: white;
     padding: 13px 8px 20px 8px;
     text-align: center;
-    transition: all 1s ease;
+    transition: all 200ms ease-in-out;
 }
 
 .ReactModal__Content .plans_body_container .plan_card .input_apply_token_container {
@@ -196,15 +198,15 @@
 .ReactModal__Content .plans_body_container .plan_card .apply_token_ico {
     position: absolute;
     background-image: url(../img/modal/body/arrow_apply_token.svg);
-    box-sizing: content-box;
+    box-sizing: border-box;
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 14px;
+    height: 14px;
     left: 17px;
-    top: 10px;
+    top: 15px;
     transition: all 5s ease;
 }
 
@@ -231,6 +233,7 @@
     font-weight: 700;
     padding: 13px 0px;
 }
+
 .ReactModal__Content .plans_body_container .gold hr {
     border: 1px solid #ffce47;
     width: 100%;
@@ -241,12 +244,14 @@
 .ReactModal__Content .plans_body_container .silver {
     margin: 0px 39px;
 }
+
 .ReactModal__Content .plans_body_container .silver .title {
     color: #7d7d7d;
     font-size: 20px;
     font-weight: 700;
     padding: 13px 0px;
 }
+
 .ReactModal__Content .plans_body_container .silver hr {
     border: 1px solid #7d7d7d;
     width: 100%;
@@ -260,6 +265,7 @@
     font-weight: 700;
     padding: 13px 0px;
 }
+
 .ReactModal__Content .plans_body_container .bronze hr {
     border: 1px solid #bf8970;
     width: 100%;
@@ -281,6 +287,14 @@
     cursor: pointer;
 }
 
+.ReactModal__Content .plans_body_container .plan .container_row p {
+    font-size: 14px;
+}
+
+.ReactModal__Content .plans_body_container .plan .container_row span {
+    font-size: 8px;
+}
+
 .ReactModal__Content .plans_body_container .plan div div {
     padding: 0px;
     display: flex;
@@ -292,15 +306,19 @@
 .ReactModal__Content .plans_body_container .plan .style_selected_plan {
     border: 1px solid rgba(125, 125, 125, 1) !important;
 }
+
 .ReactModal__Content .plans_body_container .plan .style_selected_plan .off_price {
     color: rgba(10, 101, 205, 1);
 }
-.ReactModal__Content .plans_body_container .plan div input:checked + p {
+
+.ReactModal__Content .plans_body_container .plan div input:checked+p {
     color: rgba(10, 101, 205, 1);
 }
+
 .ReactModal__Content .plans_body_container .plan .selectPlanTag {
     display: none;
 }
+
 .ReactModal__Content .plans_body_container .plan .selectPlanTag {
     display: none;
 }
@@ -380,6 +398,7 @@ input[type="radio"]:checked {
 
     /* outline: 3px solid rgba(10, 101, 205, 1); */
 }
+
 /* input[type="radio"]::before {
     content: "";
     width: 0.65em;
@@ -466,7 +485,6 @@ input[type="radio"]:checked::before {
 
 /* modal step 5 price type*/
 
-
 .report_container .report {
     box-sizing: border-box;
     width: 340px;
@@ -478,21 +496,25 @@ input[type="radio"]:checked::before {
     margin-top: 70px;
     padding: 20px 5px 5px 5px;
 }
+
 .report_container .report div {
     width: 100%;
     text-align: center;
     margin-bottom: 18px;
 }
+
 .report_container .report span {
     display: inline-block;
     width: 40%;
     font-size: 14px;
     color: rgba(8, 60, 120, 1);
 }
+
 .report_container .report span:first-of-type {
     margin-left: 24px;
     text-align: left;
 }
+
 .report_container .report span:last-of-type {
     text-align: right;
 }
@@ -502,10 +524,12 @@ input[type="radio"]:checked::before {
     font-size: 20px !important;
     font-weight: 700;
 }
+
 .report_container .report .date span:last-of-type {
     /* font-size: 20px !important; */
     font-weight: 700;
 }
+
 .report_container .report .final_price {
     width: 100%;
     padding: 10px 0px;
@@ -515,6 +539,188 @@ input[type="radio"]:checked::before {
 }
 
 .report_container button {
-margin: auto;
-margin-top: 18px;
+    margin: auto;
+    margin-top: 18px;
+}
+
+/* report css */
+.final_report_container {
+    /* padding: 0px 10px; */
+}
+
+.final_report_container .popup {
+    box-sizing: border-box;
+    width: 100%;
+    /* height: 85px; */
+    border-radius: 9px;
+    border: 1px solid rgba(125, 125, 125, 1);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.final_report_container .popup .title_popup {
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    background-color: rgba(16, 204, 174, 1);
+    text-align: center;
+    color: white;
+    padding: 4px 0px 2px 0px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.final_report_container .popup .main_popup {
+    text-align: center;
+    color: rgba(0, 33, 69, 1);
+    padding: 15px 0px;
+}
+
+.final_report_container p:nth-of-type(1) {
+    margin-top: 23px;
+    line-height: 24.18px;
+    width: 100%;
+    padding: 0px 7px;
+    font-size: 14px;
+    color: rgba(8, 60, 120, 1);
+}
+
+.final_report_container .support_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 14px;
+    text-align: center;
+}
+
+.final_report_container .support_container p {
+    width: 100%;
+    color: rgba(8, 60, 120, 1);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+
+}
+
+.final_report_container .support_container button {
+    margin-top: 18px;
+}
+
+.final_report_container .support_container img {
+    width: 250px;
+    height: 250px;
+    margin-top: 31px;
+}
+
+
+
+/* free plan modal step 5 */
+
+.plan_list_option  {
+    border: none !important;
+    padding: 0px 0px 56px 0px !important;
+}
+.plan_list_option .header p {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px 8px;
+    font-size: 14px;
+    color: #083C78;
+}
+
+.plan_list_option .plan_card_list_option {
+    width: 467px;
+    /* height: 405px; */
+    border-radius: 9px;
+    border: 1px solid rgba(242, 245, 247, 1);
+    /* padding: 0px 18px; */
+    margin: auto;
+    margin-top: 51px;
+}
+
+.plan_list_option .plan_card_list_option .title {
+    border-radius: 8px 8px 0px 0px;
+    width: 100%;
+    /* height: 54px; */
+    color: rgba(0, 33, 69, 1);
+    font-size: 18px;
+    text-align: center;
+    padding: 12px 0px;
+    background-color: rgba(255, 206, 71, 1);
+}
+
+.plan_list_option .plan_card_list_option .list_option {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px 17px;
+    text-align: right;
+}
+
+.plan_list_option .plan_card_list_option .list_option p {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 400;
+    color: #002145;
+    padding: 13px 0px;
+
+}
+
+.plan_list_option .plan_card_list_option .list_option span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #D3D5E2;
+    margin-left: 13px;
+    /* margin-left: 200px; */
+}
+
+.plan_list_option .plan_card_list_option .list_option hr {
+    /* background-color: #1327a7; */
+    border: 1px solid #D3D5E2
+}
+
+.plan_list_option .btn_read_policy_container {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.plan_list_option .btn_read_policy_container div {
+    width: 467px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px auto;
+    /* margin: auto;
+}
+.plan_list_option .btn_read_policy_container  button{
+    display: inline-block;
+    /* margin: auto; */
+    /* position: absolute; */
+    /* left: 0px; */
+    /* float: left; */
+}
+
+.plan_list_option .btn_read_policy_container p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 400;
+    color: #083C78;
+    padding: 8px 0px;
+    float: right;
+    /* display: inline-block; */
+}
+
+.plan_list_option .btn_read_policy_container p input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    background: black;
+    margin-left: 7px;
 }
