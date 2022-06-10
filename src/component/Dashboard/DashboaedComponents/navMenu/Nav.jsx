@@ -38,7 +38,7 @@ export default function Nav({path}) {
   
   console.log(window.location.pathname)
   return (
-    <div id='nav-option-head' className='md:w-11/12 2xl:w-10/12 flex items-center justify-between'>
+    <div id='nav-option-head' className='w-full flex items-center justify-between px-28'>
       <div className='flex justify-around items-center'>
         <div className="flex justify-center items-center pl-5">
           <span className='logo_nav option_segmento_logo' />

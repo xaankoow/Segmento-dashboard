@@ -5,6 +5,8 @@
 }
 
 
+
+/* set margin auto with tailwind */
  button{
-    margin: auto;
+    /* margin: auto; */
 }

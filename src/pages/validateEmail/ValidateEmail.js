@@ -12,14 +12,14 @@ import "./validateEmail.css";
 export default function ValidateEmail() {
   const dispatch =useDispatch();
   return (
-    <div className="registerContainer">
+    <div className="registerContainer 	">
       {/* <div className="registerBox"> */}
       {/* <Nav/> */}
         {/* <TextButton.Provider value={"ورود"}>
           <Authmenu buttonLink={"/login"}/>
         </TextButton.Provider> */}
       {/* </div> */}
-      <div className="w-full mt-14">
+      <div className="mt-14">
         <div className="leading-8">
           <p className="text-lg m-auto w-7/12 text-justify ">
             مطمعن باشین این یه متن از پیش آماده شده نیست، ما خیلی خوشحالیم که
