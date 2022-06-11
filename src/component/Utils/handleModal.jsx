@@ -8,7 +8,7 @@ import { applyDiscountAction, setCharKey1, setCharKey2, setCommercialPage1, setC
 
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
-  const [stepModal, setStepModal] = useState(4);
+  const [stepModal, setStepModal] = useState(2);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(true);

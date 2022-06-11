@@ -19,10 +19,10 @@ export default function Nav({path}) {
   const navigate=useNavigate();
 
 
-  let user= getCookie("user_name")
+  const userToken= localStorage.getItem("token")
   //REGISTER COMPLETE => NAVIGATE TO VERIFY FORM
   useEffect(() => {
-    debugger
+    // debugger
     if (checkRegisterComplete == true) {
       navigate("/ValidateEmail")
     }
@@ -30,10 +30,10 @@ export default function Nav({path}) {
 
   // debugger
   useEffect(() => {
-    if (user) {
+    if (userToken) {
       navigate("/dashboard",{replace:true})
     }
-  }, [user])
+  }, [userToken])
   
   
   console.log(window.location.pathname)
