@@ -42,14 +42,14 @@ export default function DashboardBody() {
                 // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
              }
           </div>
-          <div className='list_hover mt-2 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{width:closeNav?'60px':"256px"}}>
+          <div className='list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{width:closeNav?'60px':"256px"}}>
             {
               itemsHoverMenu.map(item=>{
                 return  <ItemSidebarHover text={!closeNav && item} icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"} textColor={"#002145"} textHover={"#0A65CD"} iconClickHandler={iconClickHandler}/>
                 })
             }
           </div>
-          <div className='nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-2 w-14 shadow-3xl h-[90vh] min-h-[85vh]'>
+          <div className='nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[90vh] min-h-[85vh]'>
             <div className='top relative'>
            
               <div className='nav_right_box flex items-center justify-center'>
