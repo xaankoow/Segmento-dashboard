@@ -10,7 +10,7 @@ const DashboardHeader = ({ setCloseNav }) => {
     const dispatch = useDispatch()
     const userToken = localStorage.getItem("token");
     const userState = useSelector(state => state.userState)
-    debugger
+    // debugger
     var user_name = "";
     if (userState.userDate) {
         user_name = userState.userData.user.name ? userState.userData.user.name : "";
@@ -23,7 +23,7 @@ const DashboardHeader = ({ setCloseNav }) => {
     // debugger
 
     useEffect(() => {
-        debugger
+        // debugger
         if (!userToken) {
             navigate("/", { replace: true });
         }
@@ -83,10 +83,10 @@ const DashboardHeader = ({ setCloseNav }) => {
                         </div>
                         <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] mt-1' onClick={() => dispatch(logoutAction())}>
                             <div className='flex items-center'>
-                                <img src="../img/dashboard/header/logout.svg" alt="logout" />
                                 <span>خروج از حساب کاربری</span>
                             </div>
-                            <img src="../img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' />
+                                <img src="../img/dashboard/header/logout.svg" alt="logout" className='ml-1 rotate-180'/>
+                            {/* <img src="../img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
                         </div>
 
                     </div>

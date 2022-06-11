@@ -10,7 +10,7 @@ export const coreUser = () => {
         let state = { ...getState().userState }
         let toastMessage = "";
         try {
-            debugger
+            // debugger
             const { data, status } = await coreUserData();
 
             if (status == 200 && data.status == true) {

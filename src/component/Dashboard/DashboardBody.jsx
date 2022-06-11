@@ -8,7 +8,7 @@ import HandleModal from './../Utils/handleModal';
 
 
 export default function DashboardBody() {
-  const[showModal,setShowModal]=useState(false)
+  const[showModal,setShowModal]=useState(true)
   // DashboardHeader nav icon that close the left sidebar
   const[closeNav,setCloseNav]=useState(false);
   const closeNavItem=()=>{
@@ -38,8 +38,8 @@ export default function DashboardBody() {
             {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
              <EasyStart startButtonClick={startButtonClick}/>
              {
-              //  showModal && <HandleModal showModal={showModal} setShowModal={setShowModal}/>
-                <HandleModal showModal={showModal} setShowModal={setShowModal}/>
+               showModal && <HandleModal showModal={showModal} setShowModal={setShowModal}/>
+                // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
              }
           </div>
           <div className='list_hover mt-2 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{width:closeNav?'60px':"256px"}}>

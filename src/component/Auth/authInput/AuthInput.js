@@ -16,6 +16,7 @@ export default function AuthInput({
   classes,
   pressNumber,
   direction,
+  wrapperClass,
   value
 }) {
   // check email to be correct
@@ -39,7 +40,7 @@ export default function AuthInput({
   };
   return (
     <>
-      <div className="input-wrapper">
+      <div className={`input-wrapper ${wrapperClass}`}>
         <input
           type={isSeePssword}
           required

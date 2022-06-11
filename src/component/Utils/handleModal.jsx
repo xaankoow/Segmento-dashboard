@@ -8,10 +8,10 @@ import { applyDiscountAction, setCharKey1, setCharKey2, setCommercialPage1, setC
 
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
-  const [stepModal, setStepModal] = useState(2);
+  const [stepModal, setStepModal] = useState(1);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
-  const [free, setFree] = useState(true);
+  const [free, setFree] = useState(false);
 
   // const [stepModal, setStepModal] = useState(false);
   // const [discount ,setDiscount]=useState("sample-code");
@@ -80,7 +80,13 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           <img src="./img/modal/body/siteDesignMan.svg" alt="" />
         </div>
         {stepModal == 1 ? (
-          <AuthInput textLabelInput="ایمیل" width={"100%"} typeInput="email" reduxHandleChange={setWebAdress} value={webAdress}/>
+          <div className='flex'>
+            <div className='grow'>
+
+            <AuthInput  wrapperClass={"w-full"} width={"100%"} textLabelInput="ایمیل"  typeInput="email" reduxHandleChange={setWebAdress} value={webAdress}/>
+            </div>
+            <AuthInput width={"8ch"} classes={"pr-0"}  typeInput="email" reduxHandleChange={setWebAdress} value={"https://"}/>
+          </div>
         ) : stepModal == 2 ? (
           <Fragment>
             <div className='container_input_step2'>
@@ -347,8 +353,10 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           </div>
           <div className='close_suport_container'>
             {stepModal == 4 || stepModal == 5 ? <AuthButton style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={"پشتیبانی"} /> : null}
+            <div className='flex '>
 
             <div className='close_modal_ico' onClick={() => setShowModal(false)}></div>
+            </div>
           </div>
         </header>
         {stepModal < 4 ? (
