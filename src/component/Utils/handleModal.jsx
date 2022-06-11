@@ -8,7 +8,7 @@ import { applyDiscountAction, setCharKey1, setCharKey2, setCommercialPage1, setC
 
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
-  const [stepModal, setStepModal] = useState(1);
+  const [stepModal, setStepModal] = useState(4);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
@@ -265,6 +265,10 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           </div> */}
 
         </div>
+        <div className='mt-5 border rounded-lg'>
+          <img src="./img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
+          <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
+        </div>
       </Fragment>
     )
   }
@@ -338,7 +342,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
   return (
     <div className='modal'>
       <Modal
-        isOpen={false}
+        isOpen={true}
         parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
         // onAfterOpen={afterOpenModal}
         // onRequestClose={closeModal}
@@ -353,10 +357,9 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           </div>
           <div className='close_suport_container'>
             {stepModal == 4 || stepModal == 5 ? <AuthButton style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={"پشتیبانی"} /> : null}
-            <div className='flex '>
-
+            {/* <div className='bg-orange-500 w-2 h-2'> */}
             <div className='close_modal_ico' onClick={() => setShowModal(false)}></div>
-            </div>
+            {/* </div> */}
           </div>
         </header>
         {stepModal < 4 ? (
