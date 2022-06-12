@@ -68,7 +68,8 @@ export default function AuthInput({
             // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
-            handleArrowPlan(e.target.value,targePlanArrow);
+            {handleArrowPlan!=undefined&& handleArrowPlan(e.target.value,targePlanArrow)}
+           
             setInputValue(e.target.value);
             dispatch(reduxHandleChange(e.target.value))
             // handleChange(e);
