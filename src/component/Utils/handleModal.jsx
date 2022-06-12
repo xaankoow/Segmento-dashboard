@@ -5,10 +5,11 @@ import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { applyDiscountAction, setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setSite1, setSite2, setWebAdress } from '../Redux/Action/plan';
+import StaticInputText from './staticInputText/textInput';
 
 export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
 
-  const [stepModal, setStepModal] = useState(4);
+  const [stepModal, setStepModal] = useState(1);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
@@ -80,13 +81,20 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           <img src="./img/modal/body/siteDesignMan.svg" alt="" />
         </div>
         {stepModal == 1 ? (
-          <div className='flex'>
-            <div className='grow'>
+          <Fragment>
 
-            <AuthInput  wrapperClass={"w-full"} width={"100%"} textLabelInput="ایمیل"  typeInput="email" reduxHandleChange={setWebAdress} value={webAdress}/>
-            </div>
-            <AuthInput width={"8ch"} classes={"pr-0"}  typeInput="email" reduxHandleChange={setWebAdress} value={"https://"}/>
-          </div>
+            {/* // <div className=''> */}
+  
+              {/* <div className='grow'>
+  
+              <AuthInput  wrapperClass={"w-full"} width={"100%"} textLabelInput="ایمیل"  typeInput="email" reduxHandleChange={setWebAdress} value={webAdress}/>
+              </div>
+              <AuthInput width={"8ch"} classes={"pr-0"}  typeInput="email" reduxHandleChange={setWebAdress} value={"https://"}/> */}
+            {/* // </div> */}
+  
+            <StaticInputText typeInput={"email"}  width={"100%"} textLabelInput={"email"} staticText={"https:// "} placeholder={"example.com"}/>
+            {/* <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" reduxHandleChange={setCharKey1} value={charKey1}/> */}
+          </Fragment>
         ) : stepModal == 2 ? (
           <Fragment>
             <div className='container_input_step2'>
