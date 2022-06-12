@@ -36,7 +36,7 @@ export default function App() {
 
   return (
       <div className="app">
-        <div className="flex flex-col items-center w-screen">
+        <div className="flex flex-col items-center w-full justify-center overflow-hidden">
            
               
         <Routes>

@@ -10,7 +10,7 @@ import Nav from '../../component/Dashboard/DashboaedComponents/navMenu/Nav';
 
 export default function Login() {
   return (
-    <div className="md:w-11/12 2xl:w-10/12">
+    <div className="w-full px-28">
       {/* <Nav/> */}
      
         {/* <TextButton.Provider value={"ثبت نام"}>
@@ -18,7 +18,7 @@ export default function Login() {
         </TextButton.Provider> */}
 
         <div className="gap-10 flex items-center  md:flex-col md:flex-col-reverse justify-between 2xl:py-10 md:py-10 min-w-full">
-          <div className="w-7/12 flex flex-col items-center gap-8 md:min-w-full">
+          <div className="w-6/12 flex flex-col items-center gap-11 md:min-w-full">
             <AuthInput textLabelInput="ایمیل" width={"100%"} typeInput="email" reduxHandleChange={setEmailRedux} />
             <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} />
 
@@ -42,8 +42,8 @@ export default function Login() {
           </div>
           <div className="flex flex-col gap-4">
             <img className="w-20" src="/img/FrameloginSun.png" alt="registerFrame" />
-            <img className="w-80" src="/img/login.svg" alt="registerFrame" />
-            <img className="w-80" src="/img/businessesIcon.png" alt="businessesIcon" />
+            <img className="w-100" src="/img/login.svg" alt="registerFrame" />
+            <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
         </div>
       

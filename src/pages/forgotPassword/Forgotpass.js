@@ -114,13 +114,13 @@ export default function Forgetpass() {
    
 
 
-      <div className="md:w-11/12 2xl:w-10/12">
+      <div className="w-full mt-10 px-28">
           {/* <Nav/> */}
           {/* <TextButton.Provider value={"ورود"}>
             <Authmenu buttonLink={"/login"} />
           </TextButton.Provider> */}
           <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-5 md:py-5 min-w-full">
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center w-6/12">
               <div className="flex flex-col gap-1">
                 <span>گذرواژه خود را فراموش کرده اید . هیچ ایرادی نداره</span>
                 <span>برامون بنویسین تا ما یک کد فعال سازی ارسال کنیم .</span>
@@ -132,9 +132,7 @@ export default function Forgetpass() {
               <div className="items-center flex justify-between mt-10 mb-5">
                 <div className="w-50">
 
-               
-
-                <AuthInput
+                   <AuthInput
                   textLabelInput="ایمیل"
                   classes={`forgot_password_input`}
                   typeInput="email"
@@ -274,7 +272,7 @@ export default function Forgetpass() {
                   <AuthButton
                     bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}
                     // handlerClick={checkInputValue}
-                    widthValue={"162px"}
+                  
                     disabled={ forgotPasswordStep > 1 ? false : true}
                     reduxHandleClick={changePasswordAction}
                   />
@@ -287,8 +285,8 @@ export default function Forgetpass() {
               </div>
             </div>
             <div className="flex flex-col items-center gap-4">
-              <img className="w-80" src="/img/registerFrame.svg" alt="registerFrame" />
-              <img className="w-80" src="/img/businessesIcon.png" alt="businessesIcon" />
+              <img className="w-100" src="/img/registerFrame.svg" alt="registerFrame" />
+              <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
             </div>
           </div>
         </div>
