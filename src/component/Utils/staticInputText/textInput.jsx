@@ -1,8 +1,9 @@
 import { borderBottom } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./authInput.css";
-export default function AuthInput({
+import "../../Auth/authInput/AuthInput";
+import './textInput.css'
+export default function StaticInputText({
   textLabelInput,
   width,
   typeInput,
@@ -18,8 +19,10 @@ export default function AuthInput({
   direction,
   wrapperClass,
   value,
-  handleArrowPlan,
-  targePlanArrow
+  placeholder,
+  staticText,
+  containerWidth,
+
 }) {
   // check email to be correct
   const validateEmail = (email) => {
@@ -41,8 +44,8 @@ export default function AuthInput({
     }
   };
   return (
-    <>
-      <div className={`input-wrapper ${wrapperClass}`}>
+    <div className={"flex static_text_input w-full"}>
+      <div className={`input-wrapper input-static ${wrapperClass}`}>
         <input
           type={isSeePssword}
           required
@@ -55,7 +58,7 @@ export default function AuthInput({
           // }
           name={typeInput}
           disabled={disabled}
-          className={classes}
+          className={`${classes} input-static`}
           value={value}
           dir="auto"
           style={{
@@ -68,12 +71,14 @@ export default function AuthInput({
             // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
-            handleArrowPlan(e.target.value,targePlanArrow);
+
             setInputValue(e.target.value);
-            dispatch(reduxHandleChange(e.target.value))
+            dispatch(reduxHandleChange(e.target.value));
             // handleChange(e);
           }}
+          placeholder={placeholder}
         />
+        {/* <p>https://</p> */}
         <label className={disabled?"lockStyle":""} for="user">{textLabelInput}</label>
         <span className="error_down_input">اطلاعات نامعتبر</span>
 
@@ -112,6 +117,7 @@ export default function AuthInput({
         {/* {isPassword && setPassArray(valueInput)} */}
         {/* {passArray[0]==passArray[1] ? "" :  } */}
       </div>
-    </>
+      <p>{staticText}</p>
+    </div>
   );
 }

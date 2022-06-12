@@ -4,18 +4,20 @@ export const userReducer = (state =
         email: "",
         password: "",
         passwordConfirm: "",
-        auth1:"",
-        auth2:"",
-        auth3:"",
-        auth4:"",
+        auth1: "",
+        auth2: "",
+        auth3: "",
+        auth4: "",
         forgotPasswordStep: 0,
         checkRegisterComplete: false,
         checkVerifyRegister: false,
         handleResendCode: true,
-        forceUpdate:0,
-        user:{}
+        forceUpdate: 0,
+        userData: {}
     }, action) => {
     switch (action.type) {
+        case "CORE_USER":
+            return { ...action.payload }
         case "SET_AUTH":
             return { ...action.payload }
         case "SET_NAME":
@@ -45,6 +47,8 @@ export const userReducer = (state =
         case "DISABLE_TIMER":
             return { ...action.payload }
         case "FIND_USER":
+            return { ...action.payload }
+        case "LOG_OUT":
             return { ...action.payload }
 
         case "RESET_STATE":

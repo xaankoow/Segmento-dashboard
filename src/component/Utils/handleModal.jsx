@@ -5,21 +5,56 @@ import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { applyDiscountAction, setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setSite1, setSite2, setWebAdress } from '../Redux/Action/plan';
+import StaticInputText from './staticInputText/textInput';
 
-export default function HandleModal({ handleClose, checkClose, showModal, setShowModal }) {
+export default function HandleModal({ handleClose, checkClose, show }) {
 
   const [stepModal, setStepModal] = useState(4);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
-  const [free, setFree] = useState(true);
+  const [free, setFree] = useState(false);
 
-  // const [stepModal, setStepModal] = useState(false);
-  // const [discount ,setDiscount]=useState("sample-code");
-  
-  const {webAdress,charKey1,charKey2,site1,site2,commercialPage1,commercialPage2,planChosen,discount,forceUpdate} =useSelector(state=>state.planState);
+  // const [free, setFree] = useState(false);
+
+
+  // debugger
+  // const [showModal, setShowModal] = useState(true);
+  const [discountInputGold, setDiscountInputGold] = useState("");
+  const [discountInputBronze, setDiscountInputBronze] = useState("");
+  const [discountInputSilver, setDiscountInputSilver] = useState("");
+  const [discountInputDiamond, setDiscountInputDiamond] = useState("");
+
+  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate } = useSelector(state => state.planState);
 
   const dispatch = useDispatch();
 
+   const handleShowArrowDiscount = (text, arrowTarget) => {
+    // debugger
+    if (discountInputGold != ""&&arrowTarget!="gold") { setDiscountInputGold(""); }
+    if (discountInputBronze != ""&&arrowTarget!="bronze") { setDiscountInputBronze(""); }
+    if (discountInputSilver != ""&&arrowTarget!="silver") { setDiscountInputSilver(""); }
+    if (discountInputDiamond != ""&&arrowTarget!="diamond") { setDiscountInputDiamond(""); }
+    switch ("bronze") {
+      case "gold":
+        setDiscountInputGold("text");
+        break;
+      case "bronze":
+        if (discountInputBronze!=text) {
+          setDiscountInputBronze(text);
+        }
+        break;
+      case "silver":
+        setDiscountInputSilver(text);
+        break;
+      case "diamond":
+        setDiscountInputDiamond(text);
+        break;
+    
+      default:
+        break;
+    }
+  }
+  // handleShowArrowDiscount();
   const customStyles = {
     content: {
       top: '43vh',
@@ -80,27 +115,45 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           <img src="./img/modal/body/siteDesignMan.svg" alt="" />
         </div>
         {stepModal == 1 ? (
-          <AuthInput textLabelInput="ایمیل" width={"100%"} typeInput="email" reduxHandleChange={setWebAdress} value={webAdress}/>
+          <Fragment>
+
+            {/* // <div className=''> */}
+
+            {/* <div className='grow'>
+  
+              <AuthInput  wrapperClass={"w-full"} width={"100%"} textLabelInput="ایمیل"  typeInput="email" reduxHandleChange={setWebAdress} value={webAdress}/>
+              </div>
+              <AuthInput width={"8ch"} classes={"pr-0"}  typeInput="email" reduxHandleChange={setWebAdress} value={"https://"}/> */}
+            {/* // </div> */}
+
+            <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"کلمات کلیدی"} staticText={"https:// "} placeholder={"example.com"} />
+            {/* <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" reduxHandleChange={setCharKey1} value={charKey1}/> */}
+          </Fragment>
         ) : stepModal == 2 ? (
           <Fragment>
             <div className='container_input_step2'>
-              <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" reduxHandleChange={setCharKey1} value={charKey1}/>
+
+              <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey1} value={charKey1} />
               {/* <div className='arrow'></div> */}
               <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-              <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" reduxHandleChange={setSite1} value={site1}/>
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"سایت مرتبط"} staticText={"https://example.com/ "} placeholder={"example.com"} />
+              {/* <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" reduxHandleChange={setSite1} value={site1}/> */}
             </div>
             <div className='container_input_step2'>
-              <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" reduxHandleChange={setCharKey2} value={charKey2}/>
+              <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey2} value={charKey2} />
               {/* <div className='arrow'></div> */}
               <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-              <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" reduxHandleChange={setSite2} value={site2}/>
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"سایت مرتبط"} staticText={"https://example.com/ "} placeholder={"example.com"} />
+              {/* <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" reduxHandleChange={setSite2} value={site2}/> */}
             </div>
           </Fragment>
         ) :
           stepModal == 3 ? (
             <div className='container_input_step3'>
-              <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage1} value={commercialPage1}/>
-              <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage2} value={commercialPage2}/>
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://example.com/page1/ "} placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://example.com/page2/ "} placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
+              {/* <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage1} value={commercialPage1}/> */}
+              {/* <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage2} value={commercialPage2}/> */}
             </div>
           ) : null}
       </Fragment>
@@ -187,10 +240,12 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
                 width={"100%"}
                 typeInput="text"
                 direction={"rtl"}
+                handleArrowPlan={handleShowArrowDiscount}
+                targePlanArrow={"bronze"}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
-              <span className='apply_token_ico' onClick={() => dispatch(applyDiscountAction(discount))}></span>
+              <span className={`apply_token_ico ${discountInputBronze != ""?"inline-block":"hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
             </div>
           </div>
           {/* <div className='silver plan_card'>
@@ -258,6 +313,10 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
             />
           </div> */}
 
+        </div>
+        <div className='container_plan_message mt-5 border rounded-lg'>
+          <img src="./img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
+          <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
         </div>
       </Fragment>
     )
@@ -347,8 +406,10 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           </div>
           <div className='close_suport_container'>
             {stepModal == 4 || stepModal == 5 ? <AuthButton style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={"پشتیبانی"} /> : null}
-
-            <div className='close_modal_ico' onClick={() => setShowModal(false)}></div>
+            {/* <div className='bg-orange-500 w-2 h-2'> */}
+            <div className='close_modal_ico' onClick={() => handleClose()}></div>
+            {/* <div className='close_modal_ico' onClick={() => setShowModal(false)}></div> */}
+            {/* </div> */}
           </div>
         </header>
         {stepModal < 4 ? (
@@ -387,7 +448,7 @@ export default function HandleModal({ handleClose, checkClose, showModal, setSho
           {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
         </footer>
       </Modal>
-      {forceUpdate&&true}
+      {forceUpdate ? "" : ""}
     </div>
   )
 }

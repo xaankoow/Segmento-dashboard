@@ -1,6 +1,14 @@
 import http from './httpService'
 import config from './config.json'
 
+export const coreUserData = () => {
+    // const headerRegisterUser = {
+    //     'Content-Type': 'multipart/form-data'
+    // }
+
+    return http.post(`${config.xaankooApi}/api/v1/core/config`);
+}
+
 export const registerUser = user => {
     const headerRegisterUser = {
         'Content-Type': 'multipart/form-data'
