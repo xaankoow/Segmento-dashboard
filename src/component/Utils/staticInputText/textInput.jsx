@@ -20,7 +20,9 @@ export default function StaticInputText({
   wrapperClass,
   value,
   placeholder,
-  staticText
+  staticText,
+  containerWidth,
+
 }) {
   // check email to be correct
   const validateEmail = (email) => {
@@ -42,7 +44,7 @@ export default function StaticInputText({
     }
   };
   return (
-    <div className="flex static_text_input">
+    <div className={"flex static_text_input w-full"}>
       <div className={`input-wrapper input-static ${wrapperClass}`}>
         <input
           type={isSeePssword}
@@ -69,8 +71,9 @@ export default function StaticInputText({
             // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
+
             setInputValue(e.target.value);
-            dispatch(reduxHandleChange(e.target.value))
+            dispatch(reduxHandleChange(e.target.value));
             // handleChange(e);
           }}
           placeholder={placeholder}

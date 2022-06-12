@@ -97,13 +97,14 @@ export const applyDiscountAction = discountCode => {
             let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
             
             debugger
-            let formdata = new FormData();
+            var formdata = new FormData();
             formdata.append("code", discountCode)
             
             let toastMessage = "";
             try {
-                debugger
+                // debugger
                 const { data, status } = await applyDiscount(formdata);
+                // const { data, status } = await applyDiscount("sample-code");
                 if (status == 200 && data.status == true) {
                     state.forceUpdate += 1;
                     toast.update(toastPromise, { render: "کد تخفیف با موفقیت اعمال شد", type: "success", isLoading: false, autoClose: 3000 })

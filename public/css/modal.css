@@ -149,7 +149,7 @@
     margin-bottom: 33px;
 }
 
-.ReactModal__Content body .container_input_step3 .input-wrapper:nth-of-type(1) {
+.ReactModal__Content body .container_input_step3 .static_text_input:nth-of-type(1) {
     margin-bottom: 33px;
 }
 
@@ -162,6 +162,9 @@
     /* background-image: url(../img/modal/body/arrow.svg); */
 }
 
+.ReactModal__Content body .container_input_step2 .input-wrapper {
+    flex-grow: 1;
+}
 .ReactModal__Content body .container_input_step2 .input-wrapper {
     flex-grow: 1;
 }
@@ -724,4 +727,13 @@ input[type="radio"]:checked::before {
     border-radius: 3px;
     background: black;
     margin-left: 7px;
+}
+
+
+
+
+
+/* modal message plan */
+.plans_body_container .container_plan_message{
+    
 }

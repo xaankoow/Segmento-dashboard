@@ -17,7 +17,9 @@ export default function AuthInput({
   pressNumber,
   direction,
   wrapperClass,
-  value
+  value,
+  handleArrowPlan,
+  targePlanArrow
 }) {
   // check email to be correct
   const validateEmail = (email) => {
@@ -66,6 +68,7 @@ export default function AuthInput({
             // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
+            handleArrowPlan(e.target.value,targePlanArrow);
             setInputValue(e.target.value);
             dispatch(reduxHandleChange(e.target.value))
             // handleChange(e);
