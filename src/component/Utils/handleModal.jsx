@@ -4,7 +4,7 @@ import AuthInput from '../Auth/authInput/AuthInput'
 import AuthButton from '../Auth/authButton/AuthButton'
 import { Directions } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { applyDiscountAction, setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setSite1, setSite2, setWebAdress } from '../Redux/Action/plan';
+import { applyDiscountAction, buyPlan, setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setPackageUuid, setSite1, setSite2, setWebAdress } from '../Redux/Action/plan';
 import StaticInputText from './staticInputText/textInput';
 
 export default function HandleModal({ handleClose, checkClose, show }) {
@@ -203,27 +203,27 @@ export default function HandleModal({ handleClose, checkClose, show }) {
             <span className='title'>برنزی</span>
             <hr />
             <div className='plan'>
-              <div className='container_row' onClick={() => { setPlan("bronze_1") }}>
+              <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
                   <p> 1 ماهه</p>
                 </div>
               </div>
-              <div className='container_row' onClick={() => setPlan("bronze_3")}>
+              <div className='container_row' onClick={() => {setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111"))}}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
                   <p> 3 ماهه</p>
                 </div>
                 <span className='off_price'>15 درصد تخفیف</span>
               </div>
-              <div className='container_row' onClick={() => setPlan("bronze_6")}>
+              <div className='container_row' onClick={() => {setPlan("bronze_6");  dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8"))}}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
                   <p> 6 ماهه</p>
                 </div>
                 <span className='off_price'>فقط پرداخت 5 ماه</span>
               </div>
-              <div className='container_row' onClick={() => setPlan("bronze_12")}>
+              <div className='container_row' onClick={() => {setPlan("bronze_12");  dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923"))}}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
                   <p> 12 ماهه</p>
@@ -242,10 +242,11 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"bronze"}
+                disabled={discount!=""?true:false}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
-              <span className={`apply_token_ico ${discountInputBronze != ""?"inline-block":"hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+              <span className={`apply_token_ico ${discountInputBronze != ""&&discount==""?"inline-block":"hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
             </div>
           </div>
           {/* <div className='silver plan_card'>
@@ -444,7 +445,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
 
 
           {stepModal != 0 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : null}
-          {stepModal == 4 ? <AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(false) }} textButton={"خرید اشتراک"} /> : <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>}
+          {stepModal == 4 ? <AuthButton handlerClick={() => { setFree(false) }} reduxHandleClick={buyPlan} textButton={"خرید اشتراک"} /> : <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>}
           {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
         </footer>
       </Modal>

@@ -5,8 +5,20 @@ export const applyDiscount = discountToken => {
     const headerRegisterUser = {
         "Accept": "application/json",
         "workspace":"text/plain",
-        'Content-Type': 'multipart/form-data',
-        "type": "noauth"
     }
-    return http.post(`${config.xaankooApi}/discount/check`,discountToken, headerRegisterUser);
+    return http.post(`${config.xaankooApi}/api/v1/discount/check`,discountToken, headerRegisterUser);
 }
+export const buyPlna = packageInfo => {
+    const headerRegisterUser = {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }
+    return http.post(`${config.xaankooApi}/api/v1/payment/pay`,packageInfo, headerRegisterUser);
+}
+// export const applyDiscount = discountToken => {
+//     const headerRegisterUser = {
+//         "Accept": "application/json",
+//         "workspace":"text/plain",
+//     }
+//     return http.post(`${config.xaankooApi}/api/v1/discount/check`,discountToken, headerRegisterUser);
+// }

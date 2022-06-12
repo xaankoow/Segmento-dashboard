@@ -59,7 +59,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='cursor-pointer hidden absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo'>
+                    <div className='cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo'>
                         <div className='border-b border-lightGray w-52 ' />
                         <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] mt-1'>
                             <div className='flex items-center'>
