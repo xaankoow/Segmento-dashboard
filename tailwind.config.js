@@ -29,7 +29,7 @@ module.exports = {
 			yellow:'#ffce47',
 			blue:'#0071ff',
 			dds:'#0071ff',
-			red:'#F35242'
+			primary:'#0A65CD'
 		},
 		fontSize: {
 			xs: '.75rem',

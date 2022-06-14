@@ -5,6 +5,8 @@ import PopUp from '../Utils/PopUp/PopUp';
 import { useState } from 'react';
 import EasyStart from './DashboaedComponents/EasyStart/EasyStart';
 import HandleModal from './../Utils/handleModal';
+import TabMenu from './DashboaedComponents/tabMenu/TabMenu';
+
 
 
 export default function DashboardBody() {
@@ -33,6 +35,17 @@ export default function DashboardBody() {
 
   const itemsHoverMenu = ["گزارش های منتخب", "خرید اشتراک", "شروع آسان", "خبرخوان", "آموزش", "پیشنهادات و تخفیف ها", "پشتیبانی و تیکت", "انتخاب سرویس"]
   // cosnt 
+  // tab content
+  const tabContent=[
+    {
+        title:"جست و جو",
+        content:"سلام این یک متن تست هست :)"
+    },
+    {
+      title:"لیست من",
+      content:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ"
+    }
+]
   return (
 
     <div id='DASHBOARD'>
@@ -42,7 +55,10 @@ export default function DashboardBody() {
       <div className='flex flex-row-reverse relative top-1 w-full h-screen body'>
         <div className='bg-[#ffffff] relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main'>
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
-          <EasyStart startButtonClick={startButtonClick} />
+          {/* <EasyStart startButtonClick={startButtonClick} /> */}
+        <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
+ 
+  
           {
             showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
@@ -55,7 +71,7 @@ export default function DashboardBody() {
             })
           }
         </div>
-        <div className='nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[90vh] min-h-[85vh]'>
+        <div className='nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]'>
           <div className='top relative'>
 
             <div className='nav_right_box flex items-center justify-center'>

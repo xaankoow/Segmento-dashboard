@@ -376,3 +376,6 @@
 	width: 130px;
 	margin: 0px 28px 28px 0px;
 }
+.activeTab + div{
+   display: block;
+}
