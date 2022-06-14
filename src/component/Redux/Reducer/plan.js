@@ -1,14 +1,15 @@
 export const planReducer = (state =
     {
-        webAdress: "",
-        charKey1: "",
-        charKey2: "",
-        site1: "",
-        site2: "",
+        webAdress: "https://aaa.com",
+        charKey1: "key 1",
+        charKey2: "key 2",
+        site1: "https://aaa.com/blog",
+        site2: "https://aaa.com/video",
         commercialPage1: "",
         commercialPage2: "",
         planChosen: "",
         discount: "",
+        packageUuid: "",
         forceUpdate: 0
     }, action) => {
     switch (action.type) {
@@ -39,6 +40,12 @@ export const planReducer = (state =
 
         case "PLAN_CHOSEN":
             return { ...action.payload }
+
+        case "PACKAGE_UUID":
+            return { ...action.payload }
+            
+            case "BUY_PLAN":
+                return { ...action.payload }
 
         case "FORCE_UPDATE":
             return { ...action.payload }

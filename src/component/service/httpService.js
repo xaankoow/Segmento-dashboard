@@ -6,6 +6,7 @@ const token=localStorage.getItem("token");
 // debugger
 
 if (token!="undefined"&&token!=null&&token) {
+    // axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
     axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
 }
 

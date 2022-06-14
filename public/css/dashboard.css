@@ -282,7 +282,9 @@
 #DASHBOARD .userHeaderProfInfo{
 	background-color:white;
 }
-
+#DASHBOARD .userHeaderProfInfo{
+	display: none;
+}
 #DASHBOARD .userProfBox:hover .userHeaderProfInfo {
 	display: flex;
 	right: 0;
