@@ -1,0 +1,101 @@
+.buy_plan_section{
+    /* text-align: center; */
+}
+
+
+.buy_plan_section .badge_title{
+width: 100%;
+position: relative;
+text-align: right;
+top: 10px;
+}
+.buy_plan_section .badge_title div{
+    position: absolute;
+width: 2px;
+height: 20px;
+background-color: rgba(0, 33, 69, 1);
+right: 0px;
+top: 5px;
+border-radius: 1px;
+}
+
+.buy_plan_section .badge_title p{
+    /* position: absolute; */
+font-size: 18px;
+font-weight: 400;
+margin-right: 18px;
+}
+
+.buy_plan_section .main_buy_plan_section{
+width: 100%;
+/* text-align: center; */
+margin: auto;
+/* width: 1038px; */
+padding:0px 38px;
+
+}
+.buy_plan_section .main_buy_plan_section .section_title{
+width: 100%;
+text-align: center;
+border-radius: 9px;
+border: 1px solid rgba(217, 217, 217, 1);
+margin-top: 48px; 
+}
+.buy_plan_section .main_buy_plan_section .section_title p{
+/* width: 100%; */
+text-align: center;
+font-size: 40px;
+color: rgba(6, 52, 104, 1);
+line-height: 69px;
+font-weight: 700;
+}
+
+.buy_plan_section .btn_more_information_plan{
+padding: 8px 20px;
+color: rgba(72, 140, 218, 1);
+background-color: rgba(242, 245, 247, 1);
+border-radius: 9px;
+margin-top: 7px;
+margin-bottom: 13px;
+}
+
+
+
+/* buy plan card section */
+.buy_plan_section .main_buy_plan_section .plans_body_container{
+    margin-top: 48px;
+}
+.buy_plan_section .main_buy_plan_section .plan_cards_container{
+    margin-top: 38px;
+}
+
+.buy_plan_section .main_buy_plan_section .plan_cards_container .plan_card{
+    width: 230px;
+}
+.buy_plan_section .main_buy_plan_section .footer_message{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 28px;
+/* text-align: center; */
+border-radius: 9px;
+border: 1px solid rgba(217, 217, 217, 1);
+/* margin-top: 18px; */
+}
+.buy_plan_section .main_buy_plan_section .footer_message p{
+color: rgba(6, 52, 104, 1);
+font-size: 20px;
+font-weight: 700;
+/* line-height: 41px; */
+}
+
+
+
+
+
+
+
+
+
+

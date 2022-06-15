@@ -169,20 +169,43 @@
     flex-grow: 1;
 }
 
-.ReactModal__Content .plans_body_container {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .plans_body_container {
     border: none;
 }
 
-/* .ReactModal__Content .plans_body_container div:nth-child(1) {
+/*  .plans_body_container div:nth-child(1) {
     display: flex;
 } */
 
-.ReactModal__Content .plans_body_container .plan_cards_container {
+ .plans_body_container .plan_cards_container {
     display: flex;
     justify-content: space-between;
 }
 
-.ReactModal__Content .plans_body_container .plan_card {
+ .plans_body_container .plan_card {
     width: 200px;
     box-sizing: border-box;
     position: relative;
@@ -195,11 +218,11 @@
     border: 1px solid #D9D9D9
 }
 
-.ReactModal__Content .plans_body_container .plan_card .input_apply_token_container {
+ .plans_body_container .plan_card .input_apply_token_container {
     position: relative;
 }
 
-.ReactModal__Content .plans_body_container .plan_card .apply_token_ico {
+ .plans_body_container .plan_card .apply_token_ico {
     position: absolute;
     background-image: url(../img/modal/body/arrow_apply_token.svg);
     box-sizing: border-box;
@@ -214,7 +237,7 @@
     transition: all 5s ease;
 }
 
-/* .ReactModal__Content .plans_body_container .plan_card::after {
+/*  .plans_body_container .plan_card::after {
     position: absolute;
     top: -2px;
     bottom: -2px;
@@ -226,57 +249,57 @@
     border-radius: 10px;
 } */
 
-.ReactModal__Content .plans_body_container .plan_card:hover {
+ .plans_body_container .plan_card:hover {
     box-shadow: 0px 8px 16px 0px #00000024;
 }
 
 /* title color gold plan */
-.ReactModal__Content .plans_body_container .gold .title {
+ .plans_body_container .gold .title {
     color: #ffce47;
     font-size: 20px;
     font-weight: 700;
     padding: 13px 0px;
 }
 
-.ReactModal__Content .plans_body_container .gold hr {
+ .plans_body_container .gold hr {
     border: 1px solid #ffce47;
     width: 100%;
     margin: 23px 0px 13px 0px;
 }
 
 /* title color silver plan */
-.ReactModal__Content .plans_body_container .silver {
+ .plans_body_container .silver {
     margin: 0px 39px;
 }
 
-.ReactModal__Content .plans_body_container .silver .title {
+ .plans_body_container .silver .title {
     color: #7d7d7d;
     font-size: 20px;
     font-weight: 700;
     padding: 13px 0px;
 }
 
-.ReactModal__Content .plans_body_container .silver hr {
+ .plans_body_container .silver hr {
     border: 1px solid #7d7d7d;
     width: 100%;
     margin: 23px 0px 13px 0px;
 }
 
 /* title color bronze plan */
-.ReactModal__Content .plans_body_container .bronze .title {
+ .plans_body_container .bronze .title {
     color: #bf8970;
     font-size: 20px;
     font-weight: 700;
     padding: 13px 0px;
 }
 
-.ReactModal__Content .plans_body_container .bronze hr {
+ .plans_body_container .bronze hr {
     border: 1px solid #bf8970;
     width: 100%;
     margin: 23px 0px 13px 0px;
 }
 
-.ReactModal__Content .plans_body_container .plan .container_row {
+ .plans_body_container .plan .container_row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -291,15 +314,15 @@
     cursor: pointer;
 }
 
-.ReactModal__Content .plans_body_container .plan .container_row p {
+ .plans_body_container .plan .container_row p {
     font-size: 14px;
 }
 
-.ReactModal__Content .plans_body_container .plan .container_row span {
+ .plans_body_container .plan .container_row span {
     font-size: 8px;
 }
 
-.ReactModal__Content .plans_body_container .plan div div {
+ .plans_body_container .plan div div {
     padding: 0px;
     display: flex;
     align-items: center;
@@ -307,38 +330,38 @@
     /* justify-content: space-between; */
 }
 
-.ReactModal__Content .plans_body_container .plan .style_selected_plan {
+ .plans_body_container .plan .style_selected_plan {
     border: 1px solid rgba(125, 125, 125, 1) !important;
 }
 
-.ReactModal__Content .plans_body_container .plan .style_selected_plan .off_price {
+ .plans_body_container .plan .style_selected_plan .off_price {
     color: rgba(10, 101, 205, 1);
 }
 
-.ReactModal__Content .plans_body_container .plan div input:checked+p {
+ .plans_body_container .plan div input:checked+p {
     color: rgba(10, 101, 205, 1);
 }
 
-.ReactModal__Content .plans_body_container .plan .selectPlanTag {
+ .plans_body_container .plan .selectPlanTag {
     display: none;
 }
 
-.ReactModal__Content .plans_body_container .plan .selectPlanTag {
+ .plans_body_container .plan .selectPlanTag {
     display: none;
 }
 
-/* .ReactModal__Content .plans_body_container .plan div p {
+/*  .plans_body_container .plan div p {
     display: flex;
     align-items: center;
 } */
 
-/* .ReactModal__Content .plans_body_container .plan div input {
+/*  .plans_body_container .plan div input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
 } */
 
-/* .ReactModal__Content .plans_body_container .plan div .circle {
+/*  .plans_body_container .plan div .circle {
     display: inline-block;
     width: 18px;
     height: 18px;
@@ -347,7 +370,7 @@
     border: 1px solid #00000072;
     margin-left: 8px;
 }
-.ReactModal__Content .plans_body_container .plan div input:checked  .circle {
+ .plans_body_container .plan div input:checked  .circle {
 background-color: #083C78;
 } */
 
@@ -424,13 +447,13 @@ input[type="radio"]:checked::before {
     outline-offset: max(2px, 0.15em);
   } */
 
-.ReactModal__Content .plans_body_container .plan div .off_price {
+ .plans_body_container .plan div .off_price {
     font-size: 10px;
     font-weight: 400;
     color: #7d7d7d;
 }
 
-.ReactModal__Content .plans_body_container .price {
+ .plans_body_container .price {
     width: 100%;
     height: 40px;
     margin: 36px 0px 24px 0px;
@@ -438,7 +461,7 @@ input[type="radio"]:checked::before {
     border-radius: 3px;
 }
 
-.ReactModal__Content .plans_body_container .price p {
+ .plans_body_container .price p {
     /* box-sizing: border-box; */
     font-size: 14px;
     font-weight: 400;
@@ -446,14 +469,14 @@ input[type="radio"]:checked::before {
     padding: 11px 0px;
 }
 
-.ReactModal__Content .plans_body_container .price p {
+ .plans_body_container .price p {
     font-size: 14px;
     font-weight: 400;
     color: #7d7d7d;
 }
 
 /* footer modal css */
-.ReactModal__Content footer .back_ico {
+ footer .back_ico {
     display: inline-block;
     height: 24px;
     width: 24px;
@@ -464,7 +487,7 @@ input[type="radio"]:checked::before {
     cursor: pointer;
 }
 
-.ReactModal__Content footer .forward-ico {
+ .forward-ico {
     display: inline-block;
     height: 15px;
     width: 15px;
@@ -476,7 +499,7 @@ input[type="radio"]:checked::before {
     cursor: pointer;
 }
 
-.ReactModal__Content footer .forward-14_free_ico {
+ .forward-14_free_ico {
     display: inline-block;
     height: 15px;
     width: 15px;
@@ -486,6 +509,35 @@ input[type="radio"]:checked::before {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* modal step 5 price type*/
 
@@ -735,5 +787,5 @@ input[type="radio"]:checked::before {
 
 /* modal message plan */
 .plans_body_container .container_plan_message{
-    
+    border: 1px solid rgba(211, 213, 226, 1);
 }
