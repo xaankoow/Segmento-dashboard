@@ -28,18 +28,18 @@ export default function HandleModal({ handleClose, checkClose, show }) {
 
   const dispatch = useDispatch();
 
-   const handleShowArrowDiscount = (text, arrowTarget) => {
+  const handleShowArrowDiscount = (text, arrowTarget) => {
     // debugger
-    if (discountInputGold != ""&&arrowTarget!="gold") { setDiscountInputGold(""); }
-    if (discountInputBronze != ""&&arrowTarget!="bronze") { setDiscountInputBronze(""); }
-    if (discountInputSilver != ""&&arrowTarget!="silver") { setDiscountInputSilver(""); }
-    if (discountInputDiamond != ""&&arrowTarget!="diamond") { setDiscountInputDiamond(""); }
+    if (discountInputGold != "" && arrowTarget != "gold") { setDiscountInputGold(""); }
+    if (discountInputBronze != "" && arrowTarget != "bronze") { setDiscountInputBronze(""); }
+    if (discountInputSilver != "" && arrowTarget != "silver") { setDiscountInputSilver(""); }
+    if (discountInputDiamond != "" && arrowTarget != "diamond") { setDiscountInputDiamond(""); }
     switch ("bronze") {
       case "gold":
         setDiscountInputGold("text");
         break;
       case "bronze":
-        if (discountInputBronze!=text) {
+        if (discountInputBronze != text) {
           setDiscountInputBronze(text);
         }
         break;
@@ -49,7 +49,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
       case "diamond":
         setDiscountInputDiamond(text);
         break;
-    
+
       default:
         break;
     }
@@ -209,21 +209,21 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                   <p> 1 ماهه</p>
                 </div>
               </div>
-              <div className='container_row' onClick={() => {setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111"))}}>
+              <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
                   <p> 3 ماهه</p>
                 </div>
                 <span className='off_price'>15 درصد تخفیف</span>
               </div>
-              <div className='container_row' onClick={() => {setPlan("bronze_6");  dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8"))}}>
+              <div className='container_row' onClick={() => { setPlan("bronze_6"); dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8")) }}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
                   <p> 6 ماهه</p>
                 </div>
                 <span className='off_price'>فقط پرداخت 5 ماه</span>
               </div>
-              <div className='container_row' onClick={() => {setPlan("bronze_12");  dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923"))}}>
+              <div className='container_row' onClick={() => { setPlan("bronze_12"); dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923")) }}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
                   <p> 12 ماهه</p>
@@ -242,77 +242,165 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"bronze"}
-                disabled={discount!=""?true:false}
+                disabled={discount != "" ? true : false}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
-              <span className={`apply_token_ico ${discountInputBronze != ""&&discount==""?"inline-block":"hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+              <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
             </div>
           </div>
-          {/* <div className='silver plan_card'>
+          <div className='silver plan_card'>
             <span className='title'>نقره ای</span>
             <hr />
             <div className='plan'>
-              <div>
-                <p><span className='circle'></span>1 ماهه</p>
+              <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
+                  <p> 1 ماهه</p>
+                </div>
               </div>
-              <div>
-                <p><span className='circle'></span>3 ماهه</p>
+              <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
+                  <p> 3 ماهه</p>
+                </div>
                 <span className='off_price'>15 درصد تخفیف</span>
               </div>
-              <div>
-                <p><span className='circle'></span>6 ماهه</p>
+              <div className='container_row' onClick={() => { setPlan("bronze_6"); dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
+                  <p> 6 ماهه</p>
+                </div>
                 <span className='off_price'>فقط پرداخت 5 ماه</span>
               </div>
-              <div>
-                <p><span className='circle'></span>12 ماهه</p>
+              <div className='container_row' onClick={() => { setPlan("bronze_12"); dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
+                  <p> 12 ماهه</p>
+                </div>
                 <span className='off_price'>فقط پرداخت 10 ماه</span>
               </div>
             </div>
             <div className='price'>
-              <p>189 هزار تومان ماهانه</p>
+            <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>189 هزار تومان ماهانه</p>
             </div>
-            <AuthInput
-              textLabelInput=" کد تخفیف  "
-              width={"100%"}
-              typeInput="text"
-              direction={"rtl"}
-            // isPassword={true}
-            // reduxHandleChange={setPasswordConfirmRedux}
-            />
+            <div className='input_apply_token_container'>
+              <AuthInput
+                textLabelInput=" کد تخفیف  "
+                width={"100%"}
+                typeInput="text"
+                direction={"rtl"}
+                handleArrowPlan={handleShowArrowDiscount}
+                targePlanArrow={"bronze"}
+                disabled={discount != "" ? true : false}
+              // isPassword={true}
+              // reduxHandleChange={setPasswordConfirmRedux}
+              />
+              <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+            </div>
           </div>
           <div className='gold plan_card'>
-            <span className='title'>برنزی</span>
+            <span className='title'>طلایی</span>
             <hr />
             <div className='plan'>
-              <div>
-                <p><span className='circle'></span>1 ماهه</p>
+            <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
+                  <p> 1 ماهه</p>
+                </div>
               </div>
-              <div>
-                <p><span className='circle'></span>3 ماهه</p>
+              <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
+                  <p> 3 ماهه</p>
+                </div>
                 <span className='off_price'>15 درصد تخفیف</span>
               </div>
-              <div>
-                <p><span className='circle'></span>6 ماهه</p>
+              <div className='container_row' onClick={() => { setPlan("bronze_6"); dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
+                  <p> 6 ماهه</p>
+                </div>
                 <span className='off_price'>فقط پرداخت 5 ماه</span>
               </div>
-              <div>
-                <p><span className='circle'></span>12 ماهه</p>
+              <div className='container_row' onClick={() => { setPlan("bronze_12"); dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
+                  <p> 12 ماهه</p>
+                </div>
                 <span className='off_price'>فقط پرداخت 10 ماه</span>
               </div>
             </div>
             <div className='price'>
-              <p>249 هزار تومان ماهانه</p>
+            <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>249 هزار تومان ماهانه</p>
             </div>
-            <AuthInput
-              textLabelInput=" کد تخفیف  "
-              width={"100%"}
-              typeInput="text"
-              direction={"rtl"}
-            // isPassword={true}
-            // reduxHandleChange={setPasswordConfirmRedux}
-            />
-          </div> */}
+            <div className='input_apply_token_container'>
+              <AuthInput
+                textLabelInput=" کد تخفیف  "
+                width={"100%"}
+                typeInput="text"
+                direction={"rtl"}
+                handleArrowPlan={handleShowArrowDiscount}
+                targePlanArrow={"bronze"}
+                disabled={discount != "" ? true : false}
+              // isPassword={true}
+              // reduxHandleChange={setPasswordConfirmRedux}
+              />
+              <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+            </div>
+          </div>
+          
+          <div className='diamond plan_card'>
+
+            <span className='title'>الماسی</span>
+            <hr />
+            <div className='plan'>
+            <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
+                  <p> 1 ماهه</p>
+                </div>
+              </div>
+              <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
+                  <p> 3 ماهه</p>
+                </div>
+                <span className='off_price'>15 درصد تخفیف</span>
+              </div>
+              <div className='container_row' onClick={() => { setPlan("bronze_6"); dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
+                  <p> 6 ماهه</p>
+                </div>
+                <span className='off_price'>فقط پرداخت 5 ماه</span>
+              </div>
+              <div className='container_row' onClick={() => { setPlan("bronze_12"); dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923")) }}>
+                <div>
+                  <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
+                  <p> 12 ماهه</p>
+                </div>
+                <span className='off_price'>فقط پرداخت 10 ماه</span>
+              </div>
+            </div>
+            <div className='price'>
+            <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>249 هزار تومان ماهانه</p>
+            </div>
+            <div className='input_apply_token_container'>
+              <AuthInput
+                textLabelInput=" کد تخفیف  "
+                width={"100%"}
+                typeInput="text"
+                direction={"rtl"}
+                handleArrowPlan={handleShowArrowDiscount}
+                targePlanArrow={"bronze"}
+                disabled={discount != "" ? true : false}
+              // isPassword={true}
+              // reduxHandleChange={setPasswordConfirmRedux}
+              />
+              <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+            </div>
+          </div>
 
         </div>
         <div className='container_plan_message mt-5 border rounded-lg'>

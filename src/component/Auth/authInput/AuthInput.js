@@ -63,7 +63,9 @@ export default function AuthInput({
             width: `${width}`,
             pointerEvents: disabled && "none",
             // backgroundColor: disabled && "#F2F5F7",
-            borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
+            // borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
+            borderBottom: disabled ? " 3px solid rgba(16, 204, 174, 1) !important":chechvalue ? " 3px solid #cd0a0a" : "",
+            
             // textAlign: typeInput === "email" && "left",
             // direction: typeInput === "email" ? "ltr" : "rtl",
           }}

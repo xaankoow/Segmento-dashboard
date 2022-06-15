@@ -46,7 +46,7 @@ export default function DashboardBody() {
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
           <BuyPlan/>
           {
-            // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
+            showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
           }
         </div>

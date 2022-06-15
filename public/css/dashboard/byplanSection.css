@@ -84,10 +84,13 @@ border: 1px solid rgba(217, 217, 217, 1);
 /* margin-top: 18px; */
 }
 .buy_plan_section .main_buy_plan_section .footer_message p{
-color: rgba(6, 52, 104, 1);
-font-size: 20px;
-font-weight: 700;
-/* line-height: 41px; */
+    color: rgba(6, 52, 104, 1);
+    font-size: 20px;
+    font-weight: 700;
+    /* line-height: 41px; */
+}
+.buy_plan_section .main_buy_plan_section .plan_cards_container .container_row input[type="radio"]{
+z-index: 1;
 }
 
 
