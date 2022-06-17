@@ -135,7 +135,6 @@ export default function Forgetpass() {
                    <AuthInput
                   textLabelInput="ایمیل"
                   classes={`forgot_password_input`}
-                  typeInput="email"
                   // handleChange={handleChange}
                   reduxHandleChange={setEmailRedux}
                   // chechvalue={chechvalue}

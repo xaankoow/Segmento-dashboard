@@ -7,6 +7,9 @@ import EasyStart from './DashboaedComponents/EasyStart/EasyStart';
 import HandleModal from './../Utils/handleModal';
 import BuyPlan from './DashboaedComponents/BuyPlan/BuyPlan';
 import WorkSpace from '../Utils/workSpaceModal/workSpace';
+import TabMenu from './DashboaedComponents/tabMenu/TabMenu';
+import ContentProduction from './DashboaedComponents/ContentProduction/ContentProduction';
+
 
 
 export default function DashboardBody() {
@@ -35,6 +38,17 @@ export default function DashboardBody() {
 
   const itemsHoverMenu = ["گزارش های منتخب", "خرید اشتراک", "شروع آسان", "خبرخوان", "آموزش", "پیشنهادات و تخفیف ها", "پشتیبانی و تیکت", "انتخاب سرویس"]
   // cosnt 
+  // tab content
+  const tabContent=[
+    {
+        title:"جست و جو",
+        content:<ContentProduction/>
+    },
+    {
+      title:"لیست من",
+      content:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ"
+    }
+]
   return (
 
     <div id='DASHBOARD'>
@@ -46,6 +60,9 @@ export default function DashboardBody() {
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
           <BuyPlan/>
+        <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
+ 
+  
           {
             <WorkSpace/>
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
@@ -59,7 +76,7 @@ export default function DashboardBody() {
             })
           }
         </div>
-        <div className='nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[90vh] min-h-[85vh]'>
+        <div className='nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]'>
           <div className='top relative'>
 
             <div className='nav_right_box flex items-center justify-center'>

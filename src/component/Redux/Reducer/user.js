@@ -50,7 +50,8 @@ export const userReducer = (state =
             return { ...action.payload }
         case "LOG_OUT":
             return { ...action.payload }
-
+        case "CHECK_PASS":
+                return { ...action.payload }
         case "RESET_STATE":
             return { email: "", forgotPasswordStep: 0, checkRegisterComplete: false, checkVerifyRegister: false }
 

@@ -45,16 +45,16 @@
 
 #DASHBOARD .nav_right .down {
 	display: flex;
-	flex-direction:column;
+	flex-direction: column;
 	align-items: center;
 	position: absolute;
 	/* bottom: 31px; */
-	bottom:15px;
+	bottom: 15px;
 }
 
 /* tooltip  */
 
-#DASHBOARD .nav_right .down .dropDownBox{
+#DASHBOARD .nav_right .down .dropDownBox {
 	position: relative;
 	width: 100%;
 	display: flex;
@@ -63,36 +63,38 @@
 }
 
 
-#DASHBOARD .nav_right .down .dropDownBox:hover .dropDownBox1{
+#DASHBOARD .nav_right .down .dropDownBox:hover .dropDownBox1 {
 	display: flex;
 }
 
-#DASHBOARD .nav_right .down .dropDownBox:hover .dropDownBox2{
+#DASHBOARD .nav_right .down .dropDownBox:hover .dropDownBox2 {
 	display: flex;
 }
 
-#DASHBOARD .nav_right .down .dropDownBox span:hover{
+#DASHBOARD .nav_right .down .dropDownBox span:hover {
 	background: rgba(10, 101, 205, 0.15);
-	
+
 }
-#DASHBOARD .nav_right .down .dropDownBox span{
-	width:100%;
+
+#DASHBOARD .nav_right .down .dropDownBox span {
+	width: 100%;
 	padding: 5px 3px;
 }
-#DASHBOARD .nav_right .down .dropDownBox .support_dropDown{
+
+#DASHBOARD .nav_right .down .dropDownBox .support_dropDown {
 	position: absolute;
 	z-index: 5;
 	width: 100px;
-    height: 37px;
+	height: 37px;
 	display: none;
 	align-items: center;
 	justify-content: center;
 	background: #FFFFFF;
-   /* tooltip */
-   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
-   font-size: 10px;
-   top: 0;
-   right:45px;
+	/* tooltip */
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
+	font-size: 10px;
+	top: 0;
+	right: 45px;
 }
 
 #DASHBOARD .nav_right .down div {
@@ -139,6 +141,7 @@
 	background-color: #f2f5f78c;
 	z-index: 5 !important;
 }
+
 #DASHBOARD .nav_right .input_focus {
 	/* box-sizing: border-box !important; */
 	/* background-color: aquamarine; */
@@ -209,15 +212,16 @@
 	background-image: url(../img/dashboard/nav_right/support.svg);
 }
 
-#DASHBOARD .nav_right .down .dropDownBox:hover .support{
+#DASHBOARD .nav_right .down .dropDownBox:hover .support {
 	filter: saturate(11);
 }
 
 #DASHBOARD .nav_right .down .information {
 	background-image: url(../img/dashboard/nav_right/information.svg);
-	
+
 }
-#DASHBOARD .nav_right .down .dropDownBox:hover .information{
+
+#DASHBOARD .nav_right .down .dropDownBox:hover .information {
 	filter: saturate(11);
 }
 
@@ -248,12 +252,12 @@
 
 #DASHBOARD .menuimage {
 	background-image: url(../img/dashboard/header/menuicon.svg);
-	
+
 }
 
 #DASHBOARD .Iconimage {
 	background-image: url(../img/dashboard/header/segmento-logofa.svg);
-	
+
 }
 
 
@@ -263,7 +267,7 @@
 	gap: 49px;
 }
 
-#DASHBOARD  .userProfBox {
+#DASHBOARD .userProfBox {
 	z-index: 10;
 	position: relative;
 	padding: 5px;
@@ -279,12 +283,14 @@
 	border-radius: 3px;
 }
 
-#DASHBOARD .userHeaderProfInfo{
-	background-color:white;
+#DASHBOARD .userHeaderProfInfo {
+	background-color: white;
 }
-#DASHBOARD .userHeaderProfInfo{
+
+#DASHBOARD .userHeaderProfInfo {
 	display: none;
 }
+
 #DASHBOARD .userProfBox:hover .userHeaderProfInfo {
 	display: flex;
 	right: 0;
@@ -292,8 +298,8 @@
 }
 
 
-#DASHBOARD  .notifNumber {
-		padding: 1px;
+#DASHBOARD .notifNumber {
+	padding: 1px;
 }
 
 /* easy start */
@@ -322,6 +328,7 @@
 	position: relative;
 	height: 100px;
 }
+
 #DASHBOARD .EasyStartBoxContent img {
 	width: 160px;
 	height: 160px;
@@ -329,6 +336,7 @@
 	top: -30px;
 	left: 40px;
 }
+
 #DASHBOARD .EasyStartBoxContent button {
 	width: 130px;
 	margin: 0px 28px 28px 0px;
@@ -344,6 +352,7 @@
 	Width: 384.92px;
 	Height: 301.12px;
 }
+
 #DASHBOARD .popUpContainer .popUpContent {
 	display: flex;
 	align-items: center;
@@ -351,6 +360,7 @@
 	flex-direction: column;
 	gap: 7px;
 }
+
 #DASHBOARD .popUpContainer .PopUpBox {
 	border-radius: 9px;
 	display: flex;
@@ -367,6 +377,7 @@
 	margin: 20px 0px 16px 0px;
 	cursor: pointer;
 }
+
 #DASHBOARD .EasyStartBoxContent img {
 	width: 160px;
 	height: 160px;
@@ -374,7 +385,50 @@
 	top: -40px;
 	left: 40px;
 }
+
 #DASHBOARD .EasyStartBoxContent button {
 	width: 130px;
 	margin: 0px 28px 28px 0px;
+}
+
+/* scroller in table */
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: #FCFCFB;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+	background-color: #D9D9D9;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: #D9D9D9;
+}
+
+/* tab */
+.tab_0+div {
+	display: block;
+}
+
+.tab_1+div {
+	display: block;
+}
+
+.tab_2+div {
+	display: block;
+}
+
+.tab-3+div {
+	display: block;
+}
+
+.tab-5+div {
+	display: block;
+}
+
+.tab-6+div {
+	display: block;
 }
