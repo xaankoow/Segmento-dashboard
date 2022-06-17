@@ -6,6 +6,7 @@ import { useState } from 'react';
 import EasyStart from './DashboaedComponents/EasyStart/EasyStart';
 import HandleModal from './../Utils/handleModal';
 import TabMenu from './DashboaedComponents/tabMenu/TabMenu';
+import ContentProduction from './DashboaedComponents/ContentProduction/ContentProduction';
 
 
 
@@ -39,7 +40,7 @@ export default function DashboardBody() {
   const tabContent=[
     {
         title:"جست و جو",
-        content:"سلام این یک متن تست هست :)"
+        content:<ContentProduction/>
     },
     {
       title:"لیست من",

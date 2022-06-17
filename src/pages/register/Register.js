@@ -41,7 +41,6 @@ export default function Register() {
             <AuthInput
               textLabelInput="ایمیل"
               width={"100%"}
-              typeInput="email"
               reduxHandleChange={setEmailRedux}
             />
             <div className="flex justify-between gap-3 w-full">

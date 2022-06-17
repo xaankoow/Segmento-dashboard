@@ -9,7 +9,7 @@
   }
   label {
     color: #001F43;
-    font-size: 11px;
+    font-size: 12px;
     text-transform: uppercase;
     position: absolute;
     z-index: 0 !important;
@@ -72,27 +72,6 @@
     transform: translateY(0);
   }
 
-label {
-  color: #001f43;
-  font-size: 14px;
-  text-transform: uppercase;
-  position: absolute;
-  z-index: 2;
-  right: 8px;
-  top: 14px;
-  padding: 0 2px;
-  pointer-events: none;
-  -webkit-transition: -webkit-transform 100ms ease;
-  -moz-transition: -moz-transform 100ms ease;
-  -o-transition: -o-transform 100ms ease;
-  -ms-transition: -ms-transform 100ms ease;
-  transition: transform 100ms ease;
-  -webkit-transform: translateY(-35px);
-  -moz-transform: translateY(-35px);
-  -o-transform: translateY(-35px);
-  -ms-transform: translateY(-35px);
-  transform: translateY(-35px);
-}
 
 .imageInputIcon {
   position: absolute;
