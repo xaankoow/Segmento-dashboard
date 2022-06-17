@@ -1,5 +1,6 @@
 .buy_plan_section{
     /* text-align: center; */
+    height: 900px;
 }
 
 
@@ -27,11 +28,11 @@ margin-right: 18px;
 }
 
 .buy_plan_section .main_buy_plan_section{
-width: 100%;
+/* width: 100%; */
 /* text-align: center; */
 margin: auto;
-/* width: 1038px; */
-padding:0px 38px;
+width: 1038px;
+/* padding:0px 38px; */
 
 }
 .buy_plan_section .main_buy_plan_section .section_title{
@@ -81,7 +82,7 @@ margin-bottom: 13px;
 /* text-align: center; */
 border-radius: 9px;
 border: 1px solid rgba(217, 217, 217, 1);
-/* margin-top: 18px; */
+margin-top: 18px;
 }
 .buy_plan_section .main_buy_plan_section .footer_message p{
     color: rgba(6, 52, 104, 1);

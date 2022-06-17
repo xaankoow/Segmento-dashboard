@@ -83,27 +83,27 @@ export default function BuyPlan() {
               <div className='plan'>
                 <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_1" ? true : false} />
                     <p> 1 ماهه</p>
                   </div>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_3" ? true : false} />
                     <p> 3 ماهه</p>
                   </div>
                   <span className='off_price'>15 درصد تخفیف</span>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_6"); dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_6" ? true : false} />
                     <p> 6 ماهه</p>
                   </div>
                   <span className='off_price'>فقط پرداخت 5 ماه</span>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_12"); dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_12" ? true : false} />
                     <p> 12 ماهه</p>
                   </div>
                   <span className='off_price'>فقط پرداخت 10 ماه</span>
@@ -131,27 +131,27 @@ export default function BuyPlan() {
               <div className='plan'>
                 <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_1" ? true : false} />
                     <p> 1 ماهه</p>
                   </div>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_3" ? true : false} />
                     <p> 3 ماهه</p>
                   </div>
                   <span className='off_price'>15 درصد تخفیف</span>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_6"); dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_6" ? true : false} />
                     <p> 6 ماهه</p>
                   </div>
                   <span className='off_price'>فقط پرداخت 5 ماه</span>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_12"); dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_12" ? true : false} />
                     <p> 12 ماهه</p>
                   </div>
                   <span className='off_price'>فقط پرداخت 10 ماه</span>
@@ -179,27 +179,27 @@ export default function BuyPlan() {
               <div className='plan'>
                 <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_1" ? true : false} />
                     <p> 1 ماهه</p>
                   </div>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_3" ? true : false} />
                     <p> 3 ماهه</p>
                   </div>
                   <span className='off_price'>15 درصد تخفیف</span>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_6"); dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_6" ? true : false} />
                     <p> 6 ماهه</p>
                   </div>
                   <span className='off_price'>فقط پرداخت 5 ماه</span>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_12"); dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_12" ? true : false} />
                     <p> 12 ماهه</p>
                   </div>
                   <span className='off_price'>فقط پرداخت 10 ماه</span>
@@ -227,27 +227,27 @@ export default function BuyPlan() {
               <div className='plan'>
                 <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_1" ? true : false} />
                     <p> 1 ماهه</p>
                   </div>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_3" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_3" ? true : false} />
                     <p> 3 ماهه</p>
                   </div>
                   <span className='off_price'>15 درصد تخفیف</span>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_6"); dispatch(setPackageUuid("31c4c8be-f830-4d72-8288-d9a3e1549aa8")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_6" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_6" ? true : false} />
                     <p> 6 ماهه</p>
                   </div>
                   <span className='off_price'>فقط پرداخت 5 ماه</span>
                 </div>
                 <div className='container_row' onClick={() => { setPlan("bronze_12"); dispatch(setPackageUuid("f9aae937-5278-47e0-85cc-84358c992923")) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == "bronze_12" ? true : false} />
+                    <input type="radio" name="planCard" id="" checked={plan == "bronze_12" ? true : false} />
                     <p> 12 ماهه</p>
                   </div>
                   <span className='off_price'>فقط پرداخت 10 ماه</span>
