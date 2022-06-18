@@ -26,7 +26,8 @@
     box-sizing: border-box;
     width: 907px;
     /* height: 432px; */
-    padding: 0px 10px !important;
+    padding: 0px !important;
+    /* padding: 0px 10px !important; change*/
     z-index: 10000000 !important;
     overflow: hidden !important;
 }
@@ -41,7 +42,7 @@
     border-radius: 9px;
     margin: 10px 0px;
     border: 1px solid #f2f5f7;
-    padding: 0px 18px 0px 14px;
+    /* padding: 0px 18px 0px 14px; */
 }
 
 .ReactModal__Content body {
@@ -119,10 +120,10 @@
     display: inline-block;
 }
 
-.ReactModal__Content body .ul_text_container ul:last-of-type {
+/* .ReactModal__Content body .ul_text_container ul:last-of-type { changeStyle
     display: inline-block;
     margin-right: 117px;
-}
+} */
 
 .ReactModal__Content body .ul_text_container ul li {
     display: list-item !important;
@@ -132,7 +133,7 @@
     list-style-type: none;
     color: #083c78;
     /* padding-bottom: 18px; */
-    padding: 18px 21px;
+    /* padding: 18px 21px; */
 }
 
 .ReactModal__Content body .input-wrapper {

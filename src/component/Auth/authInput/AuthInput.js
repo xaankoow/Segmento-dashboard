@@ -19,7 +19,9 @@ export default function AuthInput({
   wrapperClass,
   value,
   handleArrowPlan,
-  targePlanArrow
+  targePlanArrow,
+  workSpaceTypeState
+
 }) {
   // check email to be correct
   const validateEmail = (email) => {
@@ -73,7 +75,8 @@ export default function AuthInput({
             {handleArrowPlan!=undefined&& handleArrowPlan(e.target.value,targePlanArrow)}
            
             setInputValue(e.target.value);
-            dispatch(reduxHandleChange(e.target.value))
+            workSpaceTypeState!=undefined?dispatch(reduxHandleChange(e.target.value,workSpaceTypeState)):dispatch(reduxHandleChange(e.target.value))
+            
             // handleChange(e);
           }}
         />

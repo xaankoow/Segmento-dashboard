@@ -103,12 +103,12 @@ export default function HandleModal({ handleClose, checkClose, show }) {
           <div>
             <div className='ul_text_container'>
               <ul className=''>
-                <li>نمونه متن</li>
-                <li>نمونه متن</li>
+                <li className=' py-4 px-5'>نمونه متن</li>
+                <li className=' py-4 px-5'>نمونه متن</li>
               </ul>
-              <ul>
-                <li>نمونه متن</li>
-                <li>نمونه متن</li>
+              <ul className='mr-[117px]'>
+                <li className=' py-4 px-5'>نمونه متن</li>
+                <li className=' py-4 px-5'>نمونه متن</li>
               </ul>
             </div>
           </div>
@@ -488,7 +488,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
         contentLabel="Example Modal"
       // className={"myModal"}
       >
-        <header>
+        <header className='pr-5 pl-3.5'>
           <div>
             <span>{handleShowTitleModal()}</span>
             <span className='info'></span>

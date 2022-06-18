@@ -1,11 +1,11 @@
 module.exports = {
-	content: [ './src/**/*.{js,jsx,ts,tsx}' ],
+	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
 			boxShadow: {
 				'3xl': '0px 4px 15px 0px rgba(0, 0, 0, 0.15)',
-				'4xl':'0px 4px 8px rgba(0, 0, 0, 0.14)'
-			  }
+				'4xl': '0px 4px 8px rgba(0, 0, 0, 0.14)'
+			}
 		},
 		screens: {
 			'2xl': { max: '1535px' },
@@ -26,10 +26,10 @@ module.exports = {
 		colors: {
 			lightGray: '#d3d5e2',
 			gray: '#7D7D7D',
-			yellow:'#ffce47',
-			blue:'#0071ff',
-			dds:'#0071ff',
-			primary:'#0A65CD'
+			yellow: '#ffce47',
+			blue: '#0071ff',
+			dds: '#0071ff',
+			primary: '#0A65CD'
 		},
 		fontSize: {
 			xs: '.75rem',
@@ -44,7 +44,7 @@ module.exports = {
 			'5xl': '3rem',
 			'6xl': '4rem',
 			'7xl': '5rem',
-            'small':'.5rem'
+			'small': '.5rem'
 		}
 	},
 	plugins: []
