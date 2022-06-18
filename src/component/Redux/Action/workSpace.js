@@ -86,6 +86,7 @@ export const setKeyWords = (value,stateKey ) => {
 
 
 
+
 export const setCommercialPages = (adress,stateCommercial) => {
     return async (dispatch, getState) => {
         const state = { ...getState().workSpaceState }
@@ -128,7 +129,47 @@ export const setCommercialPages = (adress,stateCommercial) => {
     }
 }
 
-
+export const setWebsitePages = (adress,stateWebsitePage) => {
+    return async (dispatch, getState) => {
+        const state = { ...getState().workSpaceState }
+        // debugger
+        switch (stateWebsitePage) {
+            case "websitePage1":
+                state.websitePage1=adress;
+                break;
+            case "websitePage2":
+                state.websitePage2=adress;
+                break;
+            case "websitePage3":
+                state.websitePage3=adress;
+                break;
+            case "websitePage4":
+                state.websitePage4=adress;
+                break;
+            case "websitePage5":
+                state.websitePage5=adress;
+                break;
+            case "websitePage6":
+                state.websitePage6=adress;
+                break;
+            case "websitePage7":
+                state.websitePage7=adress;
+                break;
+            case "websitePage8":
+                state.websitePage8=adress;
+                break;
+            case "websitePage9":
+                state.websitePage9=adress;
+                break;
+            case "websitePage10":
+                state.websitePage10=adress;
+                break;
+            default:
+                break;
+        }
+        await dispatch({ type: "COMMERCIAL_PAGES", payload: state })
+    }
+}
 
 
 

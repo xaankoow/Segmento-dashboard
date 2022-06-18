@@ -2,13 +2,14 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import AuthButton from "../../Auth/authButton/AuthButton";
 import AuthInput from "../../Auth/authInput/AuthInput";
-import { setCommercialPages, setKeyWords, setWebAdress } from "../../Redux/Action/workSpace";
+import { setCommercialPages, setKeyWords, setWebAdress, setWebsitePages } from "../../Redux/Action/workSpace";
 import StaticInputText from "../staticInputText/textInput";
 
 export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput) => {
     const [addKeyChar, setAddKeyChar] = useState(4)
     const [addKeyCharMap, setAddKeyCharMap] = useState([])
     const [addCommercialPageMap, setAddCommercialPageMap] = useState([])
+    const [addWebsitePageMap, setAddWebsitePageMap] = useState([])
     // const [addKeyCharMap, setAddKeyCharMap] = useState([])
 
     const dispatch = useDispatch();
@@ -71,7 +72,18 @@ export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput
                 </Fragment>
             );
         case 4:
-            return "مانیتورینگ سرعت صفحات";
+            return (
+                <Fragment>
+                    <div className=" max-h-[380px] overflow-y-scroll">
+                        <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"افزودن صفحه وبسایت"} staticText={"https://example.ir/ "} placeholder={"page1"} reduxHandleChange={setWebsitePages} workSpaceTypeState={"websitePage1"} />
+                        <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"افزودن صفحه وبسایت"} staticText={"https://example.ir/ "} placeholder={"page2"} reduxHandleChange={setWebsitePages} workSpaceTypeState={"websitePage2"} />
+                        {addWebsitePageMap.map(item => (
+                            <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"افزودن صفحه وبسایت"} staticText={"https://example.ir/ "} placeholder={"page2"} reduxHandleChange={setWebsitePages} workSpaceTypeState={`websitePage${item}`} />
+                        ))}
+                    </div>
+                    <button className='btn-style ' onClick={() => { setAddWebsitePageMap([...addWebsitePageMap, `${countInput}`]); handleAddStateCountInput("websitePage") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />صفحه وبسایت جدید</button>
+                </Fragment>
+            );
         case 5:
             return "افزودن رقبای وبسایت";
         case 6:
