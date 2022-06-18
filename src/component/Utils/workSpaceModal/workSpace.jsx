@@ -8,9 +8,10 @@ import { workSpaceTitle } from './titleWorkSpaceModal';
 export default function WorkSpace({ handleClose }) {
 
   const [modalTitleStep, setModalTitleStep] = useState("")
-  const [stepModal, setStepModal] = useState(2);
+  const [stepModal, setStepModal] = useState(3);
   
   const [addKeyCharInput, setAddKeyCharInput] = useState(3)
+  const [addCommercialPageInput, setAddCommercialPageInput] = useState(3)
   
 
   const customStyles = {
@@ -31,6 +32,9 @@ export default function WorkSpace({ handleClose }) {
     switch (state) {
       case "keyChar":
         setAddKeyCharInput(addKeyCharInput+1);
+        break;
+      case "commercialPage":
+        setAddCommercialPageInput(addCommercialPageInput+1);
         break;
     
       default:
@@ -79,7 +83,7 @@ export default function WorkSpace({ handleClose }) {
           </ul>
         </div>
         <div className=' mt-8'>
-        {InputGetWorkSpaceInfo(stepModal,addKeyCharInput,handleAddStateCountInput)}
+        {InputGetWorkSpaceInfo(stepModal,stepModal==2?addKeyCharInput:stepModal==3&&addCommercialPageInput,handleAddStateCountInput)}
         </div>
       </body>
       <footer className='px-5'>

@@ -16,7 +16,6 @@ export const setWebAdress = adress => {
 export const setKeyWords = (value,stateKey ) => {
     return async (dispatch, getState) => {
         const state = { ...getState().workSpaceState }
-        // debugger
         switch (stateKey) {
             case "keyWord1":
                 state.keyWord1.key=value;
@@ -78,7 +77,6 @@ export const setKeyWords = (value,stateKey ) => {
             case "site10":
                 state.keyWord10.site=value;
                 break;
-
             default:
                 break;
         }
@@ -86,6 +84,49 @@ export const setKeyWords = (value,stateKey ) => {
     }
 }
 
+
+
+export const setCommercialPages = (adress,stateCommercial) => {
+    return async (dispatch, getState) => {
+        const state = { ...getState().workSpaceState }
+        // debugger
+        switch (stateCommercial) {
+            case "commercialPage1":
+                state.commercialPage1=adress;
+                break;
+            case "commercialPage2":
+                state.commercialPage2=adress;
+                break;
+            case "commercialPage3":
+                state.commercialPage3=adress;
+                break;
+            case "commercialPage4":
+                state.commercialPage4=adress;
+                break;
+            case "commercialPage5":
+                state.commercialPage5=adress;
+                break;
+            case "commercialPage6":
+                state.commercialPage6=adress;
+                break;
+            case "commercialPage7":
+                state.commercialPage7=adress;
+                break;
+            case "commercialPage8":
+                state.commercialPage8=adress;
+                break;
+            case "commercialPage9":
+                state.commercialPage9=adress;
+                break;
+            case "commercialPage10":
+                state.commercialPage10=adress;
+                break;
+            default:
+                break;
+        }
+        await dispatch({ type: "COMMERCIAL_PAGES", payload: state })
+    }
+}
 
 
 

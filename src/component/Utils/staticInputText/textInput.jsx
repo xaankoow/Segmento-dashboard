@@ -23,7 +23,8 @@ export default function StaticInputText({
   placeholder,
   staticText,
   containerWidth,
-  workSpaceTypeState
+  workSpaceTypeState,
+  parentClass
 
 }) {
   // check email to be correct
@@ -46,7 +47,7 @@ export default function StaticInputText({
     }
   };
   return (
-    <div className={"flex static_text_input w-full"}>
+    <div className={`flex static_text_input w-full ${parentClass}`}>
       <div className={`input-wrapper input-static ${wrapperClass}`}>
         <input
           type={isSeePssword}

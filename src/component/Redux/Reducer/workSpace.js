@@ -11,7 +11,16 @@ export const workSpaceReducer = (state =
         keyWord8: {key:"",site:""},
         keyWord9: {key:"",site:""},
         keyWord10: {key:"",site:""},
-        commercialPages: [],
+        commercialPage1: "",
+        commercialPage2: "",
+        commercialPage3: "",
+        commercialPage4: "",
+        commercialPage5: "",
+        commercialPage6: "",
+        commercialPage7: "",
+        commercialPage8: "",
+        commercialPage9: "",
+        commercialPage10: "",
         testSpeedPage:[],
          competitorSite:[],
         // charKey2: "key 2",
@@ -43,10 +52,7 @@ export const workSpaceReducer = (state =
         case "SITE2":
             return { ...action.payload }
 
-        case "COMMERCIAL_PAGE1":
-            return { ...action.payload }
-
-        case "COMMERCIAL_PAGE2":
+        case "COMMERCIAL_PAGES":
             return { ...action.payload }
 
         case "PLAN_CHOSEN":
