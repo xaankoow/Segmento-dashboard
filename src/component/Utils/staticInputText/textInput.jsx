@@ -18,10 +18,12 @@ export default function StaticInputText({
   pressNumber,
   direction,
   wrapperClass,
+  labelClass,
   value,
   placeholder,
   staticText,
   containerWidth,
+  workSpaceTypeState
 
 }) {
   // check email to be correct
@@ -73,7 +75,8 @@ export default function StaticInputText({
           onChange={(e) => {
 
             setInputValue(e.target.value);
-            dispatch(reduxHandleChange(e.target.value));
+            workSpaceTypeState!=undefined?dispatch(reduxHandleChange(e.target.value,workSpaceTypeState)):dispatch(reduxHandleChange(e.target.value))
+            // dispatch(reduxHandleChange(e.target.value));
             // handleChange(e);
           }}
           placeholder={placeholder}
