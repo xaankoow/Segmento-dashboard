@@ -34,7 +34,7 @@ return (
             {data.map((item,index)=>{
             return <tr key={index} className={index < data.length-1 ?'border-b border-[#D9D9D9] flex gap-5 mx-2 items-center' :"border-0 flex gap-5 mx-2 items-center"}>
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
-                    <input type={"checkbox"} className="rounded border border-[#D9D9D9] w-[18px] h-[18px] " />
+                    <input type={"checkbox"} className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px]" />
                 </td>
                 <td class="text-sm text-gray-900 font-light pr-4 py-4 whitespace-nowrap"> {item.row} </td>
                 <td class="text-sm text-gray-900 font-light px-5 py-4 whitespace-nowrap">{item.content} </td>
