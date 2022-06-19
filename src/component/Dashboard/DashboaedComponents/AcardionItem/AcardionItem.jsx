@@ -103,18 +103,18 @@ acardionItems:[
     ]
     },
 ]
-const [clicked, setClicked] = React.useState(false);
-const toggle=(index)=>{
-if(clicked===index){
-// if active close
-return setClicked(null)
-}
-setClicked(index)
-}
+  const [clicked, setClicked] = React.useState(false);
+  const toggle=(index)=>{
+  if(clicked===index){
+  // if active close
+  return setClicked(null)
+  }
+  setClicked(index)
+  }
 return (
 <>
   {data.map((item,index)=>{
-  return <div className='' key={index}>
+  return <div className='cursor-pointer' key={index} onClick={()=>toggle(index)}>
     <div className='flex items-center justify-between m-0 p-0'>
       
       <div key={index} className='flex items-center gap-3 text-[#002145] mt-4 mb-3  mr-5 text-sm '  >
@@ -139,9 +139,7 @@ return (
      }
     </div> : null}
   </div>
-
   })}
-
 </>
 )
 }

@@ -11,6 +11,7 @@ import TabMenu from './DashboaedComponents/tabMenu/TabMenu';
 import ContentProduction from './DashboaedComponents/ContentProduction/ContentProduction';
 import IconsRight from './DashboaedComponents/SidebarComponents/IconsRight';
 import AcardionItem from './DashboaedComponents/AcardionItem/AcardionItem';
+import KeyWords from './KeyWords/KeyWords';
 
 
 
@@ -48,7 +49,7 @@ export default function DashboardBody() {
   const tabContent=[
     {
         title:"جست و جو",
-        content:<ContentProduction/>
+        content:<KeyWords/>
     },
     {
       title:"لیست من",
