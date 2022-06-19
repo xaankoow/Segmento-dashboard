@@ -8,7 +8,7 @@ import { workSpaceTitle } from './titleWorkSpaceModal';
 export default function WorkSpace({ handleClose }) {
 
   const [modalTitleStep, setModalTitleStep] = useState("")
-  const [stepModal, setStepModal] = useState(4);
+  const [stepModal, setStepModal] = useState(5);
   
   const [addKeyCharInput, setAddKeyCharInput] = useState(3)
   const [addCommercialPageInput, setAddCommercialPageInput] = useState(3)
@@ -95,7 +95,7 @@ export default function WorkSpace({ handleClose }) {
         {stepModal !=1 ? <AuthButton classes={"bg-[#F2F5F7] text-[#488CDA]"} handlerClick={() =>  ""}  textButton={"پایان"} /> : <div></div>}
         {/* {stepModal == 4 ? <AuthButton handlerClick={() =>  "" }  textButton={"خرید اشتراک"} /> : <button className='btn-style bg-[#F2F5F7] text-[#488CDA]' onClick={() => setStepModal(stepModal + 1)}>پایان <span className='forward-ico'></span></button>} */}
         
-        {stepModal != 6 ?<button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button>:<div></div>}
+        {stepModal != 5 ?<button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button>:<div></div>}
       </footer>
     </Modal>
   )
