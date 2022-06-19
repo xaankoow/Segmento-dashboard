@@ -18,10 +18,13 @@ export default function StaticInputText({
   pressNumber,
   direction,
   wrapperClass,
+  labelClass,
   value,
   placeholder,
   staticText,
   containerWidth,
+  workSpaceTypeState,
+  parentClass
 
 }) {
   // check email to be correct
@@ -44,7 +47,7 @@ export default function StaticInputText({
     }
   };
   return (
-    <div className={"flex static_text_input w-full"}>
+    <div className={`flex static_text_input w-full ${parentClass}`}>
       <div className={`input-wrapper input-static ${wrapperClass}`}>
         <input
           type={isSeePssword}
@@ -73,7 +76,8 @@ export default function StaticInputText({
           onChange={(e) => {
 
             setInputValue(e.target.value);
-            dispatch(reduxHandleChange(e.target.value));
+            workSpaceTypeState!=undefined?dispatch(reduxHandleChange(e.target.value,workSpaceTypeState)):dispatch(reduxHandleChange(e.target.value))
+            // dispatch(reduxHandleChange(e.target.value));
             // handleChange(e);
           }}
           placeholder={placeholder}

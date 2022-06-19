@@ -19,7 +19,9 @@ export default function AuthInput({
   wrapperClass,
   value,
   handleArrowPlan,
-  targePlanArrow
+  targePlanArrow,
+  workSpaceTypeState
+
 }) {
   // check email to be correct
   const validateEmail = (email) => {
@@ -63,7 +65,9 @@ export default function AuthInput({
             width: `${width}`,
             pointerEvents: disabled && "none",
             // backgroundColor: disabled && "#F2F5F7",
-            borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
+            // borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
+            borderBottom: disabled ? " 3px solid rgba(16, 204, 174, 1) !important":chechvalue ? " 3px solid #cd0a0a" : "",
+            
             // textAlign: typeInput === "email" && "left",
             // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
@@ -71,7 +75,8 @@ export default function AuthInput({
             {handleArrowPlan!=undefined&& handleArrowPlan(e.target.value,targePlanArrow)}
            
             setInputValue(e.target.value);
-            dispatch(reduxHandleChange(e.target.value))
+            workSpaceTypeState!=undefined?dispatch(reduxHandleChange(e.target.value,workSpaceTypeState)):dispatch(reduxHandleChange(e.target.value))
+            
             // handleChange(e);
           }}
         />
