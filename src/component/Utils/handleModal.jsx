@@ -529,10 +529,10 @@ export default function HandleModal({ handleClose, checkClose, show }) {
               {handleShowReport("14 روز رایگان")}
             </body>
           ) : ""}
-        <footer>
+        <footer className=' px-[18px]'>
 
 
-          {stepModal != 0 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : null}
+          {stepModal != 1 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
           {stepModal == 4 ? <AuthButton handlerClick={() => { setFree(false) }} reduxHandleClick={buyPlan} textButton={"خرید اشتراک"} /> : <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>}
           {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
         </footer>

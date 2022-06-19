@@ -12,6 +12,7 @@ import Modal from 'react-modal'
 import HandleModal from "./component/Utils/handleModal";
 import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { useSelector } from "react-redux";
+import LandingPage from "./component/Utils/landingPage/landingPage";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
 
@@ -62,6 +63,7 @@ export default function App() {
         </div>
         <Routes>
           <Route path="dashboard" element={<DashboardBody />} />
+          <Route path="dashboard/payment*" element={<LandingPage />} />
         </Routes>
 
       {/* <HandleModal /> */}
