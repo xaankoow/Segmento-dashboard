@@ -81,6 +81,44 @@
 	padding: 5px 3px;
 }
 
+.right .tooltip { top:-20%; left:115%; }
+
+.right .tooltip::after{
+  top:40%;
+  left:-12%;
+  transform: rotate(90deg);
+}
+#DASHBOARD .tooltip {
+	position: absolute;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
+	font-size: 10px;
+	width: 64px;
+	height: 37px;
+	background-color: #ffffff;
+	color: #002145;
+	text-align: center;
+	border-radius: 4px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1;
+	margin-left: -60px;
+	
+  }
+  
+  #DASHBOARD .tooltipTop::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 0.5em solid transparent;
+  border-top-color: #ffffff;
+  transform: translate(-50%, 0);
+  }
+  
 #DASHBOARD .nav_right .down .dropDownBox .support_dropDown {
 	position: absolute;
 	z-index: 5;
@@ -440,24 +478,39 @@
 }
 
 
-/* .cd-accordion__input {
-	position: absolute;
-	opacity: 0;
-  }
-  
-  .cd-accordion__label {
-	position: relative;
-	display: flex;
-	align-items: center;
-	padding: var(--space-sm) var(--space-md);
-	background: var(--cd-color-1);
-	box-shadow: inset 0 -1px lightness(var(--cd-color-1), 1.2);
-	color: var(--color-white);
-  }
-  .cd-accordion__sub {
-	display: none; 
-  }
-   
-  .cd-accordion__input:checked ~ .cd-accordion__sub { 
+/* table */
+#TABLE .copyAllButton .imageIcon{
+	background: url(../img/dashboard/table/content_copy.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#TABLE .copyAllButton:hover .imageIcon{
+	background: url(../img/dashboard/table/content_copy_white.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#TABLE .tableRow .content_copy_blue{
+	display: none;
+	background: url(../img/dashboard/table/content_copy_blue.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	cursor: pointer;
+}
+#TABLE .tableRow .content_copy_blue:active{
+	background: url(../img/dashboard/table/content_copy_primary.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#TABLE .tableRow .content_copy_blue:checked{
+	background: url(../img/dashboard/table/content_copy_primary.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#TABLE .tableRow:hover .content_copy_blue{
 	display: block;
-  } */
+}

@@ -9,6 +9,7 @@ import TabMenu from './DashboaedComponents/tabMenu/TabMenu';
 import ContentProduction from './DashboaedComponents/ContentProduction/ContentProduction';
 import IconsRight from './DashboaedComponents/SidebarComponents/IconsRight';
 import AcardionItem from './DashboaedComponents/AcardionItem/AcardionItem';
+import KeyWords from './KeyWords/KeyWords';
 
 
 
@@ -42,7 +43,7 @@ export default function DashboardBody() {
   const tabContent=[
     {
         title:"جست و جو",
-        content:<ContentProduction/>
+        content:<KeyWords/>
     },
     {
       title:"لیست من",
@@ -56,7 +57,7 @@ export default function DashboardBody() {
         <DashboardHeader setCloseNav={closeNavItem} />
       </div>
       <div className='flex flex-row-reverse relative top-1 w-full h-screen body'>
-        <div className='bg-[#ffffff] relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main'>
+        <div className='bg-[#ffffff] relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main '>
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
         <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
