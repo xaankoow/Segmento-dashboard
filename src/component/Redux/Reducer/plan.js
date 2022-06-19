@@ -1,10 +1,10 @@
 export const planReducer = (state =
     {
-        webAdress: "https://aaa.com",
-        charKey1: "key 1",
-        charKey2: "key 2",
-        site1: "https://aaa.com/blog",
-        site2: "https://aaa.com/video",
+        webAdress: "",
+        charKey1: "",
+        charKey2: "",
+        site1: "",
+        site2: "",
         commercialPage1: "",
         commercialPage2: "",
         planChosen: "",
@@ -17,7 +17,7 @@ export const planReducer = (state =
         case "DISCOUNT_CODE":
             return { ...action.payload }
 
-        case "WEB_ADRESS":
+        case "PLAN_WEB_ADRESS":
             return { ...action.payload }
 
         case "CHAR_KEY1":

@@ -9,7 +9,7 @@ import StaticInputText from './staticInputText/textInput';
 
 export default function HandleModal({ handleClose, checkClose, show }) {
 
-  const [stepModal, setStepModal] = useState(4);
+  const [stepModal, setStepModal] = useState(1);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
@@ -34,9 +34,11 @@ export default function HandleModal({ handleClose, checkClose, show }) {
     if (discountInputBronze != "" && arrowTarget != "bronze") { setDiscountInputBronze(""); }
     if (discountInputSilver != "" && arrowTarget != "silver") { setDiscountInputSilver(""); }
     if (discountInputDiamond != "" && arrowTarget != "diamond") { setDiscountInputDiamond(""); }
-    switch ("bronze") {
+    switch (arrowTarget) {
       case "gold":
-        setDiscountInputGold("text");
+        if (discountInputGold != text) {
+          setDiscountInputGold("text");
+        }
         break;
       case "bronze":
         if (discountInputBronze != text) {
@@ -44,10 +46,14 @@ export default function HandleModal({ handleClose, checkClose, show }) {
         }
         break;
       case "silver":
-        setDiscountInputSilver(text);
+        if (discountInputSilver != text) {
+          setDiscountInputSilver(text);
+        }
         break;
       case "diamond":
-        setDiscountInputDiamond(text);
+        if (discountInputDiamond != text) {
+          setDiscountInputDiamond(text);
+        }
         break;
 
       default:
@@ -126,7 +132,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
               <AuthInput width={"8ch"} classes={"pr-0"}  typeInput="email" reduxHandleChange={setWebAdress} value={"https://"}/> */}
             {/* // </div> */}
 
-            <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"کلمات کلیدی"} staticText={"https:// "} placeholder={"example.com"} />
+            <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"آدرس وبسایت شما"} reduxHandleChange={setWebAdress} staticText={"https:// "} placeholder={"example.com"} />
             {/* <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="email" reduxHandleChange={setCharKey1} value={charKey1}/> */}
           </Fragment>
         ) : stepModal == 2 ? (
@@ -136,22 +142,22 @@ export default function HandleModal({ handleClose, checkClose, show }) {
               <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey1} value={charKey1} />
               {/* <div className='arrow'></div> */}
               <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"سایت مرتبط"} staticText={"https://example.com/ "} placeholder={"example.com"} />
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"سایت مرتبط"} staticText={webAdress} reduxHandleChange={setSite1} placeholder={"page1"} />
               {/* <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" reduxHandleChange={setSite1} value={site1}/> */}
             </div>
             <div className='container_input_step2'>
               <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey2} value={charKey2} />
               {/* <div className='arrow'></div> */}
               <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"سایت مرتبط"} staticText={"https://example.com/ "} placeholder={"example.com"} />
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"سایت مرتبط"} staticText={webAdress} reduxHandleChange={setSite2} placeholder={"page2"} />
               {/* <AuthInput textLabelInput="سایت مرتبط" width={"100%"} typeInput="email" reduxHandleChange={setSite2} value={site2}/> */}
             </div>
           </Fragment>
         ) :
           stepModal == 3 ? (
             <div className='container_input_step3'>
-              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://example.com/page1/ "} placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
-              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://example.com/page2/ "} placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={webAdress+site1+"/"} placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={webAdress+site2+"/"} placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
               {/* <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage1} value={commercialPage1}/> */}
               {/* <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage2} value={commercialPage2}/> */}
             </div>
@@ -282,7 +288,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
               </div>
             </div>
             <div className='price'>
-            <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>189 هزار تومان ماهانه</p>
+              <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>189 هزار تومان ماهانه</p>
             </div>
             <div className='input_apply_token_container'>
               <AuthInput
@@ -291,19 +297,19 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 typeInput="text"
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
-                targePlanArrow={"bronze"}
+                targePlanArrow={"silver"}
                 disabled={discount != "" ? true : false}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
-              <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+              <span className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver))}></span>
             </div>
           </div>
           <div className='gold plan_card'>
             <span className='title'>طلایی</span>
             <hr />
             <div className='plan'>
-            <div className='container_row' onClick={() => { setPlan("gold_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+              <div className='container_row' onClick={() => { setPlan("gold_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "gold_1" ? true : false} />
                   <p> 1 ماهه</p>
@@ -332,7 +338,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
               </div>
             </div>
             <div className='price'>
-            <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>249 هزار تومان ماهانه</p>
+              <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>249 هزار تومان ماهانه</p>
             </div>
             <div className='input_apply_token_container'>
               <AuthInput
@@ -341,21 +347,20 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 typeInput="text"
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
-                targePlanArrow={"bronze"}
+                targePlanArrow={"gold"}
                 disabled={discount != "" ? true : false}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
-              <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+              <span className={`apply_token_ico ${discountInputGold != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold))}></span>
             </div>
           </div>
-
           <div className='diamond plan_card'>
 
             <span className='title'>الماسی</span>
             <hr />
             <div className='plan'>
-            <div className='container_row' onClick={() => { setPlan("diamond_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+              <div className='container_row' onClick={() => { setPlan("diamond_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
                 <div>
                   <input type="radio" name="radio" id="" checked={plan == "diamond_1" ? true : false} />
                   <p> 1 ماهه</p>
@@ -384,7 +389,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
               </div>
             </div>
             <div className='price'>
-            <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>249 هزار تومان ماهانه</p>
+              <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>249 هزار تومان ماهانه</p>
             </div>
             <div className='input_apply_token_container'>
               <AuthInput
@@ -393,12 +398,12 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 typeInput="text"
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
-                targePlanArrow={"bronze"}
+                targePlanArrow={"diamond"}
                 disabled={discount != "" ? true : false}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
-              <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+              <span className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond))}></span>
             </div>
           </div>
 
