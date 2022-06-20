@@ -72,7 +72,7 @@ export default function DashboardBody() {
   
           {
             // <WorkSpace handleClose={closeWorkSpaceModal}/>
-            // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
+            showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
           }
         </div>

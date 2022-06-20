@@ -1,5 +1,5 @@
 .input-wrapper .error_down_input {
-    display: inline-block;
+    display: none;
     position: absolute;
     right: 6px;
     top: 50px;

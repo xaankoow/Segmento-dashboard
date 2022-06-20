@@ -9,8 +9,8 @@ import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromis
 export const setWebAdress = adress => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
-        state.webAdress=adress;
-        await dispatch({ type: "WEB_ADRESS", payload: state })
+        state.webAdress="https://"+adress+"/";
+        await dispatch({ type: "PLAN_WEB_ADRESS", payload: state })
     }
 }
 export const setCharKey1 = char => {
