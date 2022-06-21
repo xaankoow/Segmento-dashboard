@@ -3,11 +3,13 @@ import AuthInput from '../../../Auth/authInput/AuthInput';
 import { applyDiscountAction, setPackageUuid } from '../../../Redux/Action/plan';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthButton from '../../../Auth/authButton/AuthButton';
+import ReportBuyPlanSection from '../../../Utils/Modals/ReportBuyPlanSection';
 
 export default function BuyPlan({ title }) {
 
 
-
+  
+  const [showReportModal, setShowReportModal] = useState(false);
 
   // const [free, setFree] = useState(false);
 
@@ -19,7 +21,7 @@ export default function BuyPlan({ title }) {
   const [discountInputSilver, setDiscountInputSilver] = useState("");
   const [discountInputDiamond, setDiscountInputDiamond] = useState("");
 
-  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate } = useSelector(state => state.planState);
+  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate,packageUuid } = useSelector(state => state.planState);
 
   const dispatch = useDispatch();
 
@@ -64,7 +66,9 @@ export default function BuyPlan({ title }) {
 
 
 
-
+  const handleCloseReportModal=()=>{
+    setShowReportModal(false)
+  }
 
   return (
     <div className='plans_body_container buy_plan_section'>
@@ -293,12 +297,16 @@ export default function BuyPlan({ title }) {
           <img src="./img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
           <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
         </div>
-        <button className='btn-style m-auto mt-4'>فعالسازی اشتراک<span className='forward-ico'></span></button>
+        <button className='btn-style m-auto mt-4' onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></button>
         {/* </body> */}
         <div className='footer_message'>
           <p>اگر بیزینس هستید یا به امکانات و منابع بیشتری نیاز دارید: </p>
           <button className="btn_more_information_plan">توضیحات بیشتر</button>
         </div>
+      </div>
+      <div className='report_buy_plan w-[500px]'>
+        {showReportModal&&<ReportBuyPlanSection handleClose={handleCloseReportModal}/>}
+      
       </div>
     </div>
   )

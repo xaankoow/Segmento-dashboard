@@ -24,9 +24,10 @@
 
 .ReactModal__Content {
     box-sizing: border-box;
-    width: 907px;
+    /* width: 907px; */
     /* height: 432px; */
     padding: 0px !important;
+    border: 0px !important;
     /* padding: 0px 10px !important; change*/
     z-index: 10000000 !important;
     overflow: hidden !important;
@@ -51,7 +52,7 @@
     width: 100%;
     border-radius: 9px;
     border: 1px solid #f2f5f7;
-    padding: 18px;
+    /* padding: 18px; change set*/
 }
 
 .ReactModal__Content footer {
@@ -563,7 +564,7 @@ input[type="radio"]:checked::before {
     border: 1px solid rgba(211, 213, 226, 1);
     margin: auto;
     /* background-color: #7d7d7d; */
-    margin-top: 70px;
+    /* margin-top: 70px;  change set*/
     padding: 20px 5px 5px 5px;
 }
 
