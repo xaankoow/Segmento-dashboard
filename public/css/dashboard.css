@@ -83,10 +83,15 @@
 
 .right .tooltip { top:-20%; left:115%; }
 
-.right .tooltip::after{
-  top:40%;
-  left:-12%;
-  transform: rotate(90deg);
+.tooltip-right::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #ffffff ;
 }
 #DASHBOARD .tooltip {
 	position: absolute;
@@ -486,6 +491,19 @@
 	background-size: contain;
 }
 #TABLE .copyAllButton:hover .imageIcon{
+	background: url(../img/dashboard/table/content_copy_white.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#TABLE input:disabled{
+	background-color:#D9D9D9 !important;
+}
+#TABLE .disableInput{
+	background-color:#D9D9D9 !important;
+	background: #D9D9D9 !important;
+}
+#TABLE .copyAllButtondisabled .imageIcon{
 	background: url(../img/dashboard/table/content_copy_white.svg);
 	background-position: center;
 	background-repeat: no-repeat;

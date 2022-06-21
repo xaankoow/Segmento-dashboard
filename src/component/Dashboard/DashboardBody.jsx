@@ -71,13 +71,17 @@ export default function DashboardBody() {
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"} /> */}
 
           <WorkSpaceReport/>
+        {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
+          {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
+ 
+  
           {
             // <WorkSpace handleClose={closeWorkSpaceModal} />
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
           }
         </div>
-        <div className='list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{ width: closeNav ? '60px' : "256px" }}>
+        <div className='list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{ width: closeNav ? '0px' : "256px" }}>
           {/* {
             itemsHoverMenu.map(item => {
               return <ItemSidebarHover text={!closeNav && item} icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"} textColor={"#002145"} textHover={"#0A65CD"} iconClickHandler={iconClickHandler} />
