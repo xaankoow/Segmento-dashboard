@@ -89,6 +89,9 @@ export default function WorkSpaceReport({ websiteName }) {
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <button className="btn-style mt-7"><img className=' ml-3' src='/img/dashboard/workSpace/footer/button_ico.svg'/>پیشخان</button>
+                    </div>
                 </div>
             </div>
         </Fragment>

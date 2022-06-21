@@ -13,6 +13,7 @@ import IconsRight from './DashboaedComponents/SidebarComponents/IconsRight';
 import AcardionItem from './DashboaedComponents/AcardionItem/AcardionItem';
 import KeyWords from './KeyWords/KeyWords';
 import WorkSpaceReport from './DashboaedComponents/workSpace/workSpaceReport';
+import AleartMessageBuyPlan from './DashboaedComponents/BuyPlan/AleartMessageBuyPlan';
 
 
 
@@ -69,8 +70,8 @@ export default function DashboardBody() {
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"} /> */}
-
-          <WorkSpaceReport/>
+          
+          {/* <WorkSpaceReport/> */}
         {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
  
@@ -80,6 +81,8 @@ export default function DashboardBody() {
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
           }
+
+          <AleartMessageBuyPlan/>
         </div>
         <div className='list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{ width: closeNav ? '0px' : "256px" }}>
           {/* {
