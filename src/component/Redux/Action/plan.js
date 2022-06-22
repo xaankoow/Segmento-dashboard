@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { applyDiscount, buyPlna, getPlanDetails } from "../../service/planService";
 import { handleNextInput } from "../../Utils/focusNextInput";
+import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
 
 
@@ -205,6 +206,7 @@ export const applyDiscountAction = discountCode => {
                     // data.errors.forEach(element => {
                     //     toastMessage += element + " / ";
                     // });
+                    InputError("discount",data.data.msg)
                     toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
                 }
             } catch (error) {
