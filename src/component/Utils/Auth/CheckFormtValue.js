@@ -1,5 +1,4 @@
 import { InputError } from "../showInputError";
-import { showInputErrorToast } from "../toastifyPromise";
 
 export const CheckFormat = (type, value, errId) => {
     var CHECK;
