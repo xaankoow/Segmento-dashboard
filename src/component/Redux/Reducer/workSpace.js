@@ -1,16 +1,17 @@
 export const workSpaceReducer = (state =
     {
-        webAdress: "https://aaa.com",
-        keyWord1: {key:"",site:""},
-        keyWord2: {key:"",site:""},
-        keyWord3: {key:"",site:""},
-        keyWord4: {key:"",site:""},
-        keyWord5: {key:"",site:""},
-        keyWord6: {key:"",site:""},
-        keyWord7: {key:"",site:""},
-        keyWord8: {key:"",site:""},
-        keyWord9: {key:"",site:""},
-        keyWord10: {key:"",site:""},
+        webAdress: "http://xxxxx.xxx",
+        webAdressUuid: "",
+        keyWord1: { key: "", site: "" },
+        keyWord2: { key: "", site: "" },
+        keyWord3: { key: "", site: "" },
+        keyWord4: { key: "", site: "" },
+        keyWord5: { key: "", site: "" },
+        keyWord6: { key: "", site: "" },
+        keyWord7: { key: "", site: "" },
+        keyWord8: { key: "", site: "" },
+        keyWord9: { key: "", site: "" },
+        keyWord10: { key: "", site: "" },
         commercialPage1: "",
         commercialPage2: "",
         commercialPage3: "",
@@ -21,18 +22,18 @@ export const workSpaceReducer = (state =
         commercialPage8: "",
         commercialPage9: "",
         commercialPage10: "",
-        websitePage1:"",
-        websitePage2:"",
-        websitePage3:"",
-        websitePage4:"",
-        websitePage5:"",
-        websitePage6:"",
-        websitePage7:"",
-        websitePage8:"",
-        websitePage9:"",
-        websitePage10:"",
-        testSpeedPage:[],
-         competitorSite:[],
+        websitePage1: "",
+        websitePage2: "",
+        websitePage3: "",
+        websitePage4: "",
+        websitePage5: "",
+        websitePage6: "",
+        websitePage7: "",
+        websitePage8: "",
+        websitePage9: "",
+        websitePage10: "",
+        testSpeedPage: [],
+        competitorSite: [],
         // charKey2: "key 2",
         // site1: "https://aaa.com/blog",
         // site2: "https://aaa.com/video",
@@ -70,9 +71,12 @@ export const workSpaceReducer = (state =
 
         case "PACKAGE_UUID":
             return { ...action.payload }
-            
-            case "BUY_PLAN":
-                return { ...action.payload }
+
+        case "BUY_PLAN":
+            return { ...action.payload }
+
+        case "SET_WORK_SPACE_WEB_ADRESS":
+            return { ...action.payload }
 
         case "FORCE_UPDATE":
             return { ...action.payload }

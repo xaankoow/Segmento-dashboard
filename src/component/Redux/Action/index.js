@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 import { registerUser, loginUser, verifyEmail, checkVerifyEmail, verifyEmailChangePassword, logout, changePassword, checkVerifyEmailChangePassword, findUser, coreUserData } from "../../service/userService"
+import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import { handleNextInput } from "../../Utils/focusNextInput";
+import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
 
 
@@ -126,62 +128,77 @@ export const resetStateRedux = () => {
 // REGISTER USER
 export const registerUserAction = () => {
     return async (dispatch, getState) => {
-        debugger
         const state = { ...getState().userState }
-
+        debugger
         if (state.fullName && state.email && state.password && state.passwordConfirm) {
-            let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
-            let toastMessage = "";
-            try {
+            if (CheckFormat("email", state.email,"errRejesterFormatEmail")&&CheckFormat("password", state.password,"errRejesterPasswordConfirm")&&CheckFormat("passwordConfirm", {pass1:state.password,pass2:state.passwordConfirm},"errRejesterPasswordConfirm")) {
+                // if () {
+                    // if () {
+                        let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
+                        let toastMessage = "";
+                        try {
+                            let formdata = new FormData();
+                            formdata.append("name", state.fullName)
+                            formdata.append("email", state.email)
+                            formdata.append("password", state.password)
+                            formdata.append("password_confirmation", state.passwordConfirm)
+                            // let register_user =async () => {
+                            const { data, status } = await registerUser(formdata);
 
-                let formdata = new FormData();
-                formdata.append("name", state.fullName)
-                formdata.append("email", state.email)
-                formdata.append("password", state.password)
-                formdata.append("password_confirmation", state.passwordConfirm)
-                // let register_user =async () => {
-                const { data, status } = await registerUser(formdata);
+                            if (status == 200 && data.status == true) {
+                                toast.update(toastPromiseRegister, { render: "به خانواده بزرگ زانکو خوش آمدید", type: "success", isLoading: false, autoClose: 3000 })
+                                let toastPromiseSendCode = toast.loading("درحال ارسال درخواست شما به سرور")
+                                state.email = state.email;
+                                state.checkRegisterComplete = true;
+                                // let send_code_email = async () => {
+                                const { data, status } = await verifyEmail(formdata);
+                                if (status == 200 && data.status == true) {
+                                    toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
+                                    // return Promise.resolve();
+                                } else {
+                                    // return Promise.reject();
+                                    data.errors.forEach(element => {
+                                        toastMessage += element + " / ";;
+                                    });
+                                    toast.update(toastPromiseSendCode, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                                }
+                                // }
+                                // await dispatch({ type: "SEND_CODE_EMAIL", payload: state})
+                                // showPromisToast(send_code_email(),"sendCod")
+                                // return Promise.resolve()
+                            } else {
+                                data.errors.forEach(element => {
+                                    toastMessage += element + " / ";;
+                                });
+                                toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                                // return Promise.reject()
+                            }
+                        } catch (error) {
+                            console.log("register error")
+                            error.response.data.errors.forEach(element => {
+                                // toastMessage += element+ "\r\n";
+                                toastMessage += element + " / ";
+                            });
+                            toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                        }
 
-                if (status == 200 && data.status == true) {
-                    toast.update(toastPromiseRegister, { render: "به خانواده بزرگ زانکو خوش آمدید", type: "success", isLoading: false, autoClose: 3000 })
-                    let toastPromiseSendCode = toast.loading("درحال ارسال درخواست شما به سرور")
-                    state.email = state.email;
-                    state.checkRegisterComplete = true;
-                    // let send_code_email = async () => {
-                    const { data, status } = await verifyEmail(formdata);
-                    if (status == 200 && data.status == true) {
-                        toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
-                        // return Promise.resolve();
-                    } else {
-                        // return Promise.reject();
-                        data.errors.forEach(element => {
-                            toastMessage += element + " / ";;
-                        });
-                        toast.update(toastPromiseSendCode, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                    }
+                        // }
+                        // showPromisToast(register_user(),"registerUser")
+                        await dispatch({ type: "REGISTER_USER", payload: state })
+                    // } 
+                    // else {
+                    //     InputError("errRejesterPasswordConfirm", "گذرواژه هخوانی ندارد");
                     // }
-                    // await dispatch({ type: "SEND_CODE_EMAIL", payload: state})
-                    // showPromisToast(send_code_email(),"sendCod")
-                    // return Promise.resolve()
-                } else {
-                    data.errors.forEach(element => {
-                        toastMessage += element + " / ";;
-                    });
-                    toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                    // return Promise.reject()
-                }
-            } catch (error) {
-                console.log("register error")
-                error.response.data.errors.forEach(element => {
-                    // toastMessage += element+ "\r\n";
-                    toastMessage += element + " / ";
-                });
-                toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-            }
+                // }
+                // else{
+                //     InputError("errRejesterPasswordConfirm", "گذرواژه میبایست بیش از 6 کارکتر باشد");
+
+                // }
+            } 
+            // else {
+            //     InputError("errRejesterFormatEmail", "فرمت ایمیل وارد شده صحیح نمیباشد");
 
             // }
-            // showPromisToast(register_user(),"registerUser")
-            await dispatch({ type: "REGISTER_USER", payload: state })
         } else {
             showInputErrorToast();
         }
@@ -196,7 +213,6 @@ export const loginUserAction = () => {
         const state = { ...getState().userState }
         if (state.email && state.password) {
             let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
-
             let formdata = new FormData();
             formdata.append("email", state.email)
             formdata.append("password", state.password)
@@ -291,7 +307,7 @@ export const loginUserAction = () => {
                 //     default:
                 //         break;
                 // }
-                if (!data.status&&data.code != 205) {
+                if (!data.status && data.code != 205) {
                     data.errors.forEach(element => {
                         toastMessage += element + " / ";
                     });

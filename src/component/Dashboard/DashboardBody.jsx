@@ -69,7 +69,7 @@ export default function DashboardBody() {
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          {/* <BuyPlan title={"خرید اشتراک سگمنتو"} /> */}
+          <BuyPlan title={"خرید اشتراک سگمنتو"} />
           
           {/* <WorkSpaceReport/> */}
         {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}

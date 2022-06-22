@@ -20,7 +20,8 @@ export default function AuthInput({
   value,
   handleArrowPlan,
   targePlanArrow,
-  workSpaceTypeState
+  workSpaceTypeState,
+  errorTextId
 
 }) {
   // check email to be correct
@@ -45,6 +46,8 @@ export default function AuthInput({
   return (
     <>
       <div className={`input-wrapper ${wrapperClass}`}>
+      <span id={errorTextId!=undefined&&errorTextId} className="error_down_input">اطلاعات نامعتبر</span>
+
         <input
           type={isSeePssword}
           required
@@ -81,7 +84,6 @@ export default function AuthInput({
           }}
         />
         <label className={disabled?"lockStyle":""} for="user">{textLabelInput}</label>
-        <span className="error_down_input">اطلاعات نامعتبر</span>
 
         {/* {isPassword ? (
           <img
