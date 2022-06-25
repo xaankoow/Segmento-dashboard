@@ -132,8 +132,8 @@ export const registerUserAction = () => {
         if (state.fullName && state.email && state.password && state.passwordConfirm) {
             let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
             let toastMessage = "";
+            
             try {
-
                 let formdata = new FormData();
                 formdata.append("name", state.fullName)
                 formdata.append("email", state.email)

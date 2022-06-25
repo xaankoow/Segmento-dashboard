@@ -12,12 +12,23 @@ import ContentProduction from './DashboaedComponents/ContentProduction/ContentPr
 import IconsRight from './DashboaedComponents/SidebarComponents/IconsRight';
 import AcardionItem from './DashboaedComponents/AcardionItem/AcardionItem';
 import KeyWords from './KeyWords/KeyWords';
+import SaveListModal from './KeyWords/SaveListModal';
+import ContentpProduction from './ContentProduction/ContentpProduction';
+import MyList from './DashboaedComponents/MyList/MyList';
 
 
 
 export default function DashboardBody() {
   const [showModal, setShowModal] = useState(true)
   const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true)
+  // handle saving data of keyword table modal
+  const[keyWordShowSaveModal,setKeyWordShowSaveModal]=useState(false);
+  const saveButtonkeyWord=(event)=>{
+    setKeyWordShowSaveModal(true)
+  }
+  // update and save popup keywords
+  const [UpdatePpUp,showUpdatePpUp]=useState(false);
+  const[SavePopup,showSavePopup]=useState(false);
   // DashboardHeader nav icon that close the left sidebar
   const [closeNav, setCloseNav] = useState(false);
   const closeNavItem = () => {
@@ -49,12 +60,22 @@ export default function DashboardBody() {
   const tabContent=[
     {
         title:"جست و جو",
-        content:<KeyWords/>
+        content:<KeyWords onClickHandler={saveButtonkeyWord}/>
     },
     {
       title:"لیست من",
-      content:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ"
+      content:<MyList/>
     }
+]
+const tabContent2=[
+  {
+      title:"جست و جو",
+      content:<ContentpProduction onClickHandler={saveButtonkeyWord}/>
+  },
+  {
+    title:"لیست من",
+    content:<MyList/>
+  }
 ]
   return (
 
@@ -66,13 +87,18 @@ export default function DashboardBody() {
         <div className='bg-[#ffffff] overflow-y-scroll pb-8 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main'>
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
-        <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
+       {/* keyWords */}
+          <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
+          {/* <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/> */}
+          {keyWordShowSaveModal &&  <SaveListModal updateButtonHandler={()=>showUpdatePpUp(true)} saveButtonHandler={()=>showSavePopup(true)}/>}
+          {UpdatePpUp && <PopUp clickHandler={()=>showUpdatePpUp(false)} image={"./img/popUp/update.svg"} type={"sucsess"} buttonText={"باشه، فهمیدم!"} text={"لیست جدید شما با موفقیت بروزرسانی شد !"} title={"موفقیت آمیز"}/>}
+          {SavePopup && <PopUp clickHandler={()=>showSavePopup(false)} image={"./img/popUp/playlist_add.svg"} type={"sucsess"} buttonText={"باشه، فهمیدم!"} text={"لیست جدید شما با موفقیت ذخیره شد !"} title={"موفقیت آمیز"}/>}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
  
   
           {
             // <WorkSpace handleClose={closeWorkSpaceModal}/>
-            showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
+            // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
           }
         </div>

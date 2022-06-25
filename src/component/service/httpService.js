@@ -5,7 +5,7 @@ const token=localStorage.getItem("token");
 
 // debugger
 
-if (token!="undefined"&&token!=null&&token) {
+if (token!=="undefined"&&token!=null&&token) {
     // axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
     axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
 }
@@ -22,6 +22,7 @@ axios.interceptors.response.use(null,error=>{
     return Promise.reject(error);
 })
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default{
     get:axios.get,
     post:axios.post,

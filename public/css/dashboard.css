@@ -81,18 +81,22 @@
 	padding: 5px 3px;
 }
 
-.right .tooltip { top:-20%; left:115%; }
+.right .tooltip {
+	top: -20%;
+	left: 115%;
+}
 
 .tooltip-right::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #ffffff ;
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent #ffffff;
 }
+
 #DASHBOARD .tooltip {
 	position: absolute;
 	align-items: center;
@@ -109,21 +113,21 @@
 	position: absolute;
 	z-index: 1;
 	margin-left: -60px;
-	
-  }
-  
-  #DASHBOARD .tooltipTop::before {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border: 0.5em solid transparent;
-  border-top-color: #ffffff;
-  transform: translate(-50%, 0);
-  }
-  
+
+}
+
+#DASHBOARD .tooltipTop::before {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 0.5em solid transparent;
+	border-top-color: #ffffff;
+	transform: translate(-50%, 0);
+}
+
 #DASHBOARD .nav_right .down .dropDownBox .support_dropDown {
 	position: absolute;
 	z-index: 5;
@@ -417,7 +421,7 @@
 
 #DASHBOARD .popUpContainer .buttonText {
 	color: #0a65cd;
-	margin: 20px 0px 16px 0px;
+	margin: 40px 0px 14px 0px;
 	cursor: pointer;
 }
 
@@ -475,8 +479,9 @@
 .tab-6+div {
 	display: block;
 }
+
 /* checkbox */
-.checkbox{
+.checkbox {
 	border-radius: 4px !important;
 	background-color: #FCFCFB !important;
 	border-color: #D9D9D9 !important;
@@ -484,32 +489,37 @@
 
 
 /* table */
-#TABLE .copyAllButton .imageIcon{
+#TABLE .copyAllButton .imageIcon {
 	background: url(../img/dashboard/table/content_copy.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
-#TABLE .copyAllButton:hover .imageIcon{
+
+#TABLE .copyAllButton:hover .imageIcon {
 	background: url(../img/dashboard/table/content_copy_white.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
-#TABLE input:disabled{
-	background-color:#D9D9D9 !important;
+
+#TABLE input:disabled {
+	background-color: #D9D9D9 !important;
 }
-#TABLE .disableInput{
-	background-color:#D9D9D9 !important;
+
+#TABLE .disableInput {
+	background-color: #D9D9D9 !important;
 	background: #D9D9D9 !important;
 }
-#TABLE .copyAllButtondisabled .imageIcon{
+
+#TABLE .copyAllButtondisabled .imageIcon {
 	background: url(../img/dashboard/table/content_copy_white.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
-#TABLE .tableRow .content_copy_blue{
+
+#TABLE .tableRow .content_copy_blue {
 	display: none;
 	background: url(../img/dashboard/table/content_copy_blue.svg);
 	background-position: center;
@@ -517,18 +527,34 @@
 	background-size: contain;
 	cursor: pointer;
 }
-#TABLE .tableRow .content_copy_blue:active{
+
+#TABLE .tableRow .content_copy_blue:active {
 	background: url(../img/dashboard/table/content_copy_primary.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
-#TABLE .tableRow .content_copy_blue:checked{
+
+#TABLE .tableRow .content_copy_blue:checked {
 	background: url(../img/dashboard/table/content_copy_primary.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
-#TABLE .tableRow:hover .content_copy_blue{
+
+#TABLE .tableRow:hover .content_copy_blue {
 	display: block;
+}
+
+#TABLE button:disabled {
+	background-color: #F2F5F7 !important;
+}
+
+#keyWordSearch .searchBox input:disabled {
+	background-color: #F2F5F7;
+
+}
+
+#keyWordSearch .searchBox button:disabled {
+	background-color: #F2F5F7 !important;
 }

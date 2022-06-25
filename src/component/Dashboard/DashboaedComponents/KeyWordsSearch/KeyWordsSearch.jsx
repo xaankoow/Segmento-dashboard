@@ -16,9 +16,9 @@ export default function KeyWordsSearch({NothingSearch,dataItems,secoundSearch,ra
     }   
     
   return (
-    <div className="flex flex-col items-center relative">
+    <div className="flex flex-col items-center relative " id='keyWordSearch'>
     <div className='h-10 w-[334px] flex flex-col '>
-        <div className="flex items-center relative">
+        <div className="flex items-center relative searchBox">
              <input type="text" className={!radioText ? 'pr-2 w-[290px] h-11 border-2 border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]':NothingSearch? "disableInput placeholder-[#7D7D7D] w-[290px] h-11 pr-24": `w-[290px] h-11 pr-24 border-2 border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`} disabled={NothingSearch ? true :false} placeholder='جستجو کلمه کلیدی' onChange={(e)=>secoundSearch(e)} onClick={()=>{setInputClick(true); setButtonClick(true)}} onBlur={()=>setInputClick(!inputClick)}/>
             <div className={!radioText ?"hidden" :"text-xs min-w-[49px] h-[30px] px-1 py-1 rounded flex flex-col items-center justify-center bg-[#D9D9D9] text-[#7D7D7D] absolute right-2" }>
               {radioText}

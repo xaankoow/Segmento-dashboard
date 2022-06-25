@@ -24,7 +24,7 @@
 
 .ReactModal__Content {
     box-sizing: border-box;
-    width: 907px;
+    /* width: 907px; */
     /* height: 432px; */
     padding: 0px !important;
     /* padding: 0px 10px !important; change*/
