@@ -140,6 +140,7 @@ export default function Forgetpass() {
                   // chechvalue={chechvalue}
                   chechvalue={chechValueEmail}
                   disabled={forgotPasswordStep == 2 ?true :false }
+                  errorTextId="errRejesterFormatEmail"
                   />
                   </div>
 
@@ -255,6 +256,7 @@ export default function Forgetpass() {
                     disabled={ forgotPasswordStep > 1 ? false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setPasswordConfirmRedux}
+                    errorTextId="errRejesterPasswordConfirm"
                   />
                   <div className="ErrorBadgeBox">
                     <img

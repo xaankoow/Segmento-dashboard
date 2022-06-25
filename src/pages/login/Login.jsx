@@ -19,8 +19,8 @@ export default function Login() {
 
         <div className="gap-10 flex items-center  md:flex-col md:flex-col-reverse justify-between 2xl:py-10 md:py-10 min-w-full">
           <div className="w-6/12 flex flex-col items-center gap-11 md:min-w-full">
-            <AuthInput textLabelInput="ایمیل" width={"100%"}   reduxHandleChange={setEmailRedux} />
-            <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} />
+            <AuthInput textLabelInput="ایمیل" width={"100%"}   reduxHandleChange={setEmailRedux} errorTextId="errRejesterFormatEmail"/>
+            <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} errorTextId="errRejesterPassword"/>
 
             <div className="flex items-center w-full justify-between">
               <div className="flex gap-5">

@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
-import { applyDiscount, buyPlna } from "../../service/planService";
+import { applyDiscount, buyPlna, getPlanDetails } from "../../service/planService";
 import { handleNextInput } from "../../Utils/focusNextInput";
+import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
 
 
@@ -71,6 +72,14 @@ export const setPackageUuid = uuid => {
     }
 }
 
+export const setPackageDetails = uuid => {
+    return async (dispatch, getState) => { 
+        const state = { ...getState().planState }
+        const {data}= await getPlanDetails(uuid);
+        state.planDetails=data.data;
+        await dispatch({ type: "GET_PACKAGE_DETAILS", payload: state })
+    }
+}
 
 
 
@@ -197,6 +206,7 @@ export const applyDiscountAction = discountCode => {
                     // data.errors.forEach(element => {
                     //     toastMessage += element + " / ";
                     // });
+                    InputError("discount",data.data.msg)
                     toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
                 }
             } catch (error) {

@@ -23,6 +23,9 @@ export default function HandleModal({ handleClose, checkClose, show }) {
   const [discountInputBronze, setDiscountInputBronze] = useState("");
   const [discountInputSilver, setDiscountInputSilver] = useState("");
   const [discountInputDiamond, setDiscountInputDiamond] = useState("");
+  const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
+  // var lastSelectedDiscountInput="";
+
 
   const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate } = useSelector(state => state.planState);
 
@@ -37,21 +40,25 @@ export default function HandleModal({ handleClose, checkClose, show }) {
     switch (arrowTarget) {
       case "gold":
         if (discountInputGold != text) {
-          setDiscountInputGold("text");
+          setLastSelectedDiscountInput("gold");
+          setDiscountInputGold(text);
         }
         break;
       case "bronze":
         if (discountInputBronze != text) {
+          setLastSelectedDiscountInput("bronze");
           setDiscountInputBronze(text);
         }
         break;
       case "silver":
         if (discountInputSilver != text) {
+          setLastSelectedDiscountInput("silver");
           setDiscountInputSilver(text);
         }
         break;
       case "diamond":
         if (discountInputDiamond != text) {
+          setLastSelectedDiscountInput("diamond");
           setDiscountInputDiamond(text);
         }
         break;
@@ -249,6 +256,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"bronze"}
                 disabled={discount != "" ? true : false}
+                errorTextId={lastSelectedDiscountInput=="bronze"?"discount":""}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
@@ -299,6 +307,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"silver"}
                 disabled={discount != "" ? true : false}
+                errorTextId={lastSelectedDiscountInput=="silver"?"discount":""}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
@@ -349,6 +358,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"gold"}
                 disabled={discount != "" ? true : false}
+                errorTextId={lastSelectedDiscountInput=="gold"?"discount":""}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
@@ -400,6 +410,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"diamond"}
                 disabled={discount != "" ? true : false}
+                errorTextId={lastSelectedDiscountInput=="diamond"?"discount":""}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
@@ -419,7 +430,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
     return (
       <Fragment>
         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
-        <div className='report'>
+        <div className='report mt-16'>
           <div className='title'><span>اشتراک:</span><span>طلایی </span></div>
           <div className='date'><span>مدت اشتراک:</span><span>3 ماهه </span></div>
           <div className='plan_price'><span>قیمت اشتراک:</span><span>747 هزار تومان </span></div>
@@ -483,7 +494,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
 
   // debugger
   return (
-    <div className='modal'>
+    <div className='buy_plan_modal'>
       <Modal
         isOpen={true}
         parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
@@ -493,6 +504,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
         contentLabel="Example Modal"
       // className={"myModal"}
       >
+        <div className=' w-[907px]'>
         <header className='pr-5 pl-3.5'>
           <div>
             <span>{handleShowTitleModal()}</span>
@@ -508,29 +520,29 @@ export default function HandleModal({ handleClose, checkClose, show }) {
         </header>
         {stepModal < 4 ? (
 
-          <body>
+          <body className=' p-5'>
             {handleShowContentModal()}
           </body>
         ) : stepModal == 4 ? (
-          <body className='plans_body_container'>
+          <body className='plans_body_container p-5'>
             {handleShowPlans()}
           </body>
 
         ) : stepModal == 5 && free == false ? (
-          <body className='report_container'>
+          <body className='report_container mt-16 p-5'>
             {handleShowBuyPlan()}
           </body>
         ) : stepModal == 6 && free == false ? (
-          <body className='final_report_container'>
+          <body className='final_report_container p-5'>
             {handleShowReport("اشتراک طلایی ، 3 ماهه")}
           </body>
         )
           : stepModal == 5 && free == true ? (
-            <body className='plan_list_option'>
+            <body className='plan_list_option p-5'>
               {handleShowTryFreePlan()}
             </body>
           ) : stepModal == 6 && free == true ? (
-            <body className='final_report_container'>
+            <body className='final_report_container p-5'>
               {handleShowReport("14 روز رایگان")}
             </body>
           ) : ""}
@@ -541,6 +553,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
           {stepModal == 4 ? <AuthButton handlerClick={() => { setFree(false) }} reduxHandleClick={buyPlan} textButton={"خرید اشتراک"} /> : <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>}
           {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
         </footer>
+        </div>
       </Modal>
       {forceUpdate ? "" : ""}
     </div>

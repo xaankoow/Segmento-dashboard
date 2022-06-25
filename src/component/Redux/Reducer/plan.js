@@ -10,7 +10,8 @@ export const planReducer = (state =
         planChosen: "",
         discount: "",
         packageUuid: "",
-        forceUpdate: 0
+        forceUpdate: 0,
+        planDetails:{}
     }, action) => {
     switch (action.type) {
 
@@ -45,6 +46,8 @@ export const planReducer = (state =
             return { ...action.payload }
             
             case "BUY_PLAN":
+                return { ...action.payload }
+            case "GET_PACKAGE_DETAILS":
                 return { ...action.payload }
 
         case "FORCE_UPDATE":

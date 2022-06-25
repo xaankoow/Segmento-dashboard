@@ -42,6 +42,7 @@ export default function Register() {
               textLabelInput="ایمیل"
               width={"100%"}
               reduxHandleChange={setEmailRedux}
+              errorTextId="errRejesterFormatEmail"
             />
             <div className="flex justify-between gap-3 w-full">
               <AuthInput
@@ -57,6 +58,7 @@ export default function Register() {
                 typeInput="password"
                 isPassword={true}
                 reduxHandleChange={setPasswordConfirmRedux}
+                errorTextId="errRejesterPasswordConfirm"
               />
             </div>
             <div className="flex items-center w-full justify-between">

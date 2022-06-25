@@ -15,6 +15,12 @@ export const buyPlna = packageInfo => {
     }
     return http.post(`${config.xaankooApi}/api/v1/payment/pay`,packageInfo, headerRegisterUser);
 }
+export const getPlanDetails = uuid => {
+    const headerRegisterUser = {
+        "Accept": "application/json",
+    }
+    return http.get(`${config.xaankooApi}/api/v1/pachage/${uuid}`, headerRegisterUser);
+}
 // export const applyDiscount = discountToken => {
 //     const headerRegisterUser = {
 //         "Accept": "application/json",
