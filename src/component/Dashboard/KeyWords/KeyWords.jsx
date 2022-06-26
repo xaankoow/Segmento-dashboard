@@ -18,10 +18,10 @@ import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch
   };     
   
 
+  var ali="";
   //3
   const handleSetKeyWords=async()=>{
     try {
-      debugger
       const dd={
         "key": `${searchBoxValue}`,
         "key2": "",
@@ -30,6 +30,8 @@ import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch
         "characters" : true
       };
       // const { data, status } = await keywordService(searchBoxValue);
+      debugger
+      ali="shakh";
       const { data, status } = await keywordService(dd);
       console.log(data);
     setKeyWords(data.data);//5

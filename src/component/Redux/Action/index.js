@@ -131,27 +131,6 @@ export const registerUserAction = () => {
         const state = { ...getState().userState }
         debugger
         if (state.fullName && state.email && state.password && state.passwordConfirm) {
-<<<<<<< HEAD
-            let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
-            let toastMessage = "";
-            
-            try {
-                let formdata = new FormData();
-                formdata.append("name", state.fullName)
-                formdata.append("email", state.email)
-                formdata.append("password", state.password)
-                formdata.append("password_confirmation", state.passwordConfirm)
-                // let register_user =async () => {
-                const { data, status } = await registerUser(formdata);
-
-                if (status == 200 && data.status == true) {
-                    toast.update(toastPromiseRegister, { render: "به خانواده بزرگ زانکو خوش آمدید", type: "success", isLoading: false, autoClose: 3000 })
-                    let toastPromiseSendCode = toast.loading("درحال ارسال درخواست شما به سرور")
-                    state.email = state.email;
-                    state.checkRegisterComplete = true;
-                    // let send_code_email = async () => {
-                    const { data, status } = await verifyEmail(formdata);
-=======
             if (CheckFormat("email", state.email, "errRejesterFormatEmail") && CheckFormat("password", state.password, "errRejesterPasswordConfirm") && CheckFormat("passwordConfirm", { pass1: state.password, pass2: state.passwordConfirm }, "errRejesterPasswordConfirm")) {
                 // if () {
                 // if () {
@@ -166,7 +145,6 @@ export const registerUserAction = () => {
                     // let register_user =async () => {
                     const { data, status } = await registerUser(formdata);
 
->>>>>>> efc4f7da3dd1b6027361c0e2efed2c8fd0bcce49
                     if (status == 200 && data.status == true) {
                         toast.update(toastPromiseRegister, { render: "به خانواده بزرگ زانکو خوش آمدید", type: "success", isLoading: false, autoClose: 3000 })
                         let toastPromiseSendCode = toast.loading("درحال ارسال درخواست شما به سرور")

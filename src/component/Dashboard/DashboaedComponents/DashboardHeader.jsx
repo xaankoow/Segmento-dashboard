@@ -48,7 +48,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                 </div>
             </div>
             <div className='flex items-center gap-9'>
-                <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)]'>
+                <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0'>
                     <div className='flex gap-3 items-center'>
                         <img src='../img/dashboard/header/userimage.svg' className='rounded' alt='userImage' />
                         <div className=''>
@@ -83,7 +83,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                         </div>
                         <div className='border-b border-lightGray w-full ' />
                         <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] mt-1' onClick={() => dispatch(logoutAction())}>
-                            <div className='flex items-center'>
+                            <div className='flex items-center pr-2'>
                                 <span>خروج از حساب کاربری</span>
                             </div>
                                 <img src="../img/dashboard/header/logout.svg" alt="logout" className='ml-1 rotate-180'/>
