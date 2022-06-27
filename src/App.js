@@ -13,6 +13,7 @@ import HandleModal from "./component/Utils/handleModal";
 import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { useSelector } from "react-redux";
 import LandingPage from "./component/Utils/landingPage/landingPage";
+import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
 
@@ -36,6 +37,8 @@ export default function App() {
   // }, [codVerifyEmail_4])
 
   return (
+    <Fragment>
+
       <div className="app">
         <div className="flex flex-col items-center w-full justify-center overflow-hidden">
            
@@ -51,7 +54,7 @@ export default function App() {
           <Route exact path={"ValidateEmail"} element={<Nav path={"login"}/>} /> */}
         </Routes>
 
-        
+        {/* <button className="btn-style" onClick={()=>LoadingPage({show:true})}>click me!</button> */}
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route path="register" element={<Register />} />
@@ -67,8 +70,12 @@ export default function App() {
         </Routes>
 
       {/* <HandleModal /> */}
+      {/* {LoadingPage} */}
       <ToastContainer rtl />
       {forceUpdate?"":""}
     </div>
+      <LoadingPage/>
+    </Fragment>
+
   );
 }
