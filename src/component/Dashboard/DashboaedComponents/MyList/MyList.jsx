@@ -1,11 +1,15 @@
 import { Tab } from "@headlessui/react";
 import { list } from "postcss";
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { dataTable } from "../../../service/dataTable";
 import SearchBox from "../SearchBox/SearchBox";
 import Table from "../TableData/TableData";
 
 export default function MyList() {
   const [clicked, setClicked] = React.useState(false);
+  // set api data
+  const[tableDatas,setTableDatas]=useState([]);
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -13,15 +17,25 @@ export default function MyList() {
     }
     setClicked(index);
   };
+
+  useEffect(()=>{
+    handleFetchingTableData()
+  },[])
+  const handleFetchingTableData = async()=>{
+      try{
+          const dataRaw={ "type":"suggest_google_character" }
+          const {data,status}=await dataTable(dataRaw)
+          console.log(data);
+          debugger
+          setTableDatas(data.data)
+      }
+      catch(error){
+        debugger
+          console.log(error)
+      }
+  }
   const listDatas = [1, 2, 3];
-  const data=[ "آیا کره محلی چربی دارد",
-  "آیا کره محلی چاق کننده است؟",
-  "آموزش کره محلی",
-  "آموزش کره محلی از ماست",
-  "آموزش کره محلی در منزل",
-  "آیا کره محلی باعث چاقی میشود",
-  "چگونه کره محلی را آب کنیم",
-  "آیا کره محلی ضرر دارد"]
+
   return (
     <div className="px-4 py-7 bg-[#ffffff]">
       <div className="flex justify-between items-center mb-4">
@@ -66,7 +80,7 @@ export default function MyList() {
               </div>
             
             </div>
-            {clicked === index ? <Table data={data} WordsSearcher={true}/> : null}
+            {clicked === index ? <Table data={""} WordsSearcher={true}/> : null}
           </div>
         );
       })}

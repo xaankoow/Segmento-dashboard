@@ -5,57 +5,81 @@ import ItemSidebarHover from "./ItemSidebarHover";
 
 export default function SidebarComponent({ closeNav }) {
   const [activeIcon, setActiveIcon] = useState(1);
+  const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
   };
-  const itemsHoverMenu = ["گزارش های منتخب", "خرید اشتراک", "شروع آسان", "خبرخوان", "آموزش", "پیشنهادات و تخفیف ها", "پشتیبانی و تیکت", "انتخاب سرویس"]
+  const itemsHoverMenu = [
+    "گزارش های منتخب",
+    "خرید اشتراک",
+    "شروع آسان",
+    "خبرخوان",
+    "آموزش",
+    "پیشنهادات و تخفیف ها",
+    "پشتیبانی و تیکت",
+    "انتخاب سرویس",
+  ];
   return (
     <>
-      {activeIcon == 0 ? (
-        <div
-        className="list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg"
+      <div
+        className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
         style={{ width: closeNav ? "0px" : "256px" }}
       >
-           {
-            itemsHoverMenu.map(item => {
-              return <ItemSidebarHover text={!closeNav && item} icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"} textColor={"#002145"} textHover={"#0A65CD"} />
-            })
-          }
-        </div>
-      ) : activeIcon == 1 ?  (
-        <div
-          className="list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg"
-          style={{ width: closeNav ? "0px" : "256px" }}
-        >
-         
-          <ItemSidebarHover
-            icon={"./img/dashboard/nav_right/dashboardPishKhan.svg"}
-            text={!closeNav && "پیشخوان"}
-            textColor={"#0A65CD"}
-          />
-          <div className="border-b border-lightGray w-11/12 m-auto" />
-          <ItemSidebarHover
-            icon={"./img/dashboard/nav_right/web.svg"}
-            text={!closeNav && "ورک‌اسپیس‌ها"}
-            textColor={"#002145"}
-          />
-          <div className="mr-4">
-            <ItemSidebarHover
-              icon={"./img/dashboard/nav_right/storefront.svg"}
-              text={!closeNav && "xaankoo.com"}
-              textColor={"#002145"}
-            />
-            <ItemSidebarHover
-              icon={"./img/dashboard/nav_right/add_circle.svg"}
-              text={!closeNav && "تعریف ورک‌اسپیس جدید"}
-              textColor={"#002145"}
-            />
+        {activeIcon == 0 ? (
+          <div>
+            {itemsHoverMenu.map((item) => {
+              return (
+                <ItemSidebarHover
+                  text={!closeNav && item}
+                  icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"}
+                  textColor={"#002145"}
+                  textHover={"#0A65CD"}
+                />
+              );
+            })}
           </div>
-          <div className="border-b border-lightGray w-11/12 m-auto" />
-          <AcardionItem />
-        </div>
-      ) :null}
-
+        ) : activeIcon == 1 ? (
+          <div>
+            <ItemSidebarHover
+              icon={"./img/dashboard/nav_right/dashboardPishKhan.svg"}
+              text={!closeNav && "پیشخوان"}
+              textColor={"#0A65CD"}
+            />
+            <div className="border-b border-lightGray w-11/12 m-auto" />
+            <ItemSidebarHover
+              icon={"./img/dashboard/nav_right/web.svg"}
+              text={!closeNav && "ورک‌اسپیس‌ها"}
+              textColor={"#002145"}
+            />
+            <div className="mr-4">
+              <ItemSidebarHover
+                icon={"./img/dashboard/nav_right/storefront.svg"}
+                text={!closeNav && "xaankoo.com"}
+                textColor={"#002145"}
+              />
+              <ItemSidebarHover
+                icon={"./img/dashboard/nav_right/add_circle.svg"}
+                text={!closeNav && "تعریف ورک‌اسپیس جدید"}
+                textColor={"#002145"}
+              />
+            </div>
+            <div className="border-b border-lightGray w-11/12 m-auto" />
+            <AcardionItem />
+          </div>
+        ) : null}
+        {/* advertisement box */}
+        {!disableAdvertisement ? (
+          <div className="bg-[#F2F5F7] h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
+            <img
+              src="./img/dashboard/nav_right/close.svg"
+              alt="close."
+              className="absolute top-2 left-2 cursor-pointer"
+              onClick={()=>setDisableAdvertisement(true)}
+            />
+            <span className="text-[#7D7D7D]">نمونه نوشته داینامیک</span>
+          </div>
+        ) : null}
+      </div>
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
         <IconsRight setActive={activeIconHandler} />
         <div className="down">

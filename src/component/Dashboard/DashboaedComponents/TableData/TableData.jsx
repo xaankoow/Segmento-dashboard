@@ -156,7 +156,7 @@ export default function Table({
           </div>
         ) : (
           <div
-            className="bg-white text-right w-full overflow-y-scroll max-h-[401px] "
+            className="bg-white text-right w-full overflow-y-scroll max-h-[450px] "
             id="table"
           >
             {data.map((item, index) => {

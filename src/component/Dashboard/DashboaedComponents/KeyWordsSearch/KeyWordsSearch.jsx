@@ -51,7 +51,7 @@ export default function KeyWordsSearch({NothingSearch,dataItems,secoundSearch,ra
                  {
                      dataItems.map((items,index)=>{
                           return  <div className='flex gap-2 mt-3 mb-3 pr-4' >
-                                    <span> {items.content} </span>
+                                    <span> {items} </span>
                                   </div>
                      })
                  }
