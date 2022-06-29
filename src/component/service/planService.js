@@ -8,6 +8,14 @@ export const applyDiscount = discountToken => {
     }
     return http.post(`${config.xaankooApi}/api/v1/discount/check`,discountToken, headerRegisterUser);
 }
+
+export const getAllPlan = () => {
+    const headerRegisterUser = {
+        "Accept": "application/json"
+    }
+    return http.get(`${config.xaankooApi}/api/v1/package `,headerRegisterUser);
+}
+
 export const buyPlna = packageInfo => {
     const headerRegisterUser = {
         "Accept": "application/json",

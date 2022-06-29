@@ -1,10 +1,42 @@
 import { toast } from "react-toastify";
-import { applyDiscount, buyPlna, getPlanDetails } from "../../service/planService";
+import { applyDiscount, buyPlna, getAllPlan, getPlanDetails } from "../../service/planService";
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
 
 
+
+export const getAllPlanData = ()=> {
+    return async (dispatch, getState) => {
+        // debugger
+        const state = { ...getState().planState }
+        let toastMessage="";
+        try {
+            const workSpaces=await getAllPlan()
+            // debugger
+            if (workSpaces.data.status==true&&workSpaces.data.code==200) {
+                state.allPackageData = workSpaces.data.data;
+            }else{
+                
+            }
+            await dispatch({ type: "GET_ALL_PLAN_DATA", payload: state })    
+        } catch (error) {
+            console.log("register error")
+            error.response.data.errors.forEach(element => {
+                toastMessage += element + " / ";
+            });
+            toast.warn(toastMessage, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
+}
 
 
 export const setWebAdress = adress => {

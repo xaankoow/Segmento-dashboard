@@ -11,9 +11,13 @@ export const planReducer = (state =
         discount: "",
         packageUuid: "",
         forceUpdate: 0,
-        planDetails:{}
+        planDetails:{},
+        allPackageData:[]
     }, action) => {
     switch (action.type) {
+
+        case "GET_ALL_PLAN_DATA":
+            return { ...action.payload }
 
         case "DISCOUNT_CODE":
             return { ...action.payload }
