@@ -91,7 +91,7 @@ const tabContent2=[
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
        {/* keyWords */}
-          <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
+          {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
           {/* <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/> */}
           {keyWordShowSaveModal &&  <SaveListModal updateButtonHandler={()=>showUpdatePpUp(true)} saveButtonHandler={()=>showSavePopup(true)}/>}
           {UpdatePpUp && <PopUp clickHandler={()=>showUpdatePpUp(false)} image={"./img/popUp/update.svg"} type={"sucsess"} buttonText={"باشه، فهمیدم!"} text={"لیست جدید شما با موفقیت بروزرسانی شد !"} title={"موفقیت آمیز"}/>}
@@ -110,7 +110,7 @@ const tabContent2=[
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
           }
 
-          <AleartMessageBuyPlan/>
+          {/* <AleartMessageBuyPlan/> */}
         </div>
       <SidebarComponent closeNav={closeNav}/>
       </div>

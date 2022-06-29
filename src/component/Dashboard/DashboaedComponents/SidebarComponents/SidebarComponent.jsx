@@ -64,29 +64,6 @@ export default function SidebarComponent({ closeNav }) {
               textColor={"#002145"}
             />
             <div className="mr-4">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               {allWorkSpace.map(item=>
               <ItemSidebarHover
                 icon={"./img/dashboard/nav_right/storefront.svg"}
@@ -94,31 +71,6 @@ export default function SidebarComponent({ closeNav }) {
                 textColor={"#002145"}
               />
             )}
-            {/* <ItemSidebarHover
-              icon={"./img/dashboard/nav_right/storefront.svg"}
-              text={!closeNav && "xaankoo.com"}
-              textColor={"#002145"}
-            />
-            <ItemSidebarHover
-              icon={"./img/dashboard/nav_right/storefront.svg"}
-              text={!closeNav && "xaankoo.com"}
-              textColor={"#002145"}
-            />
-            <ItemSidebarHover
-              icon={"./img/dashboard/nav_right/storefront.svg"}
-              text={!closeNav && "xaankoo.com"}
-              textColor={"#002145"}
-            />
-            <ItemSidebarHover
-              icon={"./img/dashboard/nav_right/storefront.svg"}
-              text={!closeNav && "xaankoo.com"}
-              textColor={"#002145"}
-            />
-              <ItemSidebarHover
-                icon={"./img/dashboard/nav_right/add_circle.svg"}
-                text={!closeNav && "تعریف ورک‌اسپیس جدید"}
-                textColor={"#002145"}
-              /> */}
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />

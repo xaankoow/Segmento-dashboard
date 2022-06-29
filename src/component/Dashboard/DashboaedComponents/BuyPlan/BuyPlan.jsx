@@ -1,13 +1,20 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import AuthInput from '../../../Auth/authInput/AuthInput';
-import { applyDiscountAction, setPackageUuid } from '../../../Redux/Action/plan';
+import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../../Redux/Action/plan';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthButton from '../../../Auth/authButton/AuthButton';
 import ReportBuyPlanSection from '../../../Utils/Modals/ReportBuyPlanSection';
 
 export default function BuyPlan({ title }) {
 
+  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate,packageUuid,allPackageData } = useSelector(state => state.planState);
 
+  const dispatch = useDispatch();
+  
+  console.log(allPackageData)
+  useEffect(() => {
+    dispatch(getAllPlanData())
+  }, [])
   
   const [showReportModal, setShowReportModal] = useState(false);
 
@@ -21,9 +28,6 @@ export default function BuyPlan({ title }) {
   const [discountInputSilver, setDiscountInputSilver] = useState("");
   const [discountInputDiamond, setDiscountInputDiamond] = useState("");
 
-  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate,packageUuid } = useSelector(state => state.planState);
-
-  const dispatch = useDispatch();
 
   const handleShowArrowDiscount = (text, arrowTarget) => {
     // debugger
