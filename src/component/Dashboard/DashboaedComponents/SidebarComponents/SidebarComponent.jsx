@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getAllWorkSpace } from "../../../Redux/Action/workSpace";
 import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
@@ -6,9 +8,19 @@ import ItemSidebarHover from "./ItemSidebarHover";
 export default function SidebarComponent({ closeNav }) {
   const [activeIcon, setActiveIcon] = useState(1);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
+  // useEffect(() => {
+    
+    // getAllWorkSpace()();
+    // }, [])
+    const {allWorkSpace} = useSelector(state=>state.workSpaceState)
+    // debugger
+    // console.log(allWorkSpace)
+    // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
   };
+
+
   const itemsHoverMenu = [
     "گزارش های منتخب",
     "خرید اشتراک",
@@ -52,16 +64,61 @@ export default function SidebarComponent({ closeNav }) {
               textColor={"#002145"}
             />
             <div className="mr-4">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              {allWorkSpace.map(item=>
               <ItemSidebarHover
                 icon={"./img/dashboard/nav_right/storefront.svg"}
-                text={!closeNav && "xaankoo.com"}
+                text={!closeNav && item.website}
                 textColor={"#002145"}
               />
+            )}
+            {/* <ItemSidebarHover
+              icon={"./img/dashboard/nav_right/storefront.svg"}
+              text={!closeNav && "xaankoo.com"}
+              textColor={"#002145"}
+            />
+            <ItemSidebarHover
+              icon={"./img/dashboard/nav_right/storefront.svg"}
+              text={!closeNav && "xaankoo.com"}
+              textColor={"#002145"}
+            />
+            <ItemSidebarHover
+              icon={"./img/dashboard/nav_right/storefront.svg"}
+              text={!closeNav && "xaankoo.com"}
+              textColor={"#002145"}
+            />
+            <ItemSidebarHover
+              icon={"./img/dashboard/nav_right/storefront.svg"}
+              text={!closeNav && "xaankoo.com"}
+              textColor={"#002145"}
+            />
               <ItemSidebarHover
                 icon={"./img/dashboard/nav_right/add_circle.svg"}
                 text={!closeNav && "تعریف ورک‌اسپیس جدید"}
                 textColor={"#002145"}
-              />
+              /> */}
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />

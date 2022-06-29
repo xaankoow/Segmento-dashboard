@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { keywords, website } from "../../service/workSpaceService";
+import { getAllWorkspace, keywords, website } from "../../service/workSpaceService";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
 
 
@@ -7,12 +7,43 @@ import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromis
 
 export const setWebAdress = adress => {
     return async (dispatch, getState) => {
-        const state = { ...getState().planState }
+        const state = { ...getState().workSpaceState }
         state.webAdress = "https://" + adress;
         await dispatch({ type: "WEB_ADRESS", payload: state })
     }
 }
 
+export const getAllWorkSpace = ()=> {
+    return async (dispatch, getState) => {
+        // debugger
+        const state = { ...getState().workSpaceState }
+        let toastMessage="";
+        try {
+            const workSpaces=await getAllWorkspace()
+            if (workSpaces.data.status==true&&workSpaces.data.code==200) {
+                state.allWorkSpace = workSpaces.data.data;
+            }else{
+                
+            }
+            // debugger
+            await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state })    
+        } catch (error) {
+            console.log("register error")
+            error.response.data.errors.forEach(element => {
+                toastMessage += element + " / ";
+            });
+            toast.warn(toastMessage, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
+}
 
 export const setKeyWords = (value, stateKey) => {
     return async (dispatch, getState) => {
@@ -206,6 +237,7 @@ export const workSpaceWebsite = () => {
         }
     }
 }
+
 export const workSpaceKeyWords = () => {
     return async (dispatch, getState) => {
         const state = { ...getState().workSpaceState }

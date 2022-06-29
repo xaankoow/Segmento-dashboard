@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { coreUser, logoutAction } from '../../Redux/Action';
 import getCookie from '../../Utils/findUser';
 import { useNavigate } from 'react-router-dom'
+import { getAllWorkSpace } from '../../Redux/Action/workSpace';
 
 const DashboardHeader = ({ setCloseNav }) => {
 
@@ -32,6 +33,7 @@ const DashboardHeader = ({ setCloseNav }) => {
     useEffect(() => {
         if (userToken) {
             dispatch(coreUser());
+            dispatch(getAllWorkSpace());
         }
     }, [forceUpdate])
 
