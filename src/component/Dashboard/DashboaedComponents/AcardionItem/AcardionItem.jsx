@@ -114,14 +114,14 @@ acardionItems:[
 return (
 <>
   {data.map((item,index)=>{
-  return <div className='cursor-pointer' key={index} >
+  return <div className='' key={index} >
     <div className='flex items-center justify-between m-0 p-0'>
       
-      <div key={index} className='flex items-center gap-3 text-[#002145] mt-4 mb-3  mr-5 text-sm '  >
+      <div key={index} className='flex items-center gap-3 text-[#002145] mt-4 mb-3  mr-5 text-sm  w-full'  >
                   <img src={item.titleIcon} alt='icon'/>
-                  <span >{item.title}</span>
+                  <span className="w-full">{item.title}</span>
                  </div>
-      <div onClick={()=>toggle(index)} className="pl-3 cursor-pointer w-28 h-4 flex justify-end">
+      <div onClick={()=>toggle(index)} className="pl-3 cursor-pointer w-10 h-4 flex justify-end">
         {clicked===index ? <img src="./img/dashboard/nav_right/arrow_back_ios_new_down.svg" alt='' className="w-4 h-3"/> : <img
           src="./img/dashboard/nav_right/arrow_back_ios_new.svg" alt='' className="w-3 h-4"/>}
       </div>
@@ -133,7 +133,7 @@ return (
       item.acardionItems.map((item,index)=>{
         return  <div key={index} className='flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox '  >
                   <img src={item.itemIcon} alt='icon'/>
-                  <span >{item.itemTitle}</span>
+                  <span className={"w-auto"}>{item.itemTitle}</span>
                  </div>
       })
      }

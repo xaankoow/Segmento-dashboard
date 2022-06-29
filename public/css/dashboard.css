@@ -554,10 +554,14 @@
 }
 
 #keyWordSearch .searchBox input:disabled {
-	background-color: #F2F5F7;
+	background-color: #D9D9D9;
 
 }
 
 #keyWordSearch .searchBox button:disabled {
-	background-color: #F2F5F7 !important;
+	background-color: #D9D9D9 !important;
+}
+
+#keyWordSearch  .btnDisabled:disabled{
+	border-right: 1px solid #7D7D7D !important;
 }

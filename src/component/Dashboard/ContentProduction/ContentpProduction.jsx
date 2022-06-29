@@ -1,46 +1,9 @@
 import React, { useState } from "react";
+import { ContentProductionService } from "../../service/contentProduction";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../DashboaedComponents/TableData/TableData";
 
 export default function ContentpProduction({ onClickHandler }) {
-  const tableData = [
-    {
-      row: 1,
-      content: "کره محلی باعث چاقی میشود",
-    },
-    {
-      row: 2,
-      content: "تعبیر خواب کره ی محلی",
-    },
-    {
-      row: 3,
-      content: "ماندگاری کره محلی",
-    },
-    {
-      row: 1,
-      content: "کره محلی میهن",
-    },
-    {
-      row: 2,
-      content: " اشتراک 12 ماهه طلایی",
-    },
-    {
-      row: 3,
-      content: " اشتراک 12 ماهه طلایی",
-    },
-    {
-      row: 1,
-      content: " اشتراک 12 ماهه طلایی",
-    },
-    {
-      row: 2,
-      content: "کره حیوانی محلی قیمت",
-    },
-    {
-      row: 3,
-      content: "فروش کره محلی گاو",
-    },
-  ];
   // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const SearchBoxChangeHandler = (e) => {
@@ -51,9 +14,28 @@ export default function ContentpProduction({ onClickHandler }) {
   // search box click
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
   //filter from searchBox  in table
-  const tableDataFiltered = tableData.filter((item) => {
-    if (searchBoxHandleClick && searchBoxValue)
-      return item.content.includes(searchBoxValue);
+
+  const [content, setcontent] = useState([]);
+
+  const handleSetContentProduction = async () => {
+    try {
+      let formdata = new FormData();
+      formdata.append("keyword", searchBoxValue);
+      // const { data, status } = await keywordService(searchBoxValue);
+      debugger;
+      const { data, status } = await ContentProductionService(formdata);
+      setcontent(data.data); //5
+    } catch (error) {
+      debugger;
+      console.log(error);
+    }
+  };
+  var tableDataFiltered = [];
+  content.map((item) => {
+    if (item.includes(searchBoxValue)) {
+      tableDataFiltered.push(item);
+    }
+    // return
   });
 
   return (
@@ -61,7 +43,10 @@ export default function ContentpProduction({ onClickHandler }) {
       <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
           changeHandler={SearchBoxChangeHandler}
-          handlClick={() => setSearchBoxHandleClick(true)}
+          handlClick={() => {
+            setSearchBoxHandleClick(true);
+            handleSetContentProduction();
+          }}
           className="w-[97%] flex items-center gap-2 justify-between"
         />
 
@@ -76,6 +61,8 @@ export default function ContentpProduction({ onClickHandler }) {
                 !searchBoxValue || !searchBoxHandleClick ? true : false
               }
               headerButton={true}
+              contentsProduction={true}
+              openModal={()=>onClickHandler()}
             />
           </div>
         </div>

@@ -82,7 +82,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                             <img src="../img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' />
                         </div>
                         <div className='border-b border-lightGray w-full ' />
-                        <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] mt-1' onClick={() => dispatch(logoutAction())}>
+                        <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] my-1' onClick={() => dispatch(logoutAction())}>
                             <div className='flex items-center pr-2'>
                                 <span>خروج از حساب کاربری</span>
                             </div>

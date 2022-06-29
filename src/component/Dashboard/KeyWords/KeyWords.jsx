@@ -10,7 +10,7 @@ const KeyWords = ({ onClickHandler }) => {
    // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [keyWords, setKeyWords] = useState([]); //1
-
+  const [seperator,setSeperator]=useState(false)
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
@@ -46,7 +46,7 @@ const KeyWords = ({ onClickHandler }) => {
   Object.keys(keyWords).map((item) => {
     // console.log(datass.data[item].length);
     if (keyWords[item]!=null) {
-      
+         
       for (let i = 0; i < keyWords[item].length - 1; i++) {
         if (keyWords[item][i].includes(searchBoxValue)) {
           tableDataFiltered.push(keyWords[item][i]);
@@ -56,7 +56,6 @@ const KeyWords = ({ onClickHandler }) => {
     }
     
   });
-
 
   //  secound search
   const [secoundSearchBoxValue, setSecoundSearchBoxValue] = useState("");
@@ -137,6 +136,7 @@ const KeyWords = ({ onClickHandler }) => {
                 secoundSearch={secoundSearchBoxChangeHandler}
                 radioClickedHandler={radioButtonHandler}
               />
+              <span className="mt-5">جستجو بر اساس حروف الفبا</span>
               <AlphabetKeyWord handleclick={handleClick} />
             </div>
           </div>
@@ -152,7 +152,7 @@ const KeyWords = ({ onClickHandler }) => {
         onClick={(e) => onClickHandler()}
       >
         <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />
-        ذخیره لیست
+        تولید بیشتر
       </button>
     </>
   );

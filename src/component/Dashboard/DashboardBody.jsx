@@ -14,10 +14,11 @@ import AcardionItem from './DashboaedComponents/AcardionItem/AcardionItem';
 import KeyWords from './KeyWords/KeyWords';
 import SaveListModal from './KeyWords/SaveListModal';
 import ContentpProduction from './ContentProduction/ContentpProduction';
-import MyList from './DashboaedComponents/MyList/MyList';
+import MyList from './KeyWords/MyList/MyList';
 import WorkSpaceReport from './DashboaedComponents/workSpace/workSpaceReport';
 import AleartMessageBuyPlan from './DashboaedComponents/BuyPlan/AleartMessageBuyPlan';
 import SidebarComponent from './DashboaedComponents/SidebarComponents/SidebarComponent';
+import MylistContentProduction from './DashboaedComponents/ContentProduction/MyListContentProduction/MyListContentProduction';
 
 
 
@@ -67,7 +68,7 @@ export default function DashboardBody() {
     },
     {
       title:"لیست من",
-      content:<MyList/>
+      content:<MyList />
     }
 ]
 const tabContent2=[
@@ -77,7 +78,7 @@ const tabContent2=[
   },
   {
     title:"لیست من",
-    content:<MyList/>
+    content:<MylistContentProduction/>
   }
 ]
   return (
@@ -91,13 +92,13 @@ const tabContent2=[
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
        {/* keyWords */}
-          <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
-          {/* <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/> */}
+          {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
+          <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>
           {keyWordShowSaveModal &&  <SaveListModal updateButtonHandler={()=>showUpdatePpUp(true)} saveButtonHandler={()=>showSavePopup(true)}/>}
           {UpdatePpUp && <PopUp clickHandler={()=>showUpdatePpUp(false)} image={"./img/popUp/update.svg"} type={"sucsess"} buttonText={"باشه، فهمیدم!"} text={"لیست جدید شما با موفقیت بروزرسانی شد !"} title={"موفقیت آمیز"}/>}
           {SavePopup && <PopUp clickHandler={()=>showSavePopup(false)} image={"./img/popUp/playlist_add.svg"} type={"sucsess"} buttonText={"باشه، فهمیدم!"} text={"لیست جدید شما با موفقیت ذخیره شد !"} title={"موفقیت آمیز"}/>}
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          <BuyPlan title={"خرید اشتراک سگمنتو"} />
+          {/* <BuyPlan title={"خرید اشتراک سگمنتو"} /> */}
           
           {/* <WorkSpaceReport/> */}
         {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
@@ -110,7 +111,7 @@ const tabContent2=[
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
           }
 
-          <AleartMessageBuyPlan/>
+          {/* <AleartMessageBuyPlan/> */}
         </div>
       <SidebarComponent closeNav={closeNav}/>
       </div>
