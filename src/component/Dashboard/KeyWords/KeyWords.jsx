@@ -1,127 +1,160 @@
-import React, { useState } from 'react'
-import AlphabetKeyWord from '../DashboaedComponents/AlphabetKeyWord/AlphabetKeyWord'
-import SearchBox from '../DashboaedComponents/SearchBox/SearchBox'
-import Table from '../DashboaedComponents/TableData/TableData'
-import KeyWordsSearch from '../KeyWordsSearch/KeyWordsSearch'
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import React, { useEffect, useState } from "react";
+import { keywordService } from "../../service/keyWordsService";
+import AlphabetKeyWord from "../DashboaedComponents/AlphabetKeyWord/AlphabetKeyWord";
+import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
+import Table from "../DashboaedComponents/TableData/TableData";
+import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
 
-export default function KeyWords() {
-  
-    const tableData=[
-        {
-          row:1,
-          content: "کره محلی باعث چاقی میشود"
-        },
-        {
-          row:2,
-          content: "تعبیر خواب کره ی محلی",
-        },
-        {
-          row:3,
-          content: "ماندگاری کره محلی"
-        },
-        {
-          row:1,
-          content: "کره محلی میهن",
-        },
-        {
-          row:2,
-          content:" اشتراک 12 ماهه طلایی"
-        },
-        {
-          row:3,
-          content:" اشتراک 12 ماهه طلایی"
-        },
-        {
-          row:1,
-          content:" اشتراک 12 ماهه طلایی"
-        },
-        {
-          row:2,
-          content:  "کره حیوانی محلی قیمت",
-        },
-        {
-          row:3,
-          content:"فروش کره محلی گاو"
-        },
-      ]
-      // searchBox Value
-      const[searchBoxValue,setSearchBoxValue]=useState("");
-      const SearchBoxChangeHandler=(e)=>{
-        setSearchBoxValue(e.target.value);
-        setSearchBoxHandleClick(false);
-       }
-       
-      // search box click 
-      const[searchBoxHandleClick,setSearchBoxHandleClick]=useState(false);
-     //filter from searchBox  in table
-     const tableDataFiltered=tableData.filter((item)=>{
-      if (searchBoxHandleClick && searchBoxValue)
-      return item.content.includes(searchBoxValue)
-     
-     })
-    console.log(tableDataFiltered);
-    //  secound search
-    const[secoundSearchBoxValue,setSecoundSearchBoxValue]=useState("");
-    const secoundSearchBoxChangeHandler=(e)=>{
-      setSecoundSearchBoxValue(e.target.value);
-     }
+const KeyWords = ({ onClickHandler }) => {
+   // searchBox Value
+  const [searchBoxValue, setSearchBoxValue] = useState("");
+  const [keyWords, setKeyWords] = useState([]); //1
+  const [seperator,setSeperator]=useState(false)
+  const SearchBoxChangeHandler = (e) => {
+    setSearchBoxValue(e.target.value);
+    setSearchBoxHandleClick(false);
+  };
+  //3
+  const handleSetKeyWords = async () => {
+    try {
+      const dd={
+        "key": `${searchBoxValue}`,
+        "key2": "",
+        "used_by":"google",
+        "type":"",
+        "characters" : true
+      };
+      // const { data, status } = await keywordService(searchBoxValue);
+      debugger
+      const { data, status } = await keywordService(dd);
+      setKeyWords(data.data);//5
+    } catch (error) {
+      debugger
+      console.log(error)
+    }
+  };
 
-    //  filter from comboBox
-     const[radioClickedHandler,setRadioClickedHandler]=useState("1");
-     let comboboxFiltered=[];
-     const radioButtonHandler=(e)=>{
-          setRadioClickedHandler(e.target.value);
+  // console.log(datass.data);
+  // search box click
+  const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
+
+  //2
+  //filter from searchBox  in table
+ 
+  var tableDataFiltered= [];
+  Object.keys(keyWords).map((item) => {
+    // console.log(datass.data[item].length);
+    if (keyWords[item]!=null) {
          
-         }
-         if (radioClickedHandler === "1") {
-          comboboxFiltered= tableDataFiltered.filter((item)=>{
-            return item.content.includes(searchBoxValue)
-          })
+      for (let i = 0; i < keyWords[item].length - 1; i++) {
+        if (keyWords[item][i].includes(searchBoxValue)) {
+          tableDataFiltered.push(keyWords[item][i]);
         }
-        else if (radioClickedHandler === "2") {
-          comboboxFiltered= tableDataFiltered.filter((item)=>{
-            return item.content.includes(secoundSearchBoxValue)
-          })
-        }
-        else if (radioClickedHandler === "3") {
-          comboboxFiltered= tableDataFiltered.filter((item)=>{
-            return item.content.includes(searchBoxValue)
-          })
-        }
-        else if (radioClickedHandler === "4") {
-          comboboxFiltered= tableDataFiltered.filter((item)=>{
-           return !item.content.includes(secoundSearchBoxValue)
-          })
-        }
-        //  Alphabet filtering
-    const filteredData=[];
-    const[alphabetHandler,setAlphabetHandler]=useState("");
-    const handleClick=(e)=>{
-         setAlphabetHandler(e.target.innerText);
-        }
-    const tableAlphabetFiltering=comboboxFiltered.filter((item)=>{
-         return item.content.startsWith(alphabetHandler)
-       })  
-       
+        // return
+      }
+    }
+    
+  });
 
-         
+  //  secound search
+  const [secoundSearchBoxValue, setSecoundSearchBoxValue] = useState("");
+  const secoundSearchBoxChangeHandler = (e) => {
+    setSecoundSearchBoxValue(e.target.value);
+  };
+
+  //  filter from comboBox
+  const [radioClickedHandler, setRadioClickedHandler] = useState("1");
+  let comboboxFiltered = [];
+  const radioButtonHandler = (e) => {
+    setRadioClickedHandler(e.target.value);
+  };
+
+  if (radioClickedHandler === "1") {
+    comboboxFiltered = tableDataFiltered.filter((item) => {
+      return item.includes(searchBoxValue);
+    });
+  } else if (radioClickedHandler === "2") {
+    comboboxFiltered = tableDataFiltered.filter((item) => {
+      return item.includes(secoundSearchBoxValue);
+    });
+  } else if (radioClickedHandler === "3") {
+    comboboxFiltered = tableDataFiltered.filter((item) => {
+      return item.includes(searchBoxValue);
+    });
+  } else if (radioClickedHandler === "4") {
+    comboboxFiltered = tableDataFiltered.filter((item) => {
+      return !item.includes(secoundSearchBoxValue);
+    });
+  }
+  //  Alphabet filtering
+  const filteredData = [];
+  const [alphabetHandler, setAlphabetHandler] = useState("");
+  const handleClick = (e) => {
+    setAlphabetHandler(e.target.innerText);
+  };
+  const tableAlphabetFiltering = comboboxFiltered.filter((item) => {
+    return item.startsWith(alphabetHandler);
+  });
+
+  //check dom
   return (
     <>
-        <div className='pt-3 flex flex-col justify-center items-center bg-[#ffffff]'>
-            <SearchBox changeHandler={SearchBoxChangeHandler}  handlClick={()=>setSearchBoxHandleClick(true)}/>
-         
-              <div className="flex flex-col  w-[97%]">
-                  {!searchBoxValue || !searchBoxHandleClick  ?<span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span> :null}
-                  <div  className="flex  justify-between w-full mt-5">
-                      <Table data={tableAlphabetFiltering? tableAlphabetFiltering : comboboxFiltered ? comboboxFiltered : tableDataFiltered } NothingSearch={!searchBoxValue || !searchBoxHandleClick  ?  true:false} />
-                      <div className='flex flex-col items-center w-[334px]'>
-                          <KeyWordsSearch  NothingSearch={!searchBoxValue || !searchBoxHandleClick  ?  true:false} dataItems={comboboxFiltered} secoundSearch={secoundSearchBoxChangeHandler} radioClickedHandler={radioButtonHandler}/>
-                          <AlphabetKeyWord handleclick={handleClick}/>
-                      </div>
-                  </div>
-              </div>
+      <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
+        <SearchBox
+          changeHandler={SearchBoxChangeHandler}
+          handlClick={() => {
+            setSearchBoxHandleClick(true);
+            handleSetKeyWords();
+          }}
+          className="w-[97%] flex items-center gap-2 justify-between"
+        />
+
+        <div className="flex flex-col  w-[97%]">
+          {!searchBoxValue || !searchBoxHandleClick ? (
+            <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
+          ) : null}
+          <div className="flex  justify-between w-full mt-5">
+            <Table
+              data={
+                tableAlphabetFiltering
+                  ? tableAlphabetFiltering
+                  : comboboxFiltered
+                  ? comboboxFiltered
+                  : tableDataFiltered
+              }
+              NothingSearch={
+                !searchBoxValue || !searchBoxHandleClick ? true : false
+              }
+            />
+            <div className="flex flex-col items-center w-[334px] mr-7">
+              <KeyWordsSearch
+                NothingSearch={
+                  !searchBoxValue || !searchBoxHandleClick ? true : false
+                }
+                dataItems={comboboxFiltered}
+                secoundSearch={secoundSearchBoxChangeHandler}
+                radioClickedHandler={radioButtonHandler}
+              />
+              <span className="mt-5">جستجو بر اساس حروف الفبا</span>
+              <AlphabetKeyWord handleclick={handleClick} />
+            </div>
+          </div>
         </div>
-        <button className='btn-style mr-5 mt-5 flex gap-3'><img src='./img/dashboard/table/cached.svg' alt=''/>تولید بیشتر</button>
-   </> 
-  )
-}
+      </div>
+      <button
+        className={
+          searchBoxValue && searchBoxHandleClick
+            ? "btn-style mr-5 mt-5 flex gap-3"
+            : "bg-[#D3D5E2] btn-style mr-5 mt-5 flex gap-3"
+        }
+        disabled={searchBoxHandleClick ? false : true}
+        onClick={(e) => onClickHandler()}
+      >
+        <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />
+        تولید بیشتر
+      </button>
+    </>
+  );
+};
+export default KeyWords;

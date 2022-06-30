@@ -1,6 +1,7 @@
 export const workSpaceReducer = (state =
     {
         webAdress: "http://xxxxx.xxx",
+        allWorkSpace:[],
         webAdressUuid: "",
         keyWord1: { key: "", site: "" },
         keyWord2: { key: "", site: "" },
@@ -49,6 +50,8 @@ export const workSpaceReducer = (state =
             return { ...action.payload }
 
         case "WEB_ADRESS":
+            return { ...action.payload }
+        case "GET_ALL_WEB_ADRESS_DATA":
             return { ...action.payload }
 
         case "CHAR_KEY1":

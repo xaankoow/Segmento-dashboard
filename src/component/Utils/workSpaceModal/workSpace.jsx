@@ -53,6 +53,7 @@ export default function WorkSpace({ handleClose }) {
       style={customStyles}
       contentLabel="Example Modal"
     >
+      <div className=' w-[862px]'>
       <header className='px-2.5 border-0'>
         <div>
           <img src="./img/modal/workSpace/head/add_circle.svg" alt="" className='inline-block ml-3' />
@@ -97,6 +98,7 @@ export default function WorkSpace({ handleClose }) {
         
         {stepModal != 5 ?<button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button>:<div></div>}
       </footer>
+      </div>
     </Modal>
   )
 }
