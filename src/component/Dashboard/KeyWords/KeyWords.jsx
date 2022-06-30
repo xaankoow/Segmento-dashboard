@@ -103,7 +103,7 @@ export default function KeyWords() {
          return item.content.startsWith(alphabetHandler)
        })  
        
-     
+
          
   return (
     <>
@@ -120,7 +120,6 @@ export default function KeyWords() {
                       </div>
                   </div>
               </div>
-            
         </div>
         <button className='btn-style mr-5 mt-5 flex gap-3'><img src='./img/dashboard/table/cached.svg' alt=''/>تولید بیشتر</button>
    </> 

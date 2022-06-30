@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import DashboardHeader from './DashboaedComponents/DashboardHeader';
 import ItemSidebarHover from './DashboaedComponents/SidebarComponents/ItemSidebarHover';
+import Modal from 'react-modal'
 import PopUp from '../Utils/PopUp/PopUp';
 import { useState } from 'react';
 import EasyStart from './DashboaedComponents/EasyStart/EasyStart';
@@ -14,10 +15,42 @@ import AcardionItem from './DashboaedComponents/AcardionItem/AcardionItem';
 import KeyWords from './KeyWords/KeyWords';
 import WorkSpaceReport from './DashboaedComponents/workSpace/workSpaceReport';
 import AleartMessageBuyPlan from './DashboaedComponents/BuyPlan/AleartMessageBuyPlan';
+import { useNavigate } from 'react-router';
+import AuthButton from '../Auth/authButton/AuthButton';
+import { useSelector } from 'react-redux/es/exports';
 
 
 
 export default function DashboardBody() {
+
+
+  const navigate = useNavigate();
+
+  const {userData}=useSelector(state=>state.userState)
+
+  const [showResultModal, setShowResultModal] = useState(true)//handle close buy plan result
+  const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState("")//handle buy plan type
+  //check buy plan result
+  useEffect(() => {
+    const status_buy_plan = localStorage.getItem("statusBuyPlna");
+    const buy_plan_type = localStorage.getItem("buyPlanType");
+    if (status_buy_plan && status_buy_plan != undefined && status_buy_plan != null && status_buy_plan != "") {
+      const title=userData.package.title;
+      const type_plna=userData.package.type_text;
+      if (buy_plan_type == "modal") {
+        if (status_buy_plan == true) {
+          setShowModalBuyPlanResult({ type: "modal", result: true })
+        } else {
+          setShowModalBuyPlanResult({ type: "modal", result: false })
+        }
+      } else {
+        navigate("dashboard/buyPlan/buyInfo")
+      }
+    }
+  }, [])
+
+
+
   const [showModal, setShowModal] = useState(false)
   const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true)
   // DashboardHeader nav icon that close the left sidebar
@@ -58,31 +91,46 @@ export default function DashboardBody() {
       content: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ"
     }
   ]
+
+
+  const customStyles = {
+    content: {
+      top: '43vh',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      backgrounColor: "red",
+      'z-index': '100'
+    },
+  };
+
   return (
 
     <div id='DASHBOARD'>
-      <div className='w-full h-16 bg-[#fff] shadow-3xl'>
+      <div className='w-full h-16 bg-[#fff] shadow-3xl z-0'>
         <DashboardHeader setCloseNav={closeNavItem} />
       </div>
-      <div className='flex flex-row-reverse relative top-1 w-full h-screen body'>
+      <div className='flex flex-row-reverse relative top-1 w-full h-screen body z-0'>
         <div className='bg-[#ffffff] overflow-y-scroll pb-8 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main'>
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
           <BuyPlan title={"خرید اشتراک سگمنتو"} />
-          
+
           {/* <WorkSpaceReport/> */}
-        {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
+          {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
- 
-  
+
+
           {
             // <WorkSpace handleClose={closeWorkSpaceModal} />
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
-            <HandleModal showModal={showModal} setShowModal={setShowModal}/>
+            // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
           }
 
-          <AleartMessageBuyPlan/>
+          <AleartMessageBuyPlan />
         </div>
         <div className='list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{ width: closeNav ? '0px' : "256px" }}>
           {/* {
@@ -120,7 +168,31 @@ export default function DashboardBody() {
           </div>
         </div>
       </div>
-      {/* <Modal/> */}
+      {/* {showModalBuyPlanResult != "" && showModalBuyPlanResult == true ? ( */}
+      {showModalBuyPlanResult != "" ? (
+        <Modal
+          isOpen={showResultModal}
+          parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <div className=' w-[907px]'>
+          <body className='final_report_container p-5'>
+            <div className='popup'>
+              <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
+              {/* <div className='main_popup'>{planType}</div> */}
+              <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
+            </div>
+            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
+            <div className='support_container'>
+              <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
+              <AuthButton textButton={"مشاوره و تماس"} />
+              <img src="./img/modal/body/report.svg" alt="" />
+            </div>
+          </body>
+          </div>
+        </Modal>
+      ) : ("")}
     </div>
   )
 }

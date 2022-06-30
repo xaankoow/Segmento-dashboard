@@ -20,7 +20,7 @@ export default function LoadingPage({show}) {
       };
   return (
     <Fragment>
-      {showLoading==true&&canRequest==false?(
+      {!showLoading==true&&!canRequest==false?(
         <div>
         <Modal
           isOpen={true}
@@ -33,7 +33,7 @@ export default function LoadingPage({show}) {
         >
           <div className=' w-full h-full z-50'>
 
-          <h1>Loading page</h1>
+          <h1 className=' w-48 h-14 flex justify-center items-center bg-blue'>Loading page</h1>
           </div>
         </Modal>
       </div>

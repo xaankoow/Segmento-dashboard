@@ -9,6 +9,8 @@ import StaticInputText from './staticInputText/textInput';
 
 export default function HandleModal({ handleClose, checkClose, show }) {
 
+  var planReportDetails={};
+
   const [stepModal, setStepModal] = useState(1);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
@@ -27,7 +29,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
   // var lastSelectedDiscountInput="";
 
 
-  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate } = useSelector(state => state.planState);
+  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate,packageUuid } = useSelector(state => state.planState);
 
   const dispatch = useDispatch();
 
@@ -81,6 +83,10 @@ export default function HandleModal({ handleClose, checkClose, show }) {
     },
   };
   // debugger
+  const handleShowReportModal=async()=>{
+    const {data}=await getPlanDetails(packageUuid);
+
+  }
 
   const handleShowTitleModal = () => {
     switch (stepModal) {
