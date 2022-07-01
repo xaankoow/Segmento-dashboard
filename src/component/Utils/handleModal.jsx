@@ -6,10 +6,11 @@ import { Directions } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { applyDiscountAction, buyPlan, setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setPackageUuid, setSite1, setSite2, setWebAdress } from '../Redux/Action/plan';
 import StaticInputText from './staticInputText/textInput';
+import { getPlanDetails } from '../service/planService';
 
 export default function HandleModal({ handleClose, checkClose, show }) {
 
-  var planReportDetails={};
+  var planReportDetails = {};
 
   const [stepModal, setStepModal] = useState(1);
   // const [, setDiscount] = useState("sample-code");
@@ -29,7 +30,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
   // var lastSelectedDiscountInput="";
 
 
-  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate,packageUuid } = useSelector(state => state.planState);
+  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate, packageUuid } = useSelector(state => state.planState);
 
   const dispatch = useDispatch();
 
@@ -83,8 +84,8 @@ export default function HandleModal({ handleClose, checkClose, show }) {
     },
   };
   // debugger
-  const handleShowReportModal=async()=>{
-    const {data}=await getPlanDetails(packageUuid);
+  const handleShowReportModal = async () => {
+    const { data } = await getPlanDetails(packageUuid);
 
   }
 
@@ -169,8 +170,8 @@ export default function HandleModal({ handleClose, checkClose, show }) {
         ) :
           stepModal == 3 ? (
             <div className='container_input_step3'>
-              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={webAdress+site1+"/"} placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
-              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={webAdress+site2+"/"} placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={webAdress + site1 + "/"} placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
+              <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={webAdress + site2 + "/"} placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
               {/* <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage1} value={commercialPage1}/> */}
               {/* <AuthInput textLabelInput="صفحه تجاری" width={"100%"} typeInput="text" reduxHandleChange={setCommercialPage2} value={commercialPage2}/> */}
             </div>
@@ -262,7 +263,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"bronze"}
                 disabled={discount != "" ? true : false}
-                errorTextId={lastSelectedDiscountInput=="bronze"?"discount":""}
+                errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
@@ -313,7 +314,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"silver"}
                 disabled={discount != "" ? true : false}
-                errorTextId={lastSelectedDiscountInput=="silver"?"discount":""}
+                errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
@@ -364,7 +365,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"gold"}
                 disabled={discount != "" ? true : false}
-                errorTextId={lastSelectedDiscountInput=="gold"?"discount":""}
+                errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
@@ -416,7 +417,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"diamond"}
                 disabled={discount != "" ? true : false}
-                errorTextId={lastSelectedDiscountInput=="diamond"?"discount":""}
+                errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
               // isPassword={true}
               // reduxHandleChange={setPasswordConfirmRedux}
               />
@@ -511,54 +512,56 @@ export default function HandleModal({ handleClose, checkClose, show }) {
       // className={"myModal"}
       >
         <div className=' w-[907px]'>
-        <header className='pr-5 pl-3.5'>
-          <div>
-            <span>{handleShowTitleModal()}</span>
-            <span className='info'></span>
-          </div>
-          <div className='close_suport_container'>
-            {stepModal == 4 || stepModal == 5 ? <AuthButton style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={"پشتیبانی"} /> : null}
-            {/* <div className='bg-orange-500 w-2 h-2'> */}
-            <div className='close_modal_ico' onClick={() => handleClose()}></div>
-            {/* <div className='close_modal_ico' onClick={() => setShowModal(false)}></div> */}
-            {/* </div> */}
-          </div>
-        </header>
-        {stepModal < 4 ? (
 
-          <body className=' p-5'>
-            {handleShowContentModal()}
-          </body>
-        ) : stepModal == 4 ? (
-          <body className='plans_body_container p-5'>
-            {handleShowPlans()}
-          </body>
+          
+          <header className='pr-5 pl-3.5'>
+            <div>
+              <span>{handleShowTitleModal()}</span>
+              <span className='info'></span>
+            </div>
+            <div className='close_suport_container'>
+              {stepModal == 4 || stepModal == 5 ? <AuthButton style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={"پشتیبانی"} /> : null}
+              {/* <div className='bg-orange-500 w-2 h-2'> */}
+              <div className='close_modal_ico' onClick={() => handleClose()}></div>
+              {/* <div className='close_modal_ico' onClick={() => setShowModal(false)}></div> */}
+              {/* </div> */}
+            </div>
+          </header>
 
-        ) : stepModal == 5 && free == false ? (
-          <body className='report_container mt-16 p-5'>
-            {handleShowBuyPlan()}
-          </body>
-        ) : stepModal == 6 && free == false ? (
-          <body className='final_report_container p-5'>
-            {handleShowReport("اشتراک طلایی ، 3 ماهه")}
-          </body>
-        )
-          : stepModal == 5 && free == true ? (
-            <body className='plan_list_option p-5'>
-              {handleShowTryFreePlan()}
+
+          {stepModal < 4 ? (
+
+            <body className=' p-5'>
+              {handleShowContentModal()}
             </body>
-          ) : stepModal == 6 && free == true ? (
+          ) : stepModal == 4 ? (
+            <body className='plans_body_container p-5'>
+              {handleShowPlans()}
+            </body>
+
+          ) : stepModal == 5 && free == false ? (
+            <body className='report_container mt-16 p-5'>
+              {handleShowBuyPlan()}
+            </body>
+          ) : stepModal == 6 && free == false ? (
             <body className='final_report_container p-5'>
-              {handleShowReport("14 روز رایگان")}
+              {handleShowReport("اشتراک طلایی ، 3 ماهه")}
             </body>
-          ) : ""}
-        <footer className=' px-[18px]'>
-
-
-          {stepModal != 1 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
-          {stepModal == 4 ? <AuthButton handlerClick={() => { setFree(false) }} reduxHandleClick={buyPlan} textButton={"خرید اشتراک"} /> : <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>}
-          {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
-        </footer>
+          )
+            : stepModal == 5 && free == true ? (
+              <body className='plan_list_option p-5'>
+                {handleShowTryFreePlan()}
+              </body>
+            ) : stepModal == 6 && free == true ? (
+              <body className='final_report_container p-5'>
+                {handleShowReport("14 روز رایگان")}
+              </body>
+            ) : ""}
+          <footer className=' px-[18px]'>
+            {stepModal != 1 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
+            {stepModal == 4 ? <AuthButton handlerClick={() => { setFree(false) }} reduxHandleClick={buyPlan} textButton={"خرید اشتراک"} /> : <button className='btn-style' onClick={() => setStepModal(stepModal + 1)}>گام بعدی <span className='forward-ico'></span></button>}
+            {stepModal == 4 ? (<AuthButton handlerClick={() => { setStepModal(stepModal + 1); setFree(true) }} style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={<Fragment>14 روز رایگان <span className='forward-14_free_ico'></span></Fragment>} />) : null}
+          </footer>
         </div>
       </Modal>
       {forceUpdate ? "" : ""}

@@ -19,7 +19,7 @@ export const getAllPlanData = ()=> {
             }else{
                 
             }
-            await dispatch({ type: "GET_ALL_PLAN_DATA", payload: state })    
+            await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })    
         } catch (error) {
             console.log("register error")
             error.response.data.errors.forEach(element => {
@@ -43,56 +43,56 @@ export const setWebAdress = adress => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.webAdress="https://"+adress+"/";
-        await dispatch({ type: "PLAN_WEB_ADRESS", payload: state })
+        await dispatch({ type: "MODAL_PLAN_WEB_ADRESS", payload: state })
     }
 }
 export const setCharKey1 = char => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.charKey1=char;
-        await dispatch({ type: "CHAR_KEY1", payload: state })
+        await dispatch({ type: "MODAL_PLAN_CHAR_KEY1", payload: state })
     }
 }
 export const setCharKey2 = char => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.charKey2=char;
-        await dispatch({ type: "CHAR_KEY2", payload: state })
+        await dispatch({ type: "MODAL_PLAN_CHAR_KEY2", payload: state })
     }
 }
 export const setSite1 = adress => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.site1=adress;
-        await dispatch({ type: "SITE1", payload: state })
+        await dispatch({ type: "MODAL_PLAN_SITE1", payload: state })
     }
 }
 export const setSite2 = adress => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.site2=adress;
-        await dispatch({ type: "SITE2", payload: state })
+        await dispatch({ type: "MODAL_PLAN_SITE2", payload: state })
     }
 }
 export const setCommercialPage1 = adress => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.commercialPage1=adress;
-        await dispatch({ type: "COMMERCIAL_PAGE1", payload: state })
+        await dispatch({ type: "MODAL_PLAN_COMMERCIAL_PAGE1", payload: state })
     }
 }
 export const setCommercialPage2 = adress => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.commercialPage2=adress;
-        await dispatch({ type: "COMMERCIAL_PAGE2", payload: state })
+        await dispatch({ type: "MODAL_PLAN_COMMERCIAL_PAGE2", payload: state })
     }
 }
 export const setPlanChosen = plan => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.planChosen=plan;
-        await dispatch({ type: "PLAN_CHOSEN", payload: state })
+        await dispatch({ type: "MODAL_PLAN_CHOSEN", payload: state })
     }
 }
 
@@ -100,7 +100,7 @@ export const setPackageUuid = uuid => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
         state.packageUuid=uuid;
-        await dispatch({ type: "PACKAGE_UUID", payload: state })
+        await dispatch({ type: "MODAL_PLAN_PACKAGE_UUID", payload: state })
     }
 }
 
@@ -109,7 +109,7 @@ export const setPackageDetails = uuid => {
         const state = { ...getState().planState }
         const {data}= await getPlanDetails(uuid);
         state.planDetails=data.data;
-        await dispatch({ type: "GET_PACKAGE_DETAILS", payload: state })
+        await dispatch({ type: "MODAL_PLAN_GET_PACKAGE_DETAILS", payload: state })
     }
 }
 
@@ -212,7 +212,7 @@ export const buyPlan = () => {
             showInputErrorToast();
         }
         
-        await dispatch({ type: "BUY_PLAN", payload: state })
+        await dispatch({ type: "MODAL_PLAN_BUY_PLAN", payload: state })
     }
 }
 export const applyDiscountAction = discountCode => {
@@ -252,7 +252,7 @@ export const applyDiscountAction = discountCode => {
             showInputErrorToast();
         }
         
-        await dispatch({ type: "DISCOUNT_CODE", payload: state })
+        await dispatch({ type: "MODAL_PLAN_DISCOUNT_CODE", payload: state })
     }
 }
 
