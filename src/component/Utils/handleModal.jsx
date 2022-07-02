@@ -513,7 +513,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
       >
         <div className=' w-[907px]'>
 
-          
+
           <header className='pr-5 pl-3.5'>
             <div>
               <span>{handleShowTitleModal()}</span>
@@ -528,9 +528,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
             </div>
           </header>
 
-
           {stepModal < 4 ? (
-
             <body className=' p-5'>
               {handleShowContentModal()}
             </body>
@@ -538,7 +536,6 @@ export default function HandleModal({ handleClose, checkClose, show }) {
             <body className='plans_body_container p-5'>
               {handleShowPlans()}
             </body>
-
           ) : stepModal == 5 && free == false ? (
             <body className='report_container mt-16 p-5'>
               {handleShowBuyPlan()}

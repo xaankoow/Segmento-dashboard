@@ -6,6 +6,7 @@ import { InputEasyToStartModal } from './HandleInputBody'
 import { Paragraph } from './HandleParagraphBody'
 import { ListBody } from './ListBody'
 import ShowFinalReportModal from './ShowFinalReportModal'
+import TryFreePlan from './TryFreePlan'
 
 export default function BodyContent({ stepModal, free, setFree, setPlan, plan }) {
     return (
@@ -21,6 +22,8 @@ export default function BodyContent({ stepModal, free, setFree, setPlan, plan })
                         <img src="./img/modal/body/siteDesignMan.svg" alt="" />
                     </div>
                 ) : ""}
+
+                {stepModal == 2&&free==true? TryFreePlan() : ""}
                 {stepModal > 2 & stepModal < 6 ? InputEasyToStartModal(stepModal) : ""}
                 {stepModal == 1 ? BuyPlnaModal(stepModal, plan) : ""}
                 {stepModal == 6 ? ShowFinalReportModal() : ""}
