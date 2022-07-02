@@ -5,7 +5,7 @@ import BodyContent from './BodyContent'
 import FooterBtn from './FooterBtn'
 
 export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show }) {
-  const [stepModal, setStepModal] = useState(4);
+  const [stepModal, setStepModal] = useState(6);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
@@ -35,9 +35,11 @@ export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show 
       // className={"myModal"}
       >
         <div className='w-[907px]'>
-          <Head handleClose={handleClose} stepModal={stepModal} free={free}/>
-        <BodyContent stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree}/>
-        <FooterBtn stepModal={stepModal} setFree={setFree} setStepModal={setStepModal} />
+          <Head handleClose={handleClose} stepModal={stepModal} free={free} />
+          <div className={`${stepModal==1?"px-6":stepModal>2?"px-2":""}`}>
+            <BodyContent stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree} />
+            <FooterBtn stepModal={stepModal} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose}/>
+          </div>
         </div>
       </Modal>
     </div>

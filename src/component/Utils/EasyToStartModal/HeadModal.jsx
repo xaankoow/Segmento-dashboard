@@ -4,7 +4,7 @@ import { TitleModal } from './HandleTitleModal'
 
 export default function Head({ handleClose, stepModal, free }) {
   return (
-    <header className='pr-5 pl-3.5'>
+    <header className='pr-5 pl-3.5 border rounded-lg border-[#F2F5F7] my-3 mx-2'>
       <div>
         <span>{TitleModal(stepModal, free)}</span>
         <span className='info'></span>

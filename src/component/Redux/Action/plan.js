@@ -42,7 +42,7 @@ export const getAllPlanData = ()=> {
 export const setWebAdress = adress => {
     return async (dispatch, getState) => { 
         const state = { ...getState().planState }
-        state.webAdress="https://"+adress+"/";
+        state.webAdress=adress;
         await dispatch({ type: "MODAL_PLAN_WEB_ADRESS", payload: state })
     }
 }

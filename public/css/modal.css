@@ -39,17 +39,17 @@
     align-items: center;
     box-sizing: border-box;
     height: 44px;
-    width: 100%;
+    /* width: 100%; change style */
     border-radius: 9px;
-    margin: 10px 0px;
-    border: 1px solid #f2f5f7;
+    /* margin: 10px 0px; change style */
+    /* border: 1px solid #f2f5f7; change style */
     /* padding: 0px 18px 0px 14px; */
 }
 
 .ReactModal__Content body {
     box-sizing: border-box;
     /* height: 408px; */
-    width: 100%;
+    /* width: 100%; change style*/
     border-radius: 9px;
     /* border: 1px solid #f2f5f7; change style */
     /* padding: 18px; change set*/

@@ -58,10 +58,10 @@ export default function BuyPlnaModal() {
   }
 
   return (
-    <body className='plans_body_container p-5'>
-      <p className='text_information'>
+    <body className='plans_body_container'>
+      {/* <p className='text_information'>
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است .
-      </p>
+      </p> */}
       <div className='plan_cards_container mt-7'>
         <div className='bronze plan_card'>
           <span className='title'>برنزی</span>

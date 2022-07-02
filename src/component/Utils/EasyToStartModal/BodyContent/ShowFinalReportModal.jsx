@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import AuthButton from '../../../Auth/authButton/AuthButton';
 export default function ShowFinalReportModal() {
     return (
-        <body className='final_report_container p-5'>
+        <body className='final_report_container'>
             <div className='popup'>
                 <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
                 <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
