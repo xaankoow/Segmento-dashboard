@@ -53,7 +53,7 @@ export const showPromisToast = (fun,message) => {
 
 export const showInputErrorToast = (message) => {
     // toast.info('لطفا فیلد هارا با دقت پرکنید', {
-        debugger
+        // debugger
     toast.info(message!=undefined?message:'لطفا فیلد هارا با دقت پرکنید', {
         position: "top-right",
         autoClose: 3000,

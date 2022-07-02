@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
-import { applyDiscountAction, setPackageUuid } from '../../../Redux/Action/plan';
+import React, { useEffect, useState } from 'react'
+import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../../Redux/Action/plan';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthInput from '../../../Auth/authInput/AuthInput';
 
 export default function BuyPlnaModal() {
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPlanData());
+  }, [])
 
   const [plan, setPlan] = useState("");
 
@@ -17,8 +21,8 @@ export default function BuyPlnaModal() {
   // var lastSelectedDiscountInput="";
 
 
-  const { discount } = useSelector(state => state.planState);
-
+  const { discount, allPackageData } = useSelector(state => state.planState);
+  console.log(allPackageData)
 
   const handleShowArrowDiscount = (text, arrowTarget) => {
     // debugger
@@ -57,6 +61,15 @@ export default function BuyPlnaModal() {
     }
   }
 
+  debugger
+  let p;
+  var dd="79000";
+  p= dd.substring(0,dd.length-3);
+  // alert(p + "هزار تومان ماهانه");
+  // if(allPackageData.length>1)
+  // {
+  //   dd=allPackageData[1].price
+  // }
   return (
     <body className='plans_body_container'>
       {/* <p className='text_information'>
@@ -67,11 +80,25 @@ export default function BuyPlnaModal() {
           <span className='title'>برنزی</span>
           <hr />
           <div className='plan'>
-            <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+            {allPackageData.map(item => {
+              debugger
+              if (item.type_text == "برنزی") {
+              return (
+                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                  <div>
+                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <p>{item.title}</p>
+                  </div>
+                  <span className='off_price'>{item.default_discount_text}</span>
+                </div>)
+              }
+            })}
+            {/* <div className='container_row' onClick={() => { setPlan("bronze_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
               <div>
                 <input type="radio" name="radio" id="" checked={plan == "bronze_1" ? true : false} />
                 <p> 1 ماهه</p>
               </div>
+              <span className='off_price'></span>
             </div>
             <div className='container_row' onClick={() => { setPlan("bronze_3"); dispatch(setPackageUuid("45f370a6-b554-43ab-b757-39eb85175111")) }}>
               <div>
@@ -93,10 +120,10 @@ export default function BuyPlnaModal() {
                 <p> 12 ماهه</p>
               </div>
               <span className='off_price'>فقط پرداخت 10 ماه</span>
-            </div>
+            </div> */}
           </div>
           <div className='price'>
-            <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>79 هزار تومان ماهانه</p>
+            <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[1].price.toString().substring(0,allPackageData[1].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
             <AuthInput
@@ -118,7 +145,20 @@ export default function BuyPlnaModal() {
           <span className='title'>نقره ای</span>
           <hr />
           <div className='plan'>
-            <div className='container_row' onClick={() => { setPlan("silver_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+          {allPackageData.map(item => {
+              debugger
+              if (item.type_text == "نقره ای") {
+              return (
+                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                  <div>
+                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <p>{item.title}</p>
+                  </div>
+                  <span className='off_price'>{item.default_discount_text}</span>
+                </div>)
+              }
+            })}
+            {/* <div className='container_row' onClick={() => { setPlan("silver_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
               <div>
                 <input type="radio" name="radio" id="" checked={plan == "silver_1" ? true : false} />
                 <p> 1 ماهه</p>
@@ -144,10 +184,10 @@ export default function BuyPlnaModal() {
                 <p> 12 ماهه</p>
               </div>
               <span className='off_price'>فقط پرداخت 10 ماه</span>
-            </div>
+            </div> */}
           </div>
           <div className='price'>
-            <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>189 هزار تومان ماهانه</p>
+            <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[5].price.toString().substring(0,allPackageData[5].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
             <AuthInput
@@ -169,7 +209,20 @@ export default function BuyPlnaModal() {
           <span className='title'>طلایی</span>
           <hr />
           <div className='plan'>
-            <div className='container_row' onClick={() => { setPlan("gold_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+          {allPackageData.map(item => {
+              debugger
+              if (item.type_text == "طلایی") {
+              return (
+                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                  <div>
+                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <p>{item.title}</p>
+                  </div>
+                  <span className='off_price'>{item.default_discount_text}</span>
+                </div>)
+              }
+            })}
+            {/* <div className='container_row' onClick={() => { setPlan("gold_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
               <div>
                 <input type="radio" name="radio" id="" checked={plan == "gold_1" ? true : false} />
                 <p> 1 ماهه</p>
@@ -195,10 +248,10 @@ export default function BuyPlnaModal() {
                 <p> 12 ماهه</p>
               </div>
               <span className='off_price'>فقط پرداخت 10 ماه</span>
-            </div>
+            </div> */}
           </div>
           <div className='price'>
-            <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>249 هزار تومان ماهانه</p>
+            <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[9].price.toString().substring(0,allPackageData[9].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
             <AuthInput
@@ -221,7 +274,20 @@ export default function BuyPlnaModal() {
           <span className='title'>الماسی</span>
           <hr />
           <div className='plan'>
-            <div className='container_row' onClick={() => { setPlan("diamond_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
+          {allPackageData.map(item => {
+              debugger
+              if (item.type_text == "الماسی") {
+              return (
+                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                  <div>
+                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <p>{item.title}</p>
+                  </div>
+                  <span className='off_price'>{item.default_discount_text}</span>
+                </div>)
+              }
+            })}
+            {/* <div className='container_row' onClick={() => { setPlan("diamond_1"); dispatch(setPackageUuid("eb2f7f18-5f0d-47fc-8610-99a71c869006")) }}>
               <div>
                 <input type="radio" name="radio" id="" checked={plan == "diamond_1" ? true : false} />
                 <p> 1 ماهه</p>
@@ -247,10 +313,10 @@ export default function BuyPlnaModal() {
                 <p> 12 ماهه</p>
               </div>
               <span className='off_price'>فقط پرداخت 10 ماه</span>
-            </div>
+            </div> */}
           </div>
           <div className='price'>
-            <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>249 هزار تومان ماهانه</p>
+            <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[13].price.toString().substring(0,allPackageData[13].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
             <AuthInput

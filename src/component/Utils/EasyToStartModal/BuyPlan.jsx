@@ -1,9 +1,15 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPlanData } from '../../Redux/Action/plan';
 
 export default function BuyPlan(setPlan) {
     const dispatch = useDispatch();
-
+    useEffect(() => {
+        dispatch(getAllPlanData());
+    }, [])
+    debugger
+    const {allPackageData}=useSelector(state=>state.planState)
+    console.log("allPackageData")
     return (
         <body className='plans_body_container p-5'>
             <p className='text_information'>

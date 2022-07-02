@@ -141,32 +141,33 @@ export const buyPlan = () => {
     return async (dispatch, getState) => {
         //  
         const state = { ...getState().planState }
-        const webAdress=state.webAdress;
-        const charKey1=state.charKey1;
-        const charKey2=state.charKey2;
-        const site1=state.site1;
-        const site2=state.site2;
-        const commercialPage1=state.commercialPage1;
-        const commercialPage2=state.commercialPage1;
+        // const webAdress=state.webAdress;
+        // const charKey1=state.charKey1;
+        // const charKey2=state.charKey2;
+        // const site1=state.site1;
+        // const site2=state.site2;
+        // const commercialPage1=state.commercialPage1;
+        // const commercialPage2=state.commercialPage1;
         const packageUuid=state.packageUuid;
         const discount=state.discount;
-        if (webAdress&&charKey1&&charKey2&&site1&&site2&&packageUuid&&discount) {
+        debugger
+        if (packageUuid) {
             let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
             var packageInfo={
                 "type":"package",
                 "uuid":packageUuid,
-                "discount_code":discount,
-                "payload":{
-                    "workspace":webAdress,
-                    "keywords":[
-                        charKey1,
-                        charKey2
-                    ],
-                    "links":[
-                        site1,
-                        site2
-                    ]
-                }
+                "discount_code":discount
+                // "payload":{
+                //     "workspace":webAdress,
+                //     "keywords":[
+                //         charKey1,
+                //         charKey2
+                //     ],
+                //     "links":[
+                //         site1,
+                //         site2
+                //     ]
+                // }
             }
             var packageInfoJson=JSON.stringify(packageInfo);
             
