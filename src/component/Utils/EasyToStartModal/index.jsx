@@ -5,7 +5,7 @@ import BodyContent from './BodyContent'
 import FooterBtn from './FooterBtn'
 
 export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show }) {
-  const [stepModal, setStepModal] = useState(6);
+  const [stepModal, setStepModal] = useState(1);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);

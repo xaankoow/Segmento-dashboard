@@ -231,7 +231,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
-    display: inline-block;
+    /* display: inline-block; change style */
     width: 14px;
     height: 14px;
     left: 17px;

@@ -10,7 +10,7 @@ export default function Head({ handleClose, stepModal, free }) {
         <span className='info'></span>
       </div>
       <div className='close_suport_container'>
-        {stepModal == 4 || stepModal == 5 ? <AuthButton style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={"پشتیبانی"} /> : null}
+        {stepModal == 1 || stepModal == 2 ? <AuthButton style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={"پشتیبانی"} /> : null}
         <div className='close_modal_ico' onClick={() => handleClose()}></div>
       </div>
     </header>

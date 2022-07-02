@@ -165,8 +165,8 @@ export default function DashboardBody() {
             // <WorkSpace handleClose={closeWorkSpaceModal}/>
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
-            showModal ? <BuyPlanEasyToStartModal  handleClose={resetHandleShowModal}/> : ""
-            // <BuyPlanEasyToStartModal  handleClose={resetHandleShowModal}/>
+            // showModal ? <BuyPlanEasyToStartModal  handleClose={resetHandleShowModal}/> : ""
+            <BuyPlanEasyToStartModal  handleClose={resetHandleShowModal}/>
           }
 
           <AleartMessageBuyPlan />

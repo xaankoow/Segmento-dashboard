@@ -503,7 +503,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
   return (
     <div className='buy_plan_modal'>
       <Modal
-        isOpen={show}
+        isOpen={true}
         parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
         // onAfterOpen={afterOpenModal}
         // onRequestClose={closeModal}
