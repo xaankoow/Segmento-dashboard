@@ -18,10 +18,11 @@ export default function BuyPlan({ title }) {
   
   const [showReportModal, setShowReportModal] = useState(false);
 
+  const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
   // const [free, setFree] = useState(false);
 
   const [plan, setPlan] = useState("");
-  // debugger
+  // 
   // const [showModal, setShowModal] = useState(true);
   const [discountInputGold, setDiscountInputGold] = useState("");
   const [discountInputBronze, setDiscountInputBronze] = useState("");
@@ -30,7 +31,7 @@ export default function BuyPlan({ title }) {
 
 
   const handleShowArrowDiscount = (text, arrowTarget) => {
-    // debugger
+    // 
     if (discountInputGold != "" && arrowTarget != "gold") { setDiscountInputGold(""); }
     if (discountInputBronze != "" && arrowTarget != "bronze") { setDiscountInputBronze(""); }
     if (discountInputSilver != "" && arrowTarget != "silver") { setDiscountInputSilver(""); }
@@ -38,21 +39,25 @@ export default function BuyPlan({ title }) {
     switch (arrowTarget) {
       case "gold":
         if (discountInputGold != text) {
-          setDiscountInputGold("text");
+          setLastSelectedDiscountInput("gold");
+          setDiscountInputGold(text);
         }
         break;
       case "bronze":
         if (discountInputBronze != text) {
+          setLastSelectedDiscountInput("bronze");
           setDiscountInputBronze(text);
         }
         break;
       case "silver":
         if (discountInputSilver != text) {
+          setLastSelectedDiscountInput("silver");
           setDiscountInputSilver(text);
         }
         break;
       case "diamond":
         if (discountInputDiamond != text) {
+          setLastSelectedDiscountInput("diamond");
           setDiscountInputDiamond(text);
         }
         break;
@@ -94,7 +99,193 @@ export default function BuyPlan({ title }) {
           </div>
         </div>
         {/* <body className='plans_body_container'> */}
+
+
+
         <div className='plan_cards_container'>
+        <div className='bronze plan_card ml-10'>
+          <span className='title'>برنزی</span>
+          <hr />
+          <div className='plan'>
+            {allPackageData.map(item => {
+              // 
+              if (item.type_text == "برنزی") {
+              return (
+                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                  <div>
+                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <p>{item.title}</p>
+                  </div>
+                  <span className='off_price'>{item.default_discount_text}</span>
+                </div>)
+              }
+            })}
+          </div>
+          <div className='price'>
+            <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[1].price.toString().substring(0,allPackageData[1].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
+          </div>
+          <div className='input_apply_token_container'>
+            <AuthInput
+              textLabelInput=" کد تخفیف  "
+              width={"100%"}
+              typeInput="text"
+              direction={"rtl"}
+              handleArrowPlan={handleShowArrowDiscount}
+              targePlanArrow={"bronze"}
+              disabled={discount != "" ? true : false}
+              errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
+            />
+            <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+          </div>
+        </div>
+        <div className='silver plan_card'>
+          <span className='title'>نقره ای</span>
+          <hr />
+          <div className='plan'>
+          {allPackageData.map(item => {
+              // 
+              if (item.type_text == "نقره ای") {
+              return (
+                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                  <div>
+                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <p>{item.title}</p>
+                  </div>
+                  <span className='off_price'>{item.default_discount_text}</span>
+                </div>)
+              }
+            })}
+          </div>
+          <div className='price'>
+            <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[5].price.toString().substring(0,allPackageData[5].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
+          </div>
+          <div className='input_apply_token_container'>
+            <AuthInput
+              textLabelInput=" کد تخفیف  "
+              width={"100%"}
+              typeInput="text"
+              direction={"rtl"}
+              handleArrowPlan={handleShowArrowDiscount}
+              targePlanArrow={"silver"}
+              disabled={discount != "" ? true : false}
+              errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
+            />
+            <span className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver))}></span>
+          </div>
+        </div>
+        <div className='gold plan_card'>
+          <span className='title'>طلایی</span>
+          <hr />
+          <div className='plan'>
+          {allPackageData.map(item => {
+              
+              if (item.type_text == "طلایی") {
+              return (
+                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                  <div>
+                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <p>{item.title}</p>
+                  </div>
+                  <span className='off_price'>{item.default_discount_text}</span>
+                </div>)
+              }
+            })}
+          </div>
+          <div className='price'>
+            <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[9].price.toString().substring(0,allPackageData[9].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
+          </div>
+          <div className='input_apply_token_container'>
+            <AuthInput
+              textLabelInput=" کد تخفیف  "
+              width={"100%"}
+              typeInput="text"
+              direction={"rtl"}
+              handleArrowPlan={handleShowArrowDiscount}
+              targePlanArrow={"gold"}
+              disabled={discount != "" ? true : false}
+              errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
+            />
+            <span className={`apply_token_ico ${discountInputGold != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold))}></span>
+          </div>
+        </div>
+        <div className='diamond plan_card'>
+
+          <span className='title'>الماسی</span>
+          <hr />
+          <div className='plan'>
+          {allPackageData.map(item => {
+              
+              if (item.type_text == "الماسی") {
+              return (
+                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                  <div>
+                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <p>{item.title}</p>
+                  </div>
+                  <span className='off_price'>{item.default_discount_text}</span>
+                </div>)
+              }
+            })}
+          </div>
+          <div className='price'>
+            <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[13].price.toString().substring(0,allPackageData[13].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
+          </div>
+          <div className='input_apply_token_container'>
+            <AuthInput
+              textLabelInput=" کد تخفیف  "
+              width={"100%"}
+              typeInput="text"
+              direction={"rtl"}
+              handleArrowPlan={handleShowArrowDiscount}
+              targePlanArrow={"diamond"}
+              disabled={discount != "" ? true : false}
+              errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
+            />
+            <span className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond))}></span>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div className='container_plan_message mt-5 rounded-lg'>
+          <img src="./img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
+          <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
+        </div>
+        <button className='btn-style m-auto mt-4' onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></button>
+        {/* </body> */}
+        <div className='footer_message'>
+          <p>اگر بیزینس هستید یا به امکانات و منابع بیشتری نیاز دارید: </p>
+          <button className="btn_more_information_plan">توضیحات بیشتر</button>
+        </div>
+      </div>
+      <div className='report_buy_plan w-[500px]'>
+        {showReportModal&&<ReportBuyPlanSection handleClose={handleCloseReportModal} packageUuid={plan}/>}
+      </div>
+    </div>
+  )
+}
+        {/* <div className='plan_cards_container'>
         <div className='bronze plan_card ml-10'>
             <span className='title'>برنزی</span>
             <hr />
@@ -296,22 +487,4 @@ export default function BuyPlan({ title }) {
               <span className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond))}></span>
             </div>
           </div>
-        </div>
-        <div className='container_plan_message mt-5 rounded-lg'>
-          <img src="./img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
-          <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
-        </div>
-        <button className='btn-style m-auto mt-4' onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></button>
-        {/* </body> */}
-        <div className='footer_message'>
-          <p>اگر بیزینس هستید یا به امکانات و منابع بیشتری نیاز دارید: </p>
-          <button className="btn_more_information_plan">توضیحات بیشتر</button>
-        </div>
-      </div>
-      <div className='report_buy_plan w-[500px]'>
-        {showReportModal&&<ReportBuyPlanSection handleClose={handleCloseReportModal}/>}
-      
-      </div>
-    </div>
-  )
-}
+        </div> */}

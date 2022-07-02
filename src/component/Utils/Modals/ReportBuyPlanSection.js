@@ -8,9 +8,9 @@ import { workSpaceWebsite } from '../../Redux/Action/workSpace';
 export default function ReportBuyPlanSection({ handleClose, packageUuid, show }) {
 
   const [plan, setPlan] = useState("");
-  const [free, setFree] = useState(false);
+  // const [packageSelected,setPackageSelected] = useState(false);
 
-  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate } = useSelector(state => state.planState);
+  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate,allPackageData } = useSelector(state => state.planState);
 
   const dispatch = useDispatch();
 
@@ -28,8 +28,14 @@ export default function ReportBuyPlanSection({ handleClose, packageUuid, show })
     },
   };
 
-
-
+  var packageSelected;
+  allPackageData.forEach(element => {
+    // debugger
+    if (element.uuid==packageUuid) {
+      packageSelected=element;
+    }
+  });
+  // console.log( ds)
 
 
 
@@ -46,15 +52,15 @@ export default function ReportBuyPlanSection({ handleClose, packageUuid, show })
         <body className='report_container border-0 pt-2 px-2 pb-5'>
           <div className='w-full flex items-center justify-between  text-center p-4 border border-[#D9D9D9] rounded-lg mb-5'> <div></div> رسید نهایی خرید اشتراک<img src='/img/modal/buyPlanReport/head/close.svg' className='float-left cursor-pointer' onClick={() => handleClose()} /></div>
           <div className='report'>
-            <div className='title'><span>اشتراک:</span><span>طلایی </span></div>
-            <div className='date'><span>مدت اشتراک:</span><span>3 ماهه </span></div>
-            <div className='plan_price'><span>قیمت اشتراک:</span><span>747 هزار تومان </span></div>
-            <div className="discount"><span>تخفیف سگمنتو:</span><span>15 درصد </span></div>
-            <div className='price_discount'><span>مقدار تخفیف:</span><span>35 هزار تومان </span></div>
-            <div className='final_price'><span>قیمت نهایی و پرداخت</span><span>600 هزار تومان </span></div>
+            <div className='title'><span>اشتراک:</span><span className={`${packageSelected.type_text=="برنزی"?" text-[#BF8970]":packageSelected.type_text=="نقره ای"?"text-[#7D7D7D]":packageSelected.type_text=="طلایی"?"text-[#FFCE47]":"text-[#0A65CD]"}`}>{packageSelected.type_text}</span></div>
+            <div className='date'><span>مدت اشتراک:</span><span>{packageSelected.title}</span></div>
+            <div className='plan_price'><span>قیمت اشتراک:</span><span>{packageSelected.price.toString().substring(0,packageSelected.price.toString().length-3)} هزار تومان </span></div>
+            <div className="discount"><span>تخفیف سگمنتو:</span><span>{packageSelected.default_discount_percent} درصد </span></div>
+            <div className='price_discount'><span>مقدار تخفیف:</span><span>{packageSelected.default_discount.toString().substring(0,packageSelected.default_discount.toString().length-3)} هزار تومان </span></div>
+            <div className='final_price'><span>قیمت نهایی و پرداخت</span><span>{packageSelected.default_discount_price.toString().substring(0,packageSelected.default_discount_price.toString().length-3)} هزار تومان </span></div>
           </div>
           {/* <AuthButton textButton={"خرید اشتراک"} reduxHandleClick={buyPlan}/> */}
-          <AuthButton textButton={"خرید اشتراک"} reduxHandleClick={workSpaceWebsite}/>
+          <AuthButton textButton={"خرید اشتراک"} reduxHandleClick={buyPlan}/>
         </body>
       </div>
       {forceUpdate ? "" : ""}

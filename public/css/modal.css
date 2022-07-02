@@ -591,7 +591,7 @@ input[type="radio"]:checked::before {
 }
 
 .report_container .report .title span:last-of-type {
-    color: rgba(255, 206, 71, 1);
+    /* color: rgba(255, 206, 71, 1); */
     font-size: 20px !important;
     font-weight: 700;
 }

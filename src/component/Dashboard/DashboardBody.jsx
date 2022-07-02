@@ -57,7 +57,7 @@ export default function DashboardBody() {
 
 
 
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(false)
   const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true)
   // handle saving data of keyword table modal
   const [keyWordShowSaveModal, setKeyWordShowSaveModal] = useState(false);
@@ -141,12 +141,12 @@ export default function DashboardBody() {
         <div className='bg-[#ffffff] overflow-y-scroll pb-8 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main'>
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
-          <keyWords/>
+          {/* <keyWords/> */}
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"} /> */}
 
           {/* <<<<<<< HEAD */}
-          <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />
+          {/* <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} /> */}
           {/* ======= */}
           {/* <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/> */}
           {keyWordShowSaveModal && <SaveListModal updateButtonHandler={() => showUpdatePpUp(true)} saveButtonHandler={() => showSavePopup(true)} />}
@@ -158,7 +158,7 @@ export default function DashboardBody() {
           {/* >>>>>>> 1f765f80c95e28b7bf17fa24ad714aa9ae677203 */}
           {/* <WorkSpaceReport/> */}
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
+          <BuyPlan title={"خرید اشتراک سگمنتو"}/>
 
 
           {
@@ -169,7 +169,7 @@ export default function DashboardBody() {
             // <BuyPlanEasyToStartModal  handleClose={resetHandleShowModal}/>
           }
 
-          <AleartMessageBuyPlan />
+          {/* <AleartMessageBuyPlan /> */}
         </div >
         {/* <div className='list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{ width: closeNav ? '0px' : "256px" }}>
           <ItemSidebarHover icon={"./img/dashboard/nav_right/dashboardPishKhan.svg"} text={!closeNav && "پیشخوان"} textColor={"#0A65CD"} />
