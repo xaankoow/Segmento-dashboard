@@ -57,7 +57,7 @@ export default function DashboardBody() {
 
 
 
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(true)
   const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true)
   // handle saving data of keyword table modal
   const [keyWordShowSaveModal, setKeyWordShowSaveModal] = useState(false);
@@ -138,7 +138,7 @@ export default function DashboardBody() {
         <DashboardHeader setCloseNav={closeNavItem} />
       </div>
       <div className='flex flex-row-reverse relative top-1 w-full h-screen body z-0'>
-        <div className='bg-[#ffffff] overflow-y-scroll pb-8 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main'>
+        <div className='bg-[#ffffff] overflow-y-scroll pb-12 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main'>
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
           {/* <keyWords/> */}

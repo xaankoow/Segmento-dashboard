@@ -25,7 +25,7 @@ export default function BuyPlnaModal() {
   console.log(allPackageData)
 
   const handleShowArrowDiscount = (text, arrowTarget) => {
-    // debugger
+    // 
     if (discountInputGold != "" && arrowTarget != "gold") { setDiscountInputGold(""); }
     if (discountInputBronze != "" && arrowTarget != "bronze") { setDiscountInputBronze(""); }
     if (discountInputSilver != "" && arrowTarget != "silver") { setDiscountInputSilver(""); }
@@ -61,7 +61,7 @@ export default function BuyPlnaModal() {
     }
   }
 
-  debugger
+  
   let p;
   var dd="79000";
   p= dd.substring(0,dd.length-3);
@@ -81,7 +81,7 @@ export default function BuyPlnaModal() {
           <hr />
           <div className='plan'>
             {allPackageData.map(item => {
-              debugger
+              
               if (item.type_text == "برنزی") {
               return (
                 <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
@@ -116,7 +116,7 @@ export default function BuyPlnaModal() {
           <hr />
           <div className='plan'>
           {allPackageData.map(item => {
-              debugger
+              
               if (item.type_text == "نقره ای") {
               return (
                 <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
@@ -151,7 +151,7 @@ export default function BuyPlnaModal() {
           <hr />
           <div className='plan'>
           {allPackageData.map(item => {
-              debugger
+              
               if (item.type_text == "طلایی") {
               return (
                 <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
@@ -187,7 +187,7 @@ export default function BuyPlnaModal() {
           <hr />
           <div className='plan'>
           {allPackageData.map(item => {
-              debugger
+              
               if (item.type_text == "الماسی") {
               return (
                 <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>

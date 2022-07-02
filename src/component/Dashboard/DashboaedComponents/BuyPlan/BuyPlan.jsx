@@ -103,7 +103,7 @@ export default function BuyPlan({ title }) {
 
 
         <div className='plan_cards_container'>
-        <div className='bronze plan_card ml-10'>
+        <div className='bronze plan_card'>
           <span className='title'>برنزی</span>
           <hr />
           <div className='plan'>
