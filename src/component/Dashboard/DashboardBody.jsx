@@ -39,11 +39,11 @@ export default function DashboardBody() {
   //check buy plan result
   useEffect(() => {
     const status_buy_plan = localStorage.getItem("statusBuyPlna");
-    const buy_plan_type = localStorage.getItem("buyPlanType");
+    const buy_type = localStorage.getItem("buyType");
     if (status_buy_plan && status_buy_plan != undefined && status_buy_plan != null && status_buy_plan != "") {
       const title = userData.package.title;
       const type_plna = userData.package.type_text;
-      if (buy_plan_type == "modal") {
+      if (buy_type == "modal") {
         if (status_buy_plan == true) {
           setShowModalBuyPlanResult({ type: "modal", result: true })
         } else {
@@ -205,28 +205,29 @@ export default function DashboardBody() {
       {/* {showModalBuyPlanResult != "" && showModalBuyPlanResult == true ? ( */}
       {
         showModalBuyPlanResult != "" ? (
-          <Modal
-            isOpen={showResultModal}
-            parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
-            style={customStyles}
-            contentLabel="Example Modal"
-          >
-            <div className=' w-[907px]'>
-              <body className='final_report_container p-5'>
-                <div className='popup'>
-                  <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
-                  {/* <div className='main_popup'>{planType}</div> */}
-                  <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
-                </div>
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
-                <div className='support_container'>
-                  <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
-                  <AuthButton textButton={"مشاوره و تماس"} />
-                  <img src="./img/modal/body/report.svg" alt="" />
-                </div>
-              </body>
-            </div>
-          </Modal>
+          <BuyPlanEasyToStartModal checkBuyPlan={true}/>
+          // <Modal
+          //   isOpen={showResultModal}
+          //   parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
+          //   style={customStyles}
+          //   contentLabel="Example Modal"
+          // >
+          //   <div className=' w-[907px]'>
+          //     <body className='final_report_container p-5'>
+          //       <div className='popup'>
+          //         <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
+          //         {/* <div className='main_popup'>{planType}</div> */}
+          //         <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
+          //       </div>
+          //       <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
+          //       <div className='support_container'>
+          //         <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
+          //         <AuthButton textButton={"مشاوره و تماس"} />
+          //         <img src="./img/modal/body/report.svg" alt="" />
+          //       </div>
+          //     </body>
+          //   </div>
+          // </Modal>
         ) : ("")
       }
     </div >
