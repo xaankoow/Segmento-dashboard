@@ -71,7 +71,7 @@ export default function App() {
         </Routes>
 
         {/* <HandleModal /> */}
-        {/* {LoadingPage} */}
+        {<LoadingPage/>}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>

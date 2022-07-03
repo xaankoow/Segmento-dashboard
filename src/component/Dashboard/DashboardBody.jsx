@@ -158,7 +158,7 @@ export default function DashboardBody() {
           {/* >>>>>>> 1f765f80c95e28b7bf17fa24ad714aa9ae677203 */}
           {/* <WorkSpaceReport/> */}
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          <BuyPlan title={"خرید اشتراک سگمنتو"}/>
+          {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
 
           {

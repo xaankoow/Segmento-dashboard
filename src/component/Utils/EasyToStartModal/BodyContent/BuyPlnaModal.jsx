@@ -6,8 +6,10 @@ import AuthInput from '../../../Auth/authInput/AuthInput';
 export default function BuyPlnaModal() {
 
   const dispatch = useDispatch();
+  const [num, setNum] = useState("");
 
   useEffect(() => {
+    console.log("22")
     dispatch(getAllPlanData());
   }, [])
 
