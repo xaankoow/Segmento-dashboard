@@ -5,7 +5,7 @@ export default function ShowFinalReportModal() {
         <body className='final_report_container'>
             <div className='popup'>
                 <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
-                <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
+                <div className='main_popup'>14 روز رایگان</div>
             </div>
             <p className='text-center text-lg'>سگمنتو بهترین مشتریان را دارد! داشتن مشتریانی مثل شما باعث افتخار است.</p>
             <div className='support_container '>
