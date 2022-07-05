@@ -6,7 +6,7 @@ import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
 export default function SidebarComponent({ closeNav }) {
-  const [activeIcon, setActiveIcon] = useState(1);
+  const [activeIcon, setActiveIcon] = useState(0);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
     

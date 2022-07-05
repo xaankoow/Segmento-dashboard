@@ -93,11 +93,8 @@ const tabContent2=[
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
        {/* keyWords */}
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-<<<<<<< HEAD
           <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>
-=======
-          {/* <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/> */}
->>>>>>> f032675a1703b1934ff5aff4f136ad55511c4a1c
+         
           {keyWordShowSaveModal &&  <SaveListModal updateButtonHandler={()=>showUpdatePpUp(true)} saveButtonHandler={()=>showSavePopup(true)}/>}
           {UpdatePpUp && <PopUp clickHandler={()=>showUpdatePpUp(false)} image={"./img/popUp/update.svg"} type={"sucsess"} buttonText={"باشه، فهمیدم!"} text={"لیست جدید شما با موفقیت بروزرسانی شد !"} title={"موفقیت آمیز"}/>}
           {SavePopup && <PopUp clickHandler={()=>showSavePopup(false)} image={"./img/popUp/playlist_add.svg"} type={"sucsess"} buttonText={"باشه، فهمیدم!"} text={"لیست جدید شما با موفقیت ذخیره شد !"} title={"موفقیت آمیز"}/>}

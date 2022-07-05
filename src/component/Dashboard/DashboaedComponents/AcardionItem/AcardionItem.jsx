@@ -118,8 +118,8 @@ return (
     <div className='flex items-center justify-between m-0 p-0'>
       
       <div key={index} className='flex items-center gap-3 text-[#002145] mt-4 mb-3  mr-5 text-sm  w-full'  >
-                  <img src={item.titleIcon} alt='icon'/>
-                  <span className="w-full">{item.title}</span>
+                  <img src={item.titleIcon} alt='icon' className="cursor-pointer" onClick={()=>toggle(index)}/>
+                  <span className="w-full cursor-pointer" onClick={()=>toggle(index)}>{item.title}</span>
                  </div>
       <div onClick={()=>toggle(index)} className="pl-3 cursor-pointer w-10 h-4 flex justify-end">
         {clicked===index ? <img src="./img/dashboard/nav_right/arrow_back_ios_new_down.svg" alt='' className="w-4 h-3"/> : <img

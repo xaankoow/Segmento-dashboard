@@ -36,8 +36,8 @@ export default function TabMenu({
                       key={index}
                       className={
                         activeTab === index
-                          ? `tab_${index} border-none outline-0 inline-block px-4 mt-4 mb-[10px] text-blue-600 rounded-t-lg  focus:text-primary text-blue-500  hover:text-primary `
-                          : "border-none outline-0 inline-block px-4 mt-4 mb-[10px] text-blue-600 rounded-t-lg  focus:text-primary text-blue-500  hover:text-primary "
+                          ? `tab_${index} border-none outline-0 inline-block px-4 mt-4 mb-[10px] text-primary  rounded-t-lg  focus:text-primary text-blue-500  hover:text-primary `
+                          : "border-none outline-0 inline-block px-4 mt-4 mb-[10px] rounded-t-lg  focus:text-primary text-blue-500  hover:text-primary "
                       }
                       onClick={() => setActiveTab(index)}
                     >

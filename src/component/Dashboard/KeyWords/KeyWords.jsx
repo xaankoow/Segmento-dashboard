@@ -80,7 +80,7 @@ const KeyWords = ({ onClickHandler }) => {
     });
   } else if (radioClickedHandler === "3") {
     comboboxFiltered = tableDataFiltered.filter((item) => {
-      return item.includes(searchBoxValue);
+      return item==secoundSearchBoxValue
     });
   } else if (radioClickedHandler === "4") {
     comboboxFiltered = tableDataFiltered.filter((item) => {
@@ -152,7 +152,7 @@ const KeyWords = ({ onClickHandler }) => {
         onClick={(e) => onClickHandler()}
       >
         <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />
-        تولید بیشتر
+       ذخیره لیست
       </button>
     </>
   );

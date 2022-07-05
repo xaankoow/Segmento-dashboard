@@ -7,54 +7,111 @@ export default function Table({
   NothingSearch,
   WordsSearcher,
   contentsProduction,
-  openModal
+  openModal,
 }) {
   const [selectColumnTitle, setSelectColumnTitle] = useState("انتخاب");
   const [handleClickButton, setHandleClickButton] = useState(false);
   const [handleClickCopy, setHandleClickCopy] = useState(false);
   const [handleClickCopyIndex, SetHandleCopyIndex] = useState(false);
   const [checkCkeckBox, setCheckCkeckBox] = useState([]);
+  const [copyItem, setCopyItem] = useState([]);
   // row of table
   let letter = "آ";
   const [activeRow, setActiveRow] = useState(0);
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set class name when checkbox is checking
   const handleCheckingInput = (event) => {
-    if (event.target.checked) {
+    if (copyItem.length > 0) {
       setSelectColumnTitle("کپی");
-      setCheckCkeckBox([...checkCkeckBox, true]);
-
     } else {
-      setCheckCkeckBox([...checkCkeckBox, false]);
-      for (let index = 0; index < checkCkeckBox.length; index++) {
-        if (checkCkeckBox[index] !== true) {
-          setActive(false);
-          setSelectColumnTitle("انتخاب");
-        }
-      }
+      setSelectColumnTitle("انتخاب");
     }
   };
-  const copyItems = () => {
-    let clipboard = [""];
-    data.map((keyword, index) => {
-     
-      for (let j = 0; j < activeCheckBox.length; j++) {
-        if (index == activeCheckBox[index]) {
-          for (let i = 0; i < clipboard.length; i++) {
-            if (clipboard[i] != keyword) {
-              debugger;
-              clipboard.push(keyword);
-            }
-          }
-          navigator.clipboard.writeText(clipboard);
-        }
-        debugger;
-      }
-    });
-  };
-//
-const splitter=[]
 
+  const groupIt = (array) => {
+    let resultObj = {};
+
+    for (let i = 0; i < array.length; i++) {
+      let currentWord = array[i];
+      let firstChar = currentWord[0].toLowerCase();
+      let innerArr = [];
+      if (resultObj[firstChar] === undefined) {
+        innerArr.push(currentWord);
+        resultObj[firstChar] = innerArr;
+      } else {
+        resultObj[firstChar].push(currentWord);
+      }
+    }
+    return resultObj;
+  };
+  const seperator = groupIt(data);
+  const a = Object.keys(seperator).map((item) => {
+    return item;
+  });
+
+  //keyWordSearch
+  const [secoundSearchBoxValue, setSecoundSearchBoxValue] = useState("");
+  //  filter from comboBox
+  const [radioClickedHandler, setRadioClickedHandler] = useState("1");
+  let comboboxFiltered = [];
+  const radioButtonHandler = (e) => {
+    setRadioClickedHandler(e.target.value);
+  };
+  if (radioClickedHandler === "1") {
+    comboboxFiltered = data.filter((item) => {
+      return item
+    });
+  } else if (radioClickedHandler === "2") {
+    comboboxFiltered = data.filter((item) => {
+      return item.includes(secoundSearchBoxValue);
+    });
+  } else if (radioClickedHandler === "3") {
+    comboboxFiltered = data.filter((item) => {
+      return item == secoundSearchBoxValue;
+    });
+  } else if (radioClickedHandler === "4") {
+    comboboxFiltered = data.filter((item) => {
+      return !item.includes(secoundSearchBoxValue);
+    });
+  }
+  const secoundSearchBoxChangeHandler = (e) => {
+    setSecoundSearchBoxValue(e.target.value);
+  };
+var filteredDatas=[];
+if(comboboxFiltered){
+  filteredDatas=comboboxFiltered
+
+}
+else   filteredDatas=data
+  // copy all items in to clipboard in different line
+  function createListOutput() {
+    var myListOutput = "";
+    for (var i = 0; i < data.length; i++) {
+      //check if list is NOT the last in the array, if last don't output a line break
+      if (i != data.length - 1) {
+        let lineItem = data[i] + "\n";
+        myListOutput = myListOutput + lineItem;
+      } else {
+        let lineItem = data[i];
+        myListOutput = myListOutput + lineItem;
+      }
+    }
+    return myListOutput;
+  }
+  function customCopy() {
+    var myListOutput = "";
+    for (var i = 0; i < copyItem.length; i++) {
+      //check if list is NOT the last in the array, if last don't output a line break
+      if (i != copyItem.length - 1) {
+        let lineItem = copyItem[i] + "\n";
+        myListOutput = myListOutput + lineItem;
+      } else {
+        let lineItem = copyItem[i];
+        myListOutput = myListOutput + lineItem;
+      }
+    }
+    return myListOutput;
+  }
   return (
     <div class=" flex grow flex-col border border-[#D9D9D9] p-0 " id="TABLE">
       <div class="min-w-full">
@@ -67,7 +124,7 @@ const splitter=[]
                   : "text-sm font-medium text-gray-900 pr-2  text-right text-[#D9D9D9] relative "
               }
               onClick={() => {
-                copyItems();
+                navigator.clipboard.writeText(customCopy());
                 setHandleClickCopy(true);
                 setTimeout(() => {
                   setHandleClickCopy(false);
@@ -114,7 +171,7 @@ const splitter=[]
                       ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-[#F2F5F7] flex items-center btn-style"
                       : "btn-style"
                   }
-                  onClick={()=>openModal()}
+                  onClick={() => openModal()}
                 >
                   <img
                     src="./img/dashboard/table/bookmark.svg"
@@ -127,9 +184,9 @@ const splitter=[]
             )}
             {WordsSearcher && (
               <KeyWordsSearch
-                dataItems={""}
-                secoundSearch={""}
-                radioClickedHandler={""}
+                dataItems={comboboxFiltered}
+                secoundSearch={secoundSearchBoxChangeHandler}
+                radioClickedHandler={radioButtonHandler}
               />
             )}
             <div class="text-sm font-medium text-gray-900 pr-2 py-4 text-right relative">
@@ -154,10 +211,13 @@ const splitter=[]
                 disabled={NothingSearch ? true : false}
                 onClick={() => {
                   setHandleClickButton(true);
-                  navigator.clipboard.writeText(data.map((item) =>{const splitComma =item.split(",");
-                  splitter.push(splitComma)
-                  return splitComma.map(item=> item)
-                }));
+                  navigator.clipboard.writeText(
+                    createListOutput()
+                    // data.map((item) => {
+                    //   const splitComma = item.split(',').map(item => item.trim());
+                    //   return splitComma.join("\n")
+                    // })
+                  );
                   setTimeout(() => {
                     setHandleClickButton(false);
                   }, 500);
@@ -183,16 +243,18 @@ const splitter=[]
             className="bg-white text-right w-full overflow-y-scroll max-h-[450px] "
             id="table"
           >
-            {data.map((item, index) => {
+
+           
+            {filteredDatas.map((item, index) => {
               letter = item.substr(0, 1);
               let letterArray = [""];
               return (
                 <>
-                  {letterArray[index] !== letterArray[index + 1] &&  !contentsProduction ? (
-                   
+                  {letterArray[index] !== letterArray[index + 1] &&
+                  !contentsProduction ? (
                     <div className="flex items-center justify-center m-2">
                       <div className="bg-[#7D7D7D] w-[55px] h-[20px] text-center flex items-center justify-center text-[#ffffff] rounded">
-                        {item.substr(0, 1)}
+                        {a[index]}
                       </div>
                       <div className="w-full h-[1px] bg-[#7D7D7D] rounded"></div>
                     </div>
@@ -210,10 +272,19 @@ const splitter=[]
                       <input
                         type={"checkbox"}
                         className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
-                        onChange={handleCheckingInput}
-                        onClick={() =>
-                          setActiveCheckBox([...activeCheckBox, index])
-                        }
+                        onClick={(e) => {
+                          if (e.target.checked) {
+                            setCopyItem([...copyItem, item]);
+                            console.log(copyItem);
+                          } else {
+                            setCopyItem(
+                              copyItem.filter((copyItems) => copyItems != item)
+                            );
+                            console.log(copyItem);
+                          }
+
+                          handleCheckingInput();
+                        }}
                       />
                     </div>
                     <div class="text-sm text-gray-900 font-light pr-4 py-4 whitespace-nowrap">
@@ -248,6 +319,37 @@ const splitter=[]
                 </>
               );
             })}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
         )}
       </div>

@@ -19,7 +19,12 @@ export default function SaveListModal({
       "z-index": "100",
     },
   };
-  const [disable,setDisable]=useState(true);
+  const [disable, setDisable] = useState(true);
+  const [searchBoxValue, setSearchBoxValue] = useState("");
+  const SearchBoxChangeHandler = (e) => {
+    setSearchBoxValue(e.target.value);
+    
+  };
   return (
     <Modal
       isOpen={true}
@@ -50,8 +55,12 @@ export default function SaveListModal({
         <div className="border-b border-[#7D7D7D] w-full m-auto" />
         <SearchBox
           className={"w-full mt-2 flex items-center gap-2 justify-between"}
+          changeHandler={SearchBoxChangeHandler}
         />
-        <div className="overflow-y-scroll max-h-[300px] px-2 cursor-pointer " onClick={()=>setDisable(false)}>
+        <div
+          className="overflow-y-scroll max-h-[300px] px-2 cursor-pointer "
+          onClick={() => setDisable(false)}
+        >
           <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-[#F2F5F7]  checked:bg-[#F2F5F7] active:bg-[#F2F5F7]">
             <div className="flex items-center gap-6 w-[265px]">
               <span className="text-sm">آموزش سئو در مشهد</span>
@@ -67,30 +76,34 @@ export default function SaveListModal({
             </div>
           </div>
           <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD]">
-          <div className="flex items-center gap-6 w-[265px]">
-            <span className="text-sm">آموزش سئو در مشهد</span>
-            <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
-              100 مورد
-            </span>
+            <div className="flex items-center gap-6 w-[265px]">
+              <span className="text-sm">آموزش سئو در مشهد</span>
+              <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
+                100 مورد
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[#7D7D7D]">
+                آخرین به روزرسانی :{" "}
+              </span>
+              <span className="text-sm text-[#7D7D7D]">1401 / 2 / 30</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-[#7D7D7D]">آخرین به روزرسانی : </span>
-            <span className="text-sm text-[#7D7D7D]">1401 / 2 / 30</span>
+          <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] checked:bg-[#F2F5F7] active:bg-[#F2F5F7]">
+            <div className="flex items-center gap-6 w-[265px]">
+              <span className="text-sm">آموزش سئو در مشهد</span>
+              <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
+                100 مورد
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[#7D7D7D]">
+                آخرین به روزرسانی :{" "}
+              </span>
+              <span className="text-sm text-[#7D7D7D]">1401 / 2 / 30</span>
+            </div>
           </div>
-        </div>
-        <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] checked:bg-[#F2F5F7] active:bg-[#F2F5F7]">
-          <div className="flex items-center gap-6 w-[265px]">
-            <span className="text-sm">آموزش سئو در مشهد</span>
-            <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
-              100 مورد
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-[#7D7D7D]">آخرین به روزرسانی : </span>
-            <span className="text-sm text-[#7D7D7D]">1401 / 2 / 30</span>
-          </div>
-        </div>
-        <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD]">
+          <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD]">
             <div className="flex items-center gap-6 w-[265px]">
               <span className="text-sm">آموزش سئو در مشهد</span>
               <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
@@ -105,34 +118,38 @@ export default function SaveListModal({
             </div>
           </div>
           <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm">
-          <div className="flex items-center gap-6 w-[265px]">
-            <span className="text-sm">آموزش سئو در مشهد</span>
-            <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
-              100 مورد
-            </span>
+            <div className="flex items-center gap-6 w-[265px]">
+              <span className="text-sm">آموزش سئو در مشهد</span>
+              <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
+                100 مورد
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[#7D7D7D]">
+                آخرین به روزرسانی :{" "}
+              </span>
+              <span className="text-sm text-[#7D7D7D]">1401 / 2 / 30</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-[#7D7D7D]">آخرین به روزرسانی : </span>
-            <span className="text-sm text-[#7D7D7D]">1401 / 2 / 30</span>
+          <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm">
+            <div className="flex items-center gap-6 w-[265px]">
+              <span className="text-sm">آموزش سئو در مشهد</span>
+              <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
+                100 مورد
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[#7D7D7D]">
+                آخرین به روزرسانی :{" "}
+              </span>
+              <span className="text-sm text-[#7D7D7D]">1401 / 2 / 30</span>
+            </div>
           </div>
-        </div>
-        <div className="flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm">
-          <div className="flex items-center gap-6 w-[265px]">
-            <span className="text-sm">آموزش سئو در مشهد</span>
-            <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
-              100 مورد
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-[#7D7D7D]">آخرین به روزرسانی : </span>
-            <span className="text-sm text-[#7D7D7D]">1401 / 2 / 30</span>
-          </div>
-        </div>
         </div>
 
         <div className="w-full">
           <button
-          disabled={!disable ?false :true }
+            disabled={!disable ? false : true}
             className="btn-style flex items-center gap-3 w-[183px] py-2"
             onClick={(e) => updateButtonHandler(e)}
           >

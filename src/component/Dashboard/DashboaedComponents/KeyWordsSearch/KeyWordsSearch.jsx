@@ -144,16 +144,8 @@ export default function KeyWordsSearch({
             />
             <span>بدون این عبارت </span>
           </div>
-          {dataItems && (
-            <div className="border-b border-lightGray w-11/12 m-auto" />
-          )}
-          {dataItems.map((items, index) => {
-            return (
-              <div className="flex gap-2 mt-3 mb-3 pr-4">
-                <span> {items} </span>
-              </div>
-            );
-          })}
+        
+         
         </div>
       ) : null}
     </div>
