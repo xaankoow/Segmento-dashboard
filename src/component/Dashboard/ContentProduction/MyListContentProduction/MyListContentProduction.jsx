@@ -2,9 +2,10 @@ import { Tab } from "@headlessui/react";
 import { list } from "postcss";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { dataTableContentProduction } from "../../../../service/dataTable";
-import SearchBox from "../../SearchBox/SearchBox";
-import Table from "../../TableData/TableData";
+import { ContentProductionGetService } from "../../../service/contentProductionStore";
+import { dataTableContentProduction } from "../../../service/dataTable";
+import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
+import Table from "../../DashboaedComponents/TableData/TableData";
 
 export default function MyList() {
   const [clicked, setClicked] = React.useState(false);
@@ -24,14 +25,14 @@ export default function MyList() {
   };
 
   useEffect(() => {
-    handleFetchingTableData();
+    handleGetcontent();
   }, []);
-  const handleFetchingTableData = async () => {
+  var handleGetcontent = async () => {
     try {
-     
-      const { data, status } = await dataTableContentProduction("");
-      console.log(data);
+      const { data, status } = await ContentProductionGetService();
       setTableDatas(data.data);
+      console.log(data.data);
+     
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +48,7 @@ export default function MyList() {
 
   const filterTableDatas = tableDatas.filter((item) => {
     if (!searchBoxHandleClick) return tableDatas;
-    else return item.data.includes(searchBoxValue);
+    else return item.word.includes(searchBoxValue);
   });
   return (
     <div className="px-4 py-7 bg-[#ffffff]">

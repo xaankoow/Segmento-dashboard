@@ -5,6 +5,7 @@ import AlphabetKeyWord from "../DashboaedComponents/AlphabetKeyWord/AlphabetKeyW
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../DashboaedComponents/TableData/TableData";
 import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
+import { keywordsStoreService } from "../../service/keywordStoreService";
 
 const KeyWords = ({ onClickHandler }) => {
    // searchBox Value
@@ -32,6 +33,20 @@ const KeyWords = ({ onClickHandler }) => {
     } catch (error) {
       debugger
       console.log(error)
+    }
+  };
+  // store data in myList
+  var handleSetStoreKeyWords = async () => {
+    try {
+      const dd = {
+        "key":searchBoxValue
+    }
+      // const { data, status } = await keywordService(searchBoxValue);
+
+      const { data, status } = await keywordsStoreService(dd);
+   console.log(data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -149,7 +164,7 @@ const KeyWords = ({ onClickHandler }) => {
             : "bg-[#D3D5E2] btn-style mr-5 mt-5 flex gap-3"
         }
         disabled={searchBoxHandleClick ? false : true}
-        onClick={(e) => onClickHandler()}
+        onClick={(e) =>{ onClickHandler();handleSetStoreKeyWords()}}
       >
         <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />
        ذخیره لیست

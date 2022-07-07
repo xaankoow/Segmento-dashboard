@@ -86,6 +86,19 @@ else   filteredDatas=data
   // copy all items in to clipboard in different line
   function createListOutput() {
     var myListOutput = "";
+    if(comboboxFiltered){
+      for (var i = 0; i < comboboxFiltered.length; i++) {
+        //check if list is NOT the last in the array, if last don't output a line break
+        if (i != comboboxFiltered.length - 1) {
+          let lineItem = comboboxFiltered[i] + "\n";
+          myListOutput = myListOutput + lineItem;
+        } else {
+          let lineItem = comboboxFiltered[i];
+          myListOutput = myListOutput + lineItem;
+        }
+      }
+    }
+    else{
     for (var i = 0; i < data.length; i++) {
       //check if list is NOT the last in the array, if last don't output a line break
       if (i != data.length - 1) {
@@ -95,7 +108,7 @@ else   filteredDatas=data
         let lineItem = data[i];
         myListOutput = myListOutput + lineItem;
       }
-    }
+    }}
     return myListOutput;
   }
   function customCopy() {

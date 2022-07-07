@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { ContentProductionService } from "../../service/contentProduction";
+import PopUp from "../../Utils/PopUp/PopUp";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../DashboaedComponents/TableData/TableData";
+import SaveListModal from "./SaveListModal";
 
 export default function ContentpProduction({ onClickHandler }) {
   // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
+  const [UpdatePpUp, showUpdatePpUp] = useState(false);
+  const [SavePopup, showSavePopup] = useState(false);
+  const [keyWordShowSaveModal, setKeyWordShowSaveModal] = useState(false);
+  
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
@@ -31,33 +37,50 @@ export default function ContentpProduction({ onClickHandler }) {
   };
   var tableDataFiltered = [];
   var tableDataFiltered2 = [];
-  content.map((item) => {
+  content.map((item, index) => {
     if (item.includes(searchBoxValue)) {
       tableDataFiltered.push(item);
-      // if (tableDataFiltered2.length < 11) {
+      if (tableDataFiltered2.length < 10) {
         tableDataFiltered2.push(item);
-      // }
-     
+      }
     }
     // return
   });
   console.log(tableDataFiltered);
-  var [number,setNumber] =useState(20) ;
+  var [number, setNumber] = useState(10);
   const addMore = () => {
-   
-      for (let i = tableDataFiltered2.length; i < number; i++) {
-        tableDataFiltered2.push(tableDataFiltered[i]);
-      }
-   
-   
-    setNumber(number+10)
-   
+    for (let i = tableDataFiltered2.length; i < number; i++) {
+      tableDataFiltered2.push(tableDataFiltered[i]);
+    }
+
+    setNumber(number + 5);
   };
- 
-console.log(tableDataFiltered2);
-console.log(number);
+
+  console.log(tableDataFiltered2);
+  console.log(number);
   return (
     <>
+     {keyWordShowSaveModal && <SaveListModal dataTable={tableDataFiltered2} isContentProduction={true} updateButtonHandler={()=>showUpdatePpUp(true)} saveButtonHandler={()=>showSavePopup(true)} closeModal={keyWordShowSaveModal}/>} 
+      {UpdatePpUp && (
+        <PopUp
+          clickHandler={() => showUpdatePpUp(false)}
+          image={"./img/popUp/update.svg"}
+          type={"sucsess"}
+          buttonText={"باشه، فهمیدم!"}
+          text={"لیست جدید شما با موفقیت بروزرسانی شد !"}
+          title={"موفقیت آمیز"}
+        />
+      )}
+      {SavePopup && (
+        <PopUp
+          clickHandler={() => showSavePopup(false)}
+          image={"./img/popUp/playlist_add.svg"}
+          type={"sucsess"}
+          buttonText={"باشه، فهمیدم!"}
+          text={"لیست جدید شما با موفقیت ذخیره شد !"}
+          title={"موفقیت آمیز"}
+        />
+      )}
       <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
           changeHandler={SearchBoxChangeHandler}
@@ -80,7 +103,7 @@ console.log(number);
               }
               headerButton={true}
               contentsProduction={true}
-              openModal={() => onClickHandler()}
+              openModal={() => setKeyWordShowSaveModal(true)}
             />
           </div>
         </div>
@@ -93,8 +116,7 @@ console.log(number);
         }
         disabled={searchBoxHandleClick ? false : true}
         onClick={(e) => {
-           addMore();
-          
+          addMore();
         }}
       >
         <img src="./img/dashboard/table/cached.svg" alt="cached" />
