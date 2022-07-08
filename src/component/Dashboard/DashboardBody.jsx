@@ -85,13 +85,13 @@ export default function DashboardBody() {
           <Route path="/dashboard/content" element={ <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>} />
        </Routes> */}
 
-          <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
-          {/* <TabMenu
+          {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
+          <TabMenu
             tabsContent={tabContent2}
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
             numberRight={"189"}
-          /> */}
+          />
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"} /> */}
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
 
 export default function Table({
@@ -13,7 +13,6 @@ export default function Table({
   const [handleClickButton, setHandleClickButton] = useState(false);
   const [handleClickCopy, setHandleClickCopy] = useState(false);
   const [handleClickCopyIndex, SetHandleCopyIndex] = useState(false);
-  const [checkCkeckBox, setCheckCkeckBox] = useState([]);
   const [copyItem, setCopyItem] = useState([]);
   // row of table
   let letter = "آ";
@@ -21,13 +20,14 @@ export default function Table({
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set class name when checkbox is checking
   const handleCheckingInput = (event) => {
+  
     if (copyItem.length > 0) {
       setSelectColumnTitle("کپی");
     } else {
       setSelectColumnTitle("انتخاب");
     }
   };
-
+console.log(copyItem.length)
   const groupIt = (array) => {
     let resultObj = {};
 

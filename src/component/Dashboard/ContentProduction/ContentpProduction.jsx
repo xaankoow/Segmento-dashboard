@@ -11,7 +11,7 @@ export default function ContentpProduction({ onClickHandler }) {
   const [UpdatePpUp, showUpdatePpUp] = useState(false);
   const [SavePopup, showSavePopup] = useState(false);
   const [keyWordShowSaveModal, setKeyWordShowSaveModal] = useState(false);
-  
+  const [forceUpdate, setForceUpdate] = useState(false);
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
@@ -27,11 +27,9 @@ export default function ContentpProduction({ onClickHandler }) {
       let formdata = new FormData();
       formdata.append("keyword", searchBoxValue);
       // const { data, status } = await keywordService(searchBoxValue);
-      debugger;
       const { data, status } = await ContentProductionService(formdata);
       setcontent(data.data); //5
     } catch (error) {
-      debugger;
       console.log(error);
     }
   };
@@ -40,27 +38,36 @@ export default function ContentpProduction({ onClickHandler }) {
   content.map((item, index) => {
     if (item.includes(searchBoxValue)) {
       tableDataFiltered.push(item);
-      if (tableDataFiltered2.length < 10) {
+      if (tableDataFiltered2.length < 5) {
         tableDataFiltered2.push(item);
       }
     }
     // return
   });
-  console.log(tableDataFiltered);
+
   var [number, setNumber] = useState(10);
   const addMore = () => {
+    debugger;
     for (let i = tableDataFiltered2.length; i < number; i++) {
       tableDataFiltered2.push(tableDataFiltered[i]);
     }
 
     setNumber(number + 5);
   };
-
+  console.log(tableDataFiltered);
   console.log(tableDataFiltered2);
   console.log(number);
   return (
     <>
-     {keyWordShowSaveModal && <SaveListModal dataTable={tableDataFiltered2} isContentProduction={true} updateButtonHandler={()=>showUpdatePpUp(true)} saveButtonHandler={()=>showSavePopup(true)} closeModal={keyWordShowSaveModal}/>} 
+      {keyWordShowSaveModal && (
+        <SaveListModal
+          dataTable={tableDataFiltered2}
+          isContentProduction={true}
+          updateButtonHandler={() => showUpdatePpUp(true)}
+          saveButtonHandler={() => showSavePopup(true)}
+          closeModal={keyWordShowSaveModal}
+        />
+      )}
       {UpdatePpUp && (
         <PopUp
           clickHandler={() => showUpdatePpUp(false)}

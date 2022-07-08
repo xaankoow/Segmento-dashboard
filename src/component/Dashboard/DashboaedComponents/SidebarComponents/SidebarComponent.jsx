@@ -9,17 +9,15 @@ export default function SidebarComponent({ closeNav }) {
   const [activeIcon, setActiveIcon] = useState(0);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
-    
-    // getAllWorkSpace()();
-    // }, [])
-    const {allWorkSpace} = useSelector(state=>state.workSpaceState)
-    // debugger
-    // console.log(allWorkSpace)
-    // console.log(allWorkSpace)
+
+  // getAllWorkSpace()();
+  // }, [])
+  // debugger
+  // console.log(allWorkSpace)
+  // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
   };
-
 
   const itemsHoverMenu = [
     "گزارش های منتخب",
@@ -58,21 +56,6 @@ export default function SidebarComponent({ closeNav }) {
               textColor={"#0A65CD"}
             />
             <div className="border-b border-lightGray w-11/12 m-auto" />
-            <ItemSidebarHover
-              icon={"./img/dashboard/nav_right/web.svg"}
-              text={!closeNav && "ورک‌اسپیس‌ها"}
-              textColor={"#002145"}
-            />
-            <div className="mr-4">
-              {allWorkSpace.map(item=>
-              <ItemSidebarHover
-                icon={"./img/dashboard/nav_right/storefront.svg"}
-                text={!closeNav && item.website}
-                textColor={"#002145"}
-              />
-            )}
-            </div>
-            <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />
           </div>
         ) : null}
@@ -83,7 +66,7 @@ export default function SidebarComponent({ closeNav }) {
               src="./img/dashboard/nav_right/close.svg"
               alt="close."
               className="absolute top-2 left-2 cursor-pointer"
-              onClick={()=>setDisableAdvertisement(true)}
+              onClick={() => setDisableAdvertisement(true)}
             />
             <span className="text-[#7D7D7D]">نمونه نوشته داینامیک</span>
           </div>

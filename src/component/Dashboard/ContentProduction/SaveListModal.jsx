@@ -33,6 +33,9 @@ export default function SaveListModal({
   const [content, setcontent] = useState([]);
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
   const [closeModal, SetcloseModal] = useState(false);
+  // jalali moment 
+  var moment = require('jalali-moment');
+   
   var itemFiltered = content.filter((item, index) => {
     if (!searchBoxHandleClick) return content;
     else {
@@ -146,7 +149,7 @@ export default function SaveListModal({
                     آخرین به روزرسانی :{" "}
                   </span>
                   <span className="text-sm text-[#7D7D7D]">
-                    {item.created_at}
+                    {moment(item.created_at.substring(0, 10)).locale('fa').format('YYYY/M/D')}
                   </span>
                 </div>
               </div>
