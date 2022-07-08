@@ -1,35 +1,33 @@
-/* body{
-    background-color: black;
-} */
-
 /* inside block #0AC7E2 */
 #loading-container-segmento-logo{
     position: relative;
     width: 280px;
     height: 280px;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 0, 0); */
 }
 
 #loading-container-segmento-logo .segmento_logo_1{
     position: absolute;
     left: 0px;
     bottom: 0px;
-    width: 40px;
-    height: 280px;
+    /* width: 40px;
+    height: 280px; */
+    width: 14.2%;
+    height: 100%;
     background-color: #0A65CD;
 }
 #loading-container-segmento-logo .segmento_logo_2{
     position: absolute;
-    width: 280px;
-    height: 40px;
+    width: 100%;
+    height: 14.2%;
     left: 0px;
     top: 0px;
     background-color: #0A65CD;
 }
 #loading-container-segmento-logo .segmento_logo_3{
     position: absolute;
-    width: 40px;
-    height: 120px;
+    width: 14.2%;
+    height: 42.8%;
     right: 0px;
     top: 0px;
     background-color: #0A65CD;
@@ -37,7 +35,7 @@
 #loading-container-segmento-logo .segmento_logo_4{
     position: absolute;
     /* width: 0px; */
-    height: 40px;
+    height: 14.2%;
     right: 0px;
     bottom: 0px;
     background-color: #0AC7E2;
@@ -45,8 +43,8 @@
 }
 #loading-container-segmento-logo .segmento_logo_5{
     position: absolute;
-    width: 120px;
-    height: 40px;
+    width: 42.8%;
+    height: 14.2%;
     left: 0px;
     bottom: 0px;
     background-color: #0A65CD;
@@ -54,7 +52,7 @@
 #loading-container-segmento-logo .segmento_logo_6{
     position: absolute;
     width: 0px;
-    height: 40px;
+    height: 14.2%;
     right: 80px;
     top: 80px;
     background-color: #0AC7E2;
@@ -64,7 +62,7 @@
 #loading-container-segmento-logo .segmento_logo_7{
     position: absolute;
     width: 0px;
-    height: 40px;
+    height: 14.2%;
     right: 0px;
     bottom: 80px;
     background-color: #0AC7E2;
@@ -74,13 +72,13 @@
 @keyframes move_slide_down_logo {
     from{width: 0px;}
     
-    to{width: 120px;}
+    to{width: 42.8%;}
 }
 @keyframes move_slide_middle_logo {
     0%{width: 0px;}
-    100%{width: 200px;}
+    100%{width: 71.4%;}
 }
 @keyframes move_slide_top_logo {
     0%{width: 0px;}
-    100%{width: 120px;}
+    100%{width: 42.8%;}
 }

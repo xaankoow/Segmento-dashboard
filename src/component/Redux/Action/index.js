@@ -11,10 +11,9 @@ export const coreUser = () => {
     return async (dispatch, getState) => {
         let state = { ...getState().userState }
         let toastMessage = "";
+        // let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
         try {
-            // debugger
             const { data, status } = await coreUserData();
-
             if (status == 200 && data.status == true) {
                 state.userData = data.data;
             } else {

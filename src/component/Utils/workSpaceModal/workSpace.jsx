@@ -8,11 +8,12 @@ import { workSpaceTitle } from './titleWorkSpaceModal';
 export default function WorkSpace({ handleClose }) {
 
   const [modalTitleStep, setModalTitleStep] = useState("")
-  const [stepModal, setStepModal] = useState(2);
+  const [stepModal, setStepModal] = useState(5);
   
   const [addKeyCharInput, setAddKeyCharInput] = useState(3)
   const [addCommercialPageInput, setAddCommercialPageInput] = useState(3)
   const [addWebsitePageInput, setAddWebsitePageInput] = useState(3)
+  const [addCompetitorSite, setAddCompetitorSite] = useState(1)
   
 
   const customStyles = {
@@ -39,6 +40,9 @@ export default function WorkSpace({ handleClose }) {
         break;
       case "websitePage":
         setAddWebsitePageInput(addWebsitePageInput+1);
+        break;
+      case "competitorSite":
+        setAddCompetitorSite(addCompetitorSite+1);
         break;
     
       default:
@@ -88,7 +92,7 @@ export default function WorkSpace({ handleClose }) {
           </ul>
         </div>
         <div className=' mt-8'>
-        {InputGetWorkSpaceInfo(stepModal,stepModal==2?addKeyCharInput:stepModal==3?addCommercialPageInput:stepModal==4?addWebsitePageInput:stepModal==4&&"verifyOwner",handleAddStateCountInput)}
+        {InputGetWorkSpaceInfo(stepModal,stepModal==2?addKeyCharInput:stepModal==3?addCommercialPageInput:stepModal==4?addWebsitePageInput:stepModal==5&&addCompetitorSite,handleAddStateCountInput)}
         </div>
       </body>
       <footer className='px-5'>
