@@ -1,7 +1,8 @@
 /* DEFAULT BTN STYLE*/
-.btn-style *{
+.btn-style * {
   font-size: 14px !important;
 }
+
 .btn-style {
   background-color: rgba(10, 101, 205, 1);
   font-size: 14px !important;
@@ -15,16 +16,18 @@
   padding: 8px 20px;
   transition: all 0.08s ease-in-out;
 }
+
 .btn-style:hover {
   background-color: #0ac7e2 !important;
   cursor: pointer;
 }
+
 .btn-style:active {
   background-color: #009fb9 !important;
+  color: white;
 }
-.input_defult_style{
 
-}
+.input_defult_style {}
 
 /* .input_verify_email_cod_container .input-wrapper input{
   width: 50px ;
@@ -34,14 +37,68 @@ margin: 0px 20px;
 .verify_cod_container .input-wrapper {
   margin: 0px 10px;
 }
+
 .verify_cod_container .input-wrapper {
   margin: 0px 10px;
 }
+
 .verify_cod_container .input-wrapper:first-child {
   margin-right: 0px !important;
 }
 
 
-.btn_complete{
-  background-color: #009FB9 ;
+.btn_complete {
+  background-color: #009FB9;
+}
+
+.third-btn {
+  color: #0A65CD !important;
+  font-size: 14px !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.third-btn:hover {
+  color: #0AC7E2 !important;
+  cursor: pointer;
+}
+
+.btn-style:active {
+  color: #009FB9 !important;
+}
+
+.btn-secondary {
+  background-color: #F2F5F7;
+  font-size: 14px !important;
+  color: #488CDA;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  transition: all 0.08s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: #0A65CD;
+  color: white;
+}
+.btn-secondary:active {
+  background-color: #0B4B94;
+  color: white;
+}
+select {
+
+  padding: 5px;
+  padding-left: 2rem;
+  background: url("./img/dashboard/nav_right/arrow_back_ios_new_down.svg") no-repeat;
+  background-position-x: 244px;
+  background-size: 50px !important;
+
+
 }
