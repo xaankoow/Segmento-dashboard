@@ -13,6 +13,8 @@ export default function SaveListModal({
   updateButtonHandler,
   isContentProduction,
   dataTable,
+  SaveInputValues,
+  activeBoxUpdate
 }) {
   const customStyles = {
     content: {
@@ -101,7 +103,7 @@ export default function SaveListModal({
           textLabelInput="افزودن لیست جدید "
           width={"100%"}
           typeInput="text"
-          handleChange={handlechangeSaveInput}
+          handleChange={handlechangeSaveInput && SaveInputValues}
         />
         <div className="w-full">
           <button
@@ -128,14 +130,16 @@ export default function SaveListModal({
           {itemFiltered.map((item, index) => {
             return (
               <div
+               id={index}
                 className={
                   activeBox == index
                     ? "flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] bg-[#F2F5F7] "
                     : "flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-[#F2F5F7] "
                 }
-                onClick={() => {
+                onClick={(e) => {
                   setSaveInputValue(item.word);
                   setActiveBox(index);
+                  activeBoxUpdate(e)
                 }}
               >
                 <div className="flex items-center gap-6 w-[265px]">

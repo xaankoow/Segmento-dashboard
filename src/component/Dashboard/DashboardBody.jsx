@@ -22,6 +22,7 @@ import { useSelector } from "react-redux/es/exports";
 import SidebarComponent from "./DashboaedComponents/SidebarComponents/SidebarComponent";
 import MylistContentProduction from "./ContentProduction/MyListContentProduction/MyListContentProduction";
 import BuyPlanEasyToStartModal from "../Utils/EasyToStartModal";
+import EditUserProfile from "./pages/EditUserProfile/EditUserProfile";
 
 export default function DashboardBody() {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ export default function DashboardBody() {
 
   const [showModal, setShowModal] = useState(true);
   const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true);
-  
+
   // DashboardHeader nav icon that close the left sidebar
   const [closeNav, setCloseNav] = useState(false);
   const closeNavItem = () => {
@@ -118,18 +119,18 @@ export default function DashboardBody() {
        </Routes> */}
 
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          <TabMenu
+          {/* <TabMenu
             tabsContent={tabContent2}
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
             numberRight={"189"}
-          />
-
+          /> */}
+          <EditUserProfile />
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
           {
-            <WorkSpace handleClose={closeWorkSpaceModal} />
+            // <WorkSpace handleClose={closeWorkSpaceModal} />
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
             // showModal ? <BuyPlanEasyToStartModal  handleClose={resetHandleShowModal}/> : ""
@@ -170,33 +171,31 @@ export default function DashboardBody() {
         <SidebarComponent closeNav={closeNav} />
       </div>
       {/* {showModalBuyPlanResult != "" && showModalBuyPlanResult == true ? ( */}
-      {showModalBuyPlanResult != "" ? (
-       "" // <BuyPlanEasyToStartModal checkBuyPlan={true} />
-      ) : (
-        // <Modal
-        //   isOpen={showResultModal}
-        //   parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
-        //   style={customStyles}
-        //   contentLabel="Example Modal"
-        // >
-        //   <div className=' w-[907px]'>
-        //     <body className='final_report_container p-5'>
-        //       <div className='popup'>
-        //         <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
-        //         {/* <div className='main_popup'>{planType}</div> */}
-        //         <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
-        //       </div>
-        //       <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
-        //       <div className='support_container'>
-        //         <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
-        //         <AuthButton textButton={"مشاوره و تماس"} />
-        //         <img src="./img/modal/body/report.svg" alt="" />
-        //       </div>
-        //     </body>
-        //   </div>
-        // </Modal>
-        ""
-      )}
+      {showModalBuyPlanResult != ""
+        ? "" // <BuyPlanEasyToStartModal checkBuyPlan={true} />
+        : // <Modal
+          //   isOpen={showResultModal}
+          //   parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
+          //   style={customStyles}
+          //   contentLabel="Example Modal"
+          // >
+          //   <div className=' w-[907px]'>
+          //     <body className='final_report_container p-5'>
+          //       <div className='popup'>
+          //         <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
+          //         {/* <div className='main_popup'>{planType}</div> */}
+          //         <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
+          //       </div>
+          //       <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>
+          //       <div className='support_container'>
+          //         <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
+          //         <AuthButton textButton={"مشاوره و تماس"} />
+          //         <img src="./img/modal/body/report.svg" alt="" />
+          //       </div>
+          //     </body>
+          //   </div>
+          // </Modal>
+          ""}
     </div>
   );
 }
