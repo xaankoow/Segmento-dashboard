@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { applyDiscount, buyPlna, getAllPlan, getPlanDetails } from "../../service/planService";
+import { creatWorkSpace } from "../../service/workSpaceService";
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
@@ -261,7 +262,85 @@ export const applyDiscountAction = discountCode => {
 
 
 
-
+export const modalSetWorkSpace = () => {
+    return async (dispatch, getState) => {
+        //  
+        const state = { ...getState().planState }
+        const webAdress=state.webAdress;
+        const charKey1=state.charKey1;
+        const charKey2=state.charKey2;
+        const site1=state.site1;
+        const site2=state.site2;
+        const commercialPage1=state.commercialPage1;
+        const commercialPage2=state.commercialPage1;
+        // const packageUuid=state.packageUuid;
+        // const discount=state.discount;
+        debugger
+        // if (packageUuid) {
+            let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+            var modalWorkSpace={
+                
+                    "workspace": webAdress,
+                    "keywords": [
+                        {
+                            "key": charKey1,
+                            "url": site1,
+                        },
+                        {
+                            "key": site2,
+                            "url": charKey2,
+                        }
+                    ],
+                    "links": [
+                        commercialPage1,
+                        commercialPage2
+                    ]
+                
+            }
+            
+            let toastMessage = "";
+            try {
+                const { data } = await creatWorkSpace(modalWorkSpace);
+                debugger
+                // const { data } = await buyPlna({
+                //     "type": "package",
+                //     "uuid": "eb2f7f18-5f0d-47fc-8610-99a71c869006",
+                //     "discount_code":"sample-code",
+                //     "payload": {
+                //         "workspace": "https://aaadv.com",
+                //         "keywords": [
+                //             "key1",
+                //             "key2"
+                //         ],
+                //         "links": [
+                //             "https://avbaa.com/blog",
+                //             "https://aaacvb.com/video"
+                //         ]
+                //     }
+                // });
+                // const { data, status } = await applyDiscount("sample-code");
+                if (data.code == 200 && data.status == true) {
+                    // state.forceUpdate += 1;
+                    toast.update(toastPromise, { render:  data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
+                } else {
+                    // data.errors.forEach(element => {
+                    //     toastMessage += element + " / ";
+                    // });
+                    toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
+                }
+            } catch (error) {
+                error.response.data.errors.forEach(element => {
+                    toastMessage += element + " / ";
+                });
+                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+            }
+        // } else {
+        //     showInputErrorToast();
+        // }
+        
+        await dispatch({ type: "MODAL_SET_WORK_SPACE_PLAN", payload: state })
+    }
+}
 
 
 

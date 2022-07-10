@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import AuthButton from '../../Auth/authButton/AuthButton';
 import { buyPlan } from '../../Redux/Action/plan';
 
-export default function FooterBtn({ stepModal,setFree, setStepModal,handleClose }) {
+export default function FooterBtn({ stepModal,setFree, setStepModal,handleClose,lockNextStep }) {
 
 
 

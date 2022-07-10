@@ -21,3 +21,10 @@ export const keywords = website => {
     }
     return http.post(`${config.xaankooApi}/api/v1/workspace`,website,headerRegisterUser);
 }
+
+export const creatWorkSpace = workSpace => {
+    const headerRegisterUser = {
+        "Accept": "application/json"
+    }
+    return http.post(`${config.xaankooApi}/api/v1/workspace-wizard`,workSpace,headerRegisterUser);
+}
