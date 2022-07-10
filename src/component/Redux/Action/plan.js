@@ -138,7 +138,7 @@ export const setPackageDetails = uuid => {
 
 
 
-export const buyPlan = () => {
+export const buyPlan = (buyType) => {
     return async (dispatch, getState) => {
         //  
         const state = { ...getState().planState }
@@ -194,7 +194,7 @@ export const buyPlan = () => {
                 // });
                 // const { data, status } = await applyDiscount("sample-code");
                 if (data.code == 200 && data.status == true) {
-                    localStorage.setItem("buyPlanType","modal")
+                    localStorage.setItem("buyType",buyType)
                     window.location.href=data.data;
                     // state.forceUpdate += 1;
                     toast.update(toastPromise, { render:  data.data.msg, type: "success", isLoading: false, autoClose: 3000 })

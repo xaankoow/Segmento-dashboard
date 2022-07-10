@@ -77,12 +77,13 @@ export default function AuthInput({
             // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
-            { handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow) }
-
+           
+               handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow) 
+            handleChange(e);
             setInputValue(e.target.value);
-            workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
+            // workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
 
-            // handleChange(e);
+           
           }}
         />
         <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>

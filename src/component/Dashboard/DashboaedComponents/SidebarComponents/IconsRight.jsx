@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function IconsRight({setActive}) {
-    const [activeIcon, setActiveIcon] = useState(1)
+    const [activeIcon, setActiveIcon] = useState(0)
     const imageSrc=[
         "./img/dashboard/nav_right/pishkhan.svg",
         "./img/dashboard/nav_right/analyze.svg"

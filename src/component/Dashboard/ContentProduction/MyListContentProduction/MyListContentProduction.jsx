@@ -2,11 +2,12 @@ import { Tab } from "@headlessui/react";
 import { list } from "postcss";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { dataTable } from "../../../../service/dataTable";
-import SearchBox from "../../SearchBox/SearchBox";
-import Table from "../../TableData/TableData";
+import { ContentProductionGetService } from "../../../service/contentProductionStore";
+import { dataTableContentProduction } from "../../../service/dataTable";
+import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
+import Table from "../../DashboaedComponents/TableData/TableData";
 
-export default function MylistContentProduction() {
+export default function MyList() {
   const [clicked, setClicked] = React.useState(false);
   // set api data
   const [tableDatas, setTableDatas] = useState([]);
@@ -14,8 +15,9 @@ export default function MylistContentProduction() {
   const [searchBoxValue, setSarchBoxValue] = useState("");
   //search box button click
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
-  // check wich api checked
-  const [tableDataFiltered, setTableDataFiltered] = useState();
+   // jalali moment 
+   var moment = require('jalali-moment');
+  const tableDataFiltered=[]
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -25,14 +27,14 @@ export default function MylistContentProduction() {
   };
 
   useEffect(() => {
-    handleFetchingTableData();
+    handleGetcontent();
   }, []);
-  const handleFetchingTableData = async () => {
+  var handleGetcontent = async () => {
     try {
-      const dataRaw = { type: "suggest_google_character" };
-      const { data, status } = await dataTable(dataRaw);
-      console.log(data);
+      const { data, status } = await ContentProductionGetService();
       setTableDatas(data.data);
+      console.log(data.data);
+     
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +50,7 @@ export default function MylistContentProduction() {
 
   const filterTableDatas = tableDatas.filter((item) => {
     if (!searchBoxHandleClick) return tableDatas;
-    else return item.key.includes(searchBoxValue);
+    else return item.word.includes(searchBoxValue);
   });
   return (
     <div className="px-4 py-7 bg-[#ffffff]">
@@ -63,15 +65,8 @@ export default function MylistContentProduction() {
       </div>
 
       {filterTableDatas.map((item, index) => {
-        let result = item.result;
-        Object.keys(result).map((items) => {
-            // debugger
-          if (result[items] != null) {
-            for (let i = 0; i < result[items].length - 1; i++) {
-              setTableDataFiltered(result[items][i]);
-            }
-          }
-        });
+        
+       
 
         return (
           <div className="flex flex-col border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2">
@@ -83,9 +78,9 @@ export default function MylistContentProduction() {
               }
             >
               <div className="flex items-center gap-6 w-[265px]">
-                <span className="text-sm"> {item.key}</span>
+                <span className="text-sm"> {item.word}</span>
                 <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg min-w-[45px] text-[#7D7D7D] text-small p-1">
-                  {tableDataFiltered.length} مورد
+                  {item.data.length} مورد
                 </span>
               </div>
               <div className="flex items-center gap-5">
@@ -94,7 +89,7 @@ export default function MylistContentProduction() {
                     آخرین به روزرسانی :
                   </span>
                   <span className="text-sm text-[#7D7D7D]">
-                    {item.created_at}
+                      {moment(item.created_at.substring(0, 10)).locale('fa').format('YYYY/M/D')}
                   </span>
                 </div>
                 <div
@@ -118,7 +113,7 @@ export default function MylistContentProduction() {
               </div>
             </div>
             {clicked === index ? (
-              <Table data={tableDataFiltered} WordsSearcher={true} />
+              <Table data={item.data} WordsSearcher={true} contentsProduction={true}/>
             ) : null}
           </div>
         );

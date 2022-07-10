@@ -5,7 +5,7 @@ import {useSelector } from 'react-redux';
 import { Fragment } from "react";
 
 
-export const InputEasyToStartModal = (stepModal) => {
+export const InputEasyToStartModal = (stepModal,setApplyWebAdress) => {
     const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2} = useSelector(state => state.planState);
     // debugger
     switch (stepModal) {
@@ -30,8 +30,8 @@ export const InputEasyToStartModal = (stepModal) => {
         case 5:
             return (
                 <div className='container_input_step3'>
-                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://"+webAdress+"/" + site1 + "/"} placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
-                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://"+webAdress+"/" + site2 + "/"} placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
+                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://"+webAdress+"/" + `${site1?site1 +"/":""}`} placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
+                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://"+webAdress+"/" + `${site2?site2 +"/":""}`} placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
                 </div>
             );
         default:

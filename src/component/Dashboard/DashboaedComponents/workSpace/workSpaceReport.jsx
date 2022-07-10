@@ -1,6 +1,40 @@
 import React, { Fragment } from 'react'
+import { useSelector } from 'react-redux'
 
 export default function WorkSpaceReport({ websiteName }) {
+
+    const {  
+        keyWord1,
+        keyWord2,
+        keyWord3,
+        keyWord4,
+        keyWord5,
+        keyWord6,
+        keyWord7,
+        keyWord8,
+        keyWord9,
+        keyWord10,
+        commercialPage1,
+        commercialPage2,
+        commercialPage3,
+        commercialPage4,
+        commercialPage5,
+        commercialPage6,
+        commercialPage7,
+        commercialPage8,
+        commercialPage9,
+        commercialPage10,
+        websitePage1,
+        websitePage2,
+        websitePage3,
+        websitePage4,
+        websitePage5,
+        websitePage6,
+        websitePage7,
+        websitePage8,
+        websitePage9,
+        websitePage10
+    } = useSelector(state => state.workSpaceState)
     // const [{site:"https://example.ir/page1",key:"a"}]
     const data = [{ site: "https://example.ir/page1", key: "a" }, { site: "https://example.ir/page1", key: "a" }]
     // const ahmad={fullName:"ddd",age:17};
@@ -74,7 +108,7 @@ export default function WorkSpaceReport({ websiteName }) {
                     <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
                         <div className='flex gap-6 justify-between items-center relative'>
                             <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
-                            <span className=' text-sm mr-3'>مانیتورینگ سرعت صفحات</span>
+                            <span className=' text-sm mr-3'>رهگیری سرعت صفحات</span>
                         </div>
                         <div className='px-5 mt-2 w-full'>
                             <div className=''>
@@ -89,8 +123,56 @@ export default function WorkSpaceReport({ websiteName }) {
                             </div>
                         </div>
                     </div>
+                    <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
+                        <div className='flex gap-6 justify-between items-center relative'>
+                            <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
+                            <span className=' text-sm mr-3'>وب‌سایت رقبا</span>
+                        </div>
+                        <div className=' px-5 mt-2'>
+                            <div className='flex justify-between'>
+                                <div className=' w-2/4 pl-3'>
+                                    <div className='pl-2'>
+                                        <p className=' w-full text-right text-xs'>سایت مرتبط</p>
+                                        <p className=' w-full text-left text-sm mt-3'>https://example.ir/page1</p>
+                                    </div>
+                                </div>
+                                <div className=' w-2/4 pr-3'>
+                                    <div className='pr-2'>
+                                        <p className=' w-full text-right text-xs'>سایت مرتبط</p>
+                                        <p className=' w-full text-left text-sm mt-3'>https://example.ir/page1</p>
+                                    </div>
+                                    <div className='pr-2'>
+                                        <p className=' w-full text-right text-xs'>سایت مرتبط</p>
+                                        <p className=' w-full text-left text-sm mt-3'>https://example.ir/page1</p>
+                                    </div>
+                                    <div className='pr-2'>
+                                        <p className=' w-full text-right text-xs'>سایت مرتبط</p>
+                                        <p className=' w-full text-left text-sm mt-3'>https://example.ir/page1</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex justify-between mt-14'>
+                                <div className=' w-2/4 pl-3'>
+                                    <div className='pl-2'>
+                                        <p className=' w-full text-right text-xs'>سایت مرتبط</p>
+                                        <p className=' w-full text-left text-sm mt-3'>https://example.ir/page1</p>
+                                    </div>
+                                </div>
+                                <div className=' w-2/4 pr-3'>
+                                    <div className='pr-2'>
+                                        <p className=' w-full text-right text-xs'>سایت مرتبط</p>
+                                        <p className=' w-full text-left text-sm mt-3'>https://example.ir/page1</p>
+                                    </div>
+                                    <div className='pr-2 '>
+                                        <p className=' w-full text-right text-xs'>سایت مرتبط</p>
+                                        <p className=' w-full text-left text-sm mt-3'>https://example.ir/page1</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div>
-                        <button className="btn-style mt-7"><img className=' ml-3' src='/img/dashboard/workSpace/footer/button_ico.svg'/>پیشخان</button>
+                        <button className="btn-style mt-7"><img className=' ml-3' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</button>
                     </div>
                 </div>
             </div>

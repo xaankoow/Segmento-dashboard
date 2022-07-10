@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FooterBtn from '../FooterBtn'
 // import { FooterBtn } from '../FooterBtn'
 import BuyPlnaModal from './BuyPlnaModal'
 import { InputEasyToStartModal } from './HandleInputBody'
 import { Paragraph } from './HandleParagraphBody'
 import { ListBody } from './ListBody'
+import ReportInfoPlan from './ReportInfoPlan'
 import ShowFinalReportModal from './ShowFinalReportModal'
 import TryFreePlan from './TryFreePlan'
 
-export default function BodyContent({ stepModal, free, setFree, setPlan, plan }) {
+export default function BodyContent({ stepModal,setStepModal, free, setFree, setPlan, plan,lockNextStep,setLockNextStep,setApplyWebAdress }) {
+
+    // const [packageUuid,setPackageUuid]=useState("")
+
     return (
         <div>
             {/* <body className='p-5'> */}
@@ -23,9 +27,11 @@ export default function BodyContent({ stepModal, free, setFree, setPlan, plan })
                     </div>
                 ) : ""}
 
-                {stepModal == 2&&free==true? TryFreePlan() : ""}
-                {stepModal > 2 & stepModal < 6 ? InputEasyToStartModal(stepModal) : ""}
-                {stepModal == 1 ? BuyPlnaModal(stepModal, plan) : ""}
+                {stepModal == 2&&free==false? <ReportInfoPlan/> : ""}
+                {stepModal == 2&&free==true? <TryFreePlan setLockNextStep={setLockNextStep} lockNextStep={lockNextStep} setStepModal={setStepModal}/> : ""}
+                {stepModal > 2 & stepModal < 6 ? InputEasyToStartModal(stepModal,setApplyWebAdress) : ""}
+                {stepModal == 1 ? <BuyPlnaModal/> : ""}
+                {/* {stepModal == 1 ? BuyPlnaModal(stepModal, plan) : ""} */}
                 {stepModal == 6 ? ShowFinalReportModal() : ""}
             </body>
             {/* <FooterBtn stepModal={stepModal} setFree={setFree}/> */}

@@ -15,7 +15,9 @@ export default function MyList() {
   //search box button click
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
   // check wich api checked
-  const [tableDataFiltered,setTableDataFiltered] = [];
+  const tableDataFiltered = [];
+   // jalali moment 
+   var moment = require('jalali-moment');
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -40,12 +42,12 @@ export default function MyList() {
   // SearchBox value
   const changeHandlerSearchBox = (e) => {
     setSarchBoxValue(e.target.value);
-    if(searchBoxValue==""){
-      setSearchBoxHandleClick(false)
+    if (searchBoxValue == "") {
+      setSearchBoxHandleClick(false);
     }
   };
   // filter
-  
+
   const filterTableDatas = tableDatas.filter((item) => {
     if (!searchBoxHandleClick) return tableDatas;
     else return item.key.includes(searchBoxValue);
@@ -64,13 +66,26 @@ export default function MyList() {
 
       {filterTableDatas.map((item, index) => {
         let result = item.result;
+        var lengthTable = 0;
         Object.keys(result).map((items) => {
-          // if (result[items] != null) {
-                for (let i = 0; i < result[items].length - 1; i++) {
-              setTableDataFiltered(result[items][i]);
-            // }
+          if (result[items] != null) {
+            for (let i = 0; i < result[items].length - 1; i++) {
+              // debugger
+              lengthTable++;
+            }
           }
         });
+       
+        if (clicked == index) {
+          Object.keys(result).map((items) => {
+            if (result[items] != null) {
+              for (let i = 0; i < result[items].length - 1; i++) {
+                // debugger
+                tableDataFiltered.push(result[items][i]);
+              }
+            }
+          });
+        }
 
         return (
           <div className="flex flex-col border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2">
@@ -84,7 +99,7 @@ export default function MyList() {
               <div className="flex items-center gap-6 w-[265px]">
                 <span className="text-sm"> {item.key}</span>
                 <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg min-w-[45px] text-[#7D7D7D] text-small p-1">
-                  {tableDataFiltered.length}  مورد
+                  {lengthTable} مورد
                 </span>
               </div>
               <div className="flex items-center gap-5">
@@ -93,7 +108,7 @@ export default function MyList() {
                     آخرین به روزرسانی :
                   </span>
                   <span className="text-sm text-[#7D7D7D]">
-                    {item.created_at}
+                  {moment(item.created_at.substring(0, 10)).locale('fa').format('YYYY/M/D')}
                   </span>
                 </div>
                 <div

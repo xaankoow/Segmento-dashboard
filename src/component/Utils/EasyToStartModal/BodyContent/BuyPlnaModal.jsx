@@ -6,8 +6,10 @@ import AuthInput from '../../../Auth/authInput/AuthInput';
 export default function BuyPlnaModal() {
 
   const dispatch = useDispatch();
+  const [num, setNum] = useState("");
 
   useEffect(() => {
+    console.log("22")
     dispatch(getAllPlanData());
   }, [])
 
@@ -118,6 +120,8 @@ export default function BuyPlnaModal() {
           {allPackageData.map(item => {
               
               if (item.type_text == "نقره ای") {
+                if (item.title!="14 روز رایگان") {
+                  
               return (
                 <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
                   <div>
@@ -126,6 +130,7 @@ export default function BuyPlnaModal() {
                   </div>
                   <span className='off_price'>{item.default_discount_text}</span>
                 </div>)
+                }
               }
             })}
           </div>
