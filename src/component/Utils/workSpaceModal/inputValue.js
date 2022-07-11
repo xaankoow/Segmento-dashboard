@@ -1,18 +1,58 @@
 import { Fragment, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AuthButton from "../../Auth/authButton/AuthButton";
 import AuthInput from "../../Auth/authInput/AuthInput";
-import { setCommercialPages, setKeyWords, setWebAdress, setWebsitePages } from "../../Redux/Action/workSpace";
+import { setCommercialPages, setCompetitorSite, setKeyWords, setWebAdress, setWebsitePages } from "../../Redux/Action/workSpace";
 import StaticInputText from "../staticInputText/textInput";
 
 export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput) => {
     const [addKeyChar, setAddKeyChar] = useState(4)
-    const [addKeyCharMap, setAddKeyCharMap] = useState([])
+    const [addKeyCharMap, setAddKeyCharMap] = useState([1])
     const [addCommercialPageMap, setAddCommercialPageMap] = useState([])
     const [addWebsitePageMap, setAddWebsitePageMap] = useState([])
-    const [addCompetitorSite, setAddCompetitorSite] = useState([])
+    const [addCompetitorSite, setAddCompetitorSite] = useState([1])
     // const [addKeyCharMap, setAddKeyCharMap] = useState([])
 
+    const {
+        keyWord1,
+        keyWord2,
+        keyWord3,
+        keyWord4,
+        keyWord5,
+        keyWord6,
+        keyWord7,
+        keyWord8,
+        keyWord9,
+        keyWord10
+    } = useSelector(state => state.workSpaceState)
+
+    const handleCompetitorSiteInputValue = (keyWordIndex) => {
+        switch (keyWordIndex) {
+            case 1:
+                return keyWord1.site;
+            case 2:
+                return keyWord2.site;
+            case 3:
+                return keyWord3.site;
+            case 4:
+                return keyWord4.site;
+            case 5:
+                return keyWord5.site;
+            case 6:
+                return keyWord6.site;
+            case 7:
+                return keyWord7.site;
+            case 8:
+                return keyWord8.site;
+            case 9:
+                return keyWord9.site;
+            case 10:
+                return keyWord10.site;
+
+            default:
+                break;
+        }
+    }
     const dispatch = useDispatch();
 
     const handleSetReducerState = (value, state) => {
@@ -93,15 +133,19 @@ export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput
                     <div id="workSpaceModalStep2">
                         <div className=" max-h-[380px] overflow-y-scroll">
                             <div className='container_input_step2'>
-                                <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setKeyWords} workSpaceTypeState="keyWord1" />
-                                <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-                                <div className=" w-full">
-                                    <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"سایت رقیب 1"} reduxHandleChange={setKeyWords} workSpaceTypeState="site1" staticText={"https://example.com/ "} placeholder={"page1"} />
-                                    {addCompetitorSite.map(item => (
-                                        <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"سایت رقیب 1"} staticText={"https://example.ir/ "} placeholder={"page2"} reduxHandleChange={setWebsitePages} workSpaceTypeState={`websitePage${item}`} />
-                                    ))}
-                                    <button className='btn-style my-4' onClick={() => { countInput <= 10 && setAddCompetitorSite([...addCompetitorSite, `${countInput}`]); handleAddStateCountInput("competitorSite") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />افزودن رقیب جدید</button>
-                                </div>
+                                {addKeyCharMap.map(itemKey => (
+                                    <Fragment>
+                                        <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" value={handleCompetitorSiteInputValue(itemKey)} reduxHandleChange={setKeyWords} workSpaceTypeState={`keyWord${itemKey}`} />
+                                        <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
+                                        <div className=" w-full">
+                                            {/* <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"سایت رقیب 1"} reduxHandleChange={setKeyWords} workSpaceTypeState="site1" staticText={"https://example.com/ "} placeholder={"page1"} /> */}
+                                            {addCompetitorSite.map(itemCompetitor => (
+                                                <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"سایت رقیب 1"} staticText={"https://example.ir/ "} placeholder={"page2"} reduxHandleChange={setCompetitorSite} workSpaceTypeState={`competitorKey${itemCompetitor},${itemKey}`} />
+                                            ))}
+                                            <button className='btn-style my-4' onClick={() => { countInput <= 5 && setAddCompetitorSite([...addCompetitorSite, `${countInput}`]); handleAddStateCountInput("competitorSite") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />افزودن رقیب جدید</button>
+                                        </div>
+                                    </Fragment>
+                                ))}
                             </div>
                             {/* <div className='container_input_step2 mt-7 mb-7'>
                                 <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setKeyWords} workSpaceTypeState="keyWord2" />

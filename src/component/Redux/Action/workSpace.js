@@ -203,6 +203,60 @@ export const setWebsitePages = (adress, stateWebsitePage) => {
     }
 }
 
+
+
+
+
+
+export const setCompetitorSite = (adress, competitorSite) => {
+    return async (dispatch, getState) => {
+        const state = { ...getState().workSpaceState }
+        // debugger
+        var handleCompetitorIndex=competitorSite.split(",");
+        switch (handleCompetitorIndex[0]) {
+            case "competitorKey1":
+                state.competitorSite1[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey2":
+                state.websitePage2[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey3":
+                state.websitePage3[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey4":
+                state.websitePage4[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey5":
+                state.websitePage5[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey6":
+                state.websitePage6[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey7":
+                state.websitePage7[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey8":
+                state.websitePage8[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey9":
+                state.websitePage9[handleCompetitorIndex[1]-1]=adress;
+                break;
+            case "competitorKey10":
+                state.websitePage10[handleCompetitorIndex[1]-1]=adress;
+                break;
+            default:
+                break;
+        }
+        await dispatch({ type: "COMMERCIAL_PAGES", payload: state })
+    }
+}
+
+
+
+
+
+
+
 export const workSpaceWebsite = () => {
     return async (dispatch, getState) => {
         const state = { ...getState().workSpaceState }
