@@ -56,7 +56,7 @@ export default function DashboardBody() {
 
   const [showModal, setShowModal] = useState(true);
   const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true);
-  
+
   // DashboardHeader nav icon that close the left sidebar
   const [closeNav, setCloseNav] = useState(false);
   const closeNavItem = () => {
@@ -102,6 +102,15 @@ export default function DashboardBody() {
       content: <MylistContentProduction />,
     },
   ];
+  // debugger
+
+  // var a = "setShowResultModal(false);"
+  // if (showResultModal) {
+  //   eval(a);
+  //   console.log(showResultModal)
+  // }
+  // console.log(showResultModal)
+  // alert( showResultModal)
   return (
     <div id="DASHBOARD">
       <div className="w-full h-16 bg-[#fff] shadow-3xl">
@@ -128,6 +137,7 @@ export default function DashboardBody() {
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
+          {/* <button onClick={}>click me!</button> */}
           {
             <WorkSpace handleClose={closeWorkSpaceModal} />
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
@@ -171,7 +181,7 @@ export default function DashboardBody() {
       </div>
       {/* {showModalBuyPlanResult != "" && showModalBuyPlanResult == true ? ( */}
       {showModalBuyPlanResult != "" ? (
-       "" // <BuyPlanEasyToStartModal checkBuyPlan={true} />
+        "" // <BuyPlanEasyToStartModal checkBuyPlan={true} />
       ) : (
         // <Modal
         //   isOpen={showResultModal}

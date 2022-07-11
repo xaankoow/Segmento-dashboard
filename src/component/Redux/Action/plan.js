@@ -275,52 +275,40 @@ export const modalSetWorkSpace = () => {
         const commercialPage2=state.commercialPage1;
         // const packageUuid=state.packageUuid;
         // const discount=state.discount;
-        debugger
+        // debugger
         // if (packageUuid) {
             let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
             var modalWorkSpace={
                 
-                    "workspace": webAdress,
+                    "workspace": "https://"+webAdress,
                     "keywords": [
                         {
                             "key": charKey1,
-                            "url": site1,
+                            "url": "https://"+webAdress+"/"+site1,
+                            "competitors":[]
                         },
                         {
-                            "key": site2,
-                            "url": charKey2,
+                            "key": charKey2,
+                            "url": "https://"+webAdress+"/"+site2,
+                            "competitors":[]
                         }
                     ],
                     "links": [
-                        commercialPage1,
-                        commercialPage2
-                    ]
+                        "https://"+webAdress+"/"+commercialPage1,
+                        "https://"+webAdress+"/"+commercialPage2
+                    ],
+                    "pages": []
                 
             }
             
             let toastMessage = "";
             try {
+                debugger
                 const { data } = await creatWorkSpace(modalWorkSpace);
                 debugger
-                // const { data } = await buyPlna({
-                //     "type": "package",
-                //     "uuid": "eb2f7f18-5f0d-47fc-8610-99a71c869006",
-                //     "discount_code":"sample-code",
-                //     "payload": {
-                //         "workspace": "https://aaadv.com",
-                //         "keywords": [
-                //             "key1",
-                //             "key2"
-                //         ],
-                //         "links": [
-                //             "https://avbaa.com/blog",
-                //             "https://aaacvb.com/video"
-                //         ]
-                //     }
-                // });
-                // const { data, status } = await applyDiscount("sample-code");
                 if (data.code == 200 && data.status == true) {
-                    // state.forceUpdate += 1;
+                    localStorage.setItem("modalWorkSpace",data.status);
+                    state.forceUpdate+=1;
                     toast.update(toastPromise, { render:  data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
                 } else {
                     // data.errors.forEach(element => {

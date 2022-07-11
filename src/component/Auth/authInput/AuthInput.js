@@ -37,7 +37,7 @@ export default function AuthInput({
   //redux options
 
   const dispatch = useDispatch()
-
+  // debugger
 
   // to be just number when we type
   const pressNumberValue = (event) => {
@@ -79,9 +79,9 @@ export default function AuthInput({
           onChange={(e) => {
            
                handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow) 
-            handleChange(e);
+            handleChange!=undefined&&handleChange(e);
             setInputValue(e.target.value);
-            // workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
+            workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
 
            
           }}

@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import Head from './HeadModal'
+import { useSelector } from 'react-redux'
 import BodyContent from './BodyContent'
 import FooterBtn from './FooterBtn'
 import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan'
 
 export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show, checkBuyPlan }) {
-  const [stepModal, setStepModal] = useState(1);
+  const [stepModal, setStepModal] = useState(5);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
@@ -14,16 +15,23 @@ export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show,
   const [applyWebAdress, setApplyWebAdress] = useState("")
   const [lockNextStep, setLockNextStep] = useState(false);
   const [checkErr, setCheckErr] = useState(false);
+
+  const {forceUpdate} = useSelector(state=>state.planState);
   // console.log(applyWebAdress)
   // debugger
-  // useEffect(() => {
-  //   const find_buy_type = localStorage.getItem("buyType")
-  //   if (true & false) {
-  //     setStepModal(3);
-  //   } else if (true && true) {
-  //     setCheckErr(true)
-  //   }
-  // }, [])
+  useEffect(() => {
+    const find_buy_type = localStorage.getItem("buyType")
+    const find_status_create_workSpace_modal = localStorage.getItem("modalWorkSpace");
+    if(find_status_create_workSpace_modal){
+      setStepModal(6)
+      localStorage.removeItem("modalWorkSpace");
+    }
+    // if (true & false) {
+    //   setStepModal(3);
+    // } else if (true && true) {
+    //   setCheckErr(true)
+    // }
+  }, [])
 
   const customStyles = {
     content: {
@@ -67,6 +75,7 @@ export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show,
           )}
         </div>
       </Modal>
+      {forceUpdate?"":""}
     </div>
   )
 }

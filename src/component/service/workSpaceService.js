@@ -26,5 +26,5 @@ export const creatWorkSpace = workSpace => {
     const headerRegisterUser = {
         "Accept": "application/json"
     }
-    return http.post(`${config.xaankooApi}/api/v1/workspace-wizard`,workSpace,headerRegisterUser);
+    return http.post(`${config.xaankooApi}/api/v1/workspace/workspace-wizard`,workSpace,headerRegisterUser);
 }
