@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ProfileInformation({ userName, userType, email }) {
+export default function ProfileInformation({ userName, userType, email ,changeUserImage}) {
   return (
     <div className="flex gap-3 items-center">
       <div className="relative">
@@ -9,7 +9,7 @@ export default function ProfileInformation({ userName, userType, email }) {
           className="rounded-full"
           alt="userImage"
         />
-        <div className="bg-primary rounded-full absolute -bottom-1 right-0 p-2 border-[3px] border-[#ffffff]">
+        <div className="bg-primary rounded-full absolute -bottom-1 right-0 p-2 border-[3px] border-[#ffffff] cursor-pointer" onClick={()=>changeUserImage()}>
         <img
           src="../img/dashboard/userProfile/changeImageIcon.png"
           alt="userImagechange"

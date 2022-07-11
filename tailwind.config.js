@@ -31,6 +31,7 @@ module.exports = {
       blue: "#0071ff",
       dds: "#0071ff",
       primary: "#0A65CD",
+      secondary:"#F2F5F7"
     },
     fontSize: {
       xs: ".75rem",

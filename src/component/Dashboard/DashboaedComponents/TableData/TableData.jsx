@@ -20,7 +20,7 @@ export default function Table({
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set class name when checkbox is checking
   const handleCheckingInput = (event) => {
-  
+  debugger
     if (copyItem.length > 0) {
       setSelectColumnTitle("کپی");
     } else {
@@ -289,6 +289,7 @@ else   filteredDatas=data
                           if (e.target.checked) {
                             setCopyItem([...copyItem, item]);
                             console.log(copyItem);
+                            console.log(e.target.checked)
                           } else {
                             setCopyItem(
                               copyItem.filter((copyItems) => copyItems != item)
