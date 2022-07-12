@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import ProfileInformation from "./components/profileInfo/ProfileInformation";
 import AuthInput from "../../../Auth/authInput/AuthInput";
-import {
-  EditorComposer,
-  Editor,
-  ToolbarPlugin,
-  InsertDropdown,
-  AlignDropdown,
-} from "verbum";
+// import {
+//   EditorComposer,
+//   Editor,
+//   ToolbarPlugin,
+//   InsertDropdown,
+//   AlignDropdown,
+// } from "verbum";
+import { Editor } from "react-draft-wysiwyg";
 import SelectBox from "./components/selectBox/SelectBox";
+import PopUp from "../../../Utils/PopUp/PopUp";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { coreUser, logoutAction } from "../../../Redux/Action";
@@ -36,6 +38,8 @@ export default function EditUserProfile() {
   const [currentPass, setcurrentPass] = useState("");
   const [newPass, setnewPass] = useState("");
   const [confrimPass, setconfrimPass] = useState("");
+  //show success pop up for password
+  const [updatePass, setUpdatePass] = useState(false);
   const [openChangeImageModal, setOpenChangeImageModal] = useState(false);
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
@@ -109,118 +113,38 @@ export default function EditUserProfile() {
     data.push(selectDatas[item]);
   });
   // edit password api
-  const handleCurrentPass=(e)=>{
-    setcurrentPass(e.target.value)
-  }
-  const handleNewtPass=(e)=>{
-    setnewPass(e.target.value)
-  }
-  const handleConfrimationPass=(e)=>{
-    setconfrimPass(e.target.value)
-  }
+  const handleCurrentPass = (e) => {
+    setcurrentPass(e.target.value);
+  };
+  const handleNewtPass = (e) => {
+    setnewPass(e.target.value);
+  };
+  const handleConfrimationPass = (e) => {
+    setconfrimPass(e.target.value);
+  };
+
   const handleUpdatePassword = async () => {
     try {
       let formdata = new FormData();
       formdata.append("last_pass", currentPass);
-      formdata.append("password",newPass);
+      formdata.append("password", newPass);
       formdata.append("password_confirmation", confrimPass);
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await editPassword(formdata);
       // setcontent(data.data); //5
-      console.log(data);
+      console.log(data.errors);
+      if (data.errors.length != 0) {
+        toast.error(data.errors[0]);
+      } else {
+        setUpdatePass(true);
+      }
       setForceUpdate(!forceUpdates);
     } catch (error) {
       console.log(error);
-      toast.error("اطلاعات شما ذخیره نشد !");
+      toast.error("لطفا فیلد ها را با دقت پر کنید");
     }
   };
-  const selectBoxData = [
-    {
-      title: "زمینه فعالیت شما (نوع سایت)",
-      optionItems: [
-        "سایت فروش محصولات فیزیکی",
-        "سایت فروش محصولات مجازی",
-        "سایت آموزشی",
-        "سایت شرکتی",
-        "سایت صنعتی",
-        "سایت ارز دیجیتال",
-        "سایت خبری",
-        "سایت استارتاپ",
-        "سایت وبلاگی",
-        "سایت شخصی",
-        "سایت لوازم بهداشتی",
-        "سایت لوازم آرایشی",
-        "سایت پوشاک",
-        "سایت لوازم ورزشی",
-        "سایت فروش کتاب",
-        "سایت موسیقی",
-        "سایت دیجیتال مارکتینگ",
-        "سفارشی",
-      ],
-    },
-    {
-      title: "تعداد اعضای شرکت",
-      optionItems: [
-        "کمتر از 3 نفر",
-        "کمتر از 5 نفر",
-        "کمتر از 10 نفر",
-        "کمتر از 20 نفر",
-        "کمتر از 50 نفر",
-        "کمتر از 100 نفر",
-      ],
-    },
-    {
-      title: "تعداد متخصص سئو",
-      optionItems: [
-        "کمتر از 3 نفر",
-        "کمتر از 5 نفر",
-        "کمتر از 10 نفر",
-        "کمتر از 20 نفر",
-      ],
-    },
-    {
-      title: "  ترافیک ماهانه وب سایت شما",
-      optionItems: [
-        "کمتر از 1k",
-        "کمتر از 5k",
-        "کمتر از 10k",
-        "کمتر از 20k",
-        "کمتر از 50k",
-        "کمتر از 100k",
-        "کمتر از 200k",
-        "کمتر از 300k",
-        "کمتر از 500k",
-        "کمتر از 1M",
-        "کمتر از 2M",
-        "کمتر از 5M",
-      ],
-    },
-    {
-      title: "  سمت شما در تیم ",
-      optionItems: [
-        "متخصص سئو",
-        "مدیر ارشد سئو",
-        "مشاور سئو",
-        "پیمانکار سئو",
-        "فریلنسر",
-        "وبمستر",
-        "مدیر دیجیتال مارکتینگ",
-      ],
-    },
-    {
-      title: "  روش آشنایی با سگمنتو ",
-      optionItems: [
-        "آشنایی قبلی",
-        "گوگل",
-        "تبلیغات",
-        "سایت همکار",
-        "متخصص های همکار",
-        "لینکدین",
-        "اینستاگرام",
-      ],
-    },
-  ];
-
+  
   const userToken = localStorage.getItem("token");
   if (userState.userData.user) {
     user_name = userState.userData.user.name
@@ -245,6 +169,16 @@ export default function EditUserProfile() {
         <ChangeImageModal
           close={() => setOpenChangeImageModal(false)}
           isOpen={openChangeImageModal}
+        />
+      )}
+      {updatePass && (
+        <PopUp
+          clickHandler={() => setUpdatePass(false)}
+          image={"./img/popUp/tik.svg"}
+          type={"sucsess"}
+          buttonText={"باشه، فهمیدم!"}
+          text={"گذرواژه با موفقیت تغییر کرد"}
+          title={"موفقیت آمیز"}
         />
       )}
       <div className="">
@@ -302,6 +236,7 @@ export default function EditUserProfile() {
                     textLabelInput="آدرس ایمیل "
                     width={"100%"}
                     errorTextId="errRejesterFormatEmail"
+                    disabled={true}
                   />
                   <div className="w-full flex justify-end mt-7">
                     {" "}
@@ -368,14 +303,25 @@ export default function EditUserProfile() {
                     پیغام برای تیم سگمنتو{" "}
                   </span>
                 </div>
-
-                <EditorComposer>
+                <Editor
+                  toolbar={{
+                    inline: { inDropdown: true ,className:"flex flex-col gap-2"},
+                    list: { inDropdown: true },
+                    textAlign: { inDropdown: true },
+                    link: { inDropdown: true },
+                    history: { inDropdown: true },
+                  }}
+                  wrapperClassName="border border-[#D9D9D9] w-full  mb-7 flex flex-col justify-center p-3 min-h-[280px] relative max-w-[636px] rounded"
+                  toolbarClassName="flex w-full gap-7 absolute top-3 text-[#7D7D7D]  "
+                  editorClassName="w-full h-full"
+                />
+                {/* <EditorComposer>
                   <Editor hashtagsEnables={true}>
                     <ToolbarPlugin>
                       <AlignDropdown />
                     </ToolbarPlugin>
                   </Editor>
-                </EditorComposer>
+                </EditorComposer> */}
                 <div className="w-full flex justify-end ">
                   <button className="btn-style mb-9 w-[101px]">
                     ارسال پیام
@@ -414,7 +360,12 @@ export default function EditUserProfile() {
                   >
                     انصراف{" "}
                   </button>
-                  <button className="btn-style" onClick={()=>handleUpdatePassword()}>تغییر گذرواژه</button>
+                  <button
+                    className="btn-style"
+                    onClick={() => handleUpdatePassword()}
+                  >
+                    تغییر گذرواژه
+                  </button>
                 </div>
               </div>
             )}

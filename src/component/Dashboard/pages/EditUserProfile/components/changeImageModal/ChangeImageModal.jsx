@@ -15,7 +15,7 @@ export default function ChangeImageModal({ close, isOpen }) {
       "z-index": "100",
     },
   };
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState("");
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {

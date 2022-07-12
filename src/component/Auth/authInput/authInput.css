@@ -132,7 +132,14 @@ input:focus+label {
   -ms-transform: translateY(-35px);
   transform: translateY(-35px);
 }
-
+input:disabled+label {
+  font-size: 12px;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
 .notCheckValue {
   border-bottom: 3px solid #0f7b0f !important;
   font-size: 20px;

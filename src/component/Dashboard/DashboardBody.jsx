@@ -16,7 +16,7 @@ import ContentpProduction from "./ContentProduction/ContentpProduction";
 import MyList from "./KeyWords/MyList/MyList";
 import WorkSpaceReport from "./DashboaedComponents/workSpace/workSpaceReport";
 import AleartMessageBuyPlan from "./DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
-import { useNavigate } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import AuthButton from "../Auth/authButton/AuthButton";
 import { useSelector } from "react-redux/es/exports";
 import SidebarComponent from "./DashboaedComponents/SidebarComponents/SidebarComponent";
@@ -115,17 +115,17 @@ export default function DashboardBody() {
           {/* keyWords */}
           {/* <Routes>
           <Route path="" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>} />
-          <Route path="/dashboard/content" element={ <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>} />
+          <Route path="content" element={ <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>} />
        </Routes> */}
 
-          {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
+          <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>
           {/* <TabMenu
             tabsContent={tabContent2}
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
             numberRight={"189"}
           /> */}
-          <EditUserProfile />
+          {/* <EditUserProfile /> */}
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 

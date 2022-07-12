@@ -86,17 +86,39 @@ margin: 0px 20px;
   background-color: #0A65CD;
   color: white;
 }
+
 .btn-secondary:active {
   background-color: #0B4B94;
   color: white;
 }
+
 select {
 
-  padding: 5px;
+
   padding-left: 2rem;
-  background: url("./img/dashboard/nav_right/arrow_back_ios_new_down.svg") no-repeat;
+
   background-position-x: 244px;
   background-size: 50px !important;
 
 
+}
+select {
+  cursor: pointer;
+  font: 400 12px/1.3 sans-serif;
+  -webkit-appearance: none;
+  appearance: none;
+  color: var(--baseFg);
+  border: 1px solid var(--baseFg);
+  line-height: 1;
+  outline: 0;
+  padding: 0.65em 2.5em 0.55em 0.75em;
+  border-radius: var(--radius);
+  background-color: var(--baseBg);
+  background-image: linear-gradient(var(--baseFg), var(--baseFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(var(--accentBg) 42%, var(--accentFg) 42%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
+  background-position: right 20px center, right bottom, right bottom, right bottom;
 }

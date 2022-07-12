@@ -43,7 +43,8 @@ export default function TabMenu({
                     >
                       {items.title}
                     </Tab>
-                    <div className="w-[28px] h-[2px] bg-primary rounded  tabline hidden " />
+                  {  activeTab===index ?  <div className="w-[28px] h-[2px] bg-primary rounded  tabline  " />:  <div className="w-[28px] h-[2px] bg-primary rounded  tabline hidden " />}
+                   
                   </div>
                   {index < tabsContent.length - 1 && (
                     <hr className="w-[28px] bg-gray text-[#D9D9D9] rotate-90 mt-4" />

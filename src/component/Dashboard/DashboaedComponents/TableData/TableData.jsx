@@ -147,8 +147,8 @@ else   filteredDatas=data
               <span
                 class={
                   selectColumnTitle === "کپی" && handleClickCopy
-                    ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#D9D9D9] -top-11"
-                    : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#D9D9D9]"
+                    ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#ffffff] -top-11"
+                    : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
                 }
               >
                 کپی شد!
@@ -207,8 +207,8 @@ else   filteredDatas=data
                 id="box"
                 class={
                   handleClickButton
-                    ? "flex tooltip tooltipTop absolute  rounded bg-[#D9D9D9] -top-[29px] left-[70%]"
-                    : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute  rounded bg-[#D9D9D9]"
+                    ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-[29px] left-[70%]"
+                    : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute  rounded bg-[#ffffff]"
                 }
               >
                 کپی شد!
@@ -311,8 +311,8 @@ else   filteredDatas=data
                       <span
                         class={
                           handleClickCopyIndex
-                            ? "flex tooltip tooltip-right absolute left-[100px] rounded bg-[#D9D9D9] "
-                            : "tooltip tooltip-right  hidden absolute   rounded bg-[#D9D9D9]"
+                            ? "flex tooltip tooltip-right absolute left-[100px] rounded bg-[#ffffff] "
+                            : "tooltip tooltip-right  hidden absolute   rounded bg-[#ffffff]"
                         }
                       >
                         کپی شد!

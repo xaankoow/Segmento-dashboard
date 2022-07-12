@@ -6,10 +6,12 @@ import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../DashboaedComponents/TableData/TableData";
 import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
 import { keywordsStoreService } from "../../service/keywordStoreService";
+import PopUp from "../../Utils/PopUp/PopUp";
 
 const KeyWords = ({ onClickHandler }) => {
    // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
+  const [SavePopup, showSavePopup] = useState(false);
   const [keyWords, setKeyWords] = useState([]); //1
   const [seperator,setSeperator]=useState(false)
   const SearchBoxChangeHandler = (e) => {
@@ -20,18 +22,20 @@ const KeyWords = ({ onClickHandler }) => {
   const handleSetKeyWords = async () => {
     try {
       const dd={
-        "key": `${searchBoxValue}`,
+        "key": searchBoxValue,
         "key2": "",
         "used_by":"google",
         "type":"",
         "characters" : true
       };
       // const { data, status } = await keywordService(searchBoxValue);
-      debugger
+      
       const { data, status } = await keywordService(dd);
-      setKeyWords(data.data);//5
+      setKeyWords(data.data.result);//5
+      console.log(data.data.result);
+     
     } catch (error) {
-      debugger
+      
       console.log(error)
     }
   };
@@ -44,6 +48,7 @@ const KeyWords = ({ onClickHandler }) => {
       // const { data, status } = await keywordService(searchBoxValue);
 
       const { data, status } = await keywordsStoreService(dd);
+      showSavePopup(true)
    console.log(data);
     } catch (error) {
       console.log(error);
@@ -115,6 +120,16 @@ const KeyWords = ({ onClickHandler }) => {
   //check dom
   return (
     <>
+    {SavePopup &&
+      <PopUp
+      clickHandler={() => showSavePopup(false)}
+      image={"./img/popUp/playlist_add.svg"}
+      type={"sucsess"}
+      buttonText={"باشه، فهمیدم!"}
+      text={"لیست جدید شما با موفقیت ذخیره شد !"}
+      title={"موفقیت آمیز"}
+    />
+    }
       <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
           changeHandler={SearchBoxChangeHandler}
