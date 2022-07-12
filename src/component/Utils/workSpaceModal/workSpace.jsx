@@ -13,9 +13,9 @@ export default function WorkSpace({ handleClose }) {
   const [addKeyCharInput, setAddKeyCharInput] = useState(3)
   const [addCommercialPageInput, setAddCommercialPageInput] = useState(3)
   const [addWebsitePageInput, setAddWebsitePageInput] = useState(3)
-  const [addCompetitorSite, setAddCompetitorSite] = useState(1)
+  const [addCompetitorSite, setAddCompetitorSite] = useState(2)
   
-
+  // const {}=useSelector(state=>state.workSpaceState)
   const customStyles = {
     content: {
       top: '43vh',
@@ -81,7 +81,7 @@ export default function WorkSpace({ handleClose }) {
         <p className='mt-2.5 text-sm text-[#002145]'>
           {WorkSpaceParagraph(stepModal)}
         </p>
-        <div className='ul_text_container flex justify-around mt-8'>
+        {/* <div className='ul_text_container flex justify-around mt-8'>
           <ul>
             <li className='py-2 px-5'>نمونه متن</li>
             <li className='py-4 px-5'>نمونه متن</li>
@@ -90,7 +90,7 @@ export default function WorkSpace({ handleClose }) {
             <li className='py-2 px-5'>نمونه متن</li>
             <li className='py-4 px-5'>نمونه متن</li>
           </ul>
-        </div>
+        </div> */}
         <div className=' mt-8'>
         {InputGetWorkSpaceInfo(stepModal,stepModal==2?addKeyCharInput:stepModal==3?addCommercialPageInput:stepModal==4?addWebsitePageInput:stepModal==5&&addCompetitorSite,handleAddStateCountInput)}
         </div>
