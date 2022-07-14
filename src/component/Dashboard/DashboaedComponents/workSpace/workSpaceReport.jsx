@@ -190,7 +190,6 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                                         </div>
                                         <div className=' w-2/4 pr-3'>
                                             {item.competitorSite.map(site => (
-
                                                 <div className='pr-2'>
                                                     <p className=' w-full text-right text-xs'>سایت مرتبط</p>
                                                     <p className=' w-full text-left text-sm mt-3'>{"https://" + webAdress + "/" + site}</p>

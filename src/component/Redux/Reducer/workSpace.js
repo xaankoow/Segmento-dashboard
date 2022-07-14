@@ -1,11 +1,11 @@
 export const workSpaceReducer = (state =
     {
-        webAdress: "",
+        webAdress: "www.xaankoovczkj",
         allWorkSpace: [],
         webAdressUuid: "",
-        keyWord1: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
-        keyWord2: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
-        keyWord3: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
+        keyWord1: { key: "آب", site: "sky", competitorSite: ["competitorSky1", "competitorSky2", "", "competitorSky4", ""] },
+        keyWord2: { key: "خاک", site: "earth", competitorSite: ["", "", "", "", ""] },
+        keyWord3: { key: "گوشی", site: "phone", competitorSite: ["competitorPhone1", "", "competitorPhone3", "", "competitorPhone5"] },
         keyWord4: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
         keyWord5: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
         keyWord6: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
@@ -13,20 +13,20 @@ export const workSpaceReducer = (state =
         keyWord8: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
         keyWord9: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
         keyWord10: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
-        commercialPage1: "",
+        commercialPage1: "commercial1",
         commercialPage2: "",
-        commercialPage3: "",
-        commercialPage4: "",
+        commercialPage3: "commercial2",
+        commercialPage4: "commercial3",
         commercialPage5: "",
         commercialPage6: "",
         commercialPage7: "",
         commercialPage8: "",
         commercialPage9: "",
         commercialPage10: "",
-        websitePage1: "",
-        websitePage2: "",
+        websitePage1: "speedTest1",
+        websitePage2: "speedTest2",
         websitePage3: "",
-        websitePage4: "",
+        websitePage4: "speedTest4",
         websitePage5: "",
         websitePage6: "",
         websitePage7: "",
@@ -52,6 +52,7 @@ export const workSpaceReducer = (state =
         // planChosen: "",
         // discount: "",
         // packageUuid: "",
+        resultSetWorkSpace:{reportStatus:false,reportStep:0},
         forceUpdate: 0
     }, action) => {
     switch (action.type) {
@@ -89,6 +90,8 @@ export const workSpaceReducer = (state =
             return { ...action.payload }
 
         case "SET_WORK_SPACE_WEB_ADRESS":
+            return { ...action.payload }
+        case "MODAL_SET_WORK_SPACE_PLAN":
             return { ...action.payload }
 
         case "FORCE_UPDATE":

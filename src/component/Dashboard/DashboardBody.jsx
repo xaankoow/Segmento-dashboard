@@ -148,8 +148,9 @@ export default function DashboardBody() {
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
           {/* <button onClick={}>click me!</button> */}
+          {resultSetWorkSpace.reportStatus==false?<WorkSpace handleClose={closeWorkSpaceModal} />:null}
           {
-            <WorkSpace handleClose={closeWorkSpaceModal} />
+            
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
             // showModal ? <BuyPlanEasyToStartModal  handleClose={resetHandleShowModal}/> : ""
