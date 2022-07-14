@@ -27,13 +27,21 @@ export default function DashboardBody() {
   const navigate = useNavigate();
 
   const { userData } = useSelector((state) => state.userState);
+  const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
 
   const [showResultModal, setShowResultModal] = useState(true); //handle close buy plan result
   const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState(""); //handle buy plan type
+  
+  const [showWorkSpace, setShowWorkSpace] = useState(true); //handle close buy plan result
+  const [showReportWorkSpace, setShowReportWorkSpace] = useState({reportStatus:false,reportStep:0}); //handle buy plan type
   //check buy plan result
   useEffect(() => {
     const status_buy_plan = localStorage.getItem("statusBuyPlna");
     const buy_type = localStorage.getItem("buyType");
+    // const response_new_workSpace = localStorage.getItem("modalWorkSpace").split(",");
+    // if (response_new_workSpace.length!=0) {
+    //   setShowReportWorkSpace({reportStatus:response_new_workSpace[0],reportStep:response_new_workSpace[1]})
+    // }
     if (
       status_buy_plan &&
       status_buy_plan != undefined &&
@@ -44,6 +52,7 @@ export default function DashboardBody() {
       const type_plna = userData.package.type_text;
       if (buy_type == "modal") {
         if (status_buy_plan == true) {
+          setShowWorkSpace(false);
           setShowModalBuyPlanResult({ type: "modal", result: true });
         } else {
           setShowModalBuyPlanResult({ type: "modal", result: false });
@@ -118,6 +127,7 @@ export default function DashboardBody() {
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
         <div className="bg-[#ffffff] overflow-y-scroll pb-8 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main">
+          {resultSetWorkSpace.reportStatus==true?<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep}/>:null}
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
           {/* keyWords */}
