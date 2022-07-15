@@ -22,6 +22,7 @@ import { useSelector } from "react-redux/es/exports";
 import SidebarComponent from "./DashboaedComponents/SidebarComponents/SidebarComponent";
 import MylistContentProduction from "./ContentProduction/MyListContentProduction/MyListContentProduction";
 import BuyPlanEasyToStartModal from "../Utils/EasyToStartModal";
+import TableFinancialReports from "./DashboaedComponents/FinancialReports/TableFinancialReports";
 
 export default function DashboardBody() {
   const navigate = useNavigate();
@@ -143,9 +144,9 @@ export default function DashboardBody() {
             numberLeft={"20"}
             numberRight={"189"}
           /> */}
-
+          <TableFinancialReports title={"گزارش‌های مالی"}/>
           {/* <WorkSpaceReport/> */}
-          <BuyPlan title={"خرید اشتراک سگمنتو"}/>
+          {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
           {/* <button onClick={}>click me!</button> */}
           {resultSetWorkSpace.reportStatus==false&resultSetWorkSpace.reportStep!=0?<WorkSpace handleClose={closeWorkSpaceModal} />:null}
