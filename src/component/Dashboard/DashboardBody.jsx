@@ -137,18 +137,18 @@ export default function DashboardBody() {
        </Routes> */}
 
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          <TabMenu
+          {/* <TabMenu
             tabsContent={tabContent2}
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
             numberRight={"189"}
-          />
+          /> */}
 
           {/* <WorkSpaceReport/> */}
-          {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
+          <BuyPlan title={"خرید اشتراک سگمنتو"}/>
 
           {/* <button onClick={}>click me!</button> */}
-          {resultSetWorkSpace.reportStatus==false?<WorkSpace handleClose={closeWorkSpaceModal} />:null}
+          {resultSetWorkSpace.reportStatus==false&resultSetWorkSpace.reportStep!=0?<WorkSpace handleClose={closeWorkSpaceModal} />:null}
           {
             
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""

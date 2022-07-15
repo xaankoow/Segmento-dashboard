@@ -21,7 +21,7 @@ export default function BuyPlan({ title }) {
   const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
   // const [free, setFree] = useState(false);
 
-  const [plan, setPlan] = useState("");
+  const [plan, setPlan] = useState({uuid:"",type:""});
   // 
   // const [showModal, setShowModal] = useState(true);
   const [discountInputGold, setDiscountInputGold] = useState("");
@@ -111,9 +111,9 @@ export default function BuyPlan({ title }) {
               // 
               if (item.type_text == "برنزی") {
               return (
-                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                <div className='container_row' onClick={() => { setPlan({uuid:item.uuid,type:"bronze"}); dispatch(setPackageUuid(item.uuid)) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                     <p>{item.title}</p>
                   </div>
                   <span className='off_price'>{item.default_discount_text}</span>
@@ -122,7 +122,7 @@ export default function BuyPlan({ title }) {
             })}
           </div>
           <div className='price'>
-            <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[1].price.toString().substring(0,allPackageData[1].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
+            <p style={plan.type.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[1].price.toString().substring(0,allPackageData[1].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
             <AuthInput
@@ -138,6 +138,8 @@ export default function BuyPlan({ title }) {
             <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
           </div>
         </div>
+
+
         <div className='silver plan_card'>
           <span className='title'>نقره ای</span>
           <hr />
@@ -146,9 +148,9 @@ export default function BuyPlan({ title }) {
               // 
               if (item.type_text == "نقره ای") {
               return (
-                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                <div className='container_row' onClick={() => { setPlan({uuid:item.uuid,type:"silver"}); dispatch(setPackageUuid(item.uuid)) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                     <p>{item.title}</p>
                   </div>
                   <span className='off_price'>{item.default_discount_text}</span>
@@ -157,7 +159,7 @@ export default function BuyPlan({ title }) {
             })}
           </div>
           <div className='price'>
-            <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[5].price.toString().substring(0,allPackageData[5].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
+            <p style={plan.type.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[5].price.toString().substring(0,allPackageData[5].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
             <AuthInput
@@ -181,9 +183,9 @@ export default function BuyPlan({ title }) {
               
               if (item.type_text == "طلایی") {
               return (
-                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                <div className='container_row' onClick={() => { setPlan({uuid:item.uuid,type:"gold"}); dispatch(setPackageUuid(item.uuid)) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                     <p>{item.title}</p>
                   </div>
                   <span className='off_price'>{item.default_discount_text}</span>
@@ -192,7 +194,7 @@ export default function BuyPlan({ title }) {
             })}
           </div>
           <div className='price'>
-            <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[9].price.toString().substring(0,allPackageData[9].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
+            <p style={plan.type.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[9].price.toString().substring(0,allPackageData[9].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
             <AuthInput
@@ -217,9 +219,9 @@ export default function BuyPlan({ title }) {
               
               if (item.type_text == "الماسی") {
               return (
-                <div className='container_row' onClick={() => { setPlan(item.uuid); dispatch(setPackageUuid(item.uuid)) }}>
+                <div className='container_row' onClick={() => { setPlan({uuid:item.uuid,type:"diamond"}); dispatch(setPackageUuid(item.uuid)) }}>
                   <div>
-                    <input type="radio" name="radio" id="" checked={plan == item.uuid ? true : false} />
+                    <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                     <p>{item.title}</p>
                   </div>
                   <span className='off_price'>{item.default_discount_text}</span>
@@ -228,7 +230,7 @@ export default function BuyPlan({ title }) {
             })}
           </div>
           <div className='price'>
-            <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[13].price.toString().substring(0,allPackageData[13].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
+            <p style={plan.type.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[13].price.toString().substring(0,allPackageData[13].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
             <AuthInput
@@ -280,7 +282,7 @@ export default function BuyPlan({ title }) {
         </div>
       </div>
       <div className='report_buy_plan w-[500px]'>
-        {showReportModal&&<ReportBuyPlanSection handleClose={handleCloseReportModal} packageUuid={plan}/>}
+        {showReportModal&&<ReportBuyPlanSection handleClose={handleCloseReportModal} packageUuid={plan.uuid}/>}
       </div>
     </div>
   )

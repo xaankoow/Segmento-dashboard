@@ -10,7 +10,7 @@ import { workSpaceTitle } from './titleWorkSpaceModal';
 export default function WorkSpace({ handleClose }) {
 
   const [modalTitleStep, setModalTitleStep] = useState("")
-  const [stepModal, setStepModal] = useState(5);
+  const [stepModal, setStepModal] = useState(1);
 
   const [addKeyCharInput, setAddKeyCharInput] = useState(3)
   const [addCommercialPageInput, setAddCommercialPageInput] = useState(3)
