@@ -37,7 +37,7 @@ export default function AuthInput({
   //redux options
 
   const dispatch = useDispatch()
-
+  // debugger
 
   // to be just number when we type
   const pressNumberValue = (event) => {

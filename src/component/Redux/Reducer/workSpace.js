@@ -1,38 +1,48 @@
 export const workSpaceReducer = (state =
     {
-        webAdress: "http://xxxxx.xxx",
-        allWorkSpace:[],
+        webAdress: "www.xaankoovczkj",
+        allWorkSpace: [],
         webAdressUuid: "",
-        keyWord1: { key: "", site: "" },
-        keyWord2: { key: "", site: "" },
-        keyWord3: { key: "", site: "" },
-        keyWord4: { key: "", site: "" },
-        keyWord5: { key: "", site: "" },
-        keyWord6: { key: "", site: "" },
-        keyWord7: { key: "", site: "" },
-        keyWord8: { key: "", site: "" },
-        keyWord9: { key: "", site: "" },
-        keyWord10: { key: "", site: "" },
-        commercialPage1: "",
+        keyWord1: { key: "آب", site: "sky", competitorSite: ["competitorSky1", "competitorSky2", "", "competitorSky4", ""] },
+        keyWord2: { key: "خاک", site: "earth", competitorSite: ["", "", "", "", ""] },
+        keyWord3: { key: "گوشی", site: "phone", competitorSite: ["competitorPhone1", "", "competitorPhone3", "", "competitorPhone5"] },
+        keyWord4: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
+        keyWord5: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
+        keyWord6: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
+        keyWord7: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
+        keyWord8: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
+        keyWord9: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
+        keyWord10: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
+        commercialPage1: "commercial1",
         commercialPage2: "",
-        commercialPage3: "",
-        commercialPage4: "",
+        commercialPage3: "commercial2",
+        commercialPage4: "commercial3",
         commercialPage5: "",
         commercialPage6: "",
         commercialPage7: "",
         commercialPage8: "",
         commercialPage9: "",
         commercialPage10: "",
-        websitePage1: "",
-        websitePage2: "",
+        websitePage1: "speedTest1",
+        websitePage2: "speedTest2",
         websitePage3: "",
-        websitePage4: "",
+        websitePage4: "speedTest4",
         websitePage5: "",
         websitePage6: "",
         websitePage7: "",
         websitePage8: "",
         websitePage9: "",
         websitePage10: "",
+        // competitorSite1: ["", "", "", "", ""],
+        // competitorSite2: ["", "", "", "", ""],
+        // competitorSite3: ["", "", "", "", ""],
+        // competitorSite4: ["", "", "", "", ""],
+        // competitorSite5: ["", "", "", "", ""],
+        // competitorSite6: ["", "", "", "", ""],
+        // competitorSite7: ["", "", "", "", ""],
+        // competitorSite8: ["", "", "", "", ""],
+        // competitorSite9: ["", "", "", "", ""],
+        // competitorSite10: ["", "", "", "", ""],
         testSpeedPage: [],
         competitorSite: [],
         // charKey2: "key 2",
@@ -42,6 +52,7 @@ export const workSpaceReducer = (state =
         // planChosen: "",
         // discount: "",
         // packageUuid: "",
+        resultSetWorkSpace:{reportStatus:false,reportStep:0},
         forceUpdate: 0
     }, action) => {
     switch (action.type) {
@@ -79,6 +90,8 @@ export const workSpaceReducer = (state =
             return { ...action.payload }
 
         case "SET_WORK_SPACE_WEB_ADRESS":
+            return { ...action.payload }
+        case "MODAL_SET_WORK_SPACE_PLAN":
             return { ...action.payload }
 
         case "FORCE_UPDATE":

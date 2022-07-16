@@ -4,6 +4,7 @@ import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
 
 export default function AcardionItem() {
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
+  console.log(allWorkSpace)
   const data = [
     {
       title: "ورک‌اسپیس‌ها",

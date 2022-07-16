@@ -21,7 +21,6 @@ export default function LandingPage() {
       localStorage.setItem("statusBuyPlna",true)
     }
     navigate('/dashboard',{replace:true});
-    debugger
   }
 
   return (

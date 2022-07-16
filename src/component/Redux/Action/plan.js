@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { applyDiscount, buyPlna, getAllPlan, getPlanDetails } from "../../service/planService";
+import { creatWorkSpace } from "../../service/workSpaceService";
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
@@ -261,7 +262,73 @@ export const applyDiscountAction = discountCode => {
 
 
 
-
+export const modalSetWorkSpace = () => {
+    return async (dispatch, getState) => {
+        //  
+        const state = { ...getState().planState }
+        const webAdress=state.webAdress;
+        const charKey1=state.charKey1;
+        const charKey2=state.charKey2;
+        const site1=state.site1;
+        const site2=state.site2;
+        const commercialPage1=state.commercialPage1;
+        const commercialPage2=state.commercialPage1;
+        // const packageUuid=state.packageUuid;
+        // const discount=state.discount;
+        // debugger
+        // if (packageUuid) {
+            let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+            var modalWorkSpace={
+                
+                    "workspace": "https://"+webAdress,
+                    "keywords": [
+                        {
+                            "key": charKey1,
+                            "url": "https://"+webAdress+"/"+site1,
+                            "competitors":[]
+                        },
+                        {
+                            "key": charKey2,
+                            "url": "https://"+webAdress+"/"+site2,
+                            "competitors":[]
+                        }
+                    ],
+                    "links": [
+                        "https://"+webAdress+"/"+commercialPage1,
+                        "https://"+webAdress+"/"+commercialPage2
+                    ],
+                    "pages": []
+                
+            }
+            
+            let toastMessage = "";
+            try {
+                debugger
+                const { data } = await creatWorkSpace(modalWorkSpace);
+                debugger
+                if (data.code == 200 && data.status == true) {
+                    localStorage.setItem("modalWorkSpace",data.status);
+                    state.forceUpdate+=1;
+                    toast.update(toastPromise, { render:  data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
+                } else {
+                    // data.errors.forEach(element => {
+                    //     toastMessage += element + " / ";
+                    // });
+                    toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
+                }
+            } catch (error) {
+                error.response.data.errors.forEach(element => {
+                    toastMessage += element + " / ";
+                });
+                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+            }
+        // } else {
+        //     showInputErrorToast();
+        // }
+        
+        await dispatch({ type: "MODAL_SET_WORK_SPACE_PLAN", payload: state })
+    }
+}
 
 
 
