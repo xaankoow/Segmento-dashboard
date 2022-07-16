@@ -19,8 +19,18 @@ export default function Table({
   const [activeRow, setActiveRow] = useState(0);
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set class name when checkbox is checking
-  const handleCheckingInput = (event) => {
-  
+  const handleCheckingInput = (target,item) => {
+
+    debugger
+    if (target) {
+      setCopyItem([...copyItem, item]);
+      console.log(copyItem);
+    } else {
+      setCopyItem(
+        copyItem.filter((copyItems) => copyItems != item)
+      );
+      console.log(copyItem);
+    }
     if (copyItem.length > 0) {
       setSelectColumnTitle("کپی");
     } else {
@@ -286,17 +296,8 @@ else   filteredDatas=data
                         type={"checkbox"}
                         className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
                         onClick={(e) => {
-                          if (e.target.checked) {
-                            setCopyItem([...copyItem, item]);
-                            console.log(copyItem);
-                          } else {
-                            setCopyItem(
-                              copyItem.filter((copyItems) => copyItems != item)
-                            );
-                            console.log(copyItem);
-                          }
 
-                          handleCheckingInput();
+                          handleCheckingInput(e.target.checked,item);
                         }}
                       />
                     </div>

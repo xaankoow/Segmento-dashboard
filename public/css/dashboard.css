@@ -169,6 +169,7 @@
 
 #DASHBOARD .nav_right .nav_right_box {
 	padding: 3px 5px 3px 3px;
+	/* z-index: 1; */
 }
 
 #DASHBOARD .nav_right .nav_right_box:hover {

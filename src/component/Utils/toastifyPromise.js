@@ -65,3 +65,46 @@ export const showInputErrorToast = (message) => {
         progress: undefined
     });
 }
+export const showToast = (message,type) => {
+    // toast.info('لطفا فیلد هارا با دقت پرکنید', {
+        // debugger
+        switch (type) {
+            case 'success':
+                toast.success(message, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    // rtl:true,
+                    progress: undefined
+                });
+                break;
+            case 'error':
+                toast.error(message, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    // rtl:true,
+                    progress: undefined
+                });
+                break;
+        
+            default:
+                break;
+        }
+    // toast.info(message!=undefined?message:'لطفا فیلد هارا با دقت پرکنید', {
+    //     position: "top-right",
+    //     autoClose: 3000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     // rtl:true,
+    //     progress: undefined
+    // });
+}

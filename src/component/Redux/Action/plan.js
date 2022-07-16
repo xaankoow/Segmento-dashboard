@@ -3,24 +3,32 @@ import { applyDiscount, buyPlna, getAllPlan, getPlanDetails } from "../../servic
 import { creatWorkSpace } from "../../service/workSpaceService";
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
-import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
+import { showInputErrorToast, showPromisToast, showToast } from "../../Utils/toastifyPromise";
 
 
 
-export const getAllPlanData = ()=> {
+export const getAllPlanData = () => {
     return async (dispatch, getState) => {
         // debugger
         const state = { ...getState().planState }
-        let toastMessage="";
+        const loadingState = { ...getState().loadingState }
+
+        let toastMessage = "";
         try {
-            const workSpaces=await getAllPlan()
-            // debugger
-            if (workSpaces.data.status==true&&workSpaces.data.code==200) {
-                state.allPackageData = workSpaces.data.data;
-            }else{
-                
+            //handle show loadin
+            {
+                loadingState.ProcessingDelay.push("getAllPlan");
+                loadingState.canRequest = false;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
             }
-            await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })    
+            const workSpaces = await getAllPlan()
+            // debugger
+            if (workSpaces.data.status == true && workSpaces.data.code == 200) {
+                state.allPackageData = workSpaces.data.data;
+            } else {
+
+            }
+            await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
         } catch (error) {
             console.log("register error")
             error.response.data.errors.forEach(element => {
@@ -36,80 +44,89 @@ export const getAllPlanData = ()=> {
                 progress: undefined,
             });
         }
+
+
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "getAllPlan");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
     }
 }
 
 
 export const setWebAdress = adress => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.webAdress=adress;
+        state.webAdress = adress;
         await dispatch({ type: "MODAL_PLAN_WEB_ADRESS", payload: state })
     }
 }
 export const setCharKey1 = char => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.charKey1=char;
+        state.charKey1 = char;
         await dispatch({ type: "MODAL_PLAN_CHAR_KEY1", payload: state })
     }
 }
 export const setCharKey2 = char => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.charKey2=char;
+        state.charKey2 = char;
         await dispatch({ type: "MODAL_PLAN_CHAR_KEY2", payload: state })
     }
 }
 export const setSite1 = adress => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.site1=adress;
+        state.site1 = adress;
         await dispatch({ type: "MODAL_PLAN_SITE1", payload: state })
     }
 }
 export const setSite2 = adress => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.site2=adress;
+        state.site2 = adress;
         await dispatch({ type: "MODAL_PLAN_SITE2", payload: state })
     }
 }
 export const setCommercialPage1 = adress => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.commercialPage1=adress;
+        state.commercialPage1 = adress;
         await dispatch({ type: "MODAL_PLAN_COMMERCIAL_PAGE1", payload: state })
     }
 }
 export const setCommercialPage2 = adress => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.commercialPage2=adress;
+        state.commercialPage2 = adress;
         await dispatch({ type: "MODAL_PLAN_COMMERCIAL_PAGE2", payload: state })
     }
 }
 export const setPlanChosen = plan => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.planChosen=plan;
+        state.planChosen = plan;
         await dispatch({ type: "MODAL_PLAN_CHOSEN", payload: state })
     }
 }
 
 export const setPackageUuid = uuid => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.packageUuid=uuid;
+        state.packageUuid = uuid;
         await dispatch({ type: "MODAL_PLAN_PACKAGE_UUID", payload: state })
     }
 }
 
 export const setPackageDetails = uuid => {
-    return async (dispatch, getState) => { 
+    return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        const {data}= await getPlanDetails(uuid);
-        state.planDetails=data.data;
+        const { data } = await getPlanDetails(uuid);
+        state.planDetails = data.data;
         await dispatch({ type: "MODAL_PLAN_GET_PACKAGE_DETAILS", payload: state })
     }
 }
@@ -142,6 +159,9 @@ export const buyPlan = (buyType) => {
     return async (dispatch, getState) => {
         //  
         const state = { ...getState().planState }
+        const loadingState = { ...getState().loadingState }
+
+
         // const webAdress=state.webAdress;
         // const charKey1=state.charKey1;
         // const charKey2=state.charKey2;
@@ -149,15 +169,25 @@ export const buyPlan = (buyType) => {
         // const site2=state.site2;
         // const commercialPage1=state.commercialPage1;
         // const commercialPage2=state.commercialPage1;
-        const packageUuid=state.packageUuid;
-        const discount=state.discount;
+        const packageUuid = state.packageUuid;
+        const discount = state.discount;
         debugger
         if (packageUuid) {
-            let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
-            var packageInfo={
-                "type":"package",
-                "uuid":packageUuid,
-                "discount_code":discount
+
+
+            //handle show loadin
+            {
+                loadingState.ProcessingDelay.push("buyPlna");
+                loadingState.canRequest = false;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            }
+
+
+            // let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+            var packageInfo = {
+                "type": "package",
+                "uuid": packageUuid,
+                "discount_code": discount
                 // "payload":{
                 //     "workspace":webAdress,
                 //     "keywords":[
@@ -170,8 +200,8 @@ export const buyPlan = (buyType) => {
                 //     ]
                 // }
             }
-            var packageInfoJson=JSON.stringify(packageInfo);
-            
+            var packageInfoJson = JSON.stringify(packageInfo);
+
             let toastMessage = "";
             try {
                 const { data } = await buyPlna(packageInfo);
@@ -194,26 +224,37 @@ export const buyPlan = (buyType) => {
                 // });
                 // const { data, status } = await applyDiscount("sample-code");
                 if (data.code == 200 && data.status == true) {
-                    localStorage.setItem("buyType",buyType)
-                    window.location.href=data.data;
+                    localStorage.setItem("buyType", buyType)
+                    window.location.href = data.data;
                     // state.forceUpdate += 1;
-                    toast.update(toastPromise, { render:  data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
+                    showToast(data.data.msg,"success");
+                    // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
                 } else {
                     // data.errors.forEach(element => {
                     //     toastMessage += element + " / ";
                     // });
-                    toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
+                    showToast(data.data.msg,"error");
+                    // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
                 }
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
-                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                showToast(toastMessage,"error");
+                // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
             }
         } else {
             showInputErrorToast();
         }
-        
+
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "buyPlna");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
+
         await dispatch({ type: "MODAL_PLAN_BUY_PLAN", payload: state })
     }
 }
@@ -221,39 +262,58 @@ export const applyDiscountAction = discountCode => {
     return async (dispatch, getState) => {
         //  
         const state = { ...getState().planState }
+        const loadingState = { ...getState().loadingState }
         if (discountCode) {
-            let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
-            
-            // debugger
-            // debugger
+            // let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+
+
+            //handle show loadin
+            {
+                loadingState.ProcessingDelay.push("applyDiscount");
+                loadingState.canRequest = false;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            }
+
+
             var formdata = new FormData();
             formdata.append("code", discountCode)
-            
+
             let toastMessage = "";
             try {
                 const { data, status } = await applyDiscount(formdata);
                 // const { data, status } = await applyDiscount("sample-code");
                 if (data.code == 200 && data.data.status == true) {
-                    state.discount=discountCode;
+                    state.discount = discountCode;
                     state.forceUpdate += 1;
-                    toast.update(toastPromise, { render:  data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
+                    showToast(data.data.msg, "success");
+                    // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
                 } else {
                     // data.errors.forEach(element => {
                     //     toastMessage += element + " / ";
                     // });
-                    InputError("discount",data.data.msg)
-                    toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
+                    showToast(data.data.msg, "success");
+                    InputError("discount", data.data.msg)
+                    // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
                 }
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
-                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                showToast(toastMessage, "error");
+                // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
             }
         } else {
             showInputErrorToast();
         }
-        
+
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "applyDiscount");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
+
         await dispatch({ type: "MODAL_PLAN_DISCOUNT_CODE", payload: state })
     }
 }
@@ -266,66 +326,89 @@ export const modalSetWorkSpace = () => {
     return async (dispatch, getState) => {
         //  
         const state = { ...getState().planState }
-        const webAdress=state.webAdress;
-        const charKey1=state.charKey1;
-        const charKey2=state.charKey2;
-        const site1=state.site1;
-        const site2=state.site2;
-        const commercialPage1=state.commercialPage1;
-        const commercialPage2=state.commercialPage1;
+        const loadingState = { ...getState().loadingState }
+
+        const webAdress = state.webAdress;
+        const charKey1 = state.charKey1;
+        const charKey2 = state.charKey2;
+        const site1 = state.site1;
+        const site2 = state.site2;
+        const commercialPage1 = state.commercialPage1;
+        const commercialPage2 = state.commercialPage1;
         // const packageUuid=state.packageUuid;
         // const discount=state.discount;
         // debugger
         // if (packageUuid) {
-            let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
-            var modalWorkSpace={
-                
-                    "workspace": "https://"+webAdress,
-                    "keywords": [
-                        {
-                            "key": charKey1,
-                            "url": "https://"+webAdress+"/"+site1,
-                            "competitors":[]
-                        },
-                        {
-                            "key": charKey2,
-                            "url": "https://"+webAdress+"/"+site2,
-                            "competitors":[]
-                        }
-                    ],
-                    "links": [
-                        "https://"+webAdress+"/"+commercialPage1,
-                        "https://"+webAdress+"/"+commercialPage2
-                    ],
-                    "pages": []
-                
-            }
-            
-            let toastMessage = "";
-            try {
-                debugger
-                const { data } = await creatWorkSpace(modalWorkSpace);
-                debugger
-                if (data.code == 200 && data.status == true) {
-                    localStorage.setItem("modalWorkSpace",data.status);
-                    state.forceUpdate+=1;
-                    toast.update(toastPromise, { render:  data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
-                } else {
-                    // data.errors.forEach(element => {
-                    //     toastMessage += element + " / ";
-                    // });
-                    toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
+        // let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+
+
+        //handle show loadin
+        {
+            loadingState.ProcessingDelay.push("creatWorkSpace");
+            loadingState.canRequest = false;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
+
+
+        var modalWorkSpace = {
+
+            "workspace": "https://" + webAdress,
+            "keywords": [
+                {
+                    "key": charKey1,
+                    "url": "https://" + webAdress + "/" + site1,
+                    "competitors": []
+                },
+                {
+                    "key": charKey2,
+                    "url": "https://" + webAdress + "/" + site2,
+                    "competitors": []
                 }
-            } catch (error) {
-                error.response.data.errors.forEach(element => {
-                    toastMessage += element + " / ";
-                });
-                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+            ],
+            "links": [
+                "https://" + webAdress + "/" + commercialPage1,
+                "https://" + webAdress + "/" + commercialPage2
+            ],
+            "pages": []
+
+        }
+
+        let toastMessage = "";
+        try {
+            debugger
+            const { data } = await creatWorkSpace(modalWorkSpace);
+            debugger
+            if (data.code == 200 && data.status == true) {
+                localStorage.setItem("modalWorkSpace", data.status);
+                state.forceUpdate += 1;
+                showToast(data.data.msg,"success");
+                // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
+            } else {
+                // data.errors.forEach(element => {
+                //     toastMessage += element + " / ";
+                // });
+                showToast(data.data.msg,"error");
+                // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
             }
+        } catch (error) {
+            error.response.data.errors.forEach(element => {
+                toastMessage += element + " / ";
+            });
+            showToast(toastMessage,"error");
+            // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+        }
         // } else {
         //     showInputErrorToast();
         // }
-        
+
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "creatWorkSpace");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
+
         await dispatch({ type: "MODAL_SET_WORK_SPACE_PLAN", payload: state })
     }
 }
@@ -333,7 +416,7 @@ export const modalSetWorkSpace = () => {
 
 
 // export const setDiscount = code => {
-//     return async (dispatch, getState) => { 
+//     return async (dispatch, getState) => {
 //         const state = { ...getState().planState }
 //         state.discount=code;
 //         await dispatch({ type: "DISCOUNT_CODE", payload: { ...getState().planState } })
