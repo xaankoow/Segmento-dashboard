@@ -1,8 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowWorkSpaceModal } from "../../../Redux/Action/workSpace";
 import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
 
 export default function AcardionItem() {
+
+  const dispatch=useDispatch();
+
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
   console.log(allWorkSpace);
   const data = [
@@ -180,6 +184,7 @@ export default function AcardionItem() {
                 {item.title == "ورک‌اسپیس‌ها" && (
                   <div
                     key={index}
+                    onClick={()=>dispatch(setShowWorkSpaceModal(true))}
                     className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                   >
                     <img

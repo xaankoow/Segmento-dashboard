@@ -6,7 +6,7 @@ import './style.css'
 export default function LoadingPage({ show }) {
   // debugger
   // const [showLoading, setShowLoading] = useState(show!=undefined?show:false)
-  const { showLoading, canRequest } = useSelector(state => state.loadingState)
+  const { ProcessingDelay, canRequest } = useSelector(state => state.loadingState)
   // debugger
   const customStyles = {
     content: {
@@ -22,11 +22,11 @@ export default function LoadingPage({ show }) {
   };
   return (
     <Fragment>
-      {!showLoading == true && !canRequest == false ? (
-        <div>
+      {ProcessingDelay.length>0 && canRequest == false ? (
+        <div id='Loadin-Page'>
           <Modal
             isOpen={true}
-            parentSelector={() => document.querySelector(".app #DASHBOARD")}
+            parentSelector={() => document.querySelector(".app #Loadin-Page")}
             // onAfterOpen={afterOpenModal}
             // onRequestClose={closeModal}
             style={customStyles}
@@ -44,12 +44,12 @@ export default function LoadingPage({ show }) {
                   <div class="segmento_logo_6"></div>
                   <div class="segmento_logo_7"></div>
                 </div>
-                <p className=' mt-7 text-center'>درحال برسی اطلاعات...</p>
               </div>
+                <p className=' mt-7 text-center'>درحال برسی اطلاعات...</p>
             {/* </div> */}
           </Modal>
         </div>
-      ) : ""}
+      ) : null}
     </Fragment>
 
   )

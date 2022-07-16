@@ -11,7 +11,7 @@ export default function IconsRight({setActive}) {
     <div className='top relative'>
         {
             imageSrc.map((items,index)=>{
-                   return  <div id={index} className={index===activeIcon ? "bg-[#F2F5F7] nav_right_box flex items-center justify-center relative":'nav_right_box flex items-center justify-center relative'} key={index}  onClick={(e)=>{setActiveIcon(index);setActive(e)}} >
+                   return  <div id={index} className={index===activeIcon ? "bg-[#F2F5F7] nav_right_box flex items-center justify-center relative z-0":'nav_right_box flex items-center justify-center relative z-0'} key={index}  onClick={(e)=>{setActiveIcon(index);setActive(e)}} >
                                 <img id={index} src={items} alt="imageSidebar" />
                                {index===activeIcon && <hr className='w-5 h-[3px] bg-[#0A65CD] text-[#D9D9D9] rotate-90 absolute -right-2 rounded' />}
                             </div> 

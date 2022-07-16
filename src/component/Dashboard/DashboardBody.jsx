@@ -22,13 +22,14 @@ import { useSelector } from "react-redux/es/exports";
 import SidebarComponent from "./DashboaedComponents/SidebarComponents/SidebarComponent";
 import MylistContentProduction from "./ContentProduction/MyListContentProduction/MyListContentProduction";
 import BuyPlanEasyToStartModal from "../Utils/EasyToStartModal";
+import TableFinancialReports from "./DashboaedComponents/FinancialReports/TableFinancialReports";
 import EditUserProfile from "./pages/EditUserProfile/EditUserProfile";
 
 export default function DashboardBody() {
   const navigate = useNavigate();
 
   const { userData } = useSelector((state) => state.userState);
-  const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
+  const { resultSetWorkSpace,showWorkSpaceModal } = useSelector((state) => state.workSpaceState);
 
   const [showResultModal, setShowResultModal] = useState(true); //handle close buy plan result
   const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState(""); //handle buy plan type
@@ -65,7 +66,7 @@ export default function DashboardBody() {
   }, []);
 
   const [showModal, setShowModal] = useState(true);
-  const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true);
+  // const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true);me
 
   // DashboardHeader nav icon that close the left sidebar
   const [closeNav, setCloseNav] = useState(false);
@@ -86,9 +87,9 @@ export default function DashboardBody() {
   const resetHandleShowModal = () => {
     setShowModal(false);
   };
-  const closeWorkSpaceModal = () => {
-    setShowWorkSpaceModal(false);
-  };
+  // const closeWorkSpaceModal = () => { me
+  //   setShowWorkSpaceModal(false);
+  // };
 
   // cosnt
   // tab content
@@ -143,13 +144,14 @@ export default function DashboardBody() {
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
             numberRight={"189"}
-          />
+          /> 
+          <TableFinancialReports title={"گزارش‌های مالی"}/>
           {/* <EditUserProfile /> */}
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
           {/* <button onClick={}>click me!</button> */}
-          {resultSetWorkSpace.reportStatus==false&resultSetWorkSpace.reportStep!=0?<WorkSpace handleClose={closeWorkSpaceModal} />:null}
+          {showWorkSpaceModal?<WorkSpace />:null}
           {
             // <WorkSpace handleClose={closeWorkSpaceModal} />
             

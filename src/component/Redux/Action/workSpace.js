@@ -13,6 +13,13 @@ export const setWebAdress = adress => {
     }
 }
 
+export const setShowWorkSpaceModal = value => {
+    return async (dispatch, getState) => {
+        const state = { ...getState().workSpaceState }
+        state.showWorkSpaceModal = value;
+        await dispatch({ type: "HANDLE_SHOW_WORK_SPACE", payload: state })
+    }
+}
 export const getAllWorkSpace = () => {
     return async (dispatch, getState) => {
         // debugger

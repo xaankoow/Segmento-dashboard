@@ -296,7 +296,7 @@ export default function Table({
                             console.log(copyItem);
                           }
 
-                          handleCheckingInput();
+                          handleCheckingInput(e.target.checked,item);
                         }}
                       />
                     </div>
