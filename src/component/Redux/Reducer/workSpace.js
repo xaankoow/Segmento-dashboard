@@ -53,6 +53,7 @@ export const workSpaceReducer = (state =
         // discount: "",
         // packageUuid: "",
         resultSetWorkSpace:{reportStatus:false,reportStep:0},
+        showWorkSpaceModal:false,
         forceUpdate: 0
     }, action) => {
     switch (action.type) {
@@ -60,6 +61,8 @@ export const workSpaceReducer = (state =
         case "DISCOUNT_CODE":
             return { ...action.payload }
 
+        case "HANDLE_SHOW_WORK_SPACE":
+            return { ...action.payload }
         case "WEB_ADRESS":
             return { ...action.payload }
         case "GET_ALL_WEB_ADRESS_DATA":
