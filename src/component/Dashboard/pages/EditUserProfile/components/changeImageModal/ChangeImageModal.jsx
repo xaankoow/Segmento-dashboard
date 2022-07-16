@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { useDropzone } from "react-dropzone";
 import PageTitle from "../../../../DashboaedComponents/pageTitle/pageTitle";
-export default function ChangeImageModal({ close, isOpen }) {
+import {useDropzone} from 'react-dropzone';
+export default function ChangeImageModal({ close, isOpen,userImage,setUserImage}) {
   const customStyles = {
     content: {
       top: "43vh",
@@ -15,28 +15,37 @@ export default function ChangeImageModal({ close, isOpen }) {
       "z-index": "100",
     },
   };
-  const [files, setFiles] = useState("");
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
-    },
-  });
-  const thumbs = files.map((file) => (
-
-      <img key={file.name} src={file.preview} alt={"userimage"} className="rounded-full my-3 max-w-[125px] max-h-[94px] " />
   
-  ));
+
+  const {getRootProps, getInputProps} = useDropzone({
+    accept: ["JPG", "PNG", "GIF"],
+    onDrop: acceptedFiles => {
+      setUserImage(acceptedFiles.map(file => Object.assign(file, {
+        preview: URL.createObjectURL(file)
+      })));
+    }
+  });
+
+  const thumbs = userImage.length !=0 ? userImage.map(file => (
+    
+    <img
+    src={file.preview}
+    className="rounded-full my-3 w-[125px] h-[125px]"
+    alt="userImage"
+  />
+      
+  )) :<img
+  src={"../img/dashboard/userProfile/profileImage.png"}
+  className="rounded-full my-3 max-w-[125px] max-h-[125px]"
+  alt="userImage"
+/>
+
+
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks
-    files.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, [files]);
+    userImage.forEach(file => URL.revokeObjectURL(file.preview));
+  }, [userImage]);
+ console.log(userImage);
   return (
     <Modal
       isOpen={isOpen ? true : false}
@@ -50,7 +59,8 @@ export default function ChangeImageModal({ close, isOpen }) {
       // className={"myModal"}
     >
       <div className="min-w-[530px] rounded-lg">
-        <div className="w-full flex relative">
+      
+        <div className="w-full flex relative" >
           <PageTitle title={"تغییر تصویر پروفایل"} />
           <img
             src="./img/dashboard/nav_right/close.svg"
@@ -62,22 +72,17 @@ export default function ChangeImageModal({ close, isOpen }) {
           />
         </div>
         <div className="p-4">
-          <div className="flex flex-col justify-center items-center">
-            {thumbs ? (
-              thumbs
-            ) : (
-              <img
-                src={"../img/dashboard/userProfile/profileImage.png"}
-                className="rounded-full my-3 max-w-[125px] max-h-[125px]"
-                alt="userImage"
-              />
-            )}
+          <div className="flex flex-col justify-center items-center" >
+            {  thumbs 
+              
+            }
 
             <div
-              {...getRootProps()}
+            {...getRootProps({className: 'dropzone'})}
+            
               className="border rounded-lg border-dashed border-primary min-w-[358px] bg-secondary flex flex-col justify-center items-center py-4 gap-4"
             >
-                <input {...getInputProps()} />
+              <input {...getInputProps()} className="w-full bg-yellow h-11"/>
               <img
                 src="../img/dashboard/userProfile/backup.svg"
                 alt="backup"
@@ -92,14 +97,15 @@ export default function ChangeImageModal({ close, isOpen }) {
                 <span className="text-[#D9D9D9]">—————</span> یا{" "}
                 <span className="text-[#D9D9D9]">—————</span>{" "}
               </span>
-              <button className="btn-style"> انتخاب فایل</button>
+              <button className="btn-style" > انتخاب فایل</button>
             </div>
             <div className="flex justify-end gap-5 mt-7 w-full max-w-[358px]">
-              <button className="btn-secondary" onClick={() => close()}>
+              <button className="btn-secondary" onClick={() => close()} >
                 {" "}
+                
                 انصراف{" "}
               </button>
-              <button className="btn-style"> ذخیره تغییرات </button>
+              <button className="btn-style" onClick={""}> ذخیره تغییرات </button>
             </div>
           </div>
         </div>

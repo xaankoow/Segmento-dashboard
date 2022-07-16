@@ -71,7 +71,7 @@ export default function ContentpProduction({ onClickHandler }) {
         <SaveListModal
           dataTable={tableDataFiltered2}
           isContentProduction={true}
-          updateButtonHandler={() =>{if(boxIndex) showUpdatePpUp(true)}}
+          updateButtonHandler={() =>{if(boxIndex>-1) showUpdatePpUp(true)}}
           saveButtonHandler={() =>{ if(SaveInputValue) showSavePopup(true)}}
           closeModal={keyWordShowSaveModal}
           SaveInputValues={SaveInputValues}

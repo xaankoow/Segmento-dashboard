@@ -26,6 +26,11 @@ export default function EditUserProfile() {
   const [selectDatas, setSelectDtas] = useState([]);
   const [nameInputValue, setNameInputValue] = useState("");
   const [familyInputValue, setfamilyInputValue] = useState("");
+  // user Image
+  const [image, setUserImage] = useState([]);
+ const userImageProf= image.map(file=> file.preview)
+ console.log(userImageProf)
+  // 
   const [selectBoxValue1, setSelectBoxValue1] = useState("");
   const [selectBoxValue2, setSelectBoxValue2] = useState("");
   const [selectBoxValue3, setSelectBoxValue3] = useState("");
@@ -90,7 +95,7 @@ export default function EditUserProfile() {
       }
       formdata.append("name", family);
       formdata.append("bio", "من یک برنامه نویس هستم");
-      formdata.append("avatar", "");
+      formdata.append("avatar", userImageProf[0]);
       formdata.append("website_type", selectBoxValue1);
       formdata.append("company_scale", selectBoxValue2);
       formdata.append("seo_experts", selectBoxValue3);
@@ -162,13 +167,15 @@ export default function EditUserProfile() {
       dispatch(getAllWorkSpace());
     }
   }, [forceUpdate]);
-
+  
   return (
     <>
       {openChangeImageModal && (
         <ChangeImageModal
           close={() => setOpenChangeImageModal(false)}
           isOpen={openChangeImageModal}
+          setUserImage={setUserImage}
+          userImage={image}
         />
       )}
       {updatePass && (
@@ -191,6 +198,8 @@ export default function EditUserProfile() {
                 userType={"کاربر طلایی"}
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
+                imageSource={image.length !=0 ? image.map(file => (file.preview)) : "../img/dashboard/userProfile/profileImage.png"}
+  
               />
               <button
                 className="btn-style h-10 rounded-lg text-[14px] mr-[181px]"

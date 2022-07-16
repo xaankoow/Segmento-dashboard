@@ -7,6 +7,7 @@ import {
   ContentProductionStoreService,
 } from "../../service/contentProductionStore";
 import { useEffect } from "react";
+import { Deblur } from "@mui/icons-material";
 
 export default function SaveListModal({
   saveButtonHandler,
@@ -55,21 +56,24 @@ export default function SaveListModal({
   };
   const handlechangeSaveInput = (e) => {
     setSaveInputValue(e.target.value);
+    SaveInputValues(e)
   };
 
   useEffect(() => {
     handleGetcontent();
   }, []);
-
+  console.log(SaveInputValue);
+  console.log(dataTable);
   if (isContentProduction) {
     var handleSetcontent = async () => {
       try {
-        const dd = {
+        
+             const dd = {
           word: SaveInputValue,
           data: dataTable,
         };
         // const { data, status } = await keywordService(searchBoxValue);
-
+          
         const { data, status } = await ContentProductionStoreService(dd);
         setUpdate(!update);
       } catch (error) {
@@ -103,7 +107,7 @@ export default function SaveListModal({
           textLabelInput="افزودن لیست جدید "
           width={"100%"}
           typeInput="text"
-          handleChange={handlechangeSaveInput && SaveInputValues}
+          handleChange={handlechangeSaveInput}
         />
         <div className="w-full">
           <button
@@ -175,6 +179,7 @@ export default function SaveListModal({
             بروزرسانی لیست
           </button>
         </div>
+        {update ? "" : ""}
       </div>
     </Modal>
   );

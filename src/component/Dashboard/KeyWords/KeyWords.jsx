@@ -7,6 +7,7 @@ import Table from "../DashboaedComponents/TableData/TableData";
 import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
 import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUp from "../../Utils/PopUp/PopUp";
+import { useParams } from "react-router";
 
 const KeyWords = ({ onClickHandler }) => {
    // searchBox Value
@@ -14,6 +15,7 @@ const KeyWords = ({ onClickHandler }) => {
   const [SavePopup, showSavePopup] = useState(false);
   const [keyWords, setKeyWords] = useState([]); //1
   const [seperator,setSeperator]=useState(false)
+  const [id,setId]=useState("");
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
@@ -32,7 +34,8 @@ const KeyWords = ({ onClickHandler }) => {
       
       const { data, status } = await keywordService(dd);
       setKeyWords(data.data.result);//5
-      console.log(data.data.result);
+      setId(data.data.id)
+      console.log(data.data.id);
      
     } catch (error) {
       
@@ -42,12 +45,10 @@ const KeyWords = ({ onClickHandler }) => {
   // store data in myList
   var handleSetStoreKeyWords = async () => {
     try {
-      const dd = {
-        "key":searchBoxValue
-    }
-      // const { data, status } = await keywordService(searchBoxValue);
+     
 
-      const { data, status } = await keywordsStoreService(dd);
+
+      const { data, status } = await keywordsStoreService(id);
       showSavePopup(true)
    console.log(data);
     } catch (error) {
@@ -140,7 +141,7 @@ const KeyWords = ({ onClickHandler }) => {
           className="w-[97%] flex items-center gap-2 justify-between"
         />
 
-        <div className="flex flex-col  w-[97%]">
+        <div className="flex flex-col  w-[97%]" >
           {!searchBoxValue || !searchBoxHandleClick ? (
             <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
           ) : null}
@@ -179,7 +180,7 @@ const KeyWords = ({ onClickHandler }) => {
             : "bg-[#D3D5E2] btn-style mr-5 mt-5 flex gap-3"
         }
         disabled={searchBoxHandleClick ? false : true}
-        onClick={(e) =>{ onClickHandler();handleSetStoreKeyWords()}}
+        onClick={(e) =>{handleSetStoreKeyWords()}}
       >
         <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />
        ذخیره لیست

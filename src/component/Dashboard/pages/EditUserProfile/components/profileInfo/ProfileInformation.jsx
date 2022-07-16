@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function ProfileInformation({ userName, userType, email ,changeUserImage}) {
+export default function ProfileInformation({ userName, userType, email ,changeUserImage,imageSource}) {
   return (
     <div className="flex gap-3 items-center">
       <div className="relative">
         <img
-          src="../img/dashboard/userProfile/profileImage.png"
+          src={imageSource}
           className="rounded-full"
           alt="userImage"
         />
