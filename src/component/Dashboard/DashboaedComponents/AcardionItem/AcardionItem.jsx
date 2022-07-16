@@ -4,12 +4,12 @@ import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
 
 export default function AcardionItem() {
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
-  console.log(allWorkSpace)
+  console.log(allWorkSpace);
   const data = [
     {
       title: "ورک‌اسپیس‌ها",
       titleIcon: "./img/dashboard/nav_right/web.svg",
-      acardionItems: allWorkSpace.map((item) => ({
+      acardionItems: allWorkSpace.map((item, index) => ({
         itemTitle: item.website,
         itemIcon: "./img/dashboard/nav_right/storefront.svg",
       })),
@@ -124,7 +124,6 @@ export default function AcardionItem() {
   };
   return (
     <>
-   
       {data.map((item, index) => {
         return (
           <div className="" key={index}>
@@ -178,11 +177,24 @@ export default function AcardionItem() {
                     </div>
                   );
                 })}
+                {item.title == "ورک‌اسپیس‌ها" && (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
+                  >
+                    <img
+                      src={"./img/dashboard/nav_right/add_circle.svg"}
+                      alt="icon"
+                    />
+                    <span className={"w-auto"}>افزودن سایت</span>
+                  </div>
+                )}
               </div>
             ) : null}
-               {index==0 &&  <div className="border-b border-lightGray w-11/12 m-auto" />}
+            {index == 0 && (
+              <div className="border-b border-lightGray w-11/12 m-auto" />
+            )}
           </div>
-       
         );
       })}
     </>

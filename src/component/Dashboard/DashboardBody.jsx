@@ -138,7 +138,7 @@ export default function DashboardBody() {
        </Routes> */}
 
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          {/* <TabMenu
+          <TabMenu
             tabsContent={tabContent2}
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
@@ -146,7 +146,7 @@ export default function DashboardBody() {
           />
           {/* <EditUserProfile /> */}
           {/* <WorkSpaceReport/> */}
-          <BuyPlan title={"خرید اشتراک سگمنتو"}/>
+          {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
           {/* <button onClick={}>click me!</button> */}
           {resultSetWorkSpace.reportStatus==false&resultSetWorkSpace.reportStep!=0?<WorkSpace handleClose={closeWorkSpaceModal} />:null}
@@ -161,35 +161,7 @@ export default function DashboardBody() {
 
           {/* <AleartMessageBuyPlan /> */}
         </div>
-        {/* <div className='list_hover mt-1 pt-5 h-full bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg' style={{ width: closeNav ? '0px' : "256px" }}>
-          <ItemSidebarHover icon={"./img/dashboard/nav_right/dashboardPishKhan.svg"} text={!closeNav && "پیشخوان"} textColor={"#0A65CD"} />
-          <div className='border-b border-lightGray w-11/12 m-auto' />
-          <ItemSidebarHover icon={"./img/dashboard/nav_right/web.svg"} text={!closeNav && "ورک‌اسپیس‌ها"} textColor={"#002145"} />
-          <div className="mr-4">
-            <ItemSidebarHover icon={"./img/dashboard/nav_right/storefront.svg"} text={!closeNav && "xaankoo.com"} textColor={"#002145"} />
-            <ItemSidebarHover icon={"./img/dashboard/nav_right/add_circle.svg"} text={!closeNav && "تعریف ورک‌اسپیس جدید"} textColor={"#002145"} />
-          </div>
-          <div className='border-b border-lightGray w-11/12 m-auto' />
-          <AcardionItem />
-        </div> */}
-        {/* <div className='nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]'>
-          <IconsRight />
-          <div className='down'>
-            <div className='dropDownBox '>
-              <div className='support w-7 h-7'></div>
-              <div className='support_dropDown dropDownBox1'><span> پشتیبانی و تیکت </span></div>
-            </div>
-
-            <div className='dropDownBox'>
-              <div className='information w-7 h-7'></div>
-              <div className='support_dropDown dropDownBox2'><span>منابع و راهنمایی ها</span></div>
-            </div>
-
-            <div className='line'></div>
-            <div className='xaankoo_logo w-11 h-9'></div>
-
-          </div>
-        </div> */}
+        
         <SidebarComponent closeNav={closeNav} />
       </div>
       {/* {showModalBuyPlanResult != "" && showModalBuyPlanResult == true ? ( */}
