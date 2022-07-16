@@ -7,12 +7,15 @@ import {
   ContentProductionStoreService,
 } from "../../service/contentProductionStore";
 import { useEffect } from "react";
+import { Deblur } from "@mui/icons-material";
 
 export default function SaveListModal({
   saveButtonHandler,
   updateButtonHandler,
   isContentProduction,
   dataTable,
+  SaveInputValues,
+  activeBoxUpdate
 }) {
   const customStyles = {
     content: {
@@ -53,21 +56,24 @@ export default function SaveListModal({
   };
   const handlechangeSaveInput = (e) => {
     setSaveInputValue(e.target.value);
+    SaveInputValues(e)
   };
 
   useEffect(() => {
     handleGetcontent();
   }, []);
-
+  console.log(SaveInputValue);
+  console.log(dataTable);
   if (isContentProduction) {
     var handleSetcontent = async () => {
       try {
-        const dd = {
+        
+             const dd = {
           word: SaveInputValue,
           data: dataTable,
         };
         // const { data, status } = await keywordService(searchBoxValue);
-
+          
         const { data, status } = await ContentProductionStoreService(dd);
         setUpdate(!update);
       } catch (error) {
@@ -128,14 +134,16 @@ export default function SaveListModal({
           {itemFiltered.map((item, index) => {
             return (
               <div
+               id={index}
                 className={
                   activeBox == index
                     ? "flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] bg-[#F2F5F7] "
                     : "flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-[#F2F5F7] "
                 }
-                onClick={() => {
+                onClick={(e) => {
                   setSaveInputValue(item.word);
                   setActiveBox(index);
+                  activeBoxUpdate(e)
                 }}
               >
                 <div className="flex items-center gap-6 w-[265px]">
@@ -171,6 +179,7 @@ export default function SaveListModal({
             بروزرسانی لیست
           </button>
         </div>
+        {update ? "" : ""}
       </div>
     </Modal>
   );

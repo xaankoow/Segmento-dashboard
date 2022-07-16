@@ -1,7 +1,8 @@
 /* DEFAULT BTN STYLE*/
-.btn-style *{
+.btn-style * {
   font-size: 14px !important;
 }
+
 .btn-style {
   background-color: rgba(10, 101, 205, 1);
   font-size: 14px !important;
@@ -15,16 +16,18 @@
   padding: 8px 20px;
   transition: all 0.08s ease-in-out;
 }
+
 .btn-style:hover {
   background-color: #0ac7e2 !important;
   cursor: pointer;
 }
+
 .btn-style:active {
   background-color: #009fb9 !important;
+  color: white;
 }
-.input_defult_style{
 
-}
+.input_defult_style {}
 
 /* .input_verify_email_cod_container .input-wrapper input{
   width: 50px ;
@@ -34,14 +37,88 @@ margin: 0px 20px;
 .verify_cod_container .input-wrapper {
   margin: 0px 10px;
 }
+
 .verify_cod_container .input-wrapper {
   margin: 0px 10px;
 }
+
 .verify_cod_container .input-wrapper:first-child {
   margin-right: 0px !important;
 }
 
 
-.btn_complete{
-  background-color: #009FB9 ;
+.btn_complete {
+  background-color: #009FB9;
+}
+
+.third-btn {
+  color: #0A65CD !important;
+  font-size: 14px !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.third-btn:hover {
+  color: #0AC7E2 !important;
+  cursor: pointer;
+}
+
+
+
+.btn-secondary {
+  background-color: #F2F5F7;
+  font-size: 14px !important;
+  color: #488CDA;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  transition: all 0.08s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: #0A65CD;
+  color: white;
+}
+
+.btn-secondary:active {
+  background-color: #0B4B94;
+  color: white;
+}
+
+select {
+
+
+  padding-left: 2rem;
+
+  background-position-x: 244px;
+  background-size: 50px !important;
+
+
+}
+select {
+  cursor: pointer;
+  font: 400 12px/1.3 sans-serif;
+  -webkit-appearance: none;
+  appearance: none;
+  color: var(--baseFg);
+  border: 1px solid var(--baseFg);
+  line-height: 1;
+  outline: 0;
+  padding: 0.65em 2.5em 0.55em 0.75em;
+  border-radius: var(--radius);
+  background-color: var(--baseBg);
+  background-image: linear-gradient(var(--baseFg), var(--baseFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(var(--accentBg) 42%, var(--accentFg) 42%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
+  background-position: right 20px center, right bottom, right bottom, right bottom;
 }

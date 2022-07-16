@@ -6,12 +6,16 @@ import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../DashboaedComponents/TableData/TableData";
 import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
 import { keywordsStoreService } from "../../service/keywordStoreService";
+import PopUp from "../../Utils/PopUp/PopUp";
+import { useParams } from "react-router";
 
 const KeyWords = ({ onClickHandler }) => {
    // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
+  const [SavePopup, showSavePopup] = useState(false);
   const [keyWords, setKeyWords] = useState([]); //1
   const [seperator,setSeperator]=useState(false)
+  const [id,setId]=useState("");
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
@@ -20,30 +24,32 @@ const KeyWords = ({ onClickHandler }) => {
   const handleSetKeyWords = async () => {
     try {
       const dd={
-        "key": `${searchBoxValue}`,
+        "key": searchBoxValue,
         "key2": "",
         "used_by":"google",
         "type":"",
         "characters" : true
       };
       // const { data, status } = await keywordService(searchBoxValue);
-      debugger
+      
       const { data, status } = await keywordService(dd);
-      setKeyWords(data.data);//5
+      setKeyWords(data.data.result);//5
+      setId(data.data.id)
+      console.log(data.data.id);
+     
     } catch (error) {
-      debugger
+      
       console.log(error)
     }
   };
   // store data in myList
   var handleSetStoreKeyWords = async () => {
     try {
-      const dd = {
-        "key":searchBoxValue
-    }
-      // const { data, status } = await keywordService(searchBoxValue);
+     
 
-      const { data, status } = await keywordsStoreService(dd);
+
+      const { data, status } = await keywordsStoreService(id);
+      showSavePopup(true)
    console.log(data);
     } catch (error) {
       console.log(error);
@@ -115,6 +121,16 @@ const KeyWords = ({ onClickHandler }) => {
   //check dom
   return (
     <>
+    {SavePopup &&
+      <PopUp
+      clickHandler={() => showSavePopup(false)}
+      image={"./img/popUp/playlist_add.svg"}
+      type={"sucsess"}
+      buttonText={"باشه، فهمیدم!"}
+      text={"لیست جدید شما با موفقیت ذخیره شد !"}
+      title={"موفقیت آمیز"}
+    />
+    }
       <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
           changeHandler={SearchBoxChangeHandler}
@@ -125,7 +141,7 @@ const KeyWords = ({ onClickHandler }) => {
           className="w-[97%] flex items-center gap-2 justify-between"
         />
 
-        <div className="flex flex-col  w-[97%]">
+        <div className="flex flex-col  w-[97%]" >
           {!searchBoxValue || !searchBoxHandleClick ? (
             <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
           ) : null}
@@ -164,7 +180,7 @@ const KeyWords = ({ onClickHandler }) => {
             : "bg-[#D3D5E2] btn-style mr-5 mt-5 flex gap-3"
         }
         disabled={searchBoxHandleClick ? false : true}
-        onClick={(e) =>{ onClickHandler();handleSetStoreKeyWords()}}
+        onClick={(e) =>{handleSetStoreKeyWords()}}
       >
         <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />
        ذخیره لیست

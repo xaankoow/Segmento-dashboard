@@ -11,7 +11,14 @@ export default function ContentpProduction({ onClickHandler }) {
   const [UpdatePpUp, showUpdatePpUp] = useState(false);
   const [SavePopup, showSavePopup] = useState(false);
   const [keyWordShowSaveModal, setKeyWordShowSaveModal] = useState(false);
-  const [forceUpdate, setForceUpdate] = useState(false);
+  const [SaveInputValue, SetSaveInputValues] = useState("");
+  const [boxIndex, setUpdateBoxIndex] = useState(-1);
+  const SaveInputValues=(e)=>{
+    SetSaveInputValues(e.target.value)
+  }
+  const activeBoxUpdate=(e)=>{
+    setUpdateBoxIndex(e.target.id)
+  }
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
@@ -57,15 +64,18 @@ export default function ContentpProduction({ onClickHandler }) {
   console.log(tableDataFiltered);
   console.log(tableDataFiltered2);
   console.log(number);
+  
   return (
     <>
       {keyWordShowSaveModal && (
         <SaveListModal
           dataTable={tableDataFiltered2}
           isContentProduction={true}
-          updateButtonHandler={() => showUpdatePpUp(true)}
-          saveButtonHandler={() => showSavePopup(true)}
+          updateButtonHandler={() =>{if(boxIndex>-1) showUpdatePpUp(true)}}
+          saveButtonHandler={() =>{ if(SaveInputValue) showSavePopup(true)}}
           closeModal={keyWordShowSaveModal}
+          SaveInputValues={SaveInputValues}
+          activeBoxUpdate={activeBoxUpdate}
         />
       )}
       {UpdatePpUp && (
@@ -78,7 +88,7 @@ export default function ContentpProduction({ onClickHandler }) {
           title={"موفقیت آمیز"}
         />
       )}
-      {SavePopup && (
+      {SavePopup &&  (
         <PopUp
           clickHandler={() => showSavePopup(false)}
           image={"./img/popUp/playlist_add.svg"}
@@ -129,6 +139,7 @@ export default function ContentpProduction({ onClickHandler }) {
         <img src="./img/dashboard/table/cached.svg" alt="cached" />
         تولید بیشتر
       </button>
+      {number ? "" : ""}
     </>
   );
 }
