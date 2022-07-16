@@ -29,7 +29,7 @@ export default function EditUserProfile() {
   // user Image
   const [image, setUserImage] = useState([]);
  const userImageProf= image.map(file=> file.preview)
- console.log(userImageProf)
+ console.log(userImageProf[0])
   // 
   const [selectBoxValue1, setSelectBoxValue1] = useState("");
   const [selectBoxValue2, setSelectBoxValue2] = useState("");

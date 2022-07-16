@@ -15,7 +15,7 @@ export default function SaveListModal({
   isContentProduction,
   dataTable,
   SaveInputValues,
-  activeBoxUpdate
+  activeBoxUpdate,
 }) {
   const customStyles = {
     content: {
@@ -32,13 +32,14 @@ export default function SaveListModal({
   const [disable, setDisable] = useState(true);
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [SaveInputValue, setSaveInputValue] = useState("");
+  const [SaveUpdateValue, setSaveUpdateValue] = useState("");
   const [update, setUpdate] = useState(false);
   const [content, setcontent] = useState([]);
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
   const [closeModal, SetcloseModal] = useState(false);
-  // jalali moment 
-  var moment = require('jalali-moment');
-   
+  // jalali moment
+  var moment = require("jalali-moment");
+
   var itemFiltered = content.filter((item, index) => {
     if (!searchBoxHandleClick) return content;
     else {
@@ -56,7 +57,7 @@ export default function SaveListModal({
   };
   const handlechangeSaveInput = (e) => {
     setSaveInputValue(e.target.value);
-    SaveInputValues(e)
+    SaveInputValues(e);
   };
 
   useEffect(() => {
@@ -67,13 +68,24 @@ export default function SaveListModal({
   if (isContentProduction) {
     var handleSetcontent = async () => {
       try {
-        
-             const dd = {
+        const dd = {
           word: SaveInputValue,
           data: dataTable,
         };
-        // const { data, status } = await keywordService(searchBoxValue);
-          
+
+        const { data, status } = await ContentProductionStoreService(dd);
+        setUpdate(!update);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    var handleUpdate = async () => {
+      try {
+        const dd = {
+          word: SaveUpdateValue,
+          data: dataTable,
+        };
+
         const { data, status } = await ContentProductionStoreService(dd);
         setUpdate(!update);
       } catch (error) {
@@ -122,11 +134,13 @@ export default function SaveListModal({
           </button>
         </div>
         <div className="border-b border-[#7D7D7D] w-full m-auto" />
+
         <SearchBox
           className={"w-full mt-2 flex items-center gap-2 justify-between"}
           changeHandler={SearchBoxChangeHandler}
           handlClick={() => setSearchBoxHandleClick(true)}
         />
+
         <div
           className="overflow-y-scroll max-h-[300px] px-2 cursor-pointer "
           onClick={() => setDisable(false)}
@@ -134,16 +148,16 @@ export default function SaveListModal({
           {itemFiltered.map((item, index) => {
             return (
               <div
-               id={index}
+                id={index}
                 className={
                   activeBox == index
-                    ? "flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] bg-[#F2F5F7] "
-                    : "flex items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-[#F2F5F7] "
+                    ? "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] bg-[#F2F5F7] "
+                    : "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-[#F2F5F7] "
                 }
                 onClick={(e) => {
-                  setSaveInputValue(item.word);
+                  setSaveUpdateValue(item.word);
                   setActiveBox(index);
-                  activeBoxUpdate(e)
+                  activeBoxUpdate(e);
                 }}
               >
                 <div className="flex items-center gap-6 w-[265px]">
@@ -157,7 +171,9 @@ export default function SaveListModal({
                     آخرین به روزرسانی :{" "}
                   </span>
                   <span className="text-sm text-[#7D7D7D]">
-                    {moment(item.created_at.substring(0, 10)).locale('fa').format('YYYY/M/D')}
+                    {moment(item.created_at.substring(0, 10))
+                      .locale("fa")
+                      .format("YYYY/M/D")}
                   </span>
                 </div>
               </div>
@@ -171,7 +187,7 @@ export default function SaveListModal({
             className="btn-style flex items-center gap-3 w-[183px] py-2"
             onClick={(e) => {
               updateButtonHandler(e);
-              handleSetcontent();
+              handleUpdate();
               setUpdate(!update);
             }}
           >

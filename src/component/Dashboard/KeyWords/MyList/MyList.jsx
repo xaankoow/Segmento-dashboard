@@ -33,8 +33,12 @@ export default function MyList() {
     try {
       const dataRaw = { type: "suggest_google_character" };
       const { data, status } = await dataTable(dataRaw);
-      console.log(data);
-      setTableDatas(data.data);
+      const listDatas = [];
+      for (let index = data.data.length; index >= 0; index--) {
+        if (data.data[index] != undefined)
+          listDatas.push(data.data[index]);
+      }
+      setTableDatas(listDatas);
     } catch (error) {
       console.log(error);
     }
