@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { TextButton } from "../../../pages/register/Register";
 import "./authButton.css";
 import { useDispatch } from "react-redux";
+import { useSelect } from "@mui/base";
 
 export default function AuthButton({
   widthValue,
@@ -14,6 +15,7 @@ export default function AuthButton({
   textButton,
   setOnclickValue
 }) {
+  const {canRequest}=useSelect(state=>state.loadingState)
   const value = useContext(TextButton);
   const dispatch = useDispatch()
   // debugger
@@ -21,7 +23,7 @@ export default function AuthButton({
     <button
       variant="contained"
       className={`btn-style ${classes}`}
-      disabled={disabled}
+      disabled={disabled==true?canRequest:false}
 
       style={style}
       onClick={handlerClick != undefined && reduxHandleClick != undefined ? (

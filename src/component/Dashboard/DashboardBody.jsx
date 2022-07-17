@@ -122,6 +122,7 @@ export default function DashboardBody() {
   // }
   // console.log(showResultModal)
   // alert( showResultModal)
+  console.log(window.location.pathname);
   return (
     <div id="DASHBOARD">
       <div className="w-full h-16 bg-[#fff] shadow-3xl">
@@ -151,6 +152,10 @@ export default function DashboardBody() {
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
           {/* <button onClick={}>click me!</button> */}
+          <Routes>
+
+          <Route path="/dd" element={<WorkSpace />} />
+          </Routes>
           {showWorkSpaceModal?<WorkSpace />:null}
           {
             // <WorkSpace handleClose={closeWorkSpaceModal} />

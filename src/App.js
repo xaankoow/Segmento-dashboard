@@ -68,7 +68,7 @@ export default function App() {
 
         </div>
         <Routes>
-          <Route path="dashboard" element={<DashboardBody />} />
+          <Route path="dashboard/*" element={<DashboardBody />} />
           <Route path="dashboard/payment*" element={<LandingPage />} />
         </Routes>
 
