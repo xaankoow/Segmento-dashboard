@@ -17,9 +17,9 @@ export default function MyList() {
   const [searchBoxValue, setSarchBoxValue] = useState("");
   //search box button click
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
-   // jalali moment 
-   var moment = require('jalali-moment');
-  const tableDataFiltered=[]
+  // jalali moment
+  var moment = require("jalali-moment");
+  
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -36,9 +36,13 @@ export default function MyList() {
   var handleGetcontent = async () => {
     try {
       const { data, status } = await ContentProductionGetService();
-      setTableDatas(data.data);
-      console.log(data.data);
-     
+      const tableDataFiltered = [];
+      for (let index = data.data.length; index >=0; index--) {
+        if (data.data[index] != undefined)
+          tableDataFiltered.push(data.data[index]);
+      }
+
+      setTableDatas(tableDataFiltered);
     } catch (error) {
       console.log(error);
     }
@@ -51,11 +55,11 @@ export default function MyList() {
     }
   };
   // filter
-
   const filterTableDatas = tableDatas.filter((item) => {
     if (!searchBoxHandleClick) return tableDatas;
     else return item.word.includes(searchBoxValue);
   });
+  
   return (
     <div className="px-4 py-7 bg-[#ffffff]">
       <div className="flex justify-between items-center mb-4">
@@ -69,11 +73,14 @@ export default function MyList() {
       </div>
 
       {filterTableDatas.map((item, index) => {
-        
-       
-
         return (
-          <div className="flex flex-col border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2">
+          <div
+            className={
+              index + 1 == filterTableDatas.length
+                ? "flex flex-col border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-8  mt-2"
+                : "flex flex-col border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2"
+            }
+          >
             <div
               className={
                 clicked === index
@@ -93,7 +100,9 @@ export default function MyList() {
                     آخرین به روزرسانی :
                   </span>
                   <span className="text-sm text-[#7D7D7D]">
-                      {moment(item.created_at.substring(0, 10)).locale('fa').format('YYYY/M/D')}
+                    {moment(item.created_at.substring(0, 10))
+                      .locale("fa")
+                      .format("YYYY/M/D")}
                   </span>
                 </div>
                 <div
@@ -117,7 +126,11 @@ export default function MyList() {
               </div>
             </div>
             {clicked === index ? (
-              <Table data={item.data} WordsSearcher={true} contentsProduction={true}/>
+              <Table
+                data={item.data}
+                WordsSearcher={true}
+                contentsProduction={true}
+              />
             ) : null}
           </div>
         );

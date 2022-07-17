@@ -19,15 +19,18 @@ export default function Table({
   const [activeRow, setActiveRow] = useState(0);
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set class name when checkbox is checking
-  const handleCheckingInput = (event) => {
-  debugger
+
+  const handleCheckingInput = () => {
+    debugger;
+
     if (copyItem.length > 0) {
       setSelectColumnTitle("کپی");
     } else {
       setSelectColumnTitle("انتخاب");
     }
   };
-console.log(copyItem.length)
+
+  console.log(copyItem.length);
   const groupIt = (array) => {
     let resultObj = {};
 
@@ -59,7 +62,7 @@ console.log(copyItem.length)
   };
   if (radioClickedHandler === "1") {
     comboboxFiltered = data.filter((item) => {
-      return item
+      return item;
     });
   } else if (radioClickedHandler === "2") {
     comboboxFiltered = data.filter((item) => {
@@ -77,16 +80,14 @@ console.log(copyItem.length)
   const secoundSearchBoxChangeHandler = (e) => {
     setSecoundSearchBoxValue(e.target.value);
   };
-var filteredDatas=[];
-if(comboboxFiltered){
-  filteredDatas=comboboxFiltered
-
-}
-else   filteredDatas=data
+  var filteredDatas = [];
+  if (comboboxFiltered) {
+    filteredDatas = comboboxFiltered;
+  } else filteredDatas = data;
   // copy all items in to clipboard in different line
   function createListOutput() {
     var myListOutput = "";
-    if(comboboxFiltered){
+    if (comboboxFiltered) {
       for (var i = 0; i < comboboxFiltered.length; i++) {
         //check if list is NOT the last in the array, if last don't output a line break
         if (i != comboboxFiltered.length - 1) {
@@ -97,18 +98,18 @@ else   filteredDatas=data
           myListOutput = myListOutput + lineItem;
         }
       }
-    }
-    else{
-    for (var i = 0; i < data.length; i++) {
-      //check if list is NOT the last in the array, if last don't output a line break
-      if (i != data.length - 1) {
-        let lineItem = data[i] + "\n";
-        myListOutput = myListOutput + lineItem;
-      } else {
-        let lineItem = data[i];
-        myListOutput = myListOutput + lineItem;
+    } else {
+      for (var i = 0; i < data.length; i++) {
+        //check if list is NOT the last in the array, if last don't output a line break
+        if (i != data.length - 1) {
+          let lineItem = data[i] + "\n";
+          myListOutput = myListOutput + lineItem;
+        } else {
+          let lineItem = data[i];
+          myListOutput = myListOutput + lineItem;
+        }
       }
-    }}
+    }
     return myListOutput;
   }
   function customCopy() {
@@ -256,8 +257,6 @@ else   filteredDatas=data
             className="bg-white text-right w-full overflow-y-scroll max-h-[450px] "
             id="table"
           >
-
-           
             {filteredDatas.map((item, index) => {
               letter = item.substr(0, 1);
               let letterArray = [""];
@@ -289,7 +288,7 @@ else   filteredDatas=data
                           if (e.target.checked) {
                             setCopyItem([...copyItem, item]);
                             console.log(copyItem);
-                            console.log(e.target.checked)
+                            console.log(e.target.checked);
                           } else {
                             setCopyItem(
                               copyItem.filter((copyItems) => copyItems != item)
@@ -333,37 +332,6 @@ else   filteredDatas=data
                 </>
               );
             })}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </div>
         )}
       </div>
