@@ -35,30 +35,61 @@ export default function ContentpProduction({ onClickHandler }) {
       formdata.append("keyword", searchBoxValue);
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await ContentProductionService(formdata);
+      // debugger
       setcontent(data.data); //5
+      // content.map((item, index) => {
+      //   if (item.includes(searchBoxValue)) { // هنگام ارسال درخواست به وبسرویس کلمه هم ارسال میشه پس شامل اون کلمه هست پس چرا دوباره برسی کنیم؟!
+      //     tableDataFiltered.push(item);
+      data.data.forEach((element,index) => {
+        if (index<=4) {
+          tableDataFiltered2.push(element);
+        }
+      });
+      setTableData(tableDataFiltered2);
+      setNumber(5);
+          // if (tableDataFiltered2.length < 5) {
+          //   tableDataFiltered2.push(item);
+          // }
+        // }
+        // return
+      // });
     } catch (error) {
       console.log(error);
     }
   };
+  var [tableData, setTableData] = useState([]);
+
   var tableDataFiltered = [];
   var tableDataFiltered2 = [];
-  content.map((item, index) => {
-    if (item.includes(searchBoxValue)) {
-      tableDataFiltered.push(item);
-      if (tableDataFiltered2.length < 5) {
-        tableDataFiltered2.push(item);
-      }
-    }
-    // return
-  });
+  // content.map((item, index) => {
+  //   if (item.includes(searchBoxValue)) {
+  //     tableDataFiltered.push(item);
+  //     if (tableDataFiltered2.length < 5) {
+  //       tableDataFiltered2.push(item);
+  //     }
+  //   }
+  //   // return
+  // });
+  // debugger
 
-  var [number, setNumber] = useState(10);
+  useEffect(() => {
+
+    // if (tableDataFiltered2.length!=tableData.length) {
+    //   debugger
+    //   setTableData(tableDataFiltered2);
+    // }
+  }, [])
+  
+  var [number, setNumber] = useState(5);
+
+
   const addMore = () => {
-    debugger;
-    for (let i = tableDataFiltered2.length; i < number; i++) {
-      tableDataFiltered2.push(tableDataFiltered[i]);
+    // debugger;
+    tableDataFiltered2=tableData;
+    for (let i = number; content.length>i+5?i < number+5:i<content.length; i++) {
+      tableDataFiltered2.push(content[i]);
     }
-
+    setTableData(tableDataFiltered2);
     setNumber(number + 5);
   };
   console.log(tableDataFiltered);
@@ -69,7 +100,7 @@ export default function ContentpProduction({ onClickHandler }) {
     <>
       {keyWordShowSaveModal && (
         <SaveListModal
-          dataTable={tableDataFiltered2}
+          dataTable={tableData}
           isContentProduction={true}
           updateButtonHandler={() =>{if(boxIndex>-1) showUpdatePpUp(true)}}
           saveButtonHandler={() =>{ if(SaveInputValue) showSavePopup(true)}}
@@ -114,7 +145,7 @@ export default function ContentpProduction({ onClickHandler }) {
           ) : null}
           <div className="flex  justify-between w-full mt-5">
             <Table
-              data={tableDataFiltered2}
+              data={tableData}
               NothingSearch={
                 !searchBoxValue || !searchBoxHandleClick ? true : false
               }
@@ -139,7 +170,7 @@ export default function ContentpProduction({ onClickHandler }) {
         <img src="./img/dashboard/table/cached.svg" alt="cached" />
         تولید بیشتر
       </button>
-      {number ? "" : ""}
+      {/* {number ? "" : ""} */}
     </>
   );
 }

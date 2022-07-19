@@ -15,7 +15,7 @@ export default function Table({
   const [handleClickCopyIndex, SetHandleCopyIndex] = useState(false);
   const [copyItem, setCopyItem] = useState([]);
   // row of table
-  let letter = "آ";
+  let letter = "آ"; // این کلمه همیشه باید ثالت باشه؟!
   const [activeRow, setActiveRow] = useState(0);
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set class name when checkbox is checking
@@ -258,7 +258,7 @@ export default function Table({
             id="table"
           >
             {filteredDatas.map((item, index) => {
-              letter = item.substr(0, 1);
+              letter = item.substring(0, 1);
               let letterArray = [""];
               return (
                 <>
