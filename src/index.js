@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "./component/Redux/Store";
 
 import 'react-toastify/dist/ReactToastify.css';
+// import 'jalali-react-datepicker/dist/types';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
