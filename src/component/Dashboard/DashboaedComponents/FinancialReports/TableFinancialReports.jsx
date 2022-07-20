@@ -7,6 +7,9 @@ import DatePicker, { DateObject } from "react-multi-date-picker"
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import { getValue } from '@testing-library/user-event/dist/utils';
+import { exportExcel } from '../../../Utils/excel/exportExcel';
+import ReactExport from "react-export-excel";
+// import { exportExcel } from '../../../Utils/excel/exportExcel';
 // import { RangeDatePicker } from "jalali-react-datepicker";//
 export default function TableFinancialReports({ title }) {
     // const dispatch=us
@@ -32,7 +35,9 @@ export default function TableFinancialReports({ title }) {
         dispatch(getAllFinancialReports())
     }, [])
 
-
+    const ExcelFile = ReactExport.ExcelFile;
+    const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+    const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 
     // const handleCheckingInput = () => {
@@ -45,8 +50,39 @@ export default function TableFinancialReports({ title }) {
     //     }
     //   };
 
+    const dataSet1 = [
+        {
+            name: "Johson",
+            amount: 30000,
+            sex: 'M',
+            is_married: true
+        },
+        {
+            name: "Monika",
+            amount: 355000,
+            sex: 'F',
+            is_married: false
+        },
+        {
+            name: "John",
+            amount: 250000,
+            sex: 'M',
+            is_married: false
+        },
+        {
+            name: "Josef",
+            amount: 450500,
+            sex: 'M',
+            is_married: true
+        }
+    ];
 
     const { financialDataTable } = useSelector(state => state.financialState)
+    console.log(copyItem)
+    if (copyItem.length>0) {
+        
+        console.log(copyItem[0].description +"hhi")
+    }
     return (
         <div>
             <div>
@@ -125,7 +161,7 @@ export default function TableFinancialReports({ title }) {
                     </div>
                     <div className=' inline-block'>
                         {/* <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={[searchFilterOption,searchFilterText,targetSortFilter,datePickerValues]}/> */}
-                        <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={{textTarget:searchFilterOption, textValue:searchFilterText, sortTarget:targetSortFilter, sortValue:targetSortFilter=="تاریخ خرید"?datePickerValues:numFilter}}/>
+                        <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={{ textTarget: searchFilterOption, textValue: searchFilterText, sortTarget: targetSortFilter, sortValue: targetSortFilter == "تاریخ خرید" ? datePickerValues : numFilter }} />
                     </div>
                 </header>
                 <div className=' w-full  rounded-lg border border-[#D9D9D9] h-[672px] overflow-hidden'>
@@ -155,7 +191,7 @@ export default function TableFinancialReports({ title }) {
                                         <p className=' w-20 text-center'>{item.order_code}</p>
                                         <p className=' w-8 text-center'>{index + 1}</p>
                                         <p className=' w-11 text-center'>
-                                            <div class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
+                                            <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
                                                 <input
                                                     type={"checkbox"}
                                                     className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
@@ -183,9 +219,40 @@ export default function TableFinancialReports({ title }) {
                         </div>
                     </div>
                 </div>
+                {/* <exportExcel /> */}
                 <div className='w-full text-left mt-7'>
                     <div className=' inline-block'>
-                        <AuthButton textButton={<Fragment><img src='./img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />
+                            {copyItem.length > 0 ? (
+                                <Fragment>
+                                    <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={copyItem} textButton={<Fragment><img src='./img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
+                                    <ExcelSheet data={copyItem} name="Employees">
+                                        <ExcelColumn label="شماره فاکتور" value={"order_code"} />
+                                        <ExcelColumn label="نوع اشتراک" value={"description"} />
+                                        <ExcelColumn label="تاریخ خرید" value={"created_at"} />
+                                        <ExcelColumn label="تاریخ انقضا" value={"updated_at"} />
+                                        <ExcelColumn label="مبلغ" value={"sub_total"} />
+                                        <ExcelColumn label="وضعیت پرداخت" value={"payment_status_text"} />
+                                        <ExcelColumn label="عملیات" value={"type_text"} />
+                                    </ExcelSheet>
+                            </ExcelFile>
+                                </Fragment>
+                            ) : null}
+
+                            {/* <ExcelSheet data={dataSet1} name="Employees">
+                                <ExcelColumn label="Name" value="name" />
+                                <ExcelColumn label="Wallet Money" value="amount" />
+                                <ExcelColumn label="Gender" value="sex" />
+                            </ExcelSheet> */}
+                            {/* <ExcelSheet data={copyItem} name="Employees">
+                            <ExcelColumn label="شماره فاکتور" value={"order"} />
+                                <ExcelColumn label="نوع اشتراک" value={"type eshterak"} />
+                                <ExcelColumn label="تاریخ خرید" value={"date"} />
+                                <ExcelColumn label="تاریخ انقضا" value={"date ex"} />
+                                <ExcelColumn label="مبلغ" value={"price"} />
+                                <ExcelColumn label="وضعیت پرداخت" value={"state"} />
+                                <ExcelColumn label="عملیات" value={"handle"} />
+                            </ExcelSheet> */}
+
                     </div>
                 </div>
             </div>
