@@ -20,6 +20,7 @@ import ChangeImageModal from "./components/changeImageModal/ChangeImageModal";
 import {
   editPassword,
   editProfile,
+  getPastDatas,
   getSelectBoxData,
 } from "../../../service/editProfile";
 export default function EditUserProfile() {
@@ -28,9 +29,9 @@ export default function EditUserProfile() {
   const [familyInputValue, setfamilyInputValue] = useState("");
   // user Image
   const [image, setUserImage] = useState([]);
- const userImageProf= image.map(file=> file.preview)
- console.log(userImageProf[0])
-  // 
+  const userImageProf = image.map((file) => file.preview);
+  console.log(userImageProf[0]);
+  //
   const [selectBoxValue1, setSelectBoxValue1] = useState("");
   const [selectBoxValue2, setSelectBoxValue2] = useState("");
   const [selectBoxValue3, setSelectBoxValue3] = useState("");
@@ -48,6 +49,7 @@ export default function EditUserProfile() {
   const [openChangeImageModal, setOpenChangeImageModal] = useState(false);
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
+
   var user_name = "";
   var user_email = "";
   const handleSelectBox1 = (e) => {
@@ -75,6 +77,7 @@ export default function EditUserProfile() {
   const handlefamilyInput = (e) => {
     setfamilyInputValue(e.target.value);
   };
+  // data of select box
   const selexboxData = async () => {
     try {
       const { data, status } = await getSelectBoxData();
@@ -84,6 +87,7 @@ export default function EditUserProfile() {
       console.log(error);
     }
   };
+
   const handleSetNewProfile = async () => {
     let family = "";
     try {
@@ -110,6 +114,24 @@ export default function EditUserProfile() {
     } catch (error) {
       console.log(error);
       toast.error("اطلاعات شما ذخیره نشد !");
+    }
+  };
+  useEffect(() => {
+    pastSelexboxData();
+  });
+  // data of select box thet is related to the past info
+  const[pastData,setPastData]=useState("");
+  const pastSelexboxData = async () => {
+    if (userState.userData.user.uuid != undefined) {
+      var uuidUser = userState.userData.user.uuid;
+    }
+    console.log(uuidUser);
+    try {
+      const { data, status } = await getPastDatas(uuidUser);
+       setPastData(data.data); //5
+      console.log(data);
+    } catch (error) {
+      console.log(error);
     }
   };
   // select box data
@@ -149,7 +171,7 @@ export default function EditUserProfile() {
       toast.error("لطفا فیلد ها را با دقت پر کنید");
     }
   };
-  
+
   const userToken = localStorage.getItem("token");
   if (userState.userData.user) {
     user_name = userState.userData.user.name
@@ -162,12 +184,17 @@ export default function EditUserProfile() {
   const forceUpdate = userState.forceUpdate;
   useEffect(() => {
     selexboxData();
+    pastSelexboxData();
     if (userToken) {
       dispatch(coreUser());
       dispatch(getAllWorkSpace());
     }
   }, [forceUpdate]);
-  
+
+  // 
+  const a=image.length != 0 || image.length != undefined 
+  && image.map((file) => file.preview)
+  console.log(a);
   return (
     <>
       {openChangeImageModal && (
@@ -198,8 +225,10 @@ export default function EditUserProfile() {
                 userType={"کاربر طلایی"}
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
-                imageSource={image.length !=0 ? image.map(file => (file.preview)) : "../img/dashboard/userProfile/profileImage.png"}
-  
+                imageSource={
+                 
+                     "../img/dashboard/userProfile/profileImage.png"
+                }
               />
               <button
                 className="btn-style h-10 rounded-lg text-[14px] mr-[181px]"
@@ -264,35 +293,42 @@ export default function EditUserProfile() {
                     اطلاعات کسب و کار شما
                   </span>
                   <div className="flex flex-col gap-4 mt-7">
+                    
                     <SelectBox
                       optionItems={data ? data[0] : []}
                       title={"زمینه فعالیت شما (نوع سایت)"}
                       handlechange={handleSelectBox1}
+                      select={pastData ? pastData.website_type : 0}
                     />
                     <SelectBox
                       optionItems={data ? data[1] : []}
                       title={"تعداد اعضای شرکت"}
                       handlechange={handleSelectBox2}
+                      select={pastData ? pastData.website_type : 0}
                     />
                     <SelectBox
                       optionItems={data ? data[2] : []}
                       title={" تعداد متخصص سئو "}
                       handlechange={handleSelectBox3}
+                      select={pastData ? pastData.seo_experts : 0}
                     />
                     <SelectBox
                       optionItems={data ? data[3] : []}
                       title={" ترافیک ماهانه وب سایت شما "}
                       handlechange={handleSelectBox4}
+                      select={pastData ? pastData.website_traffic : 0}
                     />
                     <SelectBox
                       optionItems={data ? data[4] : []}
                       title={" سمت شما در تیم "}
                       handlechange={handleSelectBox5}
+                      select={pastData ? pastData.role_in_company : 0}
                     />
                     <SelectBox
                       optionItems={data ? data[5] : []}
                       title={" روش آشنایی با سگمنتو "}
                       handlechange={handleSelectBox6}
+                      select={pastData ? pastData.dating_method : 0}
                     />{" "}
                     <div className="flex justify-end gap-7 mt-9">
                       <button className="btn-secondary">انصراف </button>
@@ -314,7 +350,10 @@ export default function EditUserProfile() {
                 </div>
                 <Editor
                   toolbar={{
-                    inline: { inDropdown: true ,className:"flex flex-col gap-2"},
+                    inline: {
+                      inDropdown: true,
+                      className: "flex flex-col gap-2",
+                    },
                     list: { inDropdown: true },
                     textAlign: { inDropdown: true },
                     link: { inDropdown: true },

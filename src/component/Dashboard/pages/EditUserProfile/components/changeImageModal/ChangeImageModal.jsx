@@ -16,24 +16,25 @@ export default function ChangeImageModal({ close, isOpen,userImage,setUserImage}
     },
   };
   
-
+  const [files, setFiles] = useState([]);
   const {getRootProps, getInputProps} = useDropzone({
     accept: ["JPG", "PNG", "GIF"],
     onDrop: acceptedFiles => {
-      setUserImage(acceptedFiles.map(file => Object.assign(file, {
+      setFiles(acceptedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
       })));
     }
   });
 
-  const thumbs = userImage.length !=0 ? userImage.map(file => (
-    
+  const thumbs = files.length !=0 || files.length != undefined ? files.map(file => 
+   (
+   <>
     <img
-    src={file.preview}
+    src={file.preview != undefined ? file.preview : "../img/dashboard/userProfile/profileImage.png"}
     className="rounded-full my-3 w-[125px] h-[125px]"
     alt="userImage"
   />
-      
+{ console.log(file.preview != undefined ? file.preview : "../img/dashboard/userProfile/profileImage.png")}</>
   )) :<img
   src={"../img/dashboard/userProfile/profileImage.png"}
   className="rounded-full my-3 max-w-[125px] max-h-[125px]"
@@ -43,9 +44,9 @@ export default function ChangeImageModal({ close, isOpen,userImage,setUserImage}
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks
-    userImage.forEach(file => URL.revokeObjectURL(file.preview));
-  }, [userImage]);
- console.log(userImage);
+    files.forEach(file => URL.revokeObjectURL(file.preview));
+  }, [files]);
+ console.log(files);
   return (
     <Modal
       isOpen={isOpen ? true : false}
@@ -105,7 +106,7 @@ export default function ChangeImageModal({ close, isOpen,userImage,setUserImage}
                 
                 انصراف{" "}
               </button>
-              <button className="btn-style" onClick={""}> ذخیره تغییرات </button>
+              <button className="btn-style" onClick={()=>setUserImage(files)}> ذخیره تغییرات </button>
             </div>
           </div>
         </div>

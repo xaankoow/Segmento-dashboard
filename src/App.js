@@ -68,8 +68,8 @@ export default function App() {
 
         </div>
         <Routes>
-          <Route path="dashboard" element={<DashboardBody />} />
           <Route path="dashboard/payment*" element={<LandingPage />} />
+          <Route path="dashboard/*" element={<DashboardBody />} />
         </Routes>
 
         {/* <HandleModal /> */}

@@ -75,6 +75,7 @@ export default function SaveListModal({
 
         const { data, status } = await ContentProductionStoreService(dd);
         setUpdate(!update);
+        handleGetcontent();
       } catch (error) {
         console.log(error);
       }
@@ -95,6 +96,7 @@ export default function SaveListModal({
     var handleGetcontent = async () => {
       try {
         const { data, status } = await ContentProductionGetService();
+        debugger
         setcontent(data.data);
       } catch (error) {
         console.log(error);

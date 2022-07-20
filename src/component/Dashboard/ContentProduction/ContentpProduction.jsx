@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { ContentProductionService } from "../../service/contentProduction";
 import PopUp from "../../Utils/PopUp/PopUp";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
@@ -6,6 +6,9 @@ import Table from "../DashboaedComponents/TableData/TableData";
 import SaveListModal from "./SaveListModal";
 
 export default function ContentpProduction({ onClickHandler }) {
+
+
+  
   // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [UpdatePpUp, showUpdatePpUp] = useState(false);
@@ -68,6 +71,8 @@ export default function ContentpProduction({ onClickHandler }) {
   return (
     <>
       {keyWordShowSaveModal && (
+     <Fragment>
+
         <SaveListModal
           dataTable={tableDataFiltered2}
           isContentProduction={true}
@@ -77,6 +82,8 @@ export default function ContentpProduction({ onClickHandler }) {
           SaveInputValues={SaveInputValues}
           activeBoxUpdate={activeBoxUpdate}
         />
+        {number ? "" : ""}
+      </Fragment>
       )}
       {UpdatePpUp && (
         <PopUp
@@ -114,7 +121,7 @@ export default function ContentpProduction({ onClickHandler }) {
           ) : null}
           <div className="flex  justify-between w-full mt-5">
             <Table
-              data={tableDataFiltered2}
+              data={number>5? tableDataFiltered2:tableDataFiltered2}
               NothingSearch={
                 !searchBoxValue || !searchBoxHandleClick ? true : false
               }
