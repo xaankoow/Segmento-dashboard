@@ -15,7 +15,8 @@ export default function TableFinancialReports({ title }) {
     const [copyItem, setCopyItem] = useState([]);
     const [placeholderPadding, setplaceholderPadding] = useState("");
 
-    const [targetFilter, setTargetFilter] = useState("");
+    const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
+    const [searchFilterOption, setSearchFilterOption] = useState("");
     const [numFilter, setNumFilter] = useState(1);
 
 
@@ -75,16 +76,16 @@ export default function TableFinancialReports({ title }) {
                         // onBlur={() => setInputClick(!inputClick)}
                     /> */}
                     <div className='w-80'>
-                        <KeyWordsSearch usedBySection={"financialReports/search"} inputPlaceHolder={"فیلد جستجو"} />
+                        <KeyWordsSearch usedBySection={"financialReports/search"} inputPlaceHolder={"فیلد جستجو"} getRadioValue={setSearchFilterOption}/>
                     </div>
                     <div className='flex items-center'>
                         <span className=' ml-2'>مرتب سازی بر اساس</span>
                         <div className=' w-48'>
-                            <KeyWordsSearch usedBySection={"financialReports/sort"} inputPlaceHolder={"فیلد جستجو"} />
+                            <KeyWordsSearch usedBySection={"financialReports/sort"} inputPlaceHolder={targetSortFilter} getRadioValue={setTargetSortFilter}/>
                         </div>
                     </div>
                     <div>
-                        {targetFilter == "date" ? (
+                        {targetSortFilter == "تاریخ خرید" ? (
                             <DatePicker
                                 value={new Date()}
                                 calendar={persian}
@@ -99,9 +100,9 @@ export default function TableFinancialReports({ title }) {
                             </DatePicker>
                         ) : (
                             <div className='flex justify-between items-center px-1 w-14 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]'>
-                                <img src="./img/dashboard/financialReports/numArrow.svg" alt="" />
-                                <span className=' text-xs'>{numFilter}</span>
-                                <img src="./img/dashboard/financialReports/numArrow.svg" alt="" className=' rotate-180'/>
+                                <img src="./img/dashboard/financialReports/numArrow.svg" alt="" onClick={()=>numFilter>1&&setNumFilter(numFilter-1)} className='  cursor-pointer'/>
+                                <span className='text-xs cursor-default'>{numFilter}</span>
+                                <img src="./img/dashboard/financialReports/numArrow.svg" alt="" onClick={()=>setNumFilter(numFilter+1)} className='cursor-pointer rotate-180'/>
                             </div>
                         )}
 

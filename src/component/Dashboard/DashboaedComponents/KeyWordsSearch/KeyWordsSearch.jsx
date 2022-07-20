@@ -8,7 +8,9 @@ export default function KeyWordsSearch({
   secoundSearch,
   radioClickedHandler,
   inputPlaceHolder,
-  usedBySection
+  usedBySection,
+  getRadioValue
+
 }) {
   const SCTN = usedBySection != undefined ? usedBySection.split("/") : "";
   const [inputClick, setInputClick] = useState(false);
@@ -45,7 +47,7 @@ export default function KeyWordsSearch({
                     name="radio"
                     checked={radioText === "شماره فاکتور" && true}
                     onClick={(e) => {
-                      setRadioText("شماره فاکتور");
+                      getRadioValue("شماره فاکتور");
                       radioClickedHandler(e);
                     }}
                     value="1"
@@ -58,7 +60,7 @@ export default function KeyWordsSearch({
                     className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
-                      setRadioText("نوع اشتراک");
+                      getRadioValue("نوع اشتراک");
                       radioClickedHandler(e);
                     }}
                     value="2"
@@ -71,7 +73,7 @@ export default function KeyWordsSearch({
                     className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
-                      setRadioText("مبلغ");
+                      getRadioValue("مبلغ");
                       radioClickedHandler(e);
                     }}
                     value="3"
@@ -84,7 +86,7 @@ export default function KeyWordsSearch({
                     className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
-                      setRadioText("وضعیت پرداخت");
+                      getRadioValue("وضعیت پرداخت");
                       radioClickedHandler(e);
                     }}
                     value="4"
@@ -97,7 +99,7 @@ export default function KeyWordsSearch({
                     className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
-                      setRadioText("عملیات");
+                      getRadioValue("عملیات");
                       radioClickedHandler(e);
                     }}
                     value="4"
@@ -122,7 +124,7 @@ export default function KeyWordsSearch({
                           className="w-3 h-3"
                           name="radio"
                           onClick={(e) => {
-                            setRadioText("تاریخ خرید");
+                            getRadioValue("تاریخ خرید");
                             radioClickedHandler(e);
                           }}
                           value="4"
@@ -135,7 +137,7 @@ export default function KeyWordsSearch({
                           className="w-3 h-3"
                           name="radio"
                           onClick={(e) => {
-                            setRadioText("تعداد خرید");
+                            getRadioValue("تعداد خرید");
                             radioClickedHandler(e);
                           }}
                           value="4"
@@ -174,11 +176,13 @@ export default function KeyWordsSearch({
             }}
             className={
               !radioText
-                ? "pr-2 w-full  h-11 border-2 border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]"
+                ? `pr-2 w-full  h-11 ${SCTN[1]=="sort"?" border-l-0 border-y-2 border-r-2 cursor-pointer":"border-2"} border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
                 : NothingSearch
                   ? "disableInput w-full placeholder-[#7D7D7D]  h-11"
-                  : ` h-11 w-full border-2 border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
+                  : ` h-11 w-full ${SCTN[1]=="sort"?" border-l-0 border-y-2 border-r-2 cursor-pointer":"border-2"} border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
             }
+            readOnly={SCTN[1]=="sort"?true:false}
+            value={SCTN[1]=="sort"?inputPlaceHolder:null}
             disabled={NothingSearch ? true : false}
             placeholder={inputPlaceHolder != undefined ? inputPlaceHolder : "جستجو کلمه کلیدی"}
             onChange={(e) => secoundSearch(e)}
