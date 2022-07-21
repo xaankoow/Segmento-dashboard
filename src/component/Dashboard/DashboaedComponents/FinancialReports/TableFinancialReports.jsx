@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import AuthButton from '../../../Auth/authButton/AuthButton';
-import { getAllFinancialReports } from '../../../Redux/Action/financialReports';
+import { filterFinancialReports, getAllFinancialReports } from '../../../Redux/Action/financialReports';
 import KeyWordsSearch from '../KeyWordsSearch/KeyWordsSearch';
-import DatePicker from "react-multi-date-picker"
+import DatePicker, { DateObject } from "react-multi-date-picker"
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import { getValue } from '@testing-library/user-event/dist/utils';
@@ -19,10 +19,20 @@ export default function TableFinancialReports({ title }) {
     const [searchFilterOption, setSearchFilterOption] = useState("");
     const [numFilter, setNumFilter] = useState(1);
 
+    const [searchFilterText, setSearchFilterText] = useState("");
+
+    const [datePickerValues, setDatePickerValues] = useState([
+        new DateObject().subtract(4, "days"),
+        new DateObject().add(4, "days")
+    ])
+
+    const datePickerRef = useRef()
 
     useEffect(() => {
         dispatch(getAllFinancialReports())
     }, [])
+
+
 
 
     // const handleCheckingInput = () => {
@@ -36,7 +46,7 @@ export default function TableFinancialReports({ title }) {
     //   };
 
 
-    const { allFinancialData } = useSelector(state => state.financialState)
+    const { financialDataTable } = useSelector(state => state.financialState)
     return (
         <div>
             <div>
@@ -76,40 +86,46 @@ export default function TableFinancialReports({ title }) {
                         // onBlur={() => setInputClick(!inputClick)}
                     /> */}
                     <div className='w-80'>
-                        <KeyWordsSearch usedBySection={"financialReports/search"} inputPlaceHolder={"فیلد جستجو"} getRadioValue={setSearchFilterOption}/>
+                        <KeyWordsSearch usedBySection={"financialReports/search"} secoundSearch={e => setSearchFilterText(e.target.value)} inputPlaceHolder={"فیلد جستجو"} getRadioValue={setSearchFilterOption} />
                     </div>
                     <div className='flex items-center'>
                         <span className=' ml-2'>مرتب سازی بر اساس</span>
                         <div className=' w-48'>
-                            <KeyWordsSearch usedBySection={"financialReports/sort"} inputPlaceHolder={targetSortFilter} getRadioValue={setTargetSortFilter}/>
+                            <KeyWordsSearch usedBySection={"financialReports/sort"} inputPlaceHolder={targetSortFilter} getRadioValue={setTargetSortFilter} />
                         </div>
                     </div>
                     <div>
                         {targetSortFilter == "تاریخ خرید" ? (
                             <DatePicker
-                                value={new Date()}
+                                range
+                                value={datePickerValues}
+                                // ref={datePickerRef}
+                                // onOpen={true}
                                 calendar={persian}
                                 locale={persian_fa}
                                 calendarPosition="bottom-right"
-                                onChange={e => alert(e)}
-                                format="DD MMMM YYYY"
-                                render={(value, openCalendar) => <div className='flex justify-start items-center px-3 w-52 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]' onClick={openCalendar}><img src='./img/dashboard/financialReports/calendar/file_download.svg' /><span className=' mr-3'>{value}</span></div>}
+                                onChange={setDatePickerValues}
+                                format="DD MMMM YYYY - "
+                                render={(value, openCalendar) => <div className='flex justify-start items-center px-3 w-52 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]' onClick={openCalendar}><img src='./img/dashboard/financialReports/calendar/file_download.svg' /><span className='text-xs mr-3'>{value}</span></div>}
                             >
-                                {/* <AuthButton textButton={"انصراف"}/>
-                            <AuthButton textButton={"تایید"}/> */}
+                                {/* <div className='w-full flex justify-between p-4'>
+                                    <AuthButton textButton={"تایید"} handlerClick={datePickerRef.current.closeCalendar()} />
+                                    <AuthButton textButton={"انصراف"} classes=" bg-[#F2F5F7] text-[#488CDA]" />
+                                </div> */}
                             </DatePicker>
                         ) : (
                             <div className='flex justify-between items-center px-1 w-14 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]'>
-                                <img src="./img/dashboard/financialReports/numArrow.svg" alt="" onClick={()=>numFilter>1&&setNumFilter(numFilter-1)} className='  cursor-pointer'/>
+                                <img src="./img/dashboard/financialReports/numArrow.svg" alt="" onClick={() => numFilter > 1 && setNumFilter(numFilter - 1)} className='  cursor-pointer' />
                                 <span className='text-xs cursor-default'>{numFilter}</span>
-                                <img src="./img/dashboard/financialReports/numArrow.svg" alt="" onClick={()=>setNumFilter(numFilter+1)} className='cursor-pointer rotate-180'/>
+                                <img src="./img/dashboard/financialReports/numArrow.svg" alt="" onClick={() => setNumFilter(numFilter + 1)} className='cursor-pointer rotate-180' />
                             </div>
                         )}
 
                         {/* <RangeDatePicker /> */}
                     </div>
                     <div className=' inline-block'>
-                        <AuthButton textButton={"اعمال"} />
+                        {/* <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={[searchFilterOption,searchFilterText,targetSortFilter,datePickerValues]}/> */}
+                        <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={{textTarget:searchFilterOption, textValue:searchFilterText, sortTarget:targetSortFilter, sortValue:targetSortFilter=="تاریخ خرید"?datePickerValues:numFilter}}/>
                     </div>
                 </header>
                 <div className=' w-full  rounded-lg border border-[#D9D9D9] h-[672px] overflow-hidden'>
@@ -127,12 +143,12 @@ export default function TableFinancialReports({ title }) {
                                 <p className=' w-8 text-center'>ردیف</p>
                                 <p className=' w-11 text-center'>{copyItem.length > 0 ? "کپی" : "انتخاب"}</p>
                             </div>
-                            <div className='overflow-scroll h-full text-xs font-normal'>
-                                {allFinancialData.map((item, index) => (
+                            <div className='overflow-scroll h-[94%] text-xs font-normal'>
+                                {financialDataTable.map((item, index) => (
                                     <div className={`w-full h-16 border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}>
                                         <p className=' w-28 text-center'>{item.type_text}</p>
-                                        <p className=' w-24 text-center'><span className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text=="پرداخت ناموفق"?" bg-[#F35242]":item.payment_status_text=="پرداخت نشده"?"bg-[#FFCE47]":"bg-[#10CCAE]"}`}>{item.payment_status_text}</span></p>
-                                        <p className=' w-11 text-center'>{item.total}</p>
+                                        <p className=' w-24 text-center'><span className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text == "پرداخت ناموفق" ? " bg-[#F35242]" : item.payment_status_text == "پرداخت نشده" ? "bg-[#FFCE47]" : "bg-[#10CCAE]"}`}>{item.payment_status_text}</span></p>
+                                        <p className=' w-11 text-center'>{item.sub_total}</p>
                                         <p className=' w-[68px] text-center'>{item.updated_at}</p>
                                         <p className=' w-16 text-center'>{item.created_at}</p>
                                         <p className=' w-36 text-center'>{item.description.substring(31, item.description.length)}</p>
