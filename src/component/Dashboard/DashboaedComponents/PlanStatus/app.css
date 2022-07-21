@@ -1,0 +1,470 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: BYekan;
+    src: url(../font/BYekan.woff) format('woff'),
+    url(../font/BYekan.ttf) format('ttf'),
+    url(../font/BYekan.eot) format('eot'),
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: BYekan;
+}
+
+body {
+    font-weight: 500;
+    background: #f5f5f5;
+    color: #002145;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#nav {
+    background: hsl(60, 14%, 99%);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/*آیتم سمت راست*/
+
+#child-1 {
+    width: 50px;
+    background: #FCFCFB;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+#square {
+    height: 36.42px;
+    width: 36.94px;
+    left: 1392.06px;
+    border-radius: 3px;
+    background: #F2F5F7;
+    border-radius: 3px;
+    display: flex;
+}
+
+#line-i {
+    background: #0A65CD;
+    border-radius: 2px;
+}
+
+/*آیتم سمت وسط*/
+
+#child-2 {
+    width: 300pxpx;
+    background: #FCFCFB;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 9px 9px 0 0;
+}
+
+#child-2 a {
+    font-family: 'Mj_Classic', Arial, Helvetica, sans-serif;
+}
+
+/*آیتم سمت چپ*/
+
+#child-3 {
+
+    width: 1000px;
+    background: #FCFCFB;
+    border-radius: 9px 9px 0 0;
+}
+
+#box {
+    background: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+    border-radius: 3px;
+    top: 5px;
+    left: 160px;
+}
+
+#box img {
+    top: 4px;
+    right: 4px;
+
+}
+
+#name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#type {
+    font-size: 13px;
+
+}
+
+/*------------------صفحه وضعیت اشتراک-------------------*/
+
+#line1 {
+    background-color: #002145;
+}
+
+/*باکس راست*/
+
+@media (mix-width: 640px) {
+    #line2 {
+        background-color: #FFCE47;
+    }
+
+    #btn1 {
+        background-color: #0A65CD;
+        width: 120px;
+        height: 30px;
+    }
+
+    #content {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    #line2 {
+        background-color: #FFCE47;
+    }
+
+    #btn1 {
+        background-color: #0A65CD;
+
+        width: 122px;
+        height: 40px;
+    }
+
+    #content {
+        font-size: 12px;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    #line2 {
+        background-color: #FFCE47;
+    }
+
+    #btn1 {
+        background-color: #0A65CD;
+
+        width: 122px;
+        height: 40px;
+    }
+
+    #content {
+        font-size: 12px;
+    }
+}
+
+/*باکس وسط*/
+
+@media (mix-width: 640px) {
+    #item2 {
+        width: 270px;
+        height: 245px;
+        border: 1px solid #D9D9D9;
+    }
+
+    #child1 {
+        background-color: #0A65CD;
+        margin-top: 3px;
+        margin-right: 0.5rem;
+        border-radius: 2px;
+    }
+
+    #child2 {
+        margin-top: 3px;
+        margin-right: 5px;
+        font-size: 10px;
+    }
+
+    #child3 {
+        background-color: #D9D9D9;
+        margin-top: 3px;
+        margin-right: 0.5rem;
+        border-radius: 2px;
+    }
+
+    #child4 {
+        margin-top: 3px;
+        margin-right: 5px;
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    #item2 {
+        width: 270px;
+        height: 245px;
+        border: 1px solid #D9D9D9;
+
+    }
+
+    #child1 {
+        background-color: #0A65CD;
+        margin-top: 2px;
+        margin-right: 0.5rem;
+        border-radius: 2px;
+    }
+
+    #child2 {
+        margin-top: 2px;
+        margin-right: 5px;
+        font-size: 10px;
+    }
+
+
+    #child3 {
+        background-color: #D9D9D9;
+        margin-top: 2px;
+        margin-right: 0.5rem;
+        border-radius: 2px;
+    }
+
+    #child4 {
+        margin-top: 2px;
+        margin-right: 5px;
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 1024px) {
+    #item2 {
+        width: 270px;
+        height: 275px;
+        border: 1px solid #D9D9D9;
+    }
+
+    #child1 {
+        background-color: #0A65CD;
+        margin-top: 10px;
+        margin-right: 0.5rem;
+        border-radius: 2px;
+    }
+
+    #child2 {
+        margin-top: 10px;
+        margin-right: 5px;
+        font-size: 10px;
+    }
+
+
+    #child3 {
+        background-color: #D9D9D9;
+        margin-top: 10px;
+        margin-right: 0.5rem;
+        border-radius: 2px;
+    }
+
+    #child4 {
+        margin-top: 10px;
+        margin-right: 5px;
+        font-size: 10px;
+    }
+}
+
+/*باکس چپ*/
+
+@media (min-width: 480px) {
+    #item3 {
+        width: 400px;
+        height: 245px;
+        border: 1px solid #D9D9D9;
+    }
+
+    #off {
+        font-size: 3rem;
+    }
+
+    #days {
+        width: 40px;
+        height: 28px;
+        border-radius: 20px;
+        background-color: #0B4B94;
+        color: #fff;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    #btn2 {
+        background-color: #0A65CD;
+        width: 158px;
+        height: 40px;
+        border-radius: 7px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+}
+
+@media (min-width: 640px) {
+
+    #item3 {
+        width: 400px;
+        height: 245px;
+        border: 1px solid #D9D9D9;
+    }
+
+    #off {
+        font-size: 3rem;
+    }
+
+    #days {
+        width: 40px;
+        height: 28px;
+        border-radius: 20px;
+        background-color: #0B4B94;
+        color: #fff;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    #btn2 {
+        background-color: #0A65CD;
+        width: 158px;
+        height: 40px;
+        border-radius: 7px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+}
+
+@media (min-width: 768px) {
+    #item3 {
+        width: 270px;
+        height: 245px;
+        border: 1px solid #D9D9D9;
+    }
+
+    #off {
+        font-size: 3rem;
+    }
+
+    #days {
+        width: 40px;
+        height: 28px;
+        border-radius: 20px;
+        background-color: #0B4B94;
+        color: #fff;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    #btn2 {
+        background-color: #0A65CD;
+        width: 158px;
+        height: 40px;
+        border-radius: 7px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    #item3 {
+        width: 380px;
+        height: 275px;
+        border: 1px solid #D9D9D9;
+    }
+
+    #off {
+        font-size: 3rem;
+    }
+
+    #days {
+        width: 40px;
+        height: 28px;
+        border-radius: 20px;
+        background-color: #0B4B94;
+        color: #fff;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    #btn2 {
+        background-color: #0A65CD;
+        width: 158px;
+        height: 40px;
+        border-radius: 7px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+}
+
+/*وضعیت ابزار ها*/
+
+@media (min-width: 480px) {
+    #item-1 {
+        width: 400px;
+        height: 105px;
+        border: 1px solid #D9D9D9;
+        border-radius: 3px;
+    }
+}
+
+@media (min-width: 640px) {
+    #item-1 {
+        width: 400px;
+        height: 105px;
+        border: 1px solid #D9D9D9;
+        border-radius: 3px;
+    }
+}
+
+@media (min-width: 768px) {
+    #item-1 {
+        width: 480px;
+        height: 105px;
+        border: 1px solid #D9D9D9;
+        border-radius: 3px;
+    }
+}
+
+@media (min-width: 1024px) {
+    #item-1 {
+        width: 480px;
+        height: 105px;
+        border: 1px solid #D9D9D9;
+        border-radius: 3px;
+    }
+}
+
+
+#shape {
+    font-size: 10px;
+    text-align: center;
+    margin-right: 139px;
+    margin-bottom: -18px;
+    width: 48px;
+    height: 19px;
+    background: #FFCE47;
+    border-radius: 10px 10px 0px 10px;
+}
+
+
+#line3 {
+    background-color: #0A65CD;
+}
+
+#border {
+    width: 24px;
+    height: 14px;
+    line-height: 13px;
+    background: #D9D9D9;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 10px;
+}
