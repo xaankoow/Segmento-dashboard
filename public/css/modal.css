@@ -85,7 +85,7 @@
     display: inline-block;
     height: 8px;
     width: 8px;
-    background-image: url(../img/modal/head/closeModal.svg);
+    background-image: url(./../dd/img/modal/head/closeModal.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;

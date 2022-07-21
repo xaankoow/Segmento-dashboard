@@ -23,7 +23,11 @@ import {
   getPastDatas,
   getSelectBoxData,
 } from "../../../service/editProfile";
+import { useSelect } from "@mui/base";
 export default function EditUserProfile() {
+  
+  const {canRequest}=useSelect(state=>state.loadingState)
+
   const [selectDatas, setSelectDtas] = useState([]);
   const [nameInputValue, setNameInputValue] = useState("");
   const [familyInputValue, setfamilyInputValue] = useState("");
@@ -333,6 +337,7 @@ export default function EditUserProfile() {
                     <div className="flex justify-end gap-7 mt-9">
                       <button className="btn-secondary">انصراف </button>
                       <button
+                      disabled={!canRequest}
                         className="btn-style"
                         onClick={() => handleSetNewProfile()}
                       >
@@ -409,6 +414,7 @@ export default function EditUserProfile() {
                     انصراف{" "}
                   </button>
                   <button
+                  disabled={canRequest}
                     className="btn-style"
                     onClick={() => handleUpdatePassword()}
                   >

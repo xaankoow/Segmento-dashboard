@@ -2,11 +2,13 @@ import { Tab } from "@headlessui/react";
 import { list } from "postcss";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { dataTable } from "../../../service/dataTable";
 import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../../DashboaedComponents/TableData/TableData";
 
 export default function MyList() {
+  const {canRequest}=useSelector(state=>state.loadingState)
   const [clicked, setClicked] = React.useState(false);
   // set api data
   const [tableDatas, setTableDatas] = useState([]);
@@ -26,7 +28,10 @@ export default function MyList() {
   };
 
   useEffect(() => {
-    handleFetchingTableData();
+    // if (canRequest) {
+      
+      handleFetchingTableData();
+    // }
   }, []);
   const handleFetchingTableData = async () => {
     try {

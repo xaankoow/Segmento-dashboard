@@ -8,6 +8,7 @@ import {
 } from "../../service/contentProductionStore";
 import { useEffect } from "react";
 import { Deblur } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 export default function SaveListModal({
   saveButtonHandler,
@@ -17,6 +18,7 @@ export default function SaveListModal({
   SaveInputValues,
   activeBoxUpdate,
 }) {
+  const {canRequest}=useSelector(state=>state.loadingState)
   const customStyles = {
     content: {
       top: "43vh",
@@ -61,7 +63,10 @@ export default function SaveListModal({
   };
 
   useEffect(() => {
-    handleGetcontent();
+    // if (canRequest) {
+      handleGetcontent()
+    // }
+   
   }, []);
   console.log(SaveInputValue);
   console.log(dataTable);
@@ -126,6 +131,7 @@ export default function SaveListModal({
         <div className="w-full">
           <button
             className="btn-style flex items-center gap-3 w-[183px] py-2"
+            disabled={!canRequest}
             onClick={(e) => {
               saveButtonHandler(e);
               handleSetcontent();
@@ -185,7 +191,7 @@ export default function SaveListModal({
 
         <div className="w-full">
           <button
-            disabled={!disable ? false : true}
+            disabled={canRequest?!disable ? false : true:true}
             className="btn-style flex items-center gap-3 w-[183px] py-2"
             onClick={(e) => {
               updateButtonHandler(e);

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { TextButton } from "../../../pages/register/Register";
 import "./authButton.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function AuthButton({
   widthValue,
@@ -14,13 +14,14 @@ export default function AuthButton({
   textButton,
   setOnclickValue
 }) {
+  const {canRequest}=useSelector(state=>state.loadingState)
   const value = useContext(TextButton);
   const dispatch = useDispatch()
   // debugger
   return (
     <button
       variant="contained"
-      className={`btn-style ${classes}`}
+      className={`btn-style ${classes!=undefined?classes:""}`}
       disabled={disabled}
 
       style={style}

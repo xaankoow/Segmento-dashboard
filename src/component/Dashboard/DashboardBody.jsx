@@ -122,6 +122,7 @@ export default function DashboardBody() {
   // }
   // console.log(showResultModal)
   // alert( showResultModal)
+  console.log(window.location.pathname);
   return (
     <div id="DASHBOARD">
       <div className="w-full h-16 bg-[#fff] shadow-3xl">
@@ -139,19 +140,22 @@ export default function DashboardBody() {
        {/* </Routes> */}
 
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          <TabMenu
+          {/* <TabMenu
             tabsContent={tabContent2}
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
             numberRight={"189"}
-          /> 
-
+          />  */}
           {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
-          {/* <EditUserProfile /> */}
+          <EditUserProfile />
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
           {/* <button onClick={}>click me!</button> */}
+          <Routes>
+
+          <Route path="/dd" element={<WorkSpace />} />
+          </Routes>
           {showWorkSpaceModal?<WorkSpace />:null}
           {
             // <WorkSpace handleClose={closeWorkSpaceModal} />

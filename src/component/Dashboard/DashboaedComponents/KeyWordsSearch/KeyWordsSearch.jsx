@@ -7,7 +7,12 @@ export default function KeyWordsSearch({
   dataItems,
   secoundSearch,
   radioClickedHandler,
+  inputPlaceHolder,
+  usedBySection,
+  getRadioValue
+
 }) {
+  const SCTN = usedBySection != undefined ? usedBySection.split("/") : "";
   const [inputClick, setInputClick] = useState(false);
   const [buttonClick, setButtonClick] = useState(false);
   const [radioText, setRadioText] = useState("همه عبارات");
@@ -23,30 +28,163 @@ export default function KeyWordsSearch({
   useEffect(() => {
     setplaceholderPadding(radioText.length);
   });
+
+  const handleDropDownItem = (sectionUsed, layOutUsed) => {
+    switch (sectionUsed) {
+      case "financialReports":
+        switch (layOutUsed) {
+          case "search":
+            return (
+              <div
+                className={
+                  "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
+                }
+              >
+                <div className="flex items-center gap-2 mt-3">
+                  <input
+                    type="radio"
+                    className="w-3 h-3"
+                    name="radio"
+                    checked={radioText === "شماره فاکتور" && true}
+                    onClick={(e) => {
+                      getRadioValue("شماره فاکتور");
+                      radioClickedHandler(e);
+                    }}
+                    value="1"
+                  />
+                  <span>شماره فاکتور</span>
+                </div>
+                <div className="flex items-center gap-2 mt-3">
+                  <input
+                    type="radio"
+                    className="w-3 h-3"
+                    name="radio"
+                    onClick={(e) => {
+                      getRadioValue("نوع اشتراک");
+                      radioClickedHandler(e);
+                    }}
+                    value="2"
+                  />
+                  <span>نوع اشتراک </span>
+                </div>
+                <div className="flex items-center gap-2 mt-3">
+                  <input
+                    type="radio"
+                    className="w-3 h-3"
+                    name="radio"
+                    onClick={(e) => {
+                      getRadioValue("مبلغ");
+                      radioClickedHandler(e);
+                    }}
+                    value="3"
+                  />
+                  <span>مبلغ </span>
+                </div>
+                <div className="flex items-center gap-2 mt-3">
+                  <input
+                    type="radio"
+                    className="w-3 h-3"
+                    name="radio"
+                    onClick={(e) => {
+                      getRadioValue("وضعیت پرداخت");
+                      radioClickedHandler(e);
+                    }}
+                    value="4"
+                  />
+                  <span>وضعیت پرداخت </span>
+                </div>
+                <div className="flex items-center gap-2 mt-3 mb-3">
+                  <input
+                    type="radio"
+                    className="w-3 h-3"
+                    name="radio"
+                    onClick={(e) => {
+                      getRadioValue("عملیات");
+                      radioClickedHandler(e);
+                    }}
+                    value="4"
+                  />
+                  <span>عملیات </span>
+                </div>
+
+
+              </div>
+            )
+
+            case "sort":
+                    return(
+                      <div
+                      className={
+                        "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
+                      }
+                    >
+                      <div className="flex items-center gap-2 mt-3">
+                        <input
+                          type="radio"
+                          className="w-3 h-3"
+                          name="radio"
+                          onClick={(e) => {
+                            getRadioValue("تاریخ خرید");
+                            radioClickedHandler(e);
+                          }}
+                          value="4"
+                        />
+                        <span>تاریخ خرید </span>
+                      </div>
+                      <div className="flex items-center gap-2 mt-3 mb-3">
+                        <input
+                          type="radio"
+                          className="w-3 h-3"
+                          name="radio"
+                          onClick={(e) => {
+                            getRadioValue("تعداد خرید");
+                            radioClickedHandler(e);
+                          }}
+                          value="4"
+                        />
+                        <span>تعداد خرید </span>
+                      </div>
+      
+      
+                    </div>
+                    )
+          default:
+            break;
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
   return (
     <div className="flex flex-col items-center relative " id="keyWordSearch">
-      <div className="h-10 w-[334px] flex flex-col ">
+      {/* <div className="h-10 w-[334px] flex flex-col "> last */}
+      <div className=" w-full flex flex-col ">
         <div className="flex items-center relative searchBox">
-          <input
+          <div className=" grow">
+            <input
             id="keyWordSearchBoxFilter"
             type="text"
             style={{
-              paddingRight:
+              paddingRight: SCTN[0] == "financialReports" ? "18px" :
                 placeholderPadding >= 19
                   ? "127px"
                   : placeholderPadding >= 13
-                  ? "98px"
-                  : "90px",
+                    ? "98px"
+                    : "90px",
             }}
             className={
               !radioText
-                ? "pr-2 w-[290px] h-11 border-2 border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]"
+                ? `pr-2 w-full  h-11 ${SCTN[1]=="sort"?" border-l-0 border-y-2 border-r-2 cursor-pointer":"border-2"} border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
                 : NothingSearch
-                ? "disableInput placeholder-[#7D7D7D] w-[290px] h-11"
-                : `w-[290px] h-11  border-2 border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
+                  ? "disableInput w-full placeholder-[#7D7D7D]  h-11"
+                  : ` h-11 w-full ${SCTN[1]=="sort"?" border-l-0 border-y-2 border-r-2 cursor-pointer":"border-2"} border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
             }
+            readOnly={SCTN[1]=="sort"?true:false}
+            value={SCTN[1]=="sort"?inputPlaceHolder:null}
             disabled={NothingSearch ? true : false}
-            placeholder="جستجو کلمه کلیدی"
+            placeholder={inputPlaceHolder != undefined ? inputPlaceHolder : "جستجو کلمه کلیدی"}
             onChange={(e) => secoundSearch(e)}
             onClick={() => {
               setInputClick(true);
@@ -54,24 +192,29 @@ export default function KeyWordsSearch({
             }}
             onBlur={() => setInputClick(!inputClick)}
           />
-          <div
-            className={
-              !radioText
-                ? "hidden"
-                : "text-xs min-w-[49px] h-[30px] px-1 py-1 rounded flex flex-col items-center justify-center bg-[#F2F5F7] text-[#7D7D7D] absolute right-2"
-            }
-          >
-            {radioText}
           </div>
+          
+          {SCTN[0] == "financialReports" ? null : (
+            <div
+              className={
+                !radioText
+                  ? "hidden"
+                  : "text-xs min-w-[49px] h-[30px] px-1 py-1 rounded flex flex-col items-center justify-center bg-[#F2F5F7] text-[#7D7D7D] absolute right-2"
+              }
+            >
+              {radioText}
+            </div>
+          )}
+
           <button
             disabled={NothingSearch ? true : false}
             onClick={() => setButtonClick(!buttonClick)}
             className={
               inputClick
-                ? "absolute left-1 h-11 border-2 border-[#D9D9D9] border-b-[#0A65CD] border-r-0 w-[44px] rounded-l flex justify-center items-center"
+                ? " left-1 h-11 border-2 border-[#D9D9D9] border-b-[#0A65CD] border-r-0 w-[44px] rounded-l flex justify-center items-center"
                 : NothingSearch
-                ? "btnDisabled  bg-[#D9D9D9] placeholder-[#7D7D7D] border-0 absolute left-1 h-11 w-[44px] rounded-l flex justify-center items-center"
-                : "absolute left-1 h-11 border-2 border-[#D9D9D9] border-b-[#7D7D7D] border-r-0 w-[44px] rounded-l flex justify-center items-center"
+                  ? "btnDisabled  bg-[#D9D9D9] placeholder-[#7D7D7D] border-0  left-1 h-11 w-[44px] rounded-l flex justify-center items-center"
+                  : " left-1 h-11 border-2 border-[#D9D9D9] border-b-[#7D7D7D] border-r-0 w-[44px] rounded-l flex justify-center items-center"
             }
           >
             <img
@@ -85,10 +228,17 @@ export default function KeyWordsSearch({
           </button>
         </div>
       </div>
-      {buttonClick ? (
+      {buttonClick ? SCTN[0] == "financialReports" ? (
+        handleDropDownItem(SCTN[0],SCTN[1])
+      ) : (
+        // <div
+        //   className={
+        //     "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] w-[330px] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
+        //   }
+        // > last
         <div
           className={
-            "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] w-[330px] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
+            "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
           }
         >
           <div className="flex gap-2 mt-3">
@@ -144,8 +294,8 @@ export default function KeyWordsSearch({
             />
             <span>بدون این عبارت </span>
           </div>
-        
-         
+
+
         </div>
       ) : null}
     </div>

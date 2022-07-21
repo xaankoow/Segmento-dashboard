@@ -8,8 +8,11 @@ import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch
 import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUp from "../../Utils/PopUp/PopUp";
 import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 const KeyWords = ({ onClickHandler }) => {
+
+  const {canRequest}=useSelector(state=>state.loadingState)
    // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [SavePopup, showSavePopup] = useState(false);
@@ -179,7 +182,7 @@ const KeyWords = ({ onClickHandler }) => {
             ? "btn-style mr-5 mt-5 flex gap-3"
             : "bg-[#D3D5E2] btn-style mr-5 mt-5 flex gap-3"
         }
-        disabled={searchBoxHandleClick ? false : true}
+        disabled={canRequest?searchBoxHandleClick ? false : true:true}
         onClick={(e) =>{handleSetStoreKeyWords()}}
       >
         <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />

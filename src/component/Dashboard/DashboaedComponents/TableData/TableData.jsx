@@ -15,7 +15,7 @@ export default function Table({
   const [handleClickCopyIndex, SetHandleCopyIndex] = useState(false);
   const [copyItem, setCopyItem] = useState([]);
   // row of table
-  let letter = "آ";
+  let letter = "آ"; // این کلمه همیشه باید ثالت باشه؟!
   const [activeRow, setActiveRow] = useState(0);
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set class name when checkbox is checking
@@ -133,7 +133,7 @@ export default function Table({
           <div className="flex gap-5">
             <div
               className={
-                selectColumnTitle === "کپی"
+                copyItem.length > 0
                   ? "text-sm font-medium text-gray-900 pr-2  text-right text-[#0A65CD] relative cursor-pointer"
                   : "text-sm font-medium text-gray-900 pr-2  text-right text-[#D9D9D9] relative "
               }
@@ -147,14 +147,14 @@ export default function Table({
             >
               <span
                 class={
-                  selectColumnTitle === "کپی" && handleClickCopy
+                  copyItem.length > 0 & handleClickCopy
                     ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#ffffff] -top-11"
                     : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
                 }
               >
                 کپی شد!
               </span>
-              {selectColumnTitle}
+              {copyItem.length > 0?"کپی":"انتخاب"}
             </div>
             <div
               className={
@@ -258,7 +258,7 @@ export default function Table({
             id="table"
           >
             {filteredDatas.map((item, index) => {
-              letter = item.substr(0, 1);
+              letter = item.substring(0, 1);
               let letterArray = [""];
               return (
                 <>
