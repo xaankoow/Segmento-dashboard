@@ -18,8 +18,7 @@ export default function MyList() {
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
   // check wich api checked
   const tableDataFiltered = [];
-   // jalali moment 
-   var moment = require('jalali-moment');
+
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -40,9 +39,9 @@ export default function MyList() {
       const { data, status } = await dataTable(dataRaw);
       const listDatas = [];
       for (let index = data.data.length; index >= 0; index--) {
-        if (data.data[index] != undefined)
-          listDatas.push(data.data[index]);
+        if (data.data[index] != undefined) listDatas.push(data.data[index]);
       }
+      console.log(listDatas);
       setTableDatas(listDatas);
     } catch (error) {
       console.log(error);
@@ -84,7 +83,7 @@ export default function MyList() {
             }
           }
         });
-       
+
         if (clicked == index) {
           Object.keys(result).map((items) => {
             if (result[items] != null) {
@@ -95,7 +94,14 @@ export default function MyList() {
             }
           });
         }
-
+        // convert number into persian
+        var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+        var persianMap = persianDigits.split("");
+        function convertToPersianNumber(input) {
+          return input.replace(/\d/g, function (m) {
+            return persianMap[parseInt(m)];
+          });
+        }
         return (
           <div className="flex flex-col border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2">
             <div
@@ -117,7 +123,7 @@ export default function MyList() {
                     آخرین به روزرسانی :
                   </span>
                   <span className="text-sm text-[#7D7D7D]">
-                  {moment(item.created_at.substring(0, 10)).locale('fa').format('YYYY/M/D')}
+                    {convertToPersianNumber(item.created_at.substring(7, 18))}
                   </span>
                 </div>
                 <div

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { ContentProductionService } from "../../service/contentProduction";
 import PopUp from "../../Utils/PopUp/PopUp";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
@@ -6,6 +6,9 @@ import Table from "../DashboaedComponents/TableData/TableData";
 import SaveListModal from "./SaveListModal";
 
 export default function ContentpProduction({ onClickHandler }) {
+
+
+  
   // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [UpdatePpUp, showUpdatePpUp] = useState(false);
@@ -99,6 +102,8 @@ export default function ContentpProduction({ onClickHandler }) {
   return (
     <>
       {keyWordShowSaveModal && (
+     <Fragment>
+
         <SaveListModal
           dataTable={tableData}
           isContentProduction={true}
@@ -108,6 +113,8 @@ export default function ContentpProduction({ onClickHandler }) {
           SaveInputValues={SaveInputValues}
           activeBoxUpdate={activeBoxUpdate}
         />
+        {number ? "" : ""}
+      </Fragment>
       )}
       {UpdatePpUp && (
         <PopUp

@@ -135,10 +135,10 @@ export default function DashboardBody() {
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
           {/* <EasyStart startButtonClick={startButtonClick} /> */}
           {/* keyWords */}
-          {/* <Routes>
-          <Route path="" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>} />
-          <Route path="content" element={ <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>} />
-       </Routes> */}
+          {/* <Routes> */}
+          {/* <Route path="/keyWords" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>} /> */}
+          {/* <Route path="content" element={ <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>} /> */}
+       {/* </Routes> */}
 
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
           {/* <TabMenu
@@ -147,9 +147,11 @@ export default function DashboardBody() {
             numberLeft={"20"}
             numberRight={"189"}
           />  */}
-          <PlanStatus title={"وضعیت اشتراک"}/>
+          {/* <PlanStatus title={"وضعیت اشتراک"}/> */}
           {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
           {/* <EditUserProfile /> */}
+          {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
+          <EditUserProfile />
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 

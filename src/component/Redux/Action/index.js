@@ -102,7 +102,13 @@ export const setAuth4Redux = (auth4) => {
         await dispatch({ type: "SET_AUTH", payload: state })
     }
 }
-
+export const setImageProfRedux = (image) => {
+    return async (dispatch, getState) => {
+        let state = { ...getState().userState }
+        state.image = image;
+        await dispatch({ type: "SET_IMAGE", payload: state })
+    }
+}
 export const setNameRedux = (fullName) => {
     return async (dispatch, getState) => {
         let state = { ...getState().userState }

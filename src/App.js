@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
 // import Nav from "./component/navMenu/Nav";
-import Modal from 'react-modal'
+import Modal from "react-modal";
 import HandleModal from "./component/Utils/handleModal";
 import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { useSelector } from "react-redux";
@@ -17,14 +17,11 @@ import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
 // import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
-
 export default function App() {
+  const { forceUpdate } = useSelector((state) => state.userState);
+  const { ProcessingDelay } = useSelector((state) => state.loadingState);
 
-  const { forceUpdate } = useSelector(state => state.userState)
-  const { ProcessingDelay } = useSelector(state => state.loadingState)
-
-
-  console.log(ProcessingDelay.length)
+  console.log(ProcessingDelay.length);
   //HANDLE SELECT NEXT INPUT IN FORM FORGOTPASSWORD AND VERIFYEMAIL
   // useEffect(() => {
   //   handleNextInput(0)
@@ -41,11 +38,8 @@ export default function App() {
 
   return (
     <Fragment>
-
       <div className="app">
         <div className="flex flex-col items-center w-full justify-center overflow-hidden">
-
-
           <Routes>
             <Route exact path={"/"} element={<Nav path={"register"} />} />
             <Route exact path={"register"} element={<Nav path={""} />} />
@@ -64,23 +58,20 @@ export default function App() {
             <Route path="forgotPassword" element={<Forgotpass />} />
             <Route path="ValidateEmail" element={<ValidateEmail />} />
           </Routes>
-
-
         </div>
         <Routes>
-          <Route path="dashboard/*" element={<DashboardBody />} />
           <Route path="dashboard/payment*" element={<LandingPage />} />
+          <Route path="dashboard/*" element={<DashboardBody />} />
         </Routes>
 
         {/* <HandleModal /> */}
         {/* {ProcessingDelay.length>0?alert(''):null} */}
-        <LoadingPage/>
+        <LoadingPage />
         {/* {<LoadingPage/>} */}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>
       {/* <LoadingPage /> */}
     </Fragment>
-
   );
 }

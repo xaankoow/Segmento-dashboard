@@ -80,6 +80,7 @@ export default function SaveListModal({
 
         const { data, status } = await ContentProductionStoreService(dd);
         setUpdate(!update);
+        handleGetcontent();
       } catch (error) {
         console.log(error);
       }
@@ -100,6 +101,7 @@ export default function SaveListModal({
     var handleGetcontent = async () => {
       try {
         const { data, status } = await ContentProductionGetService();
+        debugger
         setcontent(data.data);
       } catch (error) {
         console.log(error);
@@ -108,18 +110,22 @@ export default function SaveListModal({
   }
 
   return (
+   
     <Modal
       isOpen={true}
       parentSelector={() =>
         document.querySelector(".app #DASHBOARD .body .main")
       }
+      id={"MODALBOX"}
+      shouldCloseOnOverlayClick={true}
+
       // onAfterOpen={afterOpenModal}
       // onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
       // className={"myModal"}
     >
-      <div className="flex flex-col items-center px-4 py-8 gap-5">
+      <div className="flex flex-col items-center px-4 py-8 gap-5 z-50" >
         <AuthInput
           textLabelInput="افزودن لیست جدید "
           width={"100%"}
