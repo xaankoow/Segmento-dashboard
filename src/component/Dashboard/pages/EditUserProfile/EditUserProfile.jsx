@@ -10,6 +10,7 @@ import AuthInput from "../../../Auth/authInput/AuthInput";
 //   AlignDropdown,
 // } from "verbum";
 import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import SelectBox from "./components/selectBox/SelectBox";
 import PopUp from "../../../Utils/PopUp/PopUp";
 import { toast } from "react-toastify";
@@ -26,7 +27,7 @@ import {
 import { useSelect } from "@mui/base";
 export default function EditUserProfile() {
   
-  const {canRequest}=useSelect(state=>state.loadingState)
+  const {canRequest}=useSelector(state=>state.loadingState)
 
   const [selectDatas, setSelectDtas] = useState([]);
   const [nameInputValue, setNameInputValue] = useState("");
@@ -54,7 +55,7 @@ export default function EditUserProfile() {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
 
-  var user_name = "";
+  var user_name = "";  
   var user_email = "";
   const handleSelectBox1 = (e) => {
     setSelectBoxValue1(e.target.value);
@@ -230,10 +231,11 @@ export default function EditUserProfile() {
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
                 imageSource={
-                 
-                     "../img/dashboard/userProfile/profileImage.png"
+                  // userState.image != "" ? userState.image : userState.userData.user.image
+                  ""
                 }
-              />
+                />
+                {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
                 className="btn-style h-10 rounded-lg text-[14px] mr-[181px]"
                 onClick={() => dispatch(logoutAction())}
@@ -364,9 +366,10 @@ export default function EditUserProfile() {
                     link: { inDropdown: true },
                     history: { inDropdown: true },
                   }}
-                  wrapperClassName="border border-[#D9D9D9] w-full  mb-7 flex flex-col justify-center p-3 min-h-[280px] relative max-w-[636px] rounded"
-                  toolbarClassName="flex w-full gap-7 absolute top-3 text-[#7D7D7D]  "
-                  editorClassName="w-full h-full"
+                  toolbarClassName="toolbarClassName "
+                  wrapperClassName="wrapperClassName min-h-[280px]  border border-[#D9D9D9] max-w-[636px] mb-7"
+                  editorClassName="editorClassName w-full"
+               
                 />
                 {/* <EditorComposer>
                   <Editor hashtagsEnables={true}>
