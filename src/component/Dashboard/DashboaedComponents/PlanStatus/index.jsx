@@ -14,28 +14,56 @@ export default function PlanStatus({ title }) {
     const data = {
         // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [
-          {
-            label: '# of Votes',
-            data: [30,70],
-            cutout: 55,
-            backgroundColor: [
-                '#D9D9D9',
-                '#0A65CD',
-            ],
-            borderWidth: 0,
-            borderRadius:50
-            // borderColor: [
-            //   'rgba(255, 99, 132, 1)',
-            //   'rgba(54, 162, 235, 1)',
-            //   'rgba(255, 206, 86, 1)',
-            //   'rgba(75, 192, 192, 1)',
-            //   'rgba(153, 102, 255, 1)',
-            //   'rgba(255, 159, 64, 1)',
-            // ],
-            // borderWidth: 1,
-          },
+            {
+                label: '# of Votes',
+                data: [30, 70],
+                cutout: 50,
+                backgroundColor: [
+                    '#D9D9D9',
+                    '#0A65CD',
+                ],
+                borderWidth: 0,
+                borderRadius: 7
+                // borderColor: [
+                //   'rgba(255, 99, 132, 1)',
+                //   'rgba(54, 162, 235, 1)',
+                //   'rgba(255, 206, 86, 1)',
+                //   'rgba(75, 192, 192, 1)',
+                //   'rgba(153, 102, 255, 1)',
+                //   'rgba(255, 159, 64, 1)',
+                // ],
+                // borderWidth: 1,
+            },
         ],
-      };
+    };
+    const miniChartSetting = {
+        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [
+            {
+                label: '# of Votes',
+                data: [30, 70],
+                cutout: 38,
+                // cutout: 38,
+                // width:35,
+                // height:35,
+                backgroundColor: [
+                    '#D9D9D9',
+                    '#0A65CD',
+                ],
+                borderWidth: 0,
+                borderRadius: 5
+                // borderColor: [
+                //   'rgba(255, 99, 132, 1)',
+                //   'rgba(54, 162, 235, 1)',
+                //   'rgba(255, 206, 86, 1)',
+                //   'rgba(75, 192, 192, 1)',
+                //   'rgba(153, 102, 255, 1)',
+                //   'rgba(255, 159, 64, 1)',
+                // ],
+                // borderWidth: 1,
+            },
+        ],
+    };
 
     return (
         <div className=''>
@@ -110,7 +138,7 @@ export default function PlanStatus({ title }) {
                                     12<br />
                                     روز باقی مانده
                                 </div>
-                                <Doughnut data={data} height={143} width={143}/>
+                                <Doughnut data={data} height={143} width={143} options={{ maintainAspectRatio: false }} />
                                 {/* <canvas id="chart1" width="150px" height="150px"></canvas> */}
                             </div>
 
@@ -183,14 +211,15 @@ export default function PlanStatus({ title }) {
 
                                 </div>
 
-                                <div className=" w-[100px] h-[100px] float-left relative mx-auto">
+                                <div className="w-24 h-24 float-left relative mx-auto">
                                     <div
-                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50'>
+                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50'>
                                         <span id="valuetwo"></span> <br />
                                         کلمه باقی مانده
                                     </div>
-                                    <figure>
-                                        <canvas id="chartCanvas1" width="90" height="90"></canvas>
+                                    <figure className='flex bottom-1 relative h-full text-center justify-center'>
+                                        <Doughnut data={miniChartSetting} options={{ maintainAspectRatio: false }} />
+                                        {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                                     </figure>
                                 </div>
                             </div>
@@ -216,12 +245,13 @@ export default function PlanStatus({ title }) {
 
                                 <div className="w-24 h-24 float-left relative mx-auto">
                                     <div
-                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50' >
+                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50' >
                                         <span id="valuethree"></span> <br />
                                         کلمه باقی مانده
                                     </div>
-                                    <figure>
-                                        <canvas id="chartCanvas2" width="90" height="90"></canvas>
+                                    <figure className='flex bottom-1 relative h-full text-center justify-center'>
+                                        <Doughnut data={miniChartSetting} options={{ maintainAspectRatio: false }} />
+                                        {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                                     </figure>
                                 </div>
                             </div>
@@ -237,7 +267,7 @@ export default function PlanStatus({ title }) {
                                         <span className="mt-2 mr-4">ابزار تحقیق کلمه کلیدی</span>
                                     </div>
 
-                                    <div className="flex flex-row  text-xs mt-6">
+                                    <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4">تعداد کل کلمات</span>
                                         <span id="border" className="mr-3">100</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
@@ -249,12 +279,13 @@ export default function PlanStatus({ title }) {
 
                                 <div className="w-24 h-24 float-left relative mx-auto">
                                     <div
-                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50'>
+                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50'>
                                         <span id="valuefour"></span> <br />
                                         کلمه باقی مانده
                                     </div>
-                                    <figure>
-                                        <canvas id="chartCanvas3" width="90" height="90"></canvas>
+                                    <figure className='flex bottom-1 relative h-full text-center justify-center'>
+                                        <Doughnut data={miniChartSetting} options={{ maintainAspectRatio: false }} />
+                                        {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                                     </figure>
                                 </div>
                             </div>
@@ -267,7 +298,7 @@ export default function PlanStatus({ title }) {
                                         <span className="mt-2 mr-4">ابزار تحقیق کلمه کلیدی</span>
                                     </div>
 
-                                    <div className="flex flex-row  text-xs mt-6">
+                                    <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4">تعداد کل کلمات</span>
                                         <span id="border" className="mr-3">100</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
@@ -279,12 +310,13 @@ export default function PlanStatus({ title }) {
 
                                 <div className=" w-24 h-24 float-left relative mx-auto">
                                     <div
-                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50'>
+                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50'>
                                         <span id="valuefive"></span> <br />
                                         کلمه باقی مانده
                                     </div>
-                                    <figure>
-                                        <canvas id="chartCanvas4" width="90" height="90"></canvas>
+                                    <figure className='flex bottom-1 relative h-full text-center justify-center'>
+                                        <Doughnut data={miniChartSetting} options={{ maintainAspectRatio: false }} />
+                                        {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                                     </figure>
                                 </div>
                             </div>
@@ -300,7 +332,7 @@ export default function PlanStatus({ title }) {
                                         <span className="mt-2 mr-4">ابزار تحقیق کلمه کلیدی</span>
                                     </div>
 
-                                    <div className="flex flex-row  text-xs mt-6">
+                                    <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4">تعداد کل کلمات</span>
                                         <span id="border" className="mr-3">100</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
@@ -312,12 +344,13 @@ export default function PlanStatus({ title }) {
 
                                 <div className="w-24 h-24 float-left relative mx-auto">
                                     <div
-                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50'>
+                                        className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50'>
                                         <span id="valuesix"></span> <br />
                                         کلمه باقی مانده
                                     </div>
-                                    <figure>
-                                        <canvas id="chartCanvas5" width="90" height="90"></canvas>
+                                    <figure className='flex bottom-1 relative h-full text-center justify-center'>
+                                        <Doughnut data={miniChartSetting} options={{ maintainAspectRatio: false }} />
+                                        {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                                     </figure>
                                 </div>
                             </div>
@@ -330,7 +363,7 @@ export default function PlanStatus({ title }) {
                                         <span className="mt-2 mr-4">ابزار تحقیق کلمه کلیدی</span>
                                     </div>
 
-                                    <div className="flex flex-row  text-xs mt-6">
+                                    <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4">تعداد کل کلمات</span>
                                         <span id="border" className="mr-3">100</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
@@ -344,13 +377,14 @@ export default function PlanStatus({ title }) {
 
                                     <div className="w-24 h-24 float-left relative mx-auto">
                                         <div
-                                            className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50'>
+                                            className='w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50'>
                                             <span id="valueseven"></span><br />
                                             کلمه باقی مانده
                                         </div>
 
-                                        <figure>
-                                            <canvas id="chartCanvas6" width="90" height="90"></canvas>
+                                        <figure className='flex bottom-1 relative h-full text-center justify-center'>
+                                            <Doughnut data={miniChartSetting} options={{ maintainAspectRatio: false }} />
+                                            {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                                         </figure>
                                     </div>
                                 </div>

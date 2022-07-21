@@ -147,11 +147,11 @@ export default function DashboardBody() {
             numberLeft={"20"}
             numberRight={"189"}
           />  */}
-          {/* <PlanStatus title={"وضعیت اشتراک"}/> */}
+          <PlanStatus title={"وضعیت اشتراک"}/>
           {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
           {/* <EditUserProfile /> */}
           {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
-          <EditUserProfile />
+          {/* <EditUserProfile /> */}
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
