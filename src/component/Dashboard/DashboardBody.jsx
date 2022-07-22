@@ -141,13 +141,13 @@ export default function DashboardBody() {
        {/* </Routes> */}
 
           {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          <TabMenu
+          {/* <TabMenu
             tabsContent={tabContent2}
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
             numberRight={"189"}
-          /> 
-          <PlanStatus title={"وضعیت اشتراک"}/>
+          /> */}
+          <PlanStatus title={"وضعیت اشتراک"}/> 
           {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
           {/* <EditUserProfile /> */}
          

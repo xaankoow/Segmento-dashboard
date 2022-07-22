@@ -29,7 +29,7 @@ export default function ChangeImageModal({
   };
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([""]);
   // var user_image = userState.userData.user.image;
   console.log(files);
   const { getRootProps, getInputProps } = useDropzone({
@@ -47,7 +47,7 @@ export default function ChangeImageModal({
     },
   });
 
-  const thumbs = files.length ? (
+  const thumbs = files[0].length ? (
     <>
       <img
         src={files[0].preview}
@@ -67,7 +67,9 @@ export default function ChangeImageModal({
     // Make sure to revoke the data uris to avoid memory leaks
     files.forEach((file) => URL.revokeObjectURL(file.preview));
   }, [files]);
-  console.log(files);
+  // console.log(files);
+  // debugger
+  // console.log(files[0]);
   return (
     <Modal
       isOpen={isOpen ? true : false}
@@ -133,11 +135,11 @@ export default function ChangeImageModal({
                   {" "}
                   انصراف{" "}
                 </button>
-                {/* <AuthButton
+                <AuthButton
                   textButton={" ذخیره تغییرات"}
                   reduxHandleClick={setImageProfRedux}
-                  setOnclickValue={files[0].preview!=undefined ? files[0].preview :""}
-                /> */}
+                  setOnclickValue={files[0]!="" ? files[0].preview :""}
+                />
                 {/* <button className="btn-style" onClick={() => setUserImage(files)}> */}
                 {/* {" "}
                 ذخیره تغییرات{" "}

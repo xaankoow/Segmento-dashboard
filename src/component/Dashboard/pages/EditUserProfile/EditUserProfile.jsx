@@ -122,7 +122,10 @@ export default function EditUserProfile() {
     }
   };
   useEffect(() => {
-    pastSelexboxData();
+    if(pastData ==""){
+
+      pastSelexboxData();
+    }
   });
   // data of select box thet is related to the past info
   const[pastData,setPastData]=useState("");
