@@ -24,6 +24,7 @@ import MylistContentProduction from "./ContentProduction/MyListContentProduction
 import BuyPlanEasyToStartModal from "../Utils/EasyToStartModal";
 import TableFinancialReports from "./DashboaedComponents/FinancialReports/TableFinancialReports";
 import EditUserProfile from "./pages/EditUserProfile/EditUserProfile";
+import PlanStatus from "./DashboaedComponents/PlanStatus";
 
 export default function DashboardBody() {
   const navigate = useNavigate();
@@ -146,8 +147,10 @@ export default function DashboardBody() {
             numberLeft={"20"}
             numberRight={"189"}
           /> 
+          <PlanStatus title={"وضعیت اشتراک"}/>
           {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
           {/* <EditUserProfile /> */}
+         
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 
