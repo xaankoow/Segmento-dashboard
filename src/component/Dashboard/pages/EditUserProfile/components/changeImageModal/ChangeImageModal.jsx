@@ -5,6 +5,7 @@ import { useDropzone } from "react-dropzone";
 import { setImageProfRedux } from "../../../../../Redux/Action";
 import { useDispatch, useSelector } from "react-redux";
 import AuthButton from "../../../../../Auth/authButton/AuthButton";
+import PopUp from "../../../../../Utils/PopUp/PopUp";
 
 export default function ChangeImageModal({
   close,
@@ -12,6 +13,8 @@ export default function ChangeImageModal({
   userImage,
   setUserImage,
 }) {
+  // if change image currectly
+  const [imageChanged, setImageChanged] = useState(false);
   const customStyles = {
     content: {
       top: "43vh",
@@ -26,7 +29,7 @@ export default function ChangeImageModal({
   };
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([""]);
   // var user_image = userState.userData.user.image;
   console.log(files);
   const { getRootProps, getInputProps } = useDropzone({
@@ -44,7 +47,7 @@ export default function ChangeImageModal({
     },
   });
 
-  const thumbs = files.length ? (
+  const thumbs = files[0].length ? (
     <>
       <img
         src={files[0].preview}
@@ -64,7 +67,9 @@ export default function ChangeImageModal({
     // Make sure to revoke the data uris to avoid memory leaks
     files.forEach((file) => URL.revokeObjectURL(file.preview));
   }, [files]);
-  console.log(files);
+  // console.log(files);
+  // debugger
+  // console.log(files[0]);
   return (
     <Modal
       isOpen={isOpen ? true : false}
@@ -77,57 +82,73 @@ export default function ChangeImageModal({
       contentLabel="Example Modal"
       // className={"myModal"}
     >
-      <div className="min-w-[530px] rounded-lg">
-        <div className="w-full flex relative">
-          <PageTitle title={"تغییر تصویر پروفایل"} />
-          <img
-            src="./img/dashboard/nav_right/close.svg"
-            alt="close"
-            width={"14px"}
-            height={"14px"}
-            className="absolute top-4 left-6 cursor-pointer"
-            onClick={() => close()}
+      <>
+        {imageChanged && (
+          <PopUp
+            clickHandler={() => setImageChanged(false)}
+            image={"./img/popUp/tik.svg"}
+            type={"sucsess"}
+            buttonText={"باشه، فهمیدم!"}
+            text={" تصویر پروفایل شما با موفقیت تغییر کرد!   "}
+            title={"موفقیت آمیز"}
           />
-        </div>
-        <div className="p-4">
-          <div className="flex flex-col justify-center items-center">
-            {thumbs}
+        )}
+        <div className="min-w-[530px] rounded-lg">
+          <div className="w-full flex relative">
+            <PageTitle title={"تغییر تصویر پروفایل"} />
+            <img
+              src="./img/dashboard/nav_right/close.svg"
+              alt="close"
+              width={"14px"}
+              height={"14px"}
+              className="absolute top-4 left-6 cursor-pointer"
+              onClick={() => close()}
+            />
+          </div>
+          <div className="p-4">
+            <div className="flex flex-col justify-center items-center">
+              {thumbs}
 
-            <div
-              {...getRootProps({ className: "dropzone" })}
-              className="border rounded-lg border-dashed border-primary min-w-[358px] bg-secondary flex flex-col justify-center items-center py-4 gap-4"
-            >
-              <input {...getInputProps()} className="w-full bg-yellow h-11" />
-              <img
-                src="../img/dashboard/userProfile/backup.svg"
-                alt="backup"
-                width={"28px"}
-                height={"20px"}
-              />
-              <span className="text-gray text-xs">
-                تصویر خود را اینجا بکشید
-              </span>
-              <span className="text-gray text-xs">
-                {" "}
-                <span className="text-[#D9D9D9]">—————</span> یا{" "}
-                <span className="text-[#D9D9D9]">—————</span>{" "}
-              </span>
-              <button className="btn-style"> انتخاب فایل</button>
-            </div>
-            <div className="flex justify-end gap-5 mt-7 w-full max-w-[358px]">
-              <button className="btn-secondary" onClick={() => close()}>
-                {" "}
-                انصراف{" "}
-              </button>
-              <AuthButton textButton={" ذخیره تغییرات"} reduxHandleClick={setImageProfRedux} setOnclickValue={files[0].preview}/>
-              {/* <button className="btn-style" onClick={() => setUserImage(files)}> */}
+              <div
+                {...getRootProps({ className: "dropzone" })}
+                className="border rounded-lg border-dashed border-primary min-w-[358px] bg-secondary flex flex-col justify-center items-center py-4 gap-4"
+              >
+                <input {...getInputProps()} className="w-full bg-yellow h-11" />
+                <img
+                  src="../img/dashboard/userProfile/backup.svg"
+                  alt="backup"
+                  width={"28px"}
+                  height={"20px"}
+                />
+                <span className="text-gray text-xs">
+                  تصویر خود را اینجا بکشید
+                </span>
+                <span className="text-gray text-xs">
+                  {" "}
+                  <span className="text-[#D9D9D9]">—————</span> یا{" "}
+                  <span className="text-[#D9D9D9]">—————</span>{" "}
+                </span>
+                <button className="btn-style"> انتخاب فایل</button>
+              </div>
+              <div className="flex justify-end gap-5 mt-7 w-full max-w-[358px]">
+                <button className="btn-secondary" onClick={() => close()}>
+                  {" "}
+                  انصراف{" "}
+                </button>
+                <AuthButton
+                  textButton={" ذخیره تغییرات"}
+                  reduxHandleClick={setImageProfRedux}
+                  setOnclickValue={files[0]!="" ? files[0].preview :""}
+                />
+                {/* <button className="btn-style" onClick={() => setUserImage(files)}> */}
                 {/* {" "}
                 ذخیره تغییرات{" "}
               </button> */}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     </Modal>
   );
 }

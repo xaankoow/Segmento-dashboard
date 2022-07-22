@@ -9,8 +9,7 @@ import AuthInput from "../../../Auth/authInput/AuthInput";
 //   InsertDropdown,
 //   AlignDropdown,
 // } from "verbum";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
 import SelectBox from "./components/selectBox/SelectBox";
 import PopUp from "../../../Utils/PopUp/PopUp";
 import { toast } from "react-toastify";
@@ -26,6 +25,7 @@ import {
 } from "../../../service/editProfile";
 import { useSelect } from "@mui/base";
 import AuthButton from "../../../Auth/authButton/AuthButton";
+import { EditorCustomizedToolbarOption } from "./components/Editor/Editor";
 export default function EditUserProfile() {
 
   const { canRequest } = useSelector(state => state.loadingState)
@@ -36,7 +36,7 @@ export default function EditUserProfile() {
   // user Image
   const [image, setUserImage] = useState([]);
   const userImageProf = image.map((file) => file.preview);
-  console.log(userImageProf[0]);
+  
   //
   const [selectBoxValue1, setSelectBoxValue1] = useState("");
   const [selectBoxValue2, setSelectBoxValue2] = useState("");
@@ -122,9 +122,12 @@ export default function EditUserProfile() {
       toast.error("اطلاعات شما ذخیره نشد !");
     }
   };
-  // useEffect(() => {
-  //   pastSelexboxData();
-  // });
+  useEffect(() => {
+    if(pastData ==""){
+
+      pastSelexboxData();
+    }
+  });
   // data of select box thet is related to the past info
   const [pastData, setPastData] = useState("");
   const pastSelexboxData = async () => {
@@ -143,7 +146,6 @@ export default function EditUserProfile() {
       }
 
     }
-
   };
   // select box data
   const data = [];
@@ -208,9 +210,8 @@ export default function EditUserProfile() {
   }, [forceUpdate]);
 
   // 
-  const a = image.length != 0 || image.length != undefined
-    && image.map((file) => file.preview)
-  console.log(a);
+ 
+  
   return (
     <>
       {openChangeImageModal && (
@@ -231,6 +232,7 @@ export default function EditUserProfile() {
           title={"موفقیت آمیز"}
         />
       )}
+     
       <div className="">
         <PageTitle title={"حساب کاربری"} />
         {/* <AuthButton textButton={"test api"} handlerClick={pastSelexboxData()}/> */}
@@ -249,7 +251,7 @@ export default function EditUserProfile() {
               />
               {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
-                className="btn-style h-10 rounded-lg text-[14px] mr-[181px]"
+                className="btn-style h-10 rounded-lg text-[14px] mr-[181px] "
                 onClick={() => dispatch(logoutAction())}
               >
                 خروج{" "}
@@ -367,29 +369,9 @@ export default function EditUserProfile() {
                     پیغام برای تیم سگمنتو{" "}
                   </span>
                 </div>
-                <Editor
-                  toolbar={{
-                    inline: {
-                      inDropdown: true,
-                      className: "flex flex-col gap-2",
-                    },
-                    list: { inDropdown: true },
-                    textAlign: { inDropdown: true },
-                    link: { inDropdown: true },
-                    history: { inDropdown: true },
-                  }}
-                  toolbarClassName="toolbarClassName "
-                  wrapperClassName="wrapperClassName min-h-[280px]  border border-[#D9D9D9] max-w-[636px] mb-7"
-                  editorClassName="editorClassName w-full"
-
-                />
-                {/* <EditorComposer>
-                  <Editor hashtagsEnables={true}>
-                    <ToolbarPlugin>
-                      <AlignDropdown />
-                    </ToolbarPlugin>
-                  </Editor>
-                </EditorComposer> */}
+               
+                <EditorCustomizedToolbarOption/>
+                
                 <div className="w-full flex justify-end ">
                   <button className="btn-style mb-9 w-[101px]">
                     ارسال پیام

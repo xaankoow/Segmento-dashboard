@@ -109,9 +109,9 @@ export default function ContentpProduction({ onClickHandler }) {
           isContentProduction={true}
           updateButtonHandler={() =>{if(boxIndex>-1) showUpdatePpUp(true)}}
           saveButtonHandler={() =>{ if(SaveInputValue) showSavePopup(true)}}
-          closeModal={keyWordShowSaveModal}
           SaveInputValues={SaveInputValues}
           activeBoxUpdate={activeBoxUpdate}
+          close={() => setKeyWordShowSaveModal(false)}
         />
         {number ? "" : ""}
       </Fragment>

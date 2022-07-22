@@ -146,12 +146,11 @@ export default function DashboardBody() {
             title={"ایده تولید محتوا"}
             numberLeft={"20"}
             numberRight={"189"}
-          />  */}
-          {/* <PlanStatus title={"وضعیت اشتراک"}/> */}
-          {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
-          <EditUserProfile />
+          /> */}
+          <PlanStatus title={"وضعیت اشتراک"}/> 
           {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
           {/* <EditUserProfile /> */}
+         
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
 

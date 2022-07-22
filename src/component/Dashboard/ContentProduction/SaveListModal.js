@@ -17,6 +17,7 @@ export default function SaveListModal({
   dataTable,
   SaveInputValues,
   activeBoxUpdate,
+  close
 }) {
   const {canRequest}=useSelector(state=>state.loadingState)
   const customStyles = {
@@ -38,7 +39,8 @@ export default function SaveListModal({
   const [update, setUpdate] = useState(false);
   const [content, setcontent] = useState([]);
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
-  const [closeModal, SetcloseModal] = useState(false);
+ 
+
   // jalali moment
   var moment = require("jalali-moment");
 
@@ -112,7 +114,7 @@ export default function SaveListModal({
   return (
    
     <Modal
-      isOpen={true}
+      isOpen={true }
       parentSelector={() =>
         document.querySelector(".app #DASHBOARD .body .main")
       }
@@ -126,6 +128,15 @@ export default function SaveListModal({
       // className={"myModal"}
     >
       <div className="flex flex-col items-center px-4 py-8 gap-5 z-50" >
+      <img
+              src="./img/dashboard/nav_right/close.svg"
+              alt="close"
+              width={"14px"}
+              height={"14px"}
+              className="absolute top-4 left-6 cursor-pointer mb-7"
+              onClick={() =>close()}
+            />
+            <div></div>
         <AuthInput
           textLabelInput="افزودن لیست جدید "
           width={"100%"}
