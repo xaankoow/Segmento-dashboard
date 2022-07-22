@@ -70,7 +70,7 @@ export default function DashboardBody() {
   // const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true);me
 
   // DashboardHeader nav icon that close the left sidebar
-  const [closeNav, setCloseNav] = useState(false);
+  const [closeNav, setCloseNav] = useState(true);
   const closeNavItem = () => {
     setCloseNav(!closeNav);
   };
@@ -172,7 +172,7 @@ export default function DashboardBody() {
           {/* <AleartMessageBuyPlan /> */}
         </div>
         
-        <SidebarComponent closeNav={closeNav} />
+        <SidebarComponent closeNav={closeNav}  openMenu={()=>setCloseNav(true)}/>
       </div>
       {/* {showModalBuyPlanResult != "" && showModalBuyPlanResult == true ? ( */}
       {showModalBuyPlanResult != "" ? (

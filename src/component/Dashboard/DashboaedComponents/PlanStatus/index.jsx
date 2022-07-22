@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import PageTitle from '../pageTitle/pageTitle';
 // import './'
 // import "./output.css"
 // import './script'
@@ -67,12 +68,7 @@ export default function PlanStatus({ title }) {
 
     return (
         <div className=''>
-            <div>
-                <div className='flex gap-6 items-center pr-4 mt-3'>
-                    <div className='w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]' />
-                    <span className='text-lg'>{title}</span>
-                </div>
-            </div>
+            <PageTitle title={" وضعیت اشتراک"} />
             <div className="mx-auto w-full mt-9">
                 <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-white">
 
