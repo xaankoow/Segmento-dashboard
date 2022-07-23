@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { coreUser, logoutAction } from '../../Redux/Action';
 import getCookie from '../../Utils/findUser';
-import { useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getAllWorkSpace } from '../../Redux/Action/workSpace';
 
 const DashboardHeader = ({ setCloseNav }) => {
@@ -37,7 +37,7 @@ const DashboardHeader = ({ setCloseNav }) => {
         }
     }, [forceUpdate])
 
-
+    const location = useLocation();
 
 
     return (
@@ -68,13 +68,14 @@ const DashboardHeader = ({ setCloseNav }) => {
                         <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] mt-1'>
                             <div className='flex items-center'>
                                 <img src="/img/dashboard/header/manage_accounts.svg" alt="manage_accounts" />
-                                <span>تنظیمات حساب کاربری</span>
+                                {/* <Link to={"userProfile"} state={{ background: location }}>تنظیمات حساب کاربری</Link> */}
+                                <Link to={"buyPlanEasyToStartModal"} state={{ background: location }}>تنظیمات حساب کاربری</Link>
                             </div>
                         </div>
                         <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] mt-1'>
                             <div className='flex items-center gap-1'>
                                 <img src="/img/dashboard/header/add_card.svg" alt="add_card" />
-                                <span>خرید اشتراک</span>
+                                <Link to={"buyPlan"}>خرید اشتراک</Link>
                             </div>
                         </div>
 

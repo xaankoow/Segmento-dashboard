@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import Modal from 'react-modal'
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import AuthButton from '../../Auth/authButton/AuthButton';
 import { addWorkSpace, getAllWorkSpace, setShowWorkSpaceModal } from '../../Redux/Action/workSpace';
 import { InputGetWorkSpaceInfo } from './inputValue';
@@ -16,6 +17,10 @@ export default function WorkSpace({ handleClose }) {
   const [addCommercialPageInput, setAddCommercialPageInput] = useState(3)
   const [addWebsitePageInput, setAddWebsitePageInput] = useState(3)
   const [addCompetitorSite, setAddCompetitorSite] = useState(2)
+
+
+  const navigate = useNavigate();
+
 
   // const {}=useSelector(state=>state.workSpaceState)
   const customStyles = {
@@ -70,7 +75,8 @@ export default function WorkSpace({ handleClose }) {
               <span className='info'></span>
             </div>
             <div className='close_suport_container'>
-              <div className='close_modal_ico' onClick={() => dispatch(setShowWorkSpaceModal(false))}></div>
+              {/* <div className='close_modal_ico' onClick={() => dispatch(setShowWorkSpaceModal(false))}></div> */}
+              <div className='close_modal_ico' onClick={() => navigate(-1)}></div>
             </div>
           </header>
           <body className='px-5'>

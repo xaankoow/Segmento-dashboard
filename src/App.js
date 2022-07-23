@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import Register from "./pages/register/Register";
 import "./App.css";
 import Forgotpass from "./pages/forgotPassword/Forgotpass";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
@@ -17,6 +17,9 @@ import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
 import PlanStatus from "./component/Dashboard/DashboaedComponents/PlanStatus";
 import EditUserProfile from "./component/Dashboard/pages/EditUserProfile/EditUserProfile";
 import TableFinancialReports from "./component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports";
+import BuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/BuyPlan";
+import BuyPlanEasyToStartModal from "./component/Utils/EasyToStartModal";
+import WorkSpace from "./component/Utils/workSpaceModal/workSpace";
 // import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
@@ -39,6 +42,12 @@ export default function App() {
   //   handleNextInput(2)
   // }, [codVerifyEmail_4])
 
+
+  const location = useLocation();
+  const background = location.state && location.state.background;
+  // debugger
+  // console.log(background)
+// var a=background.pathname;
   return (
     <Fragment>
       <div className="app">
@@ -62,16 +71,29 @@ export default function App() {
             <Route path="ValidateEmail" element={<ValidateEmail />} />
           </Routes>
         </div>
-        <Routes>
+        <Routes location={background || location}>
           <Route path="dashboard" element={<DashboardBody />}>
+            <Route path="userProfile" element={<EditUserProfile />} />
             <Route path="planStatus" element={<PlanStatus />} />
-            <Route path="editeUserProfile" element={<EditUserProfile />} />
-            <Route path="tableFinancialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
+            <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
+            <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
+        {/* <Route path={`modal`} element={<HandleModal />} /> */}
 
             {/* <Route path="dashboard/payment*" element={<LandingPage />} /> */}
             {/* <Route path="dashboard/*" element={<DashboardBody />} /> */}
           </Route>
         </Routes>
+        {background!="" && (
+          <Routes>
+            <Route exact path={`dashboard/buyPlanEasyToStartModal`} element={<BuyPlanEasyToStartModal />} />
+            <Route exact path={`dashboard/setWorkSpace`} element={<WorkSpace />} />
+          </Routes>
+        )}
+        {/* <Routes>
+
+        <Route path="*sc" element={<HandleModal />} />
+        </Routes> */}
+
 
         {/* <HandleModal /> */}
         {/* {ProcessingDelay.length>0?alert(''):null} */}
