@@ -155,13 +155,13 @@ export default function AcardionItem() {
               >
                 {clicked === index ? (
                   <img
-                    src="./img/dashboard/nav_right/arrow_back_ios_new_down.svg"
+                    src="/img/dashboard/nav_right/arrow_back_ios_new_down.svg"
                     alt=""
                     className="w-4 h-3"
                   />
                 ) : (
                   <img
-                    src="./img/dashboard/nav_right/arrow_back_ios_new.svg"
+                    src="/img/dashboard/nav_right/arrow_back_ios_new.svg"
                     alt=""
                     className="w-3 h-4"
                   />
@@ -188,7 +188,7 @@ export default function AcardionItem() {
                     className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                   >
                     <img
-                      src={"./img/dashboard/nav_right/add_circle.svg"}
+                      src={"/img/dashboard/nav_right/add_circle.svg"}
                       alt="icon"
                     />
                     <span className={"w-auto"}>افزودن سایت</span>

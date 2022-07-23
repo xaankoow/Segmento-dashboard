@@ -57,7 +57,7 @@ export default function ChangeImageModal({
     </>
   ) : (
     <img
-      src={"../img/dashboard/userProfile/profileImage.png"}
+      src={"/img/dashboard/userProfile/profileImage.png"}
       className="rounded-full my-3 max-w-[125px] max-h-[125px]"
       alt="userImage"
     />
@@ -97,7 +97,7 @@ export default function ChangeImageModal({
           <div className="w-full flex relative">
             <PageTitle title={"تغییر تصویر پروفایل"} />
             <img
-              src="./img/dashboard/nav_right/close.svg"
+              src="/img/dashboard/nav_right/close.svg"
               alt="close"
               width={"14px"}
               height={"14px"}
@@ -115,7 +115,7 @@ export default function ChangeImageModal({
               >
                 <input {...getInputProps()} className="w-full bg-yellow h-11" />
                 <img
-                  src="../img/dashboard/userProfile/backup.svg"
+                  src="/img/dashboard/userProfile/backup.svg"
                   alt="backup"
                   width={"28px"}
                   height={"20px"}

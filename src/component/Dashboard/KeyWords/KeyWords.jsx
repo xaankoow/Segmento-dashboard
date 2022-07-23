@@ -185,7 +185,7 @@ const KeyWords = ({ onClickHandler }) => {
         disabled={canRequest?searchBoxHandleClick ? false : true:true}
         onClick={(e) =>{handleSetStoreKeyWords()}}
       >
-        <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />
+        <img src="/img/dashboard/keyWord/bookmark.svg" alt="" />
        ذخیره لیست
       </button>
     </>

@@ -20,7 +20,7 @@ export default function ModalResultBuyPlanMessage({title,planType}) {
                     <div className='support_container'>
                         <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
                         <AuthButton textButton={"مشاوره و تماس"} />
-                        <img src="./img/modal/body/report.svg" alt="" />
+                        <img src="/img/modal/body/report.svg" alt="" />
                     </div>
                 </body>
             </div>

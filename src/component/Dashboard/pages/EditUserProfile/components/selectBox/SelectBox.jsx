@@ -20,7 +20,7 @@ export default function SelectBox({ optionItems, title, handlechange,select }) {
               return <option value={index + 1} selected={select==optionValue ? true : false} onChange={(e)=>setOptionValue(e.target.value)}>{item}</option>;
             })}
         </select>
-        <img src="./img/dashboard/nav_right/down.svg" alt="down" className="absolute left-3 top-[18px]" />
+        <img src="/img/dashboard/nav_right/down.svg" alt="down" className="absolute left-3 top-[18px]" />
       </div>
     </div>
   );

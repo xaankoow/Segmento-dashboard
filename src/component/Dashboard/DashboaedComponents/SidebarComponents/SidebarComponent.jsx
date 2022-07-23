@@ -52,7 +52,7 @@ export default function SidebarComponent({ closeNav }) {
           <div>
            
        <div className='flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue '  >
-            <img src={"./img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
+            <img src={"/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
             <span className={`text-[${"#0A65CD"}]`}>{!closeNav && "پیشخوان"}</span>
         </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
@@ -63,7 +63,7 @@ export default function SidebarComponent({ closeNav }) {
         {!disableAdvertisement ? (
           <div className="bg-[#F2F5F7] h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
             <img
-              src="./img/dashboard/nav_right/close.svg"
+              src="/img/dashboard/nav_right/close.svg"
               alt="close"
               className="absolute top-2 left-2 cursor-pointer"
               onClick={() => setDisableAdvertisement(true)}

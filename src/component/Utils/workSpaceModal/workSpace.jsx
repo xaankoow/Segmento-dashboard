@@ -65,7 +65,7 @@ export default function WorkSpace({ handleClose }) {
         <div className=' w-[862px]'>
           <header className='px-2.5 border-0'>
             <div>
-              <img src="./img/modal/workSpace/head/add_circle.svg" alt="" className='inline-block ml-3' />
+              <img src="/img/modal/workSpace/head/add_circle.svg" alt="" className='inline-block ml-3' />
               <span className='text-lg'>تعریف ورک‌اسپیس جدید</span>
               <span className='info'></span>
             </div>

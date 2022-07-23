@@ -188,7 +188,7 @@ export default function Table({
                   onClick={() => openModal()}
                 >
                   <img
-                    src="./img/dashboard/table/bookmark.svg"
+                    src="/img/dashboard/table/bookmark.svg"
                     alt="bookmark"
                     className={"ml-3"}
                   />{" "}
@@ -245,7 +245,7 @@ export default function Table({
         {NothingSearch ? (
           <div className="w-full flex flex-col items-center justify-center gap-3 min-h-[401px]">
             <img
-              src={"./img/dashboard/table/add_chart.svg"}
+              src={"/img/dashboard/table/add_chart.svg"}
               alt="imgNothingSearch"
             />
             <span className="text-[#E5E5E5]">

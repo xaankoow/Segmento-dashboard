@@ -111,13 +111,13 @@ export default function MyList() {
                 >
                   {clicked === index ? (
                     <img
-                      src="./img/dashboard/nav_right/arrow_downnn_ios_new.svg"
+                      src="/img/dashboard/nav_right/arrow_downnn_ios_new.svg"
                       alt=""
                       className="cursor-pointer"
                     />
                   ) : (
                     <img
-                      src="./img/dashboard/nav_right/arrow_up_ios_new.svg"
+                      src="/img/dashboard/nav_right/arrow_up_ios_new.svg"
                       alt=""
                       className=" cursor-pointer"
                     />

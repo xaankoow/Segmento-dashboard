@@ -220,8 +220,10 @@ export default function KeyWordsSearch({
             <img
               src={
                 buttonClick
-                  ? "./img/dashboard/searchBox/arrow_down_ios_new.svg"
-                  : "./img/dashboard/searchBox/arrow_up_ios_new.svg"
+                  ? "/img/dashboard/searchBox/arrow_down_ios_new.svg"
+                  : "/img/dashboard/searchBox/arrow_up_ios_new.svg"
+                  // ? "../../../../img/dashboard/searchBox/arrow_down_ios_new.svg"
+                  // : "../../../../img/dashboard/searchBox/arrow_up_ios_new.svg"
               }
               alt="arrow"
             />

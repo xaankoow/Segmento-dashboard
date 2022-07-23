@@ -132,7 +132,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
               </ul>
             </div>
           </div>
-          <img src="./img/modal/body/siteDesignMan.svg" alt="" />
+          <img src="/img/modal/body/siteDesignMan.svg" alt="" />
         </div>
         {stepModal == 1 ? (
           <Fragment>
@@ -427,7 +427,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
 
         </div>
         <div className='container_plan_message mt-5 border rounded-lg'>
-          <img src="./img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
+          <img src="/img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
           <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
         </div>
       </Fragment>
@@ -493,7 +493,7 @@ export default function HandleModal({ handleClose, checkClose, show }) {
         <div className='support_container'>
           <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
           <AuthButton textButton={"مشاوره و تماس"} />
-          <img src="./img/modal/body/report.svg" alt="" />
+          <img src="/img/modal/body/report.svg" alt="" />
         </div>
       </Fragment>
     )

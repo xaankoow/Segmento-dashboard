@@ -256,7 +256,7 @@ export default function EditUserProfile() {
               >
                 خروج{" "}
                 <img
-                  src="./img/dashboard/header/logoutProfile.svg"
+                  src="/img/dashboard/header/logoutProfile.svg"
                   alt="logout"
                   className="mr-3"
                 />

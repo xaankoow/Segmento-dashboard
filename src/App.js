@@ -14,6 +14,9 @@ import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { useSelector } from "react-redux";
 import LandingPage from "./component/Utils/landingPage/landingPage";
 import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
+import PlanStatus from "./component/Dashboard/DashboaedComponents/PlanStatus";
+import EditUserProfile from "./component/Dashboard/pages/EditUserProfile/EditUserProfile";
+import TableFinancialReports from "./component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports";
 // import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
@@ -60,8 +63,14 @@ export default function App() {
           </Routes>
         </div>
         <Routes>
-          <Route path="dashboard/payment*" element={<LandingPage />} />
-          <Route path="dashboard/*" element={<DashboardBody />} />
+          <Route path="dashboard" element={<DashboardBody />}>
+            <Route path="planStatus" element={<PlanStatus />} />
+            <Route path="editeUserProfile" element={<EditUserProfile />} />
+            <Route path="tableFinancialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
+
+            {/* <Route path="dashboard/payment*" element={<LandingPage />} /> */}
+            {/* <Route path="dashboard/*" element={<DashboardBody />} /> */}
+          </Route>
         </Routes>
 
         {/* <HandleModal /> */}
