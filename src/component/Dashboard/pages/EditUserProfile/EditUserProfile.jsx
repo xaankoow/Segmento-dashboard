@@ -227,9 +227,9 @@ export default function EditUserProfile() {
           clickHandler={() => setUpdatePass(false)}
           image={"./img/popUp/tik.svg"}
           type={"sucsess"}
-          buttonText={"باشه، فهمیدم!"}
-          text={"گذرواژه با موفقیت تغییر کرد"}
-          title={"موفقیت آمیز"}
+          buttonText={" باشه، بزن بریم"}
+          text={" حالا می‌توانید کارتان را شروع کنید.   "}
+          title={" گذرواژه جدید ذخیره شد."}
         />
       )}
      
@@ -265,7 +265,7 @@ export default function EditUserProfile() {
             {!changepassWord ? (
               <>
                 <div className="mt-14 mb-9">
-                  <span className="text-[#002145]">اطلاعات شخصی</span>
+                  <span className="text-[#002145]">اطلاعات شخصی من </span>
                   <div className="flex gap-4 my-9">
                     <AuthInput
                       textLabelInput="نام "
@@ -309,8 +309,7 @@ export default function EditUserProfile() {
                 <div className="border-b border-lightGray w-full m-auto" />
                 <div className="mt-7 mb-9">
                   <span className="text-[#002145] mb-7">
-                    {" "}
-                    اطلاعات کسب و کار شما
+                  اطلاعات کسب و کار من
                   </span>
                   <div className="flex flex-col gap-4 mt-7">
 

@@ -2,12 +2,28 @@
 import React, { useEffect } from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import PageTitle from '../pageTitle/pageTitle';
+import { usetLimit } from '../../../service/userLimit';
+import { useState } from 'react';
 // import './'
 // import "./output.css"
 // import './script'
 export default function PlanStatus({ title }) {
-
-
+    useEffect(()=>{
+        if (datas == "")
+        pastSelexboxData()
+    })
+const[datas,setDatas]=useState("");
+    const pastSelexboxData = async () => {
+        
+        try {
+          const { data, status } = await usetLimit();
+          setDatas(data.data); //5
+          console.log(data)
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
     ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -67,12 +83,7 @@ export default function PlanStatus({ title }) {
 
     return (
         <div className=''>
-            <div>
-                <div className='flex gap-6 items-center pr-4 mt-3'>
-                    <div className='w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]' />
-                    <span className='text-lg'>{title}</span>
-                </div>
-            </div>
+            <PageTitle title={" وضعیت اشتراک"} />
             <div className="mx-auto w-full mt-9">
                 <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-white">
 
@@ -202,7 +213,7 @@ export default function PlanStatus({ title }) {
 
                                     <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4 ">تعداد کل کلمات</span>
-                                        <span id="border" className="mr-3">100</span>
+                                        <span id="border" className="mr-3">{datas != [] ?datas[4].count :"" }</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
                                         <span id="border" className="mr-3">20</span>
                                         <span className="mr-3">کلمات باقی مانده</span>
@@ -230,12 +241,12 @@ export default function PlanStatus({ title }) {
 
                                     <div className="flex flex-row">
                                         <span id="line3" className=" w-0.5 h-5 mt-2"></span>
-                                        <span className="mt-2 mr-4">ابزار تحقیق کلمه کلیدی</span>
+                                        <span className="mt-2 mr-4"> ابزار عنوان ساز محتوا</span>
                                     </div>
 
                                     <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4">تعداد کل کلمات</span>
-                                        <span id="border" className="mr-3">100</span>
+                                        <span id="border" className="mr-3">{datas != [] ?datas[3].count :"" }</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
                                         <span id="border" className="mr-3">20</span>
                                         <span className="mr-3">کلمات باقی مانده</span>

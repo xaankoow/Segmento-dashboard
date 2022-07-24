@@ -52,7 +52,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                 </div>
             </div>
             <div className='flex items-center gap-9'>
-                <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0'>
+                <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-[262px]'>
                     <div className='flex gap-3 items-center'>
                         <img src='/img/dashboard/header/userimage.svg' className='rounded' alt='userImage' />
                         <div className=''>
@@ -72,19 +72,26 @@ const DashboardHeader = ({ setCloseNav }) => {
                                 <Link to={"buyPlanEasyToStartModal"} state={{ background: location }}>تنظیمات حساب کاربری</Link>
                             </div>
                         </div>
-                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] mt-1'>
+                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] '>
                             <div className='flex items-center gap-1'>
                                 <img src="/img/dashboard/header/add_card.svg" alt="add_card" />
                                 <Link to={"buyPlan"}>خرید اشتراک</Link>
                             </div>
                         </div>
 
-                        <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] mt-1'>
-                            <div className='flex items-center'>
-                                <img src="/img/dashboard/header/currency_exchange.svg" alt="currency_exchange" />
-                                <span>جابجایی بین حساب ها</span>
+                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] '>
+                            <div className='flex items-center gap-1'>
+                                <img src="/img/dashboard/header/statusPlan.svg" alt="currency_exchange" />
+                                <span>  وضعیت اشتراک</span>
                             </div>
-                            <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' />
+                            {/* <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
+                        </div>
+                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] mb-1'>
+                            <div className='flex items-center gap-1'>
+                                <img src="/img/dashboard/header/money.svg" alt="currency_exchange" />
+                                <span>  گزارش های مالی </span>
+                            </div>
+                            {/* <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
                         </div>
                         <div className='border-b border-lightGray w-full ' />
                         <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] my-1' onClick={() => dispatch(logoutAction())}>

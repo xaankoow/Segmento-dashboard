@@ -35,7 +35,7 @@ export default function Login() {
               </div>
               <Link to={"/forgotPassword"}>
                 <div>
-                  <span className='underline text-sm underline-offset-8'>گذرواژه خود را فراموش کرده‌اید؟</span>
+                  <span className='underline text-sm underline-offset-8'> برای ورود به کمک نیاز دارم.   </span>
                 </div>
               </Link>
             </div>

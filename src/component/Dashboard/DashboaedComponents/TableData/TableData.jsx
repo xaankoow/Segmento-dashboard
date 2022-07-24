@@ -8,6 +8,7 @@ export default function Table({
   WordsSearcher,
   contentsProduction,
   openModal,
+  iskeyWord
 }) {
   const [selectColumnTitle, setSelectColumnTitle] = useState("انتخاب");
   const [handleClickButton, setHandleClickButton] = useState(false);
@@ -172,7 +173,8 @@ export default function Table({
                   : "text-sm font-medium text-gray-900 pr-2  text-right"
               }
             >
-              ایده های پیشنهادی
+              {iskeyWord ? "کلمه کلیدی":" ایده های پیشنهادی"}
+             
             </div>
           </div>
           <div className="flex gap-4 items-center">

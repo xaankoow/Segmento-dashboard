@@ -122,11 +122,9 @@ export default function Forgetpass() {
           <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-5 md:py-5 min-w-full">
             <div className="flex flex-col justify-center w-6/12">
               <div className="flex flex-col gap-1">
-                <span>گذرواژه خود را فراموش کرده اید . هیچ ایرادی نداره</span>
-                <span>برامون بنویسین تا ما یک کد فعال سازی ارسال کنیم .</span>
+                
                 <span>
-                  کد رو وارد کنین و گذرواژه جدیدتون رو بنویسین برامون . به همین
-                  سادگی
+                برای بازیابی گذرواژه، نیاز به یک کد دارید که براتون ایمیل میشه.
                 </span>
               </div>
               <div className="items-center flex justify-between mt-10 mb-5">

@@ -160,6 +160,7 @@ const KeyWords = ({ onClickHandler }) => {
               NothingSearch={
                 !searchBoxValue || !searchBoxHandleClick ? true : false
               }
+              iskeyWord={true}
             />
             <div className="flex flex-col items-center w-[334px] mr-7">
               <KeyWordsSearch

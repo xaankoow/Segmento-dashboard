@@ -5,7 +5,7 @@ import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
-export default function SidebarComponent({ closeNav }) {
+export default function SidebarComponent({ closeNav,openMenu }) {
   const [activeIcon, setActiveIcon] = useState(0);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
@@ -17,6 +17,7 @@ export default function SidebarComponent({ closeNav }) {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
+    openMenu()
   };
 
   const itemsHoverMenu = [
@@ -32,15 +33,15 @@ export default function SidebarComponent({ closeNav }) {
   return (
     <>
       <div
-        className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb] w-64 shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
-        style={{ width: closeNav ? "0px" : "256px" }}
+        className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
+        style={{ width: closeNav ? "256px" : "0px" }}
       >
         {activeIcon == 0 ? (
           <div>
             {itemsHoverMenu.map((item) => {
               return (
                 <ItemSidebarHover
-                  text={!closeNav && item}
+                  text={closeNav && item}
                   icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"}
                   textColor={"#002145"}
                   textHover={"#0A65CD"}
@@ -53,14 +54,14 @@ export default function SidebarComponent({ closeNav }) {
            
        <div className='flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue '  >
             <img src={"/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
-            <span className={`text-[${"#0A65CD"}]`}>{!closeNav && "پیشخوان"}</span>
+            <span className={`text-[${"#0A65CD"}]`}>{closeNav && "پیشخوان"}</span>
         </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />
           </div>
         ) : null}
         {/* advertisement box */}
-        {!disableAdvertisement ? (
+        {!disableAdvertisement && closeNav ? (
           <div className="bg-[#F2F5F7] h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
             <img
               src="/img/dashboard/nav_right/close.svg"
@@ -73,7 +74,7 @@ export default function SidebarComponent({ closeNav }) {
         ) : null}
       </div>
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
-        <IconsRight setActive={activeIconHandler} />
+        <IconsRight setActive={activeIconHandler}  />
         <div className="down">
           <div className="dropDownBox ">
             <div className="support w-7 h-7"></div>

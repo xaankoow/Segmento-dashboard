@@ -90,7 +90,7 @@ export default function ChangeImageModal({
             type={"sucsess"}
             buttonText={"باشه، فهمیدم!"}
             text={" تصویر پروفایل شما با موفقیت تغییر کرد!   "}
-            title={"موفقیت آمیز"}
+            title={" "}
           />
         )}
         <div className="min-w-[530px] rounded-lg">
@@ -121,14 +121,14 @@ export default function ChangeImageModal({
                   height={"20px"}
                 />
                 <span className="text-gray text-xs">
-                  تصویر خود را اینجا بکشید
+                فایل تصویر را اینجا رها کنید
                 </span>
                 <span className="text-gray text-xs">
                   {" "}
                   <span className="text-[#D9D9D9]">—————</span> یا{" "}
                   <span className="text-[#D9D9D9]">—————</span>{" "}
                 </span>
-                <button className="btn-style"> انتخاب فایل</button>
+                <button className="btn-style">  فایل تصویر را انتخاب کنید  </button>
               </div>
               <div className="flex justify-end gap-5 mt-7 w-full max-w-[358px]">
                 <button className="btn-secondary" onClick={() => close()}>
