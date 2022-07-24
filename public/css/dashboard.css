@@ -380,13 +380,13 @@
 	height: 100px;
 }
 
-#DASHBOARD .EasyStartBoxContent img {
+/* #DASHBOARD .EasyStartBoxContent img {
 	width: 160px;
 	height: 160px;
 	position: absolute;
 	top: -30px;
 	left: 40px;
-}
+} */
 
 #DASHBOARD .EasyStartBoxContent button {
 	width: 130px;
@@ -420,7 +420,7 @@
 
 #DASHBOARD .popUpContainer .title {
 	font-size: 20px;
-	margin-top: 13px;
+	/* margin-top: 13px; change */
 }
 
 #DASHBOARD .popUpContainer .buttonText {
@@ -429,13 +429,13 @@
 	cursor: pointer;
 }
 
-#DASHBOARD .EasyStartBoxContent img {
+/* #DASHBOARD .EasyStartBoxContent img {
 	width: 160px;
 	height: 160px;
 	position: absolute;
 	top: -40px;
 	left: 40px;
-}
+} */
 
 #DASHBOARD .EasyStartBoxContent button {
 	width: 130px;
