@@ -20,6 +20,18 @@ import TableFinancialReports from "./component/Dashboard/DashboaedComponents/Fin
 import BuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/BuyPlan";
 import BuyPlanEasyToStartModal from "./component/Utils/EasyToStartModal";
 import WorkSpace from "./component/Utils/workSpaceModal/workSpace";
+import KeyWords from "./component/Dashboard/KeyWords/KeyWords";
+import MyList from "./component/Dashboard/KeyWords/MyList/MyList";
+import ContentpProduction from "./component/Dashboard/ContentProduction/ContentpProduction";
+import TabMenu from "./component/Dashboard/DashboaedComponents/tabMenu/TabMenu";
+import MylistContentProduction from "./component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx"
+import EasyStart from "./component/Dashboard/DashboaedComponents/EasyStart/EasyStart";
+
+
+
+
+
+
 // import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 // import ModalContainer from "./component/Utils/ModalContainer";
 
@@ -48,6 +60,29 @@ export default function App() {
   // debugger
   // console.log(background)
   // var a=background.pathname;
+
+  const tabContent = [
+    {
+      title: "جست و جو",
+      content: <KeyWords />,
+    },
+    {
+      title: "لیست های من",
+      content: <MyList />,
+    },
+  ];
+  const tabContent2 = [
+    {
+      title: "جست و جو",
+      content: <ContentpProduction />,
+    },
+    {
+      title: "لیست های من",
+      content: <MylistContentProduction />,
+    },
+  ];
+
+
   return (
     <Fragment>
       <div className="app">
@@ -77,6 +112,10 @@ export default function App() {
             <Route path="planStatus" element={<PlanStatus />} />
             <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
             <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
+
+        <Route path="easyStart" element={<EasyStart />} />
+            <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
+            <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
             {/* <Route path={`modal`} element={<HandleModal />} /> */}
 
             {/* <Route path="dashboard/payment*" element={<LandingPage />} /> */}

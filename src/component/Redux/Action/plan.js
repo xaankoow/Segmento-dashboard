@@ -161,14 +161,6 @@ export const buyPlan = (buyType) => {
         const state = { ...getState().planState }
         const loadingState = { ...getState().loadingState }
 
-
-        // const webAdress=state.webAdress;
-        // const charKey1=state.charKey1;
-        // const charKey2=state.charKey2;
-        // const site1=state.site1;
-        // const site2=state.site2;
-        // const commercialPage1=state.commercialPage1;
-        // const commercialPage2=state.commercialPage1;
         const packageUuid = state.packageUuid;
         const discount = state.discount;
         debugger
@@ -182,66 +174,28 @@ export const buyPlan = (buyType) => {
                 await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
             }
 
-
-            // let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
             var packageInfo = {
                 "type": "package",
                 "uuid": packageUuid,
                 "discount_code": discount
-                // "payload":{
-                //     "workspace":webAdress,
-                //     "keywords":[
-                //         charKey1,
-                //         charKey2
-                //     ],
-                //     "links":[
-                //         site1,
-                //         site2
-                //     ]
-                // }
             }
-            var packageInfoJson = JSON.stringify(packageInfo);
 
             let toastMessage = "";
             try {
                 const { data } = await buyPlna(packageInfo);
-                debugger
-                // const { data } = await buyPlna({
-                //     "type": "package",
-                //     "uuid": "eb2f7f18-5f0d-47fc-8610-99a71c869006",
-                //     "discount_code":"sample-code",
-                //     "payload": {
-                //         "workspace": "https://aaadv.com",
-                //         "keywords": [
-                //             "key1",
-                //             "key2"
-                //         ],
-                //         "links": [
-                //             "https://avbaa.com/blog",
-                //             "https://aaacvb.com/video"
-                //         ]
-                //     }
-                // });
-                // const { data, status } = await applyDiscount("sample-code");
                 if (data.code == 200 && data.status == true) {
                     localStorage.setItem("buyType", buyType)
                     window.location.href = data.data;
-                    // state.forceUpdate += 1;
                     showToast(data.data.msg,"success");
-                    // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
                 } else {
-                    // data.errors.forEach(element => {
-                    //     toastMessage += element + " / ";
-                    // });
+
                     showToast(data.data.msg,"error");
-                    // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
                 }
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
                 showToast(toastMessage,"error");
-                // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
             }
         } else {
             showInputErrorToast();
@@ -258,6 +212,25 @@ export const buyPlan = (buyType) => {
         await dispatch({ type: "MODAL_PLAN_BUY_PLAN", payload: state })
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const applyDiscountAction = discountCode => {
     return async (dispatch, getState) => {
         //  

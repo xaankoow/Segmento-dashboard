@@ -34,7 +34,7 @@ export default function AcardionItem() {
         {
           itemTitle: "تحقیق کلمه کلیدی ",
           itemIcon: "/img/dashboard/nav_right/searchKeyWord.svg",
-          itemLink: "keyWords",
+          itemLink: "keywordResearch",
         },
         {
           itemTitle: "صفحات تجاری ",
@@ -122,7 +122,7 @@ export default function AcardionItem() {
         {
           itemTitle: " ایده ساز",
           itemIcon: "/img/dashboard/nav_right/createIdea.svg",
-          itemLink: "",
+          itemLink: "contentCreation",
         },
         {
           itemTitle: "کپی رایتر  ",
@@ -197,7 +197,7 @@ export default function AcardionItem() {
               <div className="mr-5 mt-0">
                 {item.acardionItems.map((item, index) => {
                   return (
-                       <Link to={user.package!=undefined?"buyPlan":"planStatus"} className={"w-auto"}>
+                    <Link to={item.itemLink!=""?item.itemLink:user.package != undefined ? "buyPlan" : "planStatus"} className={"w-auto"}>
                       <div
                         key={index}
                         className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
@@ -206,35 +206,35 @@ export default function AcardionItem() {
                         <span className={"w-auto"}>{item.itemTitle}</span>
                       </div>
                     </Link>
-            );
+                  );
                 })}
-            {item.title == "ورک‌اسپیس‌ها" && (
-              <div
-                key={index}
-                // onClick={()=>dispatch(setShowWorkSpaceModal(true))}
-                className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
-              >
-                <img
-                  src={"/img/dashboard/nav_right/add_circle.svg"}
-                  alt="icon"
-                />
-                <Link
-                  to={"setWorkSpace"}
-                  state={{ background: location }}
-                  className={"w-auto"}
-                >
-                  افزودن سایت
-                </Link>
+                {item.title == "ورک‌اسپیس‌ها" && (
+                  <div
+                    key={index}
+                    // onClick={()=>dispatch(setShowWorkSpaceModal(true))}
+                    className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
+                  >
+                    <img
+                      src={"/img/dashboard/nav_right/add_circle.svg"}
+                      alt="icon"
+                    />
+                    <Link
+                      to={"setWorkSpace"}
+                      state={{ background: location }}
+                      className={"w-auto"}
+                    >
+                      افزودن سایت
+                    </Link>
+                  </div>
+                )}
               </div>
+            ) : null}
+            {index == 0 && (
+              <div className="border-b border-lightGray w-11/12 m-auto" />
             )}
           </div>
-        ) : null}
-      {index == 0 && (
-        <div className="border-b border-lightGray w-11/12 m-auto" />
-      )}
-    </div>
-  );
-})}
+        );
+      })}
     </>
   );
 }

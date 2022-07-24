@@ -30,13 +30,13 @@ export default function DashboardBody() {
   const navigate = useNavigate();
 
   const { userData } = useSelector((state) => state.userState);
-  const { resultSetWorkSpace,showWorkSpaceModal } = useSelector((state) => state.workSpaceState);
+  const { resultSetWorkSpace, showWorkSpaceModal } = useSelector((state) => state.workSpaceState);
 
   const [showResultModal, setShowResultModal] = useState(true); //handle close buy plan result
   const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState(""); //handle buy plan type
-  
+
   const [showWorkSpace, setShowWorkSpace] = useState(true); //handle close buy plan result
-  const [showReportWorkSpace, setShowReportWorkSpace] = useState({reportStatus:false,reportStep:0}); //handle buy plan type
+  const [showReportWorkSpace, setShowReportWorkSpace] = useState({ reportStatus: false, reportStep: 0 }); //handle buy plan type
   //check buy plan result
   useEffect(() => {
     const status_buy_plan = localStorage.getItem("statusBuyPlna");
@@ -131,30 +131,42 @@ export default function DashboardBody() {
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
         <div className="bg-[#ffffff] overflow-y-scroll pb-8 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main">
-          {resultSetWorkSpace.reportStatus==true?<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep}/>:null}
+          {resultSetWorkSpace.reportStatus == true ? <WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} /> : null}
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
         
           
          
 
 
-      
+          {/* <Routes>
+          <Route exact path="keyWords" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
+          <Route path="dashboard/content" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
+            <Route path="PlanStatus" element={<PlanStatus title={"وضعیت اشتراک"} />} />
+            <Route path="dashboard/FinancialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
+            <Route path="" element={<EditUserProfile />} />
+            <Route path="jnjn" element={<EasyStart startButtonClick={startButtonClick} />} />
+          </Routes> */}
 
 
 
-       
+
+
+
+          {/* */}
+          {/*  */}
+
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
-          <Outlet/>
+          <Outlet />
           {/* <button onClick={}>click me!</button> */}
           <Routes>
 
-          {/* <Route path="/dd" element={<WorkSpace />} /> */}
+            {/* <Route path="/dd" element={<WorkSpace />} /> */}
           </Routes>
           {/* {showWorkSpaceModal?<WorkSpace />:null} */}
           {
             // <WorkSpace handleClose={closeWorkSpaceModal} />
-            
+
             // showModal ? <HandleModal show={true} handleClose={resetHandleShowModal} /> : ""
             // <HandleModal showModal={showModal} setShowModal={setShowModal}/>
             // showModal ? <BuyPlanEasyToStartModal  handleClose={resetHandleShowModal}/> : ""
@@ -163,8 +175,8 @@ export default function DashboardBody() {
 
           {/* <AleartMessageBuyPlan /> */}
         </div>
-        
-        <SidebarComponent closeNav={closeNav}  openMenu={()=>setCloseNav(true)}/>
+
+        <SidebarComponent closeNav={closeNav} openMenu={() => setCloseNav(true)} />
       </div>
       {/* {showModalBuyPlanResult != "" && showModalBuyPlanResult == true ? ( */}
       {showModalBuyPlanResult != "" ? (
@@ -194,7 +206,7 @@ export default function DashboardBody() {
         // </Modal>
         ""
       )}
-      
+
     </div>
   );
 }

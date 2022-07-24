@@ -7,7 +7,7 @@ import FooterBtn from './FooterBtn'
 import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan'
 
 export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show, checkBuyPlan }) {
-  const [stepModal, setStepModal] = useState(5);
+  const [stepModal, setStepModal] = useState(1);
   // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);

@@ -82,14 +82,14 @@ const DashboardHeader = ({ setCloseNav }) => {
                         <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] '>
                             <div className='flex items-center gap-1'>
                                 <img src="/img/dashboard/header/statusPlan.svg" alt="currency_exchange" />
-                                <span>  وضعیت اشتراک</span>
+                                <Link to={"planStatus"}>  وضعیت اشتراک</Link>
                             </div>
                             {/* <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
                         </div>
                         <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] mb-1'>
                             <div className='flex items-center gap-1'>
                                 <img src="/img/dashboard/header/money.svg" alt="currency_exchange" />
-                                <span>  گزارش های مالی </span>
+                                <Link to={"financialReports"}>  گزارش های مالی </Link>
                             </div>
                             {/* <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
                         </div>
