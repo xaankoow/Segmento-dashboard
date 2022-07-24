@@ -2,7 +2,7 @@ import http from './httpService'
 import config from './config.json'
 
 
-export const getPastDatas = datas => {
+export const usetLimit = datas => {
     //7
     const limitOfUser = {
         'Content-Type': 'multipart/form-data',

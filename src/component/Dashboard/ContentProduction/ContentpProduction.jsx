@@ -6,9 +6,6 @@ import Table from "../DashboaedComponents/TableData/TableData";
 import SaveListModal from "./SaveListModal";
 
 export default function ContentpProduction({ onClickHandler }) {
-
-
-  
   // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [UpdatePpUp, showUpdatePpUp] = useState(false);
@@ -16,12 +13,14 @@ export default function ContentpProduction({ onClickHandler }) {
   const [keyWordShowSaveModal, setKeyWordShowSaveModal] = useState(false);
   const [SaveInputValue, SetSaveInputValues] = useState("");
   const [boxIndex, setUpdateBoxIndex] = useState(-1);
-  const SaveInputValues=(e)=>{
-    SetSaveInputValues(e.target.value)
-  }
-  const activeBoxUpdate=(e)=>{
-    setUpdateBoxIndex(e.target.id)
-  }
+  const [activeboxValue, setActiveboxValue] = useState("");
+  const SaveInputValues = (e) => {
+    SetSaveInputValues(e.target.value);
+  };
+  const activeBoxUpdate = (e) => {
+    setUpdateBoxIndex(e.target.id);
+    setActiveboxValue(e.target.title);
+  };
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
@@ -40,21 +39,21 @@ export default function ContentpProduction({ onClickHandler }) {
       const { data, status } = await ContentProductionService(formdata);
       // debugger
       setcontent(data.data); //5
-      // content.map((item, index) => {
+          // content.map((item, index) => {
       //   if (item.includes(searchBoxValue)) { // هنگام ارسال درخواست به وبسرویس کلمه هم ارسال میشه پس شامل اون کلمه هست پس چرا دوباره برسی کنیم؟!
       //     tableDataFiltered.push(item);
-      data.data.forEach((element,index) => {
-        if (index<=4) {
+      data.data.forEach((element, index) => {
+        if (index <= 4) {
           tableDataFiltered2.push(element);
         }
       });
       setTableData(tableDataFiltered2);
       setNumber(5);
-          // if (tableDataFiltered2.length < 5) {
-          //   tableDataFiltered2.push(item);
-          // }
-        // }
-        // return
+      // if (tableDataFiltered2.length < 5) {
+      //   tableDataFiltered2.push(item);
+      // }
+      // }
+      // return
       // });
     } catch (error) {
       console.log(error);
@@ -76,63 +75,68 @@ export default function ContentpProduction({ onClickHandler }) {
   // debugger
 
   useEffect(() => {
-
     // if (tableDataFiltered2.length!=tableData.length) {
     //   debugger
     //   setTableData(tableDataFiltered2);
     // }
-  }, [])
-  
-  var [number, setNumber] = useState(5);
+  }, []);
 
+  var [number, setNumber] = useState(5);
 
   const addMore = () => {
     // debugger;
-    tableDataFiltered2=tableData;
-    for (let i = number; content.length>i+5?i < number+5:i<content.length; i++) {
+    tableDataFiltered2 = tableData;
+    for (
+      let i = number;
+      content.length > i + 5 ? i < number + 5 : i < content.length;
+      i++
+    ) {
       tableDataFiltered2.push(content[i]);
     }
     setTableData(tableDataFiltered2);
     setNumber(number + 5);
   };
-  console.log(tableDataFiltered);
-  console.log(tableDataFiltered2);
-  console.log(number);
   
+
   return (
     <>
       {keyWordShowSaveModal && (
-     <Fragment>
-
-        <SaveListModal
-          dataTable={tableData}
-          isContentProduction={true}
-          updateButtonHandler={() =>{if(boxIndex>-1) showUpdatePpUp(true)}}
-          saveButtonHandler={() =>{ if(SaveInputValue) showSavePopup(true)}}
-          SaveInputValues={SaveInputValues}
-          activeBoxUpdate={activeBoxUpdate}
-          close={() => setKeyWordShowSaveModal(false)}
-        />
-        {number ? "" : ""}
-      </Fragment>
+        <Fragment>
+          <SaveListModal
+            dataTable={tableData}
+            isContentProduction={true}
+            updateButtonHandler={() => {
+              if (boxIndex > -1) showUpdatePpUp(true);
+            }}
+            saveButtonHandler={() => {
+              if (SaveInputValue) showSavePopup(true);
+            }}
+            SaveInputValues={SaveInputValues}
+            activeBoxUpdate={activeBoxUpdate}
+            close={() => setKeyWordShowSaveModal(false)}
+          />
+          {number ? "" : ""}
+        </Fragment>
       )}
       {UpdatePpUp && (
         <PopUp
           clickHandler={() => showUpdatePpUp(false)}
           image={"./img/popUp/update.svg"}
           type={"sucsess"}
-          buttonText={"باشه، فهمیدم!"}
-          text={"لیست جدید شما با موفقیت بروزرسانی شد !"}
+          buttonText={"باشه"}
+          text={"لیست " + " " + activeboxValue + " " + "بروزرسانی شد!"}
           title={"موفقیت آمیز"}
         />
       )}
-      {SavePopup &&  (
+      {SavePopup && (
         <PopUp
           clickHandler={() => showSavePopup(false)}
           image={"./img/popUp/playlist_add.svg"}
           type={"sucsess"}
-          buttonText={"باشه، فهمیدم!"}
-          text={"لیست جدید شما با موفقیت ذخیره شد !"}
+          buttonText={"باشه"}
+          text={
+            "کلمات کلیدی در لیست" + " " + SaveInputValue + " " + "ذخیره شد!"
+          }
           title={"موفقیت آمیز"}
         />
       )}
@@ -175,7 +179,7 @@ export default function ContentpProduction({ onClickHandler }) {
         }}
       >
         <img src="./img/dashboard/table/cached.svg" alt="cached" />
-        تولید بیشتر
+        ایده‌های بیشتر
       </button>
       {/* {number ? "" : ""} */}
     </>

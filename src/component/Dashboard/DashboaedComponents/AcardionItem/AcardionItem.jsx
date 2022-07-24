@@ -11,7 +11,7 @@ export default function AcardionItem() {
   console.log(allWorkSpace);
   const data = [
     {
-      title: "ورک‌اسپیس‌ها",
+      title: "سایت ها",
       titleIcon: "./img/dashboard/nav_right/web.svg",
       acardionItems: allWorkSpace.map((item, index) => ({
         itemTitle: item.website,

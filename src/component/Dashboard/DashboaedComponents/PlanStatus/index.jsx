@@ -3,12 +3,27 @@ import React, { useEffect } from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import PageTitle from '../pageTitle/pageTitle';
+import { usetLimit } from '../../../service/userLimit';
+import { useState } from 'react';
 // import './'
 // import "./output.css"
 // import './script'
 export default function PlanStatus({ title }) {
-
-
+    useEffect(()=>{
+        if (datas == "")
+        pastSelexboxData()
+    })
+const[datas,setDatas]=useState("");
+    const pastSelexboxData = async () => {
+        
+        try {
+          const { data, status } = await usetLimit();
+          setDatas(data); //5
+          console.log(data)
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
     ChartJS.register(ArcElement, Tooltip, Legend);
 

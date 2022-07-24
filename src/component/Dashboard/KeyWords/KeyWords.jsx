@@ -160,6 +160,7 @@ const KeyWords = ({ onClickHandler }) => {
               NothingSearch={
                 !searchBoxValue || !searchBoxHandleClick ? true : false
               }
+              iskeyWord={true}
             />
             <div className="flex flex-col items-center w-[334px] mr-7">
               <KeyWordsSearch
@@ -186,7 +187,7 @@ const KeyWords = ({ onClickHandler }) => {
         onClick={(e) =>{handleSetStoreKeyWords()}}
       >
         <img src="./img/dashboard/keyWord/bookmark.svg" alt="" />
-       ذخیره لیست
+       ذخیره 
       </button>
     </>
   );

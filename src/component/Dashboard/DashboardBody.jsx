@@ -66,7 +66,7 @@ export default function DashboardBody() {
     }
   }, []);
 
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   // const [showWorkSpaceModal, setShowWorkSpaceModal] = useState(true);me
 
   // DashboardHeader nav icon that close the left sidebar
@@ -100,7 +100,7 @@ export default function DashboardBody() {
       content: <KeyWords />,
     },
     {
-      title: "لیست من",
+      title: "لیست های من",
       content: <MyList />,
     },
   ];
@@ -110,7 +110,7 @@ export default function DashboardBody() {
       content: <ContentpProduction />,
     },
     {
-      title: "لیست من",
+      title: "لیست های من",
       content: <MylistContentProduction />,
     },
   ];

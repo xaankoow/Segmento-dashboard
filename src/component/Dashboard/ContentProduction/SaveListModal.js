@@ -17,9 +17,10 @@ export default function SaveListModal({
   dataTable,
   SaveInputValues,
   activeBoxUpdate,
-  close
+  close,
+  forceUpdate
 }) {
-  const {canRequest}=useSelector(state=>state.loadingState)
+  const { canRequest } = useSelector((state) => state.loadingState);
   const customStyles = {
     content: {
       top: "43vh",
@@ -39,7 +40,6 @@ export default function SaveListModal({
   const [update, setUpdate] = useState(false);
   const [content, setcontent] = useState([]);
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
- 
 
   // jalali moment
   var moment = require("jalali-moment");
@@ -66,9 +66,8 @@ export default function SaveListModal({
 
   useEffect(() => {
     // if (canRequest) {
-      handleGetcontent()
+    handleGetcontent();
     // }
-   
   }, []);
   console.log(SaveInputValue);
   console.log(dataTable);
@@ -96,6 +95,7 @@ export default function SaveListModal({
 
         const { data, status } = await ContentProductionStoreService(dd);
         setUpdate(!update);
+        handleGetcontent()
       } catch (error) {
         console.log(error);
       }
@@ -103,7 +103,7 @@ export default function SaveListModal({
     var handleGetcontent = async () => {
       try {
         const { data, status } = await ContentProductionGetService();
-        debugger
+        debugger;
         setcontent(data.data);
       } catch (error) {
         console.log(error);
@@ -112,31 +112,29 @@ export default function SaveListModal({
   }
 
   return (
-   
     <Modal
-      isOpen={true }
+      isOpen={true}
       parentSelector={() =>
         document.querySelector(".app #DASHBOARD .body .main")
       }
       id={"MODALBOX"}
       shouldCloseOnOverlayClick={true}
-
       // onAfterOpen={afterOpenModal}
       // onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
       // className={"myModal"}
     >
-      <div className="flex flex-col items-center px-4 py-8 gap-5 z-50" >
-      <img
-              src="./img/dashboard/nav_right/close.svg"
-              alt="close"
-              width={"14px"}
-              height={"14px"}
-              className="absolute top-4 left-6 cursor-pointer mb-7"
-              onClick={() =>close()}
-            />
-            <div></div>
+      <div className="flex flex-col items-center px-4 py-8 gap-5 z-50">
+        <img
+          src="./img/dashboard/nav_right/close.svg"
+          alt="close"
+          width={"14px"}
+          height={"14px"}
+          className="absolute top-4 left-6 cursor-pointer mb-7"
+          onClick={() => close()}
+        />
+        <div></div>
         <AuthInput
           textLabelInput="افزودن لیست جدید "
           width={"100%"}
@@ -171,6 +169,7 @@ export default function SaveListModal({
           {itemFiltered.map((item, index) => {
             return (
               <div
+                title={item.word}
                 id={index}
                 className={
                   activeBox == index
@@ -183,17 +182,39 @@ export default function SaveListModal({
                   activeBoxUpdate(e);
                 }}
               >
-                <div className="flex items-center gap-6 w-[265px]">
-                  <span className="text-sm">{item.word}</span>
-                  <span className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1">
+                <div
+                  className="flex items-center gap-6 w-[265px]"
+                  title={item.word}
+                  id={index}
+                >
+                  <span className="text-sm" title={item.word} id={index}>
+                    {item.word}
+                  </span>
+                  <span
+                    title={item.word}
+                    id={index}
+                    className="flex items-center justify-center bg-[#D9D9D9] rounded-lg w-[45px] text-[#7D7D7D] text-small p-1"
+                  >
                     {item.data.length}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-[#7D7D7D]">
+                <div
+                  className="flex items-center gap-2"
+                  title={item.word}
+                  id={index}
+                >
+                  <span
+                    className="text-sm text-[#7D7D7D]"
+                    title={item.word}
+                    id={index}
+                  >
                     آخرین به روزرسانی :{" "}
                   </span>
-                  <span className="text-sm text-[#7D7D7D]">
+                  <span
+                    className="text-sm text-[#7D7D7D]"
+                    title={item.word}
+                    id={index}
+                  >
                     {moment(item.created_at.substring(0, 10))
                       .locale("fa")
                       .format("YYYY/M/D")}
@@ -206,7 +227,7 @@ export default function SaveListModal({
 
         <div className="w-full">
           <button
-            disabled={canRequest?!disable ? false : true:true}
+            disabled={canRequest ? (!disable ? false : true) : true}
             className="btn-style flex items-center gap-3 w-[183px] py-2"
             onClick={(e) => {
               updateButtonHandler(e);

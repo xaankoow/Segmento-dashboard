@@ -266,7 +266,7 @@ export default function KeyWordsSearch({
               }}
               value="2"
             />
-            <span>شامل این عبارت </span>
+            <span> شامل این عبارت باشد  </span>
           </div>
           <div className="flex gap-2 mt-3">
             <input
@@ -279,7 +279,7 @@ export default function KeyWordsSearch({
               }}
               value="3"
             />
-            <span>تکرار عینی این عبارت </span>
+            <span> تکرار عینی این عبارت باشد   </span>
           </div>
           <div className="flex gap-2 mt-3 mb-3">
             <input
