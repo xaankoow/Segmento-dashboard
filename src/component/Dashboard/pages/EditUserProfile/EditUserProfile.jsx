@@ -89,6 +89,7 @@ export default function EditUserProfile() {
       const { data, status } = await getSelectBoxData();
       // setcontent(data.data); //5
       setSelectDtas(data.data);
+      console.log(selectDatas);
     } catch (error) {
       console.log(error);
     }
@@ -149,6 +150,7 @@ export default function EditUserProfile() {
   };
   // select box data
   const data = [];
+  console.log(data)
   Object.keys(selectDatas).map((item) => {
     data.push(selectDatas[item]);
   });
