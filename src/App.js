@@ -47,7 +47,7 @@ export default function App() {
   const background = location.state && location.state.background;
   // debugger
   // console.log(background)
-// var a=background.pathname;
+  // var a=background.pathname;
   return (
     <Fragment>
       <div className="app">
@@ -77,13 +77,13 @@ export default function App() {
             <Route path="planStatus" element={<PlanStatus />} />
             <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
             <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
-        {/* <Route path={`modal`} element={<HandleModal />} /> */}
+            {/* <Route path={`modal`} element={<HandleModal />} /> */}
 
             {/* <Route path="dashboard/payment*" element={<LandingPage />} /> */}
             {/* <Route path="dashboard/*" element={<DashboardBody />} /> */}
           </Route>
         </Routes>
-        {background!="" && (
+        {background != "" && (
           <Routes>
             <Route exact path={`dashboard/buyPlanEasyToStartModal`} element={<BuyPlanEasyToStartModal />} />
             <Route exact path={`dashboard/setWorkSpace`} element={<WorkSpace />} />

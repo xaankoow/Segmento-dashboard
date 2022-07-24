@@ -10,6 +10,8 @@ export default function AcardionItem() {
 
   const location = useLocation();
 
+  const user= useSelector((state) => state.userState);
+  // debugger
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
   console.log(allWorkSpace);
   const data = [
@@ -180,14 +182,14 @@ export default function AcardionItem() {
                       className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                     >
                       <img src={item.itemIcon} alt="icon" />
-                      <span className={"w-auto"}>{item.itemTitle}</span>
+                      <Link to={user.package!=undefined?"buyPlan":"planStatus"} className={"w-auto"}>{item.itemTitle}</Link>
                     </div>
                   );
                 })}
                 {item.title == "ورک‌اسپیس‌ها" && (
                   <div
                     key={index}
-                    onClick={()=>dispatch(setShowWorkSpaceModal(true))}
+                    // onClick={()=>dispatch(setShowWorkSpaceModal(true))}
                     className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                   >
                     <img
