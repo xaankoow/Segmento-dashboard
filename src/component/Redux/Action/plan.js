@@ -216,6 +216,65 @@ export const buyPlan = (buyType) => {
 
 
 
+export const tryFreePlan = () => {
+    return async (dispatch, getState) => {
+        //  
+        const state = { ...getState().planState }
+        const loadingState = { ...getState().loadingState }
+
+        const packageUuid = state.packageUuid; //انتخاب شناسه پکیج رایگان
+        
+        if (packageUuid) {
+
+
+            //handle show loadin
+            {
+                loadingState.ProcessingDelay.push("tryFreePlan");
+                loadingState.canRequest = false;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            }
+
+            var packageInfo = {
+                "type": "package",
+                "uuid": packageUuid
+            }
+
+            let toastMessage = "";
+            try {
+                const { data } = await buyPlna(packageInfo);
+                if (data.code == 200 && data.status == true) {
+                    state.checkUseTryFree=true;
+                    showToast("پلن 14 روزه رایگان برایه شما فعال شد","success");
+                } else {
+                    state.checkUseTryFree=false;
+                    data.errors.forEach(element => {
+                        toastMessage += element + " / ";;
+                    });
+                    showToast(toastMessage,"error");
+                }
+            } catch (error) {
+                state.checkUseTryFree=false;
+                error.response.data.errors.forEach(element => {
+                    toastMessage += element + " / ";
+                });
+                showToast(toastMessage,"error");
+            }
+        } else {
+            state.checkUseTryFree=false;
+            showInputErrorToast();
+        }
+
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "tryFreePlan");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
+
+        await dispatch({ type: "MODAL_PLAN_TRY_FREE", payload: state })
+    }
+}
 
 
 

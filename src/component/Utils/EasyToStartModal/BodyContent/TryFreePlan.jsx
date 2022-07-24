@@ -31,16 +31,19 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
         </div>
       </div>
       {showPopUp & lockNextStep ? (
+        
+        // <div className=' pt-6 pb-3'>
         <PopUp
           clickHandler={() => setShowPopUp(false)}
-          image={"/img/popUp/err_!.svg"}
+          image={"/img/popUp/errorIco.svg"}
           type={"error"}
           buttonText={"	باشه قبوله!"}
           text={"کاربر گرامی توجه داشته باشید، اگر در پایان 14 روز اشتراک تهیه نکنید، اطلاعات آماری حساب‌تان حذف می‌شود."}
           title={"توجه !"}
           tryFreePlan={true}
           tryFreePlanClick={setStepModal}
-        />
+          />
+          // </div>
       ) : null}
     </div>
   )

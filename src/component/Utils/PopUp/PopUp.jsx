@@ -35,7 +35,7 @@ const PopUp = ({ type, title, text, buttonText, image,clickHandler,tryFreePlan,t
               type === "sucsess"
                 ? " #10CCAE "
                 : "error"
-                ? "#FF0000"
+                ? "#F24939F2"
                 : type === "info"
                 ? "info"
                 : type === "aler"
@@ -43,7 +43,7 @@ const PopUp = ({ type, title, text, buttonText, image,clickHandler,tryFreePlan,t
                 : "#10CCAE",
           }}
         >
-          <img src={image} alt="popUpImage" />
+          <img src={image} alt="popUpImage" className=" w-28 h-28"/>
         </div>
         <div className="popUpContent mt-3">
           <h3 className="title">{title}</h3>

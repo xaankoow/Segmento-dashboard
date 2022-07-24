@@ -12,7 +12,8 @@ export const planReducer = (state =
         packageUuid: "",
         forceUpdate: 0,
         planDetails: {},
-        allPackageData: []
+        allPackageData: [],
+        checkUseTryFree:false
     }, action) => {
     switch (action.type) {
 
@@ -50,6 +51,8 @@ export const planReducer = (state =
             return { ...action.payload }
 
         case "MODAL_PLAN_BUY_PLAN":
+            return { ...action.payload }
+        case "MODAL_PLAN_TRY_FREE":
             return { ...action.payload }
         case "MODAL_SET_WORK_SPACE_PLAN":
             return { ...action.payload }

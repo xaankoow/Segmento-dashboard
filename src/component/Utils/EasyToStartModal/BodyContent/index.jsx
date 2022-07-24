@@ -27,8 +27,8 @@ export default function BodyContent({ stepModal,setStepModal, free, setFree, set
                     </div>
                 ) : ""}
 
-                {stepModal == 2&&free==false? <ReportInfoPlan/> : ""}
-                {stepModal == 2&&free==true? <TryFreePlan setLockNextStep={setLockNextStep} lockNextStep={lockNextStep} setStepModal={setStepModal}/> : ""}
+                {stepModal == 2&free==false? <ReportInfoPlan/> : ""}
+                {stepModal == 2&free==true? <TryFreePlan setLockNextStep={setLockNextStep} lockNextStep={lockNextStep} setStepModal={setStepModal}/> : ""}
                 {stepModal > 2 & stepModal < 6 ? InputEasyToStartModal(stepModal,setApplyWebAdress) : ""}
                 {stepModal == 1 ? <BuyPlnaModal/> : ""}
                 {/* {stepModal == 1 ? BuyPlnaModal(stepModal, plan) : ""} */}
