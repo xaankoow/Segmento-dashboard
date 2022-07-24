@@ -125,16 +125,16 @@ export default function SaveListModal({
       contentLabel="Example Modal"
       // className={"myModal"}
     >
-      <div className="flex flex-col items-center px-4 py-8 gap-5 z-50">
-        <img
-          src="./img/dashboard/nav_right/close.svg"
-          alt="close"
-          width={"14px"}
-          height={"14px"}
-          className="absolute top-4 left-6 cursor-pointer mb-7"
-          onClick={() => close()}
-        />
-        <div></div>
+      <div className="flex flex-col items-center px-4 py-8 gap-5 z-50" >
+      <img
+              src="/img/dashboard/nav_right/close.svg"
+              alt="close"
+              width={"14px"}
+              height={"14px"}
+              className="absolute top-4 left-6 cursor-pointer mb-7"
+              onClick={() =>close()}
+            />
+            <div></div>
         <AuthInput
           textLabelInput="افزودن لیست جدید "
           width={"100%"}
@@ -150,7 +150,7 @@ export default function SaveListModal({
               handleSetcontent();
             }}
           >
-            <img src="./img/modal/keyWords/playlist_add.svg" alt="keyWords" />
+            <img src="/img/modal/keyWords/playlist_add.svg" alt="keyWords" />
             ذخیره لیست جدید
           </button>
         </div>
@@ -235,7 +235,7 @@ export default function SaveListModal({
               setUpdate(!update);
             }}
           >
-            <img src="./img/modal/keyWords/update.svg" alt="keyWords" />
+            <img src="/img/modal/keyWords/update.svg" alt="keyWords" />
             بروزرسانی لیست
           </button>
         </div>

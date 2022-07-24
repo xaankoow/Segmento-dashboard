@@ -28,7 +28,7 @@ const EasyStart = ({startButtonClick}) => {
                             </span>
                         </div>
                         <div className='imageBox'>
-                        <img src="../img/dashboard/EasyStartPage/EasySart.svg" alt="EasyStartPage" />
+                        <img src="/img/dashboard/EasyStartPage/EasySart.svg" alt="EasyStartPage" />
                         </div>
                         <button className="btn-style" onClick={()=>startButtonClick()}> شروع کنیم </button>
                 </div>

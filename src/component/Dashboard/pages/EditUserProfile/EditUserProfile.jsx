@@ -24,10 +24,11 @@ import {
   getSelectBoxData,
 } from "../../../service/editProfile";
 import { useSelect } from "@mui/base";
+import AuthButton from "../../../Auth/authButton/AuthButton";
 import { EditorCustomizedToolbarOption } from "./components/Editor/Editor";
 export default function EditUserProfile() {
-  
-  const {canRequest}=useSelector(state=>state.loadingState)
+
+  const { canRequest } = useSelector(state => state.loadingState)
 
   const [selectDatas, setSelectDtas] = useState([]);
   const [nameInputValue, setNameInputValue] = useState("");
@@ -55,7 +56,7 @@ export default function EditUserProfile() {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
 
-  var user_name = "";  
+  var user_name = "";
   var user_email = "";
   const handleSelectBox1 = (e) => {
     setSelectBoxValue1(e.target.value);
@@ -128,18 +129,22 @@ export default function EditUserProfile() {
     }
   });
   // data of select box thet is related to the past info
-  const[pastData,setPastData]=useState("");
+  const [pastData, setPastData] = useState("");
   const pastSelexboxData = async () => {
-    if (userState.userData.user.uuid != undefined) {
+    debugger
+    if (userState.userData.user != undefined) {
       var uuidUser = userState.userData.user.uuid;
-    }
-    console.log(uuidUser);
-    try {
-      const { data, status } = await getPastDatas(uuidUser);
-       setPastData(data.data); //5
-      
-    } catch (error) {
-      console.log(error);
+
+      console.log(uuidUser);
+      try {
+        // const { data, status } = await getPastDatas(uuidUser); // --------- 
+        const { data, status } = await getPastDatas(uuidUser); // --------- ایمپورت اشتباه
+        setPastData(data.data); //5
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+
     }
   };
   // select box data
@@ -191,12 +196,17 @@ export default function EditUserProfile() {
   }
   const forceUpdate = userState.forceUpdate;
   useEffect(() => {
-    selexboxData();
-    pastSelexboxData();
-    if (userToken) {
-      dispatch(coreUser());
-      dispatch(getAllWorkSpace());
+    // pastSelexboxData();
+    if (selectDatas.length!=0) {
+      selexboxData();
+      
     }
+    // debugger
+    // if (userToken) { ------------ این مورد اضافی به نظر میاد و نیازی نیست چونکه داخل هدر داشبورد صدا زدم
+      // dispatch(coreUser());
+    //   dispatch(getAllWorkSpace());
+    // }
+
   }, [forceUpdate]);
 
   // 
@@ -225,6 +235,7 @@ export default function EditUserProfile() {
      
       <div className="">
         <PageTitle title={"حساب کاربری"} />
+        {/* <AuthButton textButton={"test api"} handlerClick={pastSelexboxData()}/> */}
         <div className="w-full flex flex-col justify-center items-center">
           <div className="m-h-[650px] mb-9">
             <div className="mt-12 flex justify-between">
@@ -237,15 +248,15 @@ export default function EditUserProfile() {
                   // userState.image != "" ? userState.image : userState.userData.user.image
                   ""
                 }
-                />
-                {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
+              />
+              {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
                 className="btn-style h-10 rounded-lg text-[14px] mr-[181px] "
                 onClick={() => dispatch(logoutAction())}
               >
                 خروج{" "}
                 <img
-                  src="./img/dashboard/header/logoutProfile.svg"
+                  src="/img/dashboard/header/logoutProfile.svg"
                   alt="logout"
                   className="mr-3"
                 />
@@ -302,7 +313,7 @@ export default function EditUserProfile() {
                     اطلاعات کسب و کار شما
                   </span>
                   <div className="flex flex-col gap-4 mt-7">
-                    
+
                     <SelectBox
                       optionItems={data ? data[0] : []}
                       title={"زمینه فعالیت شما (نوع سایت)"}
@@ -342,7 +353,7 @@ export default function EditUserProfile() {
                     <div className="flex justify-end gap-7 mt-9">
                       <button className="btn-secondary">انصراف </button>
                       <button
-                      disabled={!canRequest}
+                        disabled={!canRequest}
                         className="btn-style"
                         onClick={() => handleSetNewProfile()}
                       >
@@ -400,7 +411,7 @@ export default function EditUserProfile() {
                     انصراف{" "}
                   </button>
                   <button
-                  disabled={canRequest}
+                    disabled={canRequest}
                     className="btn-style"
                     onClick={() => handleUpdatePassword()}
                   >

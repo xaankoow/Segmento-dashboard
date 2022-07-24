@@ -225,7 +225,7 @@ export default function BuyPlnaModal() {
 
       </div>
       <div className='container_plan_message mt-5 border rounded-lg'>
-        <img src="./img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
+        <img src="/img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
         <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
       </div>
     </body>

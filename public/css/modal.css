@@ -85,11 +85,11 @@
     display: inline-block;
     height: 8px;
     width: 8px;
-    background-image: url(./../dd/img/modal/head/closeModal.svg);
+    background-image: url(/img/modal/head/closeModal.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .ReactModal__Content header .close_suport_container {
@@ -495,7 +495,7 @@ input[type="radio"]:checked::before {
     display: inline-block;
     height: 24px;
     width: 24px;
-    background-image: url(../img/modal/footer/moveBack.svg);
+    background-image: url(/img/modal/footer/moveBack.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -507,7 +507,7 @@ input[type="radio"]:checked::before {
     height: 15px;
     width: 15px;
     margin-right: 14px;
-    background-image: url(../img/modal/footer/moveForward.svg);
+    background-image: url(/img/modal/footer/moveForward.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;

@@ -16,7 +16,7 @@ import ContentpProduction from "./ContentProduction/ContentpProduction";
 import MyList from "./KeyWords/MyList/MyList";
 import WorkSpaceReport from "./DashboaedComponents/workSpace/workSpaceReport";
 import AleartMessageBuyPlan from "./DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
-import { Route, Routes, useNavigate } from "react-router";
+import { Outlet, Route, Routes, useNavigate } from "react-router";
 import AuthButton from "../Auth/authButton/AuthButton";
 import { useSelector } from "react-redux/es/exports";
 import SidebarComponent from "./DashboaedComponents/SidebarComponents/SidebarComponent";
@@ -147,19 +147,26 @@ export default function DashboardBody() {
             numberLeft={"20"}
             numberRight={"189"}
           /> */}
-          <PlanStatus title={"وضعیت اشتراک"}/> 
+
+
+
+          {/* <PlanStatus title={"وضعیت اشتراک"}/>  */}
+
+
+
+
           {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
           {/* <EditUserProfile /> */}
          
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
-
+          <Outlet/>
           {/* <button onClick={}>click me!</button> */}
           <Routes>
 
-          <Route path="/dd" element={<WorkSpace />} />
+          {/* <Route path="/dd" element={<WorkSpace />} /> */}
           </Routes>
-          {showWorkSpaceModal?<WorkSpace />:null}
+          {/* {showWorkSpaceModal?<WorkSpace />:null} */}
           {
             // <WorkSpace handleClose={closeWorkSpaceModal} />
             
@@ -202,6 +209,7 @@ export default function DashboardBody() {
         // </Modal>
         ""
       )}
+      
     </div>
   );
 }

@@ -178,8 +178,8 @@ export default function ContentpProduction({ onClickHandler }) {
           addMore();
         }}
       >
-        <img src="./img/dashboard/table/cached.svg" alt="cached" />
-        ایده‌های بیشتر
+        <img src="/img/dashboard/table/cached.svg" alt="cached" />
+        تولید بیشتر
       </button>
       {/* {number ? "" : ""} */}
     </>

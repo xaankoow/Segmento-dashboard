@@ -11,7 +11,7 @@ export default function ProfileInformation({ userName, userType, email ,changeUs
         />
         <div className="bg-primary rounded-full absolute -bottom-1 right-0 p-2 border-[3px] border-[#ffffff] cursor-pointer" onClick={()=>changeUserImage()}>
         <img
-          src="../img/dashboard/userProfile/changeImageIcon.png"
+          src="/img/dashboard/userProfile/changeImageIcon.png"
           alt="userImagechange"
           className="w-3 h-3"
         />
