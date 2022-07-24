@@ -18,7 +18,7 @@ const[datas,setDatas]=useState("");
         
         try {
           const { data, status } = await usetLimit();
-          setDatas(data); //5
+          setDatas(data.data); //5
           console.log(data)
         } catch (error) {
           console.log(error);
@@ -213,7 +213,7 @@ const[datas,setDatas]=useState("");
 
                                     <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4 ">تعداد کل کلمات</span>
-                                        <span id="border" className="mr-3">100</span>
+                                        <span id="border" className="mr-3">{datas != [] ?datas[4].count :"" }</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
                                         <span id="border" className="mr-3">20</span>
                                         <span className="mr-3">کلمات باقی مانده</span>
@@ -241,12 +241,12 @@ const[datas,setDatas]=useState("");
 
                                     <div className="flex flex-row">
                                         <span id="line3" className=" w-0.5 h-5 mt-2"></span>
-                                        <span className="mt-2 mr-4">ابزار تحقیق کلمه کلیدی</span>
+                                        <span className="mt-2 mr-4"> ابزار عنوان ساز محتوا</span>
                                     </div>
 
                                     <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4">تعداد کل کلمات</span>
-                                        <span id="border" className="mr-3">100</span>
+                                        <span id="border" className="mr-3">{datas != [] ?datas[3].count :"" }</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
                                         <span id="border" className="mr-3">20</span>
                                         <span className="mr-3">کلمات باقی مانده</span>

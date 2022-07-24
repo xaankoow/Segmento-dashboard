@@ -133,30 +133,24 @@ export default function DashboardBody() {
         <div className="bg-[#ffffff] overflow-y-scroll pb-8 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main">
           {resultSetWorkSpace.reportStatus==true?<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep}/>:null}
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
-          {/* <EasyStart startButtonClick={startButtonClick} /> */}
-          {/* keyWords */}
-          {/* <Routes> */}
-          {/* <Route path="/keyWords" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>} /> */}
-          {/* <Route path="content" element={ <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>} /> */}
-       {/* </Routes> */}
-
-          {/* <TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/> */}
-          {/* <TabMenu
-            tabsContent={tabContent2}
-            title={"ایده تولید محتوا"}
-            numberLeft={"20"}
-            numberRight={"189"}
-          /> */}
+        
+          
+          <Routes>
+          <Route exact path="keyWords" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>} />
+          <Route path="dashboard/content" element={ <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>} />
+          <Route path="PlanStatus" element={<PlanStatus title={"وضعیت اشتراک"}/> } />
+          <Route path="dashboard/FinancialReports" element={<TableFinancialReports title={"گزارش‌های مالی"}/>  } />
+          <Route path="" element={<EditUserProfile />  } />
+          <Route path="jnjn" element={<EasyStart startButtonClick={startButtonClick} /> } />
+       </Routes>
 
 
-
-          {/* <PlanStatus title={"وضعیت اشتراک"}/>  */}
+      
 
 
 
-
-          {/* <TableFinancialReports title={"گزارش‌های مالی"}/> */}
-          {/* <EditUserProfile /> */}
+          {/* */}
+          {/*  */}
          
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
