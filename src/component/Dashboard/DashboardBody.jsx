@@ -135,23 +135,14 @@ export default function DashboardBody() {
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
         
           
-          <Routes>
-          <Route exact path="keyWords" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"}/>} />
-          <Route path="dashboard/content" element={ <TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"}/>} />
-          <Route path="PlanStatus" element={<PlanStatus title={"وضعیت اشتراک"}/> } />
-          <Route path="dashboard/FinancialReports" element={<TableFinancialReports title={"گزارش‌های مالی"}/>  } />
-          <Route path="" element={<EditUserProfile />  } />
-          <Route path="jnjn" element={<EasyStart startButtonClick={startButtonClick} /> } />
-       </Routes>
+         
 
 
       
 
 
 
-          {/* */}
-          {/*  */}
-         
+       
           {/* <WorkSpaceReport/> */}
           {/* <BuyPlan title={"خرید اشتراک سگمنتو"}/> */}
           <Outlet/>

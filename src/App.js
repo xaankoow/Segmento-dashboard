@@ -97,7 +97,7 @@ export default function App() {
 
         {/* <HandleModal /> */}
         {/* {ProcessingDelay.length>0?alert(''):null} */}
-        <LoadingPage />
+        {/* <LoadingPage /> */}
         {/* {<LoadingPage/>} */}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
