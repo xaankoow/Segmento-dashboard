@@ -52,7 +52,7 @@ export default function SidebarComponent({ closeNav,openMenu }) {
               return (
                 <ItemSidebarHover
                   text={closeNav && item}
-                  icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"}
+                  icon={"/../img/dashboard/sidebarHover/sidebarIcon1.svg"}
                   textColor={"#002145"}
                   textHover={"#0A65CD"}
                 />

@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function AleartMessageBuyPlan() {
-    const typeAlert = "success";
+    const typeAlert = "err";
 
     return (
         <Fragment>
@@ -21,10 +22,12 @@ export default function AleartMessageBuyPlan() {
                 <div className=' mt-7'>
                     {typeAlert == "success" ? (
                         <Fragment>
-                            <button className='btn-style inline-block'>مشاهده اشتراک</button>
-                            <button className='btn-style bg-[#F2F5F7] inline-block text-[#488CDA] mr-7'>داشبورد</button>
+                            <Link to={"/dashboard/planStatus"} className='btn-style inline-block'>مشاهده اشتراک</Link>
+                            <Link to={"/dashboard/easyStart"} className='btn-style inline-block'>داشبورد</Link>
+                            {/* <button className='btn-style inline-block'>مشاهده اشتراک</button> */}
+                            {/* <button className='btn-style bg-[#F2F5F7] inline-block text-[#488CDA] mr-7'>داشبورد</button> */}
                         </Fragment>
-                    ) :<button className='btn-style inline-block'>خرید مجدد اشتراک</button>}
+                    ) :<Link to={"/dashboard/buyPlan"} className='btn-style inline-block'>خرید مجدد اشتراک</Link>}
                 </div>
             </div>
         </Fragment>

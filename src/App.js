@@ -26,6 +26,7 @@ import ContentpProduction from "./component/Dashboard/ContentProduction/Contentp
 import TabMenu from "./component/Dashboard/DashboaedComponents/tabMenu/TabMenu";
 import MylistContentProduction from "./component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx"
 import EasyStart from "./component/Dashboard/DashboaedComponents/EasyStart/EasyStart";
+import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
 
 
 
@@ -110,6 +111,7 @@ export default function App() {
           <Route path="dashboard" element={<DashboardBody />}>
             <Route path="userProfile" element={<EditUserProfile />} />
             <Route path="planStatus" element={<PlanStatus />} />
+            <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
             <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
             <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
 
