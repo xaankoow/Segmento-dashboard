@@ -15,7 +15,9 @@ export default function TableFinancialReports({ title }) {
     // const dispatch=us
     const dispatch = useDispatch();
 
-    const [copyItem, setCopyItem] = useState([]);
+    const [copyItem, setCopyItem] = useState([""]);
+    const [handleClickCopy, setHandleClickCopy] = useState(false);
+
     const [placeholderPadding, setplaceholderPadding] = useState("");
 
     const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
@@ -79,9 +81,9 @@ export default function TableFinancialReports({ title }) {
 
     const { financialDataTable } = useSelector(state => state.financialState)
     console.log(copyItem)
-    if (copyItem.length>0) {
-        
-        console.log(copyItem[0].description +"hhi")
+    if (copyItem.length > 0) {
+
+        console.log(copyItem[0].description + "hhi")
     }
     return (
         <div>
@@ -165,9 +167,9 @@ export default function TableFinancialReports({ title }) {
                         <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={{ textTarget: searchFilterOption, textValue: searchFilterText, sortTarget: targetSortFilter, sortValue: targetSortFilter == "تاریخ خرید" ? datePickerValues : numFilter }} />
                     </div>
                 </header>
-                <div className=' w-full  rounded-lg border border-[#D9D9D9] h-[672px] overflow-hidden'>
+                <div className=' w-full  rounded-lg border border-[#D9D9D9] h-[672px]'>
                     <div className=' mb-4 h-full w-full'>
-                        <div className=' overflow-hidden h-full'>
+                        <div className=' h-full'>
 
                             <div className=' h-14 text-sm font-normal flex items-center justify-around flex-row-reverse bg-[#FCFCFB]'>
                                 <p className=' w-28 text-center'>عملیات</p>
@@ -178,7 +180,32 @@ export default function TableFinancialReports({ title }) {
                                 <p className=' w-36 text-center'>نوع اشتراک</p>
                                 <p className=' w-20 text-center'>شماره فاکتور</p>
                                 <p className=' w-8 text-center'>ردیف</p>
-                                <p className=' w-11 text-center'>{copyItem.length > 0 ? "کپی" : "انتخاب"}</p>
+                                {/* <p className=' w-11 text-center'>{copyItem.length > 0 ? "کپی" : "انتخاب"}</p> */}
+                                <div
+                                    className={
+                                        copyItem.length > 0
+                                            ? "text-sm font-medium text-gray-900 pr-2  text-right text-[#0A65CD] relative cursor-pointer"
+                                            : "text-sm font-medium text-gray-900 pr-2  text-right text-[#D9D9D9] relative "
+                                    }
+                                    onClick={() => {
+                                        // navigator.clipboard.writeText(customCopy());
+                                        setHandleClickCopy(true);
+                                        setTimeout(() => {
+                                            setHandleClickCopy(false);
+                                        }, 1000);
+                                    }}
+                                >
+                                    <span
+                                        class={
+                                            copyItem.length > 0 & handleClickCopy
+                                                ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#ffffff] -top-11"
+                                                : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
+                                        }
+                                    >
+                                        کپی شد!
+                                    </span>
+                                    {copyItem.length > 0 ? "کپی" : "انتخاب"}
+                                </div>
                             </div>
                             <div className='overflow-scroll h-[94%] text-xs font-normal'>
                                 {financialDataTable.map((item, index) => (
@@ -223,9 +250,9 @@ export default function TableFinancialReports({ title }) {
                 {/* <exportExcel /> */}
                 <div className='w-full text-left mt-7'>
                     <div className=' inline-block'>
-                            {copyItem.length > 0 ? (
-                                <Fragment>
-                                    <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={copyItem} textButton={<Fragment><img src='/img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
+                        {copyItem.length > 0 ? (
+                            <Fragment>
+                                <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={copyItem} textButton={<Fragment><img src='/img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
                                     <ExcelSheet data={copyItem} name="Employees">
                                         <ExcelColumn label="شماره فاکتور" value={"order_code"} />
                                         <ExcelColumn label="نوع اشتراک" value={"description"} />
@@ -235,16 +262,16 @@ export default function TableFinancialReports({ title }) {
                                         <ExcelColumn label="وضعیت پرداخت" value={"payment_status_text"} />
                                         <ExcelColumn label="عملیات" value={"type_text"} />
                                     </ExcelSheet>
-                            </ExcelFile>
-                                </Fragment>
-                            ) : null}
+                                </ExcelFile>
+                            </Fragment>
+                        ) : null}
 
-                            {/* <ExcelSheet data={dataSet1} name="Employees">
+                        {/* <ExcelSheet data={dataSet1} name="Employees">
                                 <ExcelColumn label="Name" value="name" />
                                 <ExcelColumn label="Wallet Money" value="amount" />
                                 <ExcelColumn label="Gender" value="sex" />
                             </ExcelSheet> */}
-                            {/* <ExcelSheet data={copyItem} name="Employees">
+                        {/* <ExcelSheet data={copyItem} name="Employees">
                             <ExcelColumn label="شماره فاکتور" value={"order"} />
                                 <ExcelColumn label="نوع اشتراک" value={"type eshterak"} />
                                 <ExcelColumn label="تاریخ خرید" value={"date"} />
