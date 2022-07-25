@@ -25,18 +25,18 @@ export default function AuthButton({
       disabled={disabled}
 
       style={style}
-      onClick={handlerClick != undefined && reduxHandleClick != undefined ? (
+      onClick={handlerClick != undefined&handlerClick != "" & reduxHandleClick != undefined ? (
         (e) => {
           handlerClick()
           dispatch(reduxHandleClick(setOnclickValue!=""?setOnclickValue:null))
         }
-      ) : handlerClick != undefined ? (
+      ) : handlerClick != undefined & handlerClick != "" ? (
         (e) => {
-          handlerClick(setOnclickValue!=""|setOnclickValue!=undefined?setOnclickValue:null)
+          handlerClick(setOnclickValue!=""&setOnclickValue!=undefined?setOnclickValue:null)
         }
       ) : (
         (e) => {
-          dispatch(reduxHandleClick(setOnclickValue!=""|setOnclickValue!=undefined?setOnclickValue:null))
+          dispatch(reduxHandleClick(setOnclickValue!=""&setOnclickValue!=undefined?setOnclickValue:null))
         }
       )}
     >

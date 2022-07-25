@@ -47,7 +47,8 @@ export default function ChangeImageModal({
     },
   });
 
-  const thumbs = files[0].length ? (
+  // debugger
+  const thumbs = files[0] != "" ? (
     <>
       <img
         src={files[0].preview}
@@ -57,9 +58,9 @@ export default function ChangeImageModal({
     </>
   ) : (
     <img
-      src={"/img/dashboard/userProfile/profileImage.png"}
+      src={userImage}
       className="rounded-full my-3 max-w-[125px] max-h-[125px]"
-      alt="userImage"
+      alt="auserImage"
     />
   );
 
@@ -70,6 +71,7 @@ export default function ChangeImageModal({
   // console.log(files);
   // debugger
   // console.log(files[0]);
+  console.log(files)
   return (
     <Modal
       isOpen={isOpen ? true : false}
@@ -80,7 +82,7 @@ export default function ChangeImageModal({
       // onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
-      // className={"myModal"}
+    // className={"myModal"}
     >
       <>
         {imageChanged && (
@@ -121,7 +123,7 @@ export default function ChangeImageModal({
                   height={"20px"}
                 />
                 <span className="text-gray text-xs">
-                فایل تصویر را اینجا رها کنید
+                  فایل تصویر را اینجا رها کنید
                 </span>
                 <span className="text-gray text-xs">
                   {" "}
@@ -138,7 +140,7 @@ export default function ChangeImageModal({
                 <AuthButton
                   textButton={" ذخیره تغییرات"}
                   reduxHandleClick={setImageProfRedux}
-                  setOnclickValue={files[0]!="" ? files[0].preview :""}
+                  setOnclickValue={files[0] != "" ? files[0] : ""}
                 />
                 {/* <button className="btn-style" onClick={() => setUserImage(files)}> */}
                 {/* {" "}

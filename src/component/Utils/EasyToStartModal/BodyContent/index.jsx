@@ -21,9 +21,9 @@ export default function BodyContent({ stepModal,setStepModal, free, setFree, set
                     {Paragraph(stepModal, free)}
                 </p>
                 {stepModal > 2 & stepModal < 6 ? (
-                    <div className='main_contnt_modal'>
-                        {ListBody(stepModal)}
-                        <img src="/img/modal/body/siteDesignMan.svg" alt="" />
+                    <div className='main_contnt_modal text-center w-full'>
+                        {/* {ListBody(stepModal)} */}
+                        <img src="/img/modal/body/siteDesignMan.svg" alt="" className=' m-auto'/>
                     </div>
                 ) : ""}
 

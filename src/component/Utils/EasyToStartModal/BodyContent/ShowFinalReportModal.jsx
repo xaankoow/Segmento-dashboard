@@ -9,19 +9,20 @@ export default function ShowFinalReportModal() {
     const [title, setTitle] = useState(""); //handle close buy plan result
     const [typePlan, setTypePlan] = useState(""); //handle buy plan type
     //check buy plan result
+    // debugger
     useEffect(() => {
         // const title = userData.package.title;
         // const type_plna = userData.package.type_text;
         var title_plan=userData.package!=undefined?userData.package.title:"پلن خریداری شده یافت نشد";
-        var type_plan=userData.package!=undefined&&userData.package.type_text;
+        var type_plan=userData.package!=undefined?userData.package.type_text:"";
         if (title!=title_plan) {
             setTitle(title_plan);
         }
         if (typePlan!=type_plan) {
             setTypePlan(type_plan);
         }
-    }, []);
-
+    }, [userData]);
+    console.log(userData)
     return (
         <body className='final_report_container'>
             <div className='popup'>

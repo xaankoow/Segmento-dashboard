@@ -133,7 +133,7 @@ export default function EditUserProfile() {
   // data of select box thet is related to the past info
   const [pastData, setPastData] = useState("");
   const pastSelexboxData = async () => {
-    debugger
+    // debugger
     if (userState.userData.user != undefined) {
       var uuidUser = userState.userData.user.uuid;
 
@@ -222,7 +222,7 @@ export default function EditUserProfile() {
           close={() => setOpenChangeImageModal(false)}
           isOpen={openChangeImageModal}
           setUserImage={setUserImage}
-          userImage={image}
+          userImage={userState.userData.user.img}
         />
       )}
       {updatePass && (
@@ -248,8 +248,13 @@ export default function EditUserProfile() {
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
                 imageSource={
-                  // userState.image != "" ? userState.image : userState.userData.user.image
-                  ""
+                  userState.image!=""?(
+                    userState.image.preview
+                    ):(
+                    userState.userData.user!=undefined?userState.userData.user.img:""
+                  )
+                  
+                  // userState.image != "" ? userState.image : userState.userData.user.image 
                 }
               />
               {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}

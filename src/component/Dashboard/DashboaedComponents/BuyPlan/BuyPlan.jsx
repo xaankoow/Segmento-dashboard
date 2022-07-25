@@ -89,7 +89,7 @@ export default function BuyPlan({ title }) {
       {/* <div></div> */}
       {/* <p>خرید اشتراک سگمنتو</p> */}
       {/* </div> */}
-      <div className='main_buy_plan_section max-w-5xl overflow-scroll'>
+      <div className='main_buy_plan_section max-w-7xl overflow-scroll w-full'>
 
 
         <div className='section_title'>
@@ -147,6 +147,7 @@ export default function BuyPlan({ title }) {
           {allPackageData.map(item => {
               // 
               if (item.type_text == "نقره ای") {
+                if (item.title!="14 روز رایگان") {
               return (
                 <div className='container_row' onClick={() => { setPlan({uuid:item.uuid,type:"silver"}); dispatch(setPackageUuid(item.uuid)) }}>
                   <div>
@@ -155,6 +156,7 @@ export default function BuyPlan({ title }) {
                   </div>
                   <span className='off_price'>{item.default_discount_text}</span>
                 </div>)
+                }
               }
             })}
           </div>
@@ -274,7 +276,8 @@ export default function BuyPlan({ title }) {
           <img src="/img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
           <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
         </div>
-        <button className='btn-style m-auto mt-4' onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></button>
+        <AuthButton classes={"m-auto mt-4"} handlerClick={setShowReportModal} setOnclickValue={true} disabled={plan.uuid!=""?false:true} onClick={()=>setShowReportModal(true)} textButton={<Fragment>فعالسازی اشتراک<span className='forward-ico'></span></Fragment>}></AuthButton>
+        {/* <AuthButton className='btn-style m-auto mt-4' handlerClick={setShowReportModal(true)} onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></AuthButton> */}
         {/* </body> */}
         <div className='footer_message'>
           <p>اگر بیزینس هستید یا به امکانات و منابع بیشتری نیاز دارید: </p>

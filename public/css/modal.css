@@ -112,9 +112,9 @@
 .ReactModal__Content body .main_contnt_modal {
     margin-top: -19px;
     margin-bottom: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
 }
 
 .ReactModal__Content body .ul_text_container ul {

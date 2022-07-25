@@ -24,6 +24,9 @@ export default function TableFinancialReports({ title }) {
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
   const [searchFilterOption, setSearchFilterOption] = useState("");
   const [numFilter, setNumFilter] = useState(1);
+       const [handleClickCopy, setHandleClickCopy] = useState(false);
+
+
 
   const [searchFilterText, setSearchFilterText] = useState("");
 

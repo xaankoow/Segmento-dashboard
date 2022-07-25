@@ -219,11 +219,11 @@ export const buyPlan = (buyType) => {
 export const tryFreePlan = () => {
     return async (dispatch, getState) => {
         //  
+        debugger
         const state = { ...getState().planState }
         const loadingState = { ...getState().loadingState }
 
-        const packageUuid = state.packageUuid; //انتخاب شناسه پکیج رایگان
-        
+        const packageUuid = state.allPackageData[0].uuid; //انتخاب شناسه پکیج رایگان
         if (packageUuid) {
 
 

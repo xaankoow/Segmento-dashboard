@@ -69,7 +69,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                             <div className='flex items-center'>
                                 <img src="/img/dashboard/header/manage_accounts.svg" alt="manage_accounts" />
                                 {/* <Link to={"userProfile"} state={{ background: location }}>تنظیمات حساب کاربری</Link> */}
-                                <Link to={"buyPlanEasyToStartModal"} state={{ background: location }}>تنظیمات حساب کاربری</Link>
+                                <Link to={"userProfile"}>تنظیمات حساب کاربری</Link>
                             </div>
                         </div>
                         <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] '>
