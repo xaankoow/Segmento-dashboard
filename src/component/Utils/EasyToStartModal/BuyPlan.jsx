@@ -8,7 +8,8 @@ export default function BuyPlan(setPlan) {
         dispatch(getAllPlanData());
     }, [])
     debugger
-    const {allPackageData}=useSelector(state=>state.planState)
+    
+  const { discount,discountStatus,allPackageData } = useSelector(state => state.planState);
     console.log("allPackageData")
     return (
         <body className='plans_body_container p-5'>

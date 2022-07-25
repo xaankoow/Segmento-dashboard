@@ -23,7 +23,8 @@ export default function BuyPlnaModal() {
   // var lastSelectedDiscountInput="";
 
 
-  const { discount, allPackageData } = useSelector(state => state.planState);
+  const { canRequest } = useSelector((state) => state.loadingState);
+  const { discount,discountStatus,allPackageData } = useSelector(state => state.planState);
   console.log(allPackageData)
 
   const handleShowArrowDiscount = (text, arrowTarget) => {
@@ -96,7 +97,8 @@ export default function BuyPlnaModal() {
               }
             })}
           </div>
-          <div className='price'>
+          <div className='price relative'>
+          {discountStatus.value!=0&discountStatus.planType=="bronze"?<span className=' absolute bottom-12 line-through w-full text-xs right-0'>{allPackageData.length>1?parseInt(allPackageData[1].price.toString().substring(0,allPackageData[1].price.toString().length-3))-discountStatus.value+" هزار تومان ماهانه":""}</span>:null}
             <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[1].price.toString().substring(0,allPackageData[1].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
@@ -111,7 +113,8 @@ export default function BuyPlnaModal() {
               classes={discountInputBronze != "" & discount != "" ? "border-b-[2px] border-b-[#10CCAE]" : ""}
               errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
             />
-            <span className={`apply_token_ico  ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+            <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze,"bronze"))}></button>
+            
           </div>
         </div>
         <div className='silver plan_card'>
@@ -135,7 +138,9 @@ export default function BuyPlnaModal() {
               }
             })}
           </div>
-          <div className='price'>
+          <div className='price relative'>
+          {discountStatus.value!=0&discountStatus.planType=="silver"?<span className=' absolute bottom-12 line-through w-full text-xs right-0'>{allPackageData.length>1?parseInt(allPackageData[5].price.toString().substring(0,allPackageData[5].price.toString().length-3))-discountStatus.value+" هزار تومان ماهانه":""}</span>:null}
+
             <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[5].price.toString().substring(0,allPackageData[5].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
@@ -149,7 +154,8 @@ export default function BuyPlnaModal() {
               disabled={discount != "" ? true : false}
               errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
             />
-            <span className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver))}></span>
+            <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver,"silver"))}></button>
+
           </div>
         </div>
         <div className='gold plan_card'>
@@ -170,7 +176,8 @@ export default function BuyPlnaModal() {
               }
             })}
           </div>
-          <div className='price'>
+          <div className='price relative'>
+          {discountStatus.value!=0&discountStatus.planType=="gold"?<span className=' absolute bottom-12 w-full line-through text-xs right-0'>{allPackageData.length>1?parseInt(allPackageData[9].price.toString().substring(0,allPackageData[9].price.toString().length-3))-discountStatus.value+" هزار تومان ماهانه":""}</span>:null}
             <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[9].price.toString().substring(0,allPackageData[9].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
@@ -184,7 +191,7 @@ export default function BuyPlnaModal() {
               disabled={discount != "" ? true : false}
               errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
             />
-            <span className={`apply_token_ico ${discountInputGold != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold))}></span>
+            <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold,"gold"))}></button>
           </div>
         </div>
         <div className='diamond plan_card'>
@@ -206,7 +213,8 @@ export default function BuyPlnaModal() {
               }
             })}
           </div>
-          <div className='price'>
+          <div className='price relative'>
+          {discountStatus.value!=0&discountStatus.planType=="diamond"?<span className=' absolute bottom-12 w-full line-through text-xs right-0'>{allPackageData.length>1?parseInt(allPackageData[13].price.toString().substring(0,allPackageData[13].price.toString().length-3))-discountStatus.value+" هزار تومان ماهانه":""}</span>:null}
             <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>{allPackageData.length>1?allPackageData[13].price.toString().substring(0,allPackageData[13].price.toString().length-3)+" هزار تومان ماهانه":""}</p>
           </div>
           <div className='input_apply_token_container'>
@@ -220,7 +228,7 @@ export default function BuyPlnaModal() {
               disabled={discount != "" ? true : false}
               errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
             />
-            <span className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond))}></span>
+            <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond,"diamond"))}></button>
           </div>
         </div>
 
