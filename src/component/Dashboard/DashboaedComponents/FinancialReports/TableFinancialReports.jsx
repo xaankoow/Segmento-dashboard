@@ -15,7 +15,7 @@ export default function TableFinancialReports({ title }) {
     // const dispatch=us
     const dispatch = useDispatch();
 
-    const [copyItem, setCopyItem] = useState([""]);
+    const [copyItem, setCopyItem] = useState([]);
     const [handleClickCopy, setHandleClickCopy] = useState(false);
 
     const [placeholderPadding, setplaceholderPadding] = useState("");
@@ -79,12 +79,30 @@ export default function TableFinancialReports({ title }) {
         }
     ];
 
+
+    const [excelData, setExcelData] = useState([]);
+
     const { financialDataTable } = useSelector(state => state.financialState)
+
+    useEffect(() => {
+
+        if (excelData != financialDataTable) {
+            // debugger
+            let financialEx = [];
+            for (let i = 0; financialDataTable.length < 10 ? i < financialDataTable.length : i < 10; i++) {
+                financialEx.push(financialDataTable[i])
+            }
+            setExcelData(financialEx);
+        }
+    }, [financialDataTable])
+
     console.log(copyItem)
     if (copyItem.length > 0) {
 
         console.log(copyItem[0].description + "hhi")
     }
+    console.log(copyItem);
+    console.log(excelData);
     return (
         <div>
             <div>
@@ -95,7 +113,7 @@ export default function TableFinancialReports({ title }) {
             </div>
             {/* <div className=' w-[1038px] m-auto'> */}
             {/* <img src="/img/modal/body/report.svg" className='w-full h-11' alt="" /> */}
-            <div className=' w-full px-10 m-auto'>
+            <div className=' w-full px-10 m-auto pb-16'>
                 <header className='flex items-center justify-between h-10 w-full mb-7 mt-10'>
                     {/* <input
                         id="keyWordSearchBoxFilter"
@@ -250,10 +268,10 @@ export default function TableFinancialReports({ title }) {
                 {/* <exportExcel /> */}
                 <div className='w-full text-left mt-7'>
                     <div className=' inline-block'>
-                        {copyItem.length > 0 ? (
-                            <Fragment>
-                                <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={copyItem} textButton={<Fragment><img src='/img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
-                                    <ExcelSheet data={copyItem} name="Employees">
+                        {excelData.length > 0 ? (
+                            <Fragment>  نمایش آیتم هایه تیک خورده در اکسل
+                                <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={excelData} textButton={<Fragment><img src='/img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
+                                    <ExcelSheet data={excelData} name="Employees">
                                         <ExcelColumn label="شماره فاکتور" value={"order_code"} />
                                         <ExcelColumn label="نوع اشتراک" value={"description"} />
                                         <ExcelColumn label="تاریخ خرید" value={"created_at"} />
@@ -266,20 +284,21 @@ export default function TableFinancialReports({ title }) {
                             </Fragment>
                         ) : null}
 
-                        {/* <ExcelSheet data={dataSet1} name="Employees">
-                                <ExcelColumn label="Name" value="name" />
-                                <ExcelColumn label="Wallet Money" value="amount" />
-                                <ExcelColumn label="Gender" value="sex" />
-                            </ExcelSheet> */}
-                        {/* <ExcelSheet data={copyItem} name="Employees">
-                            <ExcelColumn label="شماره فاکتور" value={"order"} />
-                                <ExcelColumn label="نوع اشتراک" value={"type eshterak"} />
-                                <ExcelColumn label="تاریخ خرید" value={"date"} />
-                                <ExcelColumn label="تاریخ انقضا" value={"date ex"} />
-                                <ExcelColumn label="مبلغ" value={"price"} />
-                                <ExcelColumn label="وضعیت پرداخت" value={"state"} />
-                                <ExcelColumn label="عملیات" value={"handle"} />
-                            </ExcelSheet> */}
+                        {/* <Fragment>
+                            <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={copyItem} textButton={<Fragment><img src='/img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
+                                <ExcelSheet data={copyItem} name="Employees">
+                                    <ExcelColumn label="شماره فاکتور" value={"order_code"} />
+                                    <ExcelColumn label="نوع اشتراک" value={"description"} />
+                                    <ExcelColumn label="تاریخ خرید" value={"created_at"} />
+                                    <ExcelColumn label="تاریخ انقضا" value={"updated_at"} />
+                                    <ExcelColumn label="مبلغ" value={"sub_total"} />
+                                    <ExcelColumn label="وضعیت پرداخت" value={"payment_status_text"} />
+                                    <ExcelColumn label="عملیات" value={"type_text"} />
+                                </ExcelSheet>
+                            </ExcelFile>
+                        </Fragment> */}
+
+
 
                     </div>
                 </div>
