@@ -115,7 +115,7 @@ export default function KeyWordsSearch({
                     return(
                       <div
                       className={
-                        "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
+                        "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff]  overflow-y-scroll"
                       }
                     >
                       <div className="flex items-center gap-2 mt-3">

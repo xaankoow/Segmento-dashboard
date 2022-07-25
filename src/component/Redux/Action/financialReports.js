@@ -79,11 +79,11 @@ export const filterFinancialReports = ({textTarget, textValue, sortTarget, sortV
                         filterFinancialReportData.push(element);
                     }
                     break;
-                // case "نوع اشتراک":
-                //     if (element.order_code==textValue) {
-                //         filterFinancialReportData.push(element);
-                //     }
-                //     break;
+                case "نوع اشتراک":
+                    if (element.description.includes(textValue)) {
+                        filterFinancialReportData.push(element);
+                    }
+                    break;
                 case "مبلغ":
                     // debugger
                     if (element.sub_total == textValue) {

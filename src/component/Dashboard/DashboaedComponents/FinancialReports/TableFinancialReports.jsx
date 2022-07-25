@@ -250,7 +250,7 @@ export default function TableFinancialReports({ title }) {
                                     <div className={`w-full h-16 border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}>
                                         <p className=' w-28 text-center'>{item.type_text}</p>
                                         <p className=' w-24 text-center'><span className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text == "پرداخت ناموفق" ? " bg-[#F35242]" : item.payment_status_text == "پرداخت نشده" ? "bg-[#FFCE47]" : "bg-[#10CCAE]"}`}>{item.payment_status_text}</span></p>
-                                        <p className=' w-11 text-center'>{item.sub_total}</p>
+                                        <p className=' w-11 text-center'>{item.sub_total!="0"?`${item.sub_total.substring(0,item.sub_total.length-3)}.${item.sub_total.substring(item.sub_total.length,item.sub_total.length-3)}`:item.sub_total}</p>
                                         <p className=' w-[68px] text-center'>{item.updated_at}</p>
                                         <p className=' w-16 text-center'>{item.created_at}</p>
                                         <p className=' w-36 text-center flex items-center'> <div className={` w-3 h-3 inline-block rounded-full ml-2 ${handleCircleColor(item.description)}`}></div>{item.description.substring(31, item.description.length)}</p>
