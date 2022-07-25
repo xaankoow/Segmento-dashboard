@@ -213,9 +213,9 @@ const[datas,setDatas]=useState("");
 
                                     <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4 ">تعداد کل کلمات</span>
-                                        <span id="border" className="mr-3">{datas != [] ?datas[4].count :"" }</span>
+                                        <span id="border" className="mr-3">100</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
-                                        <span id="border" className="mr-3">20</span>
+                                        <span id="border" className="mr-3">{datas != [] ?datas[4].count :"" }</span>
                                         <span className="mr-3">کلمات باقی مانده</span>
                                         <span id="border" className="mr-3">80</span>
                                     </div>
@@ -246,9 +246,9 @@ const[datas,setDatas]=useState("");
 
                                     <div className="flex flex-row  text-[10px] mt-6">
                                         <span className="mr-4">تعداد کل کلمات</span>
-                                        <span id="border" className="mr-3">{datas != [] ?datas[3].count :"" }</span>
+                                        <span id="border" className="mr-3">100</span>
                                         <span className="mr-3">کلمات مصرف شده</span>
-                                        <span id="border" className="mr-3">20</span>
+                                        <span id="border" className="mr-3">{datas != [] ?datas[3].count :"" }</span>
                                         <span className="mr-3">کلمات باقی مانده</span>
                                         <span id="border" className="mr-3">80</span>
                                     </div>

@@ -92,29 +92,7 @@ export default function DashboardBody() {
   //   setShowWorkSpaceModal(false);
   // };
 
-  // cosnt
-  // tab content
-  const tabContent = [
-    {
-      title: "جست و جو",
-      content: <KeyWords />,
-    },
-    {
-      title: "لیست های من",
-      content: <MyList />,
-    },
-  ];
-  const tabContent2 = [
-    {
-      title: "جست و جو",
-      content: <ContentpProduction />,
-    },
-    {
-      title: "لیست های من",
-      content: <MylistContentProduction />,
-    },
-  ];
-  // debugger
+
 
   // var a = "setShowResultModal(false);"
   // if (showResultModal) {
@@ -138,14 +116,7 @@ export default function DashboardBody() {
          
 
 
-          {/* <Routes>
-          <Route exact path="keyWords" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
-          <Route path="dashboard/content" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
-            <Route path="PlanStatus" element={<PlanStatus title={"وضعیت اشتراک"} />} />
-            <Route path="dashboard/FinancialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
-            <Route path="" element={<EditUserProfile />} />
-            <Route path="jnjn" element={<EasyStart startButtonClick={startButtonClick} />} />
-          </Routes> */}
+          
 
 
 
