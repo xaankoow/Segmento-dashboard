@@ -36,7 +36,7 @@ export default function Nav({path}) {
   }, [userToken])
   
   
-  console.log(window.location.pathname)
+  // console.log(window.location.pathname)
   return (
     <div id='nav-option-head' className='w-full flex items-center justify-between px-28'>
       <div className='flex justify-around items-center'>

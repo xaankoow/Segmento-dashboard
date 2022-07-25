@@ -123,7 +123,7 @@ export default function DashboardBody() {
   // }
   // console.log(showResultModal)
   // alert( showResultModal)
-  console.log(window.location.pathname);
+  // console.log(window.location.pathname);
   return (
     <div id="DASHBOARD">
       <div className="w-full h-16 bg-[#fff] shadow-3xl">

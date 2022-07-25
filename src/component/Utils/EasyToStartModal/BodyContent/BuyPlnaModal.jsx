@@ -108,9 +108,10 @@ export default function BuyPlnaModal() {
               handleArrowPlan={handleShowArrowDiscount}
               targePlanArrow={"bronze"}
               disabled={discount != "" ? true : false}
+              classes={discountInputBronze != "" & discount != "" ? "border-b-[2px] border-b-[#10CCAE]" : ""}
               errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
             />
-            <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
+            <span className={`apply_token_ico  ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
           </div>
         </div>
         <div className='silver plan_card'>

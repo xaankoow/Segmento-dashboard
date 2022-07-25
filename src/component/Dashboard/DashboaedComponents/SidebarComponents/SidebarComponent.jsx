@@ -32,7 +32,7 @@ export default function SidebarComponent({ closeNav,openMenu }) {
   // ];
   const itemsHoverMenu = [
     {title:"گزارش های منتخب",link:""},
-    {title:"خرید اشتراک",link:""},
+    {title:"خرید اشتراک",link:"buyPlan"},
     {title:"شروع آسان",link:"easyStart"},
     {title:"خبرخوان",link:""},
     {title:"آموزش",link:""},
