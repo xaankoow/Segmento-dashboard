@@ -103,6 +103,26 @@ export default function TableFinancialReports({ title }) {
     }
     console.log(copyItem);
     console.log(excelData);
+
+    const handleCircleColor=(text)=>{
+        var strind="";
+        if (text.includes("رایگان")) {
+            return "bg-[#FFCE47]";
+        }else if (text.includes("طلایی")) {
+            return "bg-[#FFCE47]";
+            
+        }else if (text.includes("نقره ای")) {
+            return "bg-[#F2F5F7]";
+            
+        }else if (text.includes("برنزی")) {
+            return "bg-[#E99991]";
+            
+        }else if (text.includes("الماسی")) {
+            return "bg-[#0A65CD]";
+            
+        }
+        return "bg-[#F2F5F7]"
+    }
     return (
         <div>
             <div>
@@ -233,7 +253,7 @@ export default function TableFinancialReports({ title }) {
                                         <p className=' w-11 text-center'>{item.sub_total}</p>
                                         <p className=' w-[68px] text-center'>{item.updated_at}</p>
                                         <p className=' w-16 text-center'>{item.created_at}</p>
-                                        <p className=' w-36 text-center'>{item.description.substring(31, item.description.length)}</p>
+                                        <p className=' w-36 text-center flex items-center'> <div className={` w-3 h-3 inline-block rounded-full ml-2 ${handleCircleColor(item.description)}`}></div>{item.description.substring(31, item.description.length)}</p>
                                         <p className=' w-20 text-center'>{item.order_code}</p>
                                         <p className=' w-8 text-center'>{index + 1}</p>
                                         <p className=' w-11 text-center'>
@@ -269,7 +289,7 @@ export default function TableFinancialReports({ title }) {
                 <div className='w-full text-left mt-7'>
                     <div className=' inline-block'>
                         {excelData.length > 0 ? (
-                            <Fragment>  نمایش آیتم هایه تیک خورده در اکسل
+                            <Fragment> 
                                 <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={excelData} textButton={<Fragment><img src='/img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
                                     <ExcelSheet data={excelData} name="Employees">
                                         <ExcelColumn label="شماره فاکتور" value={"order_code"} />
