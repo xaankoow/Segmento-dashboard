@@ -1,141 +1,126 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import AuthButton from '../../../Auth/authButton/AuthButton';
-import { filterFinancialReports, getAllFinancialReports } from '../../../Redux/Action/financialReports';
-import KeyWordsSearch from '../KeyWordsSearch/KeyWordsSearch';
-import DatePicker, { DateObject } from "react-multi-date-picker"
-import persian from "react-date-object/calendars/persian"
-import persian_fa from "react-date-object/locales/persian_fa"
-import { getValue } from '@testing-library/user-event/dist/utils';
-import { exportExcel } from '../../../Utils/excel/exportExcel';
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import AuthButton from "../../../Auth/authButton/AuthButton";
+import {
+  filterFinancialReports,
+  getAllFinancialReports,
+} from "../../../Redux/Action/financialReports";
+import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import { getValue } from "@testing-library/user-event/dist/utils";
+import { exportExcel } from "../../../Utils/excel/exportExcel";
 import ReactExport from "react-export-excel";
 // import { exportExcel } from '../../../Utils/excel/exportExcel';
 // import { RangeDatePicker } from "jalali-react-datepicker";//
 export default function TableFinancialReports({ title }) {
-    // const dispatch=us
-    const dispatch = useDispatch();
+  // const dispatch=us
+  const dispatch = useDispatch();
 
-    const [copyItem, setCopyItem] = useState([]);
-    const [handleClickCopy, setHandleClickCopy] = useState(false);
-
-    const [placeholderPadding, setplaceholderPadding] = useState("");
-
-    const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
-    const [searchFilterOption, setSearchFilterOption] = useState("");
-    const [numFilter, setNumFilter] = useState(1);
-
-    const [searchFilterText, setSearchFilterText] = useState("");
-
-    const [datePickerValues, setDatePickerValues] = useState([
-        new DateObject().subtract(4, "days"),
-        new DateObject().add(4, "days")
-    ])
-
-    const datePickerRef = useRef()
-
-    useEffect(() => {
-        dispatch(getAllFinancialReports())
-    }, [])
-
-    const ExcelFile = ReactExport.ExcelFile;
-    const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
-    const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+  const [copyItem, setCopyItem] = useState([]);
+  const [placeholderPadding, setplaceholderPadding] = useState("");
+  const [handleClickButton, setHandleClickButton] = useState(false);
+  const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
+  const [searchFilterOption, setSearchFilterOption] = useState("");
+  const [numFilter, setNumFilter] = useState(1);
+       const [handleClickCopy, setHandleClickCopy] = useState(false);
 
 
-    // const handleCheckingInput = () => {
-    //     debugger;
 
-    //     if (copyItem.length > 0) {
-    //       setSelectColumnTitle("کپی");
-    //     } else {
-    //       setSelectColumnTitle("انتخاب");
-    //     }
-    //   };
+  const [searchFilterText, setSearchFilterText] = useState("");
 
-    const dataSet1 = [
-        {
-            name: "Johson",
-            amount: 30000,
-            sex: 'M',
-            is_married: true
-        },
-        {
-            name: "Monika",
-            amount: 355000,
-            sex: 'F',
-            is_married: false
-        },
-        {
-            name: "John",
-            amount: 250000,
-            sex: 'M',
-            is_married: false
-        },
-        {
-            name: "Josef",
-            amount: 450500,
-            sex: 'M',
-            is_married: true
-        }
-    ];
+  const [datePickerValues, setDatePickerValues] = useState([
+    new DateObject().subtract(4, "days"),
+    new DateObject().add(4, "days"),
+  ]);
 
+  const datePickerRef = useRef();
 
-    const [excelData, setExcelData] = useState([]);
+  useEffect(() => {
+    dispatch(getAllFinancialReports());
+  }, []);
 
-    const { financialDataTable } = useSelector(state => state.financialState)
+  const ExcelFile = ReactExport.ExcelFile;
+  const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+  const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
-    useEffect(() => {
+  // const handleCheckingInput = () => {
+  //     debugger;
 
-        if (excelData != financialDataTable) {
-            // debugger
-            let financialEx = [];
-            for (let i = 0; financialDataTable.length < 10 ? i < financialDataTable.length : i < 10; i++) {
-                financialEx.push(financialDataTable[i])
-            }
-            setExcelData(financialEx);
-        }
-    }, [financialDataTable])
+  //     if (copyItem.length > 0) {
+  //       setSelectColumnTitle("کپی");
+  //     } else {
+  //       setSelectColumnTitle("انتخاب");
+  //     }
+  //   };
 
-    console.log(copyItem)
-    if (copyItem.length > 0) {
+  const dataSet1 = [
+    {
+      name: "Johson",
+      amount: 30000,
+      sex: "M",
+      is_married: true,
+    },
+    {
+      name: "Monika",
+      amount: 355000,
+      sex: "F",
+      is_married: false,
+    },
+    {
+      name: "John",
+      amount: 250000,
+      sex: "M",
+      is_married: false,
+    },
+    {
+      name: "Josef",
+      amount: 450500,
+      sex: "M",
+      is_married: true,
+    },
+  ];
 
-        console.log(copyItem[0].description + "hhi")
+  const { financialDataTable } = useSelector((state) => state.financialState);
+  console.log(copyItem);
+  if (copyItem.length > 0) {
+    console.log(copyItem[0].description + "hhi");
+  }
+  function customCopy() {
+    var myListOutput = "";
+    for (var i = 0; i < copyItem.length; i++) {
+      //check if list is NOT the last in the array, if last don't output a line break
+      if (i != copyItem.length - 1) {
+        let lineItem = copyItem[i] + "\n";
+        myListOutput = myListOutput + lineItem;
+      } else {
+        let lineItem = copyItem[i];
+        myListOutput = myListOutput + lineItem;
+      }
     }
-    console.log(copyItem);
-    console.log(excelData);
-
-    const handleCircleColor=(text)=>{
-        var strind="";
-        if (text.includes("رایگان")) {
-            return "bg-[#FFCE47]";
-        }else if (text.includes("طلایی")) {
-            return "bg-[#FFCE47]";
-            
-        }else if (text.includes("نقره ای")) {
-            return "bg-[#F2F5F7]";
-            
-        }else if (text.includes("برنزی")) {
-            return "bg-[#E99991]";
-            
-        }else if (text.includes("الماسی")) {
-            return "bg-[#0A65CD]";
-            
-        }
-        return "bg-[#F2F5F7]"
-    }
-    return (
-        <div>
-            <div>
-                <div className='flex gap-6 items-center pr-4 mt-3'>
-                    <div className='w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]' />
-                    <span className='text-lg'>{title}</span>
-                </div>
-            </div>
-            {/* <div className=' w-[1038px] m-auto'> */}
-            {/* <img src="/img/modal/body/report.svg" className='w-full h-11' alt="" /> */}
-            <div className=' w-full px-10 m-auto pb-16'>
-                <header className='flex items-center justify-between h-10 w-full mb-7 mt-10'>
-                    {/* <input
+    return myListOutput;
+  }
+  const copyButton = () => {
+    navigator.clipboard.writeText(customCopy());
+    setHandleClickButton(true);
+    setTimeout(() => {
+      setHandleClickButton(false);
+    }, 500);
+  };
+  return (
+    <div>
+      <div>
+        <div className="flex gap-6 items-center pr-4 mt-3">
+          <div className="w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]" />
+          <span className="text-lg">{title}</span>
+        </div>
+      </div>
+      {/* <div className=' w-[1038px] m-auto'> */}
+      {/* <img src="/img/modal/body/report.svg" className='w-full h-11' alt="" /> */}
+      <div className=" w-full px-10 m-auto">
+        <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
+          {/* <input
                         id="keyWordSearchBoxFilter"
                         type="text"
                         style={{
@@ -162,167 +147,228 @@ export default function TableFinancialReports({ title }) {
                         // }}
                         // onBlur={() => setInputClick(!inputClick)}
                     /> */}
-                    <div className='w-80'>
-                        <KeyWordsSearch usedBySection={"financialReports/search"} secoundSearch={e => setSearchFilterText(e.target.value)} inputPlaceHolder={"فیلد جستجو"} getRadioValue={setSearchFilterOption} />
-                    </div>
-                    <div className='flex items-center'>
-                        <span className=' ml-2'>مرتب سازی بر اساس</span>
-                        <div className=' w-48'>
-                            <KeyWordsSearch usedBySection={"financialReports/sort"} inputPlaceHolder={targetSortFilter} getRadioValue={setTargetSortFilter} />
-                        </div>
-                    </div>
-                    <div>
-                        {targetSortFilter == "تاریخ خرید" ? (
-                            <DatePicker
-                                range
-                                value={datePickerValues}
-                                // ref={datePickerRef}
-                                // onOpen={true}
-                                calendar={persian}
-                                locale={persian_fa}
-                                calendarPosition="bottom-right"
-                                onChange={setDatePickerValues}
-                                format="DD MMMM YYYY - "
-                                render={(value, openCalendar) => <div className='flex justify-start items-center px-3 w-52 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]' onClick={openCalendar}><img src='/img/dashboard/financialReports/calendar/file_download.svg' /><span className='text-xs mr-3'>{value}</span></div>}
-                            >
-                                {/* <div className='w-full flex justify-between p-4'>
+          <div className="w-80">
+            <KeyWordsSearch
+              usedBySection={"financialReports/search"}
+              secoundSearch={(e) => setSearchFilterText(e.target.value)}
+              inputPlaceHolder={"فیلد جستجو"}
+              getRadioValue={setSearchFilterOption}
+            />
+          </div>
+          <div className="flex items-center">
+            <span className=" ml-2">مرتب سازی بر اساس</span>
+            <div className=" w-48">
+              <KeyWordsSearch
+                usedBySection={"financialReports/sort"}
+                inputPlaceHolder={targetSortFilter}
+                getRadioValue={setTargetSortFilter}
+              />
+            </div>
+          </div>
+          <div>
+            {targetSortFilter == "تاریخ خرید" ? (
+              <DatePicker
+                range
+                value={datePickerValues}
+                // ref={datePickerRef}
+                // onOpen={true}
+                calendar={persian}
+                locale={persian_fa}
+                calendarPosition="bottom-right"
+                onChange={setDatePickerValues}
+                format="DD MMMM YYYY - "
+                render={(value, openCalendar) => (
+                  <div
+                    className="flex justify-start items-center px-3 w-52 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
+                    onClick={openCalendar}
+                  >
+                    <img src="/img/dashboard/financialReports/calendar/file_download.svg" />
+                    <span className="text-xs mr-3">{value}</span>
+                  </div>
+                )}
+              >
+                {/* <div className='w-full flex justify-between p-4'>
                                     <AuthButton textButton={"تایید"} handlerClick={datePickerRef.current.closeCalendar()} />
                                     <AuthButton textButton={"انصراف"} classes=" bg-[#F2F5F7] text-[#488CDA]" />
                                 </div> */}
-                            </DatePicker>
-                        ) : (
-                            <div className='flex justify-between items-center px-1 w-14 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]'>
-                                <img src="/img/dashboard/financialReports/numArrow.svg" alt="" onClick={() => numFilter > 1 && setNumFilter(numFilter - 1)} className='  cursor-pointer' />
-                                <span className='text-xs cursor-default'>{numFilter}</span>
-                                <img src="/img/dashboard/financialReports/numArrow.svg" alt="" onClick={() => setNumFilter(numFilter + 1)} className='cursor-pointer rotate-180' />
-                            </div>
-                        )}
+              </DatePicker>
+            ) : (
+              <div className="flex justify-between items-center px-1 w-14 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]">
+                <img
+                  src="/img/dashboard/financialReports/numArrow.svg"
+                  alt=""
+                  onClick={() => numFilter > 1 && setNumFilter(numFilter - 1)}
+                  className="  cursor-pointer"
+                />
+                <span className="text-xs cursor-default">{numFilter}</span>
+                <img
+                  src="/img/dashboard/financialReports/numArrow.svg"
+                  alt=""
+                  onClick={() => setNumFilter(numFilter + 1)}
+                  className="cursor-pointer rotate-180"
+                />
+              </div>
+            )}
 
-                        {/* <RangeDatePicker /> */}
-                    </div>
-                    <div className=' inline-block'>
-                        {/* <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={[searchFilterOption,searchFilterText,targetSortFilter,datePickerValues]}/> */}
-                        <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={{ textTarget: searchFilterOption, textValue: searchFilterText, sortTarget: targetSortFilter, sortValue: targetSortFilter == "تاریخ خرید" ? datePickerValues : numFilter }} />
-                    </div>
-                </header>
-                <div className=' w-full  rounded-lg border border-[#D9D9D9] h-[672px]'>
-                    <div className=' mb-4 h-full w-full'>
-                        <div className=' h-full'>
+            {/* <RangeDatePicker /> */}
+          </div>
+          <div className=" inline-block">
+            {/* <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={[searchFilterOption,searchFilterText,targetSortFilter,datePickerValues]}/> */}
+            <AuthButton
+              textButton={"اعمال"}
+              reduxHandleClick={filterFinancialReports}
+              setOnclickValue={{
+                textTarget: searchFilterOption,
+                textValue: searchFilterText,
+                sortTarget: targetSortFilter,
+                sortValue:
+                  targetSortFilter == "تاریخ خرید"
+                    ? datePickerValues
+                    : numFilter,
+              }}
+            />
+          </div>
+        </header>
+        <div className=" w-full  rounded-lg border border-[#D9D9D9] h-[672px] overflow-hidden">
+          <div className=" mb-4 h-full w-full">
+            <div className=" overflow-hidden h-full">
+              <div className=" h-14 text-sm font-normal flex items-center justify-around flex-row-reverse bg-[#FCFCFB]">
+                <p className=" w-28 text-center">عملیات</p>
+                <p className=" w-24 text-center">وضعیت پرداخت</p>
+                <p className=" w-11 text-center">مبلغ</p>
+                <p className=" w-[68px] text-center">تاریخ انقضا</p>
+                <p className=" w-16 text-center">تاریخ خرید</p>
+                <p className=" w-36 text-center">نوع اشتراک</p>
+                <p className=" w-20 text-center">شماره فاکتور</p>
+                <p className=" w-8 text-center">ردیف</p>
+                <span className="relative ">
+                  <span
+                    id="box"
+                    class={
+                      handleClickButton
+                        ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-[40px] left-[100%] z-50"
+                        : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute z-50  rounded bg-[#ffffff]"
+                    }
+                  >
+                    کپی شد!
+                  </span>
+                  <p
+                    className=" w-11 text-center cursor-pointer"
+                    onClick={() => copyButton()}
+                  >
+                    {copyItem.length > 0 ? "کپی" : "انتخاب"}
+                  </p>
+                </span>
+              </div>
+              <div className="overflow-scroll h-[94%] text-xs font-normal">
+                {financialDataTable.map((item, index) => (
+                  <div
+                    className={`w-full h-16 border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
+                  >
+                    <p className=" w-28 text-center">{item.type_text}</p>
+                    <p className=" w-24 text-center">
+                      <span
+                        className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${
+                          item.payment_status_text == "پرداخت ناموفق"
+                            ? " bg-[#F35242]"
+                            : item.payment_status_text == "پرداخت نشده"
+                            ? "bg-[#FFCE47]"
+                            : "bg-[#10CCAE]"
+                        }`}
+                      >
+                        {item.payment_status_text}
+                      </span>
+                    </p>
+                    <p className=" w-11 text-center">{item.sub_total}</p>
+                    <p className=" w-[68px] text-center">{item.updated_at}</p>
+                    <p className=" w-16 text-center">{item.created_at}</p>
+                    <p className=" w-36 text-center">
+                      {item.description.substring(31, item.description.length)}
+                    </p>
+                    <p className=" w-20 text-center">{item.order_code}</p>
+                    <p className=" w-8 text-center">{index + 1}</p>
+                    <p className=" w-11 text-center">
+                      <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
+                        <input
+                          type={"checkbox"}
+                          className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
+                          onClick={(e) => {
+                            if (e.target.checked) {
+                              setCopyItem([...copyItem, item.order_code]);
+                            } else {
+                              setCopyItem(
+                                copyItem.filter(
+                                  (copyItems) => copyItems != item.order_code
+                                )
+                              );
+                            }
 
-                            <div className=' h-14 text-sm font-normal flex items-center justify-around flex-row-reverse bg-[#FCFCFB]'>
-                                <p className=' w-28 text-center'>عملیات</p>
-                                <p className=' w-24 text-center'>وضعیت پرداخت</p>
-                                <p className=' w-11 text-center'>مبلغ</p>
-                                <p className=' w-[68px] text-center'>تاریخ انقضا</p>
-                                <p className=' w-16 text-center'>تاریخ خرید</p>
-                                <p className=' w-36 text-center'>نوع اشتراک</p>
-                                <p className=' w-20 text-center'>شماره فاکتور</p>
-                                <p className=' w-8 text-center'>ردیف</p>
-                                {/* <p className=' w-11 text-center'>{copyItem.length > 0 ? "کپی" : "انتخاب"}</p> */}
-                                <div
-                                    className={
-                                        copyItem.length > 0
-                                            ? "text-sm font-medium text-gray-900 pr-2  text-right text-[#0A65CD] relative cursor-pointer"
-                                            : "text-sm font-medium text-gray-900 pr-2  text-right text-[#D9D9D9] relative "
-                                    }
-                                    onClick={() => {
-                                        // navigator.clipboard.writeText(customCopy());
-                                        setHandleClickCopy(true);
-                                        setTimeout(() => {
-                                            setHandleClickCopy(false);
-                                        }, 1000);
-                                    }}
-                                >
-                                    <span
-                                        class={
-                                            copyItem.length > 0 & handleClickCopy
-                                                ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#ffffff] -top-11"
-                                                : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
-                                        }
-                                    >
-                                        کپی شد!
-                                    </span>
-                                    {copyItem.length > 0 ? "کپی" : "انتخاب"}
-                                </div>
-                            </div>
-                            <div className='overflow-scroll h-[94%] text-xs font-normal'>
-                                {financialDataTable.map((item, index) => (
-                                    <div className={`w-full h-16 border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}>
-                                        <p className=' w-28 text-center'>{item.type_text}</p>
-                                        <p className=' w-24 text-center'><span className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text == "پرداخت ناموفق" ? " bg-[#F35242]" : item.payment_status_text == "پرداخت نشده" ? "bg-[#FFCE47]" : "bg-[#10CCAE]"}`}>{item.payment_status_text}</span></p>
-                                        <p className=' w-11 text-center'>{item.sub_total!="0"?`${item.sub_total.substring(0,item.sub_total.length-3)}.${item.sub_total.substring(item.sub_total.length,item.sub_total.length-3)}`:item.sub_total}</p>
-                                        <p className=' w-[68px] text-center'>{item.updated_at}</p>
-                                        <p className=' w-16 text-center'>{item.created_at}</p>
-                                        <p className=' w-36 text-center flex items-center'> <div className={` w-3 h-3 inline-block rounded-full ml-2 ${handleCircleColor(item.description)}`}></div>{item.description.substring(31, item.description.length)}</p>
-                                        <p className=' w-20 text-center'>{item.order_code}</p>
-                                        <p className=' w-8 text-center'>{index + 1}</p>
-                                        <p className=' w-11 text-center'>
-                                            <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
-                                                <input
-                                                    type={"checkbox"}
-                                                    className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
-                                                    onClick={(e) => {
-                                                        if (e.target.checked) {
-                                                            setCopyItem([...copyItem, item]);
-                                                            console.log(copyItem);
-                                                            console.log(e.target.checked);
-                                                        } else {
-                                                            setCopyItem(
-                                                                copyItem.filter((copyItems) => copyItems != item)
-                                                            );
-                                                            console.log(copyItem);
-                                                        }
-
-                                                        // handleCheckingInput(e.target.checked, item);
-                                                    }}
-                                                />
-                                            </div>
-                                        </p>
-                                    </div>
-                                ))}
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* <exportExcel /> */}
-                <div className='w-full text-left mt-7'>
-                    <div className=' inline-block'>
-                        {excelData.length > 0 ? (
-                            <Fragment> 
-                                <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={excelData} textButton={<Fragment><img src='/img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
-                                    <ExcelSheet data={excelData} name="Employees">
-                                        <ExcelColumn label="شماره فاکتور" value={"order_code"} />
-                                        <ExcelColumn label="نوع اشتراک" value={"description"} />
-                                        <ExcelColumn label="تاریخ خرید" value={"created_at"} />
-                                        <ExcelColumn label="تاریخ انقضا" value={"updated_at"} />
-                                        <ExcelColumn label="مبلغ" value={"sub_total"} />
-                                        <ExcelColumn label="وضعیت پرداخت" value={"payment_status_text"} />
-                                        <ExcelColumn label="عملیات" value={"type_text"} />
-                                    </ExcelSheet>
-                                </ExcelFile>
-                            </Fragment>
-                        ) : null}
-
-                        {/* <Fragment>
-                            <ExcelFile element={<AuthButton handlerClick={""} setOnclickValue={copyItem} textButton={<Fragment><img src='/img/dashboard/financialReports/file_download.svg' className=' ml-3' /> خروجی اکسل</Fragment>} />}>
-                                <ExcelSheet data={copyItem} name="Employees">
-                                    <ExcelColumn label="شماره فاکتور" value={"order_code"} />
-                                    <ExcelColumn label="نوع اشتراک" value={"description"} />
-                                    <ExcelColumn label="تاریخ خرید" value={"created_at"} />
-                                    <ExcelColumn label="تاریخ انقضا" value={"updated_at"} />
-                                    <ExcelColumn label="مبلغ" value={"sub_total"} />
-                                    <ExcelColumn label="وضعیت پرداخت" value={"payment_status_text"} />
-                                    <ExcelColumn label="عملیات" value={"type_text"} />
-                                </ExcelSheet>
-                            </ExcelFile>
-                        </Fragment> */}
-
-
-
-                    </div>
-                </div>
+                            // handleCheckingInput(e.target.checked, item);
+                          }}
+                        />
+                      </div>
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
+          </div>
         </div>
-    )
+        {/* <exportExcel /> */}
+        <div className="w-full text-left mt-7">
+          <div className=" inline-block">
+            {copyItem.length > 0 ? (
+              <Fragment>
+                <ExcelFile
+                  element={
+                    <AuthButton
+                      handlerClick={""}
+                      setOnclickValue={copyItem}
+                      textButton={
+                        <Fragment>
+                          <img
+                            src="/img/dashboard/financialReports/file_download.svg"
+                            className=" ml-3"
+                          />{" "}
+                          خروجی اکسل
+                        </Fragment>
+                      }
+                    />
+                  }
+                >
+                  <ExcelSheet data={copyItem} name="Employees">
+                    <ExcelColumn label="شماره فاکتور" value={"order_code"} />
+                    <ExcelColumn label="نوع اشتراک" value={"description"} />
+                    <ExcelColumn label="تاریخ خرید" value={"created_at"} />
+                    <ExcelColumn label="تاریخ انقضا" value={"updated_at"} />
+                    <ExcelColumn label="مبلغ" value={"sub_total"} />
+                    <ExcelColumn
+                      label="وضعیت پرداخت"
+                      value={"payment_status_text"}
+                    />
+                    <ExcelColumn label="عملیات" value={"type_text"} />
+                  </ExcelSheet>
+                </ExcelFile>
+              </Fragment>
+            ) : null}
+
+            {/* <ExcelSheet data={dataSet1} name="Employees">
+                                <ExcelColumn label="Name" value="name" />
+                                <ExcelColumn label="Wallet Money" value="amount" />
+                                <ExcelColumn label="Gender" value="sex" />
+                            </ExcelSheet> */}
+            {/* <ExcelSheet data={copyItem} name="Employees">
+                            <ExcelColumn label="شماره فاکتور" value={"order"} />
+                                <ExcelColumn label="نوع اشتراک" value={"type eshterak"} />
+                                <ExcelColumn label="تاریخ خرید" value={"date"} />
+                                <ExcelColumn label="تاریخ انقضا" value={"date ex"} />
+                                <ExcelColumn label="مبلغ" value={"price"} />
+                                <ExcelColumn label="وضعیت پرداخت" value={"state"} />
+                                <ExcelColumn label="عملیات" value={"handle"} />
+                            </ExcelSheet> */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

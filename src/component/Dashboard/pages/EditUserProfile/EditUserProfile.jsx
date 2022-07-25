@@ -34,6 +34,7 @@ export default function EditUserProfile() {
   const [nameInputValue, setNameInputValue] = useState("");
   const [familyInputValue, setfamilyInputValue] = useState("");
   // user Image
+  
   const [image, setUserImage] = useState([]);
   const userImageProf = image.map((file) => file.preview);
   
@@ -199,7 +200,7 @@ export default function EditUserProfile() {
   const forceUpdate = userState.forceUpdate;
   useEffect(() => {
     // pastSelexboxData();
-    if (selectDatas.length!=0) {
+    if (selectDatas.length==0) {
       selexboxData();
       
     }
@@ -227,7 +228,7 @@ export default function EditUserProfile() {
       {updatePass && (
         <PopUp
           clickHandler={() => setUpdatePass(false)}
-          image={"./img/popUp/tik.svg"}
+          image={"/img/popUp/tik.svg"}
           type={"sucsess"}
           buttonText={" باشه، بزن بریم"}
           text={" حالا می‌توانید کارتان را شروع کنید.   "}

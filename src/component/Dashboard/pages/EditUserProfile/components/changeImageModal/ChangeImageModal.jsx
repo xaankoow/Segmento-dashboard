@@ -88,7 +88,7 @@ export default function ChangeImageModal({
         {imageChanged && (
           <PopUp
             clickHandler={() => setImageChanged(false)}
-            image={"./img/popUp/tik.svg"}
+            image={"/img/popUp/tik.svg"}
             type={"sucsess"}
             buttonText={"باشه، فهمیدم!"}
             text={" تصویر پروفایل شما با موفقیت تغییر کرد!   "}
