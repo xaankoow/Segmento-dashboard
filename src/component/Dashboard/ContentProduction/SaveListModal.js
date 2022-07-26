@@ -125,7 +125,7 @@ export default function SaveListModal({
       contentLabel="Example Modal"
       // className={"myModal"}
     >
-      <div className="flex flex-col items-center px-4 py-8 gap-5 z-50" >
+      <div className="flex flex-col items-center px-4 py-8 gap-5 z-50 min-w-[500px]" >
       <img
               src="/img/dashboard/nav_right/close.svg"
               alt="close"

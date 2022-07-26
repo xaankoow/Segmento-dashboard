@@ -8,7 +8,7 @@ import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch
 import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUp from "../../Utils/PopUp/PopUp";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const KeyWords = ({ onClickHandler }) => {
 
@@ -24,7 +24,15 @@ const KeyWords = ({ onClickHandler }) => {
     setSearchBoxHandleClick(false);
   };
   //3
+  const loadingState = useSelector(state => state.loadingState)
+  const dispatch = useDispatch()
   const handleSetKeyWords = async () => {
+      //handle show loadin
+      {
+        loadingState.ProcessingDelay.push("dataTable");
+        loadingState.canRequest = false;
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      }
     try {
       const dd={
         "key": searchBoxValue,
@@ -43,6 +51,13 @@ const KeyWords = ({ onClickHandler }) => {
     } catch (error) {
       
       // console.log(error)
+    }
+    //handle hide loading
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "dataTable");
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
     }
   };
   // store data in myList
@@ -180,8 +195,8 @@ const KeyWords = ({ onClickHandler }) => {
       <button
         className={
           searchBoxValue && searchBoxHandleClick
-            ? "btn-style mr-5 mt-5 flex gap-3"
-            : "bg-[#D3D5E2] btn-style mr-5 mt-5 flex gap-3"
+            ? "btn-style mr-5 my-5 flex gap-3"
+            : "bg-[#D3D5E2] btn-style mr-5 my-5 flex gap-3"
         }
         disabled={canRequest?searchBoxHandleClick ? false : true:true}
         onClick={(e) =>{handleSetStoreKeyWords()}}
