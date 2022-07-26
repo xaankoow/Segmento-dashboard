@@ -22,7 +22,7 @@ export default function AuthButton({
     <button
       variant="contained"
       className={`btn-style ${classes!=undefined?classes:""}`}
-      disabled={disabled}
+      disabled={disabled!=undefined?disabled?true:!canRequest:!canRequest}
 
       style={style}
       onClick={handlerClick != undefined&handlerClick != "" & reduxHandleClick != undefined ? (

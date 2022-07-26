@@ -90,11 +90,87 @@ export default function EditUserProfile() {
       const { data, status } = await getSelectBoxData();
       // setcontent(data.data); //5
       setSelectDtas(data.data);
-      console.log(selectDatas);
+      // console.log(selectDatas);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const thumbs = userState.image[0] != "" ? (
+    <>
+      <img
+        src={userState.image[0].preview}
+        className="rounded-full my-3 w-[125px] h-[125px]"
+        alt="userImage"
+      />
+    </>
+  ) : (
+    <img
+      src={""}
+      className="rounded-full my-3 max-w-[125px] max-h-[125px]"
+      alt="auserImagesd"
+    />
+  );
+
+
+  useEffect(() => {
+    // Make sure to revoke the data uris to avoid memory leaks
+    userState.image.forEach((file) => URL.revokeObjectURL(file.preview));
+  }, [userState.image]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const handleSetNewProfile = async () => {
     let family = "";
@@ -120,7 +196,7 @@ export default function EditUserProfile() {
       toast.success("اطلاعات شما با موفقیت ویرایش شد");
       setForceUpdate(!forceUpdates);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("اطلاعات شما ذخیره نشد !");
     }
   };
@@ -137,21 +213,21 @@ export default function EditUserProfile() {
     if (userState.userData.user != undefined) {
       var uuidUser = userState.userData.user.uuid;
 
-      console.log(uuidUser);
+      // console.log(uuidUser);
       try {
         // const { data, status } = await getPastDatas(uuidUser); // --------- 
         const { data, status } = await getPastDatas(uuidUser); // --------- ایمپورت اشتباه
         setPastData(data.data); //5
-        console.log(data);
+        // console.log(data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
 
     }
   };
   // select box data
   const data = [];
-  console.log(data)
+  // console.log(data)
   Object.keys(selectDatas).map((item) => {
     data.push(selectDatas[item]);
   });
@@ -175,7 +251,7 @@ export default function EditUserProfile() {
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await editPassword(formdata);
       // setcontent(data.data); //5
-      console.log(data.errors);
+      // console.log(data.errors);
       if (data.errors.length != 0) {
         toast.error(data.errors[0]);
       } else {
@@ -183,7 +259,7 @@ export default function EditUserProfile() {
       }
       setForceUpdate(!forceUpdates);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("لطفا فیلد ها را با دقت پر کنید");
     }
   };
@@ -214,6 +290,7 @@ export default function EditUserProfile() {
 
   // 
  
+  console.log(userState.image);
   return (
     <>
       {openChangeImageModal && (
@@ -234,7 +311,8 @@ export default function EditUserProfile() {
           title={" گذرواژه جدید ذخیره شد."}
         />
       )}
-     
+      {thumbs}
+     {/* <img src={userState.image!=""?userState.image.preview:""} onLoad={()=>userState.image!=""?URL.revokeObjectURL(userState.image.preview):""} alt="test user image" className="w-full h-64"/> */}
       <div className="">
         <PageTitle title={"حساب کاربری"} />
         {/* <AuthButton textButton={"test api"} handlerClick={pastSelexboxData()}/> */}

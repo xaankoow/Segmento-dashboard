@@ -9,6 +9,7 @@ export const planReducer = (state =
         commercialPage2: "",
         planChosen: "",
         discount: "",
+        discountStatus:{value:0,planType:""},
         packageUuid: "",
         forceUpdate: 0,
         planDetails: {},
@@ -54,12 +55,14 @@ export const planReducer = (state =
             return { ...action.payload }
         case "MODAL_PLAN_TRY_FREE":
             return { ...action.payload }
-        case "MODAL_SET_WORK_SPACE_PLAN":
+        case "MODAL_SET_WORK_SPACE_EASY_START":
             return { ...action.payload }
         case "MODAL_PLAN_GET_PACKAGE_DETAILS":
             return { ...action.payload }
 
         case "MODAL_PLAN_FORCE_UPDATE":
+            return { ...action.payload }
+        case "MODAL_PLAN_DISCOUNT_CODE":
             return { ...action.payload }
 
         // case "RESET_STATE":

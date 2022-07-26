@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
-import { findUserAction } from '../../../Redux/Action'
+import { changeRegisterCompleteCheck, findUserAction } from '../../../Redux/Action'
 import getCookie from '../../../Utils/findUser'
 
 export default function Nav({path}) {
@@ -18,15 +18,21 @@ export default function Nav({path}) {
 
   const navigate=useNavigate();
 
-
+  const dispatch=useDispatch();
   const userToken= localStorage.getItem("token")
   //REGISTER COMPLETE => NAVIGATE TO VERIFY FORM
-  useEffect(() => {
-    // debugger
-    if (checkRegisterComplete == true) {
-      navigate("/ValidateEmail")
-    }
-  }, [checkRegisterComplete])
+  // debugger
+  // // console.log(window.location.href.includes("ValidateEmail"));
+  if (checkRegisterComplete == true) {
+    navigate("/ValidateEmail")
+    dispatch(changeRegisterCompleteCheck(false));
+  }
+  // useEffect(() => {
+  // //   // debugger
+  // if (checkRegisterComplete == true) {
+  //     navigate("/ValidateEmail")
+  //   }
+  // }, [checkRegisterComplete])
 
   // debugger
   useEffect(() => {
@@ -36,7 +42,7 @@ export default function Nav({path}) {
   }, [userToken])
   
   
-  console.log(window.location.pathname)
+  // console.log(window.location.pathname)
   return (
     <div id='nav-option-head' className='w-full flex items-center justify-between px-28'>
       <div className='flex justify-around items-center'>

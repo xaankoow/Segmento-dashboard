@@ -69,8 +69,8 @@ export default function SaveListModal({
     handleGetcontent();
     // }
   }, []);
-  console.log(SaveInputValue);
-  console.log(dataTable);
+  // console.log(SaveInputValue);
+  // console.log(dataTable);
   if (isContentProduction) {
     var handleSetcontent = async () => {
       try {
@@ -83,7 +83,7 @@ export default function SaveListModal({
         setUpdate(!update);
         handleGetcontent();
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     var handleUpdate = async () => {
@@ -97,7 +97,7 @@ export default function SaveListModal({
         setUpdate(!update);
         handleGetcontent()
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     var handleGetcontent = async () => {
@@ -106,7 +106,7 @@ export default function SaveListModal({
         debugger;
         setcontent(data.data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
   }

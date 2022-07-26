@@ -31,10 +31,10 @@ export default function ChangeImageModal({
   const userState = useSelector((state) => state.userState);
   const [files, setFiles] = useState([""]);
   // var user_image = userState.userData.user.image;
-  console.log(files);
+  // console.log(files);
+
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-
     accept: ["JPG", "PNG", "GIF"],
     onDrop: (acceptedFiles) => {
       setFiles(
@@ -47,6 +47,7 @@ export default function ChangeImageModal({
     },
   });
 
+  console.log(files[0].preview);
   // debugger
   const thumbs = files[0] != "" ? (
     <>
@@ -71,7 +72,7 @@ export default function ChangeImageModal({
   // console.log(files);
   // debugger
   // console.log(files[0]);
-  console.log(files)
+  // console.log(files)
   return (
     <Modal
       isOpen={isOpen ? true : false}
@@ -140,7 +141,7 @@ export default function ChangeImageModal({
                 <AuthButton
                   textButton={" ذخیره تغییرات"}
                   reduxHandleClick={setImageProfRedux}
-                  setOnclickValue={files[0] != "" ? files[0] : ""}
+                  setOnclickValue={files.length != 0 ? files : []}
                 />
                 {/* <button className="btn-style" onClick={() => setUserImage(files)}> */}
                 {/* {" "}

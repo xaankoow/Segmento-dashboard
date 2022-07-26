@@ -203,7 +203,7 @@ export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput
     const handleSetStateAddCompetitorSite = (keyWordIndex) => {
         // debugger
 
-        console.log(addCompetitorSite)
+        // console.log(addCompetitorSite)
         var competitorSites = addCompetitorSite;
         competitorSites[keyWordIndex - 1].push(competitorSites[keyWordIndex - 1].length + 1);
         const dd = addCompetitorSite[keyWordIndex - 1].length;

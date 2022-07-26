@@ -2,7 +2,8 @@ import { Tab } from "@headlessui/react";
 import { list } from "postcss";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addLoadingItem, removeLoadingItem } from "../../../Redux/Action/loading";
 import { ContentProductionGetService } from "../../../service/contentProductionStore";
 import { dataTableContentProduction } from "../../../service/dataTable";
 import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
@@ -20,6 +21,7 @@ export default function MyList() {
   // jalali moment
   var moment = require("jalali-moment");
   
+  const dispatch =useDispatch();
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -30,22 +32,25 @@ export default function MyList() {
 
   useEffect(() => {
     // if (canRequest) {
+      // debugger
       handleGetcontent();
     // }
   }, []);
-  var handleGetcontent = async () => {
+  const handleGetcontent = async () => {
+    // dispatch(addLoadingItem("ContentProductionGetService"))
     try {
       const { data, status } = await ContentProductionGetService();
       const tableDataFiltered = [];
       for (let index = data.data.length; index >=0; index--) {
         if (data.data[index] != undefined)
-          tableDataFiltered.push(data.data[index]);
+        tableDataFiltered.push(data.data[index]);
       }
-
+      
       setTableDatas(tableDataFiltered);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
+    // dispatch(removeLoadingItem("ContentProductionGetService"))
   };
   // SearchBox value
   const changeHandlerSearchBox = (e) => {

@@ -83,9 +83,9 @@ export default function TableFinancialReports({ title }) {
   ];
 
   const { financialDataTable } = useSelector((state) => state.financialState);
-  console.log(copyItem);
+  // console.log(copyItem);
   if (copyItem.length > 0) {
-    console.log(copyItem[0].description + "hhi");
+    // console.log(copyItem[0].description + "hhi");
   }
   function customCopy() {
     var myListOutput = "";
@@ -244,7 +244,7 @@ export default function TableFinancialReports({ title }) {
                 <span className="relative ">
                   <span
                     id="box"
-                    class={
+                    className={
                       handleClickButton
                         ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-[40px] left-[100%] z-50"
                         : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute z-50  rounded bg-[#ffffff]"

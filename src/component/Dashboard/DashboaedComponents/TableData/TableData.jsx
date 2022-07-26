@@ -19,7 +19,7 @@ export default function Table({
  
   const [activeRow, setActiveRow] = useState(0);
   const [activeCheckBox, setActiveCheckBox] = useState([]);
-  const [isActive, setActive] = useState(false); // <-- set class name when checkbox is checking
+  const [isActive, setActive] = useState(false); // <-- set className name when checkbox is checking
 
   const handleCheckingInput = () => {
     debugger;
@@ -31,7 +31,7 @@ export default function Table({
     }
   };
 
-  console.log(copyItem.length);
+  // console.log(copyItem.length);
   const groupIt = (array) => {
     let resultObj = {};
 
@@ -128,8 +128,8 @@ export default function Table({
     return myListOutput;
   }
   return (
-    <div class=" flex grow flex-col border border-[#D9D9D9] p-0 " id="TABLE">
-      <div class="min-w-full">
+    <div className=" flex grow flex-col border border-[#D9D9D9] p-0 " id="TABLE">
+      <div className="min-w-full">
         <div className="flex items-center justify-between bg-[#FCFCFB] w-full px-2">
           <div className="flex gap-5">
             <div
@@ -147,7 +147,7 @@ export default function Table({
               }}
             >
               <span
-                class={
+                className={
                   copyItem.length > 0 & handleClickCopy
                     ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#ffffff] -top-11"
                     : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
@@ -179,7 +179,7 @@ export default function Table({
           </div>
           <div className="flex gap-4 items-center">
             {headerButton && (
-              <div class="text-sm font-medium text-gray-900 pr-2 py-4 text-right">
+              <div className="text-sm font-medium text-gray-900 pr-2 py-4 text-right">
                 <button
                   disabled={NothingSearch ? true : false}
                   className={
@@ -205,10 +205,10 @@ export default function Table({
                 radioClickedHandler={radioButtonHandler}
               />
             )}
-            <div class="text-sm font-medium text-gray-900 pr-2 py-4 text-right relative">
+            <div className="text-sm font-medium text-gray-900 pr-2 py-4 text-right relative">
               <span
                 id="box"
-                class={
+                className={
                   handleClickButton
                     ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-[29px] left-[70%]"
                     : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute  rounded bg-[#ffffff]"
@@ -282,35 +282,35 @@ export default function Table({
                         : "tableRow relative border-0 flex gap-5 mx-2 items-center"
                     }
                   >
-                    <div class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
+                    <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
                       <input
                         type={"checkbox"}
                         className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
                         onClick={(e) => {
                           if (e.target.checked) {
                             setCopyItem([...copyItem, item]);
-                            console.log(copyItem);
-                            console.log(e.target.checked);
+                            // console.log(copyItem);
+                            // console.log(e.target.checked);
                           } else {
                             setCopyItem(
                               copyItem.filter((copyItems) => copyItems != item)
                             );
-                            console.log(copyItem);
+                            // console.log(copyItem);
                           }
 
                           handleCheckingInput(e.target.checked,item);
                         }}
                       />
                     </div>
-                    <div class="text-sm text-gray-900 font-light pr-4 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900 font-light pr-4 py-4 whitespace-nowrap">
                       {index + 1}
                     </div>
-                    <div class="text-sm text-gray-900 font-light px-5 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900 font-light px-5 py-4 whitespace-nowrap">
                       {item}
                     </div>
                     {activeRow === index ? (
                       <span
-                        class={
+                        className={
                           handleClickCopyIndex
                             ? "flex tooltip tooltip-right absolute left-[100px] rounded bg-[#ffffff] "
                             : "tooltip tooltip-right  hidden absolute   rounded bg-[#ffffff]"

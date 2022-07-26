@@ -11,9 +11,9 @@ const DashboardHeader = ({ setCloseNav }) => {
     const dispatch = useDispatch()
     const userToken = localStorage.getItem("token");
     const userState = useSelector(state => state.userState)
-    const [userName,setUserName]=useState("");
+    const [userName, setUserName] = useState("");
     var user_name = "";
-    if ( userState.userData.user) {
+    if (userState.userData.user) {
         user_name = userState.userData.user.name ? userState.userData.user.name : "";
     } else {
 
@@ -45,7 +45,7 @@ const DashboardHeader = ({ setCloseNav }) => {
             <div className='flex items-center gap-7'>
                 <div className='menuimage w-6 h-6 hover:cursor-pointer' onClick={() => setCloseNav()}></div>
                 <div className='flex items-center gap-3 hover:cursor-pointer'>
-                 
+
                     {/* <div className='Iconimage w-7 h-8'></div> */}
                     {/* <img src="/img/dashboard/header/segmento-logofa.svg" className='w-7 h-8' alt="" /> */}
                     <span className=''>سگمنتو segmento</span>
@@ -54,12 +54,12 @@ const DashboardHeader = ({ setCloseNav }) => {
             <div className='flex items-center gap-9'>
                 <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-[262px]'>
                     <div className='flex gap-3 items-center'>
-                        <img src='/img/dashboard/header/userimage.svg' className='rounded' alt='userImage' />
+                        <img src={userState.userData.user != undefined ? userState.userData.user.img != "" ? userState.userData.user.img : '/img/dashboard/header/userimage.svg' : '/img/dashboard/header/userimage.svg'} className='rounded w-10 h-10' alt='userImage' />
                         <div className=''>
                             <span className='text-sm'>{user_name}</span>
                             <div className='flex items-center justify-right mt-1 gap-3'>
                                 <img src="/img/dashboard/header/Ellipse.svg" alt="Ellipse" />
-                                <span className='text-xs'>اشتراک طلایی</span>
+                                <span className='text-xs'>{userState.userData.package!=undefined?userState.userData.package.title:"بدون پکیج"}</span>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                             <div className='flex items-center pr-2'>
                                 <span className="text-[#F35242]">خروج از حساب کاربری</span>
                             </div>
-                                <img src="/img/dashboard/header/redlogout.svg" alt="logout" className='ml-1'/>
+                            <img src="/img/dashboard/header/redlogout.svg" alt="logout" className='ml-1' />
                             {/* <img src="../img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
                         </div>
 

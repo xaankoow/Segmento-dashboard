@@ -9,7 +9,7 @@ export default function FooterBtn({ stepModal, setFree, setStepModal, handleClos
 
     // const [showInfoPackage,setShowInfoPackage] = useState(false);
     const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2 ,checkUseTryFree } = useSelector(state => state.planState);
-    console.log(lockNextStep)
+    // console.log(lockNextStep)
     const navigate=useNavigate();
 
     return (

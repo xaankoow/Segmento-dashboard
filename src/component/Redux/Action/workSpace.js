@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import { creatWorkSpace, getAllWorkspace, keywords, website } from "../../service/workSpaceService";
-import { showInputErrorToast, showPromisToast } from "../../Utils/toastifyPromise";
+import { showInputErrorToast, showPromisToast, showToast } from "../../Utils/toastifyPromise";
 
 
 
@@ -26,7 +26,7 @@ export const getAllWorkSpace = () => {
         const state = { ...getState().workSpaceState }
         let toastMessage = "";
         try {
-            console.log("start get all work space")
+            // console.log("start get all work space")
             const workSpaces = await getAllWorkspace()
             if (workSpaces.data.status == true && workSpaces.data.code == 200) {
                 state.allWorkSpace = workSpaces.data.data;
@@ -36,7 +36,7 @@ export const getAllWorkSpace = () => {
             // debugger
             await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state })
         } catch (error) {
-            console.log("register error")
+            // console.log("register error")
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
@@ -268,11 +268,18 @@ export const setCompetitorSite = (adress, competitorSite) => {
 export const workSpaceWebsite = () => {
     return async (dispatch, getState) => {
         const state = { ...getState().workSpaceState }
+        const loadingState = { ...getState().loadingState }
         let toastMessage = "";
         const webAdress = state.webAdress;
         if (webAdress != "") {
             try {
-                var toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+                // var toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+                //handle show loadin
+                {
+                    loadingState.ProcessingDelay.push("website");
+                    loadingState.canRequest = false;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                }
                 var row = {
                     "website": webAdress
                 }
@@ -280,22 +287,31 @@ export const workSpaceWebsite = () => {
                 const { data } = await website(row);
                 if (data.code == 200 && data.status == true) {
                     state.webAdressUuid = data.data.uuid;
-                    toast.update(toastPromise, { render: "آدرس وبسایت شما تنظیم شد", type: "success", isLoading: false, autoClose: 3000 })
+                    // toast.update(toastPromise, { render: "آدرس وبسایت شما تنظیم شد", type: "success", isLoading: false, autoClose: 3000 })
                 } else {
                     data.errors.forEach(element => {
                         toastMessage += element + " / ";;
                     });
-                    toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                    showToast(toastMessage, "error");
+                    // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                 }
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
-                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                showToast(toastMessage, "error");
+                // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
             }
             await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state })
         } else {
             showInputErrorToast();
+        }
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "website");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
         }
     }
 }
@@ -303,33 +319,50 @@ export const workSpaceWebsite = () => {
 export const workSpaceKeyWords = () => {
     return async (dispatch, getState) => {
         const state = { ...getState().workSpaceState }
+        const loadingState = { ...getState().loadingState }
         let toastMessage = "";
         const webAdress = state.webAdress;
         if (webAdress != "") {
             try {
-                var toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+                // var toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+                //handle show loadin
+            {
+                loadingState.ProcessingDelay.push("keywords");
+                loadingState.canRequest = false;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            }
                 var row = {
                     "key": webAdress
                 }
                 const { data } = await keywords(row);
                 if (data.code == 200 && data.status == true) {
                     state.webAdressUuid = data.data.uuid;
-                    toast.update(toastPromise, { render: "آدرس وبسایت شما تنظیم شد", type: "success", isLoading: false, autoClose: 3000 })
+                    showToast("آدرس وبسایت شما تنظیم شد", "success");
+                    // toast.update(toastPromise, { render: "آدرس وبسایت شما تنظیم شد", type: "success", isLoading: false, autoClose: 3000 })
                 } else {
                     data.errors.forEach(element => {
                         toastMessage += element + " / ";;
                     });
-                    toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                    showToast(toastMessage, "error");
+                    // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                 }
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
-                toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                showToast(toastMessage, "error");
+                // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
             }
             await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state })
         } else {
             showInputErrorToast();
+        }
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "keywords");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
         }
     }
 }
@@ -340,6 +373,7 @@ export const addWorkSpace = (step) => {
     return async (dispatch, getState) => {
         //  
         const state = { ...getState().workSpaceState }
+        const loadingState = { ...getState().loadingState }
         // debugger
         const webAdress = state.webAdress;
         // const charKey1 = state.charKey1;
@@ -388,7 +422,7 @@ export const addWorkSpace = (step) => {
                     {
                         "key": element.key,
                         "url": "https://" + webAdress + "/" + element.site,
-                        "competitors": step == 5 ? element.competitorSite.map(item=>"https://"+webAdress+"/"+item) : []
+                        "competitors": step == 5 ? element.competitorSite.map(item => "https://" + webAdress + "/" + item) : []
                     }
                 )
             }
@@ -401,16 +435,23 @@ export const addWorkSpace = (step) => {
 
         var websitePages = [websitePage1, websitePage2, websitePage3, websitePage4, websitePage5, websitePage6, websitePage7, websitePage8, websitePage9, websitePage10];
         var pages = websitePages.filter(value => value != "");
-        let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
+        // let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
         var modalWorkSpace = {
             "workspace": "https://" + webAdress,
             "keywords": keywords,
-            "links": step >= 3 ? links.map(item=>"https://"+webAdress+"/"+item) : [],
-            "pages": step >= 4 ? pages.map(item=>"https://"+webAdress+"/"+item) : []
+            "links": step >= 3 ? links.map(item => "https://" + webAdress + "/" + item) : [],
+            "pages": step >= 4 ? pages.map(item => "https://" + webAdress + "/" + item) : []
         }
 
         let toastMessage = "";
         try {
+            //handle show loadin
+            {
+                loadingState.ProcessingDelay.push("creatWorkSpace");
+                loadingState.canRequest = false;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            }
+
             const { data } = await creatWorkSpace(modalWorkSpace);
             // debugger
             if (data.code == 200 && data.status == true) {
@@ -421,26 +462,36 @@ export const addWorkSpace = (step) => {
                     state.allWorkSpace = workSpaces.data.data;
                 }
                 state.resultSetWorkSpace = { reportStatus: false, reportStep: step };
-                toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
+                showToast(data.data.msg, "success");
+                // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
                 // localStorage.setItem("modalWorkSpace", `${data.status},${step}`);
                 // state.forceUpdate += 1;
             } else {
                 // data.errors.forEach(element => {
                 //     toastMessage += element + " / ";
                 // });
-                toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
+                showToast(data.data.msg, "error");
+                // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
             }
-            state.resultSetWorkSpace = { reportStatus: data.code == 200 && data.status == true?true:false, reportStep: step };
+            state.resultSetWorkSpace = { reportStatus: data.code == 200 && data.status == true ? true : false, reportStep: step };
         } catch (error) {
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
-            toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+            showToast(toastMessage, "error");
+            // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
         }
         // } else {
         //     showInputErrorToast();
         // }
 
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "creatWorkSpace");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
         await dispatch({ type: "MODAL_SET_WORK_SPACE_PLAN", payload: state })
     }
 }

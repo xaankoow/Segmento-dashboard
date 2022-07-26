@@ -30,7 +30,7 @@ export const getAllPlanData = () => {
             }
             await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
         } catch (error) {
-            console.log("register error")
+            // console.log("register error")
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
@@ -186,16 +186,16 @@ export const buyPlan = (buyType) => {
                 if (data.code == 200 && data.status == true) {
                     localStorage.setItem("buyType", buyType)
                     window.location.href = data.data;
-                    showToast(data.data.msg,"success");
+                    showToast(data.data.msg, "success");
                 } else {
 
-                    showToast(data.data.msg,"error");
+                    showToast(data.data.msg, "error");
                 }
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
-                showToast(toastMessage,"error");
+                showToast(toastMessage, "error");
             }
         } else {
             showInputErrorToast();
@@ -243,24 +243,24 @@ export const tryFreePlan = () => {
             try {
                 const { data } = await buyPlna(packageInfo);
                 if (data.code == 200 && data.status == true) {
-                    state.checkUseTryFree=true;
-                    showToast("پلن 14 روزه رایگان برایه شما فعال شد","success");
+                    state.checkUseTryFree = true;
+                    showToast("پلن 14 روزه رایگان برایه شما فعال شد", "success");
                 } else {
-                    state.checkUseTryFree=false;
+                    state.checkUseTryFree = false;
                     data.errors.forEach(element => {
                         toastMessage += element + " / ";;
                     });
-                    showToast(toastMessage,"error");
+                    showToast(toastMessage, "error");
                 }
             } catch (error) {
-                state.checkUseTryFree=false;
+                state.checkUseTryFree = false;
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
-                showToast(toastMessage,"error");
+                showToast(toastMessage, "error");
             }
         } else {
-            state.checkUseTryFree=false;
+            state.checkUseTryFree = false;
             showInputErrorToast();
         }
 
@@ -290,7 +290,7 @@ export const tryFreePlan = () => {
 
 
 
-export const applyDiscountAction = discountCode => {
+export const applyDiscountAction = (discountCode, planType) => {
     return async (dispatch, getState) => {
         //  
         const state = { ...getState().planState }
@@ -316,6 +316,10 @@ export const applyDiscountAction = discountCode => {
                 // const { data, status } = await applyDiscount("sample-code");
                 if (data.code == 200 && data.data.status == true) {
                     state.discount = discountCode;
+                    // debugger
+                    // state.discountValue.value = { value: data.data.value.toString().substring(0, data.data.value.toString().length - 3), planType: planType };
+                    state.discountStatus.value = data.data.value.toString().substring(0, data.data.value.toString().length - 3) ;
+                    state.discountStatus.planType =planType ;
                     state.forceUpdate += 1;
                     showToast(data.data.msg, "success");
                     // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
@@ -413,20 +417,20 @@ export const modalSetWorkSpace = () => {
             if (data.code == 200 && data.status == true) {
                 localStorage.setItem("modalWorkSpace", data.status);
                 state.forceUpdate += 1;
-                showToast(data.data.msg,"success");
+                showToast(data.data.msg, "success");
                 // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
             } else {
                 // data.errors.forEach(element => {
                 //     toastMessage += element + " / ";
                 // });
-                showToast(data.data.msg,"error");
+                showToast(data.data.msg, "error");
                 // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
             }
         } catch (error) {
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
-            showToast(toastMessage,"error");
+            showToast(toastMessage, "error");
             // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
         }
         // } else {
@@ -441,7 +445,7 @@ export const modalSetWorkSpace = () => {
             await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
         }
 
-        await dispatch({ type: "MODAL_SET_WORK_SPACE_PLAN", payload: state })
+        await dispatch({ type: "MODAL_SET_WORK_SPACE_EASY_START", payload: state })
     }
 }
 

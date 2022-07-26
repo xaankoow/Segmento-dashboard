@@ -6,7 +6,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import "./register.css";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
+import { RegisterUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 // import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 export const TextButton = React.createContext();
 export default function Register() {
@@ -69,7 +69,7 @@ export default function Register() {
                     // widthValue={"86px"}
                     // bgcolor="#0A65CD"
                     classes={"btn-style"}
-                    reduxHandleClick={registerUserAction}
+                    reduxHandleClick={RegisterUserAction}
                   />
                 </TextButton.Provider>
                 {/* </Link> */}

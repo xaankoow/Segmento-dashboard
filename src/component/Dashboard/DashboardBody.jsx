@@ -101,7 +101,7 @@ export default function DashboardBody() {
   // }
   // console.log(showResultModal)
   // alert( showResultModal)
-  console.log(window.location.pathname);
+  // console.log(window.location.pathname);
   return (
     <div id="DASHBOARD">
       <div className="w-full h-16 bg-[#fff] shadow-3xl">
@@ -109,7 +109,7 @@ export default function DashboardBody() {
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
         <div className="bg-[#ffffff] overflow-y-scroll pb-8 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] grow main">
-          {resultSetWorkSpace.reportStatus == true ? <WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} /> : null}
+          {/* {resultSetWorkSpace.reportStatus == true ? <WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} /> : null} */}
           {/* <PopUp title={"موفقیت آمیز"} text={"کار شما با موفقیت انجام شد !"} buttonText={"باشه، فهمیدم !"} type={"error"}/> */}
         
           

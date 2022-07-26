@@ -38,11 +38,11 @@ const KeyWords = ({ onClickHandler }) => {
       const { data, status } = await keywordService(dd);
       setKeyWords(data.data.result);//5
       setId(data.data.id)
-      console.log(data.data.id);
+      // console.log(data.data.id);
      
     } catch (error) {
       
-      console.log(error)
+      // console.log(error)
     }
   };
   // store data in myList
@@ -53,9 +53,9 @@ const KeyWords = ({ onClickHandler }) => {
 
       const { data, status } = await keywordsStoreService(id);
       showSavePopup(true)
-   console.log(data);
+  //  console.log(data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

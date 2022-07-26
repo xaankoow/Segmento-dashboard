@@ -12,7 +12,7 @@ export default function AcardionItem() {
   const user = useSelector((state) => state.userState);
   // debugger
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
-  console.log(allWorkSpace);
+  // console.log(allWorkSpace);
   const data = [
     {
       title: "ورک‌اسپیس‌ها",
@@ -20,6 +20,7 @@ export default function AcardionItem() {
       acardionItems: allWorkSpace.map((item, index) => ({
         itemTitle: item.website,
         itemIcon: "/img/dashboard/nav_right/storefront.svg",
+        itemLink: "",
       })),
     },
     {
@@ -151,6 +152,7 @@ export default function AcardionItem() {
     }
     setClicked(index);
   };
+  // debugger
   return (
     <>
       {data.map((item, index) => {

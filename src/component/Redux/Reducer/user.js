@@ -2,7 +2,7 @@ export const userReducer = (
   state = {
     fullName: "",
     email: "",
-    image:"",
+    image: [""],
     password: "",
     passwordConfirm: "",
     auth1: "",
@@ -35,6 +35,8 @@ export const userReducer = (
       return { ...action.payload };
     case "REGISTER_USER":
       return { ...action.payload };
+    case "SET_REGISTER_COMPLETE_CHECK":
+      return { ...action.payload };
     case "LOGIN_USER":
       return { ...action.payload };
     case "SEND_CODE_EMAIL":
@@ -57,12 +59,23 @@ export const userReducer = (
       return { ...action.payload };
     case "CHECK_PASS":
       return { ...action.payload };
-    case "RESET_STATE":
+    case "RESET_ALL_STATE":
       return {
+        fullName: "",
         email: "",
+        image: [""],
+        password: "",
+        passwordConfirm: "",
+        auth1: "",
+        auth2: "",
+        auth3: "",
+        auth4: "",
         forgotPasswordStep: 0,
         checkRegisterComplete: false,
         checkVerifyRegister: false,
+        handleResendCode: true,
+        forceUpdate: 0,
+        userData: {}
       };
 
     default:
