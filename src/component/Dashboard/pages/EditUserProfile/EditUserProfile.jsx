@@ -96,6 +96,82 @@ export default function EditUserProfile() {
     }
   };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const thumbs = userState.image[0] != "" ? (
+    <>
+      <img
+        src={userState.image[0].preview}
+        className="rounded-full my-3 w-[125px] h-[125px]"
+        alt="userImage"
+      />
+    </>
+  ) : (
+    <img
+      src={""}
+      className="rounded-full my-3 max-w-[125px] max-h-[125px]"
+      alt="auserImagesd"
+    />
+  );
+
+
+  useEffect(() => {
+    // Make sure to revoke the data uris to avoid memory leaks
+    userState.image.forEach((file) => URL.revokeObjectURL(file.preview));
+  }, [userState.image]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const handleSetNewProfile = async () => {
     let family = "";
     try {
@@ -214,7 +290,7 @@ export default function EditUserProfile() {
 
   // 
  
-  
+  console.log(userState.image);
   return (
     <>
       {openChangeImageModal && (
@@ -235,7 +311,8 @@ export default function EditUserProfile() {
           title={" گذرواژه جدید ذخیره شد."}
         />
       )}
-     
+      {thumbs}
+     {/* <img src={userState.image!=""?userState.image.preview:""} onLoad={()=>userState.image!=""?URL.revokeObjectURL(userState.image.preview):""} alt="test user image" className="w-full h-64"/> */}
       <div className="">
         <PageTitle title={"حساب کاربری"} />
         {/* <AuthButton textButton={"test api"} handlerClick={pastSelexboxData()}/> */}

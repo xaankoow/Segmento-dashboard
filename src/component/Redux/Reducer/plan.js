@@ -55,7 +55,7 @@ export const planReducer = (state =
             return { ...action.payload }
         case "MODAL_PLAN_TRY_FREE":
             return { ...action.payload }
-        case "MODAL_SET_WORK_SPACE_PLAN":
+        case "MODAL_SET_WORK_SPACE_EASY_START":
             return { ...action.payload }
         case "MODAL_PLAN_GET_PACKAGE_DETAILS":
             return { ...action.payload }

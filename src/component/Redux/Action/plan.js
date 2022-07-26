@@ -445,7 +445,7 @@ export const modalSetWorkSpace = () => {
             await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
         }
 
-        await dispatch({ type: "MODAL_SET_WORK_SPACE_PLAN", payload: state })
+        await dispatch({ type: "MODAL_SET_WORK_SPACE_EASY_START", payload: state })
     }
 }
 

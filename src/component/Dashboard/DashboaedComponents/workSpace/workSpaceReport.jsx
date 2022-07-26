@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
+import AuthButton from '../../../Auth/authButton/AuthButton';
 
 export default function WorkSpaceReport({ stepWorkSpace }) {
 
@@ -100,7 +102,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                     <img src="/img/dashboard/workSpace/headMessageReport/workSpace_report_ico.svg" alt="" className='' />
                 </div>
                 {/* web site name */}
-                <div className='w-full px-48'>
+                <div className='w-full px-48 pb-7'>
                     <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
                         <div className='flex gap-6 justify-between items-center relative'>
                             <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
@@ -204,7 +206,8 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
 
 
                     <div>
-                        <button className="btn-style mt-7"><img className=' ml-3' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</button>
+                        <Link to={"/dashboard/easyStart"} className="btn-style mt-7 inline-block"><img className=' ml-3 inline-block' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</Link>
+                        {/* <AuthButton classes={"mt-7"} textButton={} className="btn-style "><img className=' ml-3' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</Auth> */}
                     </div>
                 </div>
             </div>

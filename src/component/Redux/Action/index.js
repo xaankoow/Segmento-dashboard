@@ -29,6 +29,13 @@ export const coreUser = () => {
             if (status == 200 && data.status == true) {
                 state.userData = data.data;
 
+                        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "coreUserData");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem.length > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
             } else {
                 // data.errors.forEach(element => {
                 //     toastMessage += element + " / ";;
@@ -844,6 +851,7 @@ export const logoutAction = () => {
         // document.cookie = "user_email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         state.forceUpdate += 1;
         // toast.update(toastPromise, { render: "از حساب خود خارج شدید", type: "success", isLoading: false, autoClose: 3000 })
+        await dispatch({ type: "RESET_ALL_STATE" })
         await dispatch({ type: "LOG_OUT", payload: state })
     }
 }

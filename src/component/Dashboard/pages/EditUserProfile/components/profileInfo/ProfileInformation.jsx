@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function ProfileInformation({ userName, userType, email ,changeUserImage,imageSource}) {
+  // useEffect(() => {
+  //   URL.revokeObjectURL(imageSource);
+  // }, [])
+  
   return (
     <div className="flex gap-3 items-center">
       <div className="relative">

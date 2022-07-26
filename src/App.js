@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import Register from "./pages/register/Register";
 import "./App.css";
 import Forgotpass from "./pages/forgotPassword/Forgotpass";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
@@ -27,6 +27,7 @@ import TabMenu from "./component/Dashboard/DashboaedComponents/tabMenu/TabMenu";
 import MylistContentProduction from "./component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx"
 import EasyStart from "./component/Dashboard/DashboaedComponents/EasyStart/EasyStart";
 import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
+import WorkSpaceReport from "./component/Dashboard/DashboaedComponents/workSpace/workSpaceReport";
 
 
 
@@ -39,6 +40,7 @@ import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyP
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
   const { ProcessingDelay } = useSelector((state) => state.loadingState);
+  const { resultSetWorkSpace, showWorkSpaceModal } = useSelector((state) => state.workSpaceState);
 
   // console.log(ProcessingDelay.length);
   //HANDLE SELECT NEXT INPUT IN FORM FORGOTPASSWORD AND VERIFYEMAIL
@@ -54,7 +56,12 @@ export default function App() {
   // useEffect(() => {
   //   handleNextInput(2)
   // }, [codVerifyEmail_4])
+  const navigate=useNavigate();
 
+  useEffect(() => {
+    {resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")}
+  }, [resultSetWorkSpace.reportStatus])
+  
 
   const location = useLocation();
   const background = location.state && location.state.background;
@@ -115,7 +122,9 @@ export default function App() {
             <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
             <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
 
-        <Route path="easyStart" element={<EasyStart />} />
+            
+            <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
+            <Route path="easyStart" element={<EasyStart />} />
             <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
             <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
             {/* <Route path={`modal`} element={<HandleModal />} /> */}
