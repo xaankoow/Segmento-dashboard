@@ -96,82 +96,6 @@ export default function EditUserProfile() {
     }
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // const thumbs = userState.image[0] != "" ? (
-  //   <>
-  //     <img
-  //       src={userState.image[0].preview}
-  //       className="rounded-full my-3 w-[125px] h-[125px]"
-  //       alt="userImage"
-  //     />
-  //   </>
-  // ) : (
-  //   <img
-  //     src={""}
-  //     className="rounded-full my-3 max-w-[125px] max-h-[125px]"
-  //     alt="auserImagesd"
-  //   />
-  // );
-
-
-  // useEffect(() => {
-  //   // Make sure to revoke the data uris to avoid memory leaks
-  //   userState.image.forEach((file) => URL.revokeObjectURL(file.preview));
-  // }, [userState.image]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const handleSetNewProfile = async () => {
     let family = "";
     try {
@@ -183,7 +107,7 @@ export default function EditUserProfile() {
       }
       
       const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "";
-      
+      debugger
       formdata.append("name", family);
       formdata.append("bio", "من یک برنامه نویس هستم");
       formdata.append("avatar", imgData);
