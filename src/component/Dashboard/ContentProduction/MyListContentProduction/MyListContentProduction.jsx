@@ -36,8 +36,16 @@ export default function MyList() {
       handleGetcontent();
     // }
   }, []);
+  const loadingState = useSelector(state => state.loadingState)
+ 
   const handleGetcontent = async () => {
     // dispatch(addLoadingItem("ContentProductionGetService"))
+    //handle show loadin
+    {
+      loadingState.ProcessingDelay.push("dataTable");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
     try {
       const { data, status } = await ContentProductionGetService();
       const tableDataFiltered = [];
@@ -50,6 +58,14 @@ export default function MyList() {
     } catch (error) {
       // console.log(error);
     }
+    //handle hide loading
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "dataTable");
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
+
     // dispatch(removeLoadingItem("ContentProductionGetService"))
   };
   // SearchBox value

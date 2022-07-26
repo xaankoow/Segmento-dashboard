@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ContentProductionService } from "../../service/contentProduction";
 import PopUp from "../../Utils/PopUp/PopUp";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
@@ -31,7 +32,16 @@ export default function ContentpProduction({ onClickHandler }) {
   //filter from searchBox  in table
 
   const [content, setcontent] = useState([]);
+  
+  const loadingState = useSelector(state => state.loadingState)
+  const dispatch = useDispatch()
   const handleSetContentProduction = async () => {
+    //handle show loadin
+    {
+      loadingState.ProcessingDelay.push("dataTable");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
     try {
       let formdata = new FormData();
       formdata.append("keyword", searchBoxValue);
@@ -58,6 +68,14 @@ export default function ContentpProduction({ onClickHandler }) {
     } catch (error) {
       // console.log(error);
     }
+    //handle hide loading
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "dataTable");
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
+
   };
   var [tableData, setTableData] = useState([]);
 
