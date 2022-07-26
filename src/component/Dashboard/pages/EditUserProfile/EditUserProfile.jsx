@@ -37,7 +37,8 @@ export default function EditUserProfile() {
   
   const [image, setUserImage] = useState([]);
   const userImageProf = image.map((file) => file.preview);
-  
+
+ 
   //
   const [selectBoxValue1, setSelectBoxValue1] = useState("");
   const [selectBoxValue2, setSelectBoxValue2] = useState("");
@@ -56,7 +57,13 @@ export default function EditUserProfile() {
   const [openChangeImageModal, setOpenChangeImageModal] = useState(false);
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
-
+  var user_package_type_text = "";
+  if (userState.userData.package) {
+    
+    user_package_type_text = userState.userData.package.type_text
+      ? userState.userData.package.type_text
+      : "";
+  }
   var user_name = "";
   var user_email = "";
   const handleSelectBox1 = (e) => {
@@ -311,7 +318,7 @@ export default function EditUserProfile() {
           title={" گذرواژه جدید ذخیره شد."}
         />
       )}
-      {thumbs}
+      
      {/* <img src={userState.image!=""?userState.image.preview:""} onLoad={()=>userState.image!=""?URL.revokeObjectURL(userState.image.preview):""} alt="test user image" className="w-full h-64"/> */}
       <div className="">
         <PageTitle title={"حساب کاربری"} />
@@ -321,7 +328,7 @@ export default function EditUserProfile() {
             <div className="mt-12 flex justify-between">
               <ProfileInformation
                 userName={user_name}
-                userType={"کاربر طلایی"}
+                userType={user_package_type_text && user_package_type_text }
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
                 imageSource={
@@ -351,29 +358,21 @@ export default function EditUserProfile() {
               <>
                 <div className="mt-14 mb-9">
                   <span className="text-[#002145]">اطلاعات شخصی من </span>
-                  <div className="flex gap-4 my-9">
+                  <div className="flex gap-4 my-9 justify-between">
                     <AuthInput
                       textLabelInput="نام "
-                      width={"310px"}
+                    classes={"w-[100%]"}
                       typeInput="text"
                       handleChange={handleNameInput}
                     />
-                    <div className="flex flex-col items-start relative">
+                    
                       <AuthInput
                         textLabelInput=" نام خانوادگی"
-                        width={"310px"}
+                      classes={"w-[100%]"}
                         typeInput="text"
                         handleChange={handlefamilyInput}
                       />
-                      <div className="ErrorBadgeBox">
-                        <img
-                          sdivrc="/img/ErrorBadge.svg"
-                          alt="ErrorBadge"
-                          className="bg[#C42B1C] p-1 rounded-full"
-                        />
-                        <h5>گذرواژه همخوانی ندارد</h5>
-                      </div>
-                    </div>
+                  
                   </div>
                   <AuthInput
                     textLabelInput="آدرس ایمیل "

@@ -137,7 +137,7 @@ export default function PlanStatus({ title }) {
                   <span>تاریخ اتمام اشتراک</span>
                   <span>
                     {" "}
-                    {moment(package_end_dates.substring(0, 10))
+                    {package_end_dates && moment(package_end_dates.substring(0, 10))
                       .locale("fa")
                       .format("YYYY/M/D")}
                   </span>
