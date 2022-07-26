@@ -6,9 +6,8 @@ import BodyContent from './BodyContent'
 import FooterBtn from './FooterBtn'
 import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan'
 
-export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show, checkBuyPlan }) {
+export default function BuyPlanEasyToStartModal({ handleClose }) {
   const [stepModal, setStepModal] = useState(1);
-  // const [, setDiscount] = useState("sample-code");
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
   const [packageUuid, setPackageUuid] = useState("")
@@ -16,21 +15,15 @@ export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show,
   const [lockNextStep, setLockNextStep] = useState(false);
   const [checkErr, setCheckErr] = useState(false);
 
-  const {forceUpdate} = useSelector(state=>state.planState);
-  // console.log(applyWebAdress)
-  // debugger
+  const { forceUpdate } = useSelector(state => state.planState);
+
   useEffect(() => {
     const find_buy_type = localStorage.getItem("buyType")
     const find_status_create_workSpace_modal = localStorage.getItem("modalWorkSpace");
-    if(find_status_create_workSpace_modal){
+    if (find_status_create_workSpace_modal) {
       setStepModal(6)
       localStorage.removeItem("modalWorkSpace");
     }
-    // if (true & false) {
-    //   setStepModal(3);
-    // } else if (true && true) {
-    //   setCheckErr(true)
-    // }
   }, [])
 
   const customStyles = {
@@ -51,17 +44,14 @@ export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show,
       <Modal
         isOpen={true}
         parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
-        // onAfterOpen={afterOpenModal}
-        // onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
-      // className={"myModal"}
       >
         <div className='w-[907px]'>
           {checkErr ? (
             <div className='h-[685px]'>
               {
-              AleartMessageBuyPlan()
+                AleartMessageBuyPlan()
               }
             </div>
           ) : (
@@ -75,7 +65,7 @@ export default function BuyPlanEasyToStartModal({ handleClose, checkClose, show,
           )}
         </div>
       </Modal>
-      {forceUpdate?"":""}
+      {forceUpdate ? "" : ""}
     </div>
   )
 }

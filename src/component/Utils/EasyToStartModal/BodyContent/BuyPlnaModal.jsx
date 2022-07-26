@@ -6,10 +6,8 @@ import AuthInput from '../../../Auth/authInput/AuthInput';
 export default function BuyPlnaModal() {
 
   const dispatch = useDispatch();
-  const [num, setNum] = useState("");
-
+  
   useEffect(() => {
-    // console.log("22")
     dispatch(getAllPlanData());
   }, [])
 
@@ -20,12 +18,9 @@ export default function BuyPlnaModal() {
   const [discountInputSilver, setDiscountInputSilver] = useState("");
   const [discountInputDiamond, setDiscountInputDiamond] = useState("");
   const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
-  // var lastSelectedDiscountInput="";
-
 
   const { canRequest } = useSelector((state) => state.loadingState);
   const { discount,discountStatus,allPackageData } = useSelector(state => state.planState);
-  // console.log(allPackageData)
 
   const handleShowArrowDiscount = (text, arrowTarget) => {
     // 
@@ -64,20 +59,8 @@ export default function BuyPlnaModal() {
     }
   }
 
-  
-  let p;
-  var dd="79000";
-  p= dd.substring(0,dd.length-3);
-  // alert(p + "هزار تومان ماهانه");
-  // if(allPackageData.length>1)
-  // {
-  //   dd=allPackageData[1].price
-  // }
   return (
     <body className='plans_body_container'>
-      {/* <p className='text_information'>
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است .
-      </p> */}
       <div className='plan_cards_container mt-7'>
         <div className='bronze plan_card'>
           <span className='title'>برنزی</span>

@@ -1,12 +1,10 @@
-import { Flag, ReportGmailerrorred } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
-import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
 import Timer from "../../component/Auth/timer/Timer";
-import { changePasswordAction, checkVerifyEmailAction, checkVerifyEmailForgotPasswordAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
+import { changePasswordAction, checkVerifyEmailForgotPasswordAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
 import "./forgotpass.css";
 
@@ -106,46 +104,28 @@ export default function Forgetpass() {
     }
   };
 
-  //unlock section form
-  // const checkResend = useSelector(state => state.handleResendCode)
-
 
   return (
-   
-
-
       <div className="w-full mt-10 px-28">
-          {/* <Nav/> */}
-          {/* <TextButton.Provider value={"ورود"}>
-            <Authmenu buttonLink={"/login"} />
-          </TextButton.Provider> */}
           <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-5 md:py-5 min-w-full">
             <div className="flex flex-col justify-center w-6/12">
               <div className="flex flex-col gap-1">
-                
                 <span>
                 برای بازیابی گذرواژه، نیاز به یک کد دارید که براتون ایمیل میشه.
                 </span>
               </div>
               <div className="items-center flex justify-between mt-10 mb-5">
                 <div className="w-50">
-
                    <AuthInput
                   textLabelInput="ایمیل"
                   classes={`forgot_password_input`}
-                  // handleChange={handleChange}
                   reduxHandleChange={setEmailRedux}
-                  // chechvalue={chechvalue}
                   chechvalue={chechValueEmail}
                   disabled={forgotPasswordStep == 2 ?true :false }
                   errorTextId="errRejesterFormatEmail"
                   />
                   </div>
-
-
-
                 <div className="flex items-center">
-                  
                   {handleResendCode == true ?clearTimerValue() : 
                  
                   <Timer
@@ -157,18 +137,10 @@ export default function Forgetpass() {
                   <TextButton.Provider value={getTextButton}>
                     <AuthButton
                       classes={ forgotPasswordStep > 0 ? "btn_complete" : ""}
-                      // widthValue={getTextButton !== "تایید کد" && "139px"}
-                      // bgcolor={
-
-                      //   "#0A65CD"
-
-                      // }
-                      // handlerClick={handlerClickButton}
                       reduxHandleClick={sendForgotPasswordEmailCodeAction}
                       disabled={handleResendCode == true ?forgotPasswordStep == 2 ?true :false: true}
                     />
                   </TextButton.Provider>
-
                 </div>
               </div>
               <div className="flex items-center justify-between mt-5 relative">
@@ -179,7 +151,6 @@ export default function Forgetpass() {
                       classes={"verify_email_cod input_selector_4"}
                       notCheckValue={true}
                       disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
-                      // handleChange={handleChange}
                       chechvalue={chechvalue}
                       reduxHandleChange={setAuth1Redux}
                       maxlength="1"
@@ -189,7 +160,6 @@ export default function Forgetpass() {
                       classes={"verify_email_cod input_selector_3"}
                       notCheckValue={true}
                       disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
-                      // handleChange={handleChange}
                       chechvalue={chechvalue}
                       reduxHandleChange={setAuth2Redux}
                       maxlength="1"
@@ -199,7 +169,6 @@ export default function Forgetpass() {
                       classes={"verify_email_cod input_selector_2"}
                       notCheckValue={true}
                       disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
-                      // handleChange={handleChange}
                       chechvalue={chechvalue}
                       reduxHandleChange={setAuth3Redux}
                       maxlength="1"
@@ -209,7 +178,6 @@ export default function Forgetpass() {
                       classes={"verify_email_cod"}
                       notCheckValue={true}
                       disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
-                      // handleChange={handleChange}
                       chechvalue={chechvalue}
                       reduxHandleChange={setAuth4Redux}
                       maxlength="1"
@@ -220,7 +188,6 @@ export default function Forgetpass() {
                 <div className="absolute bottom-0 left-0 ">
                   <TextButton.Provider value={"تایید کد"}>
                     <AuthButton
-                      // widthValue={"90px"}
                       reduxHandleClick={checkVerifyEmailForgotPasswordAction}
                       disabled={ forgotPasswordStep > 0 ? forgotPasswordStep == 2 ?true :false : true}
                       classes={ forgotPasswordStep > 1 ?forgotPasswordStep == 2 ?"" :"btn_complete" : ""}
@@ -269,9 +236,7 @@ export default function Forgetpass() {
               <div className="flex items-center justify-between">
                 <TextButton.Provider value={"ذخیره گذرواژه و ورود"}>
                   <AuthButton
-                    bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}
-                    // handlerClick={checkInputValue}
-                  
+                    bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}    
                     disabled={ forgotPasswordStep > 1 ? false : true}
                     reduxHandleClick={changePasswordAction}
                   />
@@ -289,7 +254,5 @@ export default function Forgetpass() {
             </div>
           </div>
         </div>
-      
-   
   );
 }

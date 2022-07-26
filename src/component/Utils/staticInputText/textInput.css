@@ -16,10 +16,7 @@
     outline: none;
     padding: 0px 0px 0px 10px;
     height: 45px;
-    /* border-radius: 3px; */
     position: relative;
     box-sizing: border-box;
-    /* border: 1px solid #d3d5e2; */
-    /* border-right: 0px !important; */
     direction: ltr !important;
 }

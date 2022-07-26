@@ -103,7 +103,7 @@ export default function SaveListModal({
     var handleGetcontent = async () => {
       try {
         const { data, status } = await ContentProductionGetService();
-        debugger;
+        // debugger;
         setcontent(data.data);
       } catch (error) {
         // console.log(error);

@@ -107,7 +107,7 @@ export default function EditUserProfile() {
       }
       
       const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "";
-      debugger
+      // debugger
       formdata.append("name", family);
       formdata.append("bio", "من یک برنامه نویس هستم");
       formdata.append("avatar", imgData);
@@ -414,7 +414,7 @@ export default function EditUserProfile() {
                     انصراف{" "}
                   </button>
                   <button
-                    disabled={canRequest}
+                    disabled={!canRequest}
                     className="btn-style"
                     onClick={() => handleUpdatePassword()}
                   >

@@ -1,5 +1,4 @@
 export const InputError = (element, text) => {
-    debugger
     var textError = document.querySelector("."+element);
     var insideInput = document.querySelector(`.${element} + input`);
     insideInput.style.borderBottom = "2px solid #F35242";

@@ -63,7 +63,25 @@ export const userReducer = (
       return {
         fullName: "",
         email: "",
-        image: [""],
+        image: ([""]),
+        password: "",
+        passwordConfirm: "",
+        auth1: "",
+        auth2: "",
+        auth3: "",
+        auth4: "",
+        forgotPasswordStep: 0,
+        checkRegisterComplete: false,
+        checkVerifyRegister: false,
+        handleResendCode: true,
+        forceUpdate: 0,
+        userData: {}
+      };
+    case "RESET_USER_STATE":
+      return {
+        fullName: "",
+        email: "",
+        image: ([""]),
         password: "",
         passwordConfirm: "",
         auth1: "",

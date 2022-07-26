@@ -11,24 +11,15 @@ import Nav from '../../component/Dashboard/DashboaedComponents/navMenu/Nav';
 export default function Login() {
   return (
     <div className="w-full px-28">
-      {/* <Nav/> */}
-     
-        {/* <TextButton.Provider value={"ثبت نام"}>
-          <Authmenu buttonLink={"/"}/>
-        </TextButton.Provider> */}
-
         <div className="gap-10 flex items-center  md:flex-col md:flex-col-reverse justify-between 2xl:py-10 md:py-10 min-w-full">
           <div className="w-6/12 flex flex-col items-center gap-11 md:min-w-full">
             <AuthInput textLabelInput="ایمیل" width={"100%"}   reduxHandleChange={setEmailRedux} errorTextId="errRejesterFormatEmail"/>
             <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} errorTextId="errRejesterPassword"/>
-
             <div className="flex items-center w-full justify-between">
               <div className="flex gap-5">
-                {/* <Link to={"/"}> */}
                 <TextButton.Provider value={"ورود"}>
                   <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} />
                 </TextButton.Provider>
-                {/* </Link> */}
                 <button className="bg-lightGray text-white rounded-lg flex gap-2 items-center py-2 px-3">
                   <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
@@ -46,7 +37,6 @@ export default function Login() {
             <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
         </div>
-      
     </div>
   )
 }

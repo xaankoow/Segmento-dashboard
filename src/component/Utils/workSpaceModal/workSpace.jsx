@@ -3,14 +3,13 @@ import Modal from 'react-modal'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import AuthButton from '../../Auth/authButton/AuthButton';
-import { addWorkSpace, getAllWorkSpace, setShowWorkSpaceModal } from '../../Redux/Action/workSpace';
+import { addWorkSpace } from '../../Redux/Action/workSpace';
 import { InputGetWorkSpaceInfo } from './inputValue';
 import { WorkSpaceParagraph } from './textParagraph';
 import { workSpaceTitle } from './titleWorkSpaceModal';
 
-export default function WorkSpace({ handleClose }) {
+export default function WorkSpace() {
 
-  const [modalTitleStep, setModalTitleStep] = useState("")
   const [stepModal, setStepModal] = useState(1);
 
   const [addKeyCharInput, setAddKeyCharInput] = useState(3)
@@ -18,11 +17,8 @@ export default function WorkSpace({ handleClose }) {
   const [addWebsitePageInput, setAddWebsitePageInput] = useState(3)
   const [addCompetitorSite, setAddCompetitorSite] = useState(2)
 
-
   const navigate = useNavigate();
 
-
-  // const {}=useSelector(state=>state.workSpaceState)
   const customStyles = {
     content: {
       top: '43vh',
@@ -37,7 +33,6 @@ export default function WorkSpace({ handleClose }) {
   };
 
   const handleAddStateCountInput = (state) => {
-    // debugger
     switch (state) {
       case "keyChar":
         setAddKeyCharInput(addKeyCharInput + 1);
@@ -56,7 +51,6 @@ export default function WorkSpace({ handleClose }) {
         break;
     }
   }
-  const dispatch=useDispatch();
 
   return (
     <Fragment>
@@ -75,7 +69,6 @@ export default function WorkSpace({ handleClose }) {
               <span className='info'></span>
             </div>
             <div className='close_suport_container'>
-              {/* <div className='close_modal_ico' onClick={() => dispatch(setShowWorkSpaceModal(false))}></div> */}
               <div className='close_modal_ico' onClick={() => navigate(-1)}></div>
             </div>
           </header>
@@ -92,16 +85,6 @@ export default function WorkSpace({ handleClose }) {
             <p className='mt-2.5 text-sm text-[#002145]'>
               {WorkSpaceParagraph(stepModal)}
             </p>
-            {/* <div className='ul_text_container flex justify-around mt-8'>
-          <ul>
-            <li className='py-2 px-5'>نمونه متن</li>
-            <li className='py-4 px-5'>نمونه متن</li>
-          </ul>
-          <ul>
-            <li className='py-2 px-5'>نمونه متن</li>
-            <li className='py-4 px-5'>نمونه متن</li>
-          </ul>
-        </div> */}
             <div className=' mt-8'>
               {InputGetWorkSpaceInfo(stepModal, stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite, handleAddStateCountInput)}
             </div>
@@ -109,8 +92,6 @@ export default function WorkSpace({ handleClose }) {
           <footer className='px-5'>
             {stepModal != 1 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
             {stepModal != 1 ? <AuthButton classes={"bg-[#F2F5F7] text-[#488CDA]"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان"} /> : <div></div>}
-            {/* {stepModal == 4 ? <AuthButton handlerClick={() =>  "" }  textButton={"خرید اشتراک"} /> : <button className='btn-style bg-[#F2F5F7] text-[#488CDA]' onClick={() => setStepModal(stepModal + 1)}>پایان <span className='forward-ico'></span></button>} */}
-
             {stepModal != 5 ? <button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button> : <div></div>}
           </footer>
         </div>

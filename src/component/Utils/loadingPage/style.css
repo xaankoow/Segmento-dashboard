@@ -7,17 +7,12 @@
     position: relative;
     width: 150px;
     height: 150px;
-    /* width: 280px;
-    height: 280px; */
-    /* background-color: rgb(255, 0, 0); */
 }
 
 #loading-container-segmento-logo .segmento_logo_1{
     position: absolute;
     left: 0px;
     bottom: 0px;
-    /* width: 40px;
-    height: 280px; */
     width: 14.2%;
     height: 100%;
     background-color: #0A65CD;
@@ -61,10 +56,7 @@
     height: 14.2%;
     right: 28.5%;
     top: 28.5%;
-    /* right: 80px;
-    top: 80px; */
     background-color: #0AC7E2;
-    /* animation: move_slide_top_logo 2s ease 500ms forwards; */
     animation: move_slide_top_logo 1s ease 1s infinite alternate;
 }
 #loading-container-segmento-logo .segmento_logo_7{
@@ -73,10 +65,8 @@
     height: 14.2%;
     right: 0px;
     bottom:28.5%;
-    /* bottom: 80px; */
     background-color: #0AC7E2;
     animation: move_slide_middle_logo 1s ease 500ms infinite alternate;
-    /* animation: move_slide_middle_logo 2s ease 1s forwards; */
 }
 @keyframes move_slide_down_logo {
     from{width: 0px;}

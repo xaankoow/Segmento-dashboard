@@ -3,10 +3,8 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
-import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
 import {
   checkVerifyEmailAction,
-  RegisterUserAction,
   sendCodEmailAction,
   setAuth1Redux,
   setAuth2Redux,
@@ -21,12 +19,6 @@ export default function ValidateEmail() {
   const dispatch = useDispatch();
   return (
     <div className="registerContainer 	">
-      {/* <div className="registerBox"> */}
-      {/* <Nav/> */}
-      {/* <TextButton.Provider value={"ورود"}>
-          <Authmenu buttonLink={"/login"}/>
-        </TextButton.Provider> */}
-      {/* </div> */}
       <div className="mt-14">
         <div className="leading-8">
           <p className="text-lg m-auto w-7/12 text-justify ">
@@ -81,7 +73,7 @@ export default function ValidateEmail() {
           </Link>
           <div className="m-auto">
             <TextButton.Provider value={"تایید ایمیل"}>
-              <AuthButton 
+              <AuthButton
                 bgcolor={"#0A65CD"}
                 reduxHandleClick={checkVerifyEmailAction}
                 classes="m-auto"

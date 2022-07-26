@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import PopUp from "../Utils/PopUp/PopUp";
 import { useState } from "react";
 import EasyStart from "./DashboaedComponents/EasyStart/EasyStart";
-import HandleModal from "./../Utils/handleModal";
+// import HandleModal from "./../Utils/handleModal";
 import BuyPlan from "./DashboaedComponents/BuyPlan/BuyPlan";
 import WorkSpace from "../Utils/workSpaceModal/workSpace";
 import TabMenu from "./DashboaedComponents/tabMenu/TabMenu";

@@ -7,10 +7,8 @@ export default function BuyPlan(setPlan) {
     useEffect(() => {
         dispatch(getAllPlanData());
     }, [])
-    debugger
     
-  const { discount,discountStatus,allPackageData } = useSelector(state => state.planState);
-    // console.log("allPackageData")
+  const { discount } = useSelector(state => state.planState);
     return (
         <body className='plans_body_container p-5'>
             <p className='text_information'>
@@ -62,8 +60,6 @@ export default function BuyPlan(setPlan) {
                             targePlanArrow={"bronze"}
                             disabled={discount != "" ? true : false}
                             errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
-                        // isPassword={true}
-                        // reduxHandleChange={setPasswordConfirmRedux}
                         />
                         <span className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze))}></span>
                     </div>
@@ -113,8 +109,6 @@ export default function BuyPlan(setPlan) {
                             targePlanArrow={"silver"}
                             disabled={discount != "" ? true : false}
                             errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
-                        // isPassword={true}
-                        // reduxHandleChange={setPasswordConfirmRedux}
                         />
                         <span className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver))}></span>
                     </div>
@@ -164,8 +158,6 @@ export default function BuyPlan(setPlan) {
                             targePlanArrow={"gold"}
                             disabled={discount != "" ? true : false}
                             errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
-                        // isPassword={true}
-                        // reduxHandleChange={setPasswordConfirmRedux}
                         />
                         <span className={`apply_token_ico ${discountInputGold != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold))}></span>
                     </div>
@@ -216,8 +208,6 @@ export default function BuyPlan(setPlan) {
                             targePlanArrow={"diamond"}
                             disabled={discount != "" ? true : false}
                             errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
-                        // isPassword={true}
-                        // reduxHandleChange={setPasswordConfirmRedux}
                         />
                         <span className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond))}></span>
                     </div>

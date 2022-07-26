@@ -39,9 +39,6 @@ const EasyStart = ({ startButtonClick }) => {
                         شروع کن
                         <img src="/img/dashboard/EasyStartPage/startEasyStartArrow.svg" alt="EasyStartPage" className=' mr-3' />
                     </Link>
-
-
-
                 </div>
             </div>
         </>

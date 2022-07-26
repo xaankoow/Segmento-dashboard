@@ -1,20 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Modal from 'react-modal'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AuthButton from '../../Auth/authButton/AuthButton';
-import { applyDiscountAction, buyPlan, setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setPackageUuid, setSite1, setSite2, setWebAdress } from '../../Redux/Action/plan';
-import { workSpaceWebsite } from '../../Redux/Action/workSpace';
+import {buyPlan } from '../../Redux/Action/plan';
 
-export default function ReportBuyPlanSection({ handleClose, packageUuid, show }) {
+export default function ReportBuyPlanSection({ handleClose, packageUuid }) {
 
-  const [plan, setPlan] = useState("");
-  // const [packageSelected,setPackageSelected] = useState(false);
+  const {forceUpdate,allPackageData } = useSelector(state => state.planState);
 
-  const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2, planChosen, discount, forceUpdate,allPackageData } = useSelector(state => state.planState);
-
-  const dispatch = useDispatch();
-
-  // handleShowArrowDiscount();
   const customStyles = {
     content: {
       top: '43vh',
@@ -30,15 +23,10 @@ export default function ReportBuyPlanSection({ handleClose, packageUuid, show })
 
   var packageSelected;
   allPackageData.forEach(element => {
-    // debugger
     if (element.uuid==packageUuid) {
       packageSelected=element;
     }
   });
-  // console.log( ds)
-
-
-
 
 
   return (
@@ -59,7 +47,6 @@ export default function ReportBuyPlanSection({ handleClose, packageUuid, show })
             <div className='price_discount'><span>مقدار تخفیف:</span><span>{packageSelected.default_discount.toString().substring(0,packageSelected.default_discount.toString().length-3)} هزار تومان </span></div>
             <div className='final_price'><span>قیمت نهایی و پرداخت</span><span>{packageSelected.default_discount_price.toString().substring(0,packageSelected.default_discount_price.toString().length-3)} هزار تومان </span></div>
           </div>
-          {/* <AuthButton textButton={"خرید اشتراک"} reduxHandleClick={buyPlan}/> */}
           <AuthButton textButton={"خرید اشتراک"} reduxHandleClick={buyPlan}/>
         </body>
       </div>

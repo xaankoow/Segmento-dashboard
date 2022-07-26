@@ -1,7 +1,7 @@
 import React from 'react'
 import AuthButton from '../../Auth/authButton/AuthButton'
 import Modal from 'react-modal'
-export default function ModalResultBuyPlanMessage({title,planType}) {
+export default function ModalResultBuyPlanMessage({ title, planType }) {
     return (
         <Modal
             isOpen={showResultModal}
@@ -13,7 +13,6 @@ export default function ModalResultBuyPlanMessage({title,planType}) {
                 <body className='final_report_container p-5'>
                     <div className='popup'>
                         <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
-                        {/* <div className='main_popup'>{planType}</div> */}
                         <div className='main_popup'>اشتراک طلایی ، 3 ماهه</div>
                     </div>
                     <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته است . </p>

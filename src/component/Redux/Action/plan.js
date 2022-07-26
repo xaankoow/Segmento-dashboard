@@ -163,7 +163,7 @@ export const buyPlan = (buyType) => {
 
         const packageUuid = state.packageUuid;
         const discount = state.discount;
-        debugger
+        // debugger
         if (packageUuid) {
 
 
@@ -219,7 +219,7 @@ export const buyPlan = (buyType) => {
 export const tryFreePlan = () => {
     return async (dispatch, getState) => {
         //  
-        debugger
+        // debugger
         const state = { ...getState().planState }
         const loadingState = { ...getState().loadingState }
 
@@ -411,9 +411,9 @@ export const modalSetWorkSpace = () => {
 
         let toastMessage = "";
         try {
-            debugger
+            // debugger
             const { data } = await creatWorkSpace(modalWorkSpace);
-            debugger
+            // debugger
             if (data.code == 200 && data.status == true) {
                 localStorage.setItem("modalWorkSpace", data.status);
                 state.forceUpdate += 1;

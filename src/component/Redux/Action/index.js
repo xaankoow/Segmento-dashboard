@@ -1,11 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerUser, loginUser, verifyEmail, checkVerifyEmail, verifyEmailChangePassword, logout, changePassword, checkVerifyEmailChangePassword, findUser, coreUserData } from "../../service/userService"
 import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import { handleNextInput } from "../../Utils/focusNextInput";
-import { InputError } from "../../Utils/showInputError";
-import { showInputErrorToast, showPromisToast, showToast } from "../../Utils/toastifyPromise";
-import { useHistory } from "react-router-dom";
+import { showInputErrorToast,  showToast } from "../../Utils/toastifyPromise";
 
 
 
@@ -303,7 +300,7 @@ export const loginUserAction = () => {
                     const { data, status } = await loginUser(formdata);
                     state.checkRegisterComplete = false;
                     // debugger
-                    debugger
+                    // debugger
                     if (data.code === 200) {
                         localStorage.setItem("token", data.data.token);
                         // localStorage.setItem("userId", data.data.user.uuid);
@@ -335,7 +332,7 @@ export const loginUserAction = () => {
                         let formdata1 = new FormData();
                         formdata1.append("email", state.email)
                         formdata1.append("password", state.password)
-                        debugger
+                        // debugger
                         const { data, status } = await verifyEmail(formdata1);
                         if (status == 200 && data.status == true) {
                             state.checkRegisterComplete = true;
@@ -870,7 +867,7 @@ export const findUserAction = () => {
 
             try {
                 const dd = await findUser(token);
-                debugger
+                // debugger
 
                 // if (status == 200 && data.status == true) {
                 //     debugger

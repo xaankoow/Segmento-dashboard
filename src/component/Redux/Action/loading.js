@@ -15,7 +15,7 @@ export const setCanRequestRedux = (can) => {
 
 export const addLoadingItem = (addItem) => {
     return async (dispatch, getState) => {
-        debugger
+        // debugger
         let state = { ...getState().loadingState }
         state.ProcessingDelay.push(addItem);
         state.canRequest = false;
@@ -24,7 +24,7 @@ export const addLoadingItem = (addItem) => {
 }
 export const removeLoadingItem = (removeItem) => {
     return async (dispatch, getState) => {
-        debugger
+        // debugger
         let state = { ...getState().loadingState }
         var removeProcessingItem = state.ProcessingDelay.filter(item => item != removeItem);
         state.ProcessingDelay = removeProcessingItem;

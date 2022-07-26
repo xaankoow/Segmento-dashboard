@@ -1,5 +1,4 @@
 export const handleNextInput = (InputNum) => {
-    const input_1 = document.querySelectorAll(".input_selector_1")
     const input_2 = document.querySelectorAll(".input_selector_2")
     const input_3 = document.querySelectorAll(".input_selector_3")
     const input_4 = document.querySelectorAll(".input_selector_4")

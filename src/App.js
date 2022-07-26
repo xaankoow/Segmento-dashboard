@@ -7,12 +7,8 @@ import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
-// import Nav from "./component/navMenu/Nav";
-import Modal from "react-modal";
-import HandleModal from "./component/Utils/handleModal";
 import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { useSelector } from "react-redux";
-import LandingPage from "./component/Utils/landingPage/landingPage";
 import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
 import PlanStatus from "./component/Dashboard/DashboaedComponents/PlanStatus";
 import EditUserProfile from "./component/Dashboard/pages/EditUserProfile/EditUserProfile";
@@ -30,45 +26,19 @@ import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyP
 import WorkSpaceReport from "./component/Dashboard/DashboaedComponents/workSpace/workSpaceReport";
 import Page404 from "./component/Utils/Error404/page404";
 
-
-
-
-
-
-// import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
-// import ModalContainer from "./component/Utils/ModalContainer";
-
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
-  const { ProcessingDelay } = useSelector((state) => state.loadingState);
-  const { resultSetWorkSpace, showWorkSpaceModal } = useSelector((state) => state.workSpaceState);
+  const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
 
-  // console.log(ProcessingDelay.length);
-  //HANDLE SELECT NEXT INPUT IN FORM FORGOTPASSWORD AND VERIFYEMAIL
-  // useEffect(() => {
-  //   handleNextInput(0)
-  // }, [codVerifyEmail_1])
-  // useEffect(() => {
-  //   handleNextInput(4)
-  // }, [codVerifyEmail_2])
-  // useEffect(() => {
-  //   handleNextInput(3)
-  // }, [codVerifyEmail_3])
-  // useEffect(() => {
-  //   handleNextInput(2)
-  // }, [codVerifyEmail_4])
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    {resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")}
+    { resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport") }
   }, [resultSetWorkSpace.reportStatus])
-  
+
 
   const location = useLocation();
   const background = location.state && location.state.background;
-  // debugger
-  // console.log(background)
-  // var a=background.pathname;
 
   const tabContent = [
     {
@@ -101,13 +71,8 @@ export default function App() {
             <Route exact path={"register"} element={<Nav path={""} />} />
             <Route exact path={"forgotPassword"} element={<Nav path={""} />} />
             <Route exact path={"ValidateEmail"} element={<Nav path={""} />} />
-            {/* <Route exact path={"/"} element={<Nav path={"login"}/>} />
-          <Route exact path={"login"} element={<Nav path={""}/>} />
-          <Route exact path={"forgotPassword"} element={<Nav path={"login"}/>} />
-          <Route exact path={"ValidateEmail"} element={<Nav path={"login"}/>} /> */}
           </Routes>
 
-          {/* <button className="btn-style" onClick={()=>LoadingPage({show:true})}>click me!</button> */}
           <Routes>
             <Route exact path="/" element={<Login />} />
             <Route path="register" element={<Register />} />
@@ -116,23 +81,21 @@ export default function App() {
           </Routes>
         </div>
         <Routes location={background || location}>
-          <Route path="dashboard" element={<DashboardBody />}>
-            <Route path="userProfile" element={<EditUserProfile />} />
-            <Route path="planStatus" element={<PlanStatus />} />
-            <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
-            <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
-            <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
+          <Route path="/">
+            <Route path="dashboard/*" element={<DashboardBody />}>
+              <Route path="userProfile" element={<EditUserProfile />} />
+              <Route path="planStatus" element={<PlanStatus />} />
+              <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
+              <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
+              <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
 
-            
-            <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-            <Route path="easyStart" element={<EasyStart />} />
-            <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
-            <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
-            <Route path="*" element={<Page404/>} />
-            {/* <Route path={`modal`} element={<HandleModal />} /> */}
 
-            {/* <Route path="dashboard/payment*" element={<LandingPage />} /> */}
-            {/* <Route path="dashboard/*" element={<DashboardBody />} /> */}
+              <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
+              <Route path="easyStart" element={<EasyStart />} />
+              <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
+              <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
+              <Route path="*" element={<Page404 />} />
+            </Route>
           </Route>
         </Routes>
         {background != "" && (
@@ -141,20 +104,10 @@ export default function App() {
             <Route exact path={`dashboard/setWorkSpace`} element={<WorkSpace />} />
           </Routes>
         )}
-        {/* <Routes>
-
-        <Route path="*sc" element={<HandleModal />} />
-        </Routes> */}
-
-
-        {/* <HandleModal /> */}
-        {/* {ProcessingDelay.length>0?alert(''):null} */}
         <LoadingPage />
-        {/* {<LoadingPage/>} */}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>
-      {/* <LoadingPage /> */}
     </Fragment>
   );
 }

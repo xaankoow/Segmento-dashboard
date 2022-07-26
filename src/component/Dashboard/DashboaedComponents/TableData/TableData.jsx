@@ -22,7 +22,7 @@ export default function Table({
   const [isActive, setActive] = useState(false); // <-- set className name when checkbox is checking
 
   const handleCheckingInput = () => {
-    debugger;
+    // debugger;
 
     if (copyItem.length > 0) {
       setSelectColumnTitle("کپی");

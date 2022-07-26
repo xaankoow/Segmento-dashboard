@@ -1,35 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
+import React from "react";
+import { Link} from "react-router-dom";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import GoogleIcon from "@mui/icons-material/Google";
 import "./register.css";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
-import { useDispatch, useSelector } from "react-redux";
 import { RegisterUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
-// import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 export const TextButton = React.createContext();
 export default function Register() {
-
-
-  // const dispatch = useDispatch();
-
-  // const [name, setname] = useState("")
-  // const [email, setEmail] = useState("")
-  // const [password1, setPassword1] = useState("")
-  // const [password2, setPassword2] = useState("")
-
-
   
-  
+
   return (
     <div className="w-full mt-12 px-28">
-     
-      {/* <Nav/> */}
-          {/* <TextButton.Provider value={"ورود"}>
-            <Authmenu buttonLink={"/login"}/>
-          </TextButton.Provider> */}
-       {/* <Nav/> */}
         <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-20 md:py-10 min-w-full ">
           <div className="w-6/12 flex flex-col items-center gap-11 md:min-w-full ">
             <AuthInput
@@ -63,16 +44,12 @@ export default function Register() {
             </div>
             <div className="flex items-center w-full justify-between">
               <div className="flex gap-5">
-                {/* <Link to={"ValidateEmail"}> */}
                 <TextButton.Provider value={"عضویت"}>
                   <AuthButton
-                    // widthValue={"86px"}
-                    // bgcolor="#0A65CD"
                     classes={"btn-style"}
                     reduxHandleClick={RegisterUserAction}
                   />
                 </TextButton.Provider>
-                {/* </Link> */}
                 <button className="bg-lightGray text-white rounded-lg flex gap-2 items-center py-2 px-3">
                   <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
@@ -89,7 +66,6 @@ export default function Register() {
             <img className="w-100"  src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
         </div>
-      
     </div>
   );
 }

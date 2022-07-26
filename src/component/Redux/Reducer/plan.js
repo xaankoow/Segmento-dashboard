@@ -9,12 +9,12 @@ export const planReducer = (state =
         commercialPage2: "",
         planChosen: "",
         discount: "",
-        discountStatus:{value:0,planType:""},
+        discountStatus: { value: 0, planType: "" },
         packageUuid: "",
         forceUpdate: 0,
         planDetails: {},
         allPackageData: [],
-        checkUseTryFree:false
+        checkUseTryFree: false
     }, action) => {
     switch (action.type) {
 
@@ -64,6 +64,42 @@ export const planReducer = (state =
             return { ...action.payload }
         case "MODAL_PLAN_DISCOUNT_CODE":
             return { ...action.payload }
+        case "RESET_ALL_STATE":
+            return {
+                webAdress: "",
+                charKey1: "",
+                charKey2: "",
+                site1: "",
+                site2: "",
+                commercialPage1: "",
+                commercialPage2: "",
+                planChosen: "",
+                discount: "",
+                discountStatus: { value: 0, planType: "" },
+                packageUuid: "",
+                forceUpdate: 0,
+                planDetails: {},
+                allPackageData: [],
+                checkUseTryFree: false
+            }
+        case "RESET_PLAN_STATE":
+            return {
+                webAdress: "",
+                charKey1: "",
+                charKey2: "",
+                site1: "",
+                site2: "",
+                commercialPage1: "",
+                commercialPage2: "",
+                planChosen: "",
+                discount: "",
+                discountStatus: { value: 0, planType: "" },
+                packageUuid: "",
+                forceUpdate: 0,
+                planDetails: {},
+                allPackageData: [],
+                checkUseTryFree: false
+            }
 
         // case "RESET_STATE":
         //     return { email: "", forgotPasswordStep: 0, checkRegisterComplete: false, checkVerifyRegister: false }

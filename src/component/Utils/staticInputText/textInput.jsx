@@ -1,15 +1,12 @@
-import { borderBottom } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../../Auth/authInput/AuthInput";
 import './textInput.css'
+
 export default function StaticInputText({
   textLabelInput,
   width,
   typeInput,
-  isPassword,
-  notCheckValue,
-  handleChange,
   reduxHandleChange,
   disabled,
   chechvalue,
@@ -18,11 +15,9 @@ export default function StaticInputText({
   pressNumber,
   direction,
   wrapperClass,
-  labelClass,
   value,
   placeholder,
   staticText,
-  containerWidth,
   workSpaceTypeState,
   parentClass
 
@@ -35,9 +30,7 @@ export default function StaticInputText({
   const [isSeePssword, setSeePassword] = useState(typeInput);
   const [valueInput, setInputValue] = useState("");
 
-  //redux options
-
-  const dispatch =useDispatch()
+  const dispatch = useDispatch()
 
 
   // to be just number when we type
@@ -54,11 +47,6 @@ export default function StaticInputText({
           required
           maxlength={maxlength}
           onKeyPress={pressNumber && pressNumberValue}
-          // className={
-          //   !valueInput
-          //     ? notCheckValue === false
-          //     : notCheckValue && "notCheckValue"
-          // }
           name={typeInput}
           disabled={disabled}
           className={`${classes} input-static`}
@@ -68,58 +56,16 @@ export default function StaticInputText({
             direction,
             width: `${width}`,
             pointerEvents: disabled && "none",
-            // backgroundColor: disabled && "#F2F5F7",
             borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
-            // textAlign: typeInput === "email" && "left",
-            // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
-
             setInputValue(e.target.value);
-            workSpaceTypeState!=undefined?dispatch(reduxHandleChange(e.target.value,workSpaceTypeState)):dispatch(reduxHandleChange(e.target.value))
-            // dispatch(reduxHandleChange(e.target.value));
-            // handleChange(e);
+            workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
           }}
           placeholder={placeholder}
         />
-        {/* <p>https://</p> */}
-        <label className={disabled?"lockStyle":""} for="user">{textLabelInput}</label>
+        <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>
         <span className="error_down_input">اطلاعات نامعتبر</span>
-
-        {/* {isPassword ? (
-          <img
-            src="/img/RevealPassword.svg"
-            alt="RevealPassword"
-            className="imageInputIcon"
-            onClick={() =>
-              setSeePassword(isSeePssword === "password" ? "text" : "password")
-            }
-          />
-        ) : typeInput === "email" && validateEmail(valueInput) ? (
-          valueInput && (
-            <img
-              src="/img/tick.svg"
-              alt="RevealPassword"
-              style={notCheckValue && { display: "none" }}
-              className="imageInputIcon2"
-            />
-          )
-        ) : (
-          ""
-        )} */}
-        {/* {valueInput && typeInput === "text" ? (
-          <img
-            src="/img/tick.svg"
-            alt="RevealPassword"
-            style={notCheckValue && { display: "none" }}
-            className="imageInputIcon"
-          />
-        ) : (
-          ""
-        )} */}
-
-        {/* {isPassword && setPassArray(valueInput)} */}
-        {/* {passArray[0]==passArray[1] ? "" :  } */}
       </div>
       <p>{staticText}</p>
     </div>
