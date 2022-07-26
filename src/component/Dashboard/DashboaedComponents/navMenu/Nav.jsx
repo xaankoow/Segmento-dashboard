@@ -37,7 +37,7 @@ export default function Nav({path}) {
   // debugger
   useEffect(() => {
     if (userToken) {
-      navigate("/dashboard",{replace:true})
+      navigate("/dashboard/easyStart",{replace:true})
     }
   }, [userToken])
   

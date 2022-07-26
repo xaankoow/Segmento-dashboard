@@ -124,27 +124,27 @@ export default function EditUserProfile() {
 
 
 
-  const thumbs = userState.image[0] != "" ? (
-    <>
-      <img
-        src={userState.image[0].preview}
-        className="rounded-full my-3 w-[125px] h-[125px]"
-        alt="userImage"
-      />
-    </>
-  ) : (
-    <img
-      src={""}
-      className="rounded-full my-3 max-w-[125px] max-h-[125px]"
-      alt="auserImagesd"
-    />
-  );
+  // const thumbs = userState.image[0] != "" ? (
+  //   <>
+  //     <img
+  //       src={userState.image[0].preview}
+  //       className="rounded-full my-3 w-[125px] h-[125px]"
+  //       alt="userImage"
+  //     />
+  //   </>
+  // ) : (
+  //   <img
+  //     src={""}
+  //     className="rounded-full my-3 max-w-[125px] max-h-[125px]"
+  //     alt="auserImagesd"
+  //   />
+  // );
 
 
-  useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks
-    userState.image.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, [userState.image]);
+  // useEffect(() => {
+  //   // Make sure to revoke the data uris to avoid memory leaks
+  //   userState.image.forEach((file) => URL.revokeObjectURL(file.preview));
+  // }, [userState.image]);
 
 
 
@@ -181,9 +181,12 @@ export default function EditUserProfile() {
       } else {
         family = user_name;
       }
+      
+      const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "";
+      
       formdata.append("name", family);
       formdata.append("bio", "من یک برنامه نویس هستم");
-      formdata.append("avatar", userImageProf[0]);
+      formdata.append("avatar", imgData);
       formdata.append("website_type", selectBoxValue1);
       formdata.append("company_scale", selectBoxValue2);
       formdata.append("seo_experts", selectBoxValue3);
@@ -298,7 +301,7 @@ export default function EditUserProfile() {
           close={() => setOpenChangeImageModal(false)}
           isOpen={openChangeImageModal}
           setUserImage={setUserImage}
-          userImage={userState.userData.user.img}
+          userImage={userState.userData.user!=undefined&userState.userData.user.img!=""?userState.userData.user.img:"/../img/dashboard/userProfile/profileImage.png"}
         />
       )}
       {updatePass && (
@@ -311,8 +314,6 @@ export default function EditUserProfile() {
           title={" گذرواژه جدید ذخیره شد."}
         />
       )}
-      {thumbs}
-     {/* <img src={userState.image!=""?userState.image.preview:""} onLoad={()=>userState.image!=""?URL.revokeObjectURL(userState.image.preview):""} alt="test user image" className="w-full h-64"/> */}
       <div className="">
         <PageTitle title={"حساب کاربری"} />
         {/* <AuthButton textButton={"test api"} handlerClick={pastSelexboxData()}/> */}
@@ -324,15 +325,9 @@ export default function EditUserProfile() {
                 userType={"کاربر طلایی"}
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
-                imageSource={
-                  userState.image!=""?(
-                    userState.image.preview
-                    ):(
-                    userState.userData.user!=undefined?userState.userData.user.img:""
-                  )
                   
                   // userState.image != "" ? userState.image : userState.userData.user.image 
-                }
+                
               />
               {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
