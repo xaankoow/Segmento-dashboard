@@ -28,6 +28,7 @@ import MylistContentProduction from "./component/Dashboard/ContentProduction/MyL
 import EasyStart from "./component/Dashboard/DashboaedComponents/EasyStart/EasyStart";
 import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
 import WorkSpaceReport from "./component/Dashboard/DashboaedComponents/workSpace/workSpaceReport";
+import Page404 from "./component/Utils/Error404/page404";
 
 
 
@@ -127,6 +128,7 @@ export default function App() {
             <Route path="easyStart" element={<EasyStart />} />
             <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
             <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
+            <Route path="*" element={<Page404/>} />
             {/* <Route path={`modal`} element={<HandleModal />} /> */}
 
             {/* <Route path="dashboard/payment*" element={<LandingPage />} /> */}

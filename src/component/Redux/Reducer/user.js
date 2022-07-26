@@ -2,7 +2,7 @@ export const userReducer = (
   state = {
     fullName: "",
     email: "",
-    image: [""],
+    image: ([""]),
     password: "",
     passwordConfirm: "",
     auth1: "",

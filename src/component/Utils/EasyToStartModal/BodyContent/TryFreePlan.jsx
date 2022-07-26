@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom';
 import AuthButton from '../../../Auth/authButton/AuthButton'
 import PopUp from '../../PopUp/PopUp'
 
@@ -9,19 +10,19 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
       <div className='plan_card_list_option'>
         <div className='title'>استفاده 14 روز رایگان از تمامی امکانات سگمنتو</div>
         <div className='list_option'>
-          <div><p><span></span>نمونه نوشته</p> </div>
+          <div><p><span></span>افزودن سایت شخصی و سایت رقیب</p> </div>
           <hr />
-          <div><p><span></span>نمونه نوشته</p> </div>
+          <div><p><span></span>شناسایی سایت در گوگل</p> </div>
           <hr />
-          <div><p><span></span>نمونه نوشته</p> </div>
+          <div><p><span></span>ابزار تحقیق کلمه کلیدی</p> </div>
           <hr />
-          <div><p><span></span>نمونه نوشته</p> </div>
+          <div><p><span></span>سازنده فایل ربات و Disavow</p> </div>
           <hr />
-          <div><p><span></span>نمونه نوشته</p> </div>
+          <div><p><span></span>ایمیل روزانه وضعیت</p> </div>
           <hr />
-          <div><p><span></span>نمونه نوشته</p> </div>
+          <div><p><span></span>لایت هاوس فارسی</p> </div>
           <hr />
-          <div><p><span></span>نمونه نوشته</p> </div>
+          <div><Link to={""} className=" inline-block w-full text-right text-sm text-[#0A65CD] underline py-3"><span></span>مشاهده تمامی امکانات سگمنتو</Link> </div>
         </div>
       </div>
       <div className='btn_read_policy_container'>

@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-
-export default function ProfileInformation({ userName, userType, email ,changeUserImage,imageSource}) {
-  // useEffect(() => {
-  //   URL.revokeObjectURL(imageSource);
-  // }, [])
+import { useSelector } from "react-redux";
+export default function ProfileInformation({ userName, userType, email ,changeUserImage}) {
+  const userState = useSelector((state) => state.userState);
+  const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "/../img/dashboard/userProfile/profileImage.png"
   
   return (
     <div className="flex gap-3 items-center">
       <div className="relative">
         <img
-          src={imageSource}
-          className="rounded-full"
+          src={imgData}
+          onLoad={() => URL.revokeObjectURL(imgData)}
+          className="rounded-full w-24 h-24"
           alt="userImage"
         />
         <div className="bg-primary rounded-full absolute -bottom-1 right-0 p-2 border-[3px] border-[#ffffff] cursor-pointer" onClick={()=>changeUserImage()}>

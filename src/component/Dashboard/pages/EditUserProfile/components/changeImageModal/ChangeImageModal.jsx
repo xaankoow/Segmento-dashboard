@@ -29,30 +29,54 @@ export default function ChangeImageModal({
   };
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
+  // const userState = useSelector((state) => state.userState);
   const [files, setFiles] = useState([""]);
   // var user_image = userState.userData.user.image;
   // console.log(files);
 
+  // const { getRootProps, getInputProps } = useDropzone({
+  //   multiple: false,
+  //   accept: ["JPG", "PNG", "GIF"],
+  //   onDrop: (acceptedFiles) => {
+  //     setFiles(
+  //       acceptedFiles.map((file) =>
+  //         Object.assign(file, {
+  //           preview: URL.createObjectURL(file),
+  //         })
+  //       )
+  //     );
+  //   },
+  // });
+  const [up, setUp] = useState(1);
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["JPG", "PNG", "GIF"],
     onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
+      // debugger
+      dispatch(setImageProfRedux(acceptedFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        }))
+      ))
+
+      // setUp(up+1);
+      // setFiles(
+
+      // );
     },
   });
 
-  console.log(files[0].preview);
+  // console.log(files[0].preview);
   // debugger
-  const thumbs = files[0] != "" ? (
+  
+  const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : ""
+  const thumbs = userState.image[0] != "" ? (
     <>
       <img
-        src={files[0].preview}
+        src={imgData}
+        onLoad={() => URL.revokeObjectURL(imgData)}
+        // src={userState.image[0].preview}
+
         className="rounded-full my-3 w-[125px] h-[125px]"
         alt="userImage"
       />
@@ -65,10 +89,11 @@ export default function ChangeImageModal({
     />
   );
 
-  useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks
-    files.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, [files]);
+  // useEffect(() => {
+  //   console.log("use ef revoke");
+  //   // Make sure to revoke the data uris to avoid memory leaks
+  //   userState.image.forEach((file) => URL.revokeObjectURL(file.preview));
+  // }, [userState.image]);
   // console.log(files);
   // debugger
   // console.log(files[0]);

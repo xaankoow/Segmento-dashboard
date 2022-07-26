@@ -2,13 +2,12 @@ import { Tab } from "@headlessui/react";
 import { list } from "postcss";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { dataTable } from "../../../service/dataTable";
 import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../../DashboaedComponents/TableData/TableData";
 
 export default function MyList() {
-  const {canRequest}=useSelector(state=>state.loadingState)
   const [clicked, setClicked] = React.useState(false);
   // set api data
   const [tableDatas, setTableDatas] = useState([]);
@@ -29,11 +28,24 @@ export default function MyList() {
 
   useEffect(() => {
     // if (canRequest) {
-      
-      handleFetchingTableData();
+
+    handleFetchingTableData();
     // }
   }, []);
+
+
+  const loadingState = useSelector(state => state.loadingState)
+  const dispatch = useDispatch()
   const handleFetchingTableData = async () => {
+
+    //handle show loadin
+    {
+      loadingState.ProcessingDelay.push("dataTable");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
+
+
     try {
       const dataRaw = { type: "suggest_google_character" };
       const { data, status } = await dataTable(dataRaw);
@@ -46,6 +58,16 @@ export default function MyList() {
     } catch (error) {
       // console.log(error);
     }
+
+
+    //handle hide loading
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "dataTable");
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
+
   };
   // SearchBox value
   const changeHandlerSearchBox = (e) => {
