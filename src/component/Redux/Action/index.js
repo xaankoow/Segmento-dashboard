@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerUser, loginUser, verifyEmail, checkVerifyEmail, verifyEmailChangePassword, logout, changePassword, checkVerifyEmailChangePassword, findUser, coreUserData } from "../../service/userService"
 import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showPromisToast, showToast } from "../../Utils/toastifyPromise";
+import { useHistory } from "react-router-dom";
 
 
 
@@ -26,7 +28,7 @@ export const coreUser = () => {
             const { data, status } = await coreUserData();
             if (status == 200 && data.status == true) {
                 state.userData = data.data;
-                
+
             } else {
                 // data.errors.forEach(element => {
                 //     toastMessage += element + " / ";;
@@ -66,6 +68,15 @@ export const coreUser = () => {
             await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
         }
         await dispatch({ type: "CORE_USER", payload: state })
+    }
+}
+
+
+export const changeRegisterCompleteCheck = (value) => {
+    return async (dispatch, getState) => {
+        let state = { ...getState().userState }
+        state.checkRegisterComplete = value;
+        await dispatch({ type: "SET_REGISTER_COMPLETE_CHECK", payload: state })
     }
 }
 
@@ -149,15 +160,14 @@ export const resetStateRedux = () => {
 
 
 // REGISTER USER
-export const registerUserAction = () => {
+export const RegisterUserAction = () => {
     return async (dispatch, getState) => {
         const state = { ...getState().userState }
         const loadingState = { ...getState().loadingState }
 
-        debugger
         if (state.fullName && state.email && state.password && state.passwordConfirm) {
             if (CheckFormat("email", state.email, "errRejesterFormatEmail") && CheckFormat("password", state.password, "errRejesterPasswordConfirm") && CheckFormat("passwordConfirm", { pass1: state.password, pass2: state.passwordConfirm }, "errRejesterPasswordConfirm")) {
-                let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
+                // let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
 
 
                 //handle show loadin
@@ -187,15 +197,21 @@ export const registerUserAction = () => {
                             await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
                         }
 
-                        showToast("به خانواده بزرگ زانکو خوش آمدید","success");
+                        showToast("به خانواده بزرگ زانکو خوش آمدید", "success");
                         // toast.update(toastPromiseRegister, { render: "به خانواده بزرگ زانکو خوش آمدید", type: "success", isLoading: false, autoClose: 3000 })
                         // let toastPromiseSendCode = toast.loading("درحال ارسال درخواست شما به سرور")
                         state.email = state.email;
                         state.checkRegisterComplete = true;
+                        // const navigate=useNavigate();
+                        // navigate("/ValidateEmail")
+                        // window.location.href = '/ValidateEmail';
+                        // const history =useHistory()
+                        // history.push("/ValidateEmail")
                         // let send_code_email = async () => {
+                        await dispatch({ type: "REGISTER_USER", payload: state })
                         const { data, status } = await verifyEmail(formdata);
                         if (status == 200 && data.status == true) {
-                            showToast("کد به ایمیل شما ارسال شد","success");
+                            showToast("کد به ایمیل شما ارسال شد", "success");
                             // toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
                             // return Promise.resolve();
                         } else {
@@ -203,18 +219,19 @@ export const registerUserAction = () => {
                             data.errors.forEach(element => {
                                 toastMessage += element + " / ";;
                             });
-                            showToast(toastMessage,"error");
+                            showToast(toastMessage, "error");
                             // toast.update(toastPromiseSendCode, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                         }
                         // }
                         // await dispatch({ type: "SEND_CODE_EMAIL", payload: state})
                         // showPromisToast(send_code_email(),"sendCod")
                         // return Promise.resolve()
+                        // debugger
                     } else {
                         data.errors.forEach(element => {
                             toastMessage += element + " / ";;
                         });
-                        showToast(toastMessage,"error");
+                        showToast(toastMessage, "error");
                         // toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                         // return Promise.reject()
                     }
@@ -224,7 +241,7 @@ export const registerUserAction = () => {
                         // toastMessage += element+ "\r\n";
                         toastMessage += element + " / ";
                     });
-                    showToast(toastMessage,"error");
+                    showToast(toastMessage, "error");
                     // toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                 }
 
@@ -238,7 +255,8 @@ export const registerUserAction = () => {
 
         //handle hide loading
         {
-            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "verifyEmail" | item != "registerUser");
+            var firstFilter = loadingState.ProcessingDelay.filter(item => item != "registerUser");
+            var removeProcessingItem = firstFilter.filter(item => item != "verifyEmail");
             loadingState.ProcessingDelay = removeProcessingItem;
             loadingState.canRequest = removeProcessingItem > 0 ? false : true;
             await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
@@ -276,6 +294,7 @@ export const loginUserAction = () => {
                 try {
 
                     const { data, status } = await loginUser(formdata);
+                    state.checkRegisterComplete = false;
                     // debugger
                     debugger
                     if (data.code === 200) {
@@ -314,7 +333,7 @@ export const loginUserAction = () => {
                         if (status == 200 && data.status == true) {
                             state.checkRegisterComplete = true;
                             // localStorage.setItem("token",data.data.token)
-                            showToast("کد به ایمیل شما ارسال شد","success");
+                            showToast("کد به ایمیل شما ارسال شد", "success");
                             // toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
                             // return Promise.resolve();
                             await dispatch({ type: "SEND_CODE_EMAIL", payload: state })
@@ -323,8 +342,16 @@ export const loginUserAction = () => {
                             data.errors.forEach(element => {
                                 toastMessage += element + " / ";;
                             });
-                            showToast(toastMessage,"error");
+                            showToast(toastMessage, "error");
                             // toast.update(toastPromiseSendCode, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+                        }
+
+                        //handle hide loading
+                        {
+                            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "verifyEmail");
+                            loadingState.ProcessingDelay = removeProcessingItem;
+                            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+                            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
                         }
                     }
                     // switch (data.code) {
@@ -376,14 +403,14 @@ export const loginUserAction = () => {
                         data.errors.forEach(element => {
                             toastMessage += element + " / ";
                         });
-                        showToast(toastMessage,"error");
+                        showToast(toastMessage, "error");
                         // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                     }
                 } catch (error) {
                     error.response.data.errors.forEach(element => {
                         toastMessage += element + " / ";
                     });
-                    showToast(toastMessage,"error");
+                    showToast(toastMessage, "error");
                     // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                 }
                 await dispatch({ type: "LOGIN_USER", payload: state })
@@ -394,7 +421,7 @@ export const loginUserAction = () => {
 
         //handle hide loading
         {
-            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "loginUser" | item != "verifyEmail");
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "loginUser");
             loadingState.ProcessingDelay = removeProcessingItem;
             loadingState.canRequest = removeProcessingItem > 0 ? false : true;
             await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
@@ -434,13 +461,13 @@ export const sendCodEmailAction = (email, demoResolve) => {
                 if (status == 200 && data.status == true) {
                     // state.forgotPasswordStep=1;
                     await dispatch({ type: "SEND_CODE_EMAIL", payload: state })
-                    showToast("کد به ایمیل شما ارسال شد","success");
+                    showToast("کد به ایمیل شما ارسال شد", "success");
                     // toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
                 } else {
                     data.errors.forEach(element => {
                         toastMessage += element + " / ";;
                     });
-                    showToast(toastMessage,"error");
+                    showToast(toastMessage, "error");
                     // toast.update(toastPromiseSendCode, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                     if (demoResolve && demoResolve == true) {
                         state.forgotPasswordStep = 1;
@@ -515,6 +542,7 @@ export const checkVerifyEmailAction = () => {
                     formdata_login.append("password", state.password)
                     const { data, status } = await loginUser(formdata_login);
                     if (status == 200 && data.status == true) {
+
                         localStorage.setItem("token", data.data.token);
                         // const d = new Date();
                         // d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
@@ -527,7 +555,7 @@ export const checkVerifyEmailAction = () => {
                         data.errors.forEach(element => {
                             toastMessage += element + " / ";
                         });
-                        showToast(toastMessage,"error");
+                        showToast(toastMessage, "error");
                         // toast.update(toastPromise1, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                     }
 
@@ -538,7 +566,7 @@ export const checkVerifyEmailAction = () => {
                     data.errors.forEach(element => {
                         toastMessage += element + " / ";
                     });
-                    showToast(toastMessage,"error");
+                    showToast(toastMessage, "error");
                     // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                 }
                 // }
@@ -547,7 +575,7 @@ export const checkVerifyEmailAction = () => {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
-                showToast(toastMessage,"error");
+                showToast(toastMessage, "error");
                 // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
 
             }
@@ -612,7 +640,7 @@ export const checkVerifyEmailForgotPasswordAction = () => {
                         data.errors.forEach(element => {
                             toastMessage += element + " / ";
                         });
-                        showToast(toastMessage,"error");
+                        showToast(toastMessage, "error");
                         // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                     }
                     // }
@@ -621,7 +649,7 @@ export const checkVerifyEmailForgotPasswordAction = () => {
                     error.response.data.errors.forEach(element => {
                         toastMessage += element + " / ";
                     });
-                    showToast(toastMessage,"error");
+                    showToast(toastMessage, "error");
                     // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
 
                 }
@@ -681,7 +709,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
                                 state.handleResendCode = true;
                                 dispatch({ type: "DISABLE_TIMER", payload: state })
                             }, 5000);
-                            showToast("کد به ایمیل شما ارسال شد","success");
+                            showToast("کد به ایمیل شما ارسال شد", "success");
                             // toast.update(toastPromise, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
                             await dispatch({ type: "SEND_CODE_EMAIL_FORGOTPASSWORD", payload: state })
                             // return Promise.resolve()
@@ -690,7 +718,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
                             data.errors.forEach(element => {
                                 toastMessage += element;
                             });
-                            showToast(toastMessage,"error");
+                            showToast(toastMessage, "error");
                             // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                         }
                         // }
@@ -702,7 +730,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
                         error.response.data.errors.forEach(element => {
                             toastMessage += element + ".";
                         });
-                        showToast(toastMessage,"error");
+                        showToast(toastMessage, "error");
                         // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
 
                     }
@@ -769,14 +797,14 @@ export const changePasswordAction = () => {
                     const { data, status } = await changePassword(formdata);
 
                     if (status == 200 && data.status == true) {
-                        showToast("رمز عبور با موفقیت تغییر کرد","success");
+                        showToast("رمز عبور با موفقیت تغییر کرد", "success");
                         // localStorage.removeItem("token")
                         // toast.update(toastPromise, { render: "رمز عبور با موفقیت تغییر کرد", type: "success", isLoading: false, autoClose: 3000 })
                     } else {
                         data.errors.forEach(element => {
                             toastMessage += element;
                         });
-                        showToast(toastMessage,"error");
+                        showToast(toastMessage, "error");
                         // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                     }
 
@@ -786,7 +814,7 @@ export const changePasswordAction = () => {
                     error.response.data.errors.forEach(element => {
                         toastMessage += element;
                     });
-                    showToast(toastMessage,"error");
+                    showToast(toastMessage, "error");
                     // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
                 }
             }
@@ -794,12 +822,12 @@ export const changePasswordAction = () => {
         else {
             showInputErrorToast();
         }
-           //handle hide loading
-           {
-            var removeProcessingItem=loadingState.ProcessingDelay.filter(item=>item!="changePassword");
-            loadingState.ProcessingDelay=removeProcessingItem;
-            loadingState.canRequest=removeProcessingItem>0?false:true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })  
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "changePassword");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
         }
 
     }

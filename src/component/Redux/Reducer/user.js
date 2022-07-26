@@ -35,6 +35,8 @@ export const userReducer = (
       return { ...action.payload };
     case "REGISTER_USER":
       return { ...action.payload };
+    case "SET_REGISTER_COMPLETE_CHECK":
+      return { ...action.payload };
     case "LOGIN_USER":
       return { ...action.payload };
     case "SEND_CODE_EMAIL":

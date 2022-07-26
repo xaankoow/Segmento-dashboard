@@ -33,7 +33,9 @@ const DashboardHeader = ({ setCloseNav }) => {
     useEffect(() => {
         if (userToken) {
             dispatch(coreUser());
-            dispatch(getAllWorkSpace());
+            setTimeout(() => {
+                dispatch(getAllWorkSpace());
+            }, 1000);
         }
     }, [forceUpdate])
 
@@ -54,7 +56,7 @@ const DashboardHeader = ({ setCloseNav }) => {
             <div className='flex items-center gap-9'>
                 <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-[262px]'>
                     <div className='flex gap-3 items-center'>
-                        <img src='/img/dashboard/header/userimage.svg' className='rounded' alt='userImage' />
+                        <img src={userState.userData.user!=undefined?userState.userData.user.img!=""?userState.userData.user.img:'/img/dashboard/header/userimage.svg':'/img/dashboard/header/userimage.svg'} className='rounded w-10 h-10' alt='userImage' />
                         <div className=''>
                             <span className='text-sm'>{user_name}</span>
                             <div className='flex items-center justify-right mt-1 gap-3'>

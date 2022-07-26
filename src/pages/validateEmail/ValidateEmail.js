@@ -6,7 +6,7 @@ import AuthInput from "../../component/Auth/authInput/AuthInput";
 import Authmenu from "../../component/Auth/authNavMenu/Authmenu";
 import {
   checkVerifyEmailAction,
-  registerUserAction,
+  RegisterUserAction,
   sendCodEmailAction,
   setAuth1Redux,
   setAuth2Redux,
@@ -81,9 +81,10 @@ export default function ValidateEmail() {
           </Link>
           <div className="m-auto">
             <TextButton.Provider value={"تایید ایمیل"}>
-              <AuthButton
+              <AuthButton 
                 bgcolor={"#0A65CD"}
                 reduxHandleClick={checkVerifyEmailAction}
+                classes="m-auto"
               />
             </TextButton.Provider>
           </div>
