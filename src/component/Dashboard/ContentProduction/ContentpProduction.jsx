@@ -56,7 +56,7 @@ export default function ContentpProduction({ onClickHandler }) {
       // return
       // });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   var [tableData, setTableData] = useState([]);

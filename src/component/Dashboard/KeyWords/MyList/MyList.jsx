@@ -41,10 +41,10 @@ export default function MyList() {
       for (let index = data.data.length; index >= 0; index--) {
         if (data.data[index] != undefined) listDatas.push(data.data[index]);
       }
-      console.log(listDatas);
+      // console.log(listDatas);
       setTableDatas(listDatas);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   // SearchBox value

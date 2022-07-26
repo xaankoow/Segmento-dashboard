@@ -33,7 +33,7 @@ export const getAllFinancialReports = () => {
             // debugger
             await dispatch({ type: "GET_FINANCIAL_DATA", payload: state })
         } catch (error) {
-            console.log("register error")
+            // console.log("register error")
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });

@@ -5,6 +5,8 @@ import { Doughnut } from 'react-chartjs-2';
 import PageTitle from '../pageTitle/pageTitle';
 import { usetLimit } from '../../../service/userLimit';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addLoadingItem, removeLoadingItem } from '../../../Redux/Action/loading';
 // import './'
 // import "./output.css"
 // import './script'
@@ -14,14 +16,16 @@ export default function PlanStatus({ title }) {
         pastSelexboxData()
     })
 const[datas,setDatas]=useState("");
-    const pastSelexboxData = async () => {
-        
+// const[startLoading,setStartLoading]=useState(false);
+// var startLoading=false;
+const dispatch =useDispatch();
+const pastSelexboxData = async () => {
         try {
           const { data, status } = await usetLimit();
           setDatas(data.data); //5
-          console.log(data)
+        //   console.log(data)
         } catch (error) {
-          console.log(error);
+        //   console.log(error);
         }
       };
 

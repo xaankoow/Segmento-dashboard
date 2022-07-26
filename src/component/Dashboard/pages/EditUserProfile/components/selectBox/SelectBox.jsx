@@ -9,7 +9,7 @@ export default function SelectBox({ optionItems, title, handlechange,select }) {
         <select
           id="large"
          
-          class=" h-[45px] px-4 w-full text-base  rounded-lg border border-[#D9D9D9] text-[#7D7D7D] focus:border-[#D9D9D9] checked:border-[#D9D9D9]"
+          className=" h-[45px] px-4 w-full text-base  rounded-lg border border-[#D9D9D9] text-[#7D7D7D] focus:border-[#D9D9D9] checked:border-[#D9D9D9]"
           onChange={(e) => handlechange(e)}
         >
           <option value={0} selected={select==0 ?  true :false} className="text-[#7D7D7D]" disabled>

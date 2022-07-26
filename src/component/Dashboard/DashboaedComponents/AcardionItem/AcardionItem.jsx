@@ -12,7 +12,7 @@ export default function AcardionItem() {
   const user = useSelector((state) => state.userState);
   // debugger
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
-  console.log(allWorkSpace);
+  // console.log(allWorkSpace);
   const data = [
     {
       title: "ورک‌اسپیس‌ها",

@@ -31,7 +31,7 @@ export default function ChangeImageModal({
   const userState = useSelector((state) => state.userState);
   const [files, setFiles] = useState([""]);
   // var user_image = userState.userData.user.image;
-  console.log(files);
+  // console.log(files);
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
 
@@ -71,7 +71,7 @@ export default function ChangeImageModal({
   // console.log(files);
   // debugger
   // console.log(files[0]);
-  console.log(files)
+  // console.log(files)
   return (
     <Modal
       isOpen={isOpen ? true : false}

@@ -10,7 +10,7 @@ export default function BuyPlan(setPlan) {
     debugger
     
   const { discount,discountStatus,allPackageData } = useSelector(state => state.planState);
-    console.log("allPackageData")
+    // console.log("allPackageData")
     return (
         <body className='plans_body_container p-5'>
             <p className='text_information'>

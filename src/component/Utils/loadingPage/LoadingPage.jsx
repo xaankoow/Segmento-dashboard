@@ -36,13 +36,13 @@ export default function LoadingPage({ show }) {
             {/* <div className='w-screen h-screen flex items-center justify-center'> */}
               <div>
                 <div id="loading-container-segmento-logo">
-                  <div class="segmento_logo_1"></div>
-                  <div class="segmento_logo_2"></div>
-                  <div class="segmento_logo_3"></div>
-                  <div class="segmento_logo_4"></div>
-                  <div class="segmento_logo_5"></div>
-                  <div class="segmento_logo_6"></div>
-                  <div class="segmento_logo_7"></div>
+                  <div className="segmento_logo_1"></div>
+                  <div className="segmento_logo_2"></div>
+                  <div className="segmento_logo_3"></div>
+                  <div className="segmento_logo_4"></div>
+                  <div className="segmento_logo_5"></div>
+                  <div className="segmento_logo_6"></div>
+                  <div className="segmento_logo_7"></div>
                 </div>
               </div>
                 <p className=' mt-7 text-center'>درحال برسی اطلاعات...</p>

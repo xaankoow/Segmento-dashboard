@@ -30,7 +30,7 @@ export const getAllPlanData = () => {
             }
             await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
         } catch (error) {
-            console.log("register error")
+            // console.log("register error")
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });

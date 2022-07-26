@@ -26,7 +26,7 @@ export const getAllWorkSpace = () => {
         const state = { ...getState().workSpaceState }
         let toastMessage = "";
         try {
-            console.log("start get all work space")
+            // console.log("start get all work space")
             const workSpaces = await getAllWorkspace()
             if (workSpaces.data.status == true && workSpaces.data.code == 200) {
                 state.allWorkSpace = workSpaces.data.data;
@@ -36,7 +36,7 @@ export const getAllWorkSpace = () => {
             // debugger
             await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state })
         } catch (error) {
-            console.log("register error")
+            // console.log("register error")
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });

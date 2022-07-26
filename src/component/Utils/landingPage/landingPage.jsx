@@ -13,7 +13,7 @@ export default function LandingPage() {
   const navigate=useNavigate();
   
   const checkUuid= async (uuidResulte)=>{
-    console.log(uuidResulte);
+    // console.log(uuidResulte);
     const {data}= await checkDetailUuid(uuidResulte);
     if (data.data.payment_status_text=="پرداخت نشده") {
     localStorage.setItem("statusBuyPlna",false)

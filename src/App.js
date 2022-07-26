@@ -40,7 +40,7 @@ export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
   const { ProcessingDelay } = useSelector((state) => state.loadingState);
 
-  console.log(ProcessingDelay.length);
+  // console.log(ProcessingDelay.length);
   //HANDLE SELECT NEXT INPUT IN FORM FORGOTPASSWORD AND VERIFYEMAIL
   // useEffect(() => {
   //   handleNextInput(0)
@@ -138,7 +138,7 @@ export default function App() {
 
         {/* <HandleModal /> */}
         {/* {ProcessingDelay.length>0?alert(''):null} */}
-        {/* <LoadingPage /> */}
+        <LoadingPage />
         {/* {<LoadingPage/>} */}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}

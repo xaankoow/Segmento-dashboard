@@ -22,7 +22,7 @@ export default function ShowFinalReportModal() {
             setTypePlan(type_plan);
         }
     }, [userData]);
-    console.log(userData)
+    // console.log(userData)
     return (
         <body className='final_report_container'>
             <div className='popup'>

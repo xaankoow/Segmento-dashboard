@@ -9,7 +9,7 @@ export default function BuyPlnaModal() {
   const [num, setNum] = useState("");
 
   useEffect(() => {
-    console.log("22")
+    // console.log("22")
     dispatch(getAllPlanData());
   }, [])
 
@@ -25,7 +25,7 @@ export default function BuyPlnaModal() {
 
   const { canRequest } = useSelector((state) => state.loadingState);
   const { discount,discountStatus,allPackageData } = useSelector(state => state.planState);
-  console.log(allPackageData)
+  // console.log(allPackageData)
 
   const handleShowArrowDiscount = (text, arrowTarget) => {
     // 

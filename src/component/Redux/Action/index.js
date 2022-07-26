@@ -16,12 +16,12 @@ export const coreUser = () => {
 
         // debugger
         try {
-            // //handle show loadin
-            // {
-            //     loadingState.ProcessingDelay.push("coreUserData");
-            //     loadingState.canRequest = false;
-            //     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-            // }
+            //handle show loadin
+            {
+                loadingState.ProcessingDelay.push("coreUserData");
+                loadingState.canRequest = false;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            }
 
             const { data, status } = await coreUserData();
             if (status == 200 && data.status == true) {
@@ -43,7 +43,7 @@ export const coreUser = () => {
                 //     });
             }
         } catch (error) {
-            console.log("register error")
+            // console.log("register error")
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
@@ -58,13 +58,13 @@ export const coreUser = () => {
             });
             // toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
         }
-        // //handle hide loading
-        // {
-        //     var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "coreUserData");
-        //     loadingState.ProcessingDelay = removeProcessingItem;
-        //     loadingState.canRequest = removeProcessingItem.length > 0 ? false : true;
-        //     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-        // }
+        //handle hide loading
+        {
+            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "coreUserData");
+            loadingState.ProcessingDelay = removeProcessingItem;
+            loadingState.canRequest = removeProcessingItem.length > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
         await dispatch({ type: "CORE_USER", payload: state })
     }
 }
@@ -219,7 +219,7 @@ export const registerUserAction = () => {
                         // return Promise.reject()
                     }
                 } catch (error) {
-                    console.log("register error")
+                    // console.log("register error")
                     error.response.data.errors.forEach(element => {
                         // toastMessage += element+ "\r\n";
                         toastMessage += element + " / ";
@@ -855,7 +855,7 @@ export const findUserAction = () => {
                 //     toastMessage += element;
                 // });
                 // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                console.log(error)
+                // console.log(error)
             }
         }
 

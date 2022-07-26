@@ -90,9 +90,9 @@ export default function EditUserProfile() {
       const { data, status } = await getSelectBoxData();
       // setcontent(data.data); //5
       setSelectDtas(data.data);
-      console.log(selectDatas);
+      // console.log(selectDatas);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -120,7 +120,7 @@ export default function EditUserProfile() {
       toast.success("اطلاعات شما با موفقیت ویرایش شد");
       setForceUpdate(!forceUpdates);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("اطلاعات شما ذخیره نشد !");
     }
   };
@@ -137,21 +137,21 @@ export default function EditUserProfile() {
     if (userState.userData.user != undefined) {
       var uuidUser = userState.userData.user.uuid;
 
-      console.log(uuidUser);
+      // console.log(uuidUser);
       try {
         // const { data, status } = await getPastDatas(uuidUser); // --------- 
         const { data, status } = await getPastDatas(uuidUser); // --------- ایمپورت اشتباه
         setPastData(data.data); //5
-        console.log(data);
+        // console.log(data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
 
     }
   };
   // select box data
   const data = [];
-  console.log(data)
+  // console.log(data)
   Object.keys(selectDatas).map((item) => {
     data.push(selectDatas[item]);
   });
@@ -175,7 +175,7 @@ export default function EditUserProfile() {
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await editPassword(formdata);
       // setcontent(data.data); //5
-      console.log(data.errors);
+      // console.log(data.errors);
       if (data.errors.length != 0) {
         toast.error(data.errors[0]);
       } else {
@@ -183,7 +183,7 @@ export default function EditUserProfile() {
       }
       setForceUpdate(!forceUpdates);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("لطفا فیلد ها را با دقت پر کنید");
     }
   };

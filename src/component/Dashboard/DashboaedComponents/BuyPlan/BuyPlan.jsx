@@ -12,7 +12,7 @@ export default function BuyPlan({ title }) {
   const { canRequest } = useSelector((state) => state.loadingState);
   const dispatch = useDispatch();
   
-  console.log(allPackageData)
+  // console.log(allPackageData)
   useEffect(() => {
     dispatch(getAllPlanData())
   }, [])
