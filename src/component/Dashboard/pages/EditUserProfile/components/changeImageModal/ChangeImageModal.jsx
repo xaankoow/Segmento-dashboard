@@ -53,11 +53,17 @@ export default function ChangeImageModal({
     accept: ["JPG", "PNG", "GIF"],
     onDrop: (acceptedFiles) => {
       // debugger
-      dispatch(setImageProfRedux(acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        }))
-      ))
+      // dispatch(setImageProfRedux(acceptedFiles.map((file) =>
+      //   Object.assign(file, {
+      //     preview: URL.createObjectURL(file),
+      //   }))
+      // ))
+
+      setFiles(acceptedFiles.map((file) =>
+      Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      }))
+      )
 
       // setUp(up+1);
       // setFiles(
@@ -68,9 +74,9 @@ export default function ChangeImageModal({
 
   // console.log(files[0].preview);
   // debugger
-  
-  const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : ""
-  const thumbs = userState.image[0] != "" ? (
+  // debugger
+  const imgData =files[0] != "" ? URL.createObjectURL(files[0]) : ""
+  const thumbs = files[0] != "" ? (
     <>
       <img
         src={imgData}
@@ -165,6 +171,7 @@ export default function ChangeImageModal({
                 </button>
                 <AuthButton
                   textButton={" ذخیره تغییرات"}
+                  handlerClick={close}
                   reduxHandleClick={setImageProfRedux}
                   setOnclickValue={files.length != 0 ? files : []}
                 />

@@ -17,6 +17,7 @@ export const coreUser = () => {
         try {
             //handle show loadin
             {
+                loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
                 loadingState.ProcessingDelay.push("coreUserData");
                 loadingState.canRequest = false;
                 await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })

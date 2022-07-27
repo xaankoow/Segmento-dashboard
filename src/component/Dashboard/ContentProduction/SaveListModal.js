@@ -65,12 +65,8 @@ export default function SaveListModal({
   };
 
   useEffect(() => {
-    // if (canRequest) {
     handleGetcontent();
-    // }
   }, []);
-  // console.log(SaveInputValue);
-  // console.log(dataTable);
   if (isContentProduction) {
     var handleSetcontent = async () => {
       try {

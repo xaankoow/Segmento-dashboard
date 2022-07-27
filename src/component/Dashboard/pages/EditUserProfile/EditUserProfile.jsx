@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import ProfileInformation from "./components/profileInfo/ProfileInformation";
 import AuthInput from "../../../Auth/authInput/AuthInput";
@@ -26,6 +26,7 @@ import {
 import { useSelect } from "@mui/base";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import { EditorCustomizedToolbarOption } from "./components/Editor/Editor";
+import { showToast } from "../../../Utils/toastifyPromise";
 export default function EditUserProfile() {
 
   const { canRequest } = useSelector(state => state.loadingState)
@@ -34,11 +35,11 @@ export default function EditUserProfile() {
   const [nameInputValue, setNameInputValue] = useState("");
   const [familyInputValue, setfamilyInputValue] = useState("");
   // user Image
-  
+
   const [image, setUserImage] = useState([]);
   const userImageProf = image.map((file) => file.preview);
 
- 
+
   //
   const [selectBoxValue1, setSelectBoxValue1] = useState("");
   const [selectBoxValue2, setSelectBoxValue2] = useState("");
@@ -59,7 +60,7 @@ export default function EditUserProfile() {
   const userState = useSelector((state) => state.userState);
   var user_package_type_text = "";
   if (userState.userData.package) {
-    
+
     user_package_type_text = userState.userData.package.type_text
       ? userState.userData.package.type_text
       : "";
@@ -103,7 +104,18 @@ export default function EditUserProfile() {
     }
   };
 
+  const loadingState = useSelector(state => state.loadingState)
+
   const handleSetNewProfile = async () => {
+
+    var toastMessage = "";
+    //handle show loadin
+    {
+      loadingState.ProcessingDelay.push("editProfile");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
+
     let family = "";
     try {
       let formdata = new FormData();
@@ -112,9 +124,11 @@ export default function EditUserProfile() {
       } else {
         family = user_name;
       }
-      
-      const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "";
       // debugger
+      // const [file] = acceptedFiles;
+      const imgData = userState.image[0] != "" ? userState.image[0] : "";
+      // const imgData1 = imgData != "" ? URL.revokeObjectURL(imgData) : "";
+
       formdata.append("name", family);
       formdata.append("bio", "من یک برنامه نویس هستم");
       formdata.append("avatar", imgData);
@@ -125,17 +139,41 @@ export default function EditUserProfile() {
       formdata.append("role_in_company", selectBoxValue5);
       formdata.append("dating_method", selectBoxValue6);
       // const { data, status } = await keywordService(searchBoxValue);
-      const { data, status } = await editProfile(formdata);
+      const { data } = await editProfile(formdata);
+      if (data.code == 200 & data.status == true) {
+        dispatch(coreUser());
+        toast.success("اطلاعات شما با موفقیت ویرایش شد");
+        setForceUpdate(!forceUpdates);
+      }
       // setcontent(data.data); //5
-      toast.success("اطلاعات شما با موفقیت ویرایش شد");
-      setForceUpdate(!forceUpdates);
     } catch (error) {
+      data.errors.forEach(element => {
+        toastMessage += element + " / ";
+      });
+      showToast(toastMessage, "error");
       // console.log(error);
-      toast.error("اطلاعات شما ذخیره نشد !");
+      // toast.error("اطلاعات شما ذخیره نشد !");
     }
-  };
+
+    //handle hide loading
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "editProfile");
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
+  }
+
+    ;
+
+
+
+
+
+
+
   useEffect(() => {
-    if(pastData ==""){
+    if (pastData == "") {
 
       pastSelexboxData();
     }
@@ -210,20 +248,20 @@ export default function EditUserProfile() {
   const forceUpdate = userState.forceUpdate;
   useEffect(() => {
     // pastSelexboxData();
-    if (selectDatas.length==0) {
+    if (selectDatas.length == 0) {
       selexboxData();
-      
+
     }
     // debugger
     // if (userToken) { ------------ این مورد اضافی به نظر میاد و نیازی نیست چونکه داخل هدر داشبورد صدا زدم
-      // dispatch(coreUser());
+    // dispatch(coreUser());
     //   dispatch(getAllWorkSpace());
     // }
 
   }, [forceUpdate]);
 
   // 
- 
+
   console.log(userState.image);
   return (
     <>
@@ -232,7 +270,7 @@ export default function EditUserProfile() {
           close={() => setOpenChangeImageModal(false)}
           isOpen={openChangeImageModal}
           setUserImage={setUserImage}
-          userImage={userState.userData.user!=undefined&userState.userData.user.img!=""?userState.userData.user.img:"/../img/dashboard/userProfile/profileImage.png"}
+          userImage={userState.userData.user != undefined & userState.userData.user.img != "" ? userState.userData.user.img : "/../img/dashboard/userProfile/profileImage.png"}
         />
       )}
       {updatePass && (
@@ -253,12 +291,12 @@ export default function EditUserProfile() {
             <div className="mt-12 flex justify-between">
               <ProfileInformation
                 userName={user_name}
-                userType={user_package_type_text && user_package_type_text }
+                userType={user_package_type_text && user_package_type_text}
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
-                  
-                  // userState.image != "" ? userState.image : userState.userData.user.image 
-                
+
+              // userState.image != "" ? userState.image : userState.userData.user.image 
+
               />
               {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
@@ -280,18 +318,18 @@ export default function EditUserProfile() {
                   <div className="flex gap-4 my-9 justify-between">
                     <AuthInput
                       textLabelInput="نام "
-                    classes={"w-[100%]"}
+                      classes={"w-[100%]"}
                       typeInput="text"
                       handleChange={handleNameInput}
                     />
-                    
-                      <AuthInput
-                        textLabelInput=" نام خانوادگی"
+
+                    <AuthInput
+                      textLabelInput=" نام خانوادگی"
                       classes={"w-[100%]"}
-                        typeInput="text"
-                        handleChange={handlefamilyInput}
-                      />
-                  
+                      typeInput="text"
+                      handleChange={handlefamilyInput}
+                    />
+
                   </div>
                   <AuthInput
                     textLabelInput="آدرس ایمیل "
@@ -312,7 +350,7 @@ export default function EditUserProfile() {
                 <div className="border-b border-lightGray w-full m-auto" />
                 <div className="mt-7 mb-9">
                   <span className="text-[#002145] mb-7">
-                  اطلاعات کسب و کار من
+                    اطلاعات کسب و کار من
                   </span>
                   <div className="flex flex-col gap-4 mt-7">
 
@@ -357,7 +395,7 @@ export default function EditUserProfile() {
                       <button
                         disabled={!canRequest}
                         className="btn-style"
-                        onClick={() => handleSetNewProfile()}
+                        onClick={() => handleSetNewProfile(userState.image[0])}
                       >
                         ذخیره تغییرات
                       </button>
@@ -371,9 +409,9 @@ export default function EditUserProfile() {
                     پیغام برای تیم سگمنتو{" "}
                   </span>
                 </div>
-               
-                <EditorCustomizedToolbarOption/>
-                
+
+                <EditorCustomizedToolbarOption />
+
                 <div className="w-full flex justify-end ">
                   <button className="btn-style mb-9 w-[101px]">
                     ارسال پیام

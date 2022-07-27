@@ -29,7 +29,7 @@ const KeyWords = ({ onClickHandler }) => {
   const handleSetKeyWords = async () => {
       //handle show loadin
       {
-        loadingState.ProcessingDelay.push("dataTable");
+        loadingState.ProcessingDelay.push("keywordService");
         loadingState.canRequest = false;
         await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
       }
@@ -54,7 +54,7 @@ const KeyWords = ({ onClickHandler }) => {
     }
     //handle hide loading
     {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "dataTable");
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "keywordService");
       loadingState.ProcessingDelay = removeProcessingItem;
       loadingState.canRequest = removeProcessingItem > 0 ? false : true;
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
