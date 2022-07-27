@@ -130,7 +130,7 @@
     display: list-item !important;
     font-size: 18px;
     /* padding-right: 21px; */
-    background: url(../img/modal/body/discList.svg) no-repeat right;
+    background: url(/../img/modal/body/discList.svg) no-repeat right;
     list-style-type: none;
     color: #083c78;
     /* padding-bottom: 18px; */
@@ -226,7 +226,7 @@
 
  .plans_body_container .plan_card .apply_token_ico {
     position: absolute;
-    background-image: url(../img/modal/body/arrow_apply_token.svg);
+    background-image: url(/../img/modal/body/arrow_apply_token.svg);
     box-sizing: border-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -519,7 +519,7 @@ input[type="radio"]:checked::before {
     height: 15px;
     width: 15px;
     margin-right: 14px;
-    background-image: url(../img/modal/footer/arrow_14_free.svg);
+    background-image: url(/../img/modal/footer/arrow_14_free.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;

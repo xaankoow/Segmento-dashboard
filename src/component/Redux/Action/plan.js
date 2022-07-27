@@ -242,7 +242,8 @@ export const tryFreePlan = () => {
             let toastMessage = "";
             try {
                 const { data } = await buyPlna(packageInfo);
-                if (data.code == 200 && data.status == true) {
+                // debugger
+                if (data.code == 201) {
                     state.checkUseTryFree = true;
                     showToast("پلن 14 روزه رایگان برایه شما فعال شد", "success");
                 } else {
@@ -413,7 +414,7 @@ export const modalSetWorkSpace = () => {
         try {
             // debugger
             const { data } = await creatWorkSpace(modalWorkSpace);
-            // debugger
+            debugger
             if (data.code == 200 && data.status == true) {
                 localStorage.setItem("modalWorkSpace", data.status);
                 state.forceUpdate += 1;

@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import { registerUser, loginUser, verifyEmail, checkVerifyEmail, verifyEmailChangePassword, logout, changePassword, checkVerifyEmailChangePassword, findUser, coreUserData } from "../../service/userService"
 import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import { handleNextInput } from "../../Utils/focusNextInput";
-import { showInputErrorToast,  showToast } from "../../Utils/toastifyPromise";
+import { showInputErrorToast, showToast } from "../../Utils/toastifyPromise";
 
 
 
@@ -27,13 +27,14 @@ export const coreUser = () => {
             if (status == 200 && data.status == true) {
                 state.userData = data.data;
 
-                        //handle hide loading
-        {
-            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "coreUserData");
-            loadingState.ProcessingDelay = removeProcessingItem;
-            loadingState.canRequest = removeProcessingItem.length > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-        }
+                //handle hide loading
+                {
+                    const loadingState1 = { ...getState().loadingState }
+                    var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "coreUserData");
+                    loadingState1.ProcessingDelay = removeProcessingItem;
+                    loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+                }
             } else {
                 // data.errors.forEach(element => {
                 //     toastMessage += element + " / ";;
@@ -50,7 +51,11 @@ export const coreUser = () => {
                 //     });
             }
         } catch (error) {
+            // if(data){
+
+            // }
             // console.log("register error")
+            console.log(error)
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
@@ -67,10 +72,11 @@ export const coreUser = () => {
         }
         //handle hide loading
         {
-            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "coreUserData");
-            loadingState.ProcessingDelay = removeProcessingItem;
-            loadingState.canRequest = removeProcessingItem.length > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            const loadingState2 = { ...getState().loadingState }
+            var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "coreUserData");
+            loadingState2.ProcessingDelay = removeProcessingItem;
+            loadingState2.canRequest = removeProcessingItem.length > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
         }
         await dispatch({ type: "CORE_USER", payload: state })
     }
@@ -850,7 +856,7 @@ export const logoutAction = () => {
         state.forceUpdate += 1;
         // toast.update(toastPromise, { render: "از حساب خود خارج شدید", type: "success", isLoading: false, autoClose: 3000 })
         await dispatch({ type: "RESET_ALL_STATE" })
-        await dispatch({ type: "LOG_OUT", payload: state })
+        // await dispatch({ type: "LOG_OUT" })
     }
 }
 export const findUserAction = () => {
