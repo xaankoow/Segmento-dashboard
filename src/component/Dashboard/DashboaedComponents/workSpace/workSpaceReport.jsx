@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import AuthButton from '../../../Auth/authButton/AuthButton';
+import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 
 export default function WorkSpaceReport({ stepWorkSpace }) {
 
@@ -211,6 +212,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                     </div>
                 </div>
             </div>
+            <SetTitleTabBrowser nameSection={"رسید ورک اسپیس"}/>
         </Fragment>
     )
 }

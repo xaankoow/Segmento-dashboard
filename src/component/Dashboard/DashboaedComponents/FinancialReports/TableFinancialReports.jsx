@@ -12,6 +12,7 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import { exportExcel } from "../../../Utils/excel/exportExcel";
 import ReactExport from "react-export-excel";
+import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 // import { exportExcel } from '../../../Utils/excel/exportExcel';
 // import { RangeDatePicker } from "jalali-react-datepicker";//
 export default function TableFinancialReports({ title }) {
@@ -369,6 +370,7 @@ export default function TableFinancialReports({ title }) {
           </div>
         </div>
       </div>
+      <SetTitleTabBrowser nameSection={"گزارش های مالی"}/>
     </div>
   );
 }

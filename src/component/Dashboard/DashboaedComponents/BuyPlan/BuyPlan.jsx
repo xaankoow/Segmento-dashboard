@@ -4,6 +4,7 @@ import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../../Re
 import { useDispatch, useSelector } from 'react-redux';
 import AuthButton from '../../../Auth/authButton/AuthButton';
 import ReportBuyPlanSection from '../../../Utils/Modals/ReportBuyPlanSection';
+import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 
 export default function BuyPlan({ title }) {
 
@@ -292,6 +293,8 @@ export default function BuyPlan({ title }) {
       <div className='report_buy_plan w-[500px]'>
         {showReportModal&&<ReportBuyPlanSection handleClose={handleCloseReportModal} packageUuid={plan.uuid}/>}
       </div>
+
+      <SetTitleTabBrowser nameSection={"خرید اشتراک"}/>
     </div>
   )
 }

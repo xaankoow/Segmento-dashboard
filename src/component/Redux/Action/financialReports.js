@@ -52,10 +52,11 @@ export const getAllFinancialReports = () => {
 
         //handle hide loading
         {
-            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "getAllFinancialReports");
-            loadingState.ProcessingDelay = removeProcessingItem;
-            loadingState.canRequest = removeProcessingItem.length > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            const loadingState1 = { ...getState().loadingState }
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllFinancialReports");
+            loadingState1.ProcessingDelay = removeProcessingItem;
+            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
         }
     }
 }
@@ -63,7 +64,7 @@ export const getAllFinancialReports = () => {
 
 
 
-export const filterFinancialReports = ({textTarget, textValue, sortTarget, sortValue}) => {
+export const filterFinancialReports = ({ textTarget, textValue, sortTarget, sortValue }) => {
     return async (dispatch, getState) => {
         const state = { ...getState().financialState }
 
@@ -108,28 +109,28 @@ export const filterFinancialReports = ({textTarget, textValue, sortTarget, sortV
 
 
         // filter with date or cound
-        if (sortTarget=="تاریخ خرید") {
-            var convertDateStart=parseInt(new DateObject(sortValue[0]).convert(persian,persian_en).format("YYYYMMDD"));
-            var convertDateEnd=parseInt(new DateObject(sortValue[1]).convert(persian,persian_en).format("YYYYMMDD"));
+        if (sortTarget == "تاریخ خرید") {
+            var convertDateStart = parseInt(new DateObject(sortValue[0]).convert(persian, persian_en).format("YYYYMMDD"));
+            var convertDateEnd = parseInt(new DateObject(sortValue[1]).convert(persian, persian_en).format("YYYYMMDD"));
             // const datesSelected=sortValue.split('-');
-            let filterList=[];
+            let filterList = [];
             // filterFinancialReportData.forEach(element => {
             //     const internalDate=parseInt(element.created_at.replaceAll('/',''));
             //     debugger
             //     if (!internalDate>convertDateStart&!internalDate<convertDateEnd) {
-                //         filterFinancialReportData.r
-                //         // filterList.push(element);
-                //         // parseInt(item.created_at.replace('/',''))>convertDateStart&parseInt(item.created_at.replace('/',''))<convertDateEnd
-                //     }
-                // });
-                    // const internalDate=parseInt(element.created_at.replaceAll('/',''));
-                filterFinancialReportData=filterFinancialReportData.filter(item=>parseInt(item.created_at.replaceAll('/',''))>convertDateStart&parseInt(item.created_at.replaceAll('/',''))<convertDateEnd);
-        }else{
-            filterFinancialReportData=filterFinancialReportData.splice(0, sortValue<filterFinancialReportData.length?sortValue:filterFinancialReportData.length);
+            //         filterFinancialReportData.r
+            //         // filterList.push(element);
+            //         // parseInt(item.created_at.replace('/',''))>convertDateStart&parseInt(item.created_at.replace('/',''))<convertDateEnd
+            //     }
+            // });
+            // const internalDate=parseInt(element.created_at.replaceAll('/',''));
+            filterFinancialReportData = filterFinancialReportData.filter(item => parseInt(item.created_at.replaceAll('/', '')) > convertDateStart & parseInt(item.created_at.replaceAll('/', '')) < convertDateEnd);
+        } else {
+            filterFinancialReportData = filterFinancialReportData.splice(0, sortValue < filterFinancialReportData.length ? sortValue : filterFinancialReportData.length);
         }
 
         // state.allFinancialData = data.data;
-        state.financialDataTable =filterFinancialReportData;
+        state.financialDataTable = filterFinancialReportData;
 
         await dispatch({ type: "SEARCH_FINANCIAL_DATA", payload: state })
     }

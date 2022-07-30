@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import BodyContent from './BodyContent'
 import FooterBtn from './FooterBtn'
 import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan'
+import SetTitleTabBrowser from '../SetTitleTabBrowser'
 
 export default function BuyPlanEasyToStartModal({ handleClose }) {
   const [stepModal, setStepModal] = useState(1);
@@ -66,6 +67,7 @@ export default function BuyPlanEasyToStartModal({ handleClose }) {
         </div>
       </Modal>
       {forceUpdate ? "" : ""}
+      <SetTitleTabBrowser nameSection={"شروع آسان"}/>
     </div>
   )
 }

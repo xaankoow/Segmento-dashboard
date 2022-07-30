@@ -6,10 +6,11 @@ import PageTitle from "../pageTitle/pageTitle";
 import { usetLimit } from "../../../service/userLimit";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 // import './'
 // import "./output.css"
 // import './script'
-export default function PlanStatus({ title }) {
+export default function PlanStatus() {
   useEffect(() => {
     if (datas == "") pastSelexboxData();
   });
@@ -327,6 +328,8 @@ export default function PlanStatus({ title }) {
           </div>
         </div>
       </div>
+
+      <SetTitleTabBrowser nameSection={"وضعیت اشتراک"}/>
     </div>
   );
 }

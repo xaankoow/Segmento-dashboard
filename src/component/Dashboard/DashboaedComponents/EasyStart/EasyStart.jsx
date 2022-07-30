@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 
 const EasyStart = ({ startButtonClick }) => {
 
@@ -41,6 +42,7 @@ const EasyStart = ({ startButtonClick }) => {
                     </Link>
                 </div>
             </div>
+            <SetTitleTabBrowser nameSection={"شروع آسان"}/>
         </>
     );
 }
