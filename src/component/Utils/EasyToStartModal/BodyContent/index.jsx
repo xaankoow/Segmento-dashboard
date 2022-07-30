@@ -10,7 +10,7 @@ export default function BodyContent({ stepModal, setStepModal, free, lockNextSte
 
     return (
         <div>
-            <body className={` ${stepModal > 2 & stepModal < 6 ? "border-[#F2F5F7] border rounded-lg p-5" : ""}`}>
+            <body className={` ${stepModal > 2 & stepModal < 6 ? "border-[#F2F5F7] border rounded-lg p-5" : "bg-[#fff]"}`}>
                 <p className={`leading-6 text-sm font-normal text-[#083c78]`}>
                     {Paragraph(stepModal, free)}
                 </p>
@@ -24,7 +24,7 @@ export default function BodyContent({ stepModal, setStepModal, free, lockNextSte
                 {stepModal == 2 & free == true ? <TryFreePlan setLockNextStep={setLockNextStep} lockNextStep={lockNextStep} setStepModal={setStepModal} /> : ""}
                 {stepModal > 2 & stepModal < 6 ? InputEasyToStartModal(stepModal, setApplyWebAdress) : ""}
                 {stepModal == 1 ? <BuyPlnaModal /> : ""}
-                {stepModal == 6 ? ShowFinalReportModal() : ""}
+                {stepModal == 6 ? <ShowFinalReportModal/> : ""}
             </body>
         </div>
     )

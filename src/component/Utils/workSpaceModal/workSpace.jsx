@@ -70,10 +70,12 @@ export default function WorkSpace() {
               <span className='info'></span>
             </div>
             <div className='close_suport_container'>
-              <div className='close_modal_ico' onClick={() => navigate(-1)}></div>
+            <div className='flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer bg-[#F352421A]' >
+              <div className='close_modal_ico w-3 h-3' onClick={() => navigate(-1)}></div>
+              </div>
             </div>
           </header>
-          <body className='px-5'>
+          <body className='px-5 bg-[#fff]'>
             <div className='flex gap-6 items-center relative'>
               <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
               <span className='text-sm mr-3'>{workSpaceTitle(stepModal)}</span>

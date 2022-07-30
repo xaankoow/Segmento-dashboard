@@ -21,11 +21,11 @@ export default function BuyPlanEasyToStartModal({ handleClose }) {
   useEffect(() => {
     const find_buy_type = localStorage.getItem("buyType")
     const find_status_create_workSpace_modal = localStorage.getItem("modalWorkSpace");
-    if (find_status_create_workSpace_modal) {
+    if (find_status_create_workSpace_modal!=undefined) {
       setStepModal(6)
       localStorage.removeItem("modalWorkSpace");
     }
-  }, [])
+  }, [forceUpdate])
 
   const customStyles = {
     content: {

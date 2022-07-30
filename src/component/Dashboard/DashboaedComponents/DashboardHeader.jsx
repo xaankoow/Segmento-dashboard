@@ -11,6 +11,7 @@ const DashboardHeader = ({ setCloseNav }) => {
     const dispatch = useDispatch()
     const userToken = localStorage.getItem("token");
     const userState = useSelector(state => state.userState)
+    const {checkUseTryFree} = useSelector(state => state.planState)
     const [userName, setUserName] = useState("");
     var user_name = "";
     if (userState.userData.user) {
@@ -31,11 +32,18 @@ const DashboardHeader = ({ setCloseNav }) => {
     }, [userToken])
 
     useEffect(() => {
-        if (userToken) {
-            dispatch(coreUser());
-            dispatch(getAllWorkSpace());
+        if (userToken != "") {
+            setTimeout(() => {
+                dispatch(coreUser());
+            }, 1000);
+            setTimeout(() => {
+                dispatch(getAllWorkSpace());
+            }, 2000);
         }
     }, [forceUpdate])
+    useEffect(() => {
+                dispatch(coreUser());
+    }, [checkUseTryFree])
 
     const location = useLocation();
 
@@ -59,7 +67,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                             <span className='text-sm'>{user_name}</span>
                             <div className='flex items-center justify-right mt-1 gap-3'>
                                 <img src="/img/dashboard/header/Ellipse.svg" alt="Ellipse" />
-                                <span className='text-xs'>{userState.userData.package!=undefined?userState.userData.package.title:"بدون پکیج"}</span>
+                                <span className='text-xs'>{userState.userData.package != undefined ? userState.userData.package.title : "بدون پکیج"}</span>
                             </div>
                         </div>
                     </div>
