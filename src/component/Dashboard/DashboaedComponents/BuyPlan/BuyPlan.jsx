@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthButton from '../../../Auth/authButton/AuthButton';
 import ReportBuyPlanSection from '../../../Utils/Modals/ReportBuyPlanSection';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
-import DiscountTagValue from './DiscountTagValue';
+import DiscountTagValue from '../../../Utils/buyPlanSection_UTILS/DiscountTagValue';
+import HandleParagraphInfoPlan from '../../../Utils/buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan';
 
 export default function BuyPlan({ title }) {
 
@@ -24,7 +25,7 @@ export default function BuyPlan({ title }) {
   const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
   // const [free, setFree] = useState(false);
 
-  const [plan, setPlan] = useState({ uuid: "", type: "" });
+  const [plan, setPlan] = useState({ uuid: "", type: "",planIndex:0 });
   // 
   // const [showModal, setShowModal] = useState(true);
   const [discountInputGold, setDiscountInputGold] = useState("");
@@ -110,17 +111,18 @@ export default function BuyPlan({ title }) {
             <span className='title'>برنزی</span>
             <hr />
             <div className='plan'>
-              {allPackageData.map(item => {
+              {allPackageData.map((item,index) => {
                 // 
                 if (item.type_text == "برنزی") {
                   return (
-                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "bronze" }); dispatch(setPackageUuid(item.uuid)) }}>
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "bronze", planIndex:index}); dispatch(setPackageUuid(item.uuid)) }}>
                       <div>
                         <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                         <p>{item.title}</p>
                       </div>
                       <span className='off_price'>{item.default_discount_text}</span>
-                    </div>)
+                    </div>
+                  )
                 }
               })}
             </div>
@@ -279,11 +281,8 @@ export default function BuyPlan({ title }) {
 
 
 
-        
-        <div className='container_plan_message mt-5 rounded-lg'>
-          <img src="/img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
-          <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
-        </div>
+
+        <HandleParagraphInfoPlan typePlan={plan.type} indexPlan={plan.planIndex}/>
         <AuthButton classes={"m-auto mt-4"} handlerClick={setShowReportModal} setOnclickValue={true} disabled={plan.uuid != "" ? false : true} onClick={() => setShowReportModal(true)} textButton={<Fragment>فعالسازی اشتراک<span className='forward-ico'></span></Fragment>}></AuthButton>
         {/* <AuthButton className='btn-style m-auto mt-4' handlerClick={setShowReportModal(true)} onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></AuthButton> */}
         {/* </body> */}

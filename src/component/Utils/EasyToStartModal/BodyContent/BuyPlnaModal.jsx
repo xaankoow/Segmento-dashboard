@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../../Redux/Action/plan';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthInput from '../../../Auth/authInput/AuthInput';
-import DiscountTagValue from '../../../Dashboard/DashboaedComponents/BuyPlan/DiscountTagValue';
+import DiscountTagValue from '../../buyPlanSection_UTILS/DiscountTagValue';
 
 export default function BuyPlnaModal() {
 
