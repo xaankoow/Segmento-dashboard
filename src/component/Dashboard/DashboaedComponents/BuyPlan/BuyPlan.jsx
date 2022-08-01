@@ -143,7 +143,7 @@ export default function BuyPlan({ title }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"bronze"}
-                disabled={discount != "" ? true : false}
+                disable={discount != "" ? true : false}
                 errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
               />
               <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}></button>
@@ -155,12 +155,12 @@ export default function BuyPlan({ title }) {
             <span className='title'>نقره ای</span>
             <hr />
             <div className='plan'>
-              {allPackageData.map(item => {
+              {allPackageData.map((item,index) => {
                 // 
                 if (item.type_text == "نقره ای") {
                   if (item.title != "14 روز رایگان") {
                     return (
-                      <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "silver" }); dispatch(setPackageUuid(item.uuid)) }}>
+                      <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "silver", planIndex:index }); dispatch(setPackageUuid(item.uuid)) }}>
                         <div>
                           <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                           <p>{item.title}</p>
@@ -188,7 +188,7 @@ export default function BuyPlan({ title }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"silver"}
-                disabled={discount != "" ? true : false}
+                disable={discount != "" ? true : false}
                 errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
               />
               <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}></button>
@@ -198,11 +198,11 @@ export default function BuyPlan({ title }) {
             <span className='title'>طلایی</span>
             <hr />
             <div className='plan'>
-              {allPackageData.map(item => {
+              {allPackageData.map((item,index) => {
 
                 if (item.type_text == "طلایی") {
                   return (
-                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "gold" }); dispatch(setPackageUuid(item.uuid)) }}>
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "gold", planIndex:index }); dispatch(setPackageUuid(item.uuid)) }}>
                       <div>
                         <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                         <p>{item.title}</p>
@@ -229,7 +229,7 @@ export default function BuyPlan({ title }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"gold"}
-                disabled={discount != "" ? true : false}
+                disable={discount != "" ? true : false}
                 errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
               />
               <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}></button>
@@ -240,11 +240,11 @@ export default function BuyPlan({ title }) {
             <span className='title'>الماسی</span>
             <hr />
             <div className='plan'>
-              {allPackageData.map(item => {
+              {allPackageData.map((item,index) => {
 
                 if (item.type_text == "الماسی") {
                   return (
-                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "diamond" }); dispatch(setPackageUuid(item.uuid)) }}>
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "diamond", planIndex:index }); dispatch(setPackageUuid(item.uuid)) }}>
                       <div>
                         <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                         <p>{item.title}</p>
@@ -271,7 +271,7 @@ export default function BuyPlan({ title }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"diamond"}
-                disabled={discount != "" ? true : false}
+                disable={discount != "" ? true : false}
                 errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
               />
               <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}></button>
