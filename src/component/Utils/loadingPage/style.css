@@ -1,0 +1,83 @@
+#Loadin-Page .ReactModal__Content {
+    background: transparent !important;
+}
+
+/* inside block #0AC7E2 */
+#loading-container-segmento-logo{
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+#loading-container-segmento-logo .segmento_logo_1{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 14.2%;
+    height: 100%;
+    background-color: #0A65CD;
+}
+#loading-container-segmento-logo .segmento_logo_2{
+    position: absolute;
+    width: 100%;
+    height: 14.2%;
+    left: 0px;
+    top: 0px;
+    background-color: #0A65CD;
+}
+#loading-container-segmento-logo .segmento_logo_3{
+    position: absolute;
+    width: 14.2%;
+    height: 42.8%;
+    right: 0px;
+    top: 0px;
+    background-color: #0A65CD;
+}
+#loading-container-segmento-logo .segmento_logo_4{
+    position: absolute;
+    /* width: 0px; */
+    height: 14.2%;
+    right: 0px;
+    bottom: 0px;
+    background-color: #0AC7E2;
+    animation: move_slide_down_logo 1s ease 0s infinite alternate;
+}
+#loading-container-segmento-logo .segmento_logo_5{
+    position: absolute;
+    width: 42.8%;
+    height: 14.2%;
+    left: 0px;
+    bottom: 0px;
+    background-color: #0A65CD;
+}
+#loading-container-segmento-logo .segmento_logo_6{
+    position: absolute;
+    width: 0px;
+    height: 14.2%;
+    right: 28.5%;
+    top: 28.5%;
+    background-color: #0AC7E2;
+    animation: move_slide_top_logo 1s ease 1s infinite alternate;
+}
+#loading-container-segmento-logo .segmento_logo_7{
+    position: absolute;
+    width: 0px;
+    height: 14.2%;
+    right: 0px;
+    bottom:28.5%;
+    background-color: #0AC7E2;
+    animation: move_slide_middle_logo 1s ease 500ms infinite alternate;
+}
+@keyframes move_slide_down_logo {
+    from{width: 0px;}
+    
+    to{width: 42.8%;}
+}
+@keyframes move_slide_middle_logo {
+    0%{width: 0px;}
+    100%{width: 71.4%;}
+}
+@keyframes move_slide_top_logo {
+    0%{width: 0px;}
+    100%{width: 42.8%;}
+}

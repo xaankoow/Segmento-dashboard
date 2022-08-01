@@ -1,43 +1,6 @@
 import { toast } from "react-toastify"
 
-export const showPromisToast = (fun,message) => {
-
-    // var messageToastSuccess = "c";
-    // var messageToastFiled = "f";
-
-    // switch (fun_type) {
-    //     case "loginUser":
-    //         messageToastSuccess = "ورود موفقیت آمیز"
-    //         messageToastFiled = "کاربر با مشخصات فوق یافت نشد"
-    //         break;
-
-    //     case "registerUser":
-    //         messageToastSuccess = "ثبت نام موفقیت آمیز"
-    //         messageToastFiled = "خطا در ثبت نام کاربر"
-    //         break;
-
-    //     case "sendCod":
-    //         messageToastSuccess = "کد به حساب شما ارسال شد"
-    //         messageToastFiled = "حساب شما یافت نشد"
-    //         break;
-
-
-    //     case "checkVerifyEmail":
-    //         messageToastSuccess = "اعتبار سنجی ایمیل انجام شد"
-    //         messageToastFiled = "کد وارد شده صحیح نمی باشد"
-    //         break;
-
-
-    //     case "changePassword":
-    //         messageToastSuccess = "پسورد با موفقیت تغییر کرد"
-    //         messageToastFiled = "API برایه تغییر پسورد یافت نشد"
-    //         break;
-
-
-    //     default:
-    //         break;
-    // }
-    debugger
+export const showPromisToast = (fun) => {
     toast.promise(
         fun
         ,
@@ -52,8 +15,6 @@ export const showPromisToast = (fun,message) => {
 }
 
 export const showInputErrorToast = (message) => {
-    // toast.info('لطفا فیلد هارا با دقت پرکنید', {
-        debugger
     toast.info(message!=undefined?message:'لطفا فیلد هارا با دقت پرکنید', {
         position: "top-right",
         autoClose: 3000,
@@ -61,7 +22,35 @@ export const showInputErrorToast = (message) => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        // rtl:true,
         progress: undefined
     });
+}
+export const showToast = (message,type) => {
+        switch (type) {
+            case 'success':
+                toast.success(message, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                });
+                break;
+            case 'error':
+                toast.error(message, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                });
+                break;
+        
+            default:
+                break;
+        }
 }

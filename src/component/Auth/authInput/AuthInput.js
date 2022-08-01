@@ -15,20 +15,29 @@ export default function AuthInput({
   maxlength,
   classes,
   pressNumber,
-  direction
+  direction,
+  wrapperClass,
+  value,
+  handleArrowPlan,
+  targePlanArrow,
+  workSpaceTypeState,
+  errorTextId
+
 }) {
-  // check email to be correct
-  const validateEmail = (email) => {
-    var re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
+  // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function
+  // const validateEmail = (email) => {
+  //   var re = /\S+@\S+\.\S+/;
+  //   return re.test(email);
+  // };
+  // console.log(redux)
+
   const [isSeePssword, setSeePassword] = useState(typeInput);
   const [valueInput, setInputValue] = useState("");
 
   //redux options
 
-  const dispatch =useDispatch()
-
+  const dispatch = useDispatch()
+  // debugger
 
   // to be just number when we type
   const pressNumberValue = (event) => {
@@ -38,7 +47,9 @@ export default function AuthInput({
   };
   return (
     <>
-      <div className="input-wrapper">
+      <div className={`input-wrapper ${wrapperClass}`}>
+        <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
+
         <input
           type={isSeePssword}
           required
@@ -52,24 +63,30 @@ export default function AuthInput({
           name={typeInput}
           disabled={disabled}
           className={classes}
+          value={value}
           dir="auto"
           style={{
             direction,
             width: `${width}`,
             pointerEvents: disabled && "none",
             // backgroundColor: disabled && "#F2F5F7",
-            borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
+            // borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
+            borderBottom: disabled ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
+
             // textAlign: typeInput === "email" && "left",
             // direction: typeInput === "email" ? "ltr" : "rtl",
           }}
           onChange={(e) => {
+           
+               handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow) ;
+            handleChange!=undefined&&handleChange(e)
             setInputValue(e.target.value);
-            dispatch(reduxHandleChange(e.target.value))
-            // handleChange(e);
+             workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
+
+           
           }}
         />
-        <label className={disabled?"lockStyle":""} for="user">{textLabelInput}</label>
-        <span className="error_down_input">اطلاعات نامعتبر</span>
+        <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>
 
         {/* {isPassword ? (
           <img

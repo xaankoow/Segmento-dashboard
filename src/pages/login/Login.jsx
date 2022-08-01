@@ -10,43 +10,33 @@ import Nav from '../../component/Dashboard/DashboaedComponents/navMenu/Nav';
 
 export default function Login() {
   return (
-    <div className="registerContainer">
-      {/* <Nav/> */}
-      <div className="registerBox">
-        {/* <TextButton.Provider value={"ثبت نام"}>
-          <Authmenu buttonLink={"/"}/>
-        </TextButton.Provider> */}
-
-        <div className="mainbox">
-          <div className="inputBox">
-            <AuthInput textLabelInput="ایمیل" width={"560px"} typeInput="email" reduxHandleChange={setEmailRedux} />
-            <AuthInput textLabelInput="گذرواژه " width={"560px"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} />
-
-            <div className="registerButtonBox">
-              <div className="btnsBox">
-                {/* <Link to={"/"}> */}
+    <div className="w-full px-28">
+        <div className="gap-10 flex items-center  md:flex-col md:flex-col-reverse justify-between 2xl:py-10 md:py-10 min-w-full">
+          <div className="w-6/12 flex flex-col items-center gap-11 md:min-w-full">
+            <AuthInput textLabelInput="ایمیل" width={"100%"}   reduxHandleChange={setEmailRedux} errorTextId="errRejesterFormatEmail"/>
+            <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} errorTextId="errRejesterPassword"/>
+            <div className="flex items-center w-full justify-between">
+              <div className="flex gap-5">
                 <TextButton.Provider value={"ورود"}>
                   <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} />
                 </TextButton.Provider>
-                {/* </Link> */}
-                <button className="googleButton">
-                  <span>حساب گوگل </span> <GoogleIcon className="googleIcon" />
+                <button className="bg-lightGray text-white rounded-lg flex gap-2 items-center py-2 px-3">
+                  <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>
               <Link to={"/forgotPassword"}>
                 <div>
-                  <span>گذرواژه خود را فراموش کرده‌اید؟</span>
+                  <span className='underline text-sm underline-offset-8'> برای ورود به کمک نیاز دارم.   </span>
                 </div>
               </Link>
             </div>
           </div>
-          <div className="imgBox">
-            <img src="/img/FrameloginSun.png" className='sun' alt="registerFrame" />
-            <img src="/img/login.svg" alt="registerFrame" />
-            <img src="/img/businessesIcon.png" alt="businessesIcon" />
+          <div className="flex flex-col gap-4">
+            <img className="w-20" src="/img/FrameloginSun.png" alt="registerFrame" />
+            <img className="w-100" src="/img/login.svg" alt="registerFrame" />
+            <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
         </div>
-      </div>
     </div>
   )
 }

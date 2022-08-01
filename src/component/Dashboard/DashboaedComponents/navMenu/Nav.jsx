@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
-import { findUserAction } from '../../../Redux/Action'
+import { changeRegisterCompleteCheck, findUserAction } from '../../../Redux/Action'
 import getCookie from '../../../Utils/findUser'
 
 export default function Nav({path}) {
@@ -14,39 +14,54 @@ export default function Nav({path}) {
   // }, [])
   
   // let user=get
+  const { checkRegisterComplete } = useSelector(state => state.userState)
+
   const navigate=useNavigate();
 
-
-  let user= getCookie("user_name")
+  const dispatch=useDispatch();
+  const userToken= localStorage.getItem("token")
+  //REGISTER COMPLETE => NAVIGATE TO VERIFY FORM
+  // debugger
+  // // console.log(window.location.href.includes("ValidateEmail"));
+  if (checkRegisterComplete == true) {
+    navigate("/ValidateEmail")
+    dispatch(changeRegisterCompleteCheck(false));
+  }
+  // useEffect(() => {
+  // //   // debugger
+  // if (checkRegisterComplete == true) {
+  //     navigate("/ValidateEmail")
+  //   }
+  // }, [checkRegisterComplete])
 
   // debugger
   useEffect(() => {
-    if (user) {
-      navigate("/dashboard",{replace:true})
+    if (userToken) {
+      navigate("/dashboard/easyStart",{replace:true})
     }
-  }, [user])
+  }, [userToken])
   
   
-  console.log(window.location.pathname)
+  // console.log(window.location.pathname)
   return (
-    <div id='nav-option-head'>
-      <div className='container_nav_logo'>
-        <div>
+    <div id='nav-option-head' className='w-full flex items-center justify-between px-28'>
+      <div className='flex justify-around items-center'>
+        <div className="flex justify-center items-center pl-5">
           <span className='logo_nav option_segmento_logo' />
           <a href='#'>امکانات</a>
         </div>
-        <div>
+        <div className="flex justify-center items-center pl-5">
           <span className='logo_nav course_video_logo' />
           <a href='#'>ویدئو آموزشی</a>
         </div>
-        <div>
+        <div className="flex justify-center items-center pl-5">
           <span className='logo_nav diamond_price_logo' />
           <a href='#'>قیمت گذاری</a>
         </div>
-        <div>
+        <di className="flex justify-center items-center pl-5"v>
           <span className='logo_nav cookie_communicate_logo' />
           <a href='#'>همکاری با آژانس ها</a>
-        </div>
+        </di>
       </div>
       <div>
 
@@ -58,7 +73,7 @@ export default function Nav({path}) {
 
           {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
           {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
-          <Link to={`/${path}`} className='btn-style'>{path=="login"?"ورود":"ثبت نام"}</Link>
+          <Link to={`/${path}`} className='btn-style'>{path==""?"ورود":"ثبت نام"}</Link>
 
       </div>
     </div>

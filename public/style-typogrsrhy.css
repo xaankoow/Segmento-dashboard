@@ -21,7 +21,9 @@ span,
 label,
 textarea {
   font-family: IRANSans, serif !important;
+  /* background-color: linear-gradient(90deg, rgba(0,26,255,1) 0%, rgba(252,0,0,1) 100%) !important; */
   color: rgba(0, 31, 67, 1);
+  
 }
 input::placeholder{
   font-family: IRANSans, serif !important;

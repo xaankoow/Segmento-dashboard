@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c9a41f2c-2f9e-4fec-8efb-b41413fabe06" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/ContentpProduction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/ContentpProduction.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/TableData/TableData.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/TableData/TableData.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboardBody.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboardBody.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/EditUserProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/EditUserProfile.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2AVClJ76y4I1G6703r0oLfo0BwT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/WebstormProjects/ikigai" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c9a41f2c-2f9e-4fec-8efb-b41413fabe06" name="Changes" comment="" />
+      <created>1655085538832</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655085538832</updated>
+      <workItem from="1655085539756" duration="3068000" />
+      <workItem from="1657407059380" duration="245000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
