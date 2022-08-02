@@ -29,7 +29,7 @@ export default function AuthInput({
   //   var re = /\S+@\S+\.\S+/;
   //   return re.test(email);
   // };
-  console.log(reduxHandleChange)
+  // console.log(reduxHandleChange)
 
   const [isSeePssword, setSeePassword] = useState(typeInput);
   const [valueInput, setInputValue] = useState("");

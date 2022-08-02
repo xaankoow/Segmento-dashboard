@@ -17,10 +17,27 @@ export default function PlanStatus() {
   const [datas, setDatas] = useState("");
 
   var moment = require("jalali-moment");
+
+  const userState = useSelector((state) => state.userState);
+
+  var nowDate = new Date();
+
+  var startDate= userState.userData.package!=undefined && new Date(moment(userState.userData.package.start).format("YYYY/M/D")) ;
+  var expiryDate= userState.userData.package!=undefined && new Date(moment(userState.userData.package.end).format("YYYY/M/D")) ;
+  
+  var timeSecDaysLeft = Math.abs(expiryDate-nowDate);
+  var timeSecDays = Math.abs(expiryDate-startDate);
+
+
+  var numberOfDaysLeft=Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24))
+  var numberOfDays=Math.ceil(timeSecDays / (1000 * 60 * 60 * 24))
+  
+
+
+
   var user_package_title = "";
   var package_end_dates = "";
   var user_package_type_text = "";
-  const userState = useSelector((state) => state.userState);
   if (userState.userData.package) {
     user_package_title = userState.userData.package.title
       ? userState.userData.package.title
@@ -50,7 +67,7 @@ export default function PlanStatus() {
     datasets: [
       {
         label: "# of Votes",
-        data: [30, 70],
+        data: [numberOfDaysLeft-numberOfDays, numberOfDays],
         cutout: 50,
         backgroundColor: ["#D9D9D9", "#0A65CD"],
         borderWidth: 0,
@@ -129,7 +146,7 @@ export default function PlanStatus() {
               >
                 <div className="flex flex-row justify-between">
                   <span>تاریخ خرید اشتراک</span>
-                  <span>1401/02/03</span>
+                  {userState.userData.package != undefined && moment(userState.userData.package.start).locale("fa").format("YYYY/M/D")}
                 </div>
 
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
@@ -137,10 +154,12 @@ export default function PlanStatus() {
                 <div className="flex flex-row justify-between ">
                   <span>تاریخ اتمام اشتراک</span>
                   <span>
-                    {" "}
-                    {package_end_dates && moment(package_end_dates.substring(0, 10))
+                    {userState.userData.package != undefined && moment(userState.userData.package.end).locale("fa").format("YYYY/M/D")}
+
+
+                    {/* {package_end_dates && moment(package_end_dates.substring(0, 10))
                       .locale("fa")
-                      .format("YYYY/M/D")}
+                      .format("YYYY/M/D")} */}
                   </span>
                 </div>
 
@@ -148,7 +167,7 @@ export default function PlanStatus() {
 
                 <div className="flex flex-row justify-between ">
                   <span>روز های باقی مانده</span>
-                  <span>12 روز</span>
+                  <span>{numberOfDaysLeft} روز</span>
                 </div>
 
                 <button
@@ -178,7 +197,7 @@ export default function PlanStatus() {
 
               <div className="mt-7 w-[143px] h-[143px] float-left relative mx-auto">
                 <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center z-50">
-                  12
+                  {numberOfDaysLeft}
                   <br />
                   روز باقی مانده
                 </div>
@@ -329,7 +348,7 @@ export default function PlanStatus() {
         </div>
       </div>
 
-      <SetTitleTabBrowser nameSection={"وضعیت اشتراک"}/>
+      <SetTitleTabBrowser nameSection={"وضعیت اشتراک"} />
     </div>
   );
 }

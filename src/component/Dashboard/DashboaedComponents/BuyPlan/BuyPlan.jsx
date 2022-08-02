@@ -25,7 +25,7 @@ export default function BuyPlan({ title }) {
   const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
   // const [free, setFree] = useState(false);
 
-  const [plan, setPlan] = useState({ uuid: "", type: "",planIndex:0 });
+  const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
   // 
   // const [showModal, setShowModal] = useState(true);
   const [discountInputGold, setDiscountInputGold] = useState("");
@@ -111,11 +111,11 @@ export default function BuyPlan({ title }) {
             <span className='title'>برنزی</span>
             <hr />
             <div className='plan'>
-              {allPackageData.map((item,index) => {
+              {allPackageData.map((item, index) => {
                 // 
                 if (item.type_text == "برنزی") {
                   return (
-                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "bronze", planIndex:index}); dispatch(setPackageUuid(item.uuid)) }}>
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "bronze", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
                       <div>
                         <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                         <p>{item.title}</p>
@@ -155,12 +155,12 @@ export default function BuyPlan({ title }) {
             <span className='title'>نقره ای</span>
             <hr />
             <div className='plan'>
-              {allPackageData.map((item,index) => {
+              {allPackageData.map((item, index) => {
                 // 
                 if (item.type_text == "نقره ای") {
                   if (item.title != "14 روز رایگان") {
                     return (
-                      <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "silver", planIndex:index }); dispatch(setPackageUuid(item.uuid)) }}>
+                      <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "silver", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
                         <div>
                           <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                           <p>{item.title}</p>
@@ -198,11 +198,11 @@ export default function BuyPlan({ title }) {
             <span className='title'>طلایی</span>
             <hr />
             <div className='plan'>
-              {allPackageData.map((item,index) => {
+              {allPackageData.map((item, index) => {
 
                 if (item.type_text == "طلایی") {
                   return (
-                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "gold", planIndex:index }); dispatch(setPackageUuid(item.uuid)) }}>
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "gold", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
                       <div>
                         <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                         <p>{item.title}</p>
@@ -240,11 +240,11 @@ export default function BuyPlan({ title }) {
             <span className='title'>الماسی</span>
             <hr />
             <div className='plan'>
-              {allPackageData.map((item,index) => {
+              {allPackageData.map((item, index) => {
 
                 if (item.type_text == "الماسی") {
                   return (
-                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "diamond", planIndex:index }); dispatch(setPackageUuid(item.uuid)) }}>
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "diamond", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
                       <div>
                         <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
                         <p>{item.title}</p>
@@ -282,7 +282,7 @@ export default function BuyPlan({ title }) {
 
 
 
-        <HandleParagraphInfoPlan typePlan={plan.type} indexPlan={plan.planIndex}/>
+        <HandleParagraphInfoPlan typePlan={plan.type} indexPlan={plan.planIndex} />
         <AuthButton classes={"m-auto mt-4"} handlerClick={setShowReportModal} setOnclickValue={true} disabled={plan.uuid != "" ? false : true} onClick={() => setShowReportModal(true)} textButton={<Fragment>فعالسازی اشتراک<span className='forward-ico'></span></Fragment>}></AuthButton>
         {/* <AuthButton className='btn-style m-auto mt-4' handlerClick={setShowReportModal(true)} onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></AuthButton> */}
         {/* </body> */}
