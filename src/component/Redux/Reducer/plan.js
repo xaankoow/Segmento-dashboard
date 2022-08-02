@@ -9,7 +9,7 @@ export const planReducer = (state =
         commercialPage2: "",
         planChosen: "",
         discount: "",
-        discountStatus: { value: 10, planType: "" },
+        discountStatus: { value: 0, planType: "" },
         packageUuid: "",
         forceUpdate: 0,
         planDetails: {},
