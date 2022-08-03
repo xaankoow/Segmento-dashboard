@@ -26,6 +26,7 @@ import {
 import { EditorCustomizedToolbarOption } from "./components/Editor/Editor";
 import { showToast } from "../../../Utils/toastifyPromise";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
+import AuthButton from "../../../Auth/authButton/AuthButton";
 export default function EditUserProfile() {
 
   const { canRequest } = useSelector(state => state.loadingState)

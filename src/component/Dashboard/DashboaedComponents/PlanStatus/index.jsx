@@ -1,4 +1,3 @@
-// import { Chart } from 'chart.js';
 import React, { useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
@@ -6,9 +5,7 @@ import PageTitle from "../pageTitle/pageTitle";
 import { usetLimit } from "../../../service/userLimit";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import './'
-// import "./output.css"
-// import './script'
+
 export default function PlanStatus({ title }) {
   useEffect(() => {
     if (datas == "") pastSelexboxData();
@@ -16,7 +13,7 @@ export default function PlanStatus({ title }) {
   const [datas, setDatas] = useState("");
 
   var moment = require("jalali-moment");
-  const allWords=100;
+  const allWords=100; // TODO : replace static num with api count
   var user_package_title = "";
   var package_end_dates = "";
   var user_package_type_text = "";
