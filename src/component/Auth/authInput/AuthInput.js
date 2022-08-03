@@ -10,7 +10,7 @@ export default function AuthInput({
   notCheckValue,
   handleChange,
   reduxHandleChange,
-  disabled,
+  disable,
   chechvalue,
   maxlength,
   classes,
@@ -29,7 +29,7 @@ export default function AuthInput({
   //   var re = /\S+@\S+\.\S+/;
   //   return re.test(email);
   // };
-  // console.log(redux)
+  // console.log(reduxHandleChange)
 
   const [isSeePssword, setSeePassword] = useState(typeInput);
   const [valueInput, setInputValue] = useState("");
@@ -61,17 +61,17 @@ export default function AuthInput({
           //     : notCheckValue && "notCheckValue"
           // }
           name={typeInput}
-          disabled={disabled}
-          className={classes}
+          disabled={disable}
+          className={`${classes}  ${disable==true&&" bg-[#D9D9D9] text-[#FCFCFB]"}`}
           value={value}
           dir="auto"
           style={{
             direction,
             width: `${width}`,
-            pointerEvents: disabled && "none",
-            // backgroundColor: disabled && "#F2F5F7",
+            pointerEvents: disable && "none",
+            // backgroundColor: disable && "#F2F5F7",
             // borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
-            borderBottom: disabled ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
+            borderBottom: disable ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
 
             // textAlign: typeInput === "email" && "left",
             // direction: typeInput === "email" ? "ltr" : "rtl",
@@ -81,12 +81,14 @@ export default function AuthInput({
                handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow) ;
             handleChange!=undefined&&handleChange(e)
             setInputValue(e.target.value);
-             workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
+             workSpaceTypeState != undefined& reduxHandleChange!=undefined?
+              dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) :
+              reduxHandleChange!=undefined&& dispatch(reduxHandleChange(e.target.value))
 
            
           }}
         />
-        <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>
+        <label className={disable ?  "hidden" : ""} for="user">{textLabelInput}</label>
 
         {/* {isPassword ? (
           <img

@@ -25,6 +25,7 @@ import {
 } from "../../../service/editProfile";
 import { EditorCustomizedToolbarOption } from "./components/Editor/Editor";
 import { showToast } from "../../../Utils/toastifyPromise";
+import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 export default function EditUserProfile() {
 
   const { canRequest } = useSelector(state => state.loadingState)
@@ -401,13 +402,7 @@ export default function EditUserProfile() {
                     />{" "}
                     <div className="flex justify-end gap-7 mt-9">
                       <button className="btn-secondary">انصراف </button>
-                      <button
-                        disabled={!canRequest}
-                        className="btn-style"
-                        onClick={() => handleSetNewProfile(userState.image[0])}
-                      >
-                        ذخیره تغییرات
-                      </button>
+                      <AuthButton handlerClick={handleSetNewProfile} setOnclickValue={userState.image[0]} textButton={"ذخیره تغییرات"}/>
                     </div>
                     <div className="border-b border-lightGray w-full m-auto mt-7" />
                   </div>
@@ -472,6 +467,7 @@ export default function EditUserProfile() {
           </div>
         </div>
       </div>
+      <SetTitleTabBrowser nameSection={"حساب کاربری"}/>
       {forceUpdates ? "" : ""}
     </>
   );

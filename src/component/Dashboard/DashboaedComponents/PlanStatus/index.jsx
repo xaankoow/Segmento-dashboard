@@ -67,6 +67,7 @@ export default function PlanStatus({ title }) {
       },
     ],
   };
+  const keyword=datas != [] &&  datas[4].count;
   const miniChartSetting = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -77,7 +78,7 @@ export default function PlanStatus({ title }) {
         // cutout: 38,
         // width:35,
         // height:35,
-        backgroundColor:datas != [] &&  datas[4].count < 20 ?  ["#D9D9D9", "#F35242"] : datas[4].count < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        backgroundColor:keyword &&  keyword < 20 ?  ["#D9D9D9", "#F35242"] :keyword && keyword < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -92,6 +93,7 @@ export default function PlanStatus({ title }) {
       },
     ],
   };
+  const content=datas != [] &&  datas[3].count;
   const miniChartSetting2 = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -102,7 +104,7 @@ export default function PlanStatus({ title }) {
         // cutout: 38,
         // width:35,
         // height:35,
-        backgroundColor:datas != [] &&  datas[3].count < 20 ?  ["#D9D9D9", "#F35242"] : datas[3].count < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        backgroundColor:content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [

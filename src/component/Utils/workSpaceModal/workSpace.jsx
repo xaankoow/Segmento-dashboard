@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import AuthButton from '../../Auth/authButton/AuthButton';
 import { addWorkSpace } from '../../Redux/Action/workSpace';
+import SetTitleTabBrowser from '../SetTitleTabBrowser';
 import { InputGetWorkSpaceInfo } from './inputValue';
 import { WorkSpaceParagraph } from './textParagraph';
 import { workSpaceTitle } from './titleWorkSpaceModal';
@@ -98,6 +99,7 @@ export default function WorkSpace() {
           </footer>
         </div>
       </Modal>
+      <SetTitleTabBrowser nameSection={"تعریف ورک‌اسپیس جدید"}/>
     </Fragment>
   )
 }

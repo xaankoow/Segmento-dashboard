@@ -1,3 +1,4 @@
+import axios from "axios";
 import { toast } from "react-toastify";
 import { registerUser, loginUser, verifyEmail, checkVerifyEmail, verifyEmailChangePassword, logout, changePassword, checkVerifyEmailChangePassword, findUser, coreUserData } from "../../service/userService"
 import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
@@ -12,6 +13,10 @@ export const coreUser = () => {
         const loadingState = { ...getState().loadingState }
         let toastMessage = "";
 
+        const token=localStorage.getItem("token");
+        if (token!=="undefined"&&token!=null&&token) {
+            axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
+        }
 
         // debugger
         try {

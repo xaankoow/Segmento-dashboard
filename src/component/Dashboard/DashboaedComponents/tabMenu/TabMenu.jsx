@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Tab } from "@headlessui/react";
+import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 
 export default function TabMenu({
   tabsContent,
@@ -60,6 +61,7 @@ export default function TabMenu({
           </Tab.Panels>
         </div>
       </Tab.Group>
+      <SetTitleTabBrowser nameSection={title}/>
     </div>
   );
 }

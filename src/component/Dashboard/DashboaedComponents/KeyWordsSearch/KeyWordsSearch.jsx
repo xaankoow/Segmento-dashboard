@@ -111,43 +111,43 @@ export default function KeyWordsSearch({
               </div>
             )
 
-            case "sort":
-                    return(
-                      <div
-                      className={
-                        "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff]  overflow-y-scroll"
-                      }
-                    >
-                      <div className="flex items-center gap-2 mt-3">
-                        <input
-                          type="radio"
-                          className="w-3 h-3"
-                          name="radio"
-                          onClick={(e) => {
-                            getRadioValue("تاریخ خرید");
-                            radioClickedHandler(e);
-                          }}
-                          value="4"
-                        />
-                        <span>تاریخ خرید </span>
-                      </div>
-                      <div className="flex items-center gap-2 mt-3 mb-3">
-                        <input
-                          type="radio"
-                          className="w-3 h-3"
-                          name="radio"
-                          onClick={(e) => {
-                            getRadioValue("تعداد خرید");
-                            radioClickedHandler(e);
-                          }}
-                          value="4"
-                        />
-                        <span>تعداد خرید </span>
-                      </div>
-      
-      
-                    </div>
-                    )
+          case "sort":
+            return (
+              <div
+                className={
+                  "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff]  overflow-y-scroll"
+                }
+              >
+                <div className="flex items-center gap-2 mt-3">
+                  <input
+                    type="radio"
+                    className="w-3 h-3"
+                    name="radio"
+                    onClick={(e) => {
+                      getRadioValue("تاریخ خرید");
+                      radioClickedHandler(e);
+                    }}
+                    value="4"
+                  />
+                  <span>تاریخ خرید </span>
+                </div>
+                <div className="flex items-center gap-2 mt-3 mb-3">
+                  <input
+                    type="radio"
+                    className="w-3 h-3"
+                    name="radio"
+                    onClick={(e) => {
+                      getRadioValue("تعداد خرید");
+                      radioClickedHandler(e);
+                    }}
+                    value="4"
+                  />
+                  <span>تعداد خرید </span>
+                </div>
+
+
+              </div>
+            )
           default:
             break;
         }
@@ -164,36 +164,37 @@ export default function KeyWordsSearch({
         <div className="flex items-center relative searchBox">
           <div className=" grow">
             <input
-            id="keyWordSearchBoxFilter"
-            type="text"
-            style={{
-              paddingRight: SCTN[0] == "financialReports" ? "18px" :
-                placeholderPadding >= 19
-                  ? "127px"
-                  : placeholderPadding >= 13
-                    ? "98px"
-                    : "90px",
-            }}
-            className={
-              !radioText
-                ? `pr-2 w-full  h-11 ${SCTN[1]=="sort"?" border-l-0 border-y-2 border-r-2 cursor-pointer":"border-2"} border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
+              id="keyWordSearchBoxFilter"
+              type="text"
+              style={{
+                paddingRight: SCTN[0] == "financialReports" ? "18px" :
+                  placeholderPadding >= 19
+                    ? "127px"
+                    : placeholderPadding >= 13
+                      ? "98px"
+                      : "90px",
+              }}
+              className={`${!radioText
+                ? `pr-2 w-full  h-11 ${SCTN[1] == "sort" ? " border-l-0 border-y-2 border-r-2 cursor-pointer rounded-r" : "border-2"} border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
                 : NothingSearch
                   ? "disableInput w-full placeholder-[#7D7D7D]  h-11"
-                  : ` h-11 w-full ${SCTN[1]=="sort"?" border-l-0 border-y-2 border-r-2 cursor-pointer":"border-2"} border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
-            }
-            readOnly={SCTN[1]=="sort"?true:false}
-            value={SCTN[1]=="sort"?inputPlaceHolder:null}
-            disabled={NothingSearch ? true : false}
-            placeholder={inputPlaceHolder != undefined ? inputPlaceHolder : "جستجو کلمه کلیدی"}
-            onChange={(e) => secoundSearch(e)}
-            onClick={() => {
-              setInputClick(true);
-              setButtonClick(true);
-            }}
-            onBlur={() => setInputClick(!inputClick)}
-          />
+                  : ` h-11 w-full ${SCTN[1] == "sort" ? " border-l-0 border-y-2 border-r-2 cursor-pointer rounded-r" : "border-2"} border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`}
+                  rounded-l-none`
+
+              }
+              readOnly={SCTN[1] == "sort" ? true : false}
+              value={SCTN[1] == "sort" ? inputPlaceHolder : null}
+              disabled={NothingSearch ? true : false}
+              placeholder={inputPlaceHolder != undefined ? inputPlaceHolder : "جستجو کلمه کلیدی"}
+              onChange={(e) => secoundSearch(e)}
+              onClick={() => {
+                setInputClick(true);
+                setButtonClick(true);
+              }}
+              onBlur={() => setInputClick(!inputClick)}
+            />
           </div>
-          
+
           {SCTN[0] == "financialReports" ? null : (
             <div
               className={
@@ -222,8 +223,8 @@ export default function KeyWordsSearch({
                 buttonClick
                   ? "/img/dashboard/searchBox/arrow_down_ios_new.svg"
                   : "/img/dashboard/searchBox/arrow_up_ios_new.svg"
-                  // ? "../../../../img/dashboard/searchBox/arrow_down_ios_new.svg"
-                  // : "../../../../img/dashboard/searchBox/arrow_up_ios_new.svg"
+                // ? "../../../../img/dashboard/searchBox/arrow_down_ios_new.svg"
+                // : "../../../../img/dashboard/searchBox/arrow_up_ios_new.svg"
               }
               alt="arrow"
             />
@@ -231,7 +232,7 @@ export default function KeyWordsSearch({
         </div>
       </div>
       {buttonClick ? SCTN[0] == "financialReports" ? (
-        handleDropDownItem(SCTN[0],SCTN[1])
+        handleDropDownItem(SCTN[0], SCTN[1])
       ) : (
         // <div
         //   className={

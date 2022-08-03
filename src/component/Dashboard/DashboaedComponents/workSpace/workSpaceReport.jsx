@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import AuthButton from '../../../Auth/authButton/AuthButton';
+import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 
 export default function WorkSpaceReport({ stepWorkSpace }) {
 
@@ -83,7 +84,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                 break;
         }
     }
-    // const ahmad={fullName:"ddd",age:17};
+
     return (
         <Fragment>
 
@@ -207,10 +208,10 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
 
                     <div>
                         <Link to={"/dashboard/easyStart"} className="btn-style mt-7 inline-block"><img className=' ml-3 inline-block' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</Link>
-                        {/* <AuthButton classes={"mt-7"} textButton={} className="btn-style "><img className=' ml-3' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</Auth> */}
                     </div>
                 </div>
             </div>
+            <SetTitleTabBrowser nameSection={"رسید ورک اسپیس"}/>
         </Fragment>
     )
 }
