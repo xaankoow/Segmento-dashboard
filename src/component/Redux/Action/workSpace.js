@@ -497,7 +497,12 @@ export const addWorkSpace = (step) => {
 }
 
 
+export const resetWorkSpaceState = () => {
+    return async (dispatch, getState) => {
 
+        await dispatch({ type: "RESET_WORK_SPACE_STATE" })
+    }
+}
 
 
 
