@@ -24,7 +24,7 @@ export default function AuthInput({
   errorTextId
 
 }) {
-  // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function
+  // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)  
   // const validateEmail = (email) => {
   //   var re = /\S+@\S+\.\S+/;
   //   return re.test(email);
