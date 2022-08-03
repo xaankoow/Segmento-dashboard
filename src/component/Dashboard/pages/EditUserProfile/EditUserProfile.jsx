@@ -23,8 +23,6 @@ import {
   getPastDatas,
   getSelectBoxData,
 } from "../../../service/editProfile";
-import { useSelect } from "@mui/base";
-import AuthButton from "../../../Auth/authButton/AuthButton";
 import { EditorCustomizedToolbarOption } from "./components/Editor/Editor";
 import { showToast } from "../../../Utils/toastifyPromise";
 export default function EditUserProfile() {
@@ -69,6 +67,7 @@ export default function EditUserProfile() {
   var user_email = "";
   const handleSelectBox1 = (e) => {
     setSelectBoxValue1(e.target.value);
+ 
   };
   const handleSelectBox2 = (e) => {
     setSelectBoxValue2(e.target.value);
@@ -98,7 +97,7 @@ export default function EditUserProfile() {
       const { data, status } = await getSelectBoxData();
       // setcontent(data.data); //5
       setSelectDtas(data.data);
-      // console.log(selectDatas);
+ 
     } catch (error) {
       // console.log(error);
     }
@@ -142,6 +141,7 @@ export default function EditUserProfile() {
       const { data } = await editProfile(formdata);
       if (data.code == 200 & data.status == true) {
         dispatch(coreUser());
+        console.log(data)
         toast.success("اطلاعات شما با موفقیت ویرایش شد");
         setForceUpdate(!forceUpdates);
       }
@@ -173,7 +173,7 @@ export default function EditUserProfile() {
 
 
   useEffect(() => {
-    if (pastData == "") {
+    if (!pastData ) {
 
       pastSelexboxData();
     }
@@ -190,7 +190,16 @@ export default function EditUserProfile() {
         // const { data, status } = await getPastDatas(uuidUser); // --------- 
         const { data, status } = await getPastDatas(uuidUser); // --------- ایمپورت اشتباه
         setPastData(data.data); //5
-        // console.log(data);
+        // if(pastData){
+        //   setSelectBoxValue1(pastData.website_type);
+        //   setSelectBoxValue2(pastData.website_type);
+        //   setSelectBoxValue3(pastData.seo_experts);
+        //   setSelectBoxValue4(pastData.website_traffic);
+        //   setSelectBoxValue5(pastData.role_in_company);
+        //   setSelectBoxValue6(pastData.dating_method);
+          
+        // }
+        
       } catch (error) {
         // console.log(error);
       }
@@ -213,7 +222,7 @@ export default function EditUserProfile() {
   const handleConfrimationPass = (e) => {
     setconfrimPass(e.target.value);
   };
-
+ 
   const handleUpdatePassword = async () => {
     try {
       let formdata = new FormData();
@@ -262,7 +271,7 @@ export default function EditUserProfile() {
 
   // 
 
-  console.log(userState.image);
+
   return (
     <>
       {openChangeImageModal && (

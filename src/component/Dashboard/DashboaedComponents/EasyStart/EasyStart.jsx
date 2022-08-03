@@ -32,7 +32,7 @@ const EasyStart = ({ startButtonClick }) => {
                         </span>
                     </div>
                     <div className='imageBox'>
-                        <img src="/img/dashboard/EasyStartPage/EasySart.svg" alt="EasyStartPage" className=' w-40 h-40 absolute top-[-0px] left-10' />
+                        <img src="/img/dashboard/EasyStartPage/EasySart.svg" alt="EasyStartPage" className=' w-40 h-40 absolute top-[-15px] left-10' />
                     </div>
                     {/* <button className="btn-style" onClick={()=>startButtonClick()}> شروع کنیم </button> */}
                     <Link to={"/dashboard/buyPlanEasyToStartModal"} state={{ background: location }} className="btn-style w-32 mb-5">
