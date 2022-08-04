@@ -42,19 +42,19 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
                       : "#10CCAE",
           }}
         >
-          <img src={image} alt="popUpImage" className=" w-28 h-28" />
+          <img src={image} alt="popUpImage" className=" w-[84px] h-[84px] m-auto" />
         </div>
-        <div className="popUpContent mt-3">
+        <div className="popUpContent mt-3 relative">
           <h3 className="title">{title}</h3>
-          <span className="text px-4">{text}</span>
+          <span className="text px-4 absolute top-8">{text}</span>
           {tryFreePlan != undefined & tryFreePlan ? (
             <div className="flex justify-between items-center w-full px-3">
               <div>
                 <AuthButton textButton={"خرید اشتراک"} handlerClick={tryFreePlanClick} setOnclickValue={1} />
               </div>
-              <span className="buttonText mt-5" onClick={() => clickHandler()}>{buttonText}</span>
+              <span className="buttonText mt-5 " onClick={() => clickHandler()}>{buttonText}</span>
             </div>
-          ) : <span className="buttonText mt-5" onClick={() => clickHandler()}>{buttonText}</span>}
+          ) : <span className="buttonText absolute top-24" onClick={() => clickHandler()}>{buttonText}</span>}
 
         </div>
       </div>

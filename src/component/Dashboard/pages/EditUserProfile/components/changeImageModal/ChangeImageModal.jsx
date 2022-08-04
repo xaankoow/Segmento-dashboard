@@ -95,6 +95,10 @@ export default function ChangeImageModal({
     />
   );
 
+  const handleClose=()=>{
+    setImageChanged(true)
+   
+  }
   // useEffect(() => {
   //   console.log("use ef revoke");
   //   // Make sure to revoke the data uris to avoid memory leaks
@@ -171,7 +175,7 @@ export default function ChangeImageModal({
                 </button>
                 <AuthButton
                   textButton={" ذخیره تغییرات"}
-                  handlerClick={close}
+                  handlerClick={handleClose}
                   reduxHandleClick={setImageProfRedux}
                   setOnclickValue={files.length != 0 ? files : []}
                 />
