@@ -97,7 +97,6 @@ export const planReducer = (state =
                 packageUuid: "",
                 forceUpdate: 0,
                 planDetails: {},
-                allPackageData: [],
                 checkUseTryFree: false
             }
 

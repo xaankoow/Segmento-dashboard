@@ -452,13 +452,12 @@ export const modalSetWorkSpace = () => {
 
 
 
-// export const setDiscount = code => {
-//     return async (dispatch, getState) => {
-//         const state = { ...getState().planState }
-//         state.discount=code;
-//         await dispatch({ type: "DISCOUNT_CODE", payload: { ...getState().planState } })
-//     }
-// }
+export const resetPlanState = () => {
+    return async (dispatch, getState) => {
+
+        await dispatch({ type: "RESET_PLAN_STATE" })
+    }
+}
 
 
 

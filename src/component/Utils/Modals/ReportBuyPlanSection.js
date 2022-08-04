@@ -6,7 +6,7 @@ import {buyPlan } from '../../Redux/Action/plan';
 
 export default function ReportBuyPlanSection({ handleClose, packageUuid }) {
 
-  const {forceUpdate,allPackageData } = useSelector(state => state.planState);
+  const {forceUpdate,allPackageData,discountStatus } = useSelector(state => state.planState);
 
   const customStyles = {
     content: {
@@ -21,13 +21,15 @@ export default function ReportBuyPlanSection({ handleClose, packageUuid }) {
     },
   };
 
-  var packageSelected;
+  var packageSelected=""; 
   allPackageData.forEach(element => {
     if (element.uuid==packageUuid) {
+      if (discountStatus) {
+        
+      }
       packageSelected=element;
     }
   });
-
 
   return (
     <Modal

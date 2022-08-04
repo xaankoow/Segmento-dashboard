@@ -1,4 +1,3 @@
-// import { Chart } from 'chart.js';
 import React, { useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
@@ -6,17 +5,15 @@ import PageTitle from "../pageTitle/pageTitle";
 import { usetLimit } from "../../../service/userLimit";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
-// import './'
-// import "./output.css"
-// import './script'
-export default function PlanStatus() {
+
+export default function PlanStatus({ title }) {
   useEffect(() => {
     if (datas == "") pastSelexboxData();
   });
   const [datas, setDatas] = useState("");
 
   var moment = require("jalali-moment");
+  const allWords=100; // TODO : replace static num with api count
   var user_package_title = "";
   var package_end_dates = "";
   var user_package_type_text = "";
@@ -67,17 +64,18 @@ export default function PlanStatus() {
       },
     ],
   };
+  const keyword=datas != [] &&  datas[4].count;
   const miniChartSetting = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
         data: [30, 70],
-        cutout: 38,
+        cutout: 36,
         // cutout: 38,
         // width:35,
         // height:35,
-        backgroundColor: ["#D9D9D9", "#0A65CD"],
+        backgroundColor:keyword &&  keyword < 20 ?  ["#D9D9D9", "#F35242"] :keyword && keyword < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -92,7 +90,32 @@ export default function PlanStatus() {
       },
     ],
   };
-
+  const content=datas != [] &&  datas[3].count;
+  const miniChartSetting2 = {
+    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [30, 70],
+        cutout: 36,
+        // cutout: 38,
+        // width:35,
+        // height:35,
+        backgroundColor:content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        borderWidth: 0,
+        borderRadius: 5,
+        // borderColor: [
+        //   'rgba(255, 99, 132, 1)',
+        //   'rgba(54, 162, 235, 1)',
+        //   'rgba(255, 206, 86, 1)',
+        //   'rgba(75, 192, 192, 1)',
+        //   'rgba(153, 102, 255, 1)',
+        //   'rgba(255, 159, 64, 1)',
+        // ],
+        // borderWidth: 1,
+      },
+    ],
+  };
   return (
     <div className="">
       <PageTitle title={" وضعیت اشتراک"} />
@@ -256,22 +279,22 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      100
+                    {allWords}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas != [] ? datas[4].count : ""}
+                  {datas != [] && allWords - datas[4].count}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      80
+                    {datas != [] ? datas[4].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuetwo"></span> <br />
+                    <span id="valuetwo"></span> {datas != [] ? datas[4].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -297,27 +320,27 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      100
+                    {allWords}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas != [] ? datas[3].count : ""}
+                      {datas != [] ? allWords- datas[3].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      80
+                    {datas != [] ? datas[3].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuethree"></span> <br />
+                    <span id="valuethree"></span> {datas != [] ? datas[3].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
                     <Doughnut
-                      data={miniChartSetting}
+                      data={miniChartSetting2}
                       options={{ maintainAspectRatio: false }}
                     />
                     {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
@@ -328,8 +351,6 @@ export default function PlanStatus() {
           </div>
         </div>
       </div>
-
-      <SetTitleTabBrowser nameSection={"وضعیت اشتراک"}/>
     </div>
   );
 }
