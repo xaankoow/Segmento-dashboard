@@ -1,0 +1,10 @@
+@font-face {
+    font-family: IRANSans;
+    src: url('/font/IRANYekanMedium.ttf');
+    src: url('/font/IRANYekanMedium.ttf') format('embedded-opentype'),
+    url('/font/IRANYekanMedium.ttf') format('woff2'),
+    url('/font/IRANYekanMedium.ttf') format('woff'),
+    url('/font/IRANYekanMedium.ttf') format('truetype');
+    font-weight: normal;
+}
+

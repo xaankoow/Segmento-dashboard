@@ -1,0 +1,21 @@
+.app {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    background-image: url("/../img/vector.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: hsla(199, 64%, 84%, 1); */
+    /* background-color: rgba(0, 0, 0, 0.527); */
+    /* background: radial-gradient(circle, hsla(199, 64%, 84%, 1) 0%, hsla(0, 0%, 100%, 1) 100%); */
+    
+    /* background: -moz-radial-gradient(circle, hsla(199, 64%, 84%, 1) 0%, hsla(0, 0%, 100%, 1) 100%); */
+    
+    /* background: -webkit-radial-gradient(circle, hsla(199, 64%, 84%, 1) 0%, hsla(0, 0%, 100%, 1) 100%); */
+    
+    /* filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#BADFF0", endColorstr="#FFFFFF", GradientType=1 ); */
+    /* padding: 0px 102px 0px 120px; */
+    overflow: hidden;
+
+}

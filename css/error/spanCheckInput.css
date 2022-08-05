@@ -1,0 +1,9 @@
+.input-wrapper .error_down_input {
+    display: none;
+    position: absolute;
+    right: 6px;
+    top: 50px;
+    font-size: 10px;
+    color: #C42B1C;
+    unicode-bidi: plaintext;
+}
