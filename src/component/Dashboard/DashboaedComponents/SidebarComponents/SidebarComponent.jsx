@@ -63,7 +63,7 @@ export default function SidebarComponent({ closeNav,openMenu }) {
           <div>
            
        <div className='flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue '  >
-            <img src={"/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
+            <img src={"/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
             <span className={`text-[${"#0A65CD"}]`}>{closeNav && "پیشخوان"}</span>
         </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
@@ -101,7 +101,7 @@ export default function SidebarComponent({ closeNav,openMenu }) {
           </div>
 
           <div className="line"></div>
-          {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
+          {/* <img src="/img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
           <div className="xaankoo_logo w-11 h-9"></div>
         </div>
       </div>
