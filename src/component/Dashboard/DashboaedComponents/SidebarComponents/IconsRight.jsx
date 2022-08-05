@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 export default function IconsRight({setActive}) {
     const [activeIcon, setActiveIcon] = useState(0)
     const imageSrc=[
-        "/%PUBLIC_URL%/img/dashboard/nav_right/pishkhan.svg",
-        "/%PUBLIC_URL%/img/dashboard/nav_right/analyze.svg"
+        "/img/dashboard/nav_right/pishkhan.svg",
+        "/img/dashboard/nav_right/analyze.svg"
     ]
     
   return (
@@ -18,8 +18,8 @@ export default function IconsRight({setActive}) {
             })
         }
        
-        {/* <IconsRight image={"./%PUBLIC_URL%/img/dashboard/nav_right/pishkhan.svg"}/>
-        <IconsRight image={"./%PUBLIC_URL%/img/dashboard/nav_right/analyze.svg"}/> */}
+        {/* <IconsRight image={"../img/dashboard/nav_right/pishkhan.svg"}/>
+        <IconsRight image={"../img/dashboard/nav_right/analyze.svg"}/> */}
 
     </div>
   )
