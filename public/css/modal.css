@@ -760,22 +760,6 @@ input[type="radio"]:checked::before {
     margin-top: 10px;
 }
 
-.plan_list_option .btn_read_policy_container div {
-    width: 467px;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    margin: 10px auto;
-    /* margin: auto;
-}
-.plan_list_option .btn_read_policy_container  button{
-    display: inline-block;
-    /* margin: auto; */
-    /* position: absolute; */
-    /* left: 0px; */
-    /* float: left; */
-}
-
 .plan_list_option .btn_read_policy_container p {
     display: flex;
     align-items: center;

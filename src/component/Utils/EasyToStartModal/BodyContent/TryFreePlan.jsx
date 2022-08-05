@@ -26,13 +26,21 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
         </div>
       </div>
       <div className='btn_read_policy_container'>
-        <div>
-          <p><input type="checkbox" name="" id="" checked={lockNextStep} onChange={(e) => setLockNextStep(e.target.checked)} />قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم . </p>
+        <div className=' w-[467px] flex justify-between text-center mx-auto my-3'>
+          {/* <p><input type="checkbox" name="" id="" checked={lockNextStep} onChange={(e) => setLockNextStep(e.target.checked)} />قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم . </p> */}
+          {/* <div className=' relative shrink w-28'> */}
+            <form className=' flex shrink w-28 grow'>
+
+            <label className=' text-[#083C78] pointer-events-auto relative translate-y-0 cursor-pointer'>
+              <input type="checkbox"  name="" id="readPolicyEasyToStart" className=' ml-2' checked={lockNextStep} onChange={(e) => setLockNextStep(e.target.checked)} />
+              قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم . </label>
+            </form>
+          {/* </div> */}
           <AuthButton textButton={"خرید اشتراک"} handlerClick={setStepModal} setOnclickValue={1} />
         </div>
       </div>
       {showPopUp & lockNextStep ? (
-        
+
         // <div className=' pt-6 pb-3'>
         <PopUp
           clickHandler={() => setShowPopUp(false)}
@@ -43,8 +51,8 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
           title={"توجه !"}
           tryFreePlan={true}
           tryFreePlanClick={setStepModal}
-          />
-          // </div>
+        />
+        // </div>
       ) : null}
     </div>
   )

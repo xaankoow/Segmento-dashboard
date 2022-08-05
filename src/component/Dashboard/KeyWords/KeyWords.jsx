@@ -192,6 +192,8 @@ const KeyWords = ({ onClickHandler }) => {
           </div>
         </div>
       </div>
+      <div className=" pb-4">
+
       <button
         className={
           searchBoxValue && searchBoxHandleClick
@@ -204,6 +206,7 @@ const KeyWords = ({ onClickHandler }) => {
         <img src="/img/dashboard/keyWord/bookmark.svg" alt="" />
        ذخیره لیست
       </button>
+      </div>
     </>
   );
 };
