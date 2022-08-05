@@ -3,8 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a41f2c-2f9e-4fec-8efb-b41413fabe06" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/nav.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/iranyekan-font.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/iranyekan-font.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/style-typogrsrhy.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style-typogrsrhy.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/AcardionItem/AcardionItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/AcardionItem/AcardionItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/KeyWordsSearch/KeyWordsSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/KeyWordsSearch/KeyWordsSearch.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/PlanStatus/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/PlanStatus/output.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/IconsRight.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/IconsRight.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/SidebarComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/SidebarComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/EditUserProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/EditUserProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/profileInfo/ProfileInformation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/profileInfo/ProfileInformation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +58,23 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RunManager">
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.deploy" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,7 +88,7 @@
       <workItem from="1659472161015" duration="3292000" />
       <workItem from="1659648776695" duration="8573000" />
       <workItem from="1659696029358" duration="993000" />
-      <workItem from="1659697823762" duration="1505000" />
+      <workItem from="1659697823762" duration="7100000" />
     </task>
     <servers />
   </component>

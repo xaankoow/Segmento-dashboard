@@ -118,7 +118,7 @@ export default function TableFinancialReports({ title }) {
         </div>
       </div>
       {/* <div className=' w-[1038px] m-auto'> */}
-      {/* <img src="/img/modal/body/report.svg" className='w-full h-11' alt="" /> */}
+      {/* <img src="/%PUBLIC_URL%/img/modal/body/report.svg" className='w-full h-11' alt="" /> */}
       <div className=" w-full px-10 m-auto">
         <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
           {/* <input
@@ -183,7 +183,7 @@ export default function TableFinancialReports({ title }) {
                     className="flex justify-start items-center px-3 w-52 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
                     onClick={openCalendar}
                   >
-                    <img src="/img/dashboard/financialReports/calendar/file_download.svg" />
+                    <img src="/%PUBLIC_URL%/img/dashboard/financialReports/calendar/file_download.svg" />
                     <span className="text-xs mr-3">{value}</span>
                   </div>
                 )}
@@ -196,14 +196,14 @@ export default function TableFinancialReports({ title }) {
             ) : (
               <div className="flex justify-between items-center px-1 w-14 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]">
                 <img
-                  src="/img/dashboard/financialReports/numArrow.svg"
+                  src="/%PUBLIC_URL%/img/dashboard/financialReports/numArrow.svg"
                   alt=""
                   onClick={() => numFilter > 1 && setNumFilter(numFilter - 1)}
                   className="  cursor-pointer"
                 />
                 <span className="text-xs cursor-default">{numFilter}</span>
                 <img
-                  src="/img/dashboard/financialReports/numArrow.svg"
+                  src="/%PUBLIC_URL%/img/dashboard/financialReports/numArrow.svg"
                   alt=""
                   onClick={() => setNumFilter(numFilter + 1)}
                   className="cursor-pointer rotate-180"
@@ -328,7 +328,7 @@ export default function TableFinancialReports({ title }) {
                       textButton={
                         <Fragment>
                           <img
-                            src="/img/dashboard/financialReports/file_download.svg"
+                            src="/%PUBLIC_URL%/img/dashboard/financialReports/file_download.svg"
                             className=" ml-3"
                           />{" "}
                           خروجی اکسل
