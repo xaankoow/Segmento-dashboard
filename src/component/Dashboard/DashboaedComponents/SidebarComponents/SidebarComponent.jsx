@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllWorkSpace } from "../../../Redux/Action/workSpace";
 import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
-export default function SidebarComponent({ closeNav,openMenu }) {
+export default function SidebarComponent({ closeNav, openMenu }) {
   const [activeIcon, setActiveIcon] = useState(0);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
@@ -31,14 +32,14 @@ export default function SidebarComponent({ closeNav,openMenu }) {
   //   "انتخاب سرویس",
   // ];
   const itemsHoverMenu = [
-    {title:"گزارش های منتخب",link:""},
-    {title:"خرید اشتراک",link:"buyPlan"},
-    {title:"شروع آسان",link:"easyStart"},
-    {title:"خبرخوان",link:""},
-    {title:"آموزش",link:""},
-    {title:"پیشنهادات و تخفیف ها",link:""},
-    {title:"پشتیبانی و تیکت",link:""},
-    {title:"انتخاب سرویس",link:""}
+    { title: "گزارش های منتخب", link: "" },
+    { title: "خرید اشتراک", link: "buyPlan" },
+    { title: "شروع آسان", link: "easyStart" },
+    { title: "خبرخوان", link: "" },
+    { title: "آموزش", link: "" },
+    { title: "پیشنهادات و تخفیف ها", link: "" },
+    { title: "پشتیبانی و تیکت", link: "" },
+    { title: "انتخاب سرویس", link: "" }
   ];
   return (
     <>
@@ -61,11 +62,11 @@ export default function SidebarComponent({ closeNav,openMenu }) {
           </div>
         ) : activeIcon == 1 ? (
           <div>
-           
-       <div className='flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue '  >
-            <img src={"/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
-            <span className={`text-[${"#0A65CD"}]`}>{closeNav && "پیشخوان"}</span>
-        </div>
+
+            <div className='flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue '  >
+              <img src={"/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
+              <span className={`text-[${"#0A65CD"}]`}>{closeNav && "پیشخوان"}</span>
+            </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />
           </div>
@@ -84,7 +85,7 @@ export default function SidebarComponent({ closeNav,openMenu }) {
         ) : null}
       </div>
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
-        <IconsRight setActive={activeIconHandler}  />
+        <IconsRight setActive={activeIconHandler} />
         <div className="down">
           <div className="dropDownBox ">
             <div className="support w-7 h-7"></div>
@@ -102,7 +103,9 @@ export default function SidebarComponent({ closeNav,openMenu }) {
 
           <div className="line"></div>
           {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
-          <div className="xaankoo_logo w-11 h-9"></div>
+          <a href={"https://segmento.ir/"}>
+            <div className="xaankoo_logo w-11 h-9"></div>
+          </a>
         </div>
       </div>
     </>

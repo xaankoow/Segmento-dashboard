@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import Modal from 'react-modal'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import AuthButton from '../../Auth/authButton/AuthButton';
 import { addWorkSpace } from '../../Redux/Action/workSpace';
@@ -12,6 +12,7 @@ import { workSpaceTitle } from './titleWorkSpaceModal';
 export default function WorkSpace() {
 
   const [stepModal, setStepModal] = useState(1);
+  const { webAdress } = useSelector(state => state.workSpaceState)
 
   const [addKeyCharInput, setAddKeyCharInput] = useState(3)
   const [addCommercialPageInput, setAddCommercialPageInput] = useState(3)
@@ -19,6 +20,7 @@ export default function WorkSpace() {
   const [addCompetitorSite, setAddCompetitorSite] = useState(2)
 
   const navigate = useNavigate();
+
 
   const customStyles = {
     content: {
@@ -95,7 +97,8 @@ export default function WorkSpace() {
           <footer className='px-5'>
             {stepModal != 1 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
             {stepModal != 1 ? <AuthButton classes={"bg-[#F2F5F7] text-[#488CDA]"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان"} /> : <div></div>}
-            {stepModal != 5 ? <button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button> : <div></div>}
+            {stepModal != 5 ? <AuthButton handlerClick={setStepModal} disabled={webAdress.length!=0?false:true} setOnclickValue={stepModal + 1} textButton={<Fragment>ادامه<span className='forward-ico'></span></Fragment>}/> : <div></div>}
+            {/* {stepModal != 5 ? <button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button> : <div></div>} */}
           </footer>
         </div>
       </Modal>
