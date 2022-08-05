@@ -33,17 +33,17 @@
 
 /* svg log nav option */
 .option_segmento_logo {
-    background-image: url(/../%PUBLIC_URL%/img/nav/option_segmento.svg);
+    background-image: url(/..//img/nav/option_segmento.svg);
 }
 
 .course_video_logo {
-    background-image: url(/../%PUBLIC_URL%/img/nav/course_video.svg);
+    background-image: url(/..//img/nav/course_video.svg);
 }
 
 .diamond_price_logo {
-    background-image: url(/../%PUBLIC_URL%/img/nav/diamond_price.svg);
+    background-image: url(/..//img/nav/diamond_price.svg);
 }
 
 .cookie_communicate_logo {
-    background-image: url(/../%PUBLIC_URL%/img/nav/cookie_communicate.svg);
+    background-image: url(/..//img/nav/cookie_communicate.svg);
 }
