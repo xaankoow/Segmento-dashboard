@@ -281,7 +281,7 @@ export default function EditUserProfile() {
           close={() => setOpenChangeImageModal(false)}
           isOpen={openChangeImageModal}
           setUserImage={setUserImage}
-          userImage={userState.userData.user != undefined & userState.userData.user.img != "" ? userState.userData.user.img : "/../img/dashboard/userProfile/profileImage.png"}
+          userImage={userState.userData.user != undefined & userState.userData.user.img != "" ? userState.userData.user.img : "../img/dashboard/userProfile/profileImage.png"}
         />
       )}
       {updatePass && (

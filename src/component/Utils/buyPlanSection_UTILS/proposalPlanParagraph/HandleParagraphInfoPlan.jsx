@@ -7,7 +7,7 @@ export default function HandleParagraphInfoPlan({typePlan,indexPlan}) {
 
     return (
         <div className='container_plan_message mt-5 rounded-lg'>
-            <img src="/dashboard/img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
+            <img src="%PUBLIC_URL%/img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
             <span className='py-2.5 mr-3 inline-block text-sm '>{paragraph(typePlan,indexPlan)}</span>
         </div>
     )
