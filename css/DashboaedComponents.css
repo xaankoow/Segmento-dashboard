@@ -5,9 +5,9 @@
 
 @font-face {
     font-family: BYekan;
-    src: url(../font/BYekan.woff) format('woff'),
-    url(../font/BYekan.ttf) format('ttf'),
-    url(../font/BYekan.eot) format('eot'),
+    src: url(../%PUBLIC_URL%/font/BYekan.woff) format('woff'),
+    url(../%PUBLIC_URL%/font/BYekan.ttf) format('ttf'),
+    url(../%PUBLIC_URL%/font/BYekan.eot) format('eot'),
 }
 
 * {

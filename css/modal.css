@@ -74,7 +74,7 @@
     width: 15px;
     top: 3.5px;
     right: 12px;
-    background-image: url(/../img/modal/head/info.svg);
+    background-image: url(/../%PUBLIC_URL%/img/modal/head/info.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -85,7 +85,7 @@
     display: inline-block;
     height: 8px;
     width: 8px;
-    background-image: url(/img/modal/head/closeModal.svg);
+    background-image: url(/%PUBLIC_URL%/img/modal/head/closeModal.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -130,7 +130,7 @@
     display: list-item !important;
     font-size: 18px;
     /* padding-right: 21px; */
-    background: url(/../img/modal/body/discList.svg) no-repeat right;
+    background: url(/../%PUBLIC_URL%/img/modal/body/discList.svg) no-repeat right;
     list-style-type: none;
     color: #083c78;
     /* padding-bottom: 18px; */
@@ -161,7 +161,7 @@
     padding: 12.5px 3px;
     /* background-repeat: no-repeat; */
     /* background-size: cover; */
-    /* background-image: url(../img/modal/body/arrow.svg); */
+    /* background-image: url(../%PUBLIC_URL%/img/modal/body/arrow.svg); */
 }
 
 .ReactModal__Content body .container_input_step2 .input-wrapper {
@@ -226,7 +226,7 @@
 
  .plans_body_container .plan_card .apply_token_ico {
     position: absolute;
-    background-image: url(/../img/modal/body/arrow_apply_token.svg);
+    background-image: url(/../%PUBLIC_URL%/img/modal/body/arrow_apply_token.svg);
     box-sizing: border-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -495,7 +495,7 @@ input[type="radio"]:checked::before {
     display: inline-block;
     height: 24px;
     width: 24px;
-    background-image: url(/img/modal/footer/moveBack.svg);
+    background-image: url(/%PUBLIC_URL%/img/modal/footer/moveBack.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -507,7 +507,7 @@ input[type="radio"]:checked::before {
     height: 15px;
     width: 15px;
     margin-right: 14px;
-    background-image: url(/img/modal/footer/moveForward.svg);
+    background-image: url(/%PUBLIC_URL%/img/modal/footer/moveForward.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -519,7 +519,7 @@ input[type="radio"]:checked::before {
     height: 15px;
     width: 15px;
     margin-right: 14px;
-    background-image: url(/../img/modal/footer/arrow_14_free.svg);
+    background-image: url(/../%PUBLIC_URL%/img/modal/footer/arrow_14_free.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
