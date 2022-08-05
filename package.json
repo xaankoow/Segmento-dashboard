@@ -1,4 +1,5 @@
 {
+  "homepage": "https://xaankoow.github.io/segmentor-react",
   "name": "xaankoo_segmento",
   "version": "0.20220804.0",
   "private": true,
@@ -40,6 +41,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -64,6 +67,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
+    "gh-pages": "^4.0.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"
   }
