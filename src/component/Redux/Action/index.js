@@ -724,7 +724,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
                                 let state = { ...getState().userState }
                                 state.handleResendCode = true;
                                 dispatch({ type: "DISABLE_TIMER", payload: state })
-                            }, 5000);
+                            }, 120000);
                             showToast("کد به ایمیل شما ارسال شد", "success");
                             // toast.update(toastPromise, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
                             await dispatch({ type: "SEND_CODE_EMAIL_FORGOTPASSWORD", payload: state })
@@ -814,7 +814,10 @@ export const changePasswordAction = () => {
 
                     if (status == 200 && data.status == true) {
                         showToast("رمز عبور با موفقیت تغییر کرد", "success");
-                        // localStorage.removeItem("token")
+                        state.forceUpdate+=1;
+                        state.handleResendCode=true;
+                        state.forgotPasswordStep=0;
+                        localStorage.setItem("CHECNGEPASSWORD_COMPLETE",true)
                         // toast.update(toastPromise, { render: "رمز عبور با موفقیت تغییر کرد", type: "success", isLoading: false, autoClose: 3000 })
                     } else {
                         data.errors.forEach(element => {
