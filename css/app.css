@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
-    background-image: url("/../img/vector.svg");
+    background-image: url("../img/vector.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
