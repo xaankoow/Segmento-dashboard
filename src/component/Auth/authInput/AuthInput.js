@@ -88,7 +88,7 @@ export default function AuthInput({
            
           }}
         />
-        <label className={disable ?  "hidden" : ""} for="user">{textLabelInput}</label>
+        <label className={disable ?  "text-[#fff]" : ""} for="user">{textLabelInput}</label>
 
         {/* {isPassword ? (
           <img

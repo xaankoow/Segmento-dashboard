@@ -5,21 +5,21 @@ import { BrowserRouter, Link } from 'react-router-dom'
 import { changeRegisterCompleteCheck, findUserAction } from '../../../Redux/Action'
 import getCookie from '../../../Utils/findUser'
 
-export default function Nav({path}) {
+export default function Nav({ path }) {
 
 
   // const dispatch=useDispatch();
   // useEffect(() => {
   //     dispatch(findUserAction())
   // }, [])
-  
+
   // let user=get
-  const { checkRegisterComplete } = useSelector(state => state.userState)
+  const { checkRegisterComplete, forceUpdate } = useSelector(state => state.userState)
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const dispatch=useDispatch();
-  const userToken= localStorage.getItem("token")
+  const dispatch = useDispatch();
+  const userToken = localStorage.getItem("token")
   //REGISTER COMPLETE => NAVIGATE TO VERIFY FORM
   // debugger
   // // console.log(window.location.href.includes("ValidateEmail"));
@@ -35,14 +35,20 @@ export default function Nav({path}) {
   // }, [checkRegisterComplete])
 
   // debugger
+  const checkChangePasswordComplete = localStorage.getItem("CHECNGEPASSWORD_COMPLETE");
+
+  useEffect(() => {
+    if (checkChangePasswordComplete == "true") {
+      localStorage.removeItem("CHECNGEPASSWORD_COMPLETE")
+      navigate("/")
+    }
+  }, [checkChangePasswordComplete])
   useEffect(() => {
     if (userToken) {
-      navigate("/dashboard/easyStart",{replace:true})
+      navigate("/dashboard/easyStart", { replace: true })
     }
   }, [userToken])
-  
-  
-  // console.log(window.location.pathname)
+
   return (
     <div id='nav-option-head' className='w-full flex items-center justify-between px-28'>
       <div className='flex justify-around items-center'>
@@ -58,7 +64,7 @@ export default function Nav({path}) {
           <span className='logo_nav diamond_price_logo' />
           <a href='#'>قیمت گذاری</a>
         </div>
-        <di className="flex justify-center items-center pl-5"v>
+        <di className="flex justify-center items-center pl-5" v>
           <span className='logo_nav cookie_communicate_logo' />
           <a href='#'>همکاری با آژانس ها</a>
         </di>
@@ -71,11 +77,12 @@ export default function Nav({path}) {
           <Route exact path={"*"} element={<Link to={"/login"} className='btn-style'>ورود</Link>} />
         </Routes> */}
 
-          {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
-          {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
-          <Link to={`/${path}`} className='btn-style'>{path==""?"ورود":"ثبت نام"}</Link>
+        {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
+        {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
+        <Link to={`/${path}`} className='btn-style'>{path == "" ? "ورود" : "ثبت نام"}</Link>
 
       </div>
+      {forceUpdate > 0 ? "" : ""}
     </div>
   )
 }

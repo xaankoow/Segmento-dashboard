@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
 export default function Page404() {
+  const navigate =useNavigate()
+  navigate("easyStart")
+  
   return (
     <div id='page-404'>
         {/* <p>داری دنبال زیر بغل مار میگردی؟</p>
