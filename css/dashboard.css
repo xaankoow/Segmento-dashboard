@@ -232,32 +232,32 @@
 }
 
 #DASHBOARD .nav_right .top .dashboard {
-	background-image: url(/..//img/dashboard/nav_right/dashboard.svg);
+	background-image: url(/../img/dashboard/nav_right/dashboard.svg);
 }
 
 #DASHBOARD .nav_right .top .analyze {
-	background-image: url(/..//img/dashboard/nav_right/analyze.svg);
+	background-image: url(/../img/dashboard/nav_right/analyze.svg);
 }
 
 #DASHBOARD .nav_right .top .news {
-	background-image: url(/..//img/dashboard/nav_right/news.svg);
+	background-image: url(/../img/dashboard/nav_right/news.svg);
 }
 
 #DASHBOARD .nav_right .top .servise {
-	background-image: url(/..//img/dashboard/nav_right/servise.svg);
+	background-image: url(/../img/dashboard/nav_right/servise.svg);
 }
 
 #DASHBOARD .nav_right .top .youtub {
-	background-image: url(/..//img/dashboard/nav_right/youtub.svg);
+	background-image: url(/../img/dashboard/nav_right/youtub.svg);
 }
 
 #DASHBOARD .nav_right .top .linkedin {
-	background-image: url(/..//img/dashboard/nav_right/linkedin.svg);
+	background-image: url(/../img/dashboard/nav_right/linkedin.svg);
 }
 
 /* remove! */
 #DASHBOARD .nav_right .down .support {
-	background-image: url(/..//img/dashboard/nav_right/support.svg);
+	background-image: url(/../img/dashboard/nav_right/support.svg);
 }
 
 #DASHBOARD .nav_right .down .dropDownBox:hover .support {
@@ -265,7 +265,7 @@
 }
 
 #DASHBOARD .nav_right .down .information {
-	background-image: url(/..//img/dashboard/nav_right/information.svg);
+	background-image: url(/../img/dashboard/nav_right/information.svg);
 
 }
 
@@ -282,7 +282,7 @@
 #DASHBOARD .nav_right .xaankoo_logo {
 	/* width: 100%; */
 	/* height: 44px; */
-	background-image: url(/..//img/dashboard/nav_right/xaankoo-logo.svg);
+	background-image: url(/../img/dashboard/nav_right/xaankoo-logo.svg);
 }
 
 
@@ -299,12 +299,12 @@
 
 
 #DASHBOARD .menuimage {
-	background-image: url(/..//img/dashboard/header/menuicon.svg);
+	background-image: url(/../img/dashboard/header/menuicon.svg);
 
 }
 
 #DASHBOARD .Iconimage {
-	background-image: url(/..//img/dashboard/header/segmento-logofa.svg);
+	background-image: url(/../img/dashboard/header/segmento-logofa.svg);
 
 }
 
@@ -494,14 +494,14 @@
 
 /* table */
 #TABLE .copyAllButton .imageIcon {
-	background: url(/..//img/dashboard/table/content_copy.svg);
+	background: url(/../img/dashboard/table/content_copy.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 
 #TABLE .copyAllButton:hover .imageIcon {
-	background: url(/..//img/dashboard/table/content_copy_white.svg);
+	background: url(/../img/dashboard/table/content_copy_white.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -517,7 +517,7 @@
 }
 
 #TABLE .copyAllButtondisabled .imageIcon {
-	background: url(/..//img/dashboard/table/content_copy_white.svg);
+	background: url(/../img/dashboard/table/content_copy_white.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -525,7 +525,7 @@
 
 #TABLE .tableRow .content_copy_blue {
 	display: none;
-	background: url(/..//img/dashboard/table/content_copy_blue.svg);
+	background: url(/../img/dashboard/table/content_copy_blue.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -533,14 +533,14 @@
 }
 
 #TABLE .tableRow .content_copy_blue:active {
-	background: url(/..//img/dashboard/table/content_copy_primary.svg);
+	background: url(/../img/dashboard/table/content_copy_primary.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 
 #TABLE .tableRow .content_copy_blue:checked {
-	background: url(/..//img/dashboard/table/content_copy_primary.svg);
+	background: url(/../img/dashboard/table/content_copy_primary.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
