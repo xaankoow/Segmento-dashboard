@@ -165,7 +165,7 @@ export default function Forgetpass() {
                 <AuthInput
                   classes={"verify_email_cod input_selector_4"}
                   notCheckValue={true}
-                  disabled={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                  disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                   chechvalue={chechvalue}
                   reduxHandleChange={setAuth1Redux}
                   maxlength="1"
@@ -174,7 +174,7 @@ export default function Forgetpass() {
                 <AuthInput
                   classes={"verify_email_cod input_selector_3"}
                   notCheckValue={true}
-                  disabled={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                  disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                   chechvalue={chechvalue}
                   reduxHandleChange={setAuth2Redux}
                   maxlength="1"
@@ -183,7 +183,7 @@ export default function Forgetpass() {
                 <AuthInput
                   classes={"verify_email_cod input_selector_2"}
                   notCheckValue={true}
-                  disabled={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                  disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                   chechvalue={chechvalue}
                   reduxHandleChange={setAuth3Redux}
                   maxlength="1"
@@ -192,7 +192,7 @@ export default function Forgetpass() {
                 <AuthInput
                   classes={"verify_email_cod"}
                   notCheckValue={true}
-                  disabled={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                  disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                   chechvalue={chechvalue}
                   reduxHandleChange={setAuth4Redux}
                   maxlength="1"
@@ -223,7 +223,7 @@ export default function Forgetpass() {
               classes={"forgot_password_input"}
               typeInput="password"
               isPassword={true}
-              disabled={forgotPasswordStep > 1 ? false : true}
+              disable={forgotPasswordStep > 1 ? false : true}
               chechvalue={chechvalue}
               reduxHandleChange={setPasswordRedux}
             />
@@ -233,7 +233,7 @@ export default function Forgetpass() {
                 classes={"forgot_password_input"}
                 typeInput="password"
                 isPassword={true}
-                disabled={forgotPasswordStep > 1 ? false : true}
+                disable={forgotPasswordStep > 1 ? false : true}
                 chechvalue={chechvalue}
                 reduxHandleChange={setPasswordConfirmRedux}
                 errorTextId="errRejesterPasswordConfirm"

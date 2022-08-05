@@ -36,10 +36,8 @@ export default function Nav({ path }) {
 
   // debugger
   const checkChangePasswordComplete = localStorage.getItem("CHECNGEPASSWORD_COMPLETE");
-  // console.log("hi")
-  console.log(checkChangePasswordComplete)
+
   useEffect(() => {
-    // if ("true" == "true") {
     if (checkChangePasswordComplete == "true") {
       localStorage.removeItem("CHECNGEPASSWORD_COMPLETE")
       navigate("/")
@@ -51,8 +49,6 @@ export default function Nav({ path }) {
     }
   }, [userToken])
 
-
-  // console.log(window.location.pathname)
   return (
     <div id='nav-option-head' className='w-full flex items-center justify-between px-28'>
       <div className='flex justify-around items-center'>
