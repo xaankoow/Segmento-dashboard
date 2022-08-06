@@ -11,64 +11,60 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
 const KeyWords = ({ onClickHandler }) => {
-
-  const {canRequest}=useSelector(state=>state.loadingState)
-   // searchBox Value
+  const { canRequest } = useSelector((state) => state.loadingState);
+  // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [SavePopup, showSavePopup] = useState(false);
   const [keyWords, setKeyWords] = useState([]); //1
-  const [seperator,setSeperator]=useState(false)
-  const [id,setId]=useState("");
+  const [seperator, setSeperator] = useState(false);
+  const [id, setId] = useState("");
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
   };
   //3
-  const loadingState = useSelector(state => state.loadingState)
-  const dispatch = useDispatch()
+  const loadingState = useSelector((state) => state.loadingState);
+  const dispatch = useDispatch();
   const handleSetKeyWords = async () => {
-      //handle show loadin
-      {
-        loadingState.ProcessingDelay.push("keywordService");
-        loadingState.canRequest = false;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-      }
+    //handle show loadin
+    {
+      loadingState.ProcessingDelay.push("keywordService");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    }
     try {
-      const dd={
-        "key": searchBoxValue,
-        "key2": "",
-        "used_by":"google",
-        "type":"",
-        "characters" : true
+      const dd = {
+        key: searchBoxValue,
+        key2: "",
+        used_by: "google",
+        type: "",
+        characters: true,
       };
       // const { data, status } = await keywordService(searchBoxValue);
-      
+
       const { data, status } = await keywordService(dd);
-      setKeyWords(data.data.result);//5
-      setId(data.data.id)
+      setKeyWords(data.data.result); //5
+      setId(data.data.id);
       // console.log(data.data.id);
-     
     } catch (error) {
-      
       // console.log(error)
     }
     //handle hide loading
     {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "keywordService");
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        (item) => item != "keywordService"
+      );
       loadingState.ProcessingDelay = removeProcessingItem;
       loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
   };
   // store data in myList
   var handleSetStoreKeyWords = async () => {
     try {
-     
-
-
       const { data, status } = await keywordsStoreService(id);
-      showSavePopup(true)
-  //  console.log(data);
+      showSavePopup(true);
+      //  console.log(data);
     } catch (error) {
       // console.log(error);
     }
@@ -80,12 +76,11 @@ const KeyWords = ({ onClickHandler }) => {
 
   //2
   //filter from searchBox  in table
- 
-  var tableDataFiltered= [];
+
+  var tableDataFiltered = [];
   Object.keys(keyWords).map((item) => {
     // console.log(datass.data[item].length);
-    if (keyWords[item]!=null) {
-         
+    if (keyWords[item] != null) {
       for (let i = 0; i < keyWords[item].length - 1; i++) {
         if (keyWords[item][i].includes(searchBoxValue)) {
           tableDataFiltered.push(keyWords[item][i]);
@@ -93,7 +88,6 @@ const KeyWords = ({ onClickHandler }) => {
         // return
       }
     }
-    
   });
 
   //  secound search
@@ -101,54 +95,65 @@ const KeyWords = ({ onClickHandler }) => {
   const secoundSearchBoxChangeHandler = (e) => {
     setSecoundSearchBoxValue(e.target.value);
   };
-
+  console.log(secoundSearchBoxValue);
   //  filter from comboBox
   const [radioClickedHandler, setRadioClickedHandler] = useState("1");
   let comboboxFiltered = [];
   const radioButtonHandler = (e) => {
     setRadioClickedHandler(e.target.value);
   };
+ 
+//  Alphabet filtering
+const [alphabetHandler, setAlphabetHandler] = useState("");
+var handleClick = (e) => {
+  setAlphabetHandler(e.target.innerText);
+};
+useEffect(() => {}, []);
 
-  if (radioClickedHandler === "1") {
+var tableAlphabetFiltering = comboboxFiltered.filter((item) => {
+  return item.startsWith(alphabetHandler);
+});
+
+
+  if (radioClickedHandler === "1" && searchBoxValue) {
+    tableAlphabetFiltering=[]
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item.includes(searchBoxValue);
     });
-  } else if (radioClickedHandler === "2") {
+  } else if (radioClickedHandler === "2" && secoundSearchBoxValue != "") {
+    tableAlphabetFiltering=[]
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item.includes(secoundSearchBoxValue);
     });
-  } else if (radioClickedHandler === "3") {
+  } else if (radioClickedHandler === "3" && secoundSearchBoxValue != "") {
+    tableAlphabetFiltering=[]
     comboboxFiltered = tableDataFiltered.filter((item) => {
-      return item==secoundSearchBoxValue
+      return item == secoundSearchBoxValue;
     });
-  } else if (radioClickedHandler === "4") {
+  } else if (radioClickedHandler === "4" && secoundSearchBoxValue != "") {
+    tableAlphabetFiltering=[]
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return !item.includes(secoundSearchBoxValue);
     });
+  } else {
+    comboboxFiltered = tableDataFiltered.filter((item) => {
+      return item.includes(searchBoxValue);
+    });
   }
-  //  Alphabet filtering
-  const filteredData = [];
-  const [alphabetHandler, setAlphabetHandler] = useState("");
-  const handleClick = (e) => {
-    setAlphabetHandler(e.target.innerText);
-  };
-  const tableAlphabetFiltering = comboboxFiltered.filter((item) => {
-    return item.startsWith(alphabetHandler);
-  });
-
+  
   //check dom
   return (
     <>
-    {SavePopup &&
-      <PopUp
-      clickHandler={() => showSavePopup(false)}
-      image={"/img/popUp/playlist_add.svg"}
-      type={"sucsess"}
-      buttonText={"باشه، فهمیدم!"}
-      text={"لیست جدید شما با موفقیت ذخیره شد !"}
-      title={"موفقیت آمیز"}
-    />
-    }
+      {SavePopup && (
+        <PopUp
+          clickHandler={() => showSavePopup(false)}
+          image={"/img/popUp/playlist_add.svg"}
+          type={"sucsess"}
+          buttonText={"باشه، فهمیدم!"}
+          text={"لیست جدید شما با موفقیت ذخیره شد !"}
+          title={"موفقیت آمیز"}
+        />
+      )}
       <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
           changeHandler={SearchBoxChangeHandler}
@@ -159,7 +164,7 @@ const KeyWords = ({ onClickHandler }) => {
           className="w-[97%] flex items-center gap-2 justify-between"
         />
 
-        <div className="flex flex-col  w-[97%]" >
+        <div className="flex flex-col  w-[97%]">
           {!searchBoxValue || !searchBoxHandleClick ? (
             <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
           ) : null}
@@ -195,14 +200,16 @@ const KeyWords = ({ onClickHandler }) => {
       <button
         className={
           searchBoxValue && searchBoxHandleClick
-            ? "btn-style mr-5 my-5 flex gap-3"
-            : "bg-[#D3D5E2] btn-style mr-5 my-5 flex gap-3"
+            ? "btn-style mr-5 my-5 mb-[60px] flex gap-3 "
+            : "bg-[#D3D5E2] btn-style mr-5 mb-[60px]  my-5 flex gap-3"
         }
-        disabled={canRequest?searchBoxHandleClick ? false : true:true}
-        onClick={(e) =>{handleSetStoreKeyWords()}}
+        disabled={canRequest ? (searchBoxHandleClick ? false : true) : true}
+        onClick={(e) => {
+          handleSetStoreKeyWords();
+        }}
       >
         <img src="/img/dashboard/keyWord/bookmark.svg" alt="" />
-       ذخیره لیست
+        ذخیره لیست
       </button>
     </>
   );

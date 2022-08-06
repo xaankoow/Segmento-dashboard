@@ -102,7 +102,7 @@ export default function SidebarComponent({ closeNav,openMenu }) {
 
           <div className="line"></div>
           {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
-          <div className="xaankoo_logo w-11 h-9"></div>
+          <div className="xaankoo_logo w-11 h-9"></div>    {/* لینک لوگو ؟*/}
         </div>
       </div>
     </>

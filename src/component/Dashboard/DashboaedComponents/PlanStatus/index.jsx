@@ -13,7 +13,7 @@ export default function PlanStatus({ title }) {
   const [datas, setDatas] = useState("");
 
   var moment = require("jalali-moment");
-  const allWords=100; // TODO : replace static num with api count
+  const allWords = 100; // TODO : replace static num with api count
   var user_package_title = "";
   var package_end_dates = "";
   var user_package_type_text = "";
@@ -34,7 +34,6 @@ export default function PlanStatus({ title }) {
     try {
       const { data, status } = await usetLimit();
       setDatas(data.data); //5
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +63,7 @@ export default function PlanStatus({ title }) {
       },
     ],
   };
-  const keyword=datas != [] &&  datas[4].count;
+  const keyword = datas != [] && datas[4].count;
   const miniChartSetting = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -75,7 +74,12 @@ export default function PlanStatus({ title }) {
         // cutout: 38,
         // width:35,
         // height:35,
-        backgroundColor:keyword &&  keyword < 20 ?  ["#D9D9D9", "#F35242"] :keyword && keyword < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        backgroundColor:
+          keyword && keyword < 20
+            ? ["#D9D9D9", "#F35242"]
+            : keyword && keyword < 50
+            ? ["#D9D9D9", "#FFCE47"]
+            : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -90,7 +94,7 @@ export default function PlanStatus({ title }) {
       },
     ],
   };
-  const content=datas != [] &&  datas[3].count;
+  const content = datas != [] && datas[3].count;
   const miniChartSetting2 = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -101,7 +105,12 @@ export default function PlanStatus({ title }) {
         // cutout: 38,
         // width:35,
         // height:35,
-        backgroundColor:content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        backgroundColor:
+          content && content < 20
+            ? ["#D9D9D9", "#F35242"]
+            : content && content < 50
+            ? ["#D9D9D9", "#FFCE47"]
+            : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -161,9 +170,10 @@ export default function PlanStatus({ title }) {
                   <span>تاریخ اتمام اشتراک</span>
                   <span>
                     {" "}
-                    {package_end_dates && moment(package_end_dates.substring(0, 10))
-                      .locale("fa")
-                      .format("YYYY/M/D")}
+                    {package_end_dates &&
+                      moment(package_end_dates.substring(0, 10))
+                        .locale("fa")
+                        .format("YYYY/M/D")}
                   </span>
                 </div>
 
@@ -279,22 +289,23 @@ export default function PlanStatus({ title }) {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                    {allWords}
+                      {allWords}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                  {datas != [] && allWords - datas[4].count}
+                      {datas != [] && allWords - datas[4].count}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                    {datas != [] ? datas[4].count : ""}
+                      {datas != [] ? datas[4].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuetwo"></span> {datas != [] ? datas[4].count : ""} <br />
+                    <span id="valuetwo"></span>{" "}
+                    {datas != [] ? datas[4].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -320,22 +331,23 @@ export default function PlanStatus({ title }) {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                    {allWords}
+                      {allWords}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas != [] ? allWords- datas[3].count : ""}
+                      {datas != [] ? allWords - datas[3].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                    {datas != [] ? datas[3].count : ""}
+                      {datas != [] ? datas[3].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuethree"></span> {datas != [] ? datas[3].count : ""} <br />
+                    <span id="valuethree"></span>{" "}
+                    {datas != [] ? datas[3].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">

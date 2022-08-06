@@ -46,7 +46,7 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
         </div>
         <div className="popUpContent mt-3 relative">
           <h3 className="title">{title}</h3>
-          <span className="text px-4 absolute top-8">{text}</span>
+          <span className="text px-4 absolute top-8 mt-2">{text}</span>
           {tryFreePlan != undefined & tryFreePlan ? (
             <div className="flex justify-between items-center w-full px-3">
               <div>

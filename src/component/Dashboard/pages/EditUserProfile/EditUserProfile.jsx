@@ -296,7 +296,7 @@ export default function EditUserProfile() {
             <div className="mt-12 flex justify-between">
               <ProfileInformation
                 userName={user_name}
-                userType={user_package_type_text && user_package_type_text}
+                userType={userState.userData.package != undefined ? userState.userData.package.title : "بدون پکیج"}
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
 
