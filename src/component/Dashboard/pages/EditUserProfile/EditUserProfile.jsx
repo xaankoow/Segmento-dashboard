@@ -143,7 +143,7 @@ export default function EditUserProfile() {
       const { data } = await editProfile(formdata);
       if (data.code == 200 & data.status == true) {
         dispatch(coreUser());
-        console.log(data)
+        // console.log(data)
         toast.success("اطلاعات شما با موفقیت ویرایش شد");
         setForceUpdate(!forceUpdates);
       }
