@@ -102,36 +102,35 @@ const KeyWords = ({ onClickHandler }) => {
   const radioButtonHandler = (e) => {
     setRadioClickedHandler(e.target.value);
   };
- 
-//  Alphabet filtering
-const [alphabetHandler, setAlphabetHandler] = useState("");
-var handleClick = (e) => {
-  setAlphabetHandler(e.target.innerText);
-};
-useEffect(() => {}, []);
 
-var tableAlphabetFiltering = comboboxFiltered.filter((item) => {
-  return item.startsWith(alphabetHandler);
-});
+  //  Alphabet filtering
+  const [alphabetHandler, setAlphabetHandler] = useState("");
+  var handleClick = (e) => {
+    setAlphabetHandler(e.target.innerText);
+  };
+  useEffect(() => {}, []);
 
+  var tableAlphabetFiltering = comboboxFiltered.filter((item) => {
+    return item.startsWith(alphabetHandler);
+  });
 
   if (radioClickedHandler === "1" && searchBoxValue) {
-    tableAlphabetFiltering=[]
+    tableAlphabetFiltering = [];
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item.includes(searchBoxValue);
     });
   } else if (radioClickedHandler === "2" && secoundSearchBoxValue != "") {
-    tableAlphabetFiltering=[]
+    tableAlphabetFiltering = [];
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item.includes(secoundSearchBoxValue);
     });
   } else if (radioClickedHandler === "3" && secoundSearchBoxValue != "") {
-    tableAlphabetFiltering=[]
+    tableAlphabetFiltering = [];
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item == secoundSearchBoxValue;
     });
   } else if (radioClickedHandler === "4" && secoundSearchBoxValue != "") {
-    tableAlphabetFiltering=[]
+    tableAlphabetFiltering = [];
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return !item.includes(secoundSearchBoxValue);
     });
@@ -140,7 +139,7 @@ var tableAlphabetFiltering = comboboxFiltered.filter((item) => {
       return item.includes(searchBoxValue);
     });
   }
-  
+
   //check dom
   return (
     <>
