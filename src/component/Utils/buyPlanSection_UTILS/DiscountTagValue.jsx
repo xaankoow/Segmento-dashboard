@@ -1,7 +1,7 @@
 export default function DiscountTagValue({ discountValue, discountStatus, tagStatusName, price, planSelected }) {
 
     // debugger
-    console.log(discountValue, discountStatus, tagStatusName, price, planSelected)
+    // console.log(discountValue, discountStatus, tagStatusName, price, planSelected)
     var originalPrice = "";
     var priceAfterTheDiscount = price.toString().substring(0, price.toString().length - 3)+ " هزار تومان ماهانه";
     if (discountValue != 0) {

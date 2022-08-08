@@ -54,9 +54,9 @@ export default function PlanStatus() {
     try {
       const { data, status } = await usetLimit();
       setDatas(data.data); //5
-      console.log(data);
+      // console.log(data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

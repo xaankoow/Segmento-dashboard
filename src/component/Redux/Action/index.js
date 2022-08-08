@@ -60,7 +60,7 @@ export const coreUser = () => {
 
             // }
             // console.log("register error")
-            console.log(error)
+            // console.log(error)
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });

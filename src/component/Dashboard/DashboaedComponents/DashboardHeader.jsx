@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { coreUser, logoutAction } from '../../Redux/Action';
-import getCookie from '../../Utils/findUser';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getAllWorkSpace } from '../../Redux/Action/workSpace';
 
@@ -11,7 +12,7 @@ const DashboardHeader = ({ setCloseNav }) => {
     const dispatch = useDispatch()
     const userToken = localStorage.getItem("token");
     const userState = useSelector(state => state.userState)
-    const {checkUseTryFree} = useSelector(state => state.planState)
+    const { checkUseTryFree } = useSelector(state => state.planState)
     const [userName, setUserName] = useState("");
     var user_name = "";
     if (userState.userData.user) {
@@ -22,7 +23,50 @@ const DashboardHeader = ({ setCloseNav }) => {
     const forceUpdate = userState.forceUpdate;
 
     const navigate = useNavigate();
+
+    // ChartJS.defaults.global.tooltips.enabled = false;
+
+    var moment = require("jalali-moment");
+
+    // const userState = useSelector((state) => state.userState);
+
+    var nowDate = new Date();
+
+    var startDate = userState.userData.package != undefined && new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
+    var expiryDate = userState.userData.package != undefined && new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
+
+    var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
+    var timeSecDays = Math.abs(expiryDate - startDate);
+
+
+    var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24))
+    var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24))
     // debugger
+
+    ChartJS.register(ArcElement, Tooltip, Legend);
+    const data = {
+        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [
+            {
+                label: "# of Votes32",
+                data: [numberOfDaysLeft - numberOfDays, numberOfDays],
+                cutout: 5,
+                backgroundColor: ["#D9D9D9", "#0A65CD"],
+                borderWidth: 0,
+                borderRadius: 7,
+
+                // borderColor: [
+                //   'rgba(255, 99, 132, 1)',
+                //   'rgba(54, 162, 235, 1)',
+                //   'rgba(255, 206, 86, 1)',
+                //   'rgba(75, 192, 192, 1)',
+                //   'rgba(153, 102, 255, 1)',
+                //   'rgba(255, 159, 64, 1)',
+                // ],
+                // borderWidth: 1,
+            },
+        ],
+    };
 
     useEffect(() => {
         // debugger
@@ -42,7 +86,7 @@ const DashboardHeader = ({ setCloseNav }) => {
         }
     }, [forceUpdate])
     useEffect(() => {
-                dispatch(coreUser());
+        dispatch(coreUser());
     }, [checkUseTryFree])
 
     const location = useLocation();
@@ -62,13 +106,30 @@ const DashboardHeader = ({ setCloseNav }) => {
             <div className='flex items-center gap-9'>
                 <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-[262px]'>
                     <div className='flex gap-3 items-center cursor-pointer'>
-                        <img src={userState.userData.user != undefined ? userState.userData.user.img != "" ? userState.userData.user.img : '/img/dashboard/header/userimage.svg' : '/img/dashboard/header/userimage.svg'} className='rounded w-10 h-10' alt='userImage' />
-                        <div className=''>
-                            <span className='text-sm'>{user_name}</span>
-                            <div className='flex items-center justify-right mt-1 gap-3'>
-                                <img src="/img/dashboard/header/Ellipse.svg" alt="Ellipse" />
-                                <span className='text-xs'>{userState.userData.package != undefined ? userState.userData.package.title : "بدون پکیج"}</span>
-                            </div>
+                        <img src={userState.userData.user != undefined ? userState.userData.user.img != "" ? userState.userData.user.img : 'img/dashboard/header/userimage.svg' : 'img/dashboard/header/userimage.svg'} className='rounded w-10 h-10' alt='userImage' />
+                        <div className=' h-11 relative'>
+                            <span className='text-sm absolute top-0 right-0'>{user_name}</span>
+                            {userState.userData.package != undefined ?
+                                <div className='flex items-center justify-right mt-1 '>
+                                    <div className=' absolute bottom-0 right-0'>
+                                        <Doughnut
+                                            data={data}
+                                            height={25}
+                                            width={15}
+
+                                            options={{
+                                                maintainAspectRatio: false, plugins: {
+                                                    tooltip: {
+                                                        enabled: false
+                                                    }
+                                                }
+                                            }}
+                                        />
+                                    </div>
+                                    <span className='text-xs absolute bottom-0 right-6 w-max'>{userState.userData.package.title}</span>
+                                </div>
+                                : ""
+                            }
                         </div>
                     </div>
                     <div className='cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo'>

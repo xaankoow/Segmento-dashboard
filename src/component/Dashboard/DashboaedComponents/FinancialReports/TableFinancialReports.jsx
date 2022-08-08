@@ -316,7 +316,7 @@ export default function TableFinancialReports({ title }) {
           </div>
         </div>
         {/* <exportExcel /> */}
-        <div className="w-full text-left mt-7">
+        <div className="w-full text-left mt-7 pb-5">
           <div className=" inline-block">
             {copyItem.length > 0 ? (
               <Fragment>
