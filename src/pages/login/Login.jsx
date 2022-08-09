@@ -10,11 +10,13 @@ import Nav from '../../component/Dashboard/DashboaedComponents/navMenu/Nav';
 
 export default function Login() {
   return (
-    <div className="w-full px-28">
+    <div className="flex flex-col items-center w-full justify-center overflow-hidden">
+      <Nav path={"register"} />
+      <div className="w-full px-28">
         <div className="gap-10 flex items-center  md:flex-col md:flex-col-reverse justify-between 2xl:py-10 md:py-10 min-w-full">
           <div className="w-6/12 flex flex-col items-center gap-11 md:min-w-full">
-            <AuthInput textLabelInput="ایمیل" width={"100%"}   reduxHandleChange={setEmailRedux} errorTextId="errRejesterFormatEmail"/>
-            <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} errorTextId="errRejesterPassword"/>
+            <AuthInput textLabelInput="ایمیل" width={"100%"} reduxHandleChange={setEmailRedux} errorTextId="errRejesterFormatEmail" />
+            <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} errorTextId="errRejesterPassword" />
             <div className="flex items-center w-full justify-between">
               <div className="flex gap-5">
                 <TextButton.Provider value={"ورود"}>
@@ -24,7 +26,7 @@ export default function Login() {
                   <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>
-              <Link to={"/forgotPassword"}>
+              <Link to={"/dashboard/accountOperations/forgotPassword"}>
                 <div>
                   <span className='underline text-sm underline-offset-8'> برای ورود به کمک نیاز دارم.   </span>
                 </div>
@@ -37,6 +39,7 @@ export default function Login() {
             <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
         </div>
+      </div>
     </div>
   )
 }

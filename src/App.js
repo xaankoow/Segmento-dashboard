@@ -61,40 +61,36 @@ export default function App() {
     },
   ];
 
-
   return (
     <Fragment>
       <div className="app">
-        <div className="flex flex-col items-center w-full justify-center overflow-hidden">
-          <Routes>
-            <Route exact path={"/"} element={<Nav path={"register"} />} />
-            <Route exact path={"register"} element={<Nav path={""} />} />
-            <Route exact path={"forgotPassword"} element={<Nav path={""} />} />
-            <Route exact path={"ValidateEmail"} element={<Nav path={""} />} />
-          </Routes>
-
-          <Routes>
-            <Route exact path="/" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="forgotPassword" element={<Forgotpass />} />
-            <Route path="ValidateEmail" element={<ValidateEmail />} />
-          </Routes>
-        </div>
-        <Routes location={background || location}>
-          <Route path="/">
-            <Route path="dashboard/*" element={<DashboardBody />}>
-              <Route path="userProfile" element={<EditUserProfile />} />
-              <Route path="planStatus" element={<PlanStatus />} />
-              <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
-              <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
-              <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
-
-
-              <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-              <Route path="easyStart" element={<EasyStart />} />
-              <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
-              <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
-              <Route path="*" element={<Page404 />} />
+        <Routes>
+          <Route path="/dashboard/*" >
+            <Route path="accountOperations">
+              <Route exact path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route path="forgotPassword" element={<Forgotpass />} />
+              <Route path="ValidateEmail" element={<ValidateEmail />} />
+              <Route path="*" element={<Login />} />
+            </Route>
+            <Route path="*" element={
+              (<>
+                <Routes location={background || location} >
+                  <Route path="*" element={<DashboardBody />}>
+                    <Route path="userProfile" element={<EditUserProfile />} />
+                    <Route path="planStatus" element={<PlanStatus />} />
+                    <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
+                    <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
+                    <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
+                    <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
+                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
+                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
+                    <Route path="" element={<EasyStart />} />
+                    <Route path="*" element={<Page404 />} />
+                  </Route>
+                </Routes>
+              </>)
+            }>
             </Route>
           </Route>
         </Routes>

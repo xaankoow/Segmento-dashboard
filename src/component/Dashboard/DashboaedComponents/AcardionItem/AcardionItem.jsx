@@ -221,7 +221,7 @@ export default function AcardionItem() {
                       alt="icon"
                     />
                     <Link
-                      to={user.userData.package==undefined?"setWorkSpace":location}
+                      to={user.userData.package!=undefined?"setWorkSpace":location}
                       state={{ background: location }}
                       className={"w-auto"}
                     >
