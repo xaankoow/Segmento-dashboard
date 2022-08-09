@@ -185,6 +185,8 @@ export default function ContentpProduction({ onClickHandler }) {
           </div>
         </div>
       </div>
+      <div className=" pb-4">
+
       <button
         className={
           searchBoxValue && searchBoxHandleClick
@@ -199,6 +201,7 @@ export default function ContentpProduction({ onClickHandler }) {
         <img src="/img/dashboard/table/cached.svg" alt="cached" />
         تولید بیشتر
       </button>
+      </div>
       {/* {number ? "" : ""} */}
     </>
   );

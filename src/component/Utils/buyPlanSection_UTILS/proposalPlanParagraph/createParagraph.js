@@ -1,6 +1,6 @@
 export const paragraph = (typePlan, indexPlan) => {
 
-    console.log(typePlan, indexPlan)
+    // console.log(typePlan, indexPlan)
     switch (indexPlan) {
         // سه ماهه
         case 2:

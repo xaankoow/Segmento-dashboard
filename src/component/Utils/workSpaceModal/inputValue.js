@@ -221,7 +221,7 @@ export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput
                             </div>
                         ))}
                     </div>
-                    <button className='btn-style ' onClick={() => { countInput <= 10 && setAddKeyCharMap([...addKeyCharMap, countInput]); console.log(addKeyCharMap); handleAddStateCountInput("keyChar") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" /> کلمه کلیدی جدید </button>
+                    <button className='btn-style ' onClick={() => { countInput <= 10 && setAddKeyCharMap([...addKeyCharMap, countInput]); handleAddStateCountInput("keyChar") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" /> کلمه کلیدی جدید </button>
                 </div>
             );
         case 3:

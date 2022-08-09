@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import Timer from "../../component/Auth/timer/Timer";
+import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { changePasswordAction, checkVerifyEmailForgotPasswordAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 import { TextButton } from "../register/Register";
 import "./forgotpass.css";
@@ -121,151 +122,154 @@ export default function Forgetpass() {
 
 
   return (
-    <div className="w-full mt-10 px-28">
-      <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-5 md:py-5 min-w-full">
-        <div className="flex flex-col justify-center w-6/12">
-          <div className="flex flex-col gap-1">
-            <span>
-              برای بازیابی گذرواژه، نیاز به یک کد دارید که براتون ایمیل میشه.
-            </span>
-          </div>
-          <div className="items-center flex justify-between mt-10 mb-5">
-            <div className="w-50">
-              <AuthInput
-                textLabelInput="ایمیل"
-                classes={`forgot_password_input`}
-                reduxHandleChange={setEmailRedux}
-                chechvalue={chechValueEmail}
-                disabled={forgotPasswordStep == 2 ? true : false}
-                errorTextId="errRejesterFormatEmail"
-              />
+    <div className="flex flex-col items-center w-full justify-center overflow-hidden">
+      <Nav path={"login"} />
+      <div className="w-full mt-10 px-28">
+        <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-5 md:py-5 min-w-full">
+          <div className="flex flex-col justify-center w-6/12">
+            <div className="flex flex-col gap-1">
+              <span>
+                برای بازیابی گذرواژه، نیاز به یک کد دارید که براتون ایمیل میشه.
+              </span>
             </div>
-            <div className="flex items-center">
-              {handleResendCode == true ? clearTimerValue() :
-
-                <Timer
-                  display={display}
-                  minutes={minutes}
-                  seconds={seconds}
-                />
-              }
-              <TextButton.Provider value={getTextButton}>
-                <AuthButton
-                  classes={forgotPasswordStep > 0 ? "btn_complete" : ""}
-                  reduxHandleClick={sendForgotPasswordEmailCodeAction}
-                  disabled={handleResendCode == true ? forgotPasswordStep == 2 ? true : false : true}
-                />
-              </TextButton.Provider>
-            </div>
-          </div>
-          <div className="flex items-center justify-between mt-5 relative">
-            <div className="flex items-center gap-5 flex-col">
-              <span className={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? "lockStyle" : "" : "lockStyle"}>کد فعال سازی</span>
-              <div className="flex items-center gap-4">
+            <div className="items-center flex justify-between mt-10 mb-5">
+              <div className="w-50">
                 <AuthInput
-                  classes={"verify_email_cod input_selector_4"}
-                  notCheckValue={true}
-                  disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                  chechvalue={chechvalue}
-                  reduxHandleChange={setAuth1Redux}
-                  maxlength="1"
-                  pressNumber={true}
-                />
-                <AuthInput
-                  classes={"verify_email_cod input_selector_3"}
-                  notCheckValue={true}
-                  disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                  chechvalue={chechvalue}
-                  reduxHandleChange={setAuth2Redux}
-                  maxlength="1"
-                  pressNumber={true}
-                />
-                <AuthInput
-                  classes={"verify_email_cod input_selector_2"}
-                  notCheckValue={true}
-                  disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                  chechvalue={chechvalue}
-                  reduxHandleChange={setAuth3Redux}
-                  maxlength="1"
-                  pressNumber={true}
-                />
-                <AuthInput
-                  classes={"verify_email_cod"}
-                  notCheckValue={true}
-                  disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                  chechvalue={chechvalue}
-                  reduxHandleChange={setAuth4Redux}
-                  maxlength="1"
-                  pressNumber={true}
+                  textLabelInput="ایمیل"
+                  classes={`forgot_password_input`}
+                  reduxHandleChange={setEmailRedux}
+                  chechvalue={chechValueEmail}
+                  disabled={forgotPasswordStep == 2 ? true : false}
+                  errorTextId="errRejesterFormatEmail"
                 />
               </div>
+              <div className="flex items-center">
+                {handleResendCode == true ? clearTimerValue() :
+
+                  <Timer
+                    display={display}
+                    minutes={minutes}
+                    seconds={seconds}
+                  />
+                }
+                <TextButton.Provider value={getTextButton}>
+                  <AuthButton
+                    classes={forgotPasswordStep > 0 ? "btn_complete" : ""}
+                    reduxHandleClick={sendForgotPasswordEmailCodeAction}
+                    disabled={handleResendCode == true ? forgotPasswordStep == 2 ? true : false : true}
+                  />
+                </TextButton.Provider>
+              </div>
             </div>
-            <div className="absolute bottom-0 left-0 ">
-              <TextButton.Provider value={"تایید کد"}>
-                <AuthButton
-                  reduxHandleClick={checkVerifyEmailForgotPasswordAction}
-                  disabled={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                  classes={forgotPasswordStep > 1 ? forgotPasswordStep == 2 ? "" : "btn_complete" : ""}
-                  bgcolor={
-                    !disabledpass
-                      ? "#009FB9"
-                      : disabled
-                        ? "#D3D5E2"
-                        : "#0A65CD"
-                  }
-                />
-              </TextButton.Provider>
+            <div className="flex items-center justify-between mt-5 relative">
+              <div className="flex items-center gap-5 flex-col">
+                <span className={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? "lockStyle" : "" : "lockStyle"}>کد فعال سازی</span>
+                <div className="flex items-center gap-4">
+                  <AuthInput
+                    classes={"verify_email_cod input_selector_4"}
+                    notCheckValue={true}
+                    disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                    chechvalue={chechvalue}
+                    reduxHandleChange={setAuth1Redux}
+                    maxlength="1"
+                    pressNumber={true}
+                  />
+                  <AuthInput
+                    classes={"verify_email_cod input_selector_3"}
+                    notCheckValue={true}
+                    disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                    chechvalue={chechvalue}
+                    reduxHandleChange={setAuth2Redux}
+                    maxlength="1"
+                    pressNumber={true}
+                  />
+                  <AuthInput
+                    classes={"verify_email_cod input_selector_2"}
+                    notCheckValue={true}
+                    disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                    chechvalue={chechvalue}
+                    reduxHandleChange={setAuth3Redux}
+                    maxlength="1"
+                    pressNumber={true}
+                  />
+                  <AuthInput
+                    classes={"verify_email_cod"}
+                    notCheckValue={true}
+                    disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                    chechvalue={chechvalue}
+                    reduxHandleChange={setAuth4Redux}
+                    maxlength="1"
+                    pressNumber={true}
+                  />
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 ">
+                <TextButton.Provider value={"تایید کد"}>
+                  <AuthButton
+                    reduxHandleClick={checkVerifyEmailForgotPasswordAction}
+                    disabled={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
+                    classes={forgotPasswordStep > 1 ? forgotPasswordStep == 2 ? "" : "btn_complete" : ""}
+                    bgcolor={
+                      !disabledpass
+                        ? "#009FB9"
+                        : disabled
+                          ? "#D3D5E2"
+                          : "#0A65CD"
+                    }
+                  />
+                </TextButton.Provider>
+              </div>
             </div>
-          </div>
-          <div className="flex gap-4 justify-between my-10">
-            <AuthInput
-              textLabelInput="گذرواژه "
-              classes={"forgot_password_input"}
-              typeInput="password"
-              isPassword={true}
-              disable={forgotPasswordStep > 1 ? false : true}
-              chechvalue={chechvalue}
-              reduxHandleChange={setPasswordRedux}
-            />
-            <div className="flex flex-col items-start relative">
+            <div className="flex gap-4 justify-between my-10">
               <AuthInput
-                textLabelInput=" تکرار گذرواژه  "
+                textLabelInput="گذرواژه "
                 classes={"forgot_password_input"}
                 typeInput="password"
                 isPassword={true}
                 disable={forgotPasswordStep > 1 ? false : true}
                 chechvalue={chechvalue}
-                reduxHandleChange={setPasswordConfirmRedux}
-                errorTextId="errRejesterPasswordConfirm"
+                reduxHandleChange={setPasswordRedux}
               />
-              <div className="ErrorBadgeBox">
-                <img
-                  sdivrc="/img/ErrorBadge.svg"
-                  alt="ErrorBadge"
-                  className="bg[#C42B1C] p-1 rounded-full"
+              <div className="flex flex-col items-start relative">
+                <AuthInput
+                  textLabelInput=" تکرار گذرواژه  "
+                  classes={"forgot_password_input"}
+                  typeInput="password"
+                  isPassword={true}
+                  disable={forgotPasswordStep > 1 ? false : true}
+                  chechvalue={chechvalue}
+                  reduxHandleChange={setPasswordConfirmRedux}
+                  errorTextId="errRejesterPasswordConfirm"
                 />
-                <h5>گذرواژه همخوانی ندارد</h5>
+                <div className="ErrorBadgeBox">
+                  <img
+                    sdivrc="/img/ErrorBadge.svg"
+                    alt="ErrorBadge"
+                    className="bg[#C42B1C] p-1 rounded-full"
+                  />
+                  <h5>گذرواژه همخوانی ندارد</h5>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between">
+              <TextButton.Provider value={"ذخیره گذرواژه و ورود"}>
+                <AuthButton
+                  bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}
+                  disabled={forgotPasswordStep > 1 ? false : true}
+                  reduxHandleClick={changePasswordAction}
+                />
+              </TextButton.Provider>
+              <div>
+                <Link to={"/dashboard/accountOperations/login"}>
+                  <span className="underline text-sm underline-offset-8">حساب کاربری ندارم!</span>
+                </Link>
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between">
-            <TextButton.Provider value={"ذخیره گذرواژه و ورود"}>
-              <AuthButton
-                bgcolor={disabledpass ? "#D3D5E2" : "#0A65CD"}
-                disabled={forgotPasswordStep > 1 ? false : true}
-                reduxHandleClick={changePasswordAction}
-              />
-            </TextButton.Provider>
-            <div>
-              <Link to={"/"}>
-                <span className="underline text-sm underline-offset-8">حساب کاربری ندارم!</span>
-              </Link>
-            </div>
+          <div className="flex flex-col items-center gap-4">
+            <img className="w-100" src="/img/registerFrame.svg" alt="registerFrame" />
+            <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>
-        </div>
-        <div className="flex flex-col items-center gap-4">
-          <img className="w-100" src="/img/registerFrame.svg" alt="registerFrame" />
-          <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
         </div>
       </div>
     </div>
