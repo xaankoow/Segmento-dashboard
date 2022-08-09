@@ -7,21 +7,26 @@ import FooterBtn from './FooterBtn'
 import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan'
 import SetTitleTabBrowser from '../SetTitleTabBrowser'
 
-export default function BuyPlanEasyToStartModal({ handleClose }) {
+export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   const [stepModal, setStepModal] = useState(1);
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
   const [packageUuid, setPackageUuid] = useState("")
   const [applyWebAdress, setApplyWebAdress] = useState("")
   const [lockNextStep, setLockNextStep] = useState(false);
-  const [checkErr, setCheckErr] = useState(false);
+  const [checkErr, setCheckErr] = useState("");
 
   const { forceUpdate } = useSelector(state => state.planState);
 
   useEffect(() => {
     const find_buy_type = localStorage.getItem("buyType")
+    if (checkBuyPlan == true) {
+      if (checkErr != "") {
+        setCheckErr(true)
+      }
+    }
     const find_status_create_workSpace_modal = localStorage.getItem("modalWorkSpace");
-    if (find_status_create_workSpace_modal!=undefined) {
+    if (find_status_create_workSpace_modal != undefined) {
       setStepModal(6)
       localStorage.removeItem("modalWorkSpace");
     }
@@ -49,7 +54,7 @@ export default function BuyPlanEasyToStartModal({ handleClose }) {
         contentLabel="Example Modal"
       >
         <div className='w-[907px]'>
-          {checkErr ? (
+          {checkErr != "" ? (
             <div className='h-[685px]'>
               {
                 AleartMessageBuyPlan()
@@ -67,7 +72,7 @@ export default function BuyPlanEasyToStartModal({ handleClose }) {
         </div>
       </Modal>
       {forceUpdate ? "" : ""}
-      <SetTitleTabBrowser nameSection={"شروع آسان"}/>
+      <SetTitleTabBrowser nameSection={"شروع آسان"} />
     </div>
   )
 }

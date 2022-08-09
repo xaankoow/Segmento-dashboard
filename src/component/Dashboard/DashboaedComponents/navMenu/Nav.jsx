@@ -24,7 +24,7 @@ export default function Nav({ path }) {
   // debugger
   // // console.log(window.location.href.includes("ValidateEmail"));
   if (checkRegisterComplete == true) {
-    navigate("/ValidateEmail")
+    navigate("/dashboard/accountOperations/ValidateEmail")
     dispatch(changeRegisterCompleteCheck(false));
   }
   // useEffect(() => {
@@ -40,12 +40,12 @@ export default function Nav({ path }) {
   useEffect(() => {
     if (checkChangePasswordComplete == "true") {
       localStorage.removeItem("CHECNGEPASSWORD_COMPLETE")
-      navigate("/")
+      navigate("/dashboard/accountOperations/login")
     }
   }, [checkChangePasswordComplete])
   useEffect(() => {
     if (userToken) {
-      navigate("/dashboard/easyStart", { replace: true })
+      navigate("/dashboard", { replace: true })
     }
   }, [userToken])
 
@@ -79,7 +79,7 @@ export default function Nav({ path }) {
 
         {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
         {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
-        <Link to={`/${path}`} className='btn-style'>{path == "" ? "ورود" : "ثبت نام"}</Link>
+        <Link to={`/dashboard/accountOperations/${path}`} className='btn-style'>{path == "" ? "ورود" : "ثبت نام"}</Link>
 
       </div>
       {forceUpdate > 0 ? "" : ""}
