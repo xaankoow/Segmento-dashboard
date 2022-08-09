@@ -5,7 +5,7 @@ const EasyStart = ({startButtonClick}) => {
     return (
         <>
 
-           <div className=' flex items-center justify-between my-9 mx-7 border  text-sm rounded-lg border-[#d3d5e2] px-7 py-11'>
+           <div className='  items-center justify-between my-9 mx-7 border  text-sm rounded-lg border-[#d3d5e2] px-7 py-11'>
                <span>برای راهنمایی و مشاوره استفاده از امکانات سگمنتو تماس بگیرید :  </span>
                <button className="btn-style">مشاوره و تماس</button>
            </div> 
