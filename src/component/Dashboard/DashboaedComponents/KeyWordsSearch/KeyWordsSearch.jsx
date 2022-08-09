@@ -1,5 +1,5 @@
 import { data } from "autoprefixer";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 export default function KeyWordsSearch({
@@ -17,7 +17,6 @@ export default function KeyWordsSearch({
   const [buttonClick, setButtonClick] = useState(false);
   const [radioText, setRadioText] = useState("همه عبارات");
   const [clicked, setClicked] = React.useState(false);
-  const [open, setOpen] = useState(false);
   const [placeholderPadding, setplaceholderPadding] = useState("");
   const toggle = (index) => {
     if (clicked === index) {
@@ -26,17 +25,9 @@ export default function KeyWordsSearch({
     }
     setClicked(index);
   };
-  
-  const ref = useRef();
   useEffect(() => {
     setplaceholderPadding(radioText.length);
-    const handleClickOutside = (event) => {
-      if (!ref?.current?.contains(event.target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-  }, [ref]);
+  });
 
   const handleDropDownItem = (sectionUsed, layOutUsed) => {
     switch (sectionUsed) {
@@ -48,12 +39,11 @@ export default function KeyWordsSearch({
                 className={
                   "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
                 }
-                ref={ref}
               >
                 <div className="flex items-center gap-2 mt-3">
                   <input
                     type="radio"
-                    className="w-4 h-4"
+                    className="w-3 h-3"
                     name="radio"
                     checked={radioText === "شماره فاکتور" && true}
                     onClick={(e) => {
@@ -67,7 +57,7 @@ export default function KeyWordsSearch({
                 <div className="flex items-center gap-2 mt-3">
                   <input
                     type="radio"
-                    className="w-4 h-4"
+                    className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("نوع اشتراک");
@@ -80,7 +70,7 @@ export default function KeyWordsSearch({
                 <div className="flex items-center gap-2 mt-3">
                   <input
                     type="radio"
-                    className="w-4 h-4"
+                    className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("مبلغ");
@@ -93,7 +83,7 @@ export default function KeyWordsSearch({
                 <div className="flex items-center gap-2 mt-3">
                   <input
                     type="radio"
-                    className="w-4 h-4"
+                    className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("وضعیت پرداخت");
@@ -106,7 +96,7 @@ export default function KeyWordsSearch({
                 <div className="flex items-center gap-2 mt-3 mb-3">
                   <input
                     type="radio"
-                    className="w-4 h-4"
+                    className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("عملیات");
@@ -127,12 +117,11 @@ export default function KeyWordsSearch({
                 className={
                   "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff]  overflow-y-scroll"
                 }
-                ref={ref}
               >
                 <div className="flex items-center gap-2 mt-3">
                   <input
                     type="radio"
-                    className="w-4 h-4"
+                    className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("تاریخ خرید");
@@ -145,7 +134,7 @@ export default function KeyWordsSearch({
                 <div className="flex items-center gap-2 mt-3 mb-3">
                   <input
                     type="radio"
-                    className="w-4 h-4"
+                    className="w-3 h-3"
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("تعداد خرید");
@@ -168,9 +157,8 @@ export default function KeyWordsSearch({
         break;
     }
   }
-
   return (
-    <div className="flex flex-col items-center relative  w-full " id="keyWordSearch" ref={ref}>
+    <div className="flex flex-col items-center relative " id="keyWordSearch">
       {/* <div className="h-10 w-[334px] flex flex-col "> last */}
       <div className=" w-full flex flex-col ">
         <div className="flex items-center relative searchBox">
@@ -180,9 +168,9 @@ export default function KeyWordsSearch({
               type="text"
               style={{
                 paddingRight: SCTN[0] == "financialReports" ? "18px" :
-                radioText.length >= 18
+                  placeholderPadding >= 19
                     ? "127px"
-                    : radioText.length >= 13
+                    : placeholderPadding >= 13
                       ? "98px"
                       : "90px",
               }}
@@ -202,7 +190,6 @@ export default function KeyWordsSearch({
               onClick={() => {
                 setInputClick(true);
                 setButtonClick(true);
-                setOpen(true)
               }}
               onBlur={() => setInputClick(!inputClick)}
             />
@@ -222,7 +209,7 @@ export default function KeyWordsSearch({
 
           <button
             disabled={NothingSearch ? true : false}
-            onClick={() => {setOpen(!open)}}
+            onClick={() => setButtonClick(!buttonClick)}
             className={
               inputClick
                 ? " left-1 h-11 border-2 border-[#D9D9D9] border-b-[#0A65CD] border-r-0 w-[44px] rounded-l flex justify-center items-center"
@@ -233,7 +220,7 @@ export default function KeyWordsSearch({
           >
             <img
               src={
-                open
+                buttonClick
                   ? "/img/dashboard/searchBox/arrow_down_ios_new.svg"
                   : "/img/dashboard/searchBox/arrow_up_ios_new.svg"
                 // ? "../../../../img/dashboard/searchBox/arrow_down_ios_new.svg"
@@ -244,7 +231,7 @@ export default function KeyWordsSearch({
           </button>
         </div>
       </div>
-      {open ? SCTN[0] == "financialReports" ? (
+      {buttonClick ? SCTN[0] == "financialReports" ? (
         handleDropDownItem(SCTN[0], SCTN[1])
       ) : (
         // <div
@@ -257,10 +244,10 @@ export default function KeyWordsSearch({
             "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
           }
         >
-          <div className="flex gap-2 mt-3 items-center">
+          <div className="flex gap-2 mt-3">
             <input
               type="radio"
-              className="w-4 h-4"
+              className="w-3 h-3"
               name="radio"
               checked={radioText === "همه عبارات" && true}
               onClick={(e) => {
@@ -271,10 +258,10 @@ export default function KeyWordsSearch({
             />
             <span>همه عبارات</span>
           </div>
-          <div className="flex gap-2 mt-3 items-center">
+          <div className="flex gap-2 mt-3">
             <input
               type="radio"
-              className="w-4 h-4"
+              className="w-3 h-3"
               name="radio"
               onClick={(e) => {
                 setRadioText("شامل این عبارت");
@@ -284,10 +271,10 @@ export default function KeyWordsSearch({
             />
             <span> شامل این عبارت باشد  </span>
           </div>
-          <div className="flex gap-2 mt-3 items-center">
+          <div className="flex gap-2 mt-3">
             <input
               type="radio"
-              className="w-4 h-4"
+              className="w-3 h-3"
               name="radio"
               onClick={(e) => {
                 setRadioText("تکرار عینی این عبارت");
@@ -297,10 +284,10 @@ export default function KeyWordsSearch({
             />
             <span> تکرار عینی این عبارت باشد   </span>
           </div>
-          <div className="flex gap-2 mt-3 mb-3 items-center">
+          <div className="flex gap-2 mt-3 mb-3">
             <input
               type="radio"
-              className="w-4 h-4"
+              className="w-3 h-3"
               name="radio"
               onClick={(e) => {
                 setRadioText("بدون این عبارت");
