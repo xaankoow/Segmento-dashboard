@@ -187,13 +187,13 @@ const KeyWords = ({ onClickHandler }) => {
                 radioClickedHandler={radioButtonHandler}
               />
               <span className="mt-5">جستجو بر اساس حروف الفبا</span>
-              <AlphabetKeyWord handleclick={handleClick} />
+              <AlphabetKeyWord handleclick={handleClick}   NothingSearch={
+                  !searchBoxValue || !searchBoxHandleClick ? true : false
+                }/>
             </div>
           </div>
         </div>
       </div>
-      <div className=" pb-4">
-
       <button
         className={
           searchBoxValue && searchBoxHandleClick
@@ -206,7 +206,6 @@ const KeyWords = ({ onClickHandler }) => {
         <img src="/img/dashboard/keyWord/bookmark.svg" alt="" />
        ذخیره لیست
       </button>
-      </div>
     </>
   );
 };
