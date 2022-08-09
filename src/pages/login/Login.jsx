@@ -26,7 +26,7 @@ export default function Login() {
                   <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>
-              <Link to={"/forgotPassword"}>
+              <Link to={"/dashboard/accountOperations/forgotPassword"}>
                 <div>
                   <span className='underline text-sm underline-offset-8'> برای ورود به کمک نیاز دارم.   </span>
                 </div>

@@ -67,7 +67,7 @@ export default function ValidateEmail() {
             </div>
           </div>
           <div className="h-10 w-7/12 m-auto text-center relative">
-            <Link to={"login"}>
+            <Link to={"/dashboard/accountOperations/login"}>
               <img
                 src="/img/back.svg"
                 alt="back"

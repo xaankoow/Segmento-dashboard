@@ -69,14 +69,14 @@ const DashboardHeader = ({ setCloseNav }) => {
     };
 
     useEffect(() => {
-        debugger
+        // debugger
         if (!userToken) {
             navigate("/dashboard/accountOperations/login", { replace: true });
         }
-    }, [userToken])
+    }, [userToken,])
 
     useEffect(() => {
-        if (userToken != "") {
+        if (userToken != null) {
             setTimeout(() => {
                 dispatch(coreUser());
             }, 1000);

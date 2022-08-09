@@ -57,7 +57,7 @@ export default function Register() {
                   <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>
-              <Link to={"login"}>
+              <Link to={"/dashboard/accountOperations/login"}>
                 <div>
                   <span className="underline text-sm underline-offset-8">حساب کاربری دارم!</span>
                 </div>

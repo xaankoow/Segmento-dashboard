@@ -260,7 +260,7 @@ export default function Forgetpass() {
                 />
               </TextButton.Provider>
               <div>
-                <Link to={"login"}>
+                <Link to={"/dashboard/accountOperations/login"}>
                   <span className="underline text-sm underline-offset-8">حساب کاربری ندارم!</span>
                 </Link>
               </div>
