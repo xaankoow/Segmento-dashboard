@@ -69,9 +69,9 @@ const DashboardHeader = ({ setCloseNav }) => {
     };
 
     useEffect(() => {
-        // debugger
+        debugger
         if (!userToken) {
-            navigate("/", { replace: true });
+            navigate("/dashboard/accountOperations/login", { replace: true });
         }
     }, [userToken])
 

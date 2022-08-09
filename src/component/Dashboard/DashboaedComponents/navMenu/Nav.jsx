@@ -24,7 +24,7 @@ export default function Nav({ path }) {
   // debugger
   // // console.log(window.location.href.includes("ValidateEmail"));
   if (checkRegisterComplete == true) {
-    navigate("/ValidateEmail")
+    navigate("/dashboard/accountOperations/ValidateEmail")
     dispatch(changeRegisterCompleteCheck(false));
   }
   // useEffect(() => {
@@ -40,12 +40,12 @@ export default function Nav({ path }) {
   useEffect(() => {
     if (checkChangePasswordComplete == "true") {
       localStorage.removeItem("CHECNGEPASSWORD_COMPLETE")
-      navigate("/")
+      navigate("/dashboard/accountOperations/login")
     }
   }, [checkChangePasswordComplete])
   useEffect(() => {
     if (userToken) {
-      navigate("/dashboard/easyStart", { replace: true })
+      navigate("/dashboard", { replace: true })
     }
   }, [userToken])
 
