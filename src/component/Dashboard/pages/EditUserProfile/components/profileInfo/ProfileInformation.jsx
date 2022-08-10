@@ -24,7 +24,7 @@ export default function ProfileInformation({ userName, userType, email ,changeUs
       </div>
       <div className="mr-2">
         <span className="text-[20px] ml-5 ">{userName}</span>
-        <span className={userType == "طلایی"? "text-xs bg-[#FFCE47] rounded-3xl py-1 px-2 text-center " : userType == "نقره ای"? "text-xs bg-[#F2F5F7] rounded-3xl py-1 px-2 text-center " : userType == "برنزی"? "text-xs bg-[#E99991] rounded-3xl py-1 px-2 text-center " :"text-xs bg-[#FFCE47] rounded-3xl py-1 px-2 text-center "}>
+        <span className={userType == "طلایی"? "text-xs bg-yellow rounded-3xl py-1 px-2 text-center " : userType == "نقره ای"? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center " : userType == "برنزی"? "text-xs bg-[#E99991] rounded-3xl py-1 px-2 text-center " :"text-xs bg-yellow rounded-3xl py-1 px-2 text-center "}>
           {"  "}
           {userType}
           {"  "}

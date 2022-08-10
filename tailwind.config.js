@@ -29,9 +29,12 @@ module.exports = {
       gray: "#7D7D7D",
       yellow: "#ffce47",
       blue: "#0071ff",
-      dds: "#0071ff",
       primary: "#0A65CD",
-      secondary:"#F2F5F7"
+      secondary:"#F2F5F7",
+      red:"#FF7278",
+      white:"#ffffff",
+      lightBlue:"#dae8f8",
+      whiteBg:"#FCFCFB"
     },
     fontSize: {
       xs: ".75rem",

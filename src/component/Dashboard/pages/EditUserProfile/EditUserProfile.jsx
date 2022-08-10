@@ -133,17 +133,17 @@ export default function EditUserProfile() {
       formdata.append("name", family);
       formdata.append("bio", "من یک برنامه نویس هستم");
       formdata.append("avatar", imgData);
-      formdata.append("website_type", selectBoxValue1);
-      formdata.append("company_scale", selectBoxValue2);
-      formdata.append("seo_experts", selectBoxValue3);
-      formdata.append("website_traffic", selectBoxValue4);
-      formdata.append("role_in_company", selectBoxValue5);
-      formdata.append("dating_method", selectBoxValue6);
+      formdata.append("website_type", selectBoxValue1 ? selectBoxValue1 :pastData ? pastData.website_type  : 1);
+      formdata.append("company_scale", selectBoxValue2? selectBoxValue2 :pastData ? pastData.website_type  : 1);
+      formdata.append("seo_experts", selectBoxValue3? selectBoxValue3:pastData ? pastData.seo_experts : 1);
+      formdata.append("website_traffic", selectBoxValue4 ? selectBoxValue4:pastData ? pastData.website_traffic : 1);
+      formdata.append("role_in_company", selectBoxValue5? selectBoxValue5:pastData ? pastData.role_in_company  : 1);
+      formdata.append("dating_method", selectBoxValue6? selectBoxValue6:pastData ? pastData.dating_method : 1);
       // const { data, status } = await keywordService(searchBoxValue);
       const { data } = await editProfile(formdata);
       if (data.code == 200 & data.status == true) {
         dispatch(coreUser());
-        // console.log(data)
+        console.log(data)
         toast.success("اطلاعات شما با موفقیت ویرایش شد");
         setForceUpdate(!forceUpdates);
       }
@@ -172,16 +172,19 @@ export default function EditUserProfile() {
 
 
 
-
-
+ // data of select box thet is related to the past info
+ const [pastData, setPastData] = useState("");
   useEffect(() => {
     if (!pastData ) {
 
       pastSelexboxData();
+   
     }
+
+    console.log(pastData && pastData )
   });
-  // data of select box thet is related to the past info
-  const [pastData, setPastData] = useState("");
+ 
+
   const pastSelexboxData = async () => {
     // debugger
     if (userState.userData.user != undefined) {
@@ -192,15 +195,7 @@ export default function EditUserProfile() {
         // const { data, status } = await getPastDatas(uuidUser); // --------- 
         const { data, status } = await getPastDatas(uuidUser); // --------- ایمپورت اشتباه
         setPastData(data.data); //5
-        // if(pastData){
-        //   setSelectBoxValue1(pastData.website_type);
-        //   setSelectBoxValue2(pastData.website_type);
-        //   setSelectBoxValue3(pastData.seo_experts);
-        //   setSelectBoxValue4(pastData.website_traffic);
-        //   setSelectBoxValue5(pastData.role_in_company);
-        //   setSelectBoxValue6(pastData.dating_method);
-          
-        // }
+        
         
       } catch (error) {
         // console.log(error);
@@ -208,6 +203,7 @@ export default function EditUserProfile() {
 
     }
   };
+
   // select box data
   const data = [];
   // console.log(data)
@@ -281,7 +277,7 @@ export default function EditUserProfile() {
           close={() => setOpenChangeImageModal(false)}
           isOpen={openChangeImageModal}
           setUserImage={setUserImage}
-          userImage={userState.userData.user != undefined & userState.userData.user.img != "" ? userState.userData.user.img : "../img/dashboard/userProfile/profileImage.png"}
+          userImage={userState.userData.user != undefined & userState.userData.user.img != "" ? userState.userData.user.img : "/../img/dashboard/userProfile/profileImage.png"}
         />
       )}
       {updatePass && (
@@ -302,7 +298,7 @@ export default function EditUserProfile() {
             <div className="mt-12 flex justify-between">
               <ProfileInformation
                 userName={user_name}
-                userType={user_package_type_text && user_package_type_text}
+                userType={userState.userData.package != undefined ? userState.userData.package.title : "بدون پکیج"}
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
 
@@ -346,7 +342,7 @@ export default function EditUserProfile() {
                     textLabelInput="آدرس ایمیل "
                     width={"100%"}
                     errorTextId="errRejesterFormatEmail"
-                    disabled={true}
+                    disable={true}
                   />
                   <div className="w-full flex justify-end mt-7">
                     {" "}
@@ -369,7 +365,7 @@ export default function EditUserProfile() {
                       optionItems={data ? data[0] : []}
                       title={"زمینه فعالیت شما (نوع سایت)"}
                       handlechange={handleSelectBox1}
-                      select={pastData ? pastData.website_type : 0}
+                      select={pastData ? pastData.website_type  : 0}
                     />
                     <SelectBox
                       optionItems={data ? data[1] : []}

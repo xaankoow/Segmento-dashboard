@@ -198,7 +198,7 @@ const KeyWords = ({ onClickHandler }) => {
         className={
           searchBoxValue && searchBoxHandleClick
             ? "btn-style mr-5 my-5 flex gap-3"
-            : "bg-[#D3D5E2] btn-style mr-5 my-5 flex gap-3"
+            : "bg-lightGray btn-style mr-5 my-5 flex gap-3"
         }
         disabled={canRequest?searchBoxHandleClick ? false : true:true}
         onClick={(e) =>{handleSetStoreKeyWords()}}

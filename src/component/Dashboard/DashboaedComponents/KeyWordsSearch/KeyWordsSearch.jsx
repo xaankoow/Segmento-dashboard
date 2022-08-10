@@ -213,7 +213,7 @@ export default function KeyWordsSearch({
               className={
                 !radioText
                   ? "hidden"
-                  : "text-xs min-w-[49px] h-[30px] px-1 py-1 rounded flex flex-col items-center justify-center bg-[#F2F5F7] text-[#7D7D7D] absolute right-2"
+                  : "text-xs min-w-[49px] h-[30px] px-1 py-1 rounded flex flex-col items-center justify-center bg-secondary text-[#7D7D7D] absolute right-2"
               }
             >
               {radioText}
