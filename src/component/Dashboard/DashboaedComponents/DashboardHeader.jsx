@@ -104,13 +104,13 @@ const DashboardHeader = ({ setCloseNav }) => {
                 </div>
             </div>
             <div className='flex items-center gap-9'>
-                <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-[262px]'>
-                    <div className='flex gap-3 items-center cursor-pointer'>
+                <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64'>
+                    <div className='flex gap-3 items-center cursor-pointer '>
                         <img src={userState.userData.user != undefined ? userState.userData.user.img != "" ? userState.userData.user.img : 'img/dashboard/header/userimage.svg' : 'img/dashboard/header/userimage.svg'} className='rounded w-10 h-10' alt='userImage' />
-                        <div className=' h-11 relative'>
+                        <div className=' h-11 relative w-full'>
                             <span className='text-sm absolute top-0 right-0'>{user_name}</span>
                             {userState.userData.package != undefined ?
-                                <div className='flex items-center justify-right mt-1 '>
+                                <div className='flex items-center justify-start mt-1 '>
                                     <div className=' absolute bottom-0 right-0'>
                                         <Doughnut
                                             data={data}
@@ -134,28 +134,28 @@ const DashboardHeader = ({ setCloseNav }) => {
                     </div>
                     <div className='cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo'>
                         <div className='border-b border-lightGray w-52 ' />
-                        <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] mt-1'>
+                        <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-lightBlue mt-1'>
                             <div className='flex items-center'>
                                 <img src="/img/dashboard/header/manage_accounts.svg" alt="manage_accounts" />
                                 {/* <Link to={"userProfile"} state={{ background: location }}>تنظیمات حساب کاربری</Link> */}
                                 <Link to={"userProfile"}>تنظیمات حساب کاربری</Link>
                             </div>
                         </div>
-                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] '>
+                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue '>
                             <div className='flex items-center gap-1'>
                                 <img src="/img/dashboard/header/add_card.svg" alt="add_card" />
                                 <Link to={"buyPlan"}>خرید اشتراک</Link>
                             </div>
                         </div>
 
-                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] '>
+                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue '>
                             <div className='flex items-center gap-1'>
                                 <img src="/img/dashboard/header/statusPlan.svg" alt="currency_exchange" />
                                 <Link to={"planStatus"}>  وضعیت اشتراک</Link>
                             </div>
                             {/* <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
                         </div>
-                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-[#dae8f8] mb-1'>
+                        <div className='flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue mb-1'>
                             <div className='flex items-center gap-1'>
                                 <img src="/img/dashboard/header/money.svg" alt="currency_exchange" />
                                 <Link to={"financialReports"}>  گزارش های مالی </Link>
@@ -163,9 +163,9 @@ const DashboardHeader = ({ setCloseNav }) => {
                             {/* <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
                         </div>
                         <div className='border-b border-lightGray w-full ' />
-                        <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-[#dae8f8] my-1' onClick={() => dispatch(logoutAction())}>
+                        <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-lightBlue my-1' onClick={() => dispatch(logoutAction())}>
                             <div className='flex items-center pr-2'>
-                                <span className="text-[#F35242]">خروج از حساب کاربری</span>
+                                <span className="text-red">خروج از حساب کاربری</span>
                             </div>
                             <img src="/img/dashboard/header/redlogout.svg" alt="logout" className='ml-1' />
                             {/* <img src="../img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
@@ -176,7 +176,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                 <div className='flex items-center gap-3 ml-7'>
                     <img src="/img/dashboard/header/notif.svg" alt="notif" className="cursor-pointer" />
                     <div className='flex items-center justify-center relative text-[#fff] text-small'>
-                        <span className='text-[#fff] left-3.5 -top-1 absolute text-center rounded-full bg-[#ff7278] notifNumber'>33</span>
+                        <span className='text-white left-3.5 -top-1 absolute text-center rounded-full bg-red notifNumber'>33</span>
                         <img src="/img/dashboard/header/message.svg" alt="message" className="cursor-pointer" />
                     </div>
                     <img src="/img/dashboard/header/settingicon.svg" alt="settingicon" className="cursor-pointer" />

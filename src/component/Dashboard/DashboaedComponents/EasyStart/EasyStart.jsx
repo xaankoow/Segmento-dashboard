@@ -1,3 +1,4 @@
+import React from "react";
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -9,12 +10,13 @@ const EasyStart = ({ startButtonClick }) => {
 
     return (
         <>
-
-            <div className=' flex items-center justify-between my-9 mx-7 border  text-sm rounded-lg border-[#d3d5e2] px-7 py-8'>
-                <span>	اگر سوالی دارید، با همکاران ما در واحد پشتیبانی تماس بگیرید.  </span>
-                <button className="btn-style"> برقراری تماس</button>
-            </div>
-            <div className="flex flex-col relative mt-9 mx-7 mb-7 ">
+              <div className=" flex items-center justify-between my-9 mx-7 border  text-sm rounded-lg border-lightGray px-7 py-11">
+        <span>
+          برای راهنمایی و مشاوره استفاده از امکانات سگمنتو تماس بگیرید :{" "}
+        </span>
+        <button className="btn-style">مشاوره و تماس</button>
+      </div>
+        <div>
                 <div className='flex items-center justify-center bg-yellow text-base py-5 absolute w-full -top-5  rounded-t-lg z-[2] '>
                     شروع آسان
                 </div>
@@ -47,4 +49,5 @@ const EasyStart = ({ startButtonClick }) => {
     );
 }
 
+>>>>>>> c851711db7812b727ffcefb5e8bd77251e425df5
 export default EasyStart;

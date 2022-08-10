@@ -77,9 +77,9 @@ export default function WorkSpace() {
               </div>
             </div>
           </header>
-          <body className='px-5 bg-[#fff]'>
+          <body className='px-5 bg-whiteBg'>
             <div className='flex gap-6 items-center relative'>
-              <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
+              <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
               <span className='text-sm mr-3'>{workSpaceTitle(stepModal)}</span>
               <div className='flex items-center text-[#7D7D7D] bg-[#D9D9D9] rounded  px-2 '>
                 <span className='text-[#7D7D7D] text-[10px] pt-[5px] pb-[2px]'>189</span>
@@ -96,7 +96,7 @@ export default function WorkSpace() {
           </body>
           <footer className='px-5'>
             {stepModal != 1 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
-            {stepModal != 1 ? <AuthButton classes={"bg-[#F2F5F7] text-[#488CDA]"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان"} /> : <div></div>}
+            {stepModal != 1 ? <AuthButton classes={"bg-secondary text-[#488CDA]"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان"} /> : <div></div>}
             {stepModal != 5 ? <AuthButton handlerClick={setStepModal} disabled={webAdress.length!=0?false:true} setOnclickValue={stepModal + 1} textButton={<Fragment>ادامه<span className='forward-ico'></span></Fragment>}/> : <div></div>}
             {/* {stepModal != 5 ? <button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button> : <div></div>} */}
           </footer>

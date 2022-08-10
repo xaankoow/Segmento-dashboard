@@ -169,8 +169,8 @@ export default function SaveListModal({
                 id={index}
                 className={
                   activeBox == index
-                    ? "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] bg-[#F2F5F7] "
-                    : "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-[#F2F5F7] "
+                    ? "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] bg-secondary "
+                    : "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-secondary "
                 }
                 onClick={(e) => {
                   setSaveUpdateValue(item.word);
