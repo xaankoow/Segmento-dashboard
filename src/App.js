@@ -75,7 +75,7 @@ export default function App() {
             </Route>
             <Route path="*" element={
               (<>
-                <Routes location={background || location} >
+                <Routes location={background || location}>
                   <Route path="*" element={<DashboardBody />}>
                     <Route path="userProfile" element={<EditUserProfile />} />
                     <Route path="planStatus" element={<PlanStatus />} />
