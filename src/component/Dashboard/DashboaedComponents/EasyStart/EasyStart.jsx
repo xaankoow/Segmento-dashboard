@@ -9,6 +9,7 @@ const EasyStart = ({ startButtonClick }) => {
 
     return (
         <>
+        <div>
                 <div className='flex items-center justify-center bg-yellow text-base py-5 absolute w-full -top-5  rounded-t-lg z-[2] '>
                     شروع آسان
                 </div>

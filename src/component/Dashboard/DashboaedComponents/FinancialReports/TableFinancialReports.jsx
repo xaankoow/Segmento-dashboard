@@ -13,10 +13,8 @@ import { getValue } from "@testing-library/user-event/dist/utils";
 import { exportExcel } from "../../../Utils/excel/exportExcel";
 import ReactExport from "react-export-excel";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
-// import { exportExcel } from '../../../Utils/excel/exportExcel';
-// import { RangeDatePicker } from "jalali-react-datepicker";//
 export default function TableFinancialReports({ title }) {
-  // const dispatch=us
+
   const dispatch = useDispatch();
 
   const [copyItem, setCopyItem] = useState([]);
@@ -117,37 +115,8 @@ export default function TableFinancialReports({ title }) {
           <span className="text-lg">{title}</span>
         </div>
       </div>
-      {/* <div className=' w-[1038px] m-auto'> */}
-      {/* <img src="/img/modal/body/report.svg" className='w-full h-11' alt="" /> */}
       <div className=" w-full px-10 m-auto">
         <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
-          {/* <input
-                        id="keyWordSearchBoxFilter"
-                        type="text"
-                        style={{
-                            paddingRight:
-                                placeholderPadding >= 19
-                                    ? "127px"
-                                    : placeholderPadding >= 13
-                                        ? "98px"
-                                        : "90px",
-                        }}
-                        className={
-                            !radioText
-                                ? "pr-2 w-[290px] h-11 border-2 border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]"
-                                : NothingSearch
-                                    ? "disableInput placeholder-[#7D7D7D] w-[290px] h-11"
-                                    : `w-[290px] h-11  border-2 border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
-                        }
-                        // disabled={NothingSearch ? true : false}
-                        placeholder="جستجو کلمه کلیدی"
-                        // onChange={(e) => secoundSearch(e)}
-                        // onClick={() => {
-                        //     setInputClick(true);
-                        //     setButtonClick(true);
-                        // }}
-                        // onBlur={() => setInputClick(!inputClick)}
-                    /> */}
           <div className="w-80">
             <KeyWordsSearch
               usedBySection={"financialReports/search"}
@@ -188,10 +157,6 @@ export default function TableFinancialReports({ title }) {
                   </div>
                 )}
               >
-                {/* <div className='w-full flex justify-between p-4'>
-                                    <AuthButton textButton={"تایید"} handlerClick={datePickerRef.current.closeCalendar()} />
-                                    <AuthButton textButton={"انصراف"} classes=" bg-[#F2F5F7] text-[#488CDA]" />
-                                </div> */}
               </DatePicker>
             ) : (
               <div className="flex justify-between items-center px-1 w-14 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]">
@@ -211,10 +176,8 @@ export default function TableFinancialReports({ title }) {
               </div>
             )}
 
-            {/* <RangeDatePicker /> */}
           </div>
           <div className=" inline-block">
-            {/* <AuthButton textButton={"اعمال"} reduxHandleClick={filterFinancialReports} setOnclickValue={[searchFilterOption,searchFilterText,targetSortFilter,datePickerValues]}/> */}
             <AuthButton
               textButton={"اعمال"}
               reduxHandleClick={filterFinancialReports}
@@ -315,7 +278,6 @@ export default function TableFinancialReports({ title }) {
             </div>
           </div>
         </div>
-        {/* <exportExcel /> */}
         <div className="w-full text-left mt-7 pb-5">
           <div className=" inline-block">
             {copyItem.length > 0 ? (
@@ -352,21 +314,6 @@ export default function TableFinancialReports({ title }) {
                 </ExcelFile>
               </Fragment>
             ) : null}
-
-            {/* <ExcelSheet data={dataSet1} name="Employees">
-                                <ExcelColumn label="Name" value="name" />
-                                <ExcelColumn label="Wallet Money" value="amount" />
-                                <ExcelColumn label="Gender" value="sex" />
-                            </ExcelSheet> */}
-            {/* <ExcelSheet data={copyItem} name="Employees">
-                            <ExcelColumn label="شماره فاکتور" value={"order"} />
-                                <ExcelColumn label="نوع اشتراک" value={"type eshterak"} />
-                                <ExcelColumn label="تاریخ خرید" value={"date"} />
-                                <ExcelColumn label="تاریخ انقضا" value={"date ex"} />
-                                <ExcelColumn label="مبلغ" value={"price"} />
-                                <ExcelColumn label="وضعیت پرداخت" value={"state"} />
-                                <ExcelColumn label="عملیات" value={"handle"} />
-                            </ExcelSheet> */}
           </div>
         </div>
       </div>
