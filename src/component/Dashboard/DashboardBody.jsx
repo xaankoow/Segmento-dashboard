@@ -73,7 +73,7 @@ export default function DashboardBody() {
 
   return (
     <div id="DASHBOARD">
-      <div className="w-full h-16 bg-[#fff] shadow-3xl">
+      <div className="w-full h-16 bg-whiteBg shadow-3xl">
         <DashboardHeader setCloseNav={closeNavItem} />
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">

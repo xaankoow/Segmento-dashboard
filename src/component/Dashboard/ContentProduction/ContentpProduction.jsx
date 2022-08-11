@@ -191,7 +191,7 @@ export default function ContentpProduction({ onClickHandler }) {
         className={
           searchBoxValue && searchBoxHandleClick
             ? "btn-style mr-5 mt-5 flex gap-3"
-            : "bg-[#D3D5E2] btn-style mr-5 mt-5 flex gap-3"
+            : "bg-lightGray btn-style mr-5 mt-5 flex gap-3"
         }
         disabled={searchBoxHandleClick ? false : true}
         onClick={(e) => {

@@ -236,7 +236,7 @@ export default function TableFinancialReports({ title }) {
                           item.payment_status_text == "پرداخت ناموفق"
                             ? " bg-[#F35242]"
                             : item.payment_status_text == "پرداخت نشده"
-                            ? "bg-[#FFCE47]"
+                            ? "bg-yellow"
                             : "bg-[#10CCAE]"
                         }`}
                       >

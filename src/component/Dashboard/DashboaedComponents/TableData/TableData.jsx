@@ -184,7 +184,7 @@ export default function Table({
                   disabled={NothingSearch ? true : false}
                   className={
                     NothingSearch
-                      ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-[#F2F5F7] flex items-center btn-style"
+                      ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center btn-style"
                       : "btn-style"
                   }
                   onClick={() => openModal()}
@@ -219,10 +219,10 @@ export default function Table({
               <button
                 className={
                   isActive
-                    ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-[#0A65CD] flex items-center "
+                    ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-primary flex items-center "
                     : NothingSearch
-                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-[#F2F5F7] flex items-center"
-                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-[#F2F5F7] flex items-center hover:bg-[#0A65CD] hover:text-[#ffffff]"
+                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center"
+                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-secondary flex items-center hover:bg-primary hover:text-[#ffffff]"
                 }
                 disabled={NothingSearch ? true : false}
                 onClick={() => {
@@ -267,10 +267,10 @@ export default function Table({
                   {letterArray[index] !== letterArray[index + 1] &&
                   !contentsProduction ? (
                     <div className="flex items-center justify-center m-2">
-                      <div className="bg-[#7D7D7D] w-[55px] h-[20px] text-center flex items-center justify-center text-[#ffffff] rounded">
+                      <div className="bg-gray w-[55px] h-[20px] text-center flex items-center justify-center text-[#ffffff] rounded">
                         {a[index]}
                       </div>
-                      <div className="w-full h-[1px] bg-[#7D7D7D] rounded"></div>
+                      <div className="w-full h-[1px] bg-gray rounded"></div>
                     </div>
                   ) : null}
 

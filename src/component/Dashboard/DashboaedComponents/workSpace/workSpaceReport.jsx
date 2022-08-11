@@ -90,7 +90,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
 
             <div>
                 <div className='flex gap-6 items-center relative mt-3'>
-                    <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
+                    <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
                     <span className=' text-lg mr-3'>پیکربندی ورک‌اسپیس جدید</span>
                 </div>
             </div>
@@ -106,7 +106,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                 <div className='w-full px-48 pb-7'>
                     <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
                         <div className='flex gap-6 justify-between items-center relative'>
-                            <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
+                            <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
                             <span className=' text-sm mr-3'>آدرس وبسایت شما: </span>
                             <span className='text-sm float-left'>{webAdress}</span>
                         </div>
@@ -115,7 +115,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                     {stepWorkSpace >= 2 ? (
                         <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
                             <div className='flex gap-6 justify-between items-center relative'>
-                                <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
+                                <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
                                 <span className=' text-sm mr-3'>کلمات کلیدی وبسایت:</span>
                             </div>
                             {keyWords.map(item => (
@@ -141,7 +141,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                     {stepWorkSpace >= 3 ? (
                         <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
                             <div className='flex gap-6 justify-between items-center relative'>
-                                <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
+                                <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
                                 <span className=' text-sm mr-3'>صفحات تجاری وبسایت:</span>
                             </div>
                             {commercialPages.map((item, index) => (
@@ -161,7 +161,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                     {stepWorkSpace >= 4 ? (
                         <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
                             <div className='flex gap-6 justify-between items-center relative'>
-                                <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
+                                <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
                                 <span className=' text-sm mr-3'>رهگیری سرعت صفحات</span>
                             </div>
                             {websitePages.map(item => (
@@ -179,7 +179,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                     {stepWorkSpace >= 5 ? (
                         <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
                             <div className='flex gap-6 justify-between items-center relative'>
-                                <div className='w-[20px] h-[2px] bg-[#0A65CD] rotate-90 rounded absolute -right-[10px]' />
+                                <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
                                 <span className=' text-sm mr-3'>وب‌سایت رقبا</span>
                             </div>
                             <div className=' px-5 mt-2'>

@@ -73,7 +73,7 @@ export default function SidebarComponent({ closeNav, openMenu }) {
         ) : null}
         {/* advertisement box */}
         {!disableAdvertisement && closeNav ? (
-          <div className="bg-[#F2F5F7] h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
+          <div className="bg-secondary h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
             <img
               src="/img/dashboard/nav_right/close.svg"
               alt="close"
