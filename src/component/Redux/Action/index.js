@@ -176,42 +176,6 @@ export const resetStateRedux = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-CheckFormat("password", state.password, "errRejesterPasswordConfirm")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // REGISTER USER
 export const RegisterUserAction = () => {
     return async (dispatch, getState) => {
