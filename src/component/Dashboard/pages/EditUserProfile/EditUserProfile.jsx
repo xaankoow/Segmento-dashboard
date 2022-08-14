@@ -2,6 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import ProfileInformation from "./components/profileInfo/ProfileInformation";
 import AuthInput from "../../../Auth/authInput/AuthInput";
+// import {
+//   EditorComposer,
+//   Editor,
+//   ToolbarPlugin,
+//   InsertDropdown,
+//   AlignDropdown,
+// } from "verbum";
 
 import SelectBox from "./components/selectBox/SelectBox";
 import PopUp from "../../../Utils/PopUp/PopUp";
@@ -171,10 +178,8 @@ export default function EditUserProfile() {
     if (!pastData ) {
 
       pastSelexboxData();
-   
+    
     }
-
-    console.log(pastData && pastData )
   });
  
 
