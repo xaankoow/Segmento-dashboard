@@ -1,30 +1,10 @@
 import React, { useEffect } from "react";
 import DashboardHeader from "./DashboaedComponents/DashboardHeader";
-import ItemSidebarHover from "./DashboaedComponents/SidebarComponents/ItemSidebarHover";
-import Modal from "react-modal";
-import PopUp from "../Utils/PopUp/PopUp";
 import { useState } from "react";
-import EasyStart from "./DashboaedComponents/EasyStart/EasyStart";
-// import HandleModal from "./../Utils/handleModal";
-import BuyPlan from "./DashboaedComponents/BuyPlan/BuyPlan";
-import WorkSpace from "../Utils/workSpaceModal/workSpace";
-import TabMenu from "./DashboaedComponents/tabMenu/TabMenu";
-import IconsRight from "./DashboaedComponents/SidebarComponents/IconsRight";
-import AcardionItem from "./DashboaedComponents/AcardionItem/AcardionItem";
-import KeyWords from "./KeyWords/KeyWords";
-import ContentpProduction from "./ContentProduction/ContentpProduction";
-import MyList from "./KeyWords/MyList/MyList";
-import WorkSpaceReport from "./DashboaedComponents/workSpace/workSpaceReport";
-import AleartMessageBuyPlan from "./DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
 import { Outlet, Route, Routes, useNavigate } from "react-router";
-import AuthButton from "../Auth/authButton/AuthButton";
-import { useSelector } from "react-redux/es/exports";
 import SidebarComponent from "./DashboaedComponents/SidebarComponents/SidebarComponent";
-import MylistContentProduction from "./ContentProduction/MyListContentProduction/MyListContentProduction";
 import BuyPlanEasyToStartModal from "../Utils/EasyToStartModal";
-import TableFinancialReports from "./DashboaedComponents/FinancialReports/TableFinancialReports";
-import EditUserProfile from "./pages/EditUserProfile/EditUserProfile";
-import PlanStatus from "./DashboaedComponents/PlanStatus";
+
 
 export default function DashboardBody() {
   const navigate = useNavigate();

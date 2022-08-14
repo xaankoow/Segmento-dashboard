@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 
 const EasyStart = ({ startButtonClick }) => {
-    const location = useLocation();
+    const location = useLocation(); 
+
     return (
         <>
             <div className=" flex items-center justify-between my-9 mx-7 border  text-sm rounded-lg border-lightGray px-7 py-11">
@@ -25,6 +26,7 @@ const EasyStart = ({ startButtonClick }) => {
                         <span>انجام میدیم . کنارتون هستیم همیشه :)</span>
                     </div>
                     <div className="flex justify-between items-center relative  w-full h-40">
+
                         <Link to={"/dashboard/buyPlanEasyToStartModal"} state={{ background: location }} className="btn-style w-32 mb-5 absolute bottom-0 flex justify-between">
                             {" "}شروع کن{" "}
                             <img src="/img/dashboard/EasyStartPage/startEasyStartArrow.svg" alt="EasyStartPage" className=' mr-3' />
