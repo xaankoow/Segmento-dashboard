@@ -7,7 +7,7 @@ export default function Page404() {
 
   useEffect(() => {
 
-    navigate("/dashboard/accountOperations/login", { replace: true })
+    navigate("/dashboard", { replace: true })
   }, [])
 
 

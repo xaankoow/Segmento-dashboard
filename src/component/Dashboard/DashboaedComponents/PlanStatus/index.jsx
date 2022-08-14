@@ -282,7 +282,7 @@ export default function PlanStatus() {
                       {datas.length>0 ? datas[4].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
-                    <span id="border" className="mr-3">
+                    <span id="border" className="mr-3 mt">
                       {datas.length>0&&100-datas[4].count}
                     </span>
                   </div>

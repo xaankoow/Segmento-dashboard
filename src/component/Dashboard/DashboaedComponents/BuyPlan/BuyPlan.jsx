@@ -7,6 +7,7 @@ import ReportBuyPlanSection from '../../../Utils/Modals/ReportBuyPlanSection';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 import DiscountTagValue from '../../../Utils/buyPlanSection_UTILS/DiscountTagValue';
 import HandleParagraphInfoPlan from '../../../Utils/buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan';
+import PageTitle from '../pageTitle/pageTitle';
 
 export default function BuyPlan({ title }) {
 
@@ -85,10 +86,7 @@ export default function BuyPlan({ title }) {
 
   return (
     <div className='plans_body_container buy_plan_section'>
-      <div className='flex gap-6 items-center pr-4 mt-3'>
-        <div className='w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]' />
-        <span className='text-lg'>{title}</span>
-      </div>
+      <PageTitle title={title} />
       {/* <div className='badge_title'> */}
       {/* <div></div> */}
       {/* <p>خرید اشتراک سگمنتو</p> */}

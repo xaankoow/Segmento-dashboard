@@ -578,7 +578,7 @@ input[type="radio"]:checked::before {
     display: inline-block;
     width: 40%;
     font-size: 14px;
-    color: rgba(8, 60, 120, 1);
+    /* color: rgba(8, 60, 120, 1); */
 }
 
 .report_container .report span:first-of-type {
