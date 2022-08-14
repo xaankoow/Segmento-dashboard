@@ -125,7 +125,7 @@ export default function Forgetpass() {
     <div className="flex flex-col items-center w-full justify-center overflow-hidden">
       <Nav path={"login"} />
       <div className="w-full mt-10 px-28">
-        <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-5 md:py-5 min-w-full">
+        <div className="gap-10 items-center flex flex-row justify-between 2xl:py-5 md:py-5 min-w-full">
           <div className="flex flex-col justify-center w-6/12">
             <div className="flex flex-col gap-1">
               <span>

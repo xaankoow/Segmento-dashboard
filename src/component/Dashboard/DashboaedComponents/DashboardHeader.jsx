@@ -176,7 +176,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                 <div className='flex items-center gap-3 ml-7'>
                     <img src="/img/dashboard/header/notif.svg" alt="notif" className="cursor-pointer" />
                     <div className='flex items-center justify-center relative text-[#fff] text-small'>
-                        <span className='text-white left-3.5 -top-1 absolute text-center rounded-full bg-red notifNumber'>33</span>
+                        <span className='text-white left-3.5 -top-1 absolute text-center rounded-full bg-red notifNumber'>0</span>
                         <img src="/img/dashboard/header/message.svg" alt="message" className="cursor-pointer" />
                     </div>
                     <img src="/img/dashboard/header/settingicon.svg" alt="settingicon" className="cursor-pointer" />

@@ -25,7 +25,7 @@ module.exports = {
       // => @media (max-width: 639px) { ... }
     },
     colors: {
-      lightGray: "#d3d5e2",
+      lightGray: "#D3D5E2",
       gray: "#7D7D7D",
       yellow: "#ffce47",
       blue: "#0071ff",

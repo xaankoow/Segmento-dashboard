@@ -289,8 +289,8 @@ export default function PlanStatus() {
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuetwo"></span> <br />
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50">
+                    <span id="valuetwo">{datas.length>0&&100-datas[4].count}</span> <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -330,8 +330,8 @@ export default function PlanStatus() {
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuethree"></span> <br />
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50">
+                    <span id="valuethree">{datas.length>0&&100-datas[3].count}</span> <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
