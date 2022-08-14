@@ -93,7 +93,7 @@ export default function BuyPlan({ title }) {
       {/* <div></div> */}
       {/* <p>خرید اشتراک سگمنتو</p> */}
       {/* </div> */}
-      <div className='main_buy_plan_section max-w-7xl overflow-scroll w-full'>
+      <div className='main_buy_plan_section overflow-visible max-w-7xl w-full'>
 
 
         <div className='section_title'>

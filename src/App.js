@@ -100,7 +100,7 @@ export default function App() {
             <Route exact path={`dashboard/setWorkSpace`} element={<WorkSpace />} />
           </Routes>
         )}
-        {/* <LoadingPage /> */}
+        <LoadingPage />
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>

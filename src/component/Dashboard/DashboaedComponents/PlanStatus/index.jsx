@@ -14,7 +14,7 @@ export default function PlanStatus() {
   useEffect(() => {
     if (datas == "") pastSelexboxData();
   });
-  const [datas, setDatas] = useState("");
+  const [datas, setDatas] = useState([]);
 
   var moment = require("jalali-moment");
 
@@ -67,7 +67,7 @@ export default function PlanStatus() {
     datasets: [
       {
         label: "# of Votes",
-        data: [numberOfDaysLeft-numberOfDays, numberOfDays],
+        data: [numberOfDays,numberOfDaysLeft],
         cutout: 50,
         backgroundColor: ["#D9D9D9", "#0A65CD"],
         borderWidth: 0,
@@ -279,11 +279,11 @@ export default function PlanStatus() {
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas != [] ? datas[4].count : ""}
+                      {datas.length>0 ? datas[4].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      80
+                      {datas.length>0&&100-datas[4].count}
                     </span>
                   </div>
                 </div>
@@ -320,11 +320,11 @@ export default function PlanStatus() {
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas != [] ? datas[3].count : ""}
+                      {datas.length>0 ? datas[3].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      80
+                    {datas.length>0?100-datas[3].count:""}
                     </span>
                   </div>
                 </div>
