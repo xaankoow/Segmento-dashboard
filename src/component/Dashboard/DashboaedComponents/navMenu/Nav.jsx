@@ -79,7 +79,7 @@ export default function Nav({ path }) {
 
         {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
         {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
-        <Link to={`/dashboard/accountOperations/${path}`} className='btn-style'>{path == "" ? "ورود" : "ثبت نام"}</Link>
+        <Link to={`/dashboard/accountOperations/${path}`} className='btn-style'>{path == "login" ? "ورود" : "ثبت نام"}</Link>
 
       </div>
       {forceUpdate > 0 ? "" : ""}

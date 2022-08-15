@@ -14,7 +14,7 @@ export default function PlanStatus() {
   useEffect(() => {
     if (datas == "") pastSelexboxData();
   });
-  const [datas, setDatas] = useState("");
+  const [datas, setDatas] = useState([]);
 
   var moment = require("jalali-moment");
 
@@ -71,7 +71,7 @@ export default function PlanStatus() {
     datasets: [
       {
         label: "# of Votes",
-        data: [numberOfDaysLeft-numberOfDays, numberOfDays],
+        data: [numberOfDays,numberOfDaysLeft],
         cutout: 50,
         backgroundColor: ["#D9D9D9", "#0A65CD"],
         borderWidth: 0,

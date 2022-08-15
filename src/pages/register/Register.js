@@ -14,8 +14,8 @@ export default function Register() {
     <div className="flex flex-col items-center w-full justify-center overflow-hidden">
       <Nav path={"login"} />
       <div className="w-full mt-12 px-28">
-        <div className="gap-10 items-center flex md:flex-col md:flex-col-reverse justify-between 2xl:py-20 md:py-10 min-w-full ">
-          <div className="w-6/12 flex flex-col items-center gap-11 md:min-w-full ">
+        <div className="gap-10 items-center flex flex-row justify-between 2xl:py-20 md:py-10 min-w-full ">
+          <div className="w-6/12 flex flex-col items-center gap-11">
             <AuthInput
               textLabelInput="نام و نام خانوادگی"
               width={"100%"}
@@ -53,7 +53,7 @@ export default function Register() {
                     reduxHandleClick={RegisterUserAction}
                   />
                 </TextButton.Provider>
-                <button className="bg-lightGray text-white rounded-lg flex gap-2 items-center py-2 px-3">
+                <button className="bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">
                   <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>

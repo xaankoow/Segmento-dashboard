@@ -13,6 +13,7 @@ import { getValue } from "@testing-library/user-event/dist/utils";
 import { exportExcel } from "../../../Utils/excel/exportExcel";
 import ReactExport from "react-export-excel";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
+import PageTitle from "../pageTitle/pageTitle";
 export default function TableFinancialReports({ title }) {
 
   const dispatch = useDispatch();
@@ -109,12 +110,7 @@ export default function TableFinancialReports({ title }) {
   };
   return (
     <div>
-      <div>
-        <div className="flex gap-6 items-center pr-4 mt-3">
-          <div className="w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]" />
-          <span className="text-lg">{title}</span>
-        </div>
-      </div>
+      <PageTitle title={title} />
       <div className=" w-full px-10 m-auto">
         <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
           <div className="w-80">

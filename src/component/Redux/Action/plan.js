@@ -328,7 +328,7 @@ export const applyDiscountAction = (discountCode, planType) => {
                     // data.errors.forEach(element => {
                     //     toastMessage += element + " / ";
                     // });
-                    showToast(data.data.msg, "success");
+                    showToast(data.data.msg, "error");
                     InputError("discount", data.data.msg)
                     // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
                 }
