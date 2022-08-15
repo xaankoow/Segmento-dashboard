@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Checkbox from "../CheckBox/Checkbox";
+import Checkbox from "../../../Utils/Elements/CheckBox/Checkbox";
 import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
 
 export default function Table({
@@ -282,7 +282,7 @@ export default function Table({
                     }
                   >
                     <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
-                      {/* <Checkbox handleClick={(e) => {
+                      <Checkbox handleClick={(e) => {
                           if (e.target.checked) {
                             setCopyItem([...copyItem, item]);
                             // console.log(copyItem);
@@ -295,8 +295,8 @@ export default function Table({
                           }
 
                           handleCheckingInput(e.target.checked,item);
-                        }} /> */}
-                      <input
+                        }} />
+                      {/* <input
                         type={"checkbox"}
                         className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
                         onClick={(e) => {
@@ -313,7 +313,7 @@ export default function Table({
 
                           handleCheckingInput(e.target.checked,item);
                         }}
-                      />
+                      /> */}
                     </div>
                     <div className="text-sm text-gray-900 font-light pr-4 py-4 whitespace-nowrap">
                       {index + 1}

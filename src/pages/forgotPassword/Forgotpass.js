@@ -87,7 +87,7 @@ export default function Forgetpass() {
   const handleChange = (e) => {
     let { id, value } = e.target;
     setcode(value);
-    setemailInputValue(value);
+    setemailInputValue(value); 
   };
   //  active emailcode box
   const handlerClickButton = (e) => {

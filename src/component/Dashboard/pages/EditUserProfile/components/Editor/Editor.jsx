@@ -43,7 +43,7 @@ class ColorPic extends Component {
 
 export const EditorCustomizedToolbarOption = () => (
   <Editor
-    toolbarClassName="toolbarClassName border-0 bg-[#FCFCFB] p-2 right relative"
+    toolbarClassName="toolbarClassName border-0 bg-[#FCFCFB] p-2 right relative "
     wrapperClassName="demo-wrapper wrapperClassName min-h-[280px]  border border-[#D9D9D9]  mb-7 right  rtl"
     editorClassName=" min-h-[280px] right p-2 rtl pt-4	"
     toolbar={{
