@@ -133,9 +133,7 @@ export default function ChangeImageModal({
             <img
               src="/img/dashboard/nav_right/close.svg"
               alt="close"
-              width={"14px"}
-              height={"14px"}
-              className="absolute top-4 left-6 cursor-pointer"
+              className="absolute top-4 left-6 cursor-pointer w-[20px] h-[20px] p-1 rounded-[3px] hover:bg-[#F352421A]"
               onClick={() => close()}
             />
           </div>

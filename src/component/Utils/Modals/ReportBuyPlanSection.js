@@ -41,7 +41,7 @@ export default function ReportBuyPlanSection({ handleClose, packageUuid }) {
     >
       <div className='report_buy_plan w-[500px] rounded shadow-[0px_4px_8px_0px_rgb(0,0,0)]'>
         <body className='report_container border-0 pt-2 px-2 pb-5'>
-          <div className='w-full flex items-center justify-between  text-center p-4 border border-[#D9D9D9] rounded-lg mb-5'> <div></div> رسید نهایی خرید اشتراک<img src='/img/modal/buyPlanReport/head/close.svg' className='float-left cursor-pointer' onClick={() => handleClose()} /></div>
+          <div className='w-full flex items-center justify-between  text-center p-4 border border-[#D9D9D9] rounded-lg mb-5'> <div></div> رسید نهایی خرید اشتراک<img src='/img/modal/buyPlanReport/head/close.svg' className='float-left cursor-pointer rounded-[3px] hover:bg-[#F352421A]' onClick={() => handleClose()} /></div>
           <div className='report'>
             <div className='title'><span className='text-shortText'>اشتراک:</span><span className={`${packageSelected.type_text=="برنزی"?" text-[#BF8970]":packageSelected.type_text=="نقره ای"?"text-[#7D7D7D]":packageSelected.type_text=="طلایی"?"text-[#FFCE47]":"text-[#0A65CD]"}`}>{packageSelected.type_text}</span></div>
             <div className='date'><span>مدت اشتراک:</span><span>{packageSelected.title}</span></div>

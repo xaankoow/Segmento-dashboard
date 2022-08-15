@@ -468,3 +468,6 @@ a {
     text-align: center;
     font-size: 10px;
 }
+.EDITOR-USERPROFILE{
+    display: none !important;
+}

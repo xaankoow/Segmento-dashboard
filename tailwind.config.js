@@ -31,6 +31,7 @@ module.exports = {
       blue: "#0071ff",
       dds: "#0071ff",
       primary: "#0A65CD",
+      red:"#F35242",
       shortText: "#0A65CD",
       primaryV1: "#083C78", // paragraph
       secondary:"#F2F5F7",
