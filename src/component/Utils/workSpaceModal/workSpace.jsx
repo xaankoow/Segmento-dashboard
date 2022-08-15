@@ -65,7 +65,7 @@ export default function WorkSpace() {
         contentLabel="Example Modal"
       >
         <div className=' w-[862px]'>
-          <header className='px-2.5 border-0'>
+          <header className='px-2.5 border-0 bg-[#FCFCFB] mb-2'>
             <div>
               <img src="/img/modal/workSpace/head/add_circle.svg" alt="" className='inline-block ml-3' />
               <span className='text-lg'>تعریف ورک‌اسپیس جدید</span>
@@ -77,7 +77,7 @@ export default function WorkSpace() {
               </div>
             </div>
           </header>
-          <body className='px-5 bg-whiteBg'>
+          <body className='px-5 bg-white'>
             <div className='flex gap-6 items-center relative'>
               <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
               <span className='text-sm mr-3'>{workSpaceTitle(stepModal)}</span>

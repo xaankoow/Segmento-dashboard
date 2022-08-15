@@ -49,7 +49,7 @@ const DashboardHeader = ({ setCloseNav }) => {
         datasets: [
             {
                 label: "# of Votes32",
-                data: [numberOfDaysLeft,numberOfDays-numberOfDaysLeft],
+                data: [numberOfDays-numberOfDaysLeft,numberOfDaysLeft],
                 cutout:5,
                 backgroundColor: ["#D9D9D9", "#0A65CD"],
                 borderWidth: 0,

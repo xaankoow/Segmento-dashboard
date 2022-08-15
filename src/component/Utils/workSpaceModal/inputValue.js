@@ -213,11 +213,11 @@ export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput
             return (
                 <div id="workSpaceModalStep2">
                     <div className=" max-h-[380px] overflow-y-scroll">
-                        {addKeyCharMap.map(item => (
+                        {addKeyCharMap.map((item,index) => (
                             <div className='container_input_step2 mt-7 mb-7'>
                                 <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" value={handleInputValue(item, "keyWords", "key")} reduxHandleChange={setKeyWords} workSpaceTypeState={`keyWord${item}`} />
                                 <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-                                <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"سایت مرتبط"} value={handleInputValue(item, "keyWords", "site")} reduxHandleChange={setKeyWords} workSpaceTypeState={`site${item}`} staticText={`https://${webAdress}/`} placeholder={"example.com"} />
+                                <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"سایت مرتبط"} value={handleInputValue(item, "keyWords", "site")} reduxHandleChange={setKeyWords} workSpaceTypeState={`site${item}`} staticText={`https://${webAdress}/`} placeholder={"page "+index} />
                             </div>
                         ))}
                     </div>
@@ -228,8 +228,8 @@ export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput
             return (
                 <Fragment>
                     <div className=" max-h-[380px] overflow-y-scroll">
-                        {addCommercialPageMap.map(item => (
-                            <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={`https://${webAdress}/`} placeholder={"page2"} value={handleInputValue(item, "commercialPage", null)} reduxHandleChange={setCommercialPages} workSpaceTypeState={`commercialPage${item}`} />
+                        {addCommercialPageMap.map((item,index) => (
+                            <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={`https://${webAdress}/`} placeholder={"page "+index} value={handleInputValue(item, "commercialPage", null)} reduxHandleChange={setCommercialPages} workSpaceTypeState={`commercialPage${item}`} />
                         ))}
                     </div>
                     <button className='btn-style ' onClick={() => { countInput <= 10 && setAddCommercialPageMap([...addCommercialPageMap, countInput]); handleAddStateCountInput("commercialPage") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />صفحه تجاری جدید</button>
@@ -239,8 +239,8 @@ export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput
             return (
                 <Fragment>
                     <div className=" max-h-[380px] overflow-y-scroll">
-                        {addWebsitePageMap.map(item => (
-                            <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"افزودن صفحه وبسایت"} staticText={`https://${webAdress}/`} placeholder={"page2"} value={handleInputValue(item, "websitePage", null)} reduxHandleChange={setWebsitePages} workSpaceTypeState={`websitePage${item}`} />
+                        {addWebsitePageMap.map((item,index) => (
+                            <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"افزودن صفحه وبسایت"} staticText={`https://${webAdress}/`} placeholder={"page "+index} value={handleInputValue(item, "websitePage", null)} reduxHandleChange={setWebsitePages} workSpaceTypeState={`websitePage${item}`} />
                         ))}
                     </div>
                     <button className='btn-style ' onClick={() => { countInput <= 10 && setAddWebsitePageMap([...addWebsitePageMap, countInput]); handleAddStateCountInput("websitePage") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />صفحه وبسایت جدید</button>
@@ -258,12 +258,12 @@ export const InputGetWorkSpaceInfo = (step, countInput, handleAddStateCountInput
                                             <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" value={handleInputValue(itemKey, "keyWords", "key")} reduxHandleChange={setKeyWords} workSpaceTypeState={`keyWord${itemKey}`} />
                                             <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
                                             <div className=" w-full mb-5">
-                                                {addCompetitorSite[itemKey - 1].map(itemCompetitor => {
+                                                {addCompetitorSite[itemKey - 1].map((itemCompetitor,index) => {
                                                     return (<>
-                                                        <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"سایت رقیب 1"} staticText={`https://`} placeholder={"page2"} reduxHandleChange={setCompetitorSite} workSpaceTypeState={`keyWord${itemKey},${itemCompetitor}`} value={handleCompetitorSiteValue(itemKey)[itemCompetitor-1]}/>
+                                                        <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"سایت رقیب "+index} staticText={`https://`} placeholder={"page "+index} reduxHandleChange={setCompetitorSite} workSpaceTypeState={`keyWord${itemKey},${itemCompetitor}`} value={handleCompetitorSiteValue(itemKey)[itemCompetitor-1]}/>
                                                     </>)
                                                 })}
-                                                <button className='btn-style my-4' onClick={() => { addCompetitorSite[itemKey - 1].length + 1 <= 5 && handleSetStateAddCompetitorSite(itemKey); handleAddStateCountInput("competitorSite") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />افزودن رقیب جدید</button>
+                                                <button className='btn-style my-4' onClick={() => { addCompetitorSite.length + 1 <= 5 && handleSetStateAddCompetitorSite(itemKey); handleAddStateCountInput("competitorSite") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />افزودن رقیب جدید</button>
                                             </div>
                                         </div>
                                     )

@@ -73,7 +73,7 @@ export default function PlanStatus() {
       {
         label: "# of Votes",
         // data: [numberOfDays,numberOfDaysLeft],
-        data: [numberOfDaysLeft,numberOfDays-numberOfDaysLeft],
+        data: [numberOfDays-numberOfDaysLeft,numberOfDaysLeft],
         cutout: 50,
         backgroundColor: content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
