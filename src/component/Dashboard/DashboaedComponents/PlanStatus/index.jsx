@@ -64,16 +64,18 @@ export default function PlanStatus() {
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const content=datas != [] &&  datas[3].count;
-  const keyword=datas != [] &&  datas[4].count;
+  const content=datas.length>0 &&  datas[3].count;
+  const keyword=datas.length>0 &&  datas[4].count;
+  const dateExColor=datas.length>0 &&  datas[4].count;
   const data = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        data: [numberOfDays,numberOfDaysLeft],
+        // data: [numberOfDays,numberOfDaysLeft],
+        data: [numberOfDaysLeft,numberOfDays-numberOfDaysLeft],
         cutout: 50,
-        backgroundColor: ["#D9D9D9", "#0A65CD"],
+        backgroundColor: content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 7,
         // borderColor: [
@@ -310,18 +312,18 @@ export default function PlanStatus() {
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                  {datas != [] && allWords - datas[4].count}
+                  {datas.length>0 && allWords - datas[4].count}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                    {datas != [] ? datas[4].count : ""}
+                    {datas.length>0 ? datas[4].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuetwo"></span> {datas != [] ? datas[4].count : ""} <br />
+                    <span id="valuetwo"></span> {datas.length>0 ? datas[4].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -351,18 +353,18 @@ export default function PlanStatus() {
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas != [] ? allWords- datas[3].count : ""}
+                      {datas.length>0 ? allWords- datas[3].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                    {datas != [] ? datas[3].count : ""}
+                    {datas.length>0 ? datas[3].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuethree"></span> {datas != [] ? datas[3].count : ""} <br />
+                    <span id="valuethree"></span> {datas.length>0 ? datas[3].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">

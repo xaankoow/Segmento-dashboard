@@ -49,8 +49,8 @@ const DashboardHeader = ({ setCloseNav }) => {
         datasets: [
             {
                 label: "# of Votes32",
-                data: [numberOfDaysLeft - numberOfDays, numberOfDays],
-                cutout: 5,
+                data: [numberOfDaysLeft,numberOfDays-numberOfDaysLeft],
+                cutout:5,
                 backgroundColor: ["#D9D9D9", "#0A65CD"],
                 borderWidth: 0,
                 borderRadius: 7,
@@ -114,8 +114,10 @@ const DashboardHeader = ({ setCloseNav }) => {
                                     <div className=' absolute bottom-0 right-0'>
                                         <Doughnut
                                             data={data}
-                                            height={25}
-                                            width={15}
+                                            height={30}
+                                            width={18}
+                                            // height={25}
+                                            // width={15}
 
                                             options={{
                                                 maintainAspectRatio: false, plugins: {
