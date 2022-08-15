@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Checkbox from "../CheckBox/Checkbox";
 import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
 
 export default function Table({
@@ -30,6 +31,7 @@ export default function Table({
       setSelectColumnTitle("انتخاب");
     }
   };
+
 
   // console.log(copyItem.length);
   const groupIt = (array) => {
@@ -229,10 +231,7 @@ export default function Table({
                   setHandleClickButton(true);
                   navigator.clipboard.writeText(
                     createListOutput()
-                    // data.map((item) => {
-                    //   const splitComma = item.split(',').map(item => item.trim());
-                    //   return splitComma.join("\n")
-                    // })
+                   
                   );
                   setTimeout(() => {
                     setHandleClickButton(false);
@@ -283,9 +282,23 @@ export default function Table({
                     }
                   >
                     <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
+                      {/* <Checkbox handleClick={(e) => {
+                          if (e.target.checked) {
+                            setCopyItem([...copyItem, item]);
+                            // console.log(copyItem);
+                            // console.log(e.target.checked);
+                          } else {
+                            setCopyItem(
+                              copyItem.filter((copyItems) => copyItems != item)
+                            );
+                            // console.log(copyItem);
+                          }
+
+                          handleCheckingInput(e.target.checked,item);
+                        }} /> */}
                       <input
                         type={"checkbox"}
-                        className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
+                        className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
                         onClick={(e) => {
                           if (e.target.checked) {
                             setCopyItem([...copyItem, item]);

@@ -9,7 +9,7 @@ import AuthInput from "../../../Auth/authInput/AuthInput";
 //   InsertDropdown,
 //   AlignDropdown,
 // } from "verbum";
-
+import { RegisterUserAction} from "../../../../component/Redux/Action";
 import SelectBox from "./components/selectBox/SelectBox";
 import PopUp from "../../../Utils/PopUp/PopUp";
 import { toast } from "react-toastify";
@@ -27,9 +27,9 @@ import { EditorCustomizedToolbarOption } from "./components/Editor/Editor";
 import { showToast } from "../../../Utils/toastifyPromise";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import AuthButton from "../../../Auth/authButton/AuthButton";
+import { TextButton } from "../../../../pages/register/Register";
 export default function EditUserProfile() {
-
-  const { canRequest } = useSelector(state => state.loadingState)
+  const { canRequest } = useSelector((state) => state.loadingState);
 
   const [selectDatas, setSelectDtas] = useState([]);
   const [nameInputValue, setNameInputValue] = useState("");
@@ -38,7 +38,6 @@ export default function EditUserProfile() {
 
   const [image, setUserImage] = useState([]);
   const userImageProf = image.map((file) => file.preview);
-
 
   //
   const [selectBoxValue1, setSelectBoxValue1] = useState("");
@@ -60,7 +59,6 @@ export default function EditUserProfile() {
   const userState = useSelector((state) => state.userState);
   var user_package_type_text = "";
   if (userState.userData.package) {
-
     user_package_type_text = userState.userData.package.type_text
       ? userState.userData.package.type_text
       : "";
@@ -69,7 +67,6 @@ export default function EditUserProfile() {
   var user_email = "";
   const handleSelectBox1 = (e) => {
     setSelectBoxValue1(e.target.value);
- 
   };
   const handleSelectBox2 = (e) => {
     setSelectBoxValue2(e.target.value);
@@ -99,22 +96,20 @@ export default function EditUserProfile() {
       const { data, status } = await getSelectBoxData();
       // setcontent(data.data); //5
       setSelectDtas(data.data);
- 
     } catch (error) {
       // console.log(error);
     }
   };
 
-  const loadingState = useSelector(state => state.loadingState)
+  const loadingState = useSelector((state) => state.loadingState);
 
   const handleSetNewProfile = async () => {
-
     var toastMessage = "";
     //handle show loadin
     {
       loadingState.ProcessingDelay.push("editProfile");
       loadingState.canRequest = false;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
 
     let family = "";
@@ -133,23 +128,53 @@ export default function EditUserProfile() {
       formdata.append("name", family);
       formdata.append("bio", "من یک برنامه نویس هستم");
       formdata.append("avatar", imgData);
-      formdata.append("website_type", selectBoxValue1 ? selectBoxValue1 :pastData ? pastData.website_type  : 1);
-      formdata.append("company_scale", selectBoxValue2? selectBoxValue2 :pastData ? pastData.website_type  : 1);
-      formdata.append("seo_experts", selectBoxValue3? selectBoxValue3:pastData ? pastData.seo_experts : 1);
-      formdata.append("website_traffic", selectBoxValue4 ? selectBoxValue4:pastData ? pastData.website_traffic : 1);
-      formdata.append("role_in_company", selectBoxValue5? selectBoxValue5:pastData ? pastData.role_in_company  : 1);
-      formdata.append("dating_method", selectBoxValue6? selectBoxValue6:pastData ? pastData.dating_method : 1);
+      formdata.append(
+        "website_type",
+        selectBoxValue1 ? selectBoxValue1 : pastData ? pastData.website_type : 1
+      );
+      formdata.append(
+        "company_scale",
+        selectBoxValue2 ? selectBoxValue2 : pastData ? pastData.website_type : 1
+      );
+      formdata.append(
+        "seo_experts",
+        selectBoxValue3 ? selectBoxValue3 : pastData ? pastData.seo_experts : 1
+      );
+      formdata.append(
+        "website_traffic",
+        selectBoxValue4
+          ? selectBoxValue4
+          : pastData
+          ? pastData.website_traffic
+          : 1
+      );
+      formdata.append(
+        "role_in_company",
+        selectBoxValue5
+          ? selectBoxValue5
+          : pastData
+          ? pastData.role_in_company
+          : 1
+      );
+      formdata.append(
+        "dating_method",
+        selectBoxValue6
+          ? selectBoxValue6
+          : pastData
+          ? pastData.dating_method
+          : 1
+      );
       // const { data, status } = await keywordService(searchBoxValue);
       const { data } = await editProfile(formdata);
-      if (data.code == 200 & data.status == true) {
+      if ((data.code == 200) & (data.status == true)) {
         dispatch(coreUser());
-        console.log(data)
+        console.log(data);
         toast.success("اطلاعات شما با موفقیت ویرایش شد");
         setForceUpdate(!forceUpdates);
       }
       // setcontent(data.data); //5
     } catch (error) {
-      data.errors.forEach(element => {
+      data.errors.forEach((element) => {
         toastMessage += element + " / ";
       });
       showToast(toastMessage, "error");
@@ -159,29 +184,22 @@ export default function EditUserProfile() {
 
     //handle hide loading
     {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "editProfile");
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        (item) => item != "editProfile"
+      );
       loadingState.ProcessingDelay = removeProcessingItem;
       loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
-  }
+  };
 
-    ;
-
-
-
-
-
- // data of select box thet is related to the past info
- const [pastData, setPastData] = useState("");
+  // data of select box thet is related to the past info
+  const [pastData, setPastData] = useState("");
   useEffect(() => {
-    if (!pastData ) {
-
+    if (!pastData) {
       pastSelexboxData();
-    
     }
   });
- 
 
   const pastSelexboxData = async () => {
     // debugger
@@ -190,15 +208,12 @@ export default function EditUserProfile() {
 
       // console.log(uuidUser);
       try {
-        // const { data, status } = await getPastDatas(uuidUser); // --------- 
+        // const { data, status } = await getPastDatas(uuidUser); // ---------
         const { data, status } = await getPastDatas(uuidUser); // --------- ایمپورت اشتباه
         setPastData(data.data); //5
-        
-        
       } catch (error) {
         // console.log(error);
       }
-
     }
   };
 
@@ -218,7 +233,7 @@ export default function EditUserProfile() {
   const handleConfrimationPass = (e) => {
     setconfrimPass(e.target.value);
   };
- 
+
   const handleUpdatePassword = async () => {
     try {
       let formdata = new FormData();
@@ -228,7 +243,7 @@ export default function EditUserProfile() {
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await editPassword(formdata);
       // setcontent(data.data); //5
-      // console.log(data.errors);
+
       if (data.errors.length != 0) {
         toast.error(data.errors[0]);
       } else {
@@ -255,18 +270,15 @@ export default function EditUserProfile() {
     // pastSelexboxData();
     if (selectDatas.length == 0) {
       selexboxData();
-
     }
     // debugger
     // if (userToken) { ------------ این مورد اضافی به نظر میاد و نیازی نیست چونکه داخل هدر داشبورد صدا زدم
     // dispatch(coreUser());
     //   dispatch(getAllWorkSpace());
     // }
-
   }, [forceUpdate]);
 
-  // 
-
+  //
 
   return (
     <>
@@ -275,7 +287,12 @@ export default function EditUserProfile() {
           close={() => setOpenChangeImageModal(false)}
           isOpen={openChangeImageModal}
           setUserImage={setUserImage}
-          userImage={userState.userData.user != undefined & userState.userData.user.img != "" ? userState.userData.user.img : "/../img/dashboard/userProfile/profileImage.png"}
+          userImage={
+            (userState.userData.user != undefined) &
+            (userState.userData.user.img != "")
+              ? userState.userData.user.img
+              : "/../img/dashboard/userProfile/profileImage.png"
+          }
         />
       )}
       {updatePass && (
@@ -296,12 +313,15 @@ export default function EditUserProfile() {
             <div className="mt-12 flex justify-between">
               <ProfileInformation
                 userName={user_name}
-                userType={userState.userData.package != undefined ? userState.userData.package.title : "بدون پکیج"}
+                userType={
+                  userState.userData.package != undefined
+                    ? userState.userData.package.title
+                    : "بدون پکیج"
+                }
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
 
-              // userState.image != "" ? userState.image : userState.userData.user.image 
-
+                // userState.image != "" ? userState.image : userState.userData.user.image
               />
               {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
@@ -334,7 +354,6 @@ export default function EditUserProfile() {
                       typeInput="text"
                       handleChange={handlefamilyInput}
                     />
-
                   </div>
                   <AuthInput
                     textLabelInput="آدرس ایمیل "
@@ -358,12 +377,11 @@ export default function EditUserProfile() {
                     اطلاعات کسب و کار من
                   </span>
                   <div className="flex flex-col gap-4 mt-7">
-
                     <SelectBox
                       optionItems={data ? data[0] : []}
                       title={"زمینه فعالیت شما (نوع سایت)"}
                       handlechange={handleSelectBox1}
-                      select={pastData ? pastData.website_type  : 0}
+                      select={pastData ? pastData.website_type : 0}
                     />
                     <SelectBox
                       optionItems={data ? data[1] : []}
@@ -397,7 +415,11 @@ export default function EditUserProfile() {
                     />{" "}
                     <div className="flex justify-end gap-7 mt-9">
                       <button className="btn-secondary">انصراف </button>
-                      <AuthButton handlerClick={handleSetNewProfile} setOnclickValue={userState.image[0]} textButton={"ذخیره تغییرات"}/>
+                      <AuthButton
+                        handlerClick={handleSetNewProfile}
+                        setOnclickValue={userState.image[0]}
+                        textButton={"ذخیره تغییرات"}
+                      />
                     </div>
                     <div className="border-b border-lightGray w-full m-auto mt-7" />
                   </div>
@@ -422,25 +444,25 @@ export default function EditUserProfile() {
                 <span>تغییر گذرواژه</span>
                 <AuthInput
                   textLabelInput=" گذرواژه فعلی"
-                  typeInput="text"
+                  typeInput="password"
                   width={"100%"}
                   isPassword={true}
                   handleChange={handleCurrentPass}
                 />
                 <AuthInput
                   textLabelInput="گذرواژه جدید"
-                  typeInput="text"
+                  typeInput="password"
                   width={"100%"}
                   isPassword={true}
-                  handleChange={handleNewtPass}
+                  reduxHandleChange={handleNewtPass}
                 />
                 <AuthInput
                   textLabelInput=" تکرار گذرواژه جدید "
-                  typeInput="text"
+                  typeInput="password"
                   width={"100%"}
                   isPassword={true}
                   errorTextId="errRejesterPasswordConfirm"
-                  handleChange={handleConfrimationPass}
+                  reduxHandleChange={handleConfrimationPass}
                 />
                 <div className="flex w-full justify-end gap-7">
                   <button
@@ -449,6 +471,13 @@ export default function EditUserProfile() {
                   >
                     انصراف{" "}
                   </button>
+                  {/* <TextButton.Provider value={"  تغییر گذرواژه"}>
+                  <AuthButton
+                  disabled={!canRequest}
+                    classes={"btn-style"}
+                    reduxHandleClick={RegisterUserAction}
+                  />
+                </TextButton.Provider> */}
                   <button
                     disabled={!canRequest}
                     className="btn-style"
@@ -462,7 +491,7 @@ export default function EditUserProfile() {
           </div>
         </div>
       </div>
-      <SetTitleTabBrowser nameSection={"حساب کاربری"}/>
+      <SetTitleTabBrowser nameSection={"حساب کاربری"} />
       {forceUpdates ? "" : ""}
     </>
   );
