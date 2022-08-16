@@ -471,3 +471,6 @@ a {
 .EDITOR-USERPROFILE{
     display: none !important;
 }
+#readPolicyEasyToStart{
+    margin-left: 8px;
+}
