@@ -12,7 +12,7 @@ export default function TabMenu({
   // to select tab and show underline of that
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div className="text-sm font-medium text-center text-gray-500 text-gray-400 border-gray-700 pt-3 bg-[#FCFCFB]">
+    <div className="text-sm font-medium text-center text-gray-500 text-gray-400 border-gray-700 pt-3 bg-[#fff]">
       <div className="flex gap-6 items-center pr-4">
         <div className="w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]" />
         <span className="text-lg">{title}</span>

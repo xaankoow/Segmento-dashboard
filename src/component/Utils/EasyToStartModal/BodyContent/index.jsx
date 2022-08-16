@@ -11,7 +11,7 @@ export default function BodyContent({ stepModal, setStepModal, free, lockNextSte
 
     return (
         <div>
-            <body className={` ${stepModal > 2 & stepModal < 6 ? "border-[#F2F5F7] border rounded-lg p-5" : "bg-white"}`}>
+            <body className={` ${stepModal > 2 & stepModal < 6 ? "border-[#F2F5F7] border rounded-lg p-5 bg-white" : ""}`}>
                 <p className={`leading-6 text-sm font-normal text-[#083c78]`}>
                     {Paragraph(stepModal, free)}
                 </p>
