@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllWorkSpace } from "../../../Redux/Action/workSpace";
+import SidebarBaner from "../../../Utils/Baner/Sidebar/SidebarBaner";
 import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
@@ -78,7 +79,7 @@ export default function SidebarComponent({ closeNav, openMenu }) {
           </div>
         ) : null}
         {/* advertisement box */}
-        {!disableAdvertisement && closeNav ? (
+        {/* {!disableAdvertisement && closeNav ? (
           <div className="bg-secondary h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
             <img
               src="/img/dashboard/nav_right/close.svg"
@@ -88,7 +89,8 @@ export default function SidebarComponent({ closeNav, openMenu }) {
             />
             <span className="text-[#7D7D7D]">نمونه نوشته داینامیک</span>
           </div>
-        ) : null}
+        ) : null} */}
+        <SidebarBaner/>
       </div>
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
         <IconsRight setActive={activeIconHandler} />
