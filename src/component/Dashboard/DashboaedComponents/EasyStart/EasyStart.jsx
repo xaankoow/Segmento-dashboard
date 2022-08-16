@@ -14,7 +14,7 @@ const EasyStart = ({ startButtonClick }) => {
                 <button className="btn-style">مشاوره و تماس</button>
             </div>
             <div className="flex flex-col relative mt-9 mx-7 mb-7 ">
-                <div className="flex items-center justify-center bg-yellow text-base py-5 absolute w-full -top-5  rounded-t-lg z-[2] ">
+                <div className="flex items-center justify-center bg-gold text-base py-5 absolute w-full -top-5  rounded-t-lg z-[2] ">
                     شروع آسان و نحوه استفاده از امکانات سگمنتو
                 </div>
                 <div className="rounded-lg border border-lightGray EasyStartBoxContent flex flex-col  px-7">

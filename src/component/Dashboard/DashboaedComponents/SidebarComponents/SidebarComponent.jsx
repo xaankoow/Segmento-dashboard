@@ -18,7 +18,7 @@ export default function SidebarComponent({ closeNav, openMenu }) {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    openMenu()
+    openMenu();
   };
 
   // const itemsHoverMenu = [
@@ -39,7 +39,7 @@ export default function SidebarComponent({ closeNav, openMenu }) {
     { title: "آموزش", link: "" },
     { title: "پیشنهادات و تخفیف ها", link: "" },
     { title: "پشتیبانی و تیکت", link: "" },
-    { title: "انتخاب سرویس", link: "" }
+    { title: "انتخاب سرویس", link: "" },
   ];
   return (
     <>
@@ -62,10 +62,16 @@ export default function SidebarComponent({ closeNav, openMenu }) {
           </div>
         ) : activeIcon == 1 ? (
           <div>
-
-            <div className='flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue '  >
-              <img src={"/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
-              <span className={`text-[${"#0A65CD"}]`}>{closeNav && "پیشخوان"}</span>
+            <div className="flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue ">
+              <img
+                src={
+                  "/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"
+                }
+                alt="icon"
+              />
+              <span className={`text-[${"#0A65CD"}]`}>
+                {closeNav && "پیشخوان"}
+              </span>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />
@@ -77,7 +83,7 @@ export default function SidebarComponent({ closeNav, openMenu }) {
             <img
               src="/img/dashboard/nav_right/close.svg"
               alt="close"
-              className="absolute top-2 left-2 cursor-pointer"
+              className="absolute top-2 left-2 cursor-pointer p-1 rounded-[3px] hover:bg-[#F352421A]"
               onClick={() => setDisableAdvertisement(true)}
             />
             <span className="text-[#7D7D7D]">نمونه نوشته داینامیک</span>

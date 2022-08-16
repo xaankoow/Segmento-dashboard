@@ -1,3 +1,4 @@
+
 module.exports = {
   important:true,
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -25,19 +26,20 @@ module.exports = {
       // => @media (max-width: 639px) { ... }
     },
     colors: {
-      lightGray: "#D3D5E2",
-      gray: "#7D7D7D",
-      yellow: "#ffce47",
-      blue: "#0071ff",
-      dds: "#0071ff",
-      primary: "#0A65CD",
-      shortText: "#0A65CD",
-      primaryV1: "#083C78", // paragraph
-      secondary:"#F2F5F7",
-      diamond:"#0A65CD",
-      gold:"#FFCE47",
-      silver:"#7D7D7D",
-      bronze:"#BF8970"
+      'lightGray': "#D3D5E2",
+      'gray': "#7D7D7D",
+      'yellow': "#ffce47",
+      'blue': "#0071ff",
+      'dds': "#0071ff",
+      'primary': "#0A65CD",
+      'red':"#F35242",
+      'shortText': "#0A65CD",
+      'primaryV1': "#083C78", // paragraph
+      'secondary':"#F2F5F7",
+      'diamond':"#0A65CD",
+      gold:'#FFCE47',
+      'silver':"#7D7D7D",
+      'bronze':"#BF8970"
     },
     fontSize: {
       xs: ".75rem",
@@ -53,7 +55,7 @@ module.exports = {
       "6xl": "4rem",
       "7xl": "5rem",
       small: ".5rem",
-    },
+    }, 
   },
   plugins: [],
 

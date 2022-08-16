@@ -44,14 +44,16 @@ const DashboardHeader = ({ setCloseNav }) => {
     // debugger
 
     ChartJS.register(ArcElement, Tooltip, Legend);
+ 
+    
     const data = {
         // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [
             {
                 label: "# of Votes32",
                 data: [numberOfDays-numberOfDaysLeft,numberOfDaysLeft],
-                cutout:5,
-                backgroundColor: ["#D9D9D9", "#0A65CD"],
+                cutout: 5,
+                backgroundColor: numberOfDays &&  numberOfDaysLeft<= numberOfDays/3   ?  ["#D9D9D9", "#F35242"] :numberOfDaysLeft && numberOfDaysLeft <= numberOfDays/2 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
                 borderWidth: 0,
                 borderRadius: 7,
 

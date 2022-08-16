@@ -454,6 +454,7 @@ export default function EditUserProfile() {
                   typeInput="password"
                   width={"100%"}
                   isPassword={true}
+                  errorTextId="errEditUserProfilePassword"
                   reduxHandleChange={handleNewtPass}
                 />
                 <AuthInput
@@ -461,9 +462,9 @@ export default function EditUserProfile() {
                   typeInput="password"
                   width={"100%"}
                   isPassword={true}
-                  errorTextId="errRejesterPasswordConfirm"
+                  errorTextId="errEditUserProfilePasswordConfirm"
                   reduxHandleChange={handleConfrimationPass}
-                />
+                /> 
                 <div className="flex w-full justify-end gap-7">
                   <button
                     className="btn-secondary"

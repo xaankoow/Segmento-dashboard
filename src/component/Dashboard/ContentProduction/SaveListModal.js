@@ -125,9 +125,7 @@ export default function SaveListModal({
       <img
               src="/img/dashboard/nav_right/close.svg"
               alt="close"
-              width={"14px"}
-              height={"14px"}
-              className="absolute top-4 left-6 cursor-pointer mb-7"
+             className="absolute top-4 left-3 cursor-pointer mb-7 p-1 w-[20px] h-[20px] rounded-[3px] hover:bg-[#F352421A]"
               onClick={() =>close()}
             />
             <div></div>
