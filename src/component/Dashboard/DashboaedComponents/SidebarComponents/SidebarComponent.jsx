@@ -42,6 +42,8 @@ export default function SidebarComponent({ closeNav, openMenu }) {
     { title: "پشتیبانی و تیکت", link: "" },
     { title: "انتخاب سرویس", link: "" },
   ];
+
+  console.log("sidebar component")
   return (
     <>
       <div
@@ -79,18 +81,9 @@ export default function SidebarComponent({ closeNav, openMenu }) {
           </div>
         ) : null}
         {/* advertisement box */}
-        {/* {!disableAdvertisement && closeNav ? (
-          <div className="bg-secondary h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
-            <img
-              src="/img/dashboard/nav_right/close.svg"
-              alt="close"
-              className="absolute top-2 left-2 cursor-pointer p-1 rounded-[3px] hover:bg-[#F352421A]"
-              onClick={() => setDisableAdvertisement(true)}
-            />
-            <span className="text-[#7D7D7D]">نمونه نوشته داینامیک</span>
-          </div>
-        ) : null} */}
-        <SidebarBaner/>
+        {!disableAdvertisement ? (
+          <SidebarBaner setDisableAdvertisement={setDisableAdvertisement} />
+        ) : null}
       </div>
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
         <IconsRight setActive={activeIconHandler} />
