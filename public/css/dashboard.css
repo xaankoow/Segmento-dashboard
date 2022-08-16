@@ -295,9 +295,15 @@
 	filter: saturate(11);
 }
 
-
-
-
+#DASHBOARD .ICONRIGHT:hover img {
+	filter: saturate(11);
+}
+#DASHBOARD .ICONRIGHT:active img {
+	filter: saturate(11);
+}
+#DASHBOARD .ICONRIGHT:focus img {
+	filter: saturate(11);
+}
 #DASHBOARD .menuimage {
 	background-image: url(../img/dashboard/header/menuicon.svg);
 
@@ -565,4 +571,7 @@
 
 #keyWordSearch  .btnDisabled:disabled{
 	border-right: 1px solid #7D7D7D !important;
+}
+.z-0 {
+	z-index: 0 !important;
 }

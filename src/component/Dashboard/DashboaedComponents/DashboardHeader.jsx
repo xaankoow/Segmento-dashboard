@@ -169,7 +169,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                         <div className='border-b border-lightGray w-full ' />
                         <div className='flex text-xs items-center justify-between w-full p-1 hover:bg-lightBlue my-1' onClick={() => dispatch(logoutAction())}>
                             <div className='flex items-center pr-2'>
-                                <span className="text-gold">خروج از حساب کاربری</span>
+                                <span className="text-red">خروج از حساب کاربری</span>
                             </div>
                             <img src="/img/dashboard/header/redlogout.svg" alt="logout" className='ml-1' />
                             {/* <img src="../img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
