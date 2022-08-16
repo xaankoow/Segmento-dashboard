@@ -434,9 +434,11 @@ input[type="radio"] {
     /* place-content: center; */
     z-index: 100000;
 }
-
+input[type="radio"]:hover {
+    outline: #0A65CD !important;
+  }
 input[type="radio"]:checked {
-    border: 3px solid rgba(10, 101, 205, 1);
+    border: 4px solid rgba(10, 101, 205, 1);
 
     /* outline: 3px solid rgba(10, 101, 205, 1); */
 }

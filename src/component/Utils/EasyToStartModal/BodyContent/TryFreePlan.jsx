@@ -6,6 +6,7 @@ import PopUp from '../../PopUp/PopUp'
 
 export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModal }) {
   const [showPopUp, setShowPopUp] = useState(true);
+  const handleCheckBoxClick=(e) => setLockNextStep(e.target.checked)
   return (
     <div className='plan_list_option'>
       <div className='plan_card_list_option'>
@@ -32,10 +33,10 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
           {/* <div className=' relative shrink w-28'> */}
             <form className=' flex shrink w-28 grow'>
 
-            <label className=' text-[#083C78] pointer-events-auto relative translate-y-0 cursor-pointer'>
+            
               
-              <Checkbox  id="readPolicyEasyToStart"  checked={lockNextStep} handleClick={(e) => setLockNextStep(e.target.checked)}/>
-              قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم . </label>
+              <Checkbox  id="readPolicyEasyToStart"  checked={lockNextStep} handleClick={handleCheckBoxClick} label={"قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم ."}/>
+
             </form>
           {/* </div> */}
           <AuthButton textButton={"خرید اشتراک"} handlerClick={setStepModal} setOnclickValue={1} />
