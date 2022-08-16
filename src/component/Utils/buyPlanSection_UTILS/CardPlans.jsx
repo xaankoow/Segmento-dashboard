@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import AuthInput from '../../Auth/authInput/AuthInput';
-import { applyDiscountAction, setPackageUuid } from '../../Redux/Action/plan';
+import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../Redux/Action/plan';
 import DiscountTagValue from './DiscountTagValue';
 
 export default function CardPlans({ plan, setPlan }) {
@@ -11,6 +11,10 @@ export default function CardPlans({ plan, setPlan }) {
   const { canRequest } = useSelector((state) => state.loadingState);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPlanData());
+  }, [])
 
   const [discountInputGold, setDiscountInputGold] = useState("");
   const [discountInputBronze, setDiscountInputBronze] = useState("");

@@ -77,7 +77,7 @@ export default function WorkSpace() {
               </div>
             </div>
           </header>
-          <body className='px-5 bg-white'>
+          <body className='px-5 bg-[#fff]'>
             <div className='flex gap-6 items-center relative'>
               <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
               <span className='text-sm mr-3'>{workSpaceTitle(stepModal)}</span>

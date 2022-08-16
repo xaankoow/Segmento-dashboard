@@ -101,7 +101,7 @@ const DashboardHeader = ({ setCloseNav }) => {
                 <div className='flex items-center gap-3 hover:cursor-pointer'>
 
                     {/* <div className='Iconimage w-7 h-8'></div> */}
-                    {/* <img src="/img/dashboard/header/segmento-logofa.svg" className='w-7 h-8' alt="" /> */}
+                    <img src="/img/dashboard/header/segmento-logofa.svg" className='w-7 h-8' alt="" />
                     <span className=''>سگمنتو segmento</span>
                 </div>
             </div>

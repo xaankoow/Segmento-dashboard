@@ -15,7 +15,7 @@ export default function ReportInfoPlan({ handleClose }) {
 
   return (
 
-    <body className='report_container mt-36 mb-20'>
+    <body className='report_container mt-36 mb-20 bg-[#fff]'>
       <div className='report'>
         {packageSelected != "" ? (
           <Fragment>

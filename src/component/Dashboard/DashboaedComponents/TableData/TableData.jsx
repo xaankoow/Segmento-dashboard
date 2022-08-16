@@ -255,7 +255,7 @@ export default function Table({
           </div>
         ) : (
           <div
-            className="bg-white text-right w-full overflow-y-scroll max-h-[450px] "
+            className="bg-[#fff] text-right w-full overflow-y-scroll max-h-[450px] "
             id="table"
           >
             {filteredDatas.map((item, index) => {
