@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Register from "./pages/register/Register";
 import "./App.css";
 import Forgotpass from "./pages/forgotPassword/Forgotpass";
@@ -25,6 +25,7 @@ import EasyStart from "./component/Dashboard/DashboaedComponents/EasyStart/EasyS
 import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
 import WorkSpaceReport from "./component/Dashboard/DashboaedComponents/workSpace/workSpaceReport";
 import Page404 from "./component/Utils/Error404/page404";
+import { usetLimit } from "./component/service/userLimit";
 
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
@@ -33,13 +34,26 @@ export default function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    { resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport") }
+    { resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
+    if (datas == "") pastSelexboxData();
+  }
+    
   }, [resultSetWorkSpace.reportStatus])
 
 
   const location = useLocation();
   const background = location.state && location.state.background;
+  const [datas, setDatas] = useState("");
+  const allWords = 100; // TODO : replace static num with api count
+  const pastSelexboxData = async () => {
+    try {
+      const { data, status } = await usetLimit();
+      setDatas(data.data); //5
 
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const tabContent = [
     {
       title: "جست و جو",
@@ -83,8 +97,8 @@ export default function App() {
                     <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
                     <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
                     <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={"20"} numberRight={"189"} />} />
-                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={"20"} numberRight={"189"} />} />
+                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} numberLeft={datas != [] && allWords - datas[4].count} numberRight={allWords} />} />
+              <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} numberLeft={datas != [] ? allWords - datas[3].count : ""} numberRight={allWords} />} />
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>

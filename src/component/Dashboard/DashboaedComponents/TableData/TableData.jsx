@@ -129,6 +129,20 @@ export default function Table({
     }
     return myListOutput;
   }
+const HandleCheckBoxClick=(e,item) => {
+    if (e.target.checked) {
+      setCopyItem([...copyItem, item]);
+      // console.log(copyItem);
+      // console.log(e.target.checked);
+    } else {
+      setCopyItem(
+        copyItem.filter((copyItems) => copyItems != item)
+      );
+      // console.log(copyItem);
+    }
+
+    handleCheckingInput(e.target.checked,item);
+  }
   return (
     <div className=" flex grow flex-col border border-[#D9D9D9] p-0 " id="TABLE">
       <div className="min-w-full">
@@ -282,21 +296,8 @@ export default function Table({
                     }
                   >
                     <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
-                      <Checkbox handleClick={(e) => {
-                          if (e.target.checked) {
-                            setCopyItem([...copyItem, item]);
-                            // console.log(copyItem);
-                            // console.log(e.target.checked);
-                          } else {
-                            setCopyItem(
-                              copyItem.filter((copyItems) => copyItems != item)
-                            );
-                            // console.log(copyItem);
-                          }
-
-                          handleCheckingInput(e.target.checked,item);
-                        }} />
-                      {/* <input
+                      {/* <Checkbox handleClick={(e)=>HandleCheckBoxClick(e,item)} /> */}
+                      <input
                         type={"checkbox"}
                         className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
                         onClick={(e) => {
@@ -313,7 +314,7 @@ export default function Table({
 
                           handleCheckingInput(e.target.checked,item);
                         }}
-                      /> */}
+                      />
                     </div>
                     <div className="text-sm text-gray-900 font-light pr-4 py-4 whitespace-nowrap">
                       {index + 1}
