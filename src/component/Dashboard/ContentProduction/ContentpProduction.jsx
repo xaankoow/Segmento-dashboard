@@ -45,10 +45,11 @@ export default function ContentpProduction({ onClickHandler }) {
     try {
       let formdata = new FormData();
       formdata.append("keyword", searchBoxValue);
+      formdata.append("limit", 10);
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await ContentProductionService(formdata);
       // debugger
-      setcontent(data.data); //5
+      setcontent([...content,data.data]); //5
           // content.map((item, index) => {
       //   if (item.includes(searchBoxValue)) { // هنگام ارسال درخواست به وبسرویس کلمه هم ارسال میشه پس شامل اون کلمه هست پس چرا دوباره برسی کنیم؟!
       //     tableDataFiltered.push(item);
