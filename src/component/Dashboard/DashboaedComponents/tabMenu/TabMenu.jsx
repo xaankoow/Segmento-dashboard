@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
+import BadgeLimitKeyWords from "../../../Utils/BadgeLimitKeyWords";
 
 export default function TabMenu({
   tabsContent,
@@ -16,14 +17,8 @@ export default function TabMenu({
       <div className="flex gap-6 items-center pr-4">
         <div className="w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]" />
         <span className="text-lg">{title}</span>
-        <div className="flex items-center text-[#7D7D7D] bg-[#D9D9D9] rounded  px-2 ">
-          <span className="text-[#7D7D7D] text-sm pt-[5px] pb-[2px]">
-            {numberRight}
-          </span>
-          <hr className="w-4 bg-gray text-[#7D7D7D] rotate-90" />
-          <span className="text-[#7D7D7D] text-sm pt-[5px] pb-[2px]">
-            {numberLeft}
-          </span>
+        <div className="h-6">
+          <BadgeLimitKeyWords />
         </div>
       </div>
       <Tab.Group>
@@ -44,8 +39,8 @@ export default function TabMenu({
                     >
                       {items.title}
                     </Tab>
-                  {  activeTab===index ?  <div className="w-[28px] h-[2px] bg-primary rounded  tabline  " />:  <div className="w-[28px] h-[2px] bg-primary rounded  tabline hidden " />}
-                   
+                    {activeTab === index ? <div className="w-[28px] h-[2px] bg-primary rounded  tabline  " /> : <div className="w-[28px] h-[2px] bg-primary rounded  tabline hidden " />}
+
                   </div>
                   {index < tabsContent.length - 1 && (
                     <hr className="w-[28px] bg-gray text-[#D9D9D9] rotate-90 mt-4" />
@@ -61,7 +56,7 @@ export default function TabMenu({
           </Tab.Panels>
         </div>
       </Tab.Group>
-      <SetTitleTabBrowser nameSection={title}/>
+      <SetTitleTabBrowser nameSection={title} />
     </div>
   );
 }

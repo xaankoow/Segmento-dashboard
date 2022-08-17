@@ -8,7 +8,7 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
   const [showPopUp, setShowPopUp] = useState(true);
   const handleCheckBoxClick=(e) => setLockNextStep(e.target.checked)
   return (
-    <div className='plan_list_option'>
+    <div className='plan_list_option bg-[#fff]'>
       <div className='plan_card_list_option'>
         <div className='title'>استفاده 14 روز رایگان از تمامی امکانات سگمنتو</div>
         <div className='list_option'>

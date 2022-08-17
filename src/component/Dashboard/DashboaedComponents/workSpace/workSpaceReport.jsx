@@ -108,7 +108,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                         <div className='flex gap-6 justify-between items-center relative'>
                             <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
                             <span className=' text-sm mr-3'>آدرس وبسایت شما: </span>
-                            <span className='text-sm float-left'>{webAdress}</span>
+                            <span className='text-sm float-left'>{"https://" +webAdress}</span>
                         </div>
                     </div>
                     {/* site key words */}
@@ -129,7 +129,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                                     <div className=' w-2/4 pr-3'>
                                         <div className='pr-2'>
                                             <p className=' w-full text-right text-xs'>سایت مرتبط</p>
-                                            <p className=' w-full text-left text-sm mt-3'>{"https://" + webAdress + "/" + item.site}</p>
+                                            <p className=' w-full text-left text-sm mt-3'>{"https://" + webAdress + (item.site!=""? `/${item.site}`:"")}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                                             {item.competitorSite.map(site => (
                                                 <div className='pr-2'>
                                                     <p className=' w-full text-right text-xs'>سایت مرتبط</p>
-                                                    <p className=' w-full text-left text-sm mt-3'>{"https://" + webAdress + "/" + site}</p>
+                                                    <p className=' w-full text-left text-sm mt-3'>{"https://" + site}</p>
                                                 </div>
                                             ))}
                                         </div>

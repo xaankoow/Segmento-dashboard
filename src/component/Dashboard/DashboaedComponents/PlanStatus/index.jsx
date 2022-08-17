@@ -147,7 +147,7 @@ export default function PlanStatus() {
     <div className="">
       <PageTitle title={" وضعیت اشتراک"} />
       <div className="mx-auto w-full mt-9">
-        <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-white">
+        <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-[#fff]">
           {/* <!--عنوان 1--> */}
 
           {/* <div className="flex flex-row items-center">

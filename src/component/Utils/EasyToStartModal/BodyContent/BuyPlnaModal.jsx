@@ -4,64 +4,66 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthInput from '../../../Auth/authInput/AuthInput';
 import DiscountTagValue from '../../buyPlanSection_UTILS/DiscountTagValue';
 import HandleParagraphInfoPlan from '../../buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan';
+import CardPlans from '../../buyPlanSection_UTILS/CardPlans';
 
 export default function BuyPlnaModal() {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllPlanData());
-  }, [])
 
-  const [discountInputGold, setDiscountInputGold] = useState("");
-  const [discountInputBronze, setDiscountInputBronze] = useState("");
-  const [discountInputSilver, setDiscountInputSilver] = useState("");
-  const [discountInputDiamond, setDiscountInputDiamond] = useState("");
-  const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
 
-  const { canRequest } = useSelector((state) => state.loadingState);
-  const { discount, discountStatus, allPackageData } = useSelector(state => state.planState);
+  // const [discountInputGold, setDiscountInputGold] = useState("");
+  // const [discountInputBronze, setDiscountInputBronze] = useState("");
+  // const [discountInputSilver, setDiscountInputSilver] = useState("");
+  // const [discountInputDiamond, setDiscountInputDiamond] = useState("");
+  // const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
 
-  const handleShowArrowDiscount = (text, arrowTarget) => {
-    // 
-    if (discountInputGold != "" && arrowTarget != "gold") { setDiscountInputGold(""); }
-    if (discountInputBronze != "" && arrowTarget != "bronze") { setDiscountInputBronze(""); }
-    if (discountInputSilver != "" && arrowTarget != "silver") { setDiscountInputSilver(""); }
-    if (discountInputDiamond != "" && arrowTarget != "diamond") { setDiscountInputDiamond(""); }
-    switch (arrowTarget) {
-      case "gold":
-        if (discountInputGold != text) {
-          setLastSelectedDiscountInput("gold");
-          setDiscountInputGold(text);
-        }
-        break;
-      case "bronze":
-        if (discountInputBronze != text) {
-          setLastSelectedDiscountInput("bronze");
-          setDiscountInputBronze(text);
-        }
-        break;
-      case "silver":
-        if (discountInputSilver != text) {
-          setLastSelectedDiscountInput("silver");
-          setDiscountInputSilver(text);
-        }
-        break;
-      case "diamond":
-        if (discountInputDiamond != text) {
-          setLastSelectedDiscountInput("diamond");
-          setDiscountInputDiamond(text);
-        }
-        break;
+  // const { canRequest } = useSelector((state) => state.loadingState);
+  // const { discount, discountStatus, allPackageData } = useSelector(state => state.planState);
 
-      default:
-        break;
-    }
-  }
+  // const handleShowArrowDiscount = (text, arrowTarget) => {
+
+  //   if (discountInputGold != "" && arrowTarget != "gold") { setDiscountInputGold(""); }
+  //   if (discountInputBronze != "" && arrowTarget != "bronze") { setDiscountInputBronze(""); }
+  //   if (discountInputSilver != "" && arrowTarget != "silver") { setDiscountInputSilver(""); }
+  //   if (discountInputDiamond != "" && arrowTarget != "diamond") { setDiscountInputDiamond(""); }
+  //   switch (arrowTarget) {
+  //     case "gold":
+  //       if (discountInputGold != text) {
+  //         setLastSelectedDiscountInput("gold");
+  //         setDiscountInputGold(text);
+  //       }
+  //       break;
+  //     case "bronze":
+  //       if (discountInputBronze != text) {
+  //         setLastSelectedDiscountInput("bronze");
+  //         setDiscountInputBronze(text);
+  //       }
+  //       break;
+  //     case "silver":
+  //       if (discountInputSilver != text) {
+  //         setLastSelectedDiscountInput("silver");
+  //         setDiscountInputSilver(text);
+  //       }
+  //       break;
+  //     case "diamond":
+  //       if (discountInputDiamond != text) {
+  //         setLastSelectedDiscountInput("diamond");
+  //         setDiscountInputDiamond(text);
+  //       }
+  //       break;
+
+  //     default:
+  //       break;
+  //   }
+  // }
   const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
   return (
-    <body className='plans_body_container bg-white'>
-      <div className='plan_cards_container bg-white mt-7'>
+    <body className='plans_body_container bg-[#fff]'>
+
+
+
+      {/* <div className='plan_cards_container bg-[#fff] mt-7'>
         <div className='bronze plan_card'>
           <span className='title'>برنزی</span>
           <hr />
@@ -231,19 +233,21 @@ export default function BuyPlnaModal() {
             <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}></button>
           </div>
         </div>
-      </div>
+      </div> */}
 
 
+
+      <CardPlans plan={plan} setPlan={setPlan}/>
 
 
 
 
 
       <HandleParagraphInfoPlan typePlan={plan.type} indexPlan={plan.planIndex} />
-      <div className='container_plan_message bg-white mt-5 border rounded-lg'>
+      {/* <div className='container_plan_message bg-[#fff] mt-5 border rounded-lg'>
         <img src="/img/modal/footer/planInfoMessage.svg" className='inline-block mr-3' alt="" />
         <span className='py-2.5 mr-3 inline-block text-sm '>با خرید اشتراک 12 ماهه طلایی شما فقط مبلغ 10 ماه رو پرداخت میکنید؛ 2 ماه مهمون سگمنتو باشین</span>
-      </div>
+      </div> */}
     </body>
 
   )
