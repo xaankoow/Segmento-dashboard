@@ -32,15 +32,16 @@ export default function ContentpProduction({ onClickHandler }) {
   //filter from searchBox  in table
 
   const [content, setcontent] = useState([]);
+
+  const loadingState = useSelector((state) => state.loadingState);
+  const dispatch = useDispatch();
   
-  const loadingState = useSelector(state => state.loadingState)
-  const dispatch = useDispatch()
   const handleSetContentProduction = async () => {
     //handle show loadin
     {
       loadingState.ProcessingDelay.push("ContentProductionService");
       loadingState.canRequest = false;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
     try {
       let formdata = new FormData();
@@ -48,81 +49,33 @@ export default function ContentpProduction({ onClickHandler }) {
       formdata.append("limit", 10);
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await ContentProductionService(formdata);
-      // debugger
-      setcontent([...content,data.data]); //5
-          // content.map((item, index) => {
-      //   if (item.includes(searchBoxValue)) { // هنگام ارسال درخواست به وبسرویس کلمه هم ارسال میشه پس شامل اون کلمه هست پس چرا دوباره برسی کنیم؟!
-      //     tableDataFiltered.push(item);
-      data.data.forEach((element, index) => {
-        if (index <= 4) {
-          tableDataFiltered2.push(element);
-        }
-      });
-      setTableData(tableDataFiltered2);
-      setNumber(5);
-      // if (tableDataFiltered2.length < 5) {
-      //   tableDataFiltered2.push(item);
-      // }
-      // }
-      // return
-      // });
+       
+      setcontent([...content,...data.data]);
+      // debugger;
+
     } catch (error) {
       // console.log(error);
     }
     //handle hide loading
     {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "ContentProductionService");
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        (item) => item != "ContentProductionService"
+      );
       loadingState.ProcessingDelay = removeProcessingItem;
       loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
-
   };
-  var [tableData, setTableData] = useState([]);
 
-  var tableDataFiltered = [];
-  var tableDataFiltered2 = [];
-  // content.map((item, index) => {
-  //   if (item.includes(searchBoxValue)) {
-  //     tableDataFiltered.push(item);
-  //     if (tableDataFiltered2.length < 5) {
-  //       tableDataFiltered2.push(item);
-  //     }
-  //   }
-  //   // return
-  // });
-  // debugger
-
-  useEffect(() => {
-    // if (tableDataFiltered2.length!=tableData.length) {
-    //   debugger
-    //   setTableData(tableDataFiltered2);
-    // }
-  }, []);
-
-  var [number, setNumber] = useState(5);
-
-  const addMore = () => {
-    // debugger;
-    tableDataFiltered2 = tableData;
-    for (
-      let i = number;
-      content.length > i + 5 ? i < number + 5 : i < content.length;
-      i++
-    ) {
-      tableDataFiltered2.push(content[i]);
-    }
-    setTableData(tableDataFiltered2);
-    setNumber(number + 5);
-  };
   
-
+  
+console.log(content)
   return (
     <>
       {keyWordShowSaveModal && (
         <Fragment>
           <SaveListModal
-            dataTable={tableData}
+            dataTable={content}
             isContentProduction={true}
             updateButtonHandler={() => {
               if (boxIndex > -1) showUpdatePpUp(true);
@@ -134,7 +87,6 @@ export default function ContentpProduction({ onClickHandler }) {
             activeBoxUpdate={activeBoxUpdate}
             close={() => setKeyWordShowSaveModal(false)}
           />
-          {number ? "" : ""}
         </Fragment>
       )}
       {UpdatePpUp && (
@@ -168,14 +120,14 @@ export default function ContentpProduction({ onClickHandler }) {
           }}
           className="w-[97%] flex items-center gap-2 justify-between"
         />
-
+        
         <div className="flex flex-col  w-[97%]">
           {!searchBoxValue || !searchBoxHandleClick ? (
             <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
           ) : null}
           <div className="flex  justify-between w-full mt-5">
             <Table
-              data={tableData}
+              data={content}
               NothingSearch={
                 !searchBoxValue || !searchBoxHandleClick ? true : false
               }
@@ -187,21 +139,20 @@ export default function ContentpProduction({ onClickHandler }) {
         </div>
       </div>
       <div className=" pb-4">
-
-      <button
-        className={
-          searchBoxValue && searchBoxHandleClick
-            ? "btn-style mr-5 mt-5 flex gap-3"
-            : "bg-lightGray btn-style mr-5 mt-5 flex gap-3"
-        }
-        disabled={searchBoxHandleClick ? false : true}
-        onClick={(e) => {
-          addMore();
-        }}
-      >
-        <img src="/img/dashboard/table/cached.svg" alt="cached" />
-        تولید بیشتر
-      </button>
+        <button
+          className={
+            searchBoxValue && searchBoxHandleClick
+              ? "btn-style mr-5 mt-5 flex gap-3"
+              : "bg-lightGray btn-style mr-5 mt-5 flex gap-3"
+          }
+          disabled={searchBoxHandleClick ? false : true}
+          onClick={(e) => {
+            handleSetContentProduction();
+          }}
+        >
+          <img src="/img/dashboard/table/cached.svg" alt="cached" />
+          تولید بیشتر
+        </button>
       </div>
       {/* {number ? "" : ""} */}
     </>
