@@ -7,7 +7,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getAllWorkSpace } from '../../Redux/Action/workSpace';
 
-const DashboardHeader = ({ setCloseNav }) => {
+const DashboardHeader = ({ setCloseNav,closeNav }) => {
 
     const dispatch = useDispatch()
     const userToken = localStorage.getItem("token");
@@ -97,7 +97,7 @@ const DashboardHeader = ({ setCloseNav }) => {
     return (
         <div className='flex h-full items-center justify-between px-5'>
             <div className='flex items-center gap-7'>
-                <div className='menuimage w-6 h-6 hover:cursor-pointer' onClick={() => setCloseNav()}></div>
+                <div className='menuimage w-6 h-6 hover:cursor-pointer' onClick={() => setCloseNav(!closeNav)}></div>
                 <div className='flex items-center gap-3 hover:cursor-pointer'>
 
                     {/* <div className='Iconimage w-7 h-8'></div> */}

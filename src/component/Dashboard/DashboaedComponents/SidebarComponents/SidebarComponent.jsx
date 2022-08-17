@@ -7,7 +7,7 @@ import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
-export default function SidebarComponent({ closeNav, openMenu }) {
+export default function SidebarComponent({ closeNav }) {
   const [activeIcon, setActiveIcon] = useState(0);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
@@ -19,7 +19,7 @@ export default function SidebarComponent({ closeNav, openMenu }) {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    openMenu();
+    // setCloseNav(true);
   };
 
   // const itemsHoverMenu = [
@@ -42,8 +42,12 @@ export default function SidebarComponent({ closeNav, openMenu }) {
     { title: "پشتیبانی و تیکت", link: "" },
     { title: "انتخاب سرویس", link: "" },
   ];
+
+  console.log("sidebar component")
   return (
     <>
+    {/* {!closeNav?( */}
+
       <div
         className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
         style={{ width: closeNav ? "256px" : "0px" }}
@@ -79,19 +83,12 @@ export default function SidebarComponent({ closeNav, openMenu }) {
           </div>
         ) : null}
         {/* advertisement box */}
-        {/* {!disableAdvertisement && closeNav ? (
-          <div className="bg-secondary h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
-            <img
-              src="/img/dashboard/nav_right/close.svg"
-              alt="close"
-              className="absolute top-2 left-2 cursor-pointer p-1 rounded-[3px] hover:bg-[#F352421A]"
-              onClick={() => setDisableAdvertisement(true)}
-            />
-            <span className="text-[#7D7D7D]">نمونه نوشته داینامیک</span>
-          </div>
-        ) : null} */}
-        <SidebarBaner/>
+        {!disableAdvertisement ? (
+          <SidebarBaner setDisableAdvertisement={setDisableAdvertisement} />
+        ) : null}
       </div>
+    {/* ):null} */}
+
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
         <IconsRight setActive={activeIconHandler} />
         <div className="down">
