@@ -7,7 +7,7 @@ import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
-export default function SidebarComponent({ closeNav, openMenu }) {
+export default function SidebarComponent({ closeNav }) {
   const [activeIcon, setActiveIcon] = useState(0);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
@@ -19,7 +19,7 @@ export default function SidebarComponent({ closeNav, openMenu }) {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    openMenu();
+    // setCloseNav(true);
   };
 
   // const itemsHoverMenu = [
@@ -46,6 +46,8 @@ export default function SidebarComponent({ closeNav, openMenu }) {
   console.log("sidebar component")
   return (
     <>
+    {/* {!closeNav?( */}
+
       <div
         className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
         style={{ width: closeNav ? "256px" : "0px" }}
@@ -85,6 +87,8 @@ export default function SidebarComponent({ closeNav, openMenu }) {
           <SidebarBaner setDisableAdvertisement={setDisableAdvertisement} />
         ) : null}
       </div>
+    {/* ):null} */}
+
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
         <IconsRight setActive={activeIconHandler} />
         <div className="down">

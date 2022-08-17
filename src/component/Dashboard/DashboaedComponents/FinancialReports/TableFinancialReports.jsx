@@ -24,7 +24,7 @@ export default function TableFinancialReports({ title }) {
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
   const [searchFilterOption, setSearchFilterOption] = useState("");
   const [numFilter, setNumFilter] = useState(1);
-       const [handleClickCopy, setHandleClickCopy] = useState(false);
+  const [handleClickCopy, setHandleClickCopy] = useState(false);
 
 
 
@@ -225,28 +225,36 @@ export default function TableFinancialReports({ title }) {
                   <div
                     className={`w-full h-16 border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                   >
+                    {/* عملیات */}
                     <p className=" w-28 text-center">{item.type_text}</p>
+                    {/* وضعیت */}
                     <p className=" w-24 text-center">
                       <span
-                        className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${
-                          item.payment_status_text == "پرداخت ناموفق"
+                        className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text == "پرداخت ناموفق"
                             ? " bg-[#F35242]"
                             : item.payment_status_text == "پرداخت نشده"
-                            ? "bg-yellow"
-                            : "bg-[#10CCAE]"
-                        }`}
+                              ? "bg-yellow"
+                              : "bg-[#10CCAE]"
+                          }`}
                       >
                         {item.payment_status_text}
                       </span>
                     </p>
+                    {/* مبلغ */}
                     <p className=" w-11 text-center">{item.sub_total}</p>
+                    {/* انقضا */}
                     <p className=" w-[68px] text-center">{item.updated_at}</p>
+                    {/* خرید */}
                     <p className=" w-16 text-center">{item.created_at}</p>
+                    {/* نوع اشتراک */}
                     <p className=" w-36 text-center">
-                      {item.description.substring(31, item.description.length)}
+                      {item.description.substring(31, item.description.length).includes("رایگان")==true?"14 روز رایگان":item.description.substring(31, item.description.length)}
                     </p>
+                    {/* شماره فاکتور */}
                     <p className=" w-20 text-center">{item.order_code}</p>
+                    {/* ردیف */}
                     <p className=" w-8 text-center">{index + 1}</p>
+                    {/* انتخاب */}
                     <p className=" w-11 text-center">
                       <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
                         <input
@@ -313,7 +321,7 @@ export default function TableFinancialReports({ title }) {
           </div>
         </div>
       </div>
-      <SetTitleTabBrowser nameSection={"گزارش های مالی"}/>
+      <SetTitleTabBrowser nameSection={"گزارش های مالی"} />
     </div>
   );
 }

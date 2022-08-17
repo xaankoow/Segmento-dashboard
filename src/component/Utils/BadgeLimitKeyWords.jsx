@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { usetLimit } from '../service/userLimit';
 
-export default function BadgeLimitKeyWords({numFont}) {
+export default function BadgeLimitKeyWords({ numFont }) {
 
     const [datas, setDatas] = useState("");
 
@@ -24,15 +24,15 @@ export default function BadgeLimitKeyWords({numFont}) {
         }
     };
 
-    const numStyle=`text-[#7D7D7D] text-[${numFont!=undefined?numFont:"14px"}] pt-[5px] pb-[2px]`;
+    const numStyle = `text-[#7D7D7D] text-[${numFont != undefined ? numFont : "14px"}] pt-[5px] pb-[2px]`;
     return (
         <div className="flex items-center text-[#7D7D7D] bg-[#D9D9D9] rounded  px-2 w-full h-full">
             <span className={numStyle}>
-                {datas.length != 0 && allWords - datas[4].count}
+                {allWords}
             </span>
             <hr className="w-4 bg-gray text-[#7D7D7D] rotate-90" />
             <span className={numStyle}>
-                {allWords}
+                {datas.length != 0 && allWords - datas[4].count}
             </span>
         </div>
     )
