@@ -2,6 +2,7 @@ import { InputError } from "../showInputError";
 
 export const CheckFormat = (type, value, errId) => {
     var CHECK=true;
+    // debugger
     switch (type) {
         case "email":
             let email = /\S+@\S+\.\S+/;
