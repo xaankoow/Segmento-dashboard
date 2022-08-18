@@ -43,7 +43,6 @@ export default function SidebarComponent({ closeNav }) {
     { title: "انتخاب سرویس", link: "" },
   ];
 
-  console.log("sidebar component")
   return (
     <>
     {/* {!closeNav?( */}

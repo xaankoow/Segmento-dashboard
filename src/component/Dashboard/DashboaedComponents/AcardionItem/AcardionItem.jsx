@@ -156,7 +156,7 @@ export default function AcardionItem() {
   return (
     <>
       {data.map((item, index) => {
-        return (
+       return (
           <div className="" key={index}>
             <div className="flex items-center justify-between m-0 p-0">
               <div
