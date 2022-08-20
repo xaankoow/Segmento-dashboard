@@ -9,7 +9,7 @@ import AuthInput from "../../../Auth/authInput/AuthInput";
 //   InsertDropdown,
 //   AlignDropdown,
 // } from "verbum";
-import { RegisterUserAction} from "../../../../component/Redux/Action";
+import { RegisterUserAction } from "../../../../component/Redux/Action";
 import SelectBox from "./components/selectBox/SelectBox";
 import PopUp from "../../../Utils/PopUp/PopUp";
 import { toast } from "react-toastify";
@@ -29,6 +29,7 @@ import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import { TextButton } from "../../../../pages/register/Register";
 import { ClearInputs } from "../../../Utils/ClearInputs/ClearInputs";
+import { CheckFormat } from "../../../Utils/Auth/CheckFormtValue";
 export default function EditUserProfile() {
   const { canRequest } = useSelector((state) => state.loadingState);
 
@@ -148,24 +149,24 @@ export default function EditUserProfile() {
         selectBoxValue4
           ? selectBoxValue4
           : pastData
-          ? pastData.website_traffic
-          : 1
+            ? pastData.website_traffic
+            : 1
       );
       formdata.append(
         "role_in_company",
         selectBoxValue5
           ? selectBoxValue5
           : pastData
-          ? pastData.role_in_company
-          : 1
+            ? pastData.role_in_company
+            : 1
       );
       formdata.append(
         "dating_method",
         selectBoxValue6
           ? selectBoxValue6
           : pastData
-          ? pastData.dating_method
-          : 1
+            ? pastData.dating_method
+            : 1
       );
       // const { data, status } = await keywordService(searchBoxValue);
       const { data } = await editProfile(formdata);
@@ -226,6 +227,7 @@ export default function EditUserProfile() {
   Object.keys(selectDatas).map((item) => {
     data.push(selectDatas[item]);
   });
+
   // edit password api
   const handleCurrentPass = (e) => {
     setcurrentPass(e.target.value);
@@ -237,26 +239,52 @@ export default function EditUserProfile() {
     setconfrimPass(e.target.value);
   };
 
-  const handleUpdatePassword = async () => {
-    try {
-      let formdata = new FormData();
-      formdata.append("last_pass", currentPass);
-      formdata.append("password", newPass);
-      formdata.append("password_confirmation", confrimPass);
-      // const { data, status } = await keywordService(searchBoxValue);
-      const { data, status } = await editPassword(formdata);
-      // setcontent(data.data); //5
 
-      if (data.errors.length != 0) {
-        toast.error(data.errors[0]);
-      } else {
-        setUpdatePass(true);
+  const handleUpdatePassword = async () => {
+
+    if (CheckFormat("password", newPass, "errEditUserProfilePassword") && CheckFormat("passwordConfirm", { pass1: newPass, pass2: confrimPass }, "errEditUserProfilePasswordConfirm")) {
+
+      //handle show loadin
+      {
+        loadingState.ProcessingDelay.push("editPassword");
+        loadingState.canRequest = false;
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
       }
-      setForceUpdate(!forceUpdates);
-    } catch (error) {
-      // console.log(error);
-      toast.error("لطفا فیلد ها را با دقت پر کنید");
+
+      try {
+        let formdata = new FormData();
+        formdata.append("last_pass", currentPass);
+        formdata.append("password", newPass);
+        formdata.append("password_confirmation", confrimPass);
+        // const { data, status } = await keywordService(searchBoxValue);
+        const { data, status } = await editPassword(formdata);
+        // setcontent(data.data); //5
+
+        if (data.errors.length != 0) {
+          toast.error(data.errors[0]);
+        } else {
+          setUpdatePass(true);
+        }
+        setForceUpdate(!forceUpdates);
+      } catch (error) {
+        // console.log(error);
+        toast.error("لطفا فیلد ها را با دقت پر کنید");
+      }
+
+      //handle hide loading
+      {
+        var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "editPassword");
+        loadingState.ProcessingDelay = removeProcessingItem;
+        loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      }
+
     }
+
+
+
+
+
   };
 
   const userToken = localStorage.getItem("token");
@@ -292,7 +320,7 @@ export default function EditUserProfile() {
           setUserImage={setUserImage}
           userImage={
             (userState.userData.user != undefined) &
-            (userState.userData.user.img != "")
+              (userState.userData.user.img != "")
               ? userState.userData.user.img
               : "/../img/dashboard/userProfile/profileImage.png"
           }
@@ -324,7 +352,7 @@ export default function EditUserProfile() {
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
 
-                // userState.image != "" ? userState.image : userState.userData.user.image
+              // userState.image != "" ? userState.image : userState.userData.user.image
               />
               {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
@@ -452,7 +480,7 @@ export default function EditUserProfile() {
                   typeInput="password"
                   width={"100%"}
                   isPassword={true}
-                  handleChange={handleCurrentPass}
+                  handleChange={setcurrentPass}
                 />
                 <AuthInput
                   textLabelInput="گذرواژه جدید"
@@ -460,7 +488,8 @@ export default function EditUserProfile() {
                   width={"100%"}
                   isPassword={true}
                   errorTextId="errEditUserProfilePassword"
-                  reduxHandleChange={handleNewtPass}
+                  handleChange={setnewPass}
+                // reduxHandleChange={handleNewtPass}
                 />
                 <AuthInput
                   textLabelInput=" تکرار گذرواژه جدید "
@@ -468,8 +497,9 @@ export default function EditUserProfile() {
                   width={"100%"}
                   isPassword={true}
                   errorTextId="errEditUserProfilePasswordConfirm"
-                  reduxHandleChange={handleConfrimationPass}
-                /> 
+                  handleChange={setconfrimPass}
+                // reduxHandleChange={handleConfrimationPass}
+                />
                 <div className="flex w-full justify-end gap-7">
                   <button
                     className="btn-secondary"

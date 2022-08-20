@@ -26,7 +26,7 @@ export default function PlanStatus() {
 
   var startDate= userState.userData.package!=undefined && new Date(moment(userState.userData.package.start).format("YYYY/M/D")) ;
   var expiryDate= userState.userData.package!=undefined && new Date(moment(userState.userData.package.end).format("YYYY/M/D")) ;
-  
+  // console.log(startDate)
   var timeSecDaysLeft = Math.abs(expiryDate-nowDate);
   var timeSecDays = Math.abs(expiryDate-startDate);
 
@@ -96,7 +96,8 @@ export default function PlanStatus() {
     datasets: [
       {
         label: "# of Votes",
-        data: [30, 70],
+        // data: [30, 70],
+        data: [datas.length>0 && allWords- datas[3].count,datas.length>0 && datas[3].count],
         cutout: 36,
         // cutout: 38,
         // width:35,
@@ -122,7 +123,8 @@ export default function PlanStatus() {
     datasets: [
       {
         label: "# of Votes",
-        data: [30, 70],
+        // data: [30, 70],
+        data: [datas.length>0 && allWords - datas[4].count,datas.length>0 && datas[4].count],
         cutout: 36,
         // cutout: 38,
         // width:35,
@@ -142,6 +144,9 @@ export default function PlanStatus() {
       },
     ],
   };
+
+  // console.log(new Date(moment('2022/08/18').locale("fa").format("YYYY/M/D")))
+  // console.log(userState.userData.package != undefined && moment("2022/08/18").locale("fa").format("YYYY/M/D"))
 
   return (
     <div className="">

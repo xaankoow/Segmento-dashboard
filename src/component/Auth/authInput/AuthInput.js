@@ -80,7 +80,7 @@ export default function AuthInput({
           onChange={(e) => {
            
                handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow) ;
-            handleChange!=undefined&&handleChange(e)
+               handleChange!=undefined&&handleChange(e.target.value)
             setInputValue(e.target.value);
              workSpaceTypeState != undefined& reduxHandleChange!=undefined?
               dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) :
