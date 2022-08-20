@@ -4,6 +4,26 @@
     right: 6px;
     top: 50px;
     font-size: 10px;
+    font-weight: 700;
     color: #C42B1C;
     unicode-bidi: plaintext;
+}
+
+.input-wrapper input+.info {
+    position: absolute;
+    right: 6px;
+    top: 50px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #7D7D7D;
+    unicode-bidi: plaintext;
+}
+
+.input-wrapper input:focus+.info {
+    display: inline-block;
+}
+
+.input-wrapper input:focus+.error_down_input {
+    display: none !important;
+    width: 600px !important;
 }

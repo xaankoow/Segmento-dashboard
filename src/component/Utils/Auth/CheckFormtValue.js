@@ -4,11 +4,18 @@ export const CheckFormat = (type, value, errId) => {
     var CHECK=true;
     // debugger
     switch (type) {
+        case "fullName":
+            // let name = /\S+@\S+\.\S+/;
+            CHECK = value.length>=2?true:false;
+            if (!CHECK) {
+                InputError(errId, "بهتر است نام و نام خانوادگی‌تان را کامل وارد کنید.")
+            }
+            break;
         case "email":
             let email = /\S+@\S+\.\S+/;
             CHECK = email.test(value);
             if (!CHECK) {
-                InputError(errId, "فرمت ایمیل وارد شده صحیح نمیباشد")
+                InputError(errId, "فرمت ایمیل اشتباه است.")
             }
             break;
         case "password":
@@ -21,7 +28,7 @@ export const CheckFormat = (type, value, errId) => {
 
             CHECK = value.pass1 == value.pass2 ? true : false;
             if (!CHECK) {
-                InputError(errId, "گذرواژه هخوانی ندارد")
+                InputError(errId, "گذرواژه‌‌ها یکی نیستند.")
             }
             break;
         default:

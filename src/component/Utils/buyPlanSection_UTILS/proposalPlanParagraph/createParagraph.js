@@ -46,7 +46,7 @@ export const paragraph = (typePlan, indexPlan) => {
         case "gold":
             return "اگر اشتراک الماسی خریداری کنید به امکانات بیشتری دسترسی خواهید داشت"
         case "diamond":
-            return ""
+            return "اگر اشتراک 3 ماهه خریداری کنید روی قیمت نهایی محصول 15% تخفیف معادل ... هزار تومان دریافت می‌کنید."
         default:
             break;
     }

@@ -21,6 +21,7 @@ export default function Register() {
               width={"100%"}
               typeInput="text"
               reduxHandleChange={setNameRedux}
+              errorTextId="errRejesterFormatFullName"
             />
             <AuthInput
               textLabelInput="ایمیل"
@@ -34,6 +35,7 @@ export default function Register() {
                 width={"100%"}
                 typeInput="password"
                 isPassword={true}
+                errorTextId="errRejesterPassword"
                 reduxHandleChange={setPasswordRedux}
               />
               <AuthInput
