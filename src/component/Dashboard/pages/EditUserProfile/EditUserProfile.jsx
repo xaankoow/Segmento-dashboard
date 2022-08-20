@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import ProfileInformation from "./components/profileInfo/ProfileInformation";
 import AuthInput from "../../../Auth/authInput/AuthInput";
@@ -28,6 +28,7 @@ import { showToast } from "../../../Utils/toastifyPromise";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import { TextButton } from "../../../../pages/register/Register";
+import { ClearInputs } from "../../../Utils/ClearInputs/ClearInputs";
 export default function EditUserProfile() {
   const { canRequest } = useSelector((state) => state.loadingState);
 
@@ -65,6 +66,8 @@ export default function EditUserProfile() {
   }
   var user_name = "";
   var user_email = "";
+  const nameEmpty=useRef(null)
+  const familyEmpty=useRef(null)
   const handleSelectBox1 = (e) => {
     setSelectBoxValue1(e.target.value);
   };
@@ -168,8 +171,8 @@ export default function EditUserProfile() {
       const { data } = await editProfile(formdata);
       if ((data.code == 200) & (data.status == true)) {
         dispatch(coreUser());
-        console.log(data);
         toast.success("اطلاعات شما با موفقیت ویرایش شد");
+        ClearInputs()
         setForceUpdate(!forceUpdates);
       }
       // setcontent(data.data); //5
@@ -346,6 +349,7 @@ export default function EditUserProfile() {
                       classes={"w-[100%]"}
                       typeInput="text"
                       handleChange={handleNameInput}
+                      ref={nameEmpty}
                     />
 
                     <AuthInput
@@ -353,6 +357,7 @@ export default function EditUserProfile() {
                       classes={"w-[100%]"}
                       typeInput="text"
                       handleChange={handlefamilyInput}
+                      ref={familyEmpty}
                     />
                   </div>
                   <AuthInput
@@ -414,7 +419,7 @@ export default function EditUserProfile() {
                       select={pastData ? pastData.dating_method : 0}
                     />{" "}
                     <div className="flex justify-end gap-7 mt-9">
-                      <button className="btn-secondary">انصراف </button>
+                      <button className="btn-secondary" onClick={()=>ClearInputs()}>انصراف </button>
                       <AuthButton
                         handlerClick={handleSetNewProfile}
                         setOnclickValue={userState.image[0]}

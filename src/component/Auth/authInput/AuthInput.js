@@ -21,8 +21,8 @@ export default function AuthInput({
   handleArrowPlan,
   targePlanArrow,
   workSpaceTypeState,
-  errorTextId
-
+  errorTextId,
+   ref
 }) {
   // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)  
   // const validateEmail = (email) => {
@@ -61,6 +61,7 @@ export default function AuthInput({
           //     : notCheckValue && "notCheckValue"
           // }
           name={typeInput}
+          ref={ref}
           disabled={disable}
           className={`${classes}  ${disable==true&&" bg-[#D9D9D9] text-[#FCFCFB]"}`}
           value={value}
