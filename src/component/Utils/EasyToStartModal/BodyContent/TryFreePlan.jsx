@@ -24,7 +24,7 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
           <hr />
           <div><p><span></span>لایت هاوس فارسی</p> </div>
           <hr />
-          <div><Link to={""} className=" inline-block w-full text-right text-sm text-[#0A65CD] underline py-3"><span></span>مشاهده تمامی امکانات سگمنتو</Link> </div>
+          <div><a href='https://segmento.ir/pricing/' className=" inline-block w-full text-right text-sm text-[#0A65CD] underline py-3"><span></span>مشاهده تمامی امکانات سگمنتو</a> </div>
         </div>
       </div>
       <div className='btn_read_policy_container'>
