@@ -6,6 +6,7 @@ import AuthInput from "../../component/Auth/authInput/AuthInput";
 import Timer from "../../component/Auth/timer/Timer";
 import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { changePasswordAction, checkVerifyEmailForgotPasswordAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
+import ToolTip from "../../component/Utils/ToolTip";
 import { TextButton } from "../register/Register";
 import "./forgotpass.css";
 
@@ -13,7 +14,7 @@ export default function Forgetpass() {
 
   const { forgotPasswordStep, handleResendCode } = useSelector(state => state.userState)
 
-
+  const [showToolTip, setShowToolTip] = useState(true);
 
 
   useEffect(() => {
@@ -21,32 +22,20 @@ export default function Forgetpass() {
 
       let myInterval = setTimeout(() => {
         if (seconds > 0) {
-          // secondsTimerValue=secondsTimerValue-1;
           setSeconds(seconds - 1);
         }
-        // console.log(seconds)
-        // console.log(minutes)
         if (seconds === 0) {
           if (minutes === 0) {
             clearInterval(myInterval);
-            // clearInterval(forceUpdateInterval);
             setDisabledCodeButton(false);
             setMinutes(1);
             setSeconds(59);
           } else {
             minutesTimerValue = minutesTimerValue - 1;
             secondsTimerValue = 59;
-            // setMinutes(minutes - 1);
-            // setSeconds(59);
           }
         }
       }, 1000);
-      // let forceUpdateInterval = setInterval(() => {
-      //   setForceUpdate(forceUpdate+1)
-      // }, 1000);
-      // return () => {
-      //   clearInterval(myInterval);
-      // };
     }
   });
 
@@ -61,7 +50,7 @@ export default function Forgetpass() {
   // timer
   var minutesTimerValue = 1;
   var secondsTimerValue = 59;
-  // const [forceUpdate, setForceUpdate] = useState(1);
+  
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(59);
   // value of input
@@ -133,7 +122,15 @@ export default function Forgetpass() {
               </span>
             </div>
             <div className="items-center flex justify-between mt-10 mb-5">
-              <div className="w-50">
+              <div className="w-50"
+              data-tip='کد را با این ایمیل دریافت می‌کنید' 
+              data-type="light" 
+              data-place="top"
+              onMouseEnter={() => setShowToolTip(true)} 
+              onMouseLeave={() => {
+                setShowToolTip(false);
+                setTimeout(() => setShowToolTip(true), 0);
+              }}>
                 <AuthInput
                   textLabelInput="ایمیل"
                   classes={`forgot_password_input`}
@@ -225,7 +222,15 @@ export default function Forgetpass() {
                 </TextButton.Provider>
               </div>
             </div>
-            <div className="flex gap-4 justify-between my-10">
+            <div className="flex gap-4 justify-between my-10"
+             data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.' 
+             data-type="light" 
+             data-place="top"
+             onMouseEnter={() => setShowToolTip(true)} 
+             onMouseLeave={() => {
+               setShowToolTip(false);
+               setTimeout(() => setShowToolTip(true), 0);
+             }}>
               <AuthInput
                 textLabelInput="گذرواژه "
                 classes={"forgot_password_input"}
@@ -268,7 +273,15 @@ export default function Forgetpass() {
               </TextButton.Provider>
               <div>
                 <Link to={"/dashboard/accountOperations/login"}>
-                  <span className="underline text-sm underline-offset-8">حساب کاربری ندارم!</span>
+                  <span className="underline text-sm underline-offset-8"
+                   data-tip='برای ساخت حساب کلیک کنید.' 
+                   data-type="light" 
+                   data-place="top"
+                   onMouseEnter={() => setShowToolTip(true)} 
+                   onMouseLeave={() => {
+                     setShowToolTip(false);
+                     setTimeout(() => setShowToolTip(true), 0);
+                   }}>حساب کاربری ندارم!</span>
                 </Link>
               </div>
             </div>
@@ -279,6 +292,7 @@ export default function Forgetpass() {
           </div>
         </div>
       </div>
+      {showToolTip && <ToolTip />}
     </div>
   );
 }

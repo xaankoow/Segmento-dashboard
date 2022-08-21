@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
@@ -12,11 +12,15 @@ import {
   setAuth3Redux,
   setAuth4Redux,
 } from "../../component/Redux/Action";
+import ToolTip from "../../component/Utils/ToolTip";
 import { TextButton } from "../register/Register";
 // css
 import "./validateEmail.css";
 
 export default function ValidateEmail() {
+
+  const [showToolTip, setShowToolTip] = useState(true);
+
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col items-center w-full justify-center overflow-hidden">
@@ -87,6 +91,14 @@ export default function ValidateEmail() {
               to={"#"}
               onClick={() => dispatch(sendCodEmailAction())}
               className="underline underline-offset-4 absolute top-0 left-0 py-2"
+              data-tip='با کلیک‌کردن، کد جدید دریافت می‌کنید.' 
+              data-type="light" 
+              data-place="top"
+              onMouseEnter={() => setShowToolTip(true)} 
+              onMouseLeave={() => {
+                setShowToolTip(false);
+                setTimeout(() => setShowToolTip(true), 0);
+              }}
             >
               دریافت مجدد کد
             </Link>
@@ -97,6 +109,7 @@ export default function ValidateEmail() {
           <img src="/img/fi-rr-life-ring.svg" alt="fi-rr-life-ring.svg" />
         </div>
       </div>
+      {showToolTip && <ToolTip />}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AuthButton from '../../component/Auth/authButton/AuthButton'
 import AuthInput from '../../component/Auth/authInput/AuthInput'
 // import Authmenu from '../../component/Auth/authNavMenu/Authmenu'
@@ -7,8 +7,12 @@ import { TextButton } from '../register/Register'
 import { Link } from 'react-router-dom';
 import { loginUserAction, setEmailRedux, setNameRedux, setPasswordRedux } from '../../component/Redux/Action';
 import Nav from '../../component/Dashboard/DashboaedComponents/navMenu/Nav';
+import ToolTip from '../../component/Utils/ToolTip';
 
 export default function Login() {
+
+  const [showToolTip, setShowToolTip] = useState(true);
+
   return (
     <div className="flex flex-col items-center w-full justify-center overflow-hidden">
       <Nav path={"register"} />
@@ -27,7 +31,15 @@ export default function Login() {
                 </button>
               </div>
               <Link to={"/dashboard/accountOperations/forgotPassword"}>
-                <div>
+                <div
+                data-tip='برای بازیابی گذرواژه کلیک کنید.' 
+                data-type="light" 
+                data-place="top"
+                onMouseEnter={() => setShowToolTip(true)} 
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}>
                   <span className='underline text-sm underline-offset-8'> برای ورود به کمک نیاز دارم.   </span>
                 </div>
               </Link>
@@ -40,6 +52,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      {showToolTip && <ToolTip />}
     </div>
   )
 }
