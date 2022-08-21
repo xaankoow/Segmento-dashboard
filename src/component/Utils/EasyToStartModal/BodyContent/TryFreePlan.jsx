@@ -34,9 +34,10 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
             <form className=' flex shrink w-28 grow'>
 
             
-              
-              <Checkbox  id="readPolicyEasyToStart"  checked={lockNextStep} handleClick={handleCheckBoxClick} label={"قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم ."}/>
-
+            <label className=' text-[#083C78] pointer-events-auto relative translate-y-0 cursor-pointer'>
+              {/* <Checkbox  id="readPolicyEasyToStart"  checked={lockNextStep} handleClick={handleCheckBoxClick} label={"قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم ."}/> */}
+             <input type={"radio"} id="readPolicyEasyToStart"  checked={lockNextStep} onChange={handleCheckBoxClick} />
+              قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم . </label>
             </form>
           {/* </div> */}
           <AuthButton textButton={"خرید اشتراک"} handlerClick={setStepModal} setOnclickValue={1} />

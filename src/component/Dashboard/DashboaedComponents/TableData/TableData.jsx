@@ -9,7 +9,7 @@ export default function Table({
   WordsSearcher,
   contentsProduction,
   openModal,
-  iskeyWord
+  iskeyWord,
 }) {
   const [selectColumnTitle, setSelectColumnTitle] = useState("انتخاب");
   const [handleClickButton, setHandleClickButton] = useState(false);
@@ -17,7 +17,7 @@ export default function Table({
   const [handleClickCopyIndex, SetHandleCopyIndex] = useState(false);
   const [copyItem, setCopyItem] = useState([]);
   // row of table
- 
+
   const [activeRow, setActiveRow] = useState(0);
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set className name when checkbox is checking
@@ -31,7 +31,6 @@ export default function Table({
       setSelectColumnTitle("انتخاب");
     }
   };
-
 
   // console.log(copyItem.length);
   const groupIt = (array) => {
@@ -63,21 +62,25 @@ export default function Table({
   const radioButtonHandler = (e) => {
     setRadioClickedHandler(e.target.value);
   };
-  if (radioClickedHandler === "1") {
+  if (radioClickedHandler === "1" ) {
     comboboxFiltered = data.filter((item) => {
       return item;
     });
-  } else if (radioClickedHandler === "2") {
+  } else if (radioClickedHandler === "2" && secoundSearchBoxValue) {
     comboboxFiltered = data.filter((item) => {
       return item.includes(secoundSearchBoxValue);
     });
-  } else if (radioClickedHandler === "3") {
+  } else if (radioClickedHandler === "3" && secoundSearchBoxValue) {
     comboboxFiltered = data.filter((item) => {
       return item == secoundSearchBoxValue;
     });
-  } else if (radioClickedHandler === "4") {
+  } else if (radioClickedHandler === "4" && secoundSearchBoxValue) {
     comboboxFiltered = data.filter((item) => {
       return !item.includes(secoundSearchBoxValue);
+    });
+  }else{
+    comboboxFiltered = data.filter((item) => {
+      return item;
     });
   }
   const secoundSearchBoxChangeHandler = (e) => {
@@ -129,22 +132,23 @@ export default function Table({
     }
     return myListOutput;
   }
-const HandleCheckBoxClick=(e,item) => {
+  const HandleCheckBoxClick = (e, item) => {
     if (e.target.checked) {
       setCopyItem([...copyItem, item]);
       // console.log(copyItem);
       // console.log(e.target.checked);
     } else {
-      setCopyItem(
-        copyItem.filter((copyItems) => copyItems != item)
-      );
+      setCopyItem(copyItem.filter((copyItems) => copyItems != item));
       // console.log(copyItem);
     }
 
-    handleCheckingInput(e.target.checked,item);
-  }
+    handleCheckingInput(e.target.checked, item);
+  };
   return (
-    <div className=" flex grow flex-col border border-[#D9D9D9] p-0 " id="TABLE">
+    <div
+      className=" flex grow flex-col border border-[#D9D9D9] p-0 "
+      id="TABLE"
+    >
       <div className="min-w-full">
         <div className="flex items-center justify-between bg-[#FCFCFB] w-full px-2">
           <div className="flex gap-5">
@@ -164,14 +168,14 @@ const HandleCheckBoxClick=(e,item) => {
             >
               <span
                 className={
-                  copyItem.length > 0 & handleClickCopy
+                  (copyItem.length > 0) & handleClickCopy
                     ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#ffffff] -top-11"
                     : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
                 }
               >
                 کپی شد!
               </span>
-              {copyItem.length > 0?"کپی":"انتخاب"}
+              {copyItem.length > 0 ? "کپی" : "انتخاب"}
             </div>
             <div
               className={
@@ -189,8 +193,7 @@ const HandleCheckBoxClick=(e,item) => {
                   : "text-sm font-medium text-gray-900 pr-2  text-right"
               }
             >
-              {iskeyWord ? "کلمه کلیدی":" ایده های پیشنهادی"}
-             
+              {iskeyWord ? "کلمه کلیدی" : " ایده های پیشنهادی"}
             </div>
           </div>
           <div className="flex gap-4 items-center">
@@ -215,11 +218,13 @@ const HandleCheckBoxClick=(e,item) => {
               </div>
             )}
             {WordsSearcher && (
-              <KeyWordsSearch
-                dataItems={comboboxFiltered}
-                secoundSearch={secoundSearchBoxChangeHandler}
-                radioClickedHandler={radioButtonHandler}
-              />
+              <div className="w-[334px]">
+                <KeyWordsSearch
+                  dataItems={comboboxFiltered}
+                  secoundSearch={secoundSearchBoxChangeHandler}
+                  radioClickedHandler={radioButtonHandler}
+                />
+              </div>
             )}
             <div className="text-sm font-medium text-gray-900 pr-2 py-4 text-right relative">
               <span
@@ -243,10 +248,7 @@ const HandleCheckBoxClick=(e,item) => {
                 disabled={NothingSearch ? true : false}
                 onClick={() => {
                   setHandleClickButton(true);
-                  navigator.clipboard.writeText(
-                    createListOutput()
-                   
-                  );
+                  navigator.clipboard.writeText(createListOutput());
                   setTimeout(() => {
                     setHandleClickButton(false);
                   }, 500);
@@ -273,7 +275,6 @@ const HandleCheckBoxClick=(e,item) => {
             id="table"
           >
             {filteredDatas.map((item, index) => {
-              
               let letterArray = [""];
               return (
                 <>
@@ -312,7 +313,7 @@ const HandleCheckBoxClick=(e,item) => {
                             // console.log(copyItem);
                           }
 
-                          handleCheckingInput(e.target.checked,item);
+                          handleCheckingInput(e.target.checked, item);
                         }}
                       />
                     </div>

@@ -58,6 +58,7 @@ export default function AuthInput({
           maxlength={maxlength}
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
+          ref={ref}
           disabled={disable}
           className={`${classes}  ${disable == true && " bg-[#D9D9D9] text-[#FCFCFB]"}`}
           value={value}
