@@ -26,6 +26,7 @@ import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyP
 import WorkSpaceReport from "./component/Dashboard/DashboaedComponents/workSpace/workSpaceReport";
 import Page404 from "./component/Utils/Error404/page404";
 import { usetLimit } from "./component/service/userLimit";
+import LandingPage from "./component/Utils/landingPage/landingPage";
 
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
@@ -94,6 +95,8 @@ export default function App() {
             }>
             </Route>
           </Route>
+          <Route path="/payment*" element={<LandingPage/>} />
+            
         </Routes>
         {background != "" && (
           <Routes>
