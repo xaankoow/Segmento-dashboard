@@ -37,7 +37,7 @@ export default function App() {
     resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
   }, [resultSetWorkSpace.reportStatus])
 
-
+ 
   const location = useLocation();
   const background = location.state && location.state.background;
 
@@ -77,7 +77,7 @@ export default function App() {
             <Route path="*" element={
               (<>
                 <Routes location={background || location}>
-                  <Route path="*" element={<DashboardBody />}>
+                  <Route path="*" element={<DashboardBody/>}>
                     <Route path="userProfile" element={<EditUserProfile />} />
                     <Route path="planStatus" element={<PlanStatus />} />
                     <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />

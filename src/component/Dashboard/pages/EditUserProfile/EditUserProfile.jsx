@@ -447,7 +447,7 @@ export default function EditUserProfile() {
                       select={pastData ? pastData.dating_method : 0}
                     />{" "}
                     <div className="flex justify-end gap-7 mt-9">
-                      <button className="btn-secondary" onClick={()=>ClearInputs()}>انصراف </button>
+                      <button className="btn-secondary" onClick={ClearInputs}>انصراف </button>
                       <AuthButton
                         handlerClick={handleSetNewProfile}
                         setOnclickValue={userState.image[0]}

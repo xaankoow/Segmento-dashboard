@@ -8,7 +8,7 @@ import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/Al
 import SetTitleTabBrowser from '../SetTitleTabBrowser'
 
 export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
-  const [stepModal, setStepModal] = useState(3);
+  const [stepModal, setStepModal] = useState(1);
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
   const [packageUuid, setPackageUuid] = useState("")

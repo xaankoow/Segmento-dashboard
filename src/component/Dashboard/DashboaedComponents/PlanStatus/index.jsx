@@ -18,24 +18,24 @@ export default function PlanStatus() {
 
   var moment = require("jalali-moment");
 
-  const allWords=100;
+  const allWords = 100;
 
   const userState = useSelector((state) => state.userState);
 
   var nowDate = new Date();
 
-  var startDate= userState.userData.package!=undefined && new Date(moment(userState.userData.package.start).format("YYYY/M/D")) ;
-  var expiryDate= userState.userData.package!=undefined && new Date(moment(userState.userData.package.end).format("YYYY/M/D")) ;
+  var startDate =
+    userState.userData.package != undefined &&
+    new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
+  var expiryDate =
+    userState.userData.package != undefined &&
+    new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
   // console.log(startDate)
-  var timeSecDaysLeft = Math.abs(expiryDate-nowDate);
-  var timeSecDays = Math.abs(expiryDate-startDate);
+  var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
+  var timeSecDays = Math.abs(expiryDate - startDate);
 
-
-  var numberOfDaysLeft=Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24))
-  var numberOfDays=Math.ceil(timeSecDays / (1000 * 60 * 60 * 24))
-  
-
-
+  var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
+  var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
 
   var user_package_title = "";
   var package_end_dates = "";
@@ -56,7 +56,6 @@ export default function PlanStatus() {
     try {
       const { data, status } = await usetLimit();
       setDatas(data.data); //5
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -64,18 +63,23 @@ export default function PlanStatus() {
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const content=datas.length>0 &&  datas[3].count;
-  const keyword=datas.length>0 &&  datas[4].count;
-  const dateExColor=datas.length>0 &&  datas[4].count;
+  const content = datas.length > 0 && datas[3].count;
+  const keyword = datas.length > 0 && datas[4].count;
+  const dateExColor = datas.length > 0 && datas[4].count;
   const data = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
         // data: [numberOfDays,numberOfDaysLeft],
-        data: [numberOfDays-numberOfDaysLeft,numberOfDaysLeft],
+        data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         cutout: 50,
-        backgroundColor: content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        backgroundColor:
+          numberOfDays && numberOfDaysLeft <= numberOfDays / 3
+            ? ["#D9D9D9", "#F35242"]
+            : numberOfDaysLeft && numberOfDaysLeft <= numberOfDays / 2
+            ? ["#D9D9D9", "#FFCE47"]
+            : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 7,
         // borderColor: [
@@ -97,12 +101,20 @@ export default function PlanStatus() {
       {
         label: "# of Votes",
         // data: [30, 70],
-        data: [datas.length>0 && allWords- datas[3].count,datas.length>0 && datas[3].count],
+        data: [
+          datas.length > 0 && allWords - datas[3].count,
+          datas.length > 0 && datas[3].count,
+        ],
         cutout: 36,
         // cutout: 38,
         // width:35,
         // height:35,
-        backgroundColor:content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        backgroundColor:
+          content && content <= allWords / 3
+            ? ["#D9D9D9", "#F35242"]
+            : content && content <= allWords / 2
+            ? ["#D9D9D9", "#FFCE47"]
+            : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -124,12 +136,20 @@ export default function PlanStatus() {
       {
         label: "# of Votes",
         // data: [30, 70],
-        data: [datas.length>0 && allWords - datas[4].count,datas.length>0 && datas[4].count],
+        data: [
+          datas.length > 0 && allWords - datas[4].count,
+          datas.length > 0 && datas[4].count,
+        ],
         cutout: 36,
         // cutout: 38,
         // width:35,
         // height:35,
-        backgroundColor:keyword &&  keyword < 20 ?  ["#D9D9D9", "#F35242"] :keyword && keyword < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        backgroundColor:
+          keyword && keyword < 20
+            ? ["#D9D9D9", "#F35242"]
+            : keyword && keyword < 50
+            ? ["#D9D9D9", "#FFCE47"]
+            : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -184,7 +204,10 @@ export default function PlanStatus() {
               >
                 <div className="flex flex-row justify-between">
                   <span>تاریخ خرید اشتراک</span>
-                  {userState.userData.package != undefined && moment(userState.userData.package.start).locale("fa").format("YYYY/M/D")}
+                  {userState.userData.package != undefined &&
+                    moment(userState.userData.package.start)
+                      .locale("fa")
+                      .format("YYYY/M/D")}
                 </div>
 
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
@@ -192,8 +215,10 @@ export default function PlanStatus() {
                 <div className="flex flex-row justify-between ">
                   <span>تاریخ اتمام اشتراک</span>
                   <span>
-                    {userState.userData.package != undefined && moment(userState.userData.package.end).locale("fa").format("YYYY/M/D")}
-
+                    {userState.userData.package != undefined &&
+                      moment(userState.userData.package.end)
+                        .locale("fa")
+                        .format("YYYY/M/D")}
 
                     {/* {package_end_dates && moment(package_end_dates.substring(0, 10))
                       .locale("fa")
@@ -205,7 +230,9 @@ export default function PlanStatus() {
 
                 <div className="flex flex-row justify-between ">
                   <span>روز های باقی مانده</span>
-                  <span>{numberOfDaysLeft} روز</span>
+                  <span>
+                    {userState.userData.package && numberOfDaysLeft} روز
+                  </span>
                 </div>
 
                 <button
@@ -235,7 +262,7 @@ export default function PlanStatus() {
 
               <div className="mt-7 w-[143px] h-[143px] float-left relative mx-auto">
                 <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center z-50">
-                  {numberOfDaysLeft}
+                  {userState.userData.package && numberOfDaysLeft}
                   <br />
                   روز باقی مانده
                 </div>
@@ -313,22 +340,23 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                    {allWords}
+                      {allWords}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                  {datas.length>0 && allWords - datas[4].count}
+                      {datas.length > 0 && allWords - datas[4].count}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                    {datas.length>0 ? datas[4].count : ""}
+                      {datas.length > 0 ? datas[4].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuetwo"></span> {datas.length>0 ? datas[4].count : ""} <br />
+                    <span id="valuetwo"></span>{" "}
+                    {datas.length > 0 ? datas[4].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -354,22 +382,23 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                    {allWords}
+                      {allWords}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length>0 ? allWords- datas[3].count : ""}
+                      {datas.length > 0 ? allWords - datas[3].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                    {datas.length>0 ? datas[3].count : ""}
+                      {datas.length > 0 ? datas[3].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
-                    <span id="valuethree"></span> {datas.length>0 ? datas[3].count : ""} <br />
+                    <span id="valuethree"></span>{" "}
+                    {datas.length > 0 ? datas[3].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">

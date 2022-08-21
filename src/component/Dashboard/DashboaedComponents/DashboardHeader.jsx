@@ -6,12 +6,14 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getAllWorkSpace } from '../../Redux/Action/workSpace';
+import { setCloseNav } from '../../Redux/Action/navMenu';
 
-const DashboardHeader = ({ setCloseNav,closeNav }) => {
+const DashboardHeader = () => {
 
     const dispatch = useDispatch()
     const userToken = localStorage.getItem("token");
     const userState = useSelector(state => state.userState)
+    const closeNav = useSelector(state => state.navMenuState)
     const { checkUseTryFree } = useSelector(state => state.planState)
     const [userName, setUserName] = useState("");
     var user_name = "";
@@ -97,7 +99,7 @@ const DashboardHeader = ({ setCloseNav,closeNav }) => {
     return (
         <div className='flex h-full items-center justify-between px-5'>
             <div className='flex items-center gap-7'>
-                <div className='menuimage w-6 h-6 hover:cursor-pointer' onClick={() => setCloseNav(!closeNav)}></div>
+                <div className='menuimage w-6 h-6 hover:cursor-pointer' onClick={() => dispatch(setCloseNav())}></div>
                 <div className='flex items-center gap-3 hover:cursor-pointer'>
 
                     {/* <div className='Iconimage w-7 h-8'></div> */}

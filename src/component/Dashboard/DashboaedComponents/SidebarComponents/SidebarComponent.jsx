@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setCloseNav } from "../../../Redux/Action/navMenu";
 import { getAllWorkSpace } from "../../../Redux/Action/workSpace";
 import SidebarBaner from "../../../Utils/Baner/Sidebar/SidebarBaner";
 import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
-export default function SidebarComponent({ closeNav }) {
+export default function SidebarComponent() {
   const [activeIcon, setActiveIcon] = useState(0);
+  const {closeNav} = useSelector(state => state.navMenuState)
+  const dispatch=useDispatch();
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
 
@@ -19,20 +22,11 @@ export default function SidebarComponent({ closeNav }) {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
+    dispatch(setCloseNav(true))
     // setCloseNav(true);
   };
 
-  // const itemsHoverMenu = [
-  //   "گزارش های منتخب",
-  //   "خرید اشتراک",
-  //   "شروع آسان",
-  //   "خبرخوان",
-  //   "آموزش",
-  //   "پیشنهادات و تخفیف ها",
-  //   "پشتیبانی و تیکت",
-  //   "انتخاب سرویس",
-  // ];
-  const itemsHoverMenu = [
+    const itemsHoverMenu = [
     { title: "گزارش های منتخب", link: "" },
     { title: "خرید اشتراک", link: "buyPlan" },
     { title: "شروع آسان", link: "easyStart" },
@@ -45,7 +39,7 @@ export default function SidebarComponent({ closeNav }) {
 
   return (
     <>
-    {/* {!closeNav?( */}
+  
 
       <div
         className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
@@ -56,7 +50,7 @@ export default function SidebarComponent({ closeNav }) {
             {itemsHoverMenu.map((item) => {
               return (
                 <ItemSidebarHover
-                  text={closeNav && item}
+                  text={ item}
                   icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"}
                   textColor={"#002145"}
                   textHover={"#0A65CD"}
@@ -82,7 +76,7 @@ export default function SidebarComponent({ closeNav }) {
           </div>
         ) : null}
         {/* advertisement box */}
-        {!disableAdvertisement ? (
+        {!disableAdvertisement && closeNav ? (
           <SidebarBaner setDisableAdvertisement={setDisableAdvertisement} />
         ) : null}
       </div>
