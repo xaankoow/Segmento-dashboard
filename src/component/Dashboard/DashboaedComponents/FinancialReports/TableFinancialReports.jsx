@@ -102,7 +102,6 @@ export default function TableFinancialReports({ title }) {
   };
   // var test=new Date(moment("2022/08/18").format("YYYY/M/D"));
   // var test=new Date(moment("2022/08/18").locale("fa").format("YYYY/M/D"));
-  // console.log(test)
   return (
     <div>
       <PageTitle title={title} />
@@ -143,7 +142,7 @@ export default function TableFinancialReports({ title }) {
                 maxDate={new DateObject()}
                 render={(value, openCalendar) => (
                   <div
-                    className="flex justify-start items-center px-3 w-52 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
+                    className="flex justify-start items-center px-3 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
                     onClick={openCalendar}
                   >
                     <img src="/img/dashboard/financialReports/calendar/file_download.svg" />
@@ -219,9 +218,9 @@ export default function TableFinancialReports({ title }) {
                 </span>
               </div>
               <div className="overflow-scroll h-[94%] text-xs font-normal">
-                {financialDataTable.map((item, index) => (
+                {financialDataTable.length>0&& financialDataTable.map((item, index) => (
                   <div
-                    className={`w-full h-16 border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
+                    className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                   >
                     {/* عملیات */}
                     <p className=" w-28 text-center">{item.type_text}</p>
@@ -243,10 +242,10 @@ export default function TableFinancialReports({ title }) {
                     {/* انقضا */}
                     <p className=" w-[68px] text-center">{item.updated_at != undefined && moment(item.updated_at.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
                     {/* خرید */}
-                    <p className=" w-16 text-center">{item.user != undefined && moment(item.user.package_end_date.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
+                    <p className=" w-16 text-center">{item.user != undefined&item.user.package_end_date!=null && moment(item.user.package_end_date.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
                     {/* نوع اشتراک */}
                     <p className=" w-36 text-center">
-                      {item.description.substring(31, item.description.length).includes("رایگان") == true ? "14 روز رایگان" : item.description.substring(31, item.description.length)}
+                      {item.user != undefined && item.description.substring(31, item.description.length).includes("رایگان") == true ? "14 روز رایگان" : item.description.substring(31, item.description.length)}
                     </p>
                     {/* شماره فاکتور */}
                     <p className=" w-20 text-center">{item.order_code}</p>
