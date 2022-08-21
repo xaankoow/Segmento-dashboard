@@ -8,6 +8,8 @@
   width: 100%;
 }
 
+
+
 label {
 
   color: #7D7D7D;
@@ -132,6 +134,7 @@ input:focus+label {
   -ms-transform: translateY(-35px);
   transform: translateY(-35px);
 }
+
 input:disabled+label {
   font-size: 12px;
   -webkit-transform: translateY(0);
@@ -140,6 +143,7 @@ input:disabled+label {
   -ms-transform: translateY(0);
   transform: translateY(0);
 }
+
 .notCheckValue {
   border-bottom: 3px solid #0f7b0f !important;
   font-size: 20px;

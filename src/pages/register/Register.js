@@ -1,4 +1,4 @@
-import React,{Fragment} from "react";
+import React,{Fragment, useState} from "react";
 import { Link } from "react-router-dom";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -6,9 +6,12 @@ import "./register.css";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import { RegisterUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
+import ToolTip from "../../component/Utils/ToolTip";
+import { CheckFormat } from "../../component/Utils/Auth/CheckFormtValue";
 export const TextButton = React.createContext();
 export default function Register() {
 
+  const [showToolTip, setShowToolTip] = useState(true);
 
   return (
     <div className="flex flex-col items-center w-full justify-center overflow-hidden">
@@ -21,6 +24,7 @@ export default function Register() {
               width={"100%"}
               typeInput="text"
               reduxHandleChange={setNameRedux}
+              errorTextId="errRejesterFormatFullName"
             />
             <AuthInput
               textLabelInput="ایمیل"
@@ -28,13 +32,21 @@ export default function Register() {
               reduxHandleChange={setEmailRedux}
               errorTextId="errRejesterFormatEmail"
             />
-            <div className="flex justify-between gap-3 w-full">
+            <div className="flex justify-between gap-3 w-full" data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.' data-type="light" data-place="top"
+            onMouseEnter={() => setShowToolTip(true)} onMouseLeave={() => {
+              setShowToolTip(false);
+              setTimeout(() => setShowToolTip(true), 0);
+            }}>
+
               <AuthInput
                 textLabelInput="گذرواژه "
                 width={"100%"}
                 typeInput="password"
                 isPassword={true}
+                errorTextId="errRejesterPassword"
                 reduxHandleChange={setPasswordRedux}
+                checkStrongPass
+                // infoStrongPass
               />
               <AuthInput
                 textLabelInput=" تکرار گذرواژه  "
@@ -54,7 +66,7 @@ export default function Register() {
                   />
                 </TextButton.Provider>
                 <button className="bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">
-                  <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
+                  <span className="text-white">	ورود با گوگل</span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>
               <Link to={"/dashboard/accountOperations/login"}>
@@ -70,6 +82,7 @@ export default function Register() {
           </div>
         </div>
       </div>
+      {showToolTip && <ToolTip />}
     </div>
   );
 }

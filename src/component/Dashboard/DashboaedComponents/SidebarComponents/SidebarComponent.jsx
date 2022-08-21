@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllWorkSpace } from "../../../Redux/Action/workSpace";
+import SidebarBaner from "../../../Utils/Baner/Sidebar/SidebarBaner";
 import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
-export default function SidebarComponent({ closeNav, openMenu }) {
+export default function SidebarComponent({ closeNav }) {
   const [activeIcon, setActiveIcon] = useState(0);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
@@ -18,7 +19,7 @@ export default function SidebarComponent({ closeNav, openMenu }) {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    openMenu()
+    // setCloseNav(true);
   };
 
   // const itemsHoverMenu = [
@@ -39,10 +40,13 @@ export default function SidebarComponent({ closeNav, openMenu }) {
     { title: "آموزش", link: "" },
     { title: "پیشنهادات و تخفیف ها", link: "" },
     { title: "پشتیبانی و تیکت", link: "" },
-    { title: "انتخاب سرویس", link: "" }
+    { title: "انتخاب سرویس", link: "" },
   ];
+
   return (
     <>
+      {/* {!closeNav?( */}
+
       <div
         className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
         style={{ width: closeNav ? "256px" : "0px" }}
@@ -62,42 +66,46 @@ export default function SidebarComponent({ closeNav, openMenu }) {
           </div>
         ) : activeIcon == 1 ? (
           <div>
-
-            <div className='flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue '  >
-              <img src={"/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
-              <span className={`text-[${"#0A65CD"}]`}>{closeNav && "پیشخوان"}</span>
+            <div className="flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue ">
+              <img
+                src={
+                  "/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"
+                }
+                alt="icon"
+              />
+              <span className={`text-[${"#0A65CD"}]`}>
+                {closeNav && "پیشخوان"}
+              </span>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />
           </div>
         ) : null}
         {/* advertisement box */}
-        {!disableAdvertisement && closeNav ? (
-          <div className="bg-secondary h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
-            <img
-              src="/img/dashboard/nav_right/close.svg"
-              alt="close"
-              className="absolute top-2 left-2 cursor-pointer"
-              onClick={() => setDisableAdvertisement(true)}
-            />
-            <span className="text-[#7D7D7D]">نمونه نوشته داینامیک</span>
-          </div>
+        {!disableAdvertisement ? (
+          <SidebarBaner setDisableAdvertisement={setDisableAdvertisement} />
         ) : null}
       </div>
+      {/* ):null} */}
+
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
         <IconsRight setActive={activeIconHandler} />
         <div className="down">
           <div className="dropDownBox ">
             <div className="support w-7 h-7"></div>
-            <div className="support_dropDown dropDownBox1">
+            <div className="support_dropDown dropDownBox1 flex text-center">
               <span> پشتیبانی و تیکت </span>
+              <div className="w-3 h-3 absolute right-[-5px] bg-[#fff] rotate-45">
+              </div >
+
             </div>
           </div>
 
           <div className="dropDownBox">
             <div className="information w-7 h-7"></div>
-            <div className="support_dropDown dropDownBox2">
+            <div className="support_dropDown dropDownBox2 text-center">
               <span>منابع و راهنمایی ها</span>
+              <div className="w-3 h-3 absolute right-[-5px] bg-[#fff] rotate-45"></div>
             </div>
           </div>
 

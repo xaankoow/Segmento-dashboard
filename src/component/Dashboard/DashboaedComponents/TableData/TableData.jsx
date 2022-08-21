@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Checkbox from "../../../Utils/Elements/CheckBox/Checkbox";
 import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
 
 export default function Table({
@@ -30,6 +31,7 @@ export default function Table({
       setSelectColumnTitle("انتخاب");
     }
   };
+
 
   // console.log(copyItem.length);
   const groupIt = (array) => {
@@ -127,6 +129,20 @@ export default function Table({
     }
     return myListOutput;
   }
+const HandleCheckBoxClick=(e,item) => {
+    if (e.target.checked) {
+      setCopyItem([...copyItem, item]);
+      // console.log(copyItem);
+      // console.log(e.target.checked);
+    } else {
+      setCopyItem(
+        copyItem.filter((copyItems) => copyItems != item)
+      );
+      // console.log(copyItem);
+    }
+
+    handleCheckingInput(e.target.checked,item);
+  }
   return (
     <div className=" flex grow flex-col border border-[#D9D9D9] p-0 " id="TABLE">
       <div className="min-w-full">
@@ -219,20 +235,17 @@ export default function Table({
               <button
                 className={
                   isActive
-                    ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-primary flex items-center "
+                    ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-primary flex items-center w-[128px] "
                     : NothingSearch
-                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center"
-                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-secondary flex items-center hover:bg-primary hover:text-[#ffffff]"
+                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center w-[128px]"
+                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-secondary flex items-center hover:bg-primary w-[128px] hover:text-[#ffffff]"
                 }
                 disabled={NothingSearch ? true : false}
                 onClick={() => {
                   setHandleClickButton(true);
                   navigator.clipboard.writeText(
                     createListOutput()
-                    // data.map((item) => {
-                    //   const splitComma = item.split(',').map(item => item.trim());
-                    //   return splitComma.join("\n")
-                    // })
+                   
                   );
                   setTimeout(() => {
                     setHandleClickButton(false);
@@ -256,7 +269,7 @@ export default function Table({
           </div>
         ) : (
           <div
-            className="bg-white text-right w-full overflow-y-scroll max-h-[450px] "
+            className="bg-[#fff] text-right w-full overflow-y-scroll max-h-[450px] "
             id="table"
           >
             {filteredDatas.map((item, index) => {
@@ -283,9 +296,10 @@ export default function Table({
                     }
                   >
                     <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
+                      {/* <Checkbox handleClick={(e)=>HandleCheckBoxClick(e,item)} /> */}
                       <input
                         type={"checkbox"}
-                        className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
+                        className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
                         onClick={(e) => {
                           if (e.target.checked) {
                             setCopyItem([...copyItem, item]);

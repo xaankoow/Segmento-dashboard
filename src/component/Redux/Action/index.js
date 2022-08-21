@@ -183,7 +183,7 @@ export const RegisterUserAction = () => {
         const loadingState = { ...getState().loadingState }
 
         if (state.fullName && state.email && state.password && state.passwordConfirm) {
-            if (CheckFormat("email", state.email, "errRejesterFormatEmail") && CheckFormat("password", state.password, "errRejesterPasswordConfirm") && CheckFormat("passwordConfirm", { pass1: state.password, pass2: state.passwordConfirm }, "errRejesterPasswordConfirm")) {
+            if (CheckFormat("fullName", state.fullName, "errRejesterFormatFullName") && CheckFormat("email", state.email, "errRejesterFormatEmail") && CheckFormat("password", state.password, "errRejesterPassword") && CheckFormat("passwordConfirm", { pass1: state.password, pass2: state.passwordConfirm }, "errRejesterPasswordConfirm")) {
                 // let toastPromiseRegister = toast.loading("درحال ارسال درخواست شما به سرور")
 
 

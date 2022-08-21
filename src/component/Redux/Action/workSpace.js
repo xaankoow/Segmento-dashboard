@@ -422,7 +422,7 @@ export const addWorkSpace = (step) => {
                     {
                         "key": element.key,
                         "url": "https://" + webAdress + "/" + element.site,
-                        "competitors": step == 5 ? element.competitorSite.map(item => "https://" + webAdress + "/" + item) : []
+                        "competitors": step == 5 ? element.competitorSite.map(item => "https://" + item) : []
                     }
                 )
             }

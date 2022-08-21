@@ -22,9 +22,9 @@ export default function TableFinancialReports({ title }) {
   const [placeholderPadding, setplaceholderPadding] = useState("");
   const [handleClickButton, setHandleClickButton] = useState(false);
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
-  const [searchFilterOption, setSearchFilterOption] = useState("");
+  const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
   const [numFilter, setNumFilter] = useState(1);
-       const [handleClickCopy, setHandleClickCopy] = useState(false);
+  const [handleClickCopy, setHandleClickCopy] = useState(false);
 
 
 
@@ -32,7 +32,7 @@ export default function TableFinancialReports({ title }) {
 
   const [datePickerValues, setDatePickerValues] = useState([
     new DateObject().subtract(4, "days"),
-    new DateObject().add(4, "days"),
+    new DateObject().add(0, "days"),
   ]);
 
   const datePickerRef = useRef();
@@ -41,19 +41,11 @@ export default function TableFinancialReports({ title }) {
     dispatch(getAllFinancialReports());
   }, []);
 
+  var moment = require("jalali-moment");
+
   const ExcelFile = ReactExport.ExcelFile;
   const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
   const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
-
-  // const handleCheckingInput = () => {
-  //     debugger;
-
-  //     if (copyItem.length > 0) {
-  //       setSelectColumnTitle("کپی");
-  //     } else {
-  //       setSelectColumnTitle("انتخاب");
-  //     }
-  //   };
 
   const dataSet1 = [
     {
@@ -108,6 +100,9 @@ export default function TableFinancialReports({ title }) {
       setHandleClickButton(false);
     }, 500);
   };
+  // var test=new Date(moment("2022/08/18").format("YYYY/M/D"));
+  // var test=new Date(moment("2022/08/18").locale("fa").format("YYYY/M/D"));
+  // console.log(test)
   return (
     <div>
       <PageTitle title={title} />
@@ -119,6 +114,8 @@ export default function TableFinancialReports({ title }) {
               secoundSearch={(e) => setSearchFilterText(e.target.value)}
               inputPlaceHolder={"فیلد جستجو"}
               getRadioValue={setSearchFilterOption}
+              radioValue={searchFilterOption}
+              
             />
           </div>
           <div className="flex items-center">
@@ -143,6 +140,7 @@ export default function TableFinancialReports({ title }) {
                 calendarPosition="bottom-right"
                 onChange={setDatePickerValues}
                 format="DD MMMM YYYY - "
+                maxDate={new DateObject()}
                 render={(value, openCalendar) => (
                   <div
                     className="flex justify-start items-center px-3 w-52 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
@@ -225,28 +223,36 @@ export default function TableFinancialReports({ title }) {
                   <div
                     className={`w-full h-16 border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                   >
+                    {/* عملیات */}
                     <p className=" w-28 text-center">{item.type_text}</p>
+                    {/* وضعیت */}
                     <p className=" w-24 text-center">
                       <span
-                        className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${
-                          item.payment_status_text == "پرداخت ناموفق"
-                            ? " bg-[#F35242]"
-                            : item.payment_status_text == "پرداخت نشده"
+                        className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text == "پرداخت ناموفق"
+                          ? " bg-[#F35242]"
+                          : item.payment_status_text == "پرداخت نشده"
                             ? "bg-yellow"
                             : "bg-[#10CCAE]"
-                        }`}
+                          }`}
                       >
                         {item.payment_status_text}
                       </span>
                     </p>
+                    {/* مبلغ */}
                     <p className=" w-11 text-center">{item.sub_total}</p>
-                    <p className=" w-[68px] text-center">{item.updated_at}</p>
-                    <p className=" w-16 text-center">{item.created_at}</p>
+                    {/* انقضا */}
+                    <p className=" w-[68px] text-center">{item.updated_at != undefined && moment(item.updated_at.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
+                    {/* خرید */}
+                    <p className=" w-16 text-center">{item.user != undefined && moment(item.user.package_end_date.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
+                    {/* نوع اشتراک */}
                     <p className=" w-36 text-center">
-                      {item.description.substring(31, item.description.length)}
+                      {item.description.substring(31, item.description.length).includes("رایگان") == true ? "14 روز رایگان" : item.description.substring(31, item.description.length)}
                     </p>
+                    {/* شماره فاکتور */}
                     <p className=" w-20 text-center">{item.order_code}</p>
+                    {/* ردیف */}
                     <p className=" w-8 text-center">{index + 1}</p>
+                    {/* انتخاب */}
                     <p className=" w-11 text-center">
                       <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
                         <input
@@ -313,7 +319,7 @@ export default function TableFinancialReports({ title }) {
           </div>
         </div>
       </div>
-      <SetTitleTabBrowser nameSection={"گزارش های مالی"}/>
+      <SetTitleTabBrowser nameSection={"گزارش های مالی"} />
     </div>
   );
 }

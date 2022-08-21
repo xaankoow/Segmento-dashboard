@@ -13,46 +13,53 @@ export const getAllPlanData = () => {
         const state = { ...getState().planState }
         const loadingState = { ...getState().loadingState }
 
-        let toastMessage = "";
-        try {
-            //handle show loadin
+        if (state.allPackageData.length>0) {
+            
+            await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
+           
+        }else{
+            let toastMessage = "";
+            try {
+                //handle show loadin
+                {
+                    loadingState.ProcessingDelay.push("getAllPlan");
+                    loadingState.canRequest = false;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                }
+                const workSpaces = await getAllPlan()
+                // debugger
+                if (workSpaces.data.status == true && workSpaces.data.code == 200) {
+                    state.allPackageData = workSpaces.data.data;
+                } else {
+    
+                }
+                await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
+            } catch (error) {
+                // console.log("register error")
+                error.response.data.errors.forEach(element => {
+                    toastMessage += element + " / ";
+                });
+                toast.warn(toastMessage, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+    
+    
+            //handle hide loading
             {
-                loadingState.ProcessingDelay.push("getAllPlan");
-                loadingState.canRequest = false;
+                var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "getAllPlan");
+                loadingState.ProcessingDelay = removeProcessingItem;
+                loadingState.canRequest = removeProcessingItem > 0 ? false : true;
                 await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
             }
-            const workSpaces = await getAllPlan()
-            // debugger
-            if (workSpaces.data.status == true && workSpaces.data.code == 200) {
-                state.allPackageData = workSpaces.data.data;
-            } else {
-
-            }
-            await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
-        } catch (error) {
-            // console.log("register error")
-            error.response.data.errors.forEach(element => {
-                toastMessage += element + " / ";
-            });
-            toast.warn(toastMessage, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
         }
 
-
-        //handle hide loading
-        {
-            var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "getAllPlan");
-            loadingState.ProcessingDelay = removeProcessingItem;
-            loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-        }
     }
 }
 

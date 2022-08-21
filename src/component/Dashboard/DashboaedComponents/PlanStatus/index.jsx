@@ -18,13 +18,15 @@ export default function PlanStatus() {
 
   var moment = require("jalali-moment");
 
+  const allWords=100;
+
   const userState = useSelector((state) => state.userState);
 
   var nowDate = new Date();
 
   var startDate= userState.userData.package!=undefined && new Date(moment(userState.userData.package.start).format("YYYY/M/D")) ;
   var expiryDate= userState.userData.package!=undefined && new Date(moment(userState.userData.package.end).format("YYYY/M/D")) ;
-  
+  // console.log(startDate)
   var timeSecDaysLeft = Math.abs(expiryDate-nowDate);
   var timeSecDays = Math.abs(expiryDate-startDate);
 
@@ -54,22 +56,26 @@ export default function PlanStatus() {
     try {
       const { data, status } = await usetLimit();
       setDatas(data.data); //5
-      // console.log(data);
+      console.log(data);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
+  const content=datas.length>0 &&  datas[3].count;
+  const keyword=datas.length>0 &&  datas[4].count;
+  const dateExColor=datas.length>0 &&  datas[4].count;
   const data = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        data: [numberOfDays,numberOfDaysLeft],
+        // data: [numberOfDays,numberOfDaysLeft],
+        data: [numberOfDays-numberOfDaysLeft,numberOfDaysLeft],
         cutout: 50,
-        backgroundColor: ["#D9D9D9", "#0A65CD"],
+        backgroundColor: content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 7,
         // borderColor: [
@@ -84,17 +90,19 @@ export default function PlanStatus() {
       },
     ],
   };
-  const miniChartSetting = {
+
+  const miniChartSetting2 = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        data: [30, 70],
-        cutout: 38,
+        // data: [30, 70],
+        data: [datas.length>0 && allWords- datas[3].count,datas.length>0 && datas[3].count],
+        cutout: 36,
         // cutout: 38,
         // width:35,
         // height:35,
-        backgroundColor: ["#D9D9D9", "#0A65CD"],
+        backgroundColor:content &&  content < 20 ?  ["#D9D9D9", "#F35242"] :content && content < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -110,11 +118,41 @@ export default function PlanStatus() {
     ],
   };
 
+  const miniChartSetting = {
+    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [
+      {
+        label: "# of Votes",
+        // data: [30, 70],
+        data: [datas.length>0 && allWords - datas[4].count,datas.length>0 && datas[4].count],
+        cutout: 36,
+        // cutout: 38,
+        // width:35,
+        // height:35,
+        backgroundColor:keyword &&  keyword < 20 ?  ["#D9D9D9", "#F35242"] :keyword && keyword < 50 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
+        borderWidth: 0,
+        borderRadius: 5,
+        // borderColor: [
+        //   'rgba(255, 99, 132, 1)',
+        //   'rgba(54, 162, 235, 1)',
+        //   'rgba(255, 206, 86, 1)',
+        //   'rgba(75, 192, 192, 1)',
+        //   'rgba(153, 102, 255, 1)',
+        //   'rgba(255, 159, 64, 1)',
+        // ],
+        // borderWidth: 1,
+      },
+    ],
+  };
+
+  // console.log(new Date(moment('2022/08/18').locale("fa").format("YYYY/M/D")))
+  // console.log(userState.userData.package != undefined && moment("2022/08/18").locale("fa").format("YYYY/M/D"))
+
   return (
     <div className="">
       <PageTitle title={" وضعیت اشتراک"} />
       <div className="mx-auto w-full mt-9">
-        <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-white">
+        <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-[#fff]">
           {/* <!--عنوان 1--> */}
 
           {/* <div className="flex flex-row items-center">
@@ -275,22 +313,22 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      100
+                    {allWords}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length>0 ? datas[4].count : ""}
+                  {datas.length>0 && allWords - datas[4].count}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
-                    <span id="border" className="mr-3 mt">
-                      {datas.length>0&&100-datas[4].count}
+                    <span id="border" className="mr-3">
+                    {datas.length>0 ? datas[4].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50">
-                    <span id="valuetwo">{datas.length>0&&100-datas[4].count}</span> <br />
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
+                    <span id="valuetwo"></span> {datas.length>0 ? datas[4].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -316,27 +354,27 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      100
+                    {allWords}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length>0 ? datas[3].count : ""}
+                      {datas.length>0 ? allWords- datas[3].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                    {datas.length>0?100-datas[3].count:""}
+                    {datas.length>0 ? datas[3].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[10px] leading-5 text-center z-50">
-                    <span id="valuethree">{datas.length>0&&100-datas[3].count}</span> <br />
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
+                    <span id="valuethree"></span> {datas.length>0 ? datas[3].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
                     <Doughnut
-                      data={miniChartSetting}
+                      data={miniChartSetting2}
                       options={{ maintainAspectRatio: false }}
                     />
                     {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}

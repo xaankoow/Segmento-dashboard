@@ -109,21 +109,25 @@ const KeyWords = ({ onClickHandler }) => {
     setRadioClickedHandler(e.target.value);
   };
 
-  if (radioClickedHandler === "1") {
+  if (radioClickedHandler === "1"&& searchBoxValue) {
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item.includes(searchBoxValue);
     });
-  } else if (radioClickedHandler === "2") {
+  } else if (radioClickedHandler === "2"&& secoundSearchBoxValue != "") {
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item.includes(secoundSearchBoxValue);
     });
-  } else if (radioClickedHandler === "3") {
+  } else if (radioClickedHandler === "3"&& secoundSearchBoxValue != "") {
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item==secoundSearchBoxValue
     });
-  } else if (radioClickedHandler === "4") {
+  } else if (radioClickedHandler === "4"&& secoundSearchBoxValue != "") {
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return !item.includes(secoundSearchBoxValue);
+    });
+  }else {
+    comboboxFiltered = tableDataFiltered.filter((item) => {
+      return item.includes(searchBoxValue);
     });
   }
   //  Alphabet filtering

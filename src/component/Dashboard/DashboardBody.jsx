@@ -38,9 +38,9 @@ export default function DashboardBody() {
 
   // DashboardHeader nav icon that close the left sidebar
   const [closeNav, setCloseNav] = useState(true);
-  const closeNavItem = () => {
-    setCloseNav(!closeNav);
-  };
+  // const closeNavItem = () => {
+  //   setCloseNav(!closeNav);
+  // };
 
 
   // const userToken = localStorage.getItem("token");
@@ -53,14 +53,16 @@ export default function DashboardBody() {
 
   return (
     <div id="DASHBOARD">
-      <div className="w-full h-16 bg-white shadow-3xl">
-        <DashboardHeader setCloseNav={closeNavItem} />
+      <div className="w-full h-16 bg-[#ffffff] shadow-3xl">
+        <DashboardHeader closeNav={closeNav} setCloseNav={setCloseNav} />
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
-        <div className="bg-[#ffffff] overflow-y-scroll pb-14 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main">
+        <div className="bg-[#ffffff] overflow-y-scroll pb-24 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main">
           <Outlet />
         </div>
-        <SidebarComponent closeNav={closeNav} openMenu={() => setCloseNav(true)} />
+        {/* <SidebarComponent closeNav={closeNav} openMenu={() => setCloseNav(true)} /> */}
+        <SidebarComponent closeNav={closeNav} />
+        
       </div>
       {showModalBuyPlanResult.type != "" ? (
         <BuyPlanEasyToStartModal checkBuyPlan={showModalBuyPlanResult.result} />

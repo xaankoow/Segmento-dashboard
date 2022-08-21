@@ -156,7 +156,7 @@ export default function AcardionItem() {
   return (
     <>
       {data.map((item, index) => {
-        return (
+       return (
           <div className="" key={index}>
             <div className="flex items-center justify-between m-0 p-0">
               <div
@@ -199,15 +199,28 @@ export default function AcardionItem() {
               <div className="mr-5 mt-0">
                 {item.acardionItems.map((item, index) => {
                   return (
-                    <Link to={item.itemLink!=""?item.itemLink:user.package != undefined ? "buyPlan" : "planStatus"} className={"w-auto"}>
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
-                      >
-                        <img src={item.itemIcon} alt="icon" />
-                        <span className={"w-auto"}>{item.itemTitle}</span>
-                      </div>
-                    </Link>
+                    
+                      item.itemLink != "" ? (
+                        <Link to={item.itemLink} className={"w-auto"}>
+                          <div
+                            key={index}
+                            className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
+                          >
+                            <img src={item.itemIcon} alt="icon" />
+                            <span className={"w-auto"}>{item.itemTitle}</span>
+                          </div>
+                        </Link>
+                      ) : (
+                        <div
+                            key={index}
+                            className="flex  items-center gap-3 text-[#002145] mb-3 mr-5 text-sm cursor-default "
+                          >
+                            <img src={item.itemIcon} alt="icon" />
+                            <span className={"w-auto text-sectionDisable"}>{item.itemTitle}</span>
+                          </div>
+                      )
+                    
+
                   );
                 })}
                 {item.title == "ورک‌اسپیس‌ها" && (
@@ -221,7 +234,7 @@ export default function AcardionItem() {
                       alt="icon"
                     />
                     <Link
-                      to={user.userData.package!=undefined?"setWorkSpace":location}
+                      to={user.userData.package != undefined ? "setWorkSpace" : location}
                       state={{ background: location }}
                       className={"w-auto"}
                     >

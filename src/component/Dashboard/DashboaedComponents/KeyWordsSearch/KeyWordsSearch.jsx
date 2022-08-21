@@ -9,8 +9,8 @@ export default function KeyWordsSearch({
   radioClickedHandler,
   inputPlaceHolder,
   usedBySection,
-  getRadioValue
-
+  getRadioValue,
+  radioValue
 }) {
   const SCTN = usedBySection != undefined ? usedBySection.split("/") : "";
   const [inputClick, setInputClick] = useState(false);
@@ -55,10 +55,10 @@ export default function KeyWordsSearch({
                     type="radio"
                     className="w-4 h-4"
                     name="radio"
-                    checked={radioText === "شماره فاکتور" && true}
+                    checked={radioValue === "شماره فاکتور"}
                     onClick={(e) => {
                       getRadioValue("شماره فاکتور");
-                      radioClickedHandler(e);
+                      // radioClickedHandler(e);
                     }}
                     value="1"
                   />
@@ -71,7 +71,7 @@ export default function KeyWordsSearch({
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("نوع اشتراک");
-                      radioClickedHandler(e);
+                      // radioClickedHandler(e);
                     }}
                     value="2"
                   />
@@ -84,7 +84,7 @@ export default function KeyWordsSearch({
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("مبلغ");
-                      radioClickedHandler(e);
+                      // radioClickedHandler(e);
                     }}
                     value="3"
                   />
@@ -97,7 +97,7 @@ export default function KeyWordsSearch({
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("وضعیت پرداخت");
-                      radioClickedHandler(e);
+                      // radioClickedHandler(e);
                     }}
                     value="4"
                   />
@@ -110,7 +110,7 @@ export default function KeyWordsSearch({
                     name="radio"
                     onClick={(e) => {
                       getRadioValue("عملیات");
-                      radioClickedHandler(e);
+                      // radioClickedHandler(e);
                     }}
                     value="4"
                   />

@@ -7,7 +7,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getAllWorkSpace } from '../../Redux/Action/workSpace';
 
-const DashboardHeader = ({ setCloseNav }) => {
+const DashboardHeader = ({ setCloseNav,closeNav }) => {
 
     const dispatch = useDispatch()
     const userToken = localStorage.getItem("token");
@@ -44,14 +44,16 @@ const DashboardHeader = ({ setCloseNav }) => {
     // debugger
 
     ChartJS.register(ArcElement, Tooltip, Legend);
+ 
+    
     const data = {
         // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [
             {
                 label: "# of Votes32",
-                data: [numberOfDaysLeft - numberOfDays, numberOfDays],
+                data: [numberOfDays-numberOfDaysLeft,numberOfDaysLeft],
                 cutout: 5,
-                backgroundColor: ["#D9D9D9", "#0A65CD"],
+                backgroundColor: numberOfDays &&  numberOfDaysLeft<= numberOfDays/3   ?  ["#D9D9D9", "#F35242"] :numberOfDaysLeft && numberOfDaysLeft <= numberOfDays/2 ? ["#D9D9D9", "#FFCE47"] : ["#D9D9D9", "#10CCAE"],
                 borderWidth: 0,
                 borderRadius: 7,
 
@@ -95,18 +97,18 @@ const DashboardHeader = ({ setCloseNav }) => {
     return (
         <div className='flex h-full items-center justify-between px-5'>
             <div className='flex items-center gap-7'>
-                <div className='menuimage w-6 h-6 hover:cursor-pointer' onClick={() => setCloseNav()}></div>
+                <div className='menuimage w-6 h-6 hover:cursor-pointer' onClick={() => setCloseNav(!closeNav)}></div>
                 <div className='flex items-center gap-3 hover:cursor-pointer'>
 
                     {/* <div className='Iconimage w-7 h-8'></div> */}
-                    {/* <img src="/img/dashboard/header/segmento-logofa.svg" className='w-7 h-8' alt="" /> */}
+                    <img src="/img/dashboard/header/segmento-logofa.svg" className='w-7 h-8' alt="" />
                     <span className=''>سگمنتو segmento</span>
                 </div>
             </div>
             <div className='flex items-center gap-9'>
                 <div className='userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64'>
                     <div className='flex gap-3 items-center cursor-pointer '>
-                        <img src={userState.userData.user != undefined ? userState.userData.user.img != "" ? userState.userData.user.img : 'img/dashboard/header/userimage.svg' : 'img/dashboard/header/userimage.svg'} className='rounded w-10 h-10' alt='userImage' />
+                        <img src={userState.userData.user != undefined ? userState.userData.user.img != "" ? userState.userData.user.img : '/../img/dashboard/userProfile/profileImage.png' : '/../img/dashboard/userProfile/profileImage.png'} className='rounded w-10 h-10' alt='userImage' />
                         <div className=' h-11 relative w-full'>
                             <span className='text-sm absolute top-0 right-0'>{user_name}</span>
                             {userState.userData.package != undefined ?
@@ -114,8 +116,10 @@ const DashboardHeader = ({ setCloseNav }) => {
                                     <div className=' absolute bottom-0 right-0'>
                                         <Doughnut
                                             data={data}
-                                            height={25}
-                                            width={15}
+                                            height={30}
+                                            width={18}
+                                            // height={25}
+                                            // width={15}
 
                                             options={{
                                                 maintainAspectRatio: false, plugins: {
@@ -175,8 +179,8 @@ const DashboardHeader = ({ setCloseNav }) => {
                 </div>
                 <div className='flex items-center gap-3 ml-7'>
                     <img src="/img/dashboard/header/notif.svg" alt="notif" className="cursor-pointer" />
-                    <div className='flex items-center justify-center relative text-[#fff] text-small'>
-                        <span className='text-white left-3.5 -top-1 absolute text-center rounded-full bg-red notifNumber'>0</span>
+                    <div className='flex items-center justify-center relative text-[#fff] text-small '>
+                        <span className='text-white left-3.5 -top-1 absolute text-center rounded-full bg-red notifNumber hidden'>33</span>
                         <img src="/img/dashboard/header/message.svg" alt="message" className="cursor-pointer" />
                     </div>
                     <img src="/img/dashboard/header/settingicon.svg" alt="settingicon" className="cursor-pointer" />

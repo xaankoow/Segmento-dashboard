@@ -23,7 +23,7 @@ export default function Login() {
                   <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} />
                 </TextButton.Provider>
                 <button className=" bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">
-                  <span className="text-white">حساب گوگل </span> <GoogleIcon className="google w-6 h-6" />
+                  <span className="text-white">	ورود با گوگل</span> <GoogleIcon className="google w-6 h-6" />
                 </button>
               </div>
               <Link to={"/dashboard/accountOperations/forgotPassword"}>
