@@ -100,29 +100,34 @@ const KeyWords = ({ onClickHandler }) => {
   const [secoundSearchBoxValue, setSecoundSearchBoxValue] = useState("");
   const secoundSearchBoxChangeHandler = (e) => {
     setSecoundSearchBoxValue(e.target.value);
+    setAlphabetHandler("");
   };
 
   //  filter from comboBox
   const [radioClickedHandler, setRadioClickedHandler] = useState("1");
+    //  filter from alphabet
+  const [alphabetHandler, setAlphabetHandler] = useState("");
   let comboboxFiltered = [];
   const radioButtonHandler = (e) => {
     setRadioClickedHandler(e.target.value);
+    setAlphabetHandler("")
   };
 
   if (radioClickedHandler === "1"&& searchBoxValue) {
+   
     comboboxFiltered = tableDataFiltered.filter((item) => {
       return item.includes(searchBoxValue);
     });
   } else if (radioClickedHandler === "2"&& secoundSearchBoxValue != "") {
-    comboboxFiltered = tableDataFiltered.filter((item) => {
+        comboboxFiltered = tableDataFiltered.filter((item) => {
       return item.includes(secoundSearchBoxValue);
     });
   } else if (radioClickedHandler === "3"&& secoundSearchBoxValue != "") {
-    comboboxFiltered = tableDataFiltered.filter((item) => {
+        comboboxFiltered = tableDataFiltered.filter((item) => {
       return item==secoundSearchBoxValue
     });
   } else if (radioClickedHandler === "4"&& secoundSearchBoxValue != "") {
-    comboboxFiltered = tableDataFiltered.filter((item) => {
+        comboboxFiltered = tableDataFiltered.filter((item) => {
       return !item.includes(secoundSearchBoxValue);
     });
   }else {
@@ -132,12 +137,13 @@ const KeyWords = ({ onClickHandler }) => {
   }
   //  Alphabet filtering
   const filteredData = [];
-  const [alphabetHandler, setAlphabetHandler] = useState("");
+  
   const handleClick = (e) => {
     setAlphabetHandler(e.target.innerText);
+   
   };
   const tableAlphabetFiltering = comboboxFiltered.filter((item) => {
-    return item.startsWith(alphabetHandler);
+     return item.startsWith(alphabetHandler);
   });
 
   //check dom
@@ -191,7 +197,7 @@ const KeyWords = ({ onClickHandler }) => {
                 radioClickedHandler={radioButtonHandler}
               />
               <span className="mt-5">جستجو بر اساس حروف الفبا</span>
-              <AlphabetKeyWord handleclick={handleClick}   NothingSearch={
+              <AlphabetKeyWord tableAlphabetLengh={tableAlphabetFiltering} handleclick={handleClick}   NothingSearch={
                   !searchBoxValue || !searchBoxHandleClick ? true : false
                 }/>
             </div>

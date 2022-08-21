@@ -7,11 +7,11 @@ export const TitleModal = (stepModal, free) => {
       if (free) {
         return "14 روز رایگان";
       }
-      return "خرید اشتراک";
+      return "صورتحساب";
     case 3:
       return "افزودن سایت";
     case 4:
-      return "افزودن کلمات کلیدی";
+      return "افزودن کلمات کلیدی و صفحات هدف";
     case 5:
       return "افزودن صفحات تجاری";
     case 6:

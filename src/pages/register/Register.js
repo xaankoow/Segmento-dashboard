@@ -32,8 +32,12 @@ export default function Register() {
               reduxHandleChange={setEmailRedux}
               errorTextId="errRejesterFormatEmail"
             />
-            <div className="flex justify-between gap-3 w-full" data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.' data-type="light" data-place="top"
-            onMouseEnter={() => setShowToolTip(true)} onMouseLeave={() => {
+            <div className="flex justify-between gap-3 w-full" 
+            data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.' 
+            data-type="light" 
+            data-place="top"
+            onMouseEnter={() => setShowToolTip(true)} 
+            onMouseLeave={() => {
               setShowToolTip(false);
               setTimeout(() => setShowToolTip(true), 0);
             }}>

@@ -206,7 +206,7 @@ export default function AcardionItem() {
                             key={index}
                             className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                           >
-                            <img src={item.itemIcon} alt="icon" />
+                            <img src={item.itemIcon} alt="icon"  />
                             <span className={"w-auto"}>{item.itemTitle}</span>
                           </div>
                         </Link>
@@ -215,7 +215,7 @@ export default function AcardionItem() {
                             key={index}
                             className="flex  items-center gap-3 text-[#002145] mb-3 mr-5 text-sm cursor-default "
                           >
-                            <img src={item.itemIcon} alt="icon" />
+                            <img src={item.itemIcon} alt="icon" className={"grayscale opacity-10"} />
                             <span className={"w-auto text-sectionDisable"}>{item.itemTitle}</span>
                           </div>
                       )
