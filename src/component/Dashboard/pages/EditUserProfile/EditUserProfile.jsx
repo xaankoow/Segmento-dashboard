@@ -264,6 +264,7 @@ export default function EditUserProfile() {
           toast.error(data.errors[0]);
         } else {
           setUpdatePass(true);
+          ClearInputs()
         }
         setForceUpdate(!forceUpdates);
       } catch (error) {

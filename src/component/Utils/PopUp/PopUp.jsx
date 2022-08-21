@@ -42,11 +42,11 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
                       : "#10CCAE",
           }}
         >
-          <img src={image} alt="popUpImage" className=" w-28 h-28" />
+          <img src={image} alt="popUpImage" className=" w-24 h-w-24" />
         </div>
         <div className="popUpContent mt-3">
-          <h3 className="title">{title}</h3>
-          <span className="text px-4">{text}</span>
+          <h3 className="text-sm mt-5">{title}</h3>
+          <span className="text-sm px-4">{text}</span>
           {tryFreePlan != undefined & tryFreePlan ? (
             <div className="flex justify-between items-center w-full px-3">
               <div>

@@ -7,6 +7,7 @@ import { usetLimit } from "../../../service/userLimit";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
+import { Link } from "react-router-dom";
 // import './'
 // import "./output.css"
 // import './script'
@@ -75,11 +76,12 @@ export default function PlanStatus() {
         data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         cutout: 50,
         backgroundColor:
-          numberOfDays && numberOfDaysLeft <= numberOfDays / 3
-            ? ["#D9D9D9", "#F35242"]
-            : numberOfDaysLeft && numberOfDaysLeft <= numberOfDays / 2
+          numberOfDays && numberOfDaysLeft >= Math.round((numberOfDays * 70)/ 100)
+            ? ["#D9D9D9", "#10CCAE"]
+            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 30)/ 100)
             ? ["#D9D9D9", "#FFCE47"]
-            : ["#D9D9D9", "#10CCAE"],
+            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 1)/ 100)
+            ? ["#D9D9D9", "#F35242"] :["#D9D9D9", "#ffffff"] ,
         borderWidth: 0,
         borderRadius: 7,
         // borderColor: [
@@ -110,11 +112,12 @@ export default function PlanStatus() {
         // width:35,
         // height:35,
         backgroundColor:
-          content && content <= allWords / 3
-            ? ["#D9D9D9", "#F35242"]
-            : content && content <= allWords / 2
+          content && content  >= Math.round((allWords * 70)/ 100)
+            ? ["#D9D9D9", "#10CCAE"]
+            : content && content >= Math.round((allWords * 30)/ 100)
             ? ["#D9D9D9", "#FFCE47"]
-            : ["#D9D9D9", "#10CCAE"],
+            : content && content >= Math.round((allWords * 1)/ 100)
+            && ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -145,11 +148,12 @@ export default function PlanStatus() {
         // width:35,
         // height:35,
         backgroundColor:
-          keyword && keyword < 20
-            ? ["#D9D9D9", "#F35242"]
-            : keyword && keyword < 50
+          keyword && keyword  >= Math.round((allWords * 70)/ 100)
+            ? ["#D9D9D9", "#10CCAE"]
+            : keyword && keyword  >= Math.round((allWords * 30)/ 100)
             ? ["#D9D9D9", "#FFCE47"]
-            : ["#D9D9D9", "#10CCAE"],
+            : keyword && keyword  >= Math.round((allWords * 1)/ 100)
+            && ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -310,12 +314,14 @@ export default function PlanStatus() {
                   <span>روز دیگر فرصت دارید</span>
                 </div>
               </div>
+              <Link to={"buyPlan"}>
               <button
                 id=""
                 className="btn-style  mb-8 mt-6 w-[161px] text-white"
               >
                 خرید با 30% تخفیف
               </button>
+              </Link>
             </div>
           </div>
 

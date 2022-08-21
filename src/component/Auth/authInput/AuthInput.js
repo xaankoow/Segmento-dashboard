@@ -21,8 +21,9 @@ export default function AuthInput({
   handleArrowPlan,
   targePlanArrow,
   workSpaceTypeState,
-  errorTextId
-
+  errorTextId,
+  ref,
+  infoStrongPass
 }) {
   // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)  
   // const validateEmail = (email) => {
