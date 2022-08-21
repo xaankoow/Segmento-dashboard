@@ -29,12 +29,14 @@ export default function ValidateEmail() {
         <div className="mt-14">
           <div className="leading-8">
             <p className="text-lg m-auto w-7/12 text-justify ">
-              خیلی خوشحالیم که از امروز برای خلق ارزش همراه «سگمنتو» هستید، تلاش
-              ما این هست که در کنار رشد کسب‌و‌کارتان، از محصولات ما حس خوبی دریافت
-              کنید. برای آغاز ماجراجویی‌ در سگمنتو همین حالا کدی که از طریق ایمیل
-              دریافت کردید رو در کادر زیر بنویسید. اگر ایمیلی دریافت نکردید، روی
-              گزینه دریافت مجدد کد، کلیک کنید. کامپیوترها خیلی هم باهوش نیستن و
-              ممکنه اشتباه کرده باشن :{")"}
+              خیلی خوشحالیم که از امروز برای خلق ارزش همراه «سگمنتو» هستید، تلاش ما این هست که در کنار رشد کسب‌و‌کارتان، از محصولات ما حس خوبی دریافت کنید.
+              <br />
+              برای آغاز ماجراجویی‌ در سگمنتو همین حالا کدی که از طریق ایمیل دریافت کردید رو در کادر زیر بنویسید.
+              <br />
+              <br/>
+
+              اگر ایمیلی دریافت نکردید، روی گزینه دریافت مجدد کد، کلیک کنید. کامپیوترها خیلی هم باهوش نیستن و ممکنه اشتباه کرده باشن :)
+
             </p>
           </div>
           <div className="flex flex-col justify-cneter items-center gap-3 mt-20 mb-7">
@@ -79,7 +81,7 @@ export default function ValidateEmail() {
               />
             </Link>
             <div className="m-auto">
-              <TextButton.Provider value={"تایید ایمیل"}>
+              <TextButton.Provider value={"تایید ایمیل و ورود"}>
                 <AuthButton
                   bgcolor={"#0A65CD"}
                   reduxHandleClick={checkVerifyEmailAction}
@@ -91,10 +93,10 @@ export default function ValidateEmail() {
               to={"#"}
               onClick={() => dispatch(sendCodEmailAction())}
               className="underline underline-offset-4 absolute top-0 left-0 py-2"
-              data-tip='با کلیک‌کردن، کد جدید دریافت می‌کنید.' 
-              data-type="light" 
+              data-tip='با کلیک‌کردن، کد جدید دریافت می‌کنید.'
+              data-type="light"
               data-place="top"
-              onMouseEnter={() => setShowToolTip(true)} 
+              onMouseEnter={() => setShowToolTip(true)}
               onMouseLeave={() => {
                 setShowToolTip(false);
                 setTimeout(() => setShowToolTip(true), 0);
@@ -104,11 +106,11 @@ export default function ValidateEmail() {
             </Link>
           </div>
         </div>
-        <div className="w-full flex gap-4 justify-center absolute bottom-5">
-          <img src="/img/contactUs.svg" alt="contactUs" />
-          <img src="/img/fi-rr-life-ring.svg" alt="fi-rr-life-ring.svg" />
         </div>
-      </div>
+          <div className="flex gap-4 justify-center mx-auto absolute bottom-5">
+            <img src="/img/contactUs.svg" alt="contactUs" />
+            <img src="/img/fi-rr-life-ring.svg" alt="fi-rr-life-ring.svg" />
+          </div>
       {showToolTip && <ToolTip />}
     </div>
   );
