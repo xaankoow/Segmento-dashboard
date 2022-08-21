@@ -6,7 +6,7 @@ import PopUp from '../../PopUp/PopUp'
 
 export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModal }) {
   const [showPopUp, setShowPopUp] = useState(true);
-  const handleCheckBoxClick=(e) => setLockNextStep(e.target.checked)
+  const handleCheckBoxClick = (e) => setLockNextStep(e.target.checked)
   return (
     <div className='plan_list_option bg-[#fff]'>
       <div className='plan_card_list_option'>
@@ -31,14 +31,14 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
         <div className=' w-[467px] flex justify-between text-center mx-auto my-3'>
           {/* <p><input type="checkbox" name="" id="" checked={lockNextStep} onChange={(e) => setLockNextStep(e.target.checked)} />قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم . </p> */}
           {/* <div className=' relative shrink w-28'> */}
-            <form className=' flex shrink w-28 grow'>
+          <form className=' flex shrink w-28 grow'>
 
-            
-            <label className=' text-[#083C78] pointer-events-auto relative translate-y-0 cursor-pointer'>
+
+            <label className='flex text-[#083C78] pointer-events-auto relative translate-y-0 cursor-pointer '>
               {/* <Checkbox  id="readPolicyEasyToStart"  checked={lockNextStep} handleClick={handleCheckBoxClick} label={"قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم ."}/> */}
-             <input type={"radio"} id="readPolicyEasyToStart"  checked={lockNextStep} onChange={handleCheckBoxClick} />
+              <input type={"checkbox"} id="readPolicyEasyToStart" className='w-4 h-4 ml-1' checked={lockNextStep} onChange={handleCheckBoxClick} />
               قوانین و مقررات استفاده از سگمنتو رو مطالعه کردم . </label>
-            </form>
+          </form>
           {/* </div> */}
           <AuthButton textButton={"خرید اشتراک"} handlerClick={setStepModal} setOnclickValue={1} />
         </div>

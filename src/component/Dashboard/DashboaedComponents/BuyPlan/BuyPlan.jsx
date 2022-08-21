@@ -72,8 +72,8 @@ export default function BuyPlan({ title }) {
         {/* <AuthButton className='btn-style m-auto mt-4' handlerClick={setShowReportModal(true)} onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></AuthButton> */}
         {/* </body> */}
         <div className='footer_message'>
-          <p>اگر بیزینس هستید یا به امکانات و منابع بیشتری نیاز دارید: </p>
-          <button className="btn_more_information_plan">توضیحات بیشتر</button>
+          <p>آیا صاحب کسب‌و‌کار هستید و به امکانات بیشتری نیاز دارید؟</p>
+          <button className="btn_more_information_plan">بله هستم</button>
         </div>
       </div>
       <div className='report_buy_plan w-[500px]'>
