@@ -1,6 +1,7 @@
 import { borderBottom } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import "./authInput.css";
 export default function AuthInput({
   textLabelInput,
@@ -22,8 +23,10 @@ export default function AuthInput({
   targePlanArrow,
   workSpaceTypeState,
   errorTextId,
-  ref,
-  infoStrongPass
+  infoStrongPass,
+  checkStrongPass
+
+
 }) {
   // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)  
   // const validateEmail = (email) => {
@@ -67,7 +70,7 @@ export default function AuthInput({
             borderBottom: disable ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
           }}
           onChange={(e) => {
-
+            checkStrongPass!=undefined&&CheckFormat("password",e.target.value,errorTextId)
             handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow);
             handleChange != undefined && handleChange(e.target.value)
             setInputValue(e.target.value);
@@ -81,7 +84,7 @@ export default function AuthInput({
 
         <label className={disable ? "text-[#fff]" : ""} for="user">{textLabelInput}</label>
         {/* TODO: CHANGE INFO TEXT WITH STIKY NOTE IN OFFICE */}
-        {infoStrongPass == true ? <span className={` info w-[200%] `}>با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن بسازید.</span> : null}
+        {/* {infoStrongPass == true ? <span className={` info w-[200%] `}>با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن بسازید.</span> : null} */}
       </div>
     </>
   );

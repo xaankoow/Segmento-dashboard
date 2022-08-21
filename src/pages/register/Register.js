@@ -7,6 +7,7 @@ import AuthButton from "../../component/Auth/authButton/AuthButton";
 import { RegisterUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
 import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 import ToolTip from "../../component/Utils/ToolTip";
+import { CheckFormat } from "../../component/Utils/Auth/CheckFormtValue";
 export const TextButton = React.createContext();
 export default function Register() {
 
@@ -31,7 +32,7 @@ export default function Register() {
               reduxHandleChange={setEmailRedux}
               errorTextId="errRejesterFormatEmail"
             />
-            <div className="flex justify-between gap-3 w-full" data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن بسازید.' data-type="light" data-place="top"
+            <div className="flex justify-between gap-3 w-full" data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.' data-type="light" data-place="top"
             onMouseEnter={() => setShowToolTip(true)} onMouseLeave={() => {
               setShowToolTip(false);
               setTimeout(() => setShowToolTip(true), 0);
@@ -44,7 +45,8 @@ export default function Register() {
                 isPassword={true}
                 errorTextId="errRejesterPassword"
                 reduxHandleChange={setPasswordRedux}
-                infoStrongPass
+                checkStrongPass
+                // infoStrongPass
               />
               <AuthInput
                 textLabelInput=" تکرار گذرواژه  "
