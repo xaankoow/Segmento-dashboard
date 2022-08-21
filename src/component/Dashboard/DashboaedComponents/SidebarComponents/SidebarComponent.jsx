@@ -80,22 +80,23 @@ export default function SidebarComponent() {
           <SidebarBaner setDisableAdvertisement={setDisableAdvertisement} />
         ) : null}
       </div>
-    {/* ):null} */}
+      {/* ):null} */}
 
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
         <IconsRight setActive={activeIconHandler} />
         <div className="down">
           <div className="dropDownBox ">
             <div className="support w-7 h-7"></div>
-            <div className="support_dropDown dropDownBox1">
+            <div className="support_dropDown dropDownBox1 flex text-center">
               <span> پشتیبانی و تیکت </span>
             </div>
           </div>
 
           <div className="dropDownBox">
             <div className="information w-7 h-7"></div>
-            <div className="support_dropDown dropDownBox2">
+            <div className="support_dropDown dropDownBox2 text-center">
               <span>منابع و راهنمایی ها</span>
+              <div className="w-3 h-3 absolute right-[-5px] bg-[#fff] rotate-45"></div>
             </div>
           </div>
 

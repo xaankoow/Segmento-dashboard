@@ -22,7 +22,7 @@ export default function TableFinancialReports({ title }) {
   const [placeholderPadding, setplaceholderPadding] = useState("");
   const [handleClickButton, setHandleClickButton] = useState(false);
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
-  const [searchFilterOption, setSearchFilterOption] = useState("");
+  const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
   const [numFilter, setNumFilter] = useState(1);
   const [handleClickCopy, setHandleClickCopy] = useState(false);
 
@@ -114,6 +114,8 @@ export default function TableFinancialReports({ title }) {
               secoundSearch={(e) => setSearchFilterText(e.target.value)}
               inputPlaceHolder={"فیلد جستجو"}
               getRadioValue={setSearchFilterOption}
+              radioValue={searchFilterOption}
+              
             />
           </div>
           <div className="flex items-center">

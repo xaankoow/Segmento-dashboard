@@ -128,12 +128,12 @@
 	transform: translate(-50%, 0);
 }
 
-#DASHBOARD .nav_right .down .dropDownBox .support_dropDown {
+#DASHBOARD  .support_dropDown {
 	position: absolute;
 	z-index: 5;
 	width: 100px;
 	height: 37px;
-	display: none;
+	/* display: none; */
 	align-items: center;
 	justify-content: center;
 	background: #FFFFFF;
@@ -147,7 +147,7 @@
 #DASHBOARD .nav_right .down div {
 	background-repeat: no-repeat;
 	background-size: cover;
-	margin: 6px 0px;
+	/* margin: 6px 0px; */
 	cursor: pointer;
 }
 
