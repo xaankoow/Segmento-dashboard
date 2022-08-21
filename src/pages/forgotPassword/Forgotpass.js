@@ -201,7 +201,12 @@ export default function Forgetpass() {
                     maxlength="1"
                     pressNumber={true}
                   />
+
                 </div>
+                  <span className={"authVerifyCodeList hidden absolute right-1 bottom-[-20px] text-[10px] text-[#c42b1c] "}>اطلاعات نامعتبر</span>
+
+    
+
               </div>
               <div className="absolute bottom-0 left-0 ">
                 <TextButton.Provider value={"تایید کد"}>
@@ -229,6 +234,8 @@ export default function Forgetpass() {
                 disable={forgotPasswordStep > 1 ? false : true}
                 chechvalue={chechvalue}
                 reduxHandleChange={setPasswordRedux}
+                errorTextId="errRejesterPassword"
+                checkStrongPass
               />
               <div className="flex flex-col items-start relative">
                 <AuthInput

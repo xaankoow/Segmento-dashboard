@@ -24,7 +24,8 @@ export default function AuthInput({
   workSpaceTypeState,
   errorTextId,
   infoStrongPass,
-  checkStrongPass
+  checkStrongPass,
+  ref
 
 
 }) {

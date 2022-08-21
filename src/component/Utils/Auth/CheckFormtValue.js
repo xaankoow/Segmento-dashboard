@@ -59,9 +59,6 @@ export const CheckFormat = (type, value, errId) => {
                 
             }
 
-
-
-
         case "passwordConfirm":
 
             CHECK = value.pass1 == value.pass2 ? true : false;
