@@ -97,8 +97,8 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
             <div className='p-9'>
                 <div className='flex justify-between pl-10 pr-4 py-5 bg-[#10CCAE] rounded-lg'>
                     <div>
-                        <p className=' text-xl font-bold text-[#fff] mb-3'>موفقیت آمیز!</p>
-                        <p className=' text-xl font-bold text-[#fff]'>کاربر عزیز ورک‌اسپیس جدید شما با موفقیت ایجاد شد!</p>
+                        {/* <p className=' text-xl font-bold text-[#fff] mb-3'>موفقیت آمیز!</p> */}
+                        <p className=' text-xl font-bold text-[#fff]'> ورک‌اسپیس جدید با مشخصات زیر تعریف شد!</p>
                     </div>
                     <img src="/img/dashboard/workSpace/headMessageReport/workSpace_report_ico.svg" alt="" className='' />
                 </div>
@@ -147,7 +147,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                             {commercialPages.map((item, index) => (
                                 <div className='px-5 mt-2 w-full'>
                                     <div className=''>
-                                        <p className=' w-full text-right text-xs'>صفحه تجاری با اولویت {handleCommercialTextPriority(index)} </p>
+                                        <p className=' w-full text-right text-xs'>صفحه تجاری </p>
                                         <p className=' w-full text-left text-sm mt-3'>{"https://" + webAdress + "/" + item}</p>
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                         <div className=' pl-5 py-2 border border-[#D9D9D9] mt-7'>
                             <div className='flex gap-6 justify-between items-center relative'>
                                 <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
-                                <span className=' text-sm mr-3'>وب‌سایت رقبا</span>
+                                <span className=' text-sm mr-3'>سایت رقبا</span>
                             </div>
                             <div className=' px-5 mt-2'>
                                 {competitorSite.map((item, index) => (
@@ -192,9 +192,9 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                                             </div>
                                         </div>
                                         <div className=' w-2/4 pr-3'>
-                                            {item.competitorSite.map(site => (
+                                            {item.competitorSite.map((site,index) => (
                                                 <div className='pr-2'>
-                                                    <p className=' w-full text-right text-xs'>سایت مرتبط</p>
+                                                    <p className=' w-full text-right text-xs'>سایت رقیب {index}</p>
                                                     <p className=' w-full text-left text-sm mt-3'>{"https://" + site}</p>
                                                 </div>
                                             ))}
