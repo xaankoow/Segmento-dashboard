@@ -43,7 +43,7 @@ export default function App() {
 
   const tabContent = [
     {
-      title: "جست و جو",
+      title: " جستجو",
       content: <KeyWords />,
     },
     {
@@ -53,7 +53,7 @@ export default function App() {
   ];
   const tabContent2 = [
     {
-      title: "جست و جو",
+      title: "جستجو",
       content: <ContentpProduction />,
     },
     {
