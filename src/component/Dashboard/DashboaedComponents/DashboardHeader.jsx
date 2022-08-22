@@ -162,7 +162,7 @@ const DashboardHeader = () => {
                     />
                   </div>
                   <span className="text-xs absolute bottom-0 right-6 w-max">
-                    {userState.userData.package.title}
+                    {userState.userData.package.title +" "+ userState.userData.package.type_text}
                   </span>
                 </div>
               ) : (
