@@ -81,7 +81,7 @@
     cursor: pointer;
 }
 
-.ReactModal__Content header .close_modal_ico {
+.ReactModal__Content .close_modal_ico {
     display: inline-block;
     height: 8px;
     width: 8px;
@@ -92,12 +92,12 @@
     cursor: pointer !important;
 }
 
-.ReactModal__Content header .close_suport_container {
+.ReactModal__Content .close_suport_container {
     display: flex;
     align-items: center;
 }
 
-.ReactModal__Content header .close_suport_container button {
+.ReactModal__Content .close_suport_container button {
     margin-left: 10px;
 }
 
