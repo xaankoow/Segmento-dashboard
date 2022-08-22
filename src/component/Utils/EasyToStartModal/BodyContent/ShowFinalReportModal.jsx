@@ -28,8 +28,8 @@ export default function ShowFinalReportModal() {
             </div>
             <p className='text-center text-lg'>سگمنتو بهترین مشتریان را دارد! داشتن مشتریانی مثل شما باعث افتخار است.</p>
             <div className='support_container '>
-                <p className=''>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
-                <AuthButton textButton={"مشاوره و تماس"} />
+                <p className=''>اگر سوالی دارید، با همکاران ما در واحد پشتیبانی تماس بگیرید.</p>
+                <AuthButton textButton={"برقراری تماس"} />
                 <img src="/img/modal/body/report.svg" alt="" />
             </div>
         </body>

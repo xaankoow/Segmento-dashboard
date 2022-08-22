@@ -45,12 +45,12 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
           <img src={image} alt="popUpImage" className=" w-24 h-w-24" />
         </div>
         <div className="popUpContent mt-3">
-          <h3 className="text-sm mt-5">{title}</h3>
+          <h3 className="text-xl font-bold">{title}</h3>
           <span className="text-sm px-4">{text}</span>
           {tryFreePlan != undefined & tryFreePlan ? (
             <div className="flex justify-between items-center w-full px-3">
               <div>
-                <AuthButton textButton={"خرید اشتراک"} handlerClick={tryFreePlanClick} setOnclickValue={1} />
+                <AuthButton textButton={"اشتراک میخرم"} handlerClick={tryFreePlanClick} setOnclickValue={1} />
               </div>
               <span className="buttonText mt-5" onClick={() => clickHandler()}>{buttonText}</span>
             </div>

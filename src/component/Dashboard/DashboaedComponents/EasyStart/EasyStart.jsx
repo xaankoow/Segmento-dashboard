@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 
 const EasyStart = ({ startButtonClick }) => {
-    const location = useLocation(); 
+    const location = useLocation();
 
     return (
         <>

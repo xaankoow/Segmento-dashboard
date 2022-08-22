@@ -12,10 +12,18 @@ import { Link } from "react-router-dom";
 // import "./output.css"
 // import './script'
 export default function PlanStatus() {
-  useEffect(() => {
-    if (datas == "") pastSelexboxData();
-  });
   const [datas, setDatas] = useState([]);
+  useEffect(() => {
+    if (datas.length < 0) pastSelexboxData();
+    const pastSelexboxData = async () => {
+      try {
+        const { data, status } = await usetLimit();
+        setDatas(data.data); //5
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
 
   var moment = require("jalali-moment");
 
@@ -53,14 +61,7 @@ export default function PlanStatus() {
       : "";
   } else {
   }
-  const pastSelexboxData = async () => {
-    try {
-      const { data, status } = await usetLimit();
-      setDatas(data.data); //5
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -76,12 +77,12 @@ export default function PlanStatus() {
         data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         cutout: 50,
         backgroundColor:
-          numberOfDays && numberOfDaysLeft >= Math.round((numberOfDays * 70)/ 100)
+          numberOfDays && numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 30)/ 100)
-            ? ["#D9D9D9", "#FFCE47"]
-            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 1)/ 100)
-            ? ["#D9D9D9", "#F35242"] :["#D9D9D9", "#ffffff"] ,
+            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+              ? ["#D9D9D9", "#FFCE47"]
+              : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+                ? ["#D9D9D9", "#F35242"] : ["#D9D9D9", "#ffffff"],
         borderWidth: 0,
         borderRadius: 7,
         // borderColor: [
@@ -112,12 +113,12 @@ export default function PlanStatus() {
         // width:35,
         // height:35,
         backgroundColor:
-          content && content  >= Math.round((allWords * 70)/ 100)
+          content && content >= Math.round((allWords * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : content && content >= Math.round((allWords * 30)/ 100)
-            ? ["#D9D9D9", "#FFCE47"]
-            : content && content >= Math.round((allWords * 1)/ 100)
-            && ["#D9D9D9", "#F35242"],
+            : content && content >= Math.round((allWords * 30) / 100)
+              ? ["#D9D9D9", "#FFCE47"]
+              : content && content >= Math.round((allWords * 1) / 100)
+              && ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -148,12 +149,12 @@ export default function PlanStatus() {
         // width:35,
         // height:35,
         backgroundColor:
-          keyword && keyword  >= Math.round((allWords * 70)/ 100)
+          keyword && keyword >= Math.round((allWords * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : keyword && keyword  >= Math.round((allWords * 30)/ 100)
-            ? ["#D9D9D9", "#FFCE47"]
-            : keyword && keyword  >= Math.round((allWords * 1)/ 100)
-            && ["#D9D9D9", "#F35242"],
+            : keyword && keyword >= Math.round((allWords * 30) / 100)
+              ? ["#D9D9D9", "#FFCE47"]
+              : keyword && keyword >= Math.round((allWords * 1) / 100)
+              && ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -233,7 +234,7 @@ export default function PlanStatus() {
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
 
                 <div className="flex flex-row justify-between ">
-                  <span>روز های باقی مانده</span>
+                  <span>روز‌‌های باقی‌مانده</span>
                   <span>
                     {userState.userData.package && numberOfDaysLeft} روز
                   </span>
@@ -261,14 +262,14 @@ export default function PlanStatus() {
                   src="/img/dashboard/planStatus/date_range.svg"
                   alt=""
                 />
-                <span className=" mt-5 mr-3 text-sm">روز های باقی مانده</span>
+                <span className=" mt-5 mr-3 text-sm">روز‌‌های باقی‌مانده</span>
               </div>
 
               <div className="mt-7 w-[143px] h-[143px] float-left relative mx-auto">
                 <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center z-50">
                   {userState.userData.package && numberOfDaysLeft}
                   <br />
-                  روز باقی مانده
+                  روز باقی‌مانده
                 </div>
                 <Doughnut
                   data={data}
@@ -315,12 +316,12 @@ export default function PlanStatus() {
                 </div>
               </div>
               <Link to={"buyPlan"}>
-              <button
-                id=""
-                className="btn-style  mb-8 mt-6 w-[161px] text-white"
-              >
-                خرید با 30% تخفیف
-              </button>
+                <button
+                  id=""
+                  className="btn-style  mb-8 mt-6 w-[161px] text-white"
+                >
+                  خرید با 30% تخفیف
+                </button>
               </Link>
             </div>
           </div>

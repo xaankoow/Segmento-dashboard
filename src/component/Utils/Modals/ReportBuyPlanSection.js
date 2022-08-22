@@ -44,13 +44,13 @@ export default function ReportBuyPlanSection({ handleClose, packageUuid }) {
           <div className='w-full flex items-center justify-between  text-center p-4 border border-[#D9D9D9] rounded-lg mb-5'> <div></div> رسید نهایی خرید اشتراک<img src='/img/modal/buyPlanReport/head/close.svg' className='float-left cursor-pointer rounded-[3px] hover:bg-[#F352421A]' onClick={() => handleClose()} /></div>
           <div className='report'>
             <div className='title'><span className='text-shortText'>اشتراک:</span><span className={`${packageSelected.type_text=="برنزی"?" text-[#BF8970]":packageSelected.type_text=="نقره ای"?"text-[#7D7D7D]":packageSelected.type_text=="طلایی"?"text-[#FFCE47]":"text-[#0A65CD]"}`}>{packageSelected.type_text}</span></div>
-            <div className='date'><span>مدت اشتراک:</span><span>{packageSelected.title}</span></div>
-            <div className='plan_price'><span>قیمت اشتراک:</span><span>{packageSelected.price.toString().substring(0,packageSelected.price.toString().length-3)} هزار تومان </span></div>
-            <div className="discount"><span>تخفیف سگمنتو:</span><span>{packageSelected.default_discount_percent} درصد </span></div>
-            <div className='price_discount'><span>مقدار تخفیف:</span><span>{packageSelected.default_discount.toString().substring(0,packageSelected.default_discount.toString().length-3)} هزار تومان </span></div>
-            <div className='final_price'><span>قیمت نهایی و پرداخت</span><span>{packageSelected.default_discount_price.toString().substring(0,packageSelected.default_discount_price.toString().length-3)} هزار تومان </span></div>
+            <div className='date'><span>مدت: </span><span>{packageSelected.title}</span></div>
+            <div className='plan_price'><span>قیمت: </span><span>{packageSelected.price.toString().substring(0,packageSelected.price.toString().length-3)} هزار تومان </span></div>
+            <div className="discount"><span>مقدار تخفیف: </span><span>{packageSelected.default_discount_percent} درصد </span></div>
+            <div className='price_discount'><span>مبلغ: </span><span>{packageSelected.default_discount.toString().substring(0,packageSelected.default_discount.toString().length-3)} هزار تومان </span></div>
+            <div className='final_price'><span>قیمت نهایی: </span><span>{packageSelected.default_discount_price.toString().substring(0,packageSelected.default_discount_price.toString().length-3)} هزار تومان </span></div>
           </div>
-          <AuthButton textButton={"خرید اشتراک"} reduxHandleClick={buyPlan}/>
+          <AuthButton textButton={"پرداخت"} reduxHandleClick={buyPlan}/>
         </body>
       </div>
       {forceUpdate ? "" : ""}

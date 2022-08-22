@@ -73,7 +73,7 @@ export default function WorkSpace() {
               <span className='info'></span>
             </div>
             <div className='close_suport_container'>
-              <div className='flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer bg-[#F352421A]' >
+              <div className='flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]' >
                 <div className='close_modal_ico w-3 h-3' onClick={() => navigate(-1)}></div>
               </div>
             </div>
@@ -95,8 +95,8 @@ export default function WorkSpace() {
           </body>
           <footer className='px-5'>
             {stepModal != 1 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
-            {stepModal != 1 ? <AuthButton classes={"bg-secondary text-[#488CDA]"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان"} /> : <div></div>}
-            {stepModal != 5 ? <AuthButton handlerClick={setStepModal} disabled={webAdress.length != 0 ? false : true} setOnclickValue={stepModal + 1} textButton={<Fragment>ادامه<span className='forward-ico'></span></Fragment>} /> : <div></div>}
+            {stepModal != 1 ? <AuthButton classes={"bg-secondary text-[#488CDA]"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان پیکربندی"} /> : <div></div>}
+            {stepModal != 5 ? <AuthButton handlerClick={setStepModal} disabled={webAdress.length != 0 ? false : true} setOnclickValue={stepModal + 1} textButton={<Fragment>گام بعدی<span className='forward-ico'></span></Fragment>} /> : <div></div>}
             {/* {stepModal != 5 ? <button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button> : <div></div>} */}
           </footer>
         </div>
