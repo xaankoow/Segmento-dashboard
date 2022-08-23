@@ -8,28 +8,15 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import { Link } from "react-router-dom";
+import { getPackageInfO } from "../../../service/packages";
 // import './'
 // import "./output.css"
 // import './script'
 export default function PlanStatus() {
   const [datas, setDatas] = useState([]);
-  useEffect(() => {
-    if (datas.length < 0) pastSelexboxData();
-    const pastSelexboxData = async () => {
-      try {
-        const { data, status } = await usetLimit();
-        setDatas(data.data); //5
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }, []);
-
-  var moment = require("jalali-moment");
-
-  const allWords = 100;
-
+  const [allWords, setAllWords] = useState([]);
   const userState = useSelector((state) => state.userState);
+  var moment = require("jalali-moment");
 
   var nowDate = new Date();
 
@@ -49,6 +36,7 @@ export default function PlanStatus() {
   var user_package_title = "";
   var package_end_dates = "";
   var user_package_type_text = "";
+
   if (userState.userData.package) {
     user_package_title = userState.userData.package.title
       ? userState.userData.package.title
@@ -62,12 +50,42 @@ export default function PlanStatus() {
   } else {
   }
 
-
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const content = datas.length > 0 && datas[3].count;
+  const content = datas.length > 0 && datas[20].count;
   const keyword = datas.length > 0 && datas[4].count;
   const dateExColor = datas.length > 0 && datas[4].count;
+  useEffect(() => {
+    const pastSelexboxData = async () => {
+      try {
+        const { data, status } = await usetLimit();
+        setDatas(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (datas.length == 0) pastSelexboxData();
+  }, []);
+  useEffect(() => {
+    const setPackagesInformation = async () => {
+      let package_uuid = "";
+
+      if (userState.userData.package != undefined) {
+        package_uuid = userState.userData.package.uuid;
+      }
+
+      try {
+        const { data, status } = await getPackageInfO(package_uuid);
+        setAllWords(data.data.features)
+        console.log(data.data.features);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (allWords.length == 0) setPackagesInformation();
+  }, [userState.userData.package]);
+
   const data = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -77,12 +95,16 @@ export default function PlanStatus() {
         data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         cutout: 50,
         backgroundColor:
-          numberOfDays && numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
+          numberOfDays &&
+          numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
-                ? ["#D9D9D9", "#F35242"] : ["#D9D9D9", "#ffffff"],
+            : numberOfDaysLeft &&
+              numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+            ? ["#D9D9D9", "#FFCE47"]
+            : numberOfDaysLeft &&
+              numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+            ? ["#D9D9D9", "#F35242"]
+            : ["#D9D9D9", "#ffffff"],
         borderWidth: 0,
         borderRadius: 7,
         // borderColor: [
@@ -105,20 +127,23 @@ export default function PlanStatus() {
         label: "# of Votes",
         // data: [30, 70],
         data: [
-          datas.length > 0 && allWords - datas[3].count,
-          datas.length > 0 && datas[3].count,
+          datas.length > 0 && allWords.length!=0 && allWords[20].count - datas[20].count,
+          datas.length > 0 && datas[20].count,
         ],
         cutout: 36,
         // cutout: 38,
         // width:35,
         // height:35,
         backgroundColor:
-          content && content >= Math.round((allWords * 70) / 100)
+          content && content >= Math.round((allWords.length!=0 && allWords[20].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : content && content >= Math.round((allWords * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : content && content >= Math.round((allWords * 1) / 100)
-              && ["#D9D9D9", "#F35242"],
+            : content && content >= Math.round((allWords.length!=0 && allWords[20].count * 30) / 100)
+            ? ["#D9D9D9", "#FFCE47"]
+            : content &&
+              content >= Math.round((allWords.length!=0 && allWords[20].count * 1) / 100) && [
+                "#D9D9D9",
+                "#F35242",
+              ],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -141,7 +166,7 @@ export default function PlanStatus() {
         label: "# of Votes",
         // data: [30, 70],
         data: [
-          datas.length > 0 && allWords - datas[4].count,
+          datas.length > 0 && allWords.length!=0 && allWords[4].count - datas[4].count,
           datas.length > 0 && datas[4].count,
         ],
         cutout: 36,
@@ -149,12 +174,15 @@ export default function PlanStatus() {
         // width:35,
         // height:35,
         backgroundColor:
-          keyword && keyword >= Math.round((allWords * 70) / 100)
+          keyword && keyword >= Math.round((allWords.length!=0 && allWords[4].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : keyword && keyword >= Math.round((allWords * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : keyword && keyword >= Math.round((allWords * 1) / 100)
-              && ["#D9D9D9", "#F35242"],
+            : keyword && keyword >= Math.round((allWords.length!=0 && allWords[4].count * 30) / 100)
+            ? ["#D9D9D9", "#FFCE47"]
+            : keyword &&
+              keyword >= Math.round((allWords.length!=0 && allWords[4].count * 1) / 100) && [
+                "#D9D9D9",
+                "#F35242",
+              ],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -266,7 +294,7 @@ export default function PlanStatus() {
               </div>
 
               <div className="mt-7 w-[143px] h-[143px] float-left relative mx-auto">
-                <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center z-50">
+                <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center">
                   {userState.userData.package && numberOfDaysLeft}
                   <br />
                   روز باقی‌مانده
@@ -347,11 +375,11 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords}
+                      {allWords.length!=0 && allWords[4].count}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 && allWords - datas[4].count}
+                      {datas.length > 0 && (allWords.length!=0 && allWords[4].count) - datas[4].count}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
@@ -361,7 +389,7 @@ export default function PlanStatus() {
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuetwo"></span>{" "}
                     {datas.length > 0 ? datas[4].count : ""} <br />
                     کلمه باقی مانده
@@ -389,23 +417,23 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords}
+                      {allWords.length!=0 && allWords[20].count}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? allWords - datas[3].count : ""}
+                      {datas.length > 0 ? allWords.length!=0 && allWords[20].count - datas[20].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? datas[3].count : ""}
+                      {datas.length > 0 ? datas[20].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuethree"></span>{" "}
-                    {datas.length > 0 ? datas[3].count : ""} <br />
+                    {datas.length > 0 ? datas[20].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">

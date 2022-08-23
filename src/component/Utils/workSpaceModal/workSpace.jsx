@@ -6,7 +6,7 @@ import AuthButton from '../../Auth/authButton/AuthButton';
 import { addWorkSpace } from '../../Redux/Action/workSpace';
 import BadgeLimitKeyWords from '../BadgeLimitKeyWords';
 import SetTitleTabBrowser from '../SetTitleTabBrowser';
-import { InputGetWorkSpaceInfo } from './inputValue';
+import InputGetWorkSpaceInfo from './inputValue';
 import { WorkSpaceParagraph } from './textParagraph';
 import { workSpaceTitle } from './titleWorkSpaceModal';
 
@@ -90,7 +90,9 @@ export default function WorkSpace() {
               {WorkSpaceParagraph(stepModal)}
             </p>
             <div className=' mt-8'>
-              {InputGetWorkSpaceInfo(stepModal, stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite, handleAddStateCountInput)}
+            {/* step, countInput, handleAddStateCountInput */}
+            <InputGetWorkSpaceInfo step={stepModal} countInput={stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite} handleAddStateCountInput={handleAddStateCountInput}/>
+              {/* {InputGetWorkSpaceInfo(stepModal, stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite, handleAddStateCountInput)} */}
             </div>
           </body>
           <footer className='px-5'>
