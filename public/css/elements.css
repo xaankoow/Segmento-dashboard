@@ -133,4 +133,8 @@ select {
 .checkbox:hover {
   border: #0A65CD !important;
 }
+input[type=checkbox]{
+  accent-color:#0A65CD !important ;
+ 
 
+}

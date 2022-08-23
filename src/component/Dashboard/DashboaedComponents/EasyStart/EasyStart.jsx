@@ -24,17 +24,17 @@ const EasyStart = ({ startButtonClick }) => {
                         <span>    آدرس وب‌سایت و کلمات کلیدی خودتان را آماده کنید تا شروع کنیم.</span>
                         <span>پس از انتخاب اشتراک و انجام فرایند شروع آسان به داده‌های تمیز و ساده دسترسی دارید که قابل استفاده و مطمئن هستند. </span>
                     </div>
-                    <div className="flex justify-between items-center relative  w-full ">
+                    <div className="flex justify-between items-center mt-16 ">
 
-                        <Link to={"/dashboard/buyPlanEasyToStartModal"} state={{ background: location }} className="btn-style w-36 mb-5 absolute bottom-0 flex justify-between">
+                        <Link to={"/dashboard/buyPlanEasyToStartModal"} state={{ background: location }} className="btn-style w-40 mb-5  bottom-0 flex justify-between">
                             {" "} 	شروع کنیم{" "}
                             <img src="/img/dashboard/EasyStartPage/startEasyStartArrow.svg" alt="EasyStartPage" className=' mr-3' />
                         </Link>
-                        <div className="w-full  flex justify-end ">
+                        <div className="w-full  flex justify-end relative ">
                             <img
                                 src="/img/dashboard/EasyStartPage/EasySart.svg"
                                 alt="EasyStartPage"
-                                className="w-40 pb-4"
+                                className="w-40 pb-4 ml-8 absolute -bottom-4"
                             />
                         </div>
 
