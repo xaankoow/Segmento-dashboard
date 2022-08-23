@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 import { useSelector } from 'react-redux';
 import AuthButton from '../../Auth/authButton/AuthButton';
 import {buyPlan } from '../../Redux/Action/plan';
+import { setFormatPrice } from '../FORMAT/price';
 
 export default function ReportBuyPlanSection({ handleClose, packageUuid }) {
 
