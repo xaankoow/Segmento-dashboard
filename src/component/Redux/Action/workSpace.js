@@ -24,19 +24,29 @@ export const getAllWorkSpace = () => {
     return async (dispatch, getState) => {
         // debugger
         const state = { ...getState().workSpaceState }
+        const loadingState = { ...getState().loadingState }
+
         let toastMessage = "";
         try {
-            // console.log("start get all work space")
-            const workSpaces = await getAllWorkspace()
-            if (workSpaces.data.status == true && workSpaces.data.code == 200) {
-                state.allWorkSpace = workSpaces.data.data;
-            } else {
 
+            if (!loadingState.ProcessingDelay.includes("getAllWorkspace")) {
+                //handle show loadin
+                {
+                    loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "getAllWorkspace");
+                    loadingState.ProcessingDelay.push("getAllWorkspace");
+                    loadingState.canRequest = false;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                }
+
+                const workSpaces = await getAllWorkspace()
+                if (workSpaces.data.status == true && workSpaces.data.code == 200) {
+                    state.allWorkSpace = workSpaces.data.data;
+                }
+                
+                
             }
-            // debugger
-            await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state })
         } catch (error) {
-            // console.log("register error")
+            
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
@@ -50,6 +60,15 @@ export const getAllWorkSpace = () => {
                 progress: undefined,
             });
         }
+        //handle hide loading
+        {
+            const loadingState1 = { ...getState().loadingState }
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllWorkspace");
+            loadingState1.ProcessingDelay = removeProcessingItem;
+            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+        }
+        await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state })
     }
 }
 

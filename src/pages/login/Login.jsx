@@ -23,9 +23,9 @@ export default function Login() {
             <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} errorTextId="errRejesterPassword" />
             <div className="flex items-center w-full justify-between">
               <div className="flex gap-5">
-                <TextButton.Provider value={"ورود"}>
-                  <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} />
-                </TextButton.Provider>
+                {/* <TextButton.Provider value={"ورود"}> */}
+                  <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} textButton={"ورود"}/>
+                {/* </TextButton.Provider> */}
                 <button className=" bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">
                   <span className="text-white">	ورود با گوگل</span> <GoogleIcon className="google w-6 h-6" />
                 </button>
@@ -46,7 +46,7 @@ export default function Login() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <img className="w-20" src="/img/FrameloginSun.png" alt="registerFrame" />
+            <img className="w-20  rotate_sun" src="/img/FrameloginSun.png" alt="registerFrame" />
             <img className="w-100" src="/img/login.svg" alt="registerFrame" />
             <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
           </div>

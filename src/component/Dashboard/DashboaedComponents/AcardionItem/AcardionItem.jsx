@@ -156,7 +156,7 @@ export default function AcardionItem() {
   return (
     <>
       {data.map((item, index) => {
-       return (
+        return (
           <div className="" key={index}>
             <div className="flex items-center justify-between m-0 p-0">
               <div
@@ -197,29 +197,29 @@ export default function AcardionItem() {
             </div>
             {clicked === index ? (
               <div className="mr-5 mt-0">
-                {item.acardionItems.map((item, index) => {
+                {item.acardionItems.map((acardionItem, index) => {
                   return (
-                    
-                      item.itemLink != "" ? (
-                        <Link to={item.itemLink} className={"w-auto"}>
-                          <div
-                            key={index}
-                            className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
-                          >
-                            <img src={item.itemIcon} alt="icon"  />
-                            <span className={"w-auto"}>{item.itemTitle}</span>
-                          </div>
-                        </Link>
-                      ) : (
+
+                    acardionItem.itemLink != "" ? (
+                      <Link to={acardionItem.itemLink} className={"w-auto"}>
                         <div
-                            key={index}
-                            className="flex  items-center gap-3 text-[#002145] mb-3 mr-5 text-sm cursor-default "
-                          >
-                            <img src={item.itemIcon} alt="icon" className={"grayscale opacity-10"} />
-                            <span className={"w-auto text-sectionDisable"}>{item.itemTitle}</span>
-                          </div>
-                      )
-                    
+                          key={index}
+                          className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
+                        >
+                          <img src={acardionItem.itemIcon} alt="icon" />
+                          <span className={"w-auto"}>{acardionItem.itemTitle}</span>
+                        </div>
+                      </Link>
+                    ) : (
+                      <div
+                        key={index}
+                        className="flex  items-center gap-3 text-[#002145] mb-3 mr-5 text-sm cursor-default "
+                      >
+                        <img src={acardionItem.itemIcon} alt="icon" className={` ${item.title != "ورک‌اسپیس‌ها"&&"grayscale opacity-10"}`} />
+                        <span className={`w-auto ${item.title != "ورک‌اسپیس‌ها"&&"text-sectionDisable"}`}>{acardionItem.itemTitle}</span>
+                      </div>
+                    )
+
 
                   );
                 })}

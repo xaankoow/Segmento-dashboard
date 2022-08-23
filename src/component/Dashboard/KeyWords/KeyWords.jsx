@@ -214,7 +214,7 @@ const KeyWords = ({ onClickHandler }) => {
         onClick={(e) =>{handleSetStoreKeyWords()}}
       >
         <img src="/img/dashboard/keyWord/bookmark.svg" alt="" />
-       ذخیره لیست
+       ذخیره 
       </button>
     </>
   );

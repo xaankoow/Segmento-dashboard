@@ -7,7 +7,7 @@ export default function AleartMessageBuyPlan() {
 
     const { financialDataTable } = useSelector(state => state.financialState)
 
-    const typeAlert = financialDataTable.length != 0 ? financialDataTable[0].payment_status_text == "پرداخت شده" ? "success" : "err" : "";
+    const typeAlert = financialDataTable.length != 0 ? financialDataTable[0].payment_status_text == "پرداخت موفق" ? "success" : "err" : "";
 
     const dispatch = useDispatch();
 

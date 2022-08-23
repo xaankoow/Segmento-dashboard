@@ -26,59 +26,62 @@ const DashboardHeader = () => {
 
   const navigate = useNavigate();
 
-  // ChartJS.defaults.global.tooltips.enabled = false;
-
   var moment = require("jalali-moment");
-
-  // const userState = useSelector((state) => state.userState);
-
-  var nowDate = new Date();
-
-  var startDate =
-    userState.userData.package != undefined &&
-    new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
-  var expiryDate =
-    userState.userData.package != undefined &&
-    new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
-
-  var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
-  var timeSecDays = Math.abs(expiryDate - startDate);
-
-  var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
-  var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
-  // debugger
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const data = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  const [doughnutChartData, setDoughnutChartData] = useState({
     datasets: [
       {
         label: "# of Votes32",
-        data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
+        // data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
+        data: [1, 0],
         cutout: 5,
-        backgroundColor:
-          numberOfDays && numberOfDaysLeft >= Math.round((numberOfDays * 70)/ 100)
-            ? ["#D9D9D9", "#10CCAE"]
-            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 30)/ 100)
-            ? ["#D9D9D9", "#FFCE47"]
-            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 1)/ 100)
-            ? ["#D9D9D9", "#F35242"] :["#D9D9D9", "#ffffff"] ,
+        backgroundColor: ["#D9D9D9", "#10CCAE"],
         borderWidth: 0,
         borderRadius: 7,
-
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
-        // borderWidth: 1,
       },
     ],
-  };
+  });
+  useEffect(() => {
+
+    var nowDate = new Date();
+
+    if (userState.userData.package != undefined) {
+      var startDate = new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
+      var expiryDate = new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
+
+      var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
+      var timeSecDays = Math.abs(expiryDate - startDate);
+
+      var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
+      var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+
+      setDoughnutChartData(
+        {
+          datasets: [
+            {
+              label: "# of Votes32",
+              data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
+              cutout: 5,
+              backgroundColor:
+                numberOfDays && numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
+                  ? ["#D9D9D9", "#10CCAE"]
+                  : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+                    ? ["#D9D9D9", "#FFCE47"]
+                    : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+                      ? ["#D9D9D9", "#F35242"] : ["#D9D9D9", "#ffffff"],
+              borderWidth: 0,
+              borderRadius: 7,
+            },
+          ],
+        }
+      )
+    }
+
+  }, [userState.userData.package])
+
+
 
   useEffect(() => {
     // debugger
@@ -97,9 +100,9 @@ const DashboardHeader = () => {
       }, 2000);
     }
   }, [forceUpdate]);
-  useEffect(() => {
-    dispatch(coreUser());
-  }, [checkUseTryFree]);
+  // useEffect(() => {
+  //   dispatch(coreUser());
+  // }, [checkUseTryFree]);
 
   const location = useLocation();
 
@@ -142,7 +145,7 @@ const DashboardHeader = () => {
                 <div className="flex items-center justify-start mt-1 ">
                   <div className=" absolute bottom-0 right-0">
                     <Doughnut
-                      data={data}
+                      data={doughnutChartData}
                       height={30}
                       width={18}
                       // height={25}
@@ -159,11 +162,33 @@ const DashboardHeader = () => {
                     />
                   </div>
                   <span className="text-xs absolute bottom-0 right-6 w-max">
-                    {userState.userData.package.title}
+                    {userState.userData.package.title +" "+ userState.userData.package.type_text}
                   </span>
                 </div>
               ) : (
-                ""
+                <div className="flex items-center justify-start mt-1 ">
+                  <div className=" absolute bottom-0 right-0">
+                    <Doughnut
+                      data={doughnutChartData}
+                      height={30}
+                      width={18}
+                      // height={25}
+                      // width={15}
+
+                      options={{
+                        maintainAspectRatio: false,
+                        plugins: {
+                          tooltip: {
+                            enabled: false,
+                          },
+                        },
+                      }}
+                    />
+                  </div>
+                  <span className="text-xs absolute bottom-0 right-6 w-max">
+                    بدون پکیج
+                  </span>
+                </div>
               )}
             </div>
           </div>

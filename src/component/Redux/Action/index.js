@@ -19,20 +19,25 @@ export const coreUser = () => {
             axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
         }
 
-        // debugger
         try {
-            //handle show loadin
-            {
-                loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
-                loadingState.ProcessingDelay.push("coreUserData");
-                loadingState.canRequest = false;
-                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-            }
 
-            const { data, status } = await coreUserData();
-            if (status == 200 && data.status == true) {
-                state.userData = data.data;
-
+            if (!loadingState.ProcessingDelay.includes("coreUserData")) {
+                //handle show loadin
+                {
+                    loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
+                    loadingState.ProcessingDelay.push("coreUserData");
+                    loadingState.canRequest = false;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                }
+                
+                const { data, status } = await coreUserData();
+                if (status == 200 && data.status == true) {
+                    if (data.data.user!= undefined) {
+                        state.userData = data.data;
+                    }else{
+                        localStorage.removeItem("token")
+                    }
+                } 
                 //handle hide loading
                 {
                     const loadingState1 = { ...getState().loadingState }
@@ -41,27 +46,9 @@ export const coreUser = () => {
                     loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
                     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
                 }
-            } else {
-                // data.errors.forEach(element => {
-                //     toastMessage += element + " / ";;
-                // });
-                // toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                // toast.warn('🦄 Wow so easy!', {
-                //     position: "top-right",
-                //     autoClose: 2000,
-                //     hideProgressBar: false,
-                //     closeOnClick: true,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                //     progress: undefined,
-                //     });
             }
         } catch (error) {
-            // if(data){
 
-            // }
-            // console.log("register error")
-            // console.log(error)
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });

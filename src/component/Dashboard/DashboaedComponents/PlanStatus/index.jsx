@@ -8,20 +8,15 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import { Link } from "react-router-dom";
+import { getPackageInfO } from "../../../service/packages";
 // import './'
 // import "./output.css"
 // import './script'
 export default function PlanStatus() {
-  useEffect(() => {
-    if (datas == "") pastSelexboxData();
-  });
   const [datas, setDatas] = useState([]);
-
-  var moment = require("jalali-moment");
-
-  const allWords = 100;
-
+  const [allWords, setAllWords] = useState([]);
   const userState = useSelector((state) => state.userState);
+  var moment = require("jalali-moment");
 
   var nowDate = new Date();
 
@@ -41,6 +36,7 @@ export default function PlanStatus() {
   var user_package_title = "";
   var package_end_dates = "";
   var user_package_type_text = "";
+
   if (userState.userData.package) {
     user_package_title = userState.userData.package.title
       ? userState.userData.package.title
@@ -53,20 +49,43 @@ export default function PlanStatus() {
       : "";
   } else {
   }
-  const pastSelexboxData = async () => {
-    try {
-      const { data, status } = await usetLimit();
-      setDatas(data.data); //5
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const content = datas.length > 0 && datas[3].count;
+  const content = datas.length > 0 && datas[20].count;
   const keyword = datas.length > 0 && datas[4].count;
   const dateExColor = datas.length > 0 && datas[4].count;
+  useEffect(() => {
+    const pastSelexboxData = async () => {
+      try {
+        const { data, status } = await usetLimit();
+        setDatas(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (datas.length == 0) pastSelexboxData();
+  }, []);
+  useEffect(() => {
+    const setPackagesInformation = async () => {
+      let package_uuid = "";
+
+      if (userState.userData.package != undefined) {
+        package_uuid = userState.userData.package.uuid;
+      }
+
+      try {
+        const { data, status } = await getPackageInfO(package_uuid);
+        setAllWords(data.data.features)
+        console.log(data.data.features);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (allWords.length == 0) setPackagesInformation();
+  }, [userState.userData.package]);
+
   const data = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -76,12 +95,16 @@ export default function PlanStatus() {
         data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         cutout: 50,
         backgroundColor:
-          numberOfDays && numberOfDaysLeft >= Math.round((numberOfDays * 70)/ 100)
+          numberOfDays &&
+            numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 30)/ 100)
-            ? ["#D9D9D9", "#FFCE47"]
-            : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 1)/ 100)
-            ? ["#D9D9D9", "#F35242"] :["#D9D9D9", "#ffffff"] ,
+            : numberOfDaysLeft &&
+              numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+              ? ["#D9D9D9", "#FFCE47"]
+              : numberOfDaysLeft &&
+                numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+                ? ["#D9D9D9", "#F35242"]
+                : ["#D9D9D9", "#ffffff"],
         borderWidth: 0,
         borderRadius: 7,
         // borderColor: [
@@ -104,20 +127,23 @@ export default function PlanStatus() {
         label: "# of Votes",
         // data: [30, 70],
         data: [
-          datas.length > 0 && allWords - datas[3].count,
-          datas.length > 0 && datas[3].count,
+          datas.length > 0 && allWords.length != 0 && allWords[20].count - datas[20].count,
+          datas.length > 0 && datas[20].count,
         ],
         cutout: 36,
         // cutout: 38,
         // width:35,
         // height:35,
         backgroundColor:
-          content && content  >= Math.round((allWords * 70)/ 100)
+          content && content >= Math.round((allWords.length != 0 && allWords[20].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : content && content >= Math.round((allWords * 30)/ 100)
-            ? ["#D9D9D9", "#FFCE47"]
-            : content && content >= Math.round((allWords * 1)/ 100)
-            && ["#D9D9D9", "#F35242"],
+            : content && content >= Math.round((allWords.length != 0 && allWords[20].count * 30) / 100)
+              ? ["#D9D9D9", "#FFCE47"]
+              : content &&
+              content >= Math.round((allWords.length != 0 && allWords[20].count * 1) / 100) && [
+                "#D9D9D9",
+                "#F35242",
+              ],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -140,7 +166,7 @@ export default function PlanStatus() {
         label: "# of Votes",
         // data: [30, 70],
         data: [
-          datas.length > 0 && allWords - datas[4].count,
+          datas.length > 0 && allWords.length != 0 && allWords[4].count - datas[4].count,
           datas.length > 0 && datas[4].count,
         ],
         cutout: 36,
@@ -148,12 +174,15 @@ export default function PlanStatus() {
         // width:35,
         // height:35,
         backgroundColor:
-          keyword && keyword  >= Math.round((allWords * 70)/ 100)
+          keyword && keyword >= Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : keyword && keyword  >= Math.round((allWords * 30)/ 100)
-            ? ["#D9D9D9", "#FFCE47"]
-            : keyword && keyword  >= Math.round((allWords * 1)/ 100)
-            && ["#D9D9D9", "#F35242"],
+            : keyword && keyword >= Math.round((allWords.length != 0 && allWords[4].count * 30) / 100)
+              ? ["#D9D9D9", "#FFCE47"]
+              : keyword &&
+              keyword >= Math.round((allWords.length != 0 && allWords[4].count * 1) / 100) && [
+                "#D9D9D9",
+                "#F35242",
+              ],
         borderWidth: 0,
         borderRadius: 5,
         // borderColor: [
@@ -233,7 +262,7 @@ export default function PlanStatus() {
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
 
                 <div className="flex flex-row justify-between ">
-                  <span>روز های باقی مانده</span>
+                  <span>روز‌‌های باقی‌مانده</span>
                   <span>
                     {userState.userData.package && numberOfDaysLeft} روز
                   </span>
@@ -261,14 +290,14 @@ export default function PlanStatus() {
                   src="/img/dashboard/planStatus/date_range.svg"
                   alt=""
                 />
-                <span className=" mt-5 mr-3 text-sm">روز های باقی مانده</span>
+                <span className=" mt-5 mr-3 text-sm">روز‌‌های باقی‌مانده</span>
               </div>
 
               <div className="mt-7 w-[143px] h-[143px] float-left relative mx-auto">
-                <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center z-50">
+                <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center">
                   {userState.userData.package && numberOfDaysLeft}
                   <br />
-                  روز باقی مانده
+                  روز باقی‌مانده
                 </div>
                 <Doughnut
                   data={data}
@@ -296,32 +325,42 @@ export default function PlanStatus() {
 
             <div
               id="item3"
-              className="bg-[#FCFCFB] flex flex-col justify-center items-center lg:mr-10 rounded pt-5  md:mx-2 sm:mx-auto md:mt-2 sm:mt-2 w-[35%]"
+              className="bg-[#FCFCFB] flex flex-col justify-between items-center lg:mr-10 rounded pt-5  md:mx-2 sm:mx-auto md:mt-2 sm:mt-2 w-[35%]"
             >
-              <span id="shape">تخفیف</span>
-              <h1 id="off" className="font-extrabold">
-                30%
-              </h1>
+              {/* <div className="text-center">
 
-              <span className="mt-1">اشتراک {user_package_type_text}</span>
+                <span id="shape">تخفیف</span>
+                <h1 id="off" className="font-extrabold">
+                  30%
+                </h1>
 
-              <div id="box-off">
-                <div className="flex flex-row my-4">
-                  <span>فقط</span>
-                  <span className="mx-1 px-3 bg-[#0B4B94] rounded-2xl text-[#fff]">
-                    10
-                  </span>
-                  <span>روز دیگر فرصت دارید</span>
+                <span className="mt-1">اشتراک {user_package_type_text}</span>
+
+                <div id="box-off">
+                  <div className="flex flex-row my-4">
+                    <span>فقط</span>
+                    <span className="mx-1 px-3 bg-[#0B4B94] rounded-2xl text-[#fff]">
+                      10
+                    </span>
+                    <span>روز دیگر فرصت دارید</span>
+                  </div>
                 </div>
+              </div> */}
+              <div className="w-64 h-64 relative">
+                <img src="/img/dashboard/planStatus/boxDiscount.svg" className="w-full h-full"/>
+                {/* <img src="/img/dashboard/planStatus/balloonBoxDiscount.svg" className="w-full h-full absolute top-0 animate-pulse"/> */}
+                <img src="/img/dashboard/planStatus/balloonBoxDiscount.svg" className="w-full h-full absolute top-0 discountBoxBallonAnimation"/>
               </div>
-              <Link to={"buyPlan"}>
-              <button
-                id=""
-                className="btn-style  mb-8 mt-6 w-[161px] text-white"
-              >
-                خرید با 30% تخفیف
-              </button>
-              </Link>
+              <div>
+                <Link to={"buyPlan"}>
+                  <button
+                    id=""
+                    className="btn-style mb-2 mt-3 w-[161px] text-white"
+                  >
+                    خرید با 15% تخفیف
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -346,11 +385,11 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords}
+                      {allWords.length != 0 && allWords[4].count}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 && allWords - datas[4].count}
+                      {datas.length > 0 && (allWords.length != 0 && allWords[4].count) - datas[4].count}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
@@ -360,7 +399,7 @@ export default function PlanStatus() {
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuetwo"></span>{" "}
                     {datas.length > 0 ? datas[4].count : ""} <br />
                     کلمه باقی مانده
@@ -388,23 +427,23 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords}
+                      {allWords.length != 0 && allWords[20].count}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? allWords - datas[3].count : ""}
+                      {datas.length > 0 ? allWords.length != 0 && allWords[20].count - datas[20].count : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? datas[3].count : ""}
+                      {datas.length > 0 ? datas[20].count : ""}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuethree"></span>{" "}
-                    {datas.length > 0 ? datas[3].count : ""} <br />
+                    {datas.length > 0 ? datas[20].count : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
