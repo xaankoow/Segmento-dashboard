@@ -294,7 +294,7 @@ export default function PlanStatus() {
               </div>
 
               <div className="mt-7 w-[143px] h-[143px] float-left relative mx-auto">
-                <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center z-50">
+                <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center">
                   {userState.userData.package && numberOfDaysLeft}
                   <br />
                   روز باقی‌مانده
@@ -389,7 +389,7 @@ export default function PlanStatus() {
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuetwo"></span>{" "}
                     {datas.length > 0 ? datas[4].count : ""} <br />
                     کلمه باقی مانده
@@ -431,7 +431,7 @@ export default function PlanStatus() {
                 </div>
 
                 <div className="w-24 h-24 float-left relative mx-auto">
-                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center z-50">
+                  <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuethree"></span>{" "}
                     {datas.length > 0 ? datas[20].count : ""} <br />
                     کلمه باقی مانده
