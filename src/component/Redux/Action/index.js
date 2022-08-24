@@ -32,8 +32,11 @@ export const coreUser = () => {
                 
                 const { data, status } = await coreUserData();
                 if (status == 200 && data.status == true) {
-                    state.userData = data.data;
-    
+                    if (data.data.user!= undefined) {
+                        state.userData = data.data;
+                    }else{
+                        localStorage.removeItem("token")
+                    }
                 } 
                 //handle hide loading
                 {
