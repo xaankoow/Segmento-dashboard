@@ -85,8 +85,8 @@ export default function App() {
                     <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
                     <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
                     <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} />} />
-                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} />} />
+                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"}/>} />
+                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>
