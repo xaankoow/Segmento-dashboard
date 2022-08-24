@@ -14,9 +14,9 @@ export const coreUser = () => {
         const loadingState = { ...getState().loadingState }
         let toastMessage = "";
 
-        const token=localStorage.getItem("token");
-        if (token!=="undefined"&&token!=null&&token) {
-            axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
+        const token = localStorage.getItem("token");
+        if (token !== "undefined" && token != null && token) {
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
         }
 
         try {
@@ -29,15 +29,15 @@ export const coreUser = () => {
                     loadingState.canRequest = false;
                     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
                 }
-                
+
                 const { data, status } = await coreUserData();
                 if (status == 200 && data.status == true) {
-                    if (data.data.user!= undefined) {
+                    if (data.data.user != undefined) {
                         state.userData = data.data;
-                    }else{
+                    } else {
                         localStorage.removeItem("token")
                     }
-                } 
+                }
                 //handle hide loading
                 {
                     const loadingState1 = { ...getState().loadingState }
@@ -61,16 +61,17 @@ export const coreUser = () => {
                 draggable: true,
                 progress: undefined,
             });
-            // toast.update(toastPromiseRegister, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
+            //handle hide loading
+            {
+                console.log("remove")
+                const loadingState2 = { ...getState().loadingState }
+                var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "coreUserData");
+                loadingState2.ProcessingDelay = removeProcessingItem;
+                loadingState2.canRequest = removeProcessingItem.length > 0 ? false : true;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
+            }
         }
-        //handle hide loading
-        {
-            const loadingState2 = { ...getState().loadingState }
-            var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "coreUserData");
-            loadingState2.ProcessingDelay = removeProcessingItem;
-            loadingState2.canRequest = removeProcessingItem.length > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
-        }
+
         await dispatch({ type: "CORE_USER", payload: state })
     }
 }
@@ -240,12 +241,12 @@ export const RegisterUserAction = () => {
                         showToast(toastMessage, "error");
                     }
                 } catch (error) {
-                    let skipToast=false
+                    let skipToast = false
                     error.response.data.errors.forEach(element => {
                         // toastMessage += element+ "\r\n";
-                        if(element=="این ایمیل قبلا ثبت شده"){
-                            InputError("errRejesterFormatEmail","کاربری با این ایمیل وجود دارد.")
-                            skipToast=true
+                        if (element == "این ایمیل قبلا ثبت شده") {
+                            InputError("errRejesterFormatEmail", "کاربری با این ایمیل وجود دارد.")
+                            skipToast = true
                         }
                         toastMessage += element + " / ";
                     });
@@ -347,9 +348,9 @@ export const loginUserAction = () => {
                 } catch (error) {
 
                     console.log(error)
-                    if (error.response.data.code==404) {
-                        InputError("errRejesterFormatEmail","ایمیل یا گذرواژه اشتباه است.")
-                    }else{
+                    if (error.response.data.code == 404) {
+                        InputError("errRejesterFormatEmail", "ایمیل یا گذرواژه اشتباه است.")
+                    } else {
                         error.response.data.errors.forEach(element => {
                             toastMessage += element + " / ";
                         });
@@ -406,7 +407,7 @@ export const sendCodEmailAction = (email, demoResolve) => {
                     await dispatch({ type: "SEND_CODE_EMAIL", payload: state })
                     showToast("کد به ایمیل شما ارسال شد", "success");
                     // toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })
-                } else{
+                } else {
                     data.errors.forEach(element => {
                         toastMessage += element + " / ";;
                     });
@@ -563,10 +564,10 @@ export const checkVerifyEmailForgotPasswordAction = () => {
                     // showPromisToast(check_verify_email(),"checkVerifyEmail")
                 } catch (error) {
                     console.log(error)
-                    if (error.response.data.code==404) {
-                        InputError("authVerifyCodeList","کد فعال‌سازی اشتباه است.")
-                
-                    }else{
+                    if (error.response.data.code == 404) {
+                        InputError("authVerifyCodeList", "کد فعال‌سازی اشتباه است.")
+
+                    } else {
                         error.response.data.errors.forEach(element => {
                             toastMessage += element + " / ";
                         });
@@ -636,10 +637,10 @@ export const sendForgotPasswordEmailCodeAction = () => {
                             showToast(toastMessage, "error");
                         }
                     } catch (error) {
-                        if (error.response.data.code==404) {
-                            InputError("errRejesterFormatEmail","کاربری با این ایمیل وجود ندارد.")
+                        if (error.response.data.code == 404) {
+                            InputError("errRejesterFormatEmail", "کاربری با این ایمیل وجود ندارد.")
 
-                        }else{
+                        } else {
                             error.response.data.errors.forEach(element => {
                                 toastMessage += element + ".";
                             });
@@ -708,10 +709,10 @@ export const changePasswordAction = () => {
 
                     if (status == 200 && data.status == true) {
                         showToast("رمز عبور با موفقیت تغییر کرد", "success");
-                        state.forceUpdate+=1;
-                        state.handleResendCode=true;
-                        state.forgotPasswordStep=0;
-                        localStorage.setItem("CHECNGEPASSWORD_COMPLETE",true)
+                        state.forceUpdate += 1;
+                        state.handleResendCode = true;
+                        state.forgotPasswordStep = 0;
+                        localStorage.setItem("CHECNGEPASSWORD_COMPLETE", true)
                         // toast.update(toastPromise, { render: "رمز عبور با موفقیت تغییر کرد", type: "success", isLoading: false, autoClose: 3000 })
                     } else {
                         data.errors.forEach(element => {

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../../Redux/Action/plan';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthInput from '../../../Auth/authInput/AuthInput';
-import DiscountTagValue from '../../buyPlanSection_UTILS/DiscountTagValue';
 import HandleParagraphInfoPlan from '../../buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan';
 import CardPlans from '../../buyPlanSection_UTILS/CardPlans';
 

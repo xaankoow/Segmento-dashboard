@@ -326,8 +326,10 @@ export const applyDiscountAction = (discountCode, planType) => {
                     state.discount = discountCode;
                     // debugger
                     // state.discountValue.value = { value: data.data.value.toString().substring(0, data.data.value.toString().length - 3), planType: planType };
-                    state.discountStatus.value = data.data.value.toString().substring(0, data.data.value.toString().length - 3) ;
+                    // state.discountStatus.value = data.data.value.toString().substring(0, data.data.value.toString().length - 3) ;
+                    state.discountStatus.value = data.data.value;
                     state.discountStatus.planType =planType ;
+                    state.discountStatus.discountType =data.data.unit==1?"percentage":"cash" ;
                     state.forceUpdate += 1;
                     showToast(data.data.msg, "success");
                     // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
