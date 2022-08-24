@@ -12,8 +12,8 @@ export const getAllFinancialReports = () => {
 
         let toastMessage = "";
         try {
-            
-            
+
+
             if (!loadingState.ProcessingDelay.includes("getAllFinancialReports")) {
                 //handle show loadin
                 {
@@ -29,6 +29,15 @@ export const getAllFinancialReports = () => {
                     state.allFinancialData = data.data;
                     state.financialDataTable = data.data;
                     await dispatch({ type: "GET_FINANCIAL_DATA", payload: state })
+                }
+
+                //handle hide loading
+                {
+                    const loadingState1 = { ...getState().loadingState }
+                    var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllFinancialReports");
+                    loadingState1.ProcessingDelay = removeProcessingItem;
+                    loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
                 }
 
             }
@@ -48,18 +57,16 @@ export const getAllFinancialReports = () => {
                 draggable: true,
                 progress: undefined,
             });
-            // loadingState.ProcessingDelay=0;
-            // await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })  
+            //handle hide loading
+            {
+                const loadingState1 = { ...getState().loadingState }
+                var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllFinancialReports");
+                loadingState1.ProcessingDelay = removeProcessingItem;
+                loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+            }
         }
 
-        //handle hide loading
-        {
-            const loadingState1 = { ...getState().loadingState }
-            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllFinancialReports");
-            loadingState1.ProcessingDelay = removeProcessingItem;
-            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
-        }
     }
 }
 
@@ -76,7 +83,7 @@ export const filterFinancialReports = ({ textTarget, textValue, sortTarget, sort
 
         debugger
         // filter target search box
-        if (textValue!="") {
+        if (textValue != "") {
             getAllData.forEach(element => {
                 switch (textTarget) {
                     case "شماره فاکتور":
@@ -105,7 +112,7 @@ export const filterFinancialReports = ({ textTarget, textValue, sortTarget, sort
                             filterFinancialReportData.push(element);
                         }
                         break;
-    
+
                     default:
                         break;
                 }
