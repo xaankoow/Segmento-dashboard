@@ -16,7 +16,7 @@ export default function ContentpProduction({ onClickHandler }) {
   const [boxIndex, setUpdateBoxIndex] = useState(-1);
   const [activeboxValue, setActiveboxValue] = useState("");
   const SaveInputValues = (e) => {
-    SetSaveInputValues(e.target.value);
+    SetSaveInputValues(e);
   };
   const activeBoxUpdate = (e) => {
     setUpdateBoxIndex(e.target.id);

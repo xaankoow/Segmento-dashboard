@@ -9,6 +9,7 @@ export default function TabMenu({
   title,
   numberRight,
   numberLeft,
+  amountOfData
 }) {
   // to select tab and show underline of that
   const [activeTab, setActiveTab] = useState(0);
@@ -18,7 +19,7 @@ export default function TabMenu({
         <div className="w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]" />
         <span className="text-lg">{title}</span>
         <div className="h-6">
-          <BadgeLimitKeyWords />
+          <BadgeLimitKeyWords api={amountOfData} />
         </div>
       </div>
       <Tab.Group>

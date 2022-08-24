@@ -83,7 +83,7 @@ export default function WorkSpace() {
               <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
               <span className='text-sm mr-3'>{workSpaceTitle(stepModal)}</span>
               <div className="h-5">
-                <BadgeLimitKeyWords />
+                <BadgeLimitKeyWords  api={stepModal}/>
               </div>
             </div>
             <p className='mt-2.5 text-sm text-[#002145]'>
