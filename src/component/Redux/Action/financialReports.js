@@ -12,26 +12,37 @@ export const getAllFinancialReports = () => {
 
         let toastMessage = "";
         try {
-            //handle show loadin
-            {
+
+
+            if (!loadingState.ProcessingDelay.includes("getAllFinancialReports")) {
+                //handle show loadin
+                {
+                    // debugger
+                    loadingState.ProcessingDelay.push("getAllFinancialReports");
+                    loadingState.canRequest = false;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                    // await dispatch({ type: "CAN_REQUEST", payload: loadingState })    
+                }
+                const { data } = await getAllFinancialReportsData()
                 // debugger
-                loadingState.ProcessingDelay.push("getAllFinancialReports");
-                loadingState.canRequest = false;
-                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-                // await dispatch({ type: "CAN_REQUEST", payload: loadingState })    
+                if (data.status == true && data.code == 200) {
+                    state.allFinancialData = data.data;
+                    state.financialDataTable = data.data;
+                    await dispatch({ type: "GET_FINANCIAL_DATA", payload: state })
+                }
+
+                //handle hide loading
+                {
+                    const loadingState1 = { ...getState().loadingState }
+                    var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllFinancialReports");
+                    loadingState1.ProcessingDelay = removeProcessingItem;
+                    loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+                }
+
             }
 
-
-            const { data } = await getAllFinancialReportsData()
             // debugger
-            if (data.status == true && data.code == 200) {
-                state.allFinancialData = data.data;
-                state.financialDataTable = data.data;
-            } else {
-
-            }
-            // debugger
-            await dispatch({ type: "GET_FINANCIAL_DATA", payload: state })
         } catch (error) {
             // console.log("register error")
             error.response.data.errors.forEach(element => {
@@ -46,18 +57,16 @@ export const getAllFinancialReports = () => {
                 draggable: true,
                 progress: undefined,
             });
-            // loadingState.ProcessingDelay=0;
-            // await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })  
+            //handle hide loading
+            {
+                const loadingState1 = { ...getState().loadingState }
+                var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllFinancialReports");
+                loadingState1.ProcessingDelay = removeProcessingItem;
+                loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+            }
         }
 
-        //handle hide loading
-        {
-            const loadingState1 = { ...getState().loadingState }
-            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllFinancialReports");
-            loadingState1.ProcessingDelay = removeProcessingItem;
-            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
-        }
     }
 }
 
@@ -72,64 +81,54 @@ export const filterFinancialReports = ({ textTarget, textValue, sortTarget, sort
         var filterFinancialReportData = [];
 
 
+        debugger
         // filter target search box
-        getAllData.forEach(element => {
-            switch (textTarget) {
-                case "شماره فاکتور":
-                    if (element.order_code == textValue) {
-                        filterFinancialReportData.push(element);
-                    }
-                    break;
-                case "نوع اشتراک":
-                    if (element.description.includes(textValue)) {
-                        filterFinancialReportData.push(element);
-                    }
-                    break;
-                case "مبلغ":
-                    // debugger
-                    if (element.sub_total == textValue) {
-                        filterFinancialReportData.push(element);
-                    }
-                    break;
-                case "وضعیت پرداخت":
-                    if (element.payment_status_text == textValue) {
-                        filterFinancialReportData.push(element);
-                    }
-                    break;
-                case "عملیات":
-                    if (element.type_text == textValue) {
-                        filterFinancialReportData.push(element);
-                    }
-                    break;
+        if (textValue != "") {
+            getAllData.forEach(element => {
+                switch (textTarget) {
+                    case "شماره فاکتور":
+                        if (element.order_code == textValue) {
+                            filterFinancialReportData.push(element);
+                        }
+                        break;
+                    case "نوع اشتراک":
+                        if (element.description.includes(textValue)) {
+                            filterFinancialReportData.push(element);
+                        }
+                        break;
+                    case "مبلغ":
+                        // debugger
+                        if (element.sub_total == textValue) {
+                            filterFinancialReportData.push(element);
+                        }
+                        break;
+                    case "وضعیت پرداخت":
+                        if (element.payment_status_text == textValue) {
+                            filterFinancialReportData.push(element);
+                        }
+                        break;
+                    case "عملیات":
+                        if (element.type_text == textValue) {
+                            filterFinancialReportData.push(element);
+                        }
+                        break;
 
-                default:
-                    break;
-            }
-        });
+                    default:
+                        break;
+                }
+            });
+        }
 
 
         // filter with date or cound
         if (sortTarget == "تاریخ خرید") {
             var convertDateStart = parseInt(new DateObject(sortValue[0]).convert(persian, persian_en).format("YYYYMMDD"));
             var convertDateEnd = parseInt(new DateObject(sortValue[1]).convert(persian, persian_en).format("YYYYMMDD"));
-            // const datesSelected=sortValue.split('-');
-            let filterList = [];
-            // filterFinancialReportData.forEach(element => {
-            //     const internalDate=parseInt(element.created_at.replaceAll('/',''));
-            //     debugger
-            //     if (!internalDate>convertDateStart&!internalDate<convertDateEnd) {
-            //         filterFinancialReportData.r
-            //         // filterList.push(element);
-            //         // parseInt(item.created_at.replace('/',''))>convertDateStart&parseInt(item.created_at.replace('/',''))<convertDateEnd
-            //     }
-            // });
-            // const internalDate=parseInt(element.created_at.replaceAll('/',''));
             filterFinancialReportData = filterFinancialReportData.filter(item => parseInt(item.created_at.replaceAll('/', '')) > convertDateStart & parseInt(item.created_at.replaceAll('/', '')) < convertDateEnd);
         } else {
             filterFinancialReportData = filterFinancialReportData.splice(0, sortValue < filterFinancialReportData.length ? sortValue : filterFinancialReportData.length);
         }
 
-        // state.allFinancialData = data.data;
         state.financialDataTable = filterFinancialReportData;
 
         await dispatch({ type: "SEARCH_FINANCIAL_DATA", payload: state })

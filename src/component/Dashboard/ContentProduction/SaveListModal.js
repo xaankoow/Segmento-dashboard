@@ -60,7 +60,7 @@ export default function SaveListModal({
     setSearchBoxHandleClick(false);
   };
   const handlechangeSaveInput = (e) => {
-    setSaveInputValue(e.target.value);
+    setSaveInputValue(e);
     SaveInputValues(e);
   };
 

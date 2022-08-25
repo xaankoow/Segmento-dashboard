@@ -84,8 +84,6 @@ export default function CardPlans({ plan, setPlan }) {
         </div>
         {allPackageData.length > 1 &&
           <DiscountTagValue
-            discountValue={discountStatus.value}
-            discountStatus={discountStatus.planType}
             tagStatusName={"bronze"}
             price={allPackageData[1].price}
             planSelected={plan.type}
@@ -127,8 +125,6 @@ export default function CardPlans({ plan, setPlan }) {
         </div>
         {allPackageData.length > 1 &&
           <DiscountTagValue
-            discountValue={discountStatus.value}
-            discountStatus={discountStatus.planType}
             tagStatusName={"silver"}
             price={allPackageData[5].price}
             planSelected={plan.type}
@@ -168,8 +164,6 @@ export default function CardPlans({ plan, setPlan }) {
         </div>
         {allPackageData.length > 1 &&
           <DiscountTagValue
-            discountValue={discountStatus.value}
-            discountStatus={discountStatus.planType}
             tagStatusName={"gold"}
             price={allPackageData[9].price}
             planSelected={plan.type}
@@ -210,8 +204,6 @@ export default function CardPlans({ plan, setPlan }) {
         </div>
         {allPackageData.length > 1 &&
           <DiscountTagValue
-            discountValue={discountStatus.value}
-            discountStatus={discountStatus.planType}
             tagStatusName={"diamond"}
             price={allPackageData[13].price}
             planSelected={plan.type}

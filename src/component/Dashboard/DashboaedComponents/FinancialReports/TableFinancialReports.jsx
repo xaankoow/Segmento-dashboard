@@ -14,6 +14,7 @@ import { exportExcel } from "../../../Utils/excel/exportExcel";
 import ReactExport from "react-export-excel";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import PageTitle from "../pageTitle/pageTitle";
+import { setFormatPrice } from "../../../Utils/FORMAT/price";
 export default function TableFinancialReports({ title }) {
 
   const dispatch = useDispatch();
@@ -238,11 +239,12 @@ export default function TableFinancialReports({ title }) {
                       </span>
                     </p>
                     {/* مبلغ */}
-                    <p className=" w-11 text-center">{item.sub_total}</p>
+                    {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
+                    <p className=" w-11 text-center">{setFormatPrice(item.sub_total)}</p>
                     {/* انقضا */}
-                    <p className=" w-[68px] text-center">{item.updated_at != undefined && moment(item.updated_at.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
-                    {/* خرید */}
                     <p className=" w-16 text-center">{item.user != undefined&item.user.package_end_date!=null && moment(item.user.package_end_date.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
+                    {/* خرید */}
+                    <p className=" w-[68px] text-center">{item.created_at != undefined && moment(item.created_at.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
                     {/* نوع اشتراک */}
                     <p className=" w-36 text-center">
                       {item.user != undefined && item.description.substring(31, item.description.length).includes("رایگان") == true ? "14 روز رایگان" : item.description.substring(31, item.description.length)}
@@ -256,7 +258,8 @@ export default function TableFinancialReports({ title }) {
                       <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
                         <input
                           type={"checkbox"}
-                          className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
+                          className="checkbox"
+                          // className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
                           onClick={(e) => {
                             if (e.target.checked) {
                               setCopyItem([...copyItem, item.order_code]);
