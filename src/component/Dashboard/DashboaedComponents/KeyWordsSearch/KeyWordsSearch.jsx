@@ -10,7 +10,8 @@ export default function KeyWordsSearch({
   inputPlaceHolder,
   usedBySection,
   getRadioValue,
-  radioValue
+  radioValue,
+  keywords
 }) {
   const SCTN = usedBySection != undefined ? usedBySection.split("/") : "";
   const [inputClick, setInputClick] = useState(false);
@@ -202,7 +203,7 @@ export default function KeyWordsSearch({
               onClick={() => {
                 setInputClick(true);
                 setButtonClick(true);
-                setOpen(true)
+                setOpen(!open)
               }}
               onBlur={() => setInputClick(!inputClick)}
             />
@@ -222,7 +223,7 @@ export default function KeyWordsSearch({
 
           <button
             disabled={NothingSearch ? true : false}
-            onClick={() => {setOpen(!open)}}
+            onClick={() => {keywords&&setOpen(!open)}}
             className={
               inputClick
                 ? " left-1 h-11 border-2 border-[#D9D9D9] border-b-[#0A65CD] border-r-0 w-[44px] rounded-l flex justify-center items-center"

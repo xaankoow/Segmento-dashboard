@@ -192,6 +192,7 @@ const KeyWords = ({ onClickHandler }) => {
                 NothingSearch={
                   !searchBoxValue || !searchBoxHandleClick ? true : false
                 }
+                keywords={true}
                 dataItems={comboboxFiltered}
                 secoundSearch={secoundSearchBoxChangeHandler}
                 radioClickedHandler={radioButtonHandler}
