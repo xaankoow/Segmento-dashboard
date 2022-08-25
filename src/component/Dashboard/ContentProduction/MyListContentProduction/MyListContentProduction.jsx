@@ -84,7 +84,7 @@ export default function MyList() {
   return (
     <div className="px-4 py-7 bg-[#ffffff]">
       <div className="flex justify-between items-center mb-4">
-        <span>لیست های اخیر شما:</span>
+        <span> لیست‌های اخیر شما:</span>
 
         <SearchBox
           className={"w-[450px] flex gap-2 items-center"}

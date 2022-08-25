@@ -67,8 +67,8 @@ export default function EditUserProfile() {
   }
   var user_name = "";
   var user_email = "";
-  const nameEmpty=useRef(null)
-  const familyEmpty=useRef(null)
+  const nameEmpty = useRef(null);
+  const familyEmpty = useRef(null);
   const handleSelectBox1 = (e) => {
     setSelectBoxValue1(e.target.value);
   };
@@ -89,10 +89,10 @@ export default function EditUserProfile() {
   };
 
   const handleNameInput = (e) => {
-    setNameInputValue(e.target.value);
+    setNameInputValue(e);
   };
   const handlefamilyInput = (e) => {
-    setfamilyInputValue(e.target.value);
+    setfamilyInputValue(e);
   };
   // data of select box
   const selexboxData = async () => {
@@ -149,31 +149,31 @@ export default function EditUserProfile() {
         selectBoxValue4
           ? selectBoxValue4
           : pastData
-            ? pastData.website_traffic
-            : 1
+          ? pastData.website_traffic
+          : 1
       );
       formdata.append(
         "role_in_company",
         selectBoxValue5
           ? selectBoxValue5
           : pastData
-            ? pastData.role_in_company
-            : 1
+          ? pastData.role_in_company
+          : 1
       );
       formdata.append(
         "dating_method",
         selectBoxValue6
           ? selectBoxValue6
           : pastData
-            ? pastData.dating_method
-            : 1
+          ? pastData.dating_method
+          : 1
       );
       // const { data, status } = await keywordService(searchBoxValue);
       const { data } = await editProfile(formdata);
       if ((data.code == 200) & (data.status == true)) {
         dispatch(coreUser());
         toast.success("اطلاعات شما با موفقیت ویرایش شد");
-        ClearInputs()
+        ClearInputs();
         setForceUpdate(!forceUpdates);
       }
       // setcontent(data.data); //5
@@ -228,27 +228,20 @@ export default function EditUserProfile() {
     data.push(selectDatas[item]);
   });
 
-  // edit password api
-  const handleCurrentPass = (e) => {
-    setcurrentPass(e.target.value);
-  };
-  const handleNewtPass = (e) => {
-    setnewPass(e.target.value);
-  };
-  const handleConfrimationPass = (e) => {
-    setconfrimPass(e.target.value);
-  };
-
-
   const handleUpdatePassword = async () => {
-
-    if (CheckFormat("password", newPass, "errEditUserProfilePassword") && CheckFormat("passwordConfirm", { pass1: newPass, pass2: confrimPass }, "errEditUserProfilePasswordConfirm")) {
-
+    if (
+      CheckFormat("password", newPass, "errEditUserProfilePassword") &&
+      CheckFormat(
+        "passwordConfirm",
+        { pass1: newPass, pass2: confrimPass },
+        "errEditUserProfilePasswordConfirm"
+      )
+    ) {
       //handle show loadin
       {
         loadingState.ProcessingDelay.push("editPassword");
         loadingState.canRequest = false;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
       }
 
       try {
@@ -264,7 +257,7 @@ export default function EditUserProfile() {
           toast.error(data.errors[0]);
         } else {
           setUpdatePass(true);
-          ClearInputs()
+          ClearInputs();
         }
         setForceUpdate(!forceUpdates);
       } catch (error) {
@@ -274,18 +267,14 @@ export default function EditUserProfile() {
 
       //handle hide loading
       {
-        var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "editPassword");
+        var removeProcessingItem = loadingState.ProcessingDelay.filter(
+          (item) => item != "editPassword"
+        );
         loadingState.ProcessingDelay = removeProcessingItem;
         loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
       }
-
     }
-
-
-
-
-
   };
 
   const userToken = localStorage.getItem("token");
@@ -321,7 +310,7 @@ export default function EditUserProfile() {
           setUserImage={setUserImage}
           userImage={
             (userState.userData.user != undefined) &
-              (userState.userData.user.img != "")
+            (userState.userData.user.img != "")
               ? userState.userData.user.img
               : "/../img/dashboard/userProfile/profileImage.png"
           }
@@ -353,7 +342,7 @@ export default function EditUserProfile() {
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
 
-              // userState.image != "" ? userState.image : userState.userData.user.image
+                // userState.image != "" ? userState.image : userState.userData.user.image
               />
               {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
@@ -448,7 +437,9 @@ export default function EditUserProfile() {
                       select={pastData ? pastData.dating_method : 0}
                     />{" "}
                     <div className="flex justify-end gap-7 mt-9">
-                      <button className="btn-secondary" onClick={ClearInputs}>انصراف </button>
+                      <button className="btn-secondary" onClick={ClearInputs}>
+                        انصراف{" "}
+                      </button>
                       <AuthButton
                         handlerClick={handleSetNewProfile}
                         setOnclickValue={userState.image[0]}
@@ -490,7 +481,7 @@ export default function EditUserProfile() {
                   isPassword={true}
                   errorTextId="errEditUserProfilePassword"
                   handleChange={setnewPass}
-                // reduxHandleChange={handleNewtPass}
+                  // reduxHandleChange={handleNewtPass}
                 />
                 <AuthInput
                   textLabelInput=" تکرار گذرواژه جدید "
@@ -499,7 +490,7 @@ export default function EditUserProfile() {
                   isPassword={true}
                   errorTextId="errEditUserProfilePasswordConfirm"
                   handleChange={setconfrimPass}
-                // reduxHandleChange={handleConfrimationPass}
+                  // reduxHandleChange={handleConfrimationPass}
                 />
                 <div className="flex w-full justify-end gap-7">
                   <button

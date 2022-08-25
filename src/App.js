@@ -48,7 +48,7 @@ export default function App() {
       content: <KeyWords />,
     },
     {
-      title: "لیست های من",
+      title: "لیست‌های من",
       content: <MyList />,
     },
   ];
@@ -58,7 +58,7 @@ export default function App() {
       content: <ContentpProduction />,
     },
     {
-      title: "لیست های من",
+      title: "لیست‌های من",
       content: <MylistContentProduction />,
     },
   ];
