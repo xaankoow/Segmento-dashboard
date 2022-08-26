@@ -26,15 +26,15 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
 
       if (userState.userData.package != undefined) {
         package_uuid = userState.userData.package.uuid;
+        try {
+          const { data, status } = await getPackageInfO(package_uuid);
+          setAllWords(data.data.features);
+          console.log(data.data.features);
+        } catch (error) {
+          console.log(error);
+        }
       }
 
-      try {
-        const { data, status } = await getPackageInfO(package_uuid);
-        setAllWords(data.data.features);
-        console.log(data.data.features);
-      } catch (error) {
-        console.log(error);
-      }
     };
 
     if (allWords.length == 0) setPackagesInformation();
@@ -56,9 +56,8 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
     }
   };
 
-  const numStyle = `text-[#7D7D7D] text-[${
-    numFont != undefined ? numFont : "14px"
-  }] pt-[5px] pb-[2px]`;
+  const numStyle = `text-[#7D7D7D] text-[${numFont != undefined ? numFont : "14px"
+    }] pt-[5px] pb-[2px]`;
   var a = 0;
 
   switch (api) {
@@ -76,36 +75,36 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
       };
       break;
     //   data of workSpace
-      case 1:
-        a = {
-          allWords: allWords.length != 0 && allWords[4].count,
-          rest: datas.length > 0 ? datas[4].count : "",
-        };
-        break;
-        case 2:
-        a = {
-          allWords: allWords.length != 0 && allWords[4].count,
-          rest: datas.length > 0 ? datas[4].count : "",
-        };
-        break;
-        case 3:
-        a = {
-          allWords: allWords.length != 0 && allWords[19].count,
-          rest: datas.length > 0 ? datas[19].count : "",
-        };
-        break;
-        case 4:
-        a = {
-          allWords: allWords.length != 0 && allWords[4].count,
-          rest: datas.length > 0 ? datas[4].count : "",
-        };
-        break;
-        case 5:
-        a = {
-          allWords: allWords.length != 0 && allWords[1].count,
-          rest: datas.length > 0 ? datas[1].count : "",
-        };
-        break;
+    case 1:
+      a = {
+        allWords: allWords.length != 0 && allWords[4].count,
+        rest: datas.length > 0 ? datas[4].count : "",
+      };
+      break;
+    case 2:
+      a = {
+        allWords: allWords.length != 0 && allWords[4].count,
+        rest: datas.length > 0 ? datas[4].count : "",
+      };
+      break;
+    case 3:
+      a = {
+        allWords: allWords.length != 0 && allWords[19].count,
+        rest: datas.length > 0 ? datas[19].count : "",
+      };
+      break;
+    case 4:
+      a = {
+        allWords: allWords.length != 0 && allWords[4].count,
+        rest: datas.length > 0 ? datas[4].count : "",
+      };
+      break;
+    case 5:
+      a = {
+        allWords: allWords.length != 0 && allWords[1].count,
+        rest: datas.length > 0 ? datas[1].count : "",
+      };
+      break;
     default:
       break;
   }
@@ -118,12 +117,12 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
         style={{
           color:
             numberOfDays &&
-            numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
+              numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
               ? "#10CCAE"
               : numberOfDaysLeft &&
                 numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
-              ? "#F35242"
-              :  "#ffffff",
+                ? "#F35242"
+                : "#ffffff",
         }}
       >
         {a.rest}

@@ -240,10 +240,10 @@ export default function Table({
               <button
                 className={
                   isActive
-                    ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-primary flex items-center w-[128px] "
+                    ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-primary flex items-center w-[128px] transition-all"
                     : NothingSearch
-                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center w-[128px]"
-                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-secondary flex items-center hover:bg-primary w-[128px] hover:text-[#ffffff]"
+                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center w-[128px]  transition-all"
+                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-secondary flex items-center hover:bg-primary w-[128px] hover:text-[#ffffff]  transition-all"
                 }
                 disabled={NothingSearch ? true : false}
                 onClick={() => {
