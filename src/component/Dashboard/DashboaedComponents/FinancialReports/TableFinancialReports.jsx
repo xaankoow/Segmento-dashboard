@@ -99,7 +99,7 @@ export default function TableFinancialReports({ title }) {
     setHandleClickButton(true);
     setTimeout(() => {
       setHandleClickButton(false);
-    }, 500);
+    }, 1000);
   };
   // var test=new Date(moment("2022/08/18").format("YYYY/M/D"));
   // var test=new Date(moment("2022/08/18").locale("fa").format("YYYY/M/D"));
@@ -187,9 +187,9 @@ export default function TableFinancialReports({ title }) {
             />
           </div>
         </header>
-        <div className=" w-full  rounded-lg border border-[#D9D9D9] h-[672px] overflow-hidden">
+        <div className=" w-full  rounded-lg border border-[#D9D9D9] h-[672px] ">
           <div className=" mb-4 h-full w-full">
-            <div className=" overflow-hidden h-full">
+            <div className=" h-full">
               <div className=" h-14 text-sm font-normal flex items-center justify-around flex-row-reverse bg-[#FCFCFB]">
                 <p className=" w-28 text-center">عملیات</p>
                 <p className=" w-24 text-center">وضعیت پرداخت</p>
@@ -201,10 +201,9 @@ export default function TableFinancialReports({ title }) {
                 <p className=" w-8 text-center">ردیف</p>
                 <span className="relative ">
                   <span
-                    id="box"
                     className={
                       handleClickButton
-                        ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-[40px] left-[100%] z-50"
+                        ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-14 -right-2 z-50"
                         : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute z-50  rounded bg-[#ffffff]"
                     }
                   >
