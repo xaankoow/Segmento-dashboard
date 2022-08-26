@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Register from "./pages/register/Register";
 import "./App.css";
 import Forgotpass from "./pages/forgotPassword/Forgotpass";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate, Link } from "react-router-dom";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
@@ -38,7 +38,7 @@ export default function App() {
     resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
   }, [resultSetWorkSpace.reportStatus])
 
- 
+
   const location = useLocation();
   const background = location.state && location.state.background;
 
@@ -66,38 +66,40 @@ export default function App() {
   return (
     <Fragment>
       <div className="app">
-        <Routes>
-          <Route path="/dashboard/*" >
-            <Route path="accountOperations">
-              <Route exact path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
-              <Route path="forgotPassword" element={<Forgotpass />} />
-              <Route path="ValidateEmail" element={<ValidateEmail />} />
-              <Route path="*" element={<Login />} />
+        {/* <Link className="btn-style" to="/dashboard">change route</Link> */}
+          <Routes>
+            <Route path="/dashboard/*">
+              <Route path="accountOperations">
+                <Route exact path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
+                <Route path="forgotPassword" element={<Forgotpass />} />
+                <Route path="ValidateEmail" element={<ValidateEmail />} />
+                <Route path="*" element={<Login />} />
+              </Route>
+              <Route path="*" element={
+                (<>
+                  <Routes location={background || location}>
+                    <Route path="*" element={<DashboardBody />}>
+                      <Route path="userProfile" element={<EditUserProfile />} />
+                      <Route path="planStatus" element={<PlanStatus />} />
+                      <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
+                      <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
+                      <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
+                      <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
+                      <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />} />
+                      <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />} />
+                      <Route path="" element={<EasyStart />} />
+                      <Route path="*" element={<Page404 />} />
+                    </Route>
+                  </Routes>
+                </>)
+              }>
+              </Route>
             </Route>
-            <Route path="*" element={
-              (<>
-                <Routes location={background || location}>
-                  <Route path="*" element={<DashboardBody/>}>
-                    <Route path="userProfile" element={<EditUserProfile />} />
-                    <Route path="planStatus" element={<PlanStatus />} />
-                    <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
-                    <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
-                    <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
-                    <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"}/>} />
-                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
-                    <Route path="" element={<EasyStart />} />
-                    <Route path="*" element={<Page404 />} />
-                  </Route>
-                </Routes>
-              </>)
-            }>
-            </Route>
-          </Route>
-          <Route path="/payment*" element={<LandingPage/>} />
-            
-        </Routes>
+            <Route path="/payment*" element={<LandingPage />} />
+
+          </Routes>
+
         {background != "" && (
           <Routes>
             <Route exact path={`dashboard/buyPlanEasyToStartModal`} element={<BuyPlanEasyToStartModal />} />

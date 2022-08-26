@@ -4,7 +4,7 @@
 }
 
 .btn-style {
-  background-color: rgba(10, 101, 205, 1);
+  background: rgba(10, 101, 205, 1);
   font-size: 14px !important;
   color: white;
   border: none;
@@ -14,12 +14,14 @@
   align-items: center;
   justify-content: center;
   padding: 9px 20px;
-  transition: all 0.08s ease-in-out;
+  /* transition: background 0.08s ease-in-out; */
+  transition: background 1s ease-in-out;
 }
 
 .btn-style:hover {
-  background-color: #0ac7e2 !important;
-  cursor: pointer;
+  background: #0ac7e2 !important;
+  /* transform: translate3d(10px,25px,0px); */
+  /* cursor: pointer; */
 }
 
 .btn-style:active {
