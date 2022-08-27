@@ -510,7 +510,7 @@ input[type="radio"]:checked::before {
     height: 15px;
     width: 15px;
     margin-right: 14px;
-    background-image: url(./img/modal/footer/moveForward.svg);
+    background-image: url(/img/modal/footer/moveForward.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
