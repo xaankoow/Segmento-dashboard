@@ -27,6 +27,7 @@ import WorkSpaceReport from "./component/Dashboard/DashboaedComponents/workSpace
 import Page404 from "./component/Utils/Error404/page404";
 import { usetLimit } from "./component/service/userLimit";
 import LandingPage from "./component/Utils/landingPage/landingPage";
+import PageCounter from "./component/Dashboard/pages/PageCounter/PageCounter";
 
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
@@ -87,6 +88,7 @@ export default function App() {
                     <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
                     <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"}/>} />
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
+                    <Route path="PageCounter"  element={<PageCounter/>}/>
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>
