@@ -77,8 +77,8 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
     //   data of workSpace
     case 1:
       a = {
-        allWords: allWords.length != 0 && allWords[4].count,
-        rest: datas.length > 0 ? datas[4].count : "",
+        allWords: allWords.length != 0 && allWords[2].count,
+        rest: datas.length > 0 ? datas[2].count : "",
       };
       break;
     case 2:
@@ -95,8 +95,8 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
       break;
     case 4:
       a = {
-        allWords: allWords.length != 0 && allWords[4].count,
-        rest: datas.length > 0 ? datas[4].count : "",
+        allWords: allWords.length != 0 && allWords[18].count,
+        rest: datas.length > 0 ? datas[18].count : "",
       };
       break;
     case 5:
@@ -104,6 +104,7 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
         allWords: allWords.length != 0 && allWords[1].count,
         rest: datas.length > 0 ? datas[1].count : "",
       };
+      
       break;
     default:
       break;
