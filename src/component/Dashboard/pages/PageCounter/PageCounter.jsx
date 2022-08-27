@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 export default function PageCounter() {
   return (
     <div className="flex flex-col relative mt-9 mx-7 mb-7 ">
-      <div className="flex items-center justify-center bg-sectionDisable text-base py-5 absolute w-full -top-5  rounded-t-lg z-[2] ">
+      <div className="flex items-center justify-center bg-sectionDisable text-base text-title py-5 absolute w-full -top-5  rounded-t-lg z-[2] ">
         تعریف ورک اسپیس جدید{" "}
       </div>
       <div className="rounded-lg border border-lightGray EasyStartBoxContent flex flex-col  px-7">
         <div className="flex flex-col gap-1 text-sm mx-7 mt-20 ">
-          <span className="">
+          <span className="text-primaryV1">
           آدرس وب‌سایت و کلمات کلیدی خودتان را آماده کنید تا شروع کنیم.          </span>
-          <span>
+          <span className="text-primaryV1">
             {" "}
             پس از انتخاب اشتراک و انجام فرایند شروع آسان به داده‌های تمیز و ساده دسترسی دارید که قابل استفاده و مطمئن هستند.          </span>
           
