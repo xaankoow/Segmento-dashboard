@@ -2,13 +2,14 @@ import { useSelector } from "react-redux";
 import { setDiscountPrice, setFormatPrice } from "../FORMAT/price";
 
 export default function DiscountTagValue({ tagStatusName, price, planSelected }) {
+    // default_discount_price
     const { discountStatus } = useSelector(state => state.planState);
     var originalPrice = "";
-    var priceAfterTheDiscount = price.toString().substring(0, price.toString().length - 3)+ " هزار تومان ماهانه";
+    var priceAfterTheDiscount = setFormatPrice(price) + " هزار تومان ماهانه";
     if (discountStatus.value != 0) {
         if (discountStatus.planType == tagStatusName) {
-            originalPrice = price.toString().substring(0, price.toString().length - 3)+ " هزار تومان ماهانه"
-            priceAfterTheDiscount = parseInt(price.toString().substring(0, price.toString().length - 3)) -setFormatPrice(setDiscountPrice(price,discountStatus.value,discountStatus.discountType == "cash" ? true : false).value) + " هزار تومان ماهانه";
+            originalPrice = setFormatPrice(price) + " هزار تومان ماهانه"
+            priceAfterTheDiscount = setFormatPrice(setDiscountPrice(price, discountStatus.value, discountStatus.discountType == "cash" ? true : false).value) + " هزار تومان ماهانه";
         }
     }
 

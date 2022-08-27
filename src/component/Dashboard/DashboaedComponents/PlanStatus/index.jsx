@@ -72,15 +72,15 @@ export default function PlanStatus() {
 
       if (userState.userData.package != undefined) {
         package_uuid = userState.userData.package.uuid;
+        try {
+          const { data, status } = await getPackageInfO(package_uuid);
+          setAllWords(data.data.features)
+          console.log(data.data.features);
+        } catch (error) {
+          console.log(error);
+        }
       }
 
-      try {
-        const { data, status } = await getPackageInfO(package_uuid);
-        setAllWords(data.data.features)
-        console.log(data.data.features);
-      } catch (error) {
-        console.log(error);
-      }
     };
 
     if (allWords.length == 0) setPackagesInformation();

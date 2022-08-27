@@ -143,7 +143,7 @@ const DashboardHeader = () => {
               </span>
               {userState.userData.package != undefined ? (
                 <div className="flex items-center justify-start mt-1 ">
-                  <div className=" absolute bottom-0 right-0">
+                  <div className=" absolute bottom-0 right-0 w-4">
                     <Doughnut
                       data={doughnutChartData}
                       height={30}

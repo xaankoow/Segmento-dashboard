@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Register from "./pages/register/Register";
 import "./App.css";
 import Forgotpass from "./pages/forgotPassword/Forgotpass";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate, Link } from "react-router-dom";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
@@ -32,14 +32,14 @@ import PageCounter from "./component/Dashboard/pages/PageCounter/PageCounter";
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
   const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
-
+  // var Perf = require('react-addons-perf');
   const navigate = useNavigate();
 
   useEffect(() => {
     resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
   }, [resultSetWorkSpace.reportStatus])
 
- 
+
   const location = useLocation();
   const background = location.state && location.state.background;
 
@@ -63,12 +63,12 @@ export default function App() {
       content: <MylistContentProduction />,
     },
   ];
-
   return (
     <Fragment>
       <div className="app">
+
         <Routes>
-          <Route path="/dashboard/*" >
+          <Route path="dashboard/*">
             <Route path="accountOperations">
               <Route exact path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
@@ -79,7 +79,7 @@ export default function App() {
             <Route path="*" element={
               (<>
                 <Routes location={background || location}>
-                  <Route path="*" element={<DashboardBody/>}>
+                  <Route path="*" element={<DashboardBody />}>
                     <Route path="userProfile" element={<EditUserProfile />} />
                     <Route path="planStatus" element={<PlanStatus />} />
                     <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
@@ -97,9 +97,12 @@ export default function App() {
             }>
             </Route>
           </Route>
-          <Route path="/payment*" element={<LandingPage/>} />
-            
+
+          <Route path="/payment*" element={<LandingPage />} />
+          <Route path={"*"} element={<Link className="btn-style" to="/dashboard">change route</Link>} />
+
         </Routes>
+
         {background != "" && (
           <Routes>
             <Route exact path={`dashboard/buyPlanEasyToStartModal`} element={<BuyPlanEasyToStartModal />} />
