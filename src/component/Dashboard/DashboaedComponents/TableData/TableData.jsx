@@ -153,11 +153,12 @@ export default function Table({
         <div className="flex items-center justify-between bg-[#FCFCFB] w-full px-2">
           <div className="flex gap-5">
             <div
-              className={
-                copyItem.length > 0
-                  ? "text-sm font-medium text-gray-900 pr-2  text-right text-[#0A65CD] relative cursor-pointer"
-                  : "text-sm font-medium text-gray-900 pr-2  text-right text-[#D9D9D9] relative "
-              }
+              // className={
+              //   copyItem.length > 0
+              //     ? "text-sm font-medium text-gray-900 pr-2  text-right text-[#0A65CD] relative cursor-pointer"
+              //     : "text-sm font-medium text-gray-900 pr-2  text-right text-[#D9D9D9] relative "
+              // }
+              className={`text-sm font-medium text-gray-900 pr-2  text-right ${ copyItem.length > 0?"text-[#0A65CD] cursor-pointer":"text-[#D9D9D9]"}`}
               onClick={() => {
                 navigator.clipboard.writeText(customCopy());
                 setHandleClickCopy(true);

@@ -113,6 +113,7 @@ console.log(content)
       )}
       <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
+        placeholder={"برای نمونه (کتاب)"}
           changeHandler={SearchBoxChangeHandler}
           handlClick={() => {
             setSearchBoxHandleClick(true);

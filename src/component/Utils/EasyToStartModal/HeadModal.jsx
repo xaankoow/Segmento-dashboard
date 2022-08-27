@@ -12,7 +12,7 @@ export default function Head({ stepModal, free }) {
         <span className='info'></span>
       </div>
       <div className='close_suport_container'>
-        {stepModal == 1 || stepModal == 2 ? <AuthButton style={{ backgroundColor: "#0A65CD26", color: "#0A65CDB2" }} textButton={"پشتیبانی"} /> : null}
+        {stepModal == 1 || stepModal == 2 ? <AuthButton classes={"btn-secondary"} textButton={"پشتیبانی"} /> : null}
         <div className='flex justify-center items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' >
 
         <div className='close_modal_ico' onClick={() => navigate(-1)}></div>

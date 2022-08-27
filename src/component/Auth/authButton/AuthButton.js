@@ -21,7 +21,7 @@ export default function AuthButton({
   return (
     <button
       variant="contained"
-      className={`btn-style ${classes!=undefined?classes:""}`}
+      className={` ${classes!=undefined?classes:""} ${classes=="btn-secondary"?classes:"btn-style"}`}
       disabled={disabled!=undefined?disabled?true:!canRequest:!canRequest}
 
       style={style}
