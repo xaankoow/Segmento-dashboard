@@ -17,6 +17,11 @@ import PageTitle from "../pageTitle/pageTitle";
 import { setFormatPrice } from "../../../Utils/FORMAT/price";
 import { filterFinancialData } from "../../../Utils/FilterData/filter";
 // import { filterFinancialData } from "../../../Utils/FilterData/filter";
+
+// import { DateObject } from "react-multi-date-picker";
+// import persian from "react-date-object/calendars/persian";
+import persian_en from "react-date-object/locales/persian_en";
+
 export default function TableFinancialReports({ title }) {
 
   const dispatch = useDispatch();
@@ -98,10 +103,13 @@ export default function TableFinancialReports({ title }) {
     }, 1000);
   };
   var moment = require("jalali-moment");
-  
-  
+
+  // var ds="2022-09-05T09:07:51.000000Z";
+  // var sd=ds.substring(0,10).replaceAll("-","/")
+  // console.log(parseInt(new DateObject(sd).convert(persian, persian_en).format("YYYYMMDD")))
+
   // financialDataTable.length!=0&&console.log(moment(datePickerValues[0]).locale("fa").format("YYYYMMDD"))
-    // financialDataTable.length!=0&&console.log(filterFinancialData(financialDataTable,"تاریخ خرید",datePickerValues))
+  financialDataTable.length!=0&&console.log(filterFinancialData(financialDataTable,"تاریخ انقضا",datePickerValues))
   return (
     <div>
       <PageTitle title={title} />
@@ -114,7 +122,7 @@ export default function TableFinancialReports({ title }) {
               inputPlaceHolder={"فیلد جستجو"}
               getRadioValue={setSearchFilterOption}
               radioValue={searchFilterOption}
-              
+
             />
           </div>
           <div className="flex items-center">
@@ -139,7 +147,7 @@ export default function TableFinancialReports({ title }) {
                 calendarPosition="bottom-right"
                 onChange={setDatePickerValues}
                 format="DD MMMM YYYY - "
-                maxDate={new DateObject()}
+                // maxDate={new DateObject()}
                 render={(value, openCalendar) => (
                   <div
                     className="flex justify-start items-center px-3 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
@@ -217,7 +225,7 @@ export default function TableFinancialReports({ title }) {
                 </span>
               </div>
               <div className="overflow-scroll h-[94%] text-xs font-normal">
-                {financialDataTable.length>0&& financialDataTable.map((item, index) => (
+                {financialDataTable.length > 0 && financialDataTable.map((item, index) => (
                   <div
                     className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                   >
@@ -240,7 +248,7 @@ export default function TableFinancialReports({ title }) {
                     {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
                     <p className=" w-11 text-center">{setFormatPrice(item.sub_total)}</p>
                     {/* انقضا */}
-                    <p className=" w-16 text-center">{item.user != undefined&item.user.package_end_date!=null && moment(item.user.package_end_date.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
+                    <p className=" w-16 text-center">{item.user != undefined & item.user.package_end_date != null && moment(item.user.package_end_date.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
                     {/* خرید */}
                     <p className=" w-[68px] text-center">{item.created_at != undefined && moment(item.created_at.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
                     {/* نوع اشتراک */}

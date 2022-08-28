@@ -9,7 +9,7 @@ import persian_en from "react-date-object/locales/persian_en";
 
 
 // filtred data table in the financial section 
-export const filterFinancialData = ( allData, filterType, filterValue ) => {
+export const filterFinancialData = (allData, filterType, filterValue) => {
 
     var filteredData = [];
 
@@ -32,7 +32,7 @@ export const filterFinancialData = ( allData, filterType, filterValue ) => {
                     filteredData = filterDataWithBetweenTime(allData, filterValue, "buy");
                     break;
                 case "تاریخ انقضا":
-                    filteredData = filterDataWithBetweenTime(allData, filterValue[0], filterValue[1], "expair");
+                    filteredData = filterDataWithBetweenTime(allData, filterValue, "expair");
                     break;
                 case "مبلغ":
                     if (element.sub_total == filterValue) {
@@ -62,29 +62,29 @@ export const filterFinancialData = ( allData, filterType, filterValue ) => {
 
 
 // filtering data time with between time
-// export const filterDataWithBetweenTime = (data, firstTime, secoundTime, buyOrExpair) => {
 export const filterDataWithBetweenTime = (data, time, buyOrExpair) => {
 
     var filteredData = [];
 
     // debugger
     // if (firstTime != "" & secoundTime != "") {
-    if (time.length != 0 ) {
+    if (time.length != 0) {
         var convertDateStart = parseInt(new DateObject(time[0]).convert(persian, persian_en).format("YYYYMMDD"));
         var convertDateEnd = parseInt(new DateObject(time[1]).convert(persian, persian_en).format("YYYYMMDD"));
         if (buyOrExpair === "buy") {
             data.forEach(element => {
-                // var moment = require("jalali-moment");
-                var convertDateStart1 = parseInt(new DateObject(element.created_at).convert(persian, persian_en).format("YYYYMMDD"));
-  
-  
-  
-            // console.log(moment(data[0].created_at).locale("fa").format("YYYYMMDD"))
+                let elDate = parseInt(new DateObject(element.created_at.substring(0, 10).replaceAll("-", "/")).convert(persian, persian_en).format("YYYYMMDD"));
+                if (elDate >= convertDateStart & elDate <= convertDateEnd) {
+                    filteredData.push(element)
+                }
             });
-            // filteredData = data.filter(item => parseInt(item.created_at) > convertDateStart & parseInt(item.created_at.replaceAll('/', '')) < convertDateEnd);
-            // filteredData = data.filter(item => moment(item.created_at.locale("fa").format("YYYYMMDD")) > convertDateStart & moment(item.created_at.locale("fa").format("YYYYMMDD")) < convertDateEnd);
         } else if (buyOrExpair === "expair") {
-            filteredData = data.filter(item => parseInt(item.user.package_end_date.replaceAll('/', '')) > convertDateStart & parseInt(item.user.package_end_date.replaceAll('/', '')) < convertDateEnd);
+            data.forEach(element => {
+                let elDate = parseInt(new DateObject(element.user.package_end_date.substring(0, 10).replaceAll("-", "/")).convert(persian, persian_en).format("YYYYMMDD"));
+                if (elDate >= convertDateStart & elDate <= convertDateEnd) {
+                    filteredData.push(element)
+                }
+            });
         }
     }
 
