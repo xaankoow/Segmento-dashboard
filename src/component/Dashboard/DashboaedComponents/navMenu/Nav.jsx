@@ -46,8 +46,9 @@ export default function Nav({ path }) {
   
   useEffect(() => {
     if (userToken) {
+      debugger
       dispatch(coreUser());
-      if (userData.package!=undefined ) {
+      if (userData.package_end_date!=null ) {
         navigate("/dashboard/PageCounter", { replace: true })
       } else {
         navigate("/dashboard", { replace: true })
