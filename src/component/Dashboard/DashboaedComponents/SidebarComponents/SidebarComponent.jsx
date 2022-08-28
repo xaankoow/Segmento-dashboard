@@ -68,9 +68,9 @@ export default function SidebarComponent() {
                 }
                 alt="icon"
               />
-              <span className={`text-[${"#0A65CD"}]`}>
-                {closeNav && "پیشخوان"}
-              </span>
+              <Link to={"/dashboard/PageCounter"} className={`text-[${"#0A65CD"}]`}>
+                {closeNav && "پیش خوان"}
+              </Link>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />

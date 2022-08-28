@@ -45,7 +45,7 @@ export default function StaticInputText({
         <input
           type={isSeePssword}
           required
-          maxlength={maxlength}
+          maxLength={maxlength}
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           disabled={disabled}

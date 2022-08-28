@@ -56,7 +56,7 @@ export default function AuthInput({
         <input
           type={isSeePssword}
           required
-          maxlength={maxlength}
+          maxLength={maxlength}
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           ref={ref}

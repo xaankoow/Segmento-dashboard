@@ -45,28 +45,28 @@ export default function ValidateEmail() {
               <AuthInput
                 classes={"verify_email_cod input_selector_4"}
                 notCheckValue={true}
-                maxlength="1"
+                maxLength="1"
                 pressNumber={true}
                 reduxHandleChange={setAuth1Redux}
               />
               <AuthInput
                 classes={"verify_email_cod input_selector_3"}
                 notCheckValue={true}
-                maxlength="1"
+                maxLength="1"
                 pressNumber={true}
                 reduxHandleChange={setAuth2Redux}
               />
               <AuthInput
                 classes={"verify_email_cod input_selector_2"}
                 notCheckValue={true}
-                maxlength="1"
+                maxLength="1"
                 pressNumber={true}
                 reduxHandleChange={setAuth3Redux}
               />
               <AuthInput
                 classes={"verify_email_cod"}
                 notCheckValue={true}
-                maxlength="1"
+                maxLength="1"
                 pressNumber={true}
                 reduxHandleChange={setAuth4Redux}
               />
