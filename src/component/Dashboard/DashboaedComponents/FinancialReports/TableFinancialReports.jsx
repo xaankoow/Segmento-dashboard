@@ -16,6 +16,8 @@ import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import PageTitle from "../pageTitle/pageTitle";
 import { setFormatPrice } from "../../../Utils/FORMAT/price";
 import { getAllFinancialReportsData } from "../../../service/financialReportsService";
+import ComboBox from "../../../shared/comboBox/ComboBox";
+import { filterData } from "./changeDataSearch";
 export default function TableFinancialReports({ title }) {
 
   const dispatch = useDispatch();
@@ -24,7 +26,7 @@ export default function TableFinancialReports({ title }) {
   const [placeholderPadding, setplaceholderPadding] = useState("");
   const [handleClickButton, setHandleClickButton] = useState(false);
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
-  const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
+  const [searchFilterOption, setSearchFilterOption] = useState("");
   const [numFilter, setNumFilter] = useState(1);
   const [handleClickCopy, setHandleClickCopy] = useState(false);
   
@@ -172,28 +174,24 @@ export default function TableFinancialReports({ title }) {
       <PageTitle title={title} />
       <div className=" w-full px-10 m-auto">
         <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
-          <div className="w-80">
+          <div className="w-[410px]">
             <KeyWordsSearch
               usedBySection={"financialReports/search"}
               secoundSearch={(e) => setSearchFilterText(e.target.value)}
               inputPlaceHolder={"فیلد جستجو"}
               getRadioValue={setSearchFilterOption}
+              value={searchFilterOption}
               radioValue={searchFilterOption}
               
             />
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <span className=" ml-2">مرتب سازی بر اساس</span>
-            <div className=" w-48">
-              <KeyWordsSearch
-                usedBySection={"financialReports/sort"}
-                inputPlaceHolder={targetSortFilter}
-                getRadioValue={setTargetSortFilter}
-              />
-            </div>
+            {/* fsefsefsffesssssssssssssssssssssssssssssssssssssssssssd */}
+            {filterData(searchFilterOption)}
           </div>
           <div>
-            {targetSortFilter == "تاریخ خرید" ? (
+            {/* {targetSortFilter == "تاریخ خرید" ? (
               <DatePicker
                 range
                 value={datePickerValues}
@@ -215,6 +213,7 @@ export default function TableFinancialReports({ title }) {
                   </div>
                 )}
               >
+                
               </DatePicker>
             ) : (
               <div className="flex justify-between items-center px-1 w-14 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]">
@@ -232,10 +231,11 @@ export default function TableFinancialReports({ title }) {
                   className="cursor-pointer rotate-180"
                 />
               </div>
-            )}
+            )} */}
 
           </div>
           <div className=" inline-block">
+         
             <AuthButton
               textButton={"اعمال"}
               reduxHandleClick={filterFinancialReports}
