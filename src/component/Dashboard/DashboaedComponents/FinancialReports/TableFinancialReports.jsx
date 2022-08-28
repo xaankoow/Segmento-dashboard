@@ -102,14 +102,7 @@ export default function TableFinancialReports({ title }) {
       setHandleClickButton(false);
     }, 1000);
   };
-  var moment = require("jalali-moment");
 
-  // var ds="2022-09-05T09:07:51.000000Z";
-  // var sd=ds.substring(0,10).replaceAll("-","/")
-  // console.log(parseInt(new DateObject(sd).convert(persian, persian_en).format("YYYYMMDD")))
-
-  // financialDataTable.length!=0&&console.log(moment(datePickerValues[0]).locale("fa").format("YYYYMMDD"))
-  financialDataTable.length!=0&&console.log(filterFinancialData(financialDataTable,"تاریخ انقضا",datePickerValues))
   return (
     <div>
       <PageTitle title={title} />
