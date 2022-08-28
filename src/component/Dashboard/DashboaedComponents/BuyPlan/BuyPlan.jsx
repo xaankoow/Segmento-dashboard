@@ -73,7 +73,9 @@ export default function BuyPlan({ title }) {
         {/* </body> */}
         <div className='footer_message'>
           <p>آیا صاحب کسب‌و‌کار هستید و به امکانات بیشتری نیاز دارید؟</p>
-          <button className="btn_more_information_plan">بله هستم</button>
+
+          <AuthButton classes={"btn-secondary"} textButton={"بله هستم"}/>
+          {/* <button className="btn_more_information_plan">بله هستم</button> */}
         </div>
       </div>
       <div className='report_buy_plan w-[500px]'>

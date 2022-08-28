@@ -168,7 +168,7 @@ export default function Forgetpass() {
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setAuth1Redux}
-                    maxlength="1"
+                    maxLength="1"
                     pressNumber={true}
                   />
                   <AuthInput
@@ -177,7 +177,7 @@ export default function Forgetpass() {
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setAuth2Redux}
-                    maxlength="1"
+                    maxLength="1"
                     pressNumber={true}
                   />
                   <AuthInput
@@ -186,7 +186,7 @@ export default function Forgetpass() {
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setAuth3Redux}
-                    maxlength="1"
+                    maxLength="1"
                     pressNumber={true}
                   />
                   <AuthInput
@@ -195,7 +195,7 @@ export default function Forgetpass() {
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setAuth4Redux}
-                    maxlength="1"
+                    maxLength="1"
                     pressNumber={true}
                   />
 

@@ -229,10 +229,9 @@ export default function Table({
             )}
             <div className="text-sm font-medium text-gray-900 pr-2 py-4 text-right relative">
               <span
-                id="box"
                 className={
                   handleClickButton
-                    ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-[29px] left-[70%]"
+                    ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-10 right-11"
                     : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute  rounded bg-[#ffffff]"
                 }
               >
@@ -252,7 +251,7 @@ export default function Table({
                   navigator.clipboard.writeText(createListOutput());
                   setTimeout(() => {
                     setHandleClickButton(false);
-                  }, 500);
+                  }, 1000);
                 }}
               >
                 <div className="imageIcon ml-3 w-5 h-5"></div>کپی همه{" "}

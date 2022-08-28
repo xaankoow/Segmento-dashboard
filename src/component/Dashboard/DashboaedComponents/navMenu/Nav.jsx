@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
-import { changeRegisterCompleteCheck, findUserAction } from '../../../Redux/Action'
+import { changeRegisterCompleteCheck, coreUser, findUserAction } from '../../../Redux/Action'
 import getCookie from '../../../Utils/findUser'
 
 export default function Nav({ path }) {
@@ -14,7 +14,7 @@ export default function Nav({ path }) {
   // }, [])
 
   // let user=get
-  const { checkRegisterComplete, forceUpdate } = useSelector(state => state.userState)
+  const { checkRegisterComplete, forceUpdate,userData } = useSelector(state => state.userState)
 
   const navigate = useNavigate();
 
@@ -28,27 +28,34 @@ export default function Nav({ path }) {
     dispatch(changeRegisterCompleteCheck(false));
   }
   // useEffect(() => {
-  // //   // debugger
-  // if (checkRegisterComplete == true) {
-  //     navigate("/ValidateEmail")
-  //   }
-  // }, [checkRegisterComplete])
-
-  // debugger
-  const checkChangePasswordComplete = localStorage.getItem("CHECNGEPASSWORD_COMPLETE");
-
-  useEffect(() => {
-    if (checkChangePasswordComplete == "true") {
-      localStorage.removeItem("CHECNGEPASSWORD_COMPLETE")
+    // //   // debugger
+    // if (checkRegisterComplete == true) {
+      //     navigate("/ValidateEmail")
+      //   }
+      // }, [checkRegisterComplete])
+      
+      // debugger
+      const checkChangePasswordComplete = localStorage.getItem("CHECNGEPASSWORD_COMPLETE");
+      
+      useEffect(() => {
+        if (checkChangePasswordComplete == "true") {
+          localStorage.removeItem("CHECNGEPASSWORD_COMPLETE")
       navigate("/dashboard/accountOperations/login")
     }
   }, [checkChangePasswordComplete])
+  
   useEffect(() => {
     if (userToken) {
-      navigate("/dashboard", { replace: true })
+      debugger
+      dispatch(coreUser());
+      if (userData.package_end_date!=null ) {
+        navigate("/dashboard/PageCounter", { replace: true })
+      } else {
+        navigate("/dashboard", { replace: true })
+      }
     }
   }, [userToken])
-
+  
   return (
     <div id='nav-option-head' className='w-full flex items-center justify-between px-28'>
       <div className='flex justify-around items-center'>

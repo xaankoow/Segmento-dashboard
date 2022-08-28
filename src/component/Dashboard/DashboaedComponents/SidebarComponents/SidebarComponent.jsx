@@ -10,8 +10,8 @@ import ItemSidebarHover from "./ItemSidebarHover";
 
 export default function SidebarComponent() {
   const [activeIcon, setActiveIcon] = useState(0);
-  const {closeNav} = useSelector(state => state.navMenuState)
-  const dispatch=useDispatch();
+  const { closeNav } = useSelector(state => state.navMenuState)
+  const dispatch = useDispatch();
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
 
@@ -26,7 +26,7 @@ export default function SidebarComponent() {
     // setCloseNav(true);
   };
 
-    const itemsHoverMenu = [
+  const itemsHoverMenu = [
     { title: "گزارش های منتخب", link: "" },
     { title: "خرید اشتراک", link: "buyPlan" },
     { title: "شروع آسان", link: "easyStart" },
@@ -39,7 +39,7 @@ export default function SidebarComponent() {
 
   return (
     <>
-  
+
 
       <div
         className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
@@ -50,7 +50,7 @@ export default function SidebarComponent() {
             {itemsHoverMenu.map((item) => {
               return (
                 <ItemSidebarHover
-                  text={ item}
+                  text={item}
                   icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"}
                   textColor={"#002145"}
                   textHover={"#0A65CD"}
@@ -63,13 +63,14 @@ export default function SidebarComponent() {
             <div className="flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue ">
               <img
                 src={
-                  "/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"
+                  // "/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"
+                  "/img/dashboard/nav_right/dashboardPishKhan.svg"
                 }
                 alt="icon"
               />
-              <span className={`text-[${"#0A65CD"}]`}>
-                {closeNav && "پیشخوان"}
-              </span>
+              <Link to={"/dashboard/PageCounter"} className={`text-[${"#0A65CD"}]`}>
+                {closeNav && "پیش خوان"}
+              </Link>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem />

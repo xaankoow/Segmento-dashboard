@@ -304,6 +304,7 @@ export const loginUserAction = () => {
                     state.checkRegisterComplete = false;
 
                     if (data.code === 200) {
+                        state.userData=data.data.user;
                         localStorage.setItem("token", data.data.token);
                         state.forceUpdate += 1;
                     } else if (data.code === 205) {

@@ -12,6 +12,7 @@ import { workSpaceTitle } from './titleWorkSpaceModal';
 
 export default function WorkSpace() {
 
+  // debugger
   const [stepModal, setStepModal] = useState(1);
   const { webAdress } = useSelector(state => state.workSpaceState)
 
