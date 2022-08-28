@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import Register from "./pages/register/Register";
 import "./App.css";
 import Forgotpass from "./pages/forgotPassword/Forgotpass";
@@ -7,7 +7,6 @@ import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
-import Nav from "./component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { useSelector } from "react-redux";
 import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
 import PlanStatus from "./component/Dashboard/DashboaedComponents/PlanStatus";
@@ -25,14 +24,13 @@ import EasyStart from "./component/Dashboard/DashboaedComponents/EasyStart/EasyS
 import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
 import WorkSpaceReport from "./component/Dashboard/DashboaedComponents/workSpace/workSpaceReport";
 import Page404 from "./component/Utils/Error404/page404";
-import { usetLimit } from "./component/service/userLimit";
 import LandingPage from "./component/Utils/landingPage/landingPage";
 import PageCounter from "./component/Dashboard/pages/PageCounter/PageCounter";
+import PhoneNumberOperations from "./component/Utils/Modals/phoneNumber/PhoneNumberOperations";
 
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
   const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
-  // var Perf = require('react-addons-perf');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,6 +61,7 @@ export default function App() {
       content: <ContentpProduction />,
     },
   ];
+
   return (
     <Fragment>
       <div className="app">
@@ -89,6 +88,7 @@ export default function App() {
                     <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"}/>} />
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
                     <Route path="PageCounter"  element={<PageCounter/>}/>
+                <Route exact path={`phoneNumberOperations`} element={<PhoneNumberOperations />} />
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>

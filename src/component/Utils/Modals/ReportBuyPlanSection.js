@@ -1,34 +1,17 @@
 import React from 'react'
 import Modal from 'react-modal'
-import { useSelector } from 'react-redux';
+import { defaultCustomModalStyle } from '../../../variables/style';
 import AuthButton from '../../Auth/authButton/AuthButton';
 import { buyPlan } from '../../Redux/Action/plan';
 import PurchaseInvoiceContent from '../buyPlanSection_UTILS/PurchaseInvoiceContent';
-import { setDiscountPrice, setFormatPrice } from '../FORMAT/price';
 
 export default function ReportBuyPlanSection({ handleClose, packageUuid }) {
-
-
-
-  const customStyles = {
-    content: {
-      top: '43vh',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      backgrounColor: "red",
-      'z-index': '100'
-    },
-  };
-
 
   return (
     <Modal
       isOpen={true}
       parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
-      style={customStyles}
+      style={defaultCustomModalStyle}
       contentLabel="Example Modal"
     >
       <div className='report_buy_plan w-[500px] rounded shadow-[0px_4px_8px_0px_rgb(0,0,0)]'>
