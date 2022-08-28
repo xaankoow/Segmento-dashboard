@@ -3,18 +3,15 @@ import ComboBox from "../../../shared/comboBox/ComboBox";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { useState } from "react";
+import { financialRadioTextItems } from "../../../../variables/financialReports";
 
-export const filterData = (radioTarget, FactorHandler) => {
+export const FilterData = ({radioTarget, FactorHandler}) => {
   var filterFinancialReportData = [];
-  const radioTextItems = {
-    type: ["برنزی", "نقره ای", "طلایی", "الماسی"],
-    payStatus: ["موفقیت آمیز", " نا موفق", "پرداخت نشده"],
-    sort: ["خرید پکیچ", "شارژ پکیچ"],
-  };
-  // const [datePickerValues, setDatePickerValues] = useState([
-  //   new DateObject().subtract(4, "days"),
-  //   new DateObject().add(0, "days"),
-  // ]);
+  
+  const [datePickerValues, setDatePickerValues] = useState([
+    new DateObject().subtract(4, "days"),
+    new DateObject().add(0, "days"),
+  ]);
   switch (radioTarget) {
     case "شماره فاکتور":
       return (
@@ -35,7 +32,7 @@ export const filterData = (radioTarget, FactorHandler) => {
           getRadioValue={setTargetSortFilter}
         /> */}
           <ComboBox
-            radioTextItems={radioTextItems.type}
+            radioTextItems={financialRadioTextItems.type}
             placeholder={" نوع اشتراک را انتخاب کنید "}
           />
         </div>
@@ -46,13 +43,13 @@ export const filterData = (radioTarget, FactorHandler) => {
       return (
         <DatePicker
           range
-          // value={datePickerValues}
+          value={datePickerValues}
           // ref={datePickerRef}
           // onOpen={true}
           calendar={persian}
           locale={persian_fa}
           calendarPosition="bottom-right"
-          // onChange={setDatePickerValues}
+          onChange={setDatePickerValues}
           format="DD MMMM YYYY - "
           maxDate={new DateObject()}
           render={(value, openCalendar) => (
@@ -73,29 +70,28 @@ export const filterData = (radioTarget, FactorHandler) => {
     case "تاریخ انقضا":
       return (
         <DatePicker
-          range
-          // value={datePickerValues}
-          // ref={datePickerRef}
-          // onOpen={true}
-          calendar={persian}
-          locale={persian_fa}
-          calendarPosition="bottom-right"
-          // onChange={setDatePickerValues}
-          format="DD MMMM YYYY - "
-          maxDate={new DateObject()}
-          render={(value, openCalendar) => (
-            <div
-              className="flex justify-start items-center px-3 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
-              onClick={openCalendar}
-            >
-              <img
-                src="/img/dashboard/financialReports/calendar/file_download.svg"
-                alt="file_download"
-              />
-              <span className="text-xs mr-3">{value}</span>
-            </div>
-          )}
-        ></DatePicker>
+        range
+        value={datePickerValues}
+        // ref={datePickerRef}
+        // onOpen={true}
+        calendar={persian}
+        locale={persian_fa}
+        calendarPosition="bottom-right"
+        onChange={setDatePickerValues}
+        format="DD MMMM YYYY - "
+        maxDate={new DateObject()}
+        render={(value, openCalendar) => (
+          <div
+            className="flex justify-start items-center px-3 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
+            onClick={openCalendar}
+          >
+            <img src="/img/dashboard/financialReports/calendar/file_download.svg"  alt="file_download"/>
+            <span className="text-xs mr-3">{value}</span>
+          </div>
+        )}
+      >
+        
+      </DatePicker>
       );
     case "مبلغ":
       return (
@@ -119,7 +115,7 @@ export const filterData = (radioTarget, FactorHandler) => {
       return (
         <div className=" min-w-[288px]">
           <ComboBox
-            radioTextItems={radioTextItems.payStatus}
+            radioTextItems={financialRadioTextItems.payStatus}
             placeholder={" وضعیت پرداخت را مشخص کنید"}
           />
         </div>
@@ -128,7 +124,7 @@ export const filterData = (radioTarget, FactorHandler) => {
       return (
         <div className=" min-w-[288px]">
           <ComboBox
-            radioTextItems={radioTextItems.sort}
+            radioTextItems={financialRadioTextItems.sort}
             placeholder={" وضعیت عملیات را مشخص کنید   "}
           />
         </div>
