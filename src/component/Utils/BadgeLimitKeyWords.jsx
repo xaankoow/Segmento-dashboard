@@ -43,7 +43,7 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
   const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
 
   useEffect(() => {
-    if (datas.length == "") pastSelexboxData();
+    if (datas.length == 0) pastSelexboxData();
   }, [resultSetWorkSpace.reportStatus]);
 
   const pastSelexboxData = async () => {
