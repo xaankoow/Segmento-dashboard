@@ -15,19 +15,17 @@ import ReactExport from "react-export-excel";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import PageTitle from "../pageTitle/pageTitle";
 import { setFormatPrice } from "../../../Utils/FORMAT/price";
+import { filterFinancialData } from "../../../Utils/FilterData/filter";
+// import { filterFinancialData } from "../../../Utils/FilterData/filter";
 export default function TableFinancialReports({ title }) {
 
   const dispatch = useDispatch();
 
   const [copyItem, setCopyItem] = useState([]);
-  const [placeholderPadding, setplaceholderPadding] = useState("");
   const [handleClickButton, setHandleClickButton] = useState(false);
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
   const [numFilter, setNumFilter] = useState(1);
-  const [handleClickCopy, setHandleClickCopy] = useState(false);
-
-
 
   const [searchFilterText, setSearchFilterText] = useState("");
 
@@ -36,7 +34,7 @@ export default function TableFinancialReports({ title }) {
     new DateObject().add(0, "days"),
   ]);
 
-  const datePickerRef = useRef();
+  console.log(datePickerValues)
 
   useEffect(() => {
     dispatch(getAllFinancialReports());
@@ -76,10 +74,7 @@ export default function TableFinancialReports({ title }) {
   ];
 
   const { financialDataTable } = useSelector((state) => state.financialState);
-  // console.log(copyItem);
-  if (copyItem.length > 0) {
-    // console.log(copyItem[0].description + "hhi");
-  }
+
   function customCopy() {
     var myListOutput = "";
     for (var i = 0; i < copyItem.length; i++) {
@@ -94,6 +89,7 @@ export default function TableFinancialReports({ title }) {
     }
     return myListOutput;
   }
+
   const copyButton = () => {
     navigator.clipboard.writeText(customCopy());
     setHandleClickButton(true);
@@ -101,8 +97,11 @@ export default function TableFinancialReports({ title }) {
       setHandleClickButton(false);
     }, 1000);
   };
-  // var test=new Date(moment("2022/08/18").format("YYYY/M/D"));
-  // var test=new Date(moment("2022/08/18").locale("fa").format("YYYY/M/D"));
+  var moment = require("jalali-moment");
+  
+  
+  // financialDataTable.length!=0&&console.log(moment(datePickerValues[0]).locale("fa").format("YYYYMMDD"))
+    // financialDataTable.length!=0&&console.log(filterFinancialData(financialDataTable,"تاریخ خرید",datePickerValues))
   return (
     <div>
       <PageTitle title={title} />

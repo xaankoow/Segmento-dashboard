@@ -4,6 +4,7 @@ import { getAllFinancialReportsData } from "../../service/financialReportsServic
 import persian from "react-date-object/calendars/persian";
 import persian_en from "react-date-object/locales/persian_en";
 
+// get all financial data in api
 export const getAllFinancialReports = () => {
     return async (dispatch, getState) => {
         // debugger
@@ -69,9 +70,6 @@ export const getAllFinancialReports = () => {
 
     }
 }
-
-
-
 
 export const filterFinancialReports = ({ textTarget, textValue, sortTarget, sortValue }) => {
     return async (dispatch, getState) => {
