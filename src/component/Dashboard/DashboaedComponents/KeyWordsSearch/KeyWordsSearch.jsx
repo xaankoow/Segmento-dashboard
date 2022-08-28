@@ -85,7 +85,7 @@ export default function KeyWordsSearch({
                     className="w-4 h-4"
                     name="radio"
                     onClick={(e) => {
-                      getRadioValue("تاریخ خرید ");
+                      getRadioValue("تاریخ خرید");
                       // radioClickedHandler(e);
                     }}
                     value="3"
@@ -98,7 +98,7 @@ export default function KeyWordsSearch({
                     className="w-4 h-4"
                     name="radio"
                     onClick={(e) => {
-                      getRadioValue("تاریخ انقضا  ");
+                      getRadioValue("تاریخ انقضا");
                       // radioClickedHandler(e);
                     }}
                     value="4"
