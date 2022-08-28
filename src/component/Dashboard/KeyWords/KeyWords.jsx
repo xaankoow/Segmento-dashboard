@@ -16,6 +16,7 @@ const KeyWords = ({ onClickHandler }) => {
    // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [SavePopup, showSavePopup] = useState(false);
+  const keyWordSearchTexts=["همه عبارات","B","C","D"]
   const [keyWords, setKeyWords] = useState([]); //1
   const [seperator,setSeperator]=useState(false)
   const [id,setId]=useState("");
@@ -196,6 +197,7 @@ const KeyWords = ({ onClickHandler }) => {
                 dataItems={comboboxFiltered}
                 secoundSearch={secoundSearchBoxChangeHandler}
                 radioClickedHandler={radioButtonHandler}
+                radioTextItems={keyWordSearchTexts}
               />
               <span className="mt-5">جستجو بر اساس حروف الفبا</span>
               <AlphabetKeyWord tableAlphabetLengh={tableAlphabetFiltering} handleclick={handleClick}   NothingSearch={

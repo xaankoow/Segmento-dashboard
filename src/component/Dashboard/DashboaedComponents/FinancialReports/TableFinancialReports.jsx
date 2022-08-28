@@ -22,6 +22,9 @@ import { filterFinancialData } from "../../../Utils/FilterData/filter";
 // import persian from "react-date-object/calendars/persian";
 import persian_en from "react-date-object/locales/persian_en";
 
+import { getAllFinancialReportsData } from "../../../service/financialReportsService";
+import ComboBox from "../../../shared/comboBox/ComboBox";
+import { filterData } from "./changeDataSearch";
 export default function TableFinancialReports({ title }) {
 
   const dispatch = useDispatch();
@@ -29,8 +32,12 @@ export default function TableFinancialReports({ title }) {
   const [copyItem, setCopyItem] = useState([]);
   const [handleClickButton, setHandleClickButton] = useState(false);
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
-  const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
+  const [searchFilterOption, setSearchFilterOption] = useState("");
   const [numFilter, setNumFilter] = useState(1);
+  const [handleClickCopy, setHandleClickCopy] = useState(false);
+  
+  const [financialDataTableOrg, setFinancialDataTableOrg] = useState([]);
+
 
   const [searchFilterText, setSearchFilterText] = useState("");
 
@@ -39,12 +46,74 @@ export default function TableFinancialReports({ title }) {
     new DateObject().add(0, "days"),
   ]);
 
-  console.log(datePickerValues)
-
+  const datePickerRef = useRef();
+  const loadingState = useSelector(state => state.loadingState)
   useEffect(() => {
-    dispatch(getAllFinancialReports());
+    // debugger
+    if (financialDataTableOrg.length==0) {
+      GetFinancialReportsData();
+    }
   }, []);
+  
+  const GetFinancialReportsData=async()=>{
 
+    debugger
+    let toastMessage = "";
+    try {
+
+      
+      if (!loadingState.ProcessingDelay.includes("getAllFinancialReports")) {
+            //handle show loadin
+            // {
+            //     // debugger
+            //     loadingState.ProcessingDelay.push("getAllFinancialReports");
+            //     loadingState.canRequest = false;
+            //     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            //     // await dispatch({ type: "CAN_REQUEST", payload: loadingState })    
+            // }
+            const { data } = await getAllFinancialReportsData()
+            // debugger
+            if (data.status == true && data.code == 200) {
+              setFinancialDataTableOrg(data.data);
+            }
+
+
+            //handle hide loading
+            // {
+            //     var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "getAllFinancialReports");
+            //     loadingState.ProcessingDelay = removeProcessingItem;
+            //     loadingState.canRequest = removeProcessingItem.length > 0 ? false : true;
+            //     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+            //   }
+              
+            }
+            
+            // debugger
+          } catch (error) {
+            // console.log("register error")
+            // error.response.data.errors.forEach(element => {
+          //     toastMessage += element + " / ";
+        // });
+        
+        // toast.warn(toastMessage, {
+        //     position: "top-right",
+        //     autoClose: 2000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        // });
+
+        // handle hide loading
+        // {
+        //     var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "getAllFinancialReports");
+        //     loadingState.ProcessingDelay = removeProcessingItem;
+        //     loadingState.canRequest = removeProcessingItem.length > 0 ? false : true;
+        //     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        // }
+      }
+    }
   var moment = require("jalali-moment");
 
   const ExcelFile = ReactExport.ExcelFile;
@@ -78,8 +147,11 @@ export default function TableFinancialReports({ title }) {
     },
   ];
 
-  const { financialDataTable } = useSelector((state) => state.financialState);
-
+  // const { financialDataTable } = useSelector((state) => state.financialState); use redux
+  // console.log(copyItem);
+  if (copyItem.length > 0) {
+    // console.log(copyItem[0].description + "hhi");
+  }
   function customCopy() {
     var myListOutput = "";
     for (var i = 0; i < copyItem.length; i++) {
@@ -108,28 +180,24 @@ export default function TableFinancialReports({ title }) {
       <PageTitle title={title} />
       <div className=" w-full px-10 m-auto">
         <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
-          <div className="w-80">
+          <div className="w-[410px]">
             <KeyWordsSearch
               usedBySection={"financialReports/search"}
               secoundSearch={(e) => setSearchFilterText(e.target.value)}
               inputPlaceHolder={"فیلد جستجو"}
               getRadioValue={setSearchFilterOption}
+              value={searchFilterOption}
               radioValue={searchFilterOption}
 
             />
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <span className=" ml-2">مرتب سازی بر اساس</span>
-            <div className=" w-48">
-              <KeyWordsSearch
-                usedBySection={"financialReports/sort"}
-                inputPlaceHolder={targetSortFilter}
-                getRadioValue={setTargetSortFilter}
-              />
-            </div>
+            {/* fsefsefsffesssssssssssssssssssssssssssssssssssssssssssd */}
+            {filterData(searchFilterOption)}
           </div>
           <div>
-            {targetSortFilter == "تاریخ خرید" ? (
+            {/* {targetSortFilter == "تاریخ خرید" ? (
               <DatePicker
                 range
                 value={datePickerValues}
@@ -146,11 +214,12 @@ export default function TableFinancialReports({ title }) {
                     className="flex justify-start items-center px-3 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
                     onClick={openCalendar}
                   >
-                    <img src="/img/dashboard/financialReports/calendar/file_download.svg" />
+                    <img src="/img/dashboard/financialReports/calendar/file_download.svg"  alt="file_download"/>
                     <span className="text-xs mr-3">{value}</span>
                   </div>
                 )}
               >
+                
               </DatePicker>
             ) : (
               <div className="flex justify-between items-center px-1 w-14 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]">
@@ -168,10 +237,11 @@ export default function TableFinancialReports({ title }) {
                   className="cursor-pointer rotate-180"
                 />
               </div>
-            )}
+            )} */}
 
           </div>
           <div className=" inline-block">
+         
             <AuthButton
               textButton={"اعمال"}
               reduxHandleClick={filterFinancialReports}
@@ -218,7 +288,7 @@ export default function TableFinancialReports({ title }) {
                 </span>
               </div>
               <div className="overflow-scroll h-[94%] text-xs font-normal">
-                {financialDataTable.length > 0 && financialDataTable.map((item, index) => (
+                {financialDataTableOrg.length>0&& financialDataTableOrg.map((item, index) => (
                   <div
                     className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                   >
@@ -295,6 +365,7 @@ export default function TableFinancialReports({ title }) {
                           <img
                             src="/img/dashboard/financialReports/file_download.svg"
                             className=" ml-3"
+                            alt="financialReports"
                           />{" "}
                           خروجی اکسل
                         </Fragment>
