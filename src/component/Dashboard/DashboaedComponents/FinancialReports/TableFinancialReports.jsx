@@ -15,6 +15,13 @@ import ReactExport from "react-export-excel";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import PageTitle from "../pageTitle/pageTitle";
 import { setFormatPrice } from "../../../Utils/FORMAT/price";
+import { filterFinancialData } from "../../../Utils/FilterData/filter";
+// import { filterFinancialData } from "../../../Utils/FilterData/filter";
+
+// import { DateObject } from "react-multi-date-picker";
+// import persian from "react-date-object/calendars/persian";
+import persian_en from "react-date-object/locales/persian_en";
+
 import { getAllFinancialReportsData } from "../../../service/financialReportsService";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import { FilterData, filterData } from "./changeDataSearch";
@@ -22,7 +29,6 @@ export default function TableFinancialReports({ title }) {
   const dispatch = useDispatch();
 
   const [copyItem, setCopyItem] = useState([]);
-  const [placeholderPadding, setplaceholderPadding] = useState("");
   const [handleClickButton, setHandleClickButton] = useState(false);
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
   const [searchFilterOption, setSearchFilterOption] = useState("");
@@ -151,6 +157,7 @@ export default function TableFinancialReports({ title }) {
     }
     return myListOutput;
   }
+
   const copyButton = () => {
     navigator.clipboard.writeText(customCopy());
     setHandleClickButton(true);
@@ -158,8 +165,7 @@ export default function TableFinancialReports({ title }) {
       setHandleClickButton(false);
     }, 1000);
   };
-  // var test=new Date(moment("2022/08/18").format("YYYY/M/D"));
-  // var test=new Date(moment("2022/08/18").locale("fa").format("YYYY/M/D"));
+
   return (
     <div>
       <PageTitle title={title} />
@@ -192,7 +198,7 @@ export default function TableFinancialReports({ title }) {
                 calendarPosition="bottom-right"
                 onChange={setDatePickerValues}
                 format="DD MMMM YYYY - "
-                maxDate={new DateObject()}
+                // maxDate={new DateObject()}
                 render={(value, openCalendar) => (
                   <div
                     className="flex justify-start items-center px-3 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"
@@ -287,71 +293,42 @@ export default function TableFinancialReports({ title }) {
                               ? "bg-yellow"
                               : "bg-[#10CCAE]"
                           }`}
-                        >
-                          {item.payment_status_text}
-                        </span>
-                      </p>
-                      {/* مبلغ */}
-                      {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
-                      <p className=" w-11 text-center">
-                        {setFormatPrice(item.sub_total)}
-                      </p>
-                      {/* انقضا */}
-                      <p className=" w-16 text-center">
-                        {(item.user != undefined) &
-                          (item.user.package_end_date != null) &&
-                          moment(
-                            item.user.package_end_date
-                              .substring(0, 10)
-                              .replaceAll("-", "/")
-                          )
-                            .locale("fa")
-                            .format("YYYY/M/D")}
-                      </p>
-                      {/* خرید */}
-                      <p className=" w-[68px] text-center">
-                        {item.created_at != undefined &&
-                          moment(
-                            item.created_at
-                              .substring(0, 10)
-                              .replaceAll("-", "/")
-                          )
-                            .locale("fa")
-                            .format("YYYY/M/D")}
-                      </p>
-                      {/* نوع اشتراک */}
-                      <p className=" w-36 text-center">
-                        {item.user != undefined &&
-                        item.description
-                          .substring(31, item.description.length)
-                          .includes("رایگان") == true
-                          ? "14 روز رایگان"
-                          : item.description.substring(
-                              31,
-                              item.description.length
-                            )}
-                      </p>
-                      {/* شماره فاکتور */}
-                      <p className=" w-20 text-center">{item.order_code}</p>
-                      {/* ردیف */}
-                      <p className=" w-8 text-center">{index + 1}</p>
-                      {/* انتخاب */}
-                      <p className=" w-11 text-center">
-                        <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
-                          <input
-                            type={"checkbox"}
-                            className="checkbox"
-                            // className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
-                            onClick={(e) => {
-                              if (e.target.checked) {
-                                setCopyItem([...copyItem, item.order_code]);
-                              } else {
-                                setCopyItem(
-                                  copyItem.filter(
-                                    (copyItems) => copyItems != item.order_code
-                                  )
-                                );
-                              }
+                      >
+                        {item.payment_status_text}
+                      </span>
+                    </p>
+                    {/* مبلغ */}
+                    {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
+                    <p className=" w-11 text-center">{setFormatPrice(item.sub_total)}</p>
+                    {/* انقضا */}
+                    <p className=" w-16 text-center">{item.user != undefined & item.user.package_end_date != null && moment(item.user.package_end_date.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
+                    {/* خرید */}
+                    <p className=" w-[68px] text-center">{item.created_at != undefined && moment(item.created_at.substring(0, 10).replaceAll("-", "/")).locale("fa").format("YYYY/M/D")}</p>
+                    {/* نوع اشتراک */}
+                    <p className=" w-36 text-center">
+                      {item.user != undefined && item.description.substring(31, item.description.length).includes("رایگان") == true ? "14 روز رایگان" : item.description.substring(31, item.description.length)}
+                    </p>
+                    {/* شماره فاکتور */}
+                    <p className=" w-20 text-center">{item.order_code}</p>
+                    {/* ردیف */}
+                    <p className=" w-8 text-center">{index + 1}</p>
+                    {/* انتخاب */}
+                    <p className=" w-11 text-center">
+                      <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
+                        <input
+                          type={"checkbox"}
+                          className="checkbox"
+                          // className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
+                          onClick={(e) => {
+                            if (e.target.checked) {
+                              setCopyItem([...copyItem, item.order_code]);
+                            } else {
+                              setCopyItem(
+                                copyItem.filter(
+                                  (copyItems) => copyItems != item.order_code
+                                )
+                              );
+                            }
 
                               // handleCheckingInput(e.target.checked, item);
                             }}
