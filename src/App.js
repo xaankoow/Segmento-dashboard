@@ -44,21 +44,21 @@ export default function App() {
   const tabContent = [
     {
       title: " جستجو",
-      content: <MyList />,
+      content: <KeyWords />,
     },
     {
       title: "لیست‌های من",
-      content: <KeyWords />,
+      content: <MyList />,
     },
   ];
   const tabContent2 = [
     {
       title: "جستجو",
-      content: <MylistContentProduction />,
+      content: <ContentpProduction />,
     },
     {
       title: "لیست‌های من",
-      content: <ContentpProduction />,
+      content: <MylistContentProduction />,
     },
   ];
 
