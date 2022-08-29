@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import { defaultCustomModalStyle } from '../../../../variables/style'
 import AuthButton from '../../../Auth/authButton/AuthButton'
 import PageTitle from '../../../Dashboard/DashboaedComponents/pageTitle/pageTitle'
 import { AuthVerifyCode } from '../../../shared/Input/AuthVerifyCode'
 import Timer from '../../../shared/Time/timer/Timer'
+import PopUp from '../../PopUp/PopUp'
 import StaticInputText from '../../staticInputText/textInput'
+import ToolTip from '../../ToolTip'
 import { paragraphText } from './headParagraphText'
 
 export default function PhoneNumberOperations({ registerPhone, editePhone }) {
 
-    const { forgotPasswordStep, handleResendCode } = useSelector(state => state.userState)
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+
+    const { handleResendCode, checkRegisterComplete } = useSelector(state => state.userState)
 
     const [modalStep, setModalStep] = useState(2);
 
@@ -19,12 +25,15 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
     const [minutes, setMinutes] = useState(1);
     const [seconds, setSeconds] = useState(59);
 
+    const [showToolTip, setShowToolTip] = useState(true);
+
     // timer
     var minutesTimerValue = 1;
     var secondsTimerValue = 59;
 
+    // set timer
     useEffect(() => {
-        if (handleResendCode == false) {
+        if (handleResendCode == true) {
             let myInterval = setTimeout(() => {
                 if (seconds > 0) {
                     setSeconds(seconds - 1);
@@ -43,6 +52,16 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         }
     });
 
+
+    // reset redux state
+    useEffect(() => {
+
+        return () => {
+            // clear redux state after the close this section
+        }
+    }, [])
+
+    // clear timer
     const clearTimerValue = () => {
         if (minutes != 1 || seconds != 59) {
 
@@ -51,51 +70,70 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         }
     }
 
-
-
-
     return (
-        <Modal
-            isOpen={true}
-            parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
-            style={defaultCustomModalStyle}
-            contentLabel="Example Modal"
-        >
-            <div className='report_buy_plan w-[530px] rounded-lg'>
-                <body className='report_container border-0 pt-2 px-2 pb-5'>
-                    <PageTitle title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"} />
-                    <div className=' mt-5'>
-                        {paragraphText(modalStep)}
+        <div>
+            {checkRegisterComplete ? (
+                <PopUp
+                    clickHandler={() => navigate(-1)}
+                    image={"/img/popUp/tik.svg"}
+                    type={"sucsess"}
+                    title={"موفقیت آمیز"}
+                    text={registerPhone?"شماره همراه شما با موفقیت در سگمنتو تایید شد !":"شماره همراه شما با موفقیت در سگمنتو تغییر داده شد !"}
+                    buttonText={"باشه، فهمیدم!"}
+                />
+            ) : (
+                <Modal
+                    isOpen={true}
+                    parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
+                    style={defaultCustomModalStyle}
+                    contentLabel="Example Modal"
+                >
+                    <div className='report_buy_plan w-[530px] rounded-lg'>
+                        <PageTitle title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"} />
+                        <body className=' bg-[#fff]  pt-2 px-2 pb-5'>
+                            <div className=' mt-5'>
+                                {paragraphText(modalStep)}
+                            </div>
+                            <div className=' w-96 mx-auto mt-20'>
+                                {modalStep == 1 ? (
+                                    <StaticInputText typeInput={"text"} width={"100%"} staticText={"09"} textLabelInput={"صفحه هدف"} placeholder="شماره همراه" />
+                                ) : <AuthVerifyCode />}
+                            </div>
+                            <div className='mt-24 px-3'>
+                                {modalStep == 1 ? <AuthButton textButton={"دریافت کد تایید"} /> :
+                                    (
+                                        <div className='flex justify-between items-center'>
+                                            <AuthButton textButton={"تایید شماره همراه"} />
+                                            <div className=' w-1/3'>
+                                                {false ? clearTimerValue() :
+                                                    <Timer
+                                                        minutes={minutes}
+                                                        seconds={seconds}
+                                                    />
+                                                }
+                                                <Link
+                                                    to={"#"}
+                                                    // onClick={() => dispatch(sendCodEmailAction())}
+                                                    className="mr-3 border-b"
+                                                    data-tip='با کلیک‌کردن، کد جدید دریافت می‌کنید.'
+                                                    data-type="light"
+                                                    data-place="top"
+                                                    onMouseEnter={() => setShowToolTip(true)}
+                                                    onMouseLeave={() => {
+                                                        setShowToolTip(false);
+                                                        setTimeout(() => setShowToolTip(true), 0);
+                                                    }}>
+                                                    دریافت مجدد کد
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    )}
+                            </div>
+                        </body>
                     </div>
-                    <div className=' w-96 mx-auto mt-20'>
-                        {modalStep == 1 ? (
-                            <StaticInputText typeInput={"text"} width={"100%"} staticText={"09"} textLabelInput={"صفحه هدف"} placeholder="شماره همراه" />
-                        ) : <AuthVerifyCode />}
-
-                    </div>
-                    <div className='mt-24'>
-                        {modalStep == 1 ? <AuthButton textButton={"دریافت کد تایید"} /> :
-                            (
-                                <div>
-                                    <AuthButton textButton={"تایید شماره همراه"} />
-                                    {/* {handleResendCode == true ? clearTimerValue() : */}
-                                    { false ? clearTimerValue() :
-                                        <Timer
-                                            minutes={minutes}
-                                            seconds={seconds}
-                                        />
-                                    }
-                                </div>
-                            )}
-                    </div>
-                    {/* <div>
-            </div> */}
-                    {/* <div className='w-full flex items-center justify-between  text-center p-4 border border-[#D9D9D9] rounded-lg mb-5'> <div></div> رسید نهایی خرید اشتراک<img src='/img/modal/buyPlanReport/head/close.svg' className='float-left cursor-pointer rounded-[3px] hover:bg-[#F352421A]' onClick={() => handleClose()} /></div> */}
-
-                    {/* <PurchaseInvoiceContent packageUuid={packageUuid}/> */}
-                    {/* <AuthButton textButton={"پرداخت"} reduxHandleClick={buyPlan} /> */}
-                </body>
-            </div>
-        </Modal>
+                    {showToolTip && <ToolTip />}
+                </Modal>
+            )}
+        </div>
     )
 }
