@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
-import Timer from "../../component/Auth/timer/Timer";
 import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 import { changePasswordAction, checkVerifyEmailForgotPasswordAction, sendForgotPasswordEmailCodeAction, setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux, setEmailRedux, setPasswordConfirmRedux, setPasswordRedux } from "../../component/Redux/Action";
+import Timer from "../../component/shared/Time/timer/Timer";
 import ToolTip from "../../component/Utils/ToolTip";
 import { TextButton } from "../register/Register";
 import "./forgotpass.css";
@@ -19,7 +19,6 @@ export default function Forgetpass() {
 
   useEffect(() => {
     if (handleResendCode == false) {
-
       let myInterval = setTimeout(() => {
         if (seconds > 0) {
           setSeconds(seconds - 1);
@@ -78,6 +77,7 @@ export default function Forgetpass() {
     setcode(value);
     setemailInputValue(value); 
   };
+
   //  active emailcode box
   const handlerClickButton = (e) => {
     if (emailInputValue.length > 10 && validateEmail(valusecode)) {

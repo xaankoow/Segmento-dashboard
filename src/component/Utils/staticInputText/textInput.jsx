@@ -39,6 +39,7 @@ export default function StaticInputText({
       event.preventDefault();
     }
   };
+  console.log(reduxHandleChange)
   return (
     <div className={`flex static_text_input w-full ${parentClass}`}>
       <div className={`input-wrapper input-static ${wrapperClass}`}>
@@ -58,16 +59,16 @@ export default function StaticInputText({
             pointerEvents: disabled && "none",
             borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
           }}
-          onChange={(e) => {
-            setInputValue(e.target.value);
-            workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
-          }}
+          onChange={reduxHandleChange!=undefined?((e)=> {
+            // setInputValue(e.target.value);
+             workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value)) 
+          }):null}
           placeholder={placeholder}
         />
         <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>
         <span className="error_down_input">اطلاعات نامعتبر</span>
       </div>
-      <p>{staticText}</p>
+      <p className="pt-1">{staticText}</p>
     </div>
   );
 }
