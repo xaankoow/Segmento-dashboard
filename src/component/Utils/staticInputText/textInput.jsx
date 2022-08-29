@@ -40,7 +40,7 @@ export default function StaticInputText({
       event.preventDefault();
     }
   };
-  console.log(reduxHandleChange)
+ 
   return (
     <div className={`flex static_text_input w-full ${parentClass}`}>
       <div className={`input-wrapper input-static ${wrapperClass}`}>

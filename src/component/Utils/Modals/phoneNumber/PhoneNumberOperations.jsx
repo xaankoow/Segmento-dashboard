@@ -24,7 +24,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   var minutesTimerValue = 1;
   var secondsTimerValue = 59;
   const setNewPhoneNumber = async () => {
-    //handle show loadin
+    // handle show loadin
     // {
     //   loadingState.ProcessingDelay.push("ContentProductionService");
     //   loadingState.canRequest = false;
@@ -36,6 +36,9 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
 
       const { data, status } = await changePhoneNumber(formdata);
       console.log(data.data);
+      if(status ==true){
+        setModalStep(2)
+      }
     } catch (error) {
       // console.log(error);
     }
@@ -105,7 +108,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                 typeInput={"text"}
                 width={"100%"}
                 staticText={"09"}
-                reduxHandleChange={handlePhoneNumberValue}
+                handleChange={(e)=>handlePhoneNumberValue(e.target.value)}
                 textLabelInput={"صفحه هدف"}
                 placeholder="شماره همراه"
               />
@@ -117,11 +120,11 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
             {modalStep == 1 ? (
               <AuthButton
                 textButton={"دریافت کد تایید"}
-                handlerClick={() => setNewPhoneNumber()}
+                handlerClick={ setNewPhoneNumber}
               />
             ) : (
               <div>
-                <AuthButton textButton={"تایید شماره همراه"} />
+                <AuthButton textButton={"تایید شماره همراه"}  handlerClick={verifyPhoneUserNumber}/>
                 {/* {handleResendCode == true ? clearTimerValue() : */}
                 {false ? (
                   clearTimerValue()
