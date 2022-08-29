@@ -11,6 +11,7 @@ export default function ComboBox({
   const ref = useRef();
   const [inputClick, setInputClick] = useState(false);
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!ref?.current?.contains(event.target)) {
@@ -36,7 +37,6 @@ export default function ComboBox({
               readOnly={true}
               placeholder={!radioText && placeholder}
               value={radioText}
-              onChange={(e) => searchBox(e)}
               onClick={() => {
                 setInputClick(true);
                 setOpen(!open);
@@ -83,9 +83,9 @@ export default function ComboBox({
                     name="radio"
                     onClick={(e) => {
                       setRadioText(item);
-                      // radioClickedHandler(e);
+                      radioClickedHandler(e);
                     }}
-                    value={key + 1}
+                    value={item}
                   />
                   <span>{item} </span>
                 </div>

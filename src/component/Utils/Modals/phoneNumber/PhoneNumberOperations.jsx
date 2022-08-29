@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import Modal from 'react-modal'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import Modal from "react-modal";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom'
-import { defaultCustomModalStyle } from '../../../../variables/style'
-import AuthButton from '../../../Auth/authButton/AuthButton'
-import PageTitle from '../../../Dashboard/DashboaedComponents/pageTitle/pageTitle'
-import { AuthVerifyCode } from '../../../shared/Input/AuthVerifyCode'
-import Timer from '../../../shared/Time/timer/Timer'
+import { defaultCustomModalStyle } from "../../../../variables/style";
+import AuthButton from "../../../Auth/authButton/AuthButton";
+import PageTitle from "../../../Dashboard/DashboaedComponents/pageTitle/pageTitle";
+import { changePhoneNumber, verifyPhoneNumber } from "../../../service/PhoneNumberServices";
+import { AuthVerifyCode } from "../../../shared/Input/AuthVerifyCode";
+import Timer from "../../../shared/Time/timer/Timer";
 import PopUp from '../../PopUp/PopUp'
-import StaticInputText from '../../staticInputText/textInput'
+import StaticInputText from "../../staticInputText/textInput";
 import ToolTip from '../../ToolTip'
-import { paragraphText } from './headParagraphText'
+import { paragraphText } from "./headParagraphText";
 
 export default function PhoneNumberOperations({ registerPhone, editePhone }) {
 
@@ -19,19 +20,57 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
 
     const { handleResendCode, checkRegisterComplete } = useSelector(state => state.userState)
 
-    const [modalStep, setModalStep] = useState(2);
+    // modal step
+    const [modalStep, setModalStep] = useState(1);
 
+    // handle show tool tip
+    const [showToolTip, setShowToolTip] = useState(true);
 
+    //timer state
     const [minutes, setMinutes] = useState(1);
     const [seconds, setSeconds] = useState(59);
-
-    const [showToolTip, setShowToolTip] = useState(true);
+    const [phoneNumberValue, handlePhoneNumberValue] = useState("");
 
     // timer
     var minutesTimerValue = 1;
     var secondsTimerValue = 59;
 
-    // set timer
+    const setNewPhoneNumber = async () => {
+        //handle show loadin
+        // {
+        //   loadingState.ProcessingDelay.push("ContentProductionService");
+        //   loadingState.canRequest = false;
+        //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+        // }
+        try {
+            let formdata = new FormData();
+            formdata.append("mobile", phoneNumberValue);
+
+            // set timer
+            const { data, status } = await changePhoneNumber(formdata);
+            console.log(data.data);
+        } catch (error) {
+            // console.log(error);
+        }
+    };
+    const verifyPhoneUserNumber = async () => {
+        //handle show loadin
+        // {
+        //   loadingState.ProcessingDelay.push("ContentProductionService");
+        //   loadingState.canRequest = false;
+        //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+        // }
+        try {
+            let formdata = new FormData();
+            formdata.append("code", phoneNumberValue);
+            formdata.append("mobile", phoneNumberValue);
+            const { data, status } = await verifyPhoneNumber(formdata);
+            console.log(data.data);
+        } catch (error) {
+            // console.log(error);
+        }
+    };
+
     useEffect(() => {
         if (handleResendCode == true) {
             let myInterval = setTimeout(() => {
@@ -78,7 +117,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                     image={"/img/popUp/tik.svg"}
                     type={"sucsess"}
                     title={"موفقیت آمیز"}
-                    text={registerPhone?"شماره همراه شما با موفقیت در سگمنتو تایید شد !":"شماره همراه شما با موفقیت در سگمنتو تغییر داده شد !"}
+                    text={registerPhone ? "شماره همراه شما با موفقیت در سگمنتو تایید شد !" : "شماره همراه شما با موفقیت در سگمنتو تغییر داده شد !"}
                     buttonText={"باشه، فهمیدم!"}
                 />
             ) : (

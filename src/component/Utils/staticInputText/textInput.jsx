@@ -19,7 +19,8 @@ export default function StaticInputText({
   placeholder,
   staticText,
   workSpaceTypeState,
-  parentClass
+  parentClass,
+  handleChange
 
 }) {
   // check email to be correct
@@ -62,7 +63,7 @@ export default function StaticInputText({
           onChange={reduxHandleChange!=undefined?((e)=> {
             // setInputValue(e.target.value);
              workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value)) 
-          }):null}
+          }): handleChange ? (e)=>handleChange(e) :null}
           placeholder={placeholder}
         />
         <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>
