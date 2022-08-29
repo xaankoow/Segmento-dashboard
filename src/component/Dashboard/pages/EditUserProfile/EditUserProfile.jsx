@@ -481,6 +481,8 @@ export default function EditUserProfile() {
                   isPassword={true}
                   errorTextId="errEditUserProfilePassword"
                   handleChange={setnewPass}
+                  wrapperClass="mt-2"
+                  checkStrongPass
                   // reduxHandleChange={handleNewtPass}
                 />
                 <AuthInput
@@ -490,6 +492,7 @@ export default function EditUserProfile() {
                   isPassword={true}
                   errorTextId="errEditUserProfilePasswordConfirm"
                   handleChange={setconfrimPass}
+                  wrapperClass="mt-2"
                   // reduxHandleChange={handleConfrimationPass}
                 />
                 <div className="flex w-full justify-end gap-7">

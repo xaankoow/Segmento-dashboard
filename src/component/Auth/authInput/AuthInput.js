@@ -85,7 +85,7 @@ export default function AuthInput({
 
         <label className={disable ? "text-[#fff]" : ""} for="user">{textLabelInput}</label>
         {/* TODO: CHANGE INFO TEXT WITH STIKY NOTE IN OFFICE */}
-        {/* {infoStrongPass == true ? <span className={` info w-[200%] `}>با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن بسازید.</span> : null} */}
+        {infoStrongPass == true ? <span className={` info w-[200%] `}>با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن بسازید.</span> : null}
       </div>
     </>
   );

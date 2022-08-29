@@ -7,7 +7,7 @@ import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showToast } from "../../Utils/toastifyPromise";
 
 
-
+// get all user data in api
 export const coreUser = () => {
     return async (dispatch, getState) => {
         const state = { ...getState().userState }
@@ -76,7 +76,6 @@ export const coreUser = () => {
     }
 }
 
-
 export const changeRegisterCompleteCheck = (value) => {
     return async (dispatch, getState) => {
         let state = { ...getState().userState }
@@ -85,7 +84,7 @@ export const changeRegisterCompleteCheck = (value) => {
     }
 }
 
-
+//get validate code 4*
 export const setAuth1Redux = (auth1) => {
     return async (dispatch, getState) => {
         let state = { ...getState().userState }
@@ -118,6 +117,8 @@ export const setAuth4Redux = (auth4) => {
         await dispatch({ type: "SET_AUTH", payload: state })
     }
 }
+
+
 export const setImageProfRedux = (image) => {
     return async (dispatch, getState) => {
         let state = { ...getState().userState }
@@ -125,6 +126,7 @@ export const setImageProfRedux = (image) => {
         await dispatch({ type: "SET_IMAGE", payload: state })
     }
 }
+
 export const setNameRedux = (fullName) => {
     return async (dispatch, getState) => {
         let state = { ...getState().userState }
@@ -140,6 +142,7 @@ export const setEmailRedux = (email) => {
         await dispatch({ type: "SET_EMAIL", payload: state })
     }
 }
+
 export const setPasswordRedux = (password) => {
     return async (dispatch, getState) => {
         let state = { ...getState().userState }
@@ -162,7 +165,6 @@ export const resetStateRedux = () => {
         await dispatch({ type: "RESET_STATE" })
     }
 }
-
 
 
 // REGISTER USER
@@ -375,7 +377,6 @@ export const loginUserAction = () => {
 }
 
 
-
 //SEND EMAIL COD
 export const sendCodEmailAction = (email, demoResolve) => {
     return async (dispatch, getState) => {
@@ -513,8 +514,6 @@ export const checkVerifyEmailAction = () => {
         }
     }
 }
-
-
 
 
 //CHECK EMAIL COD 
@@ -666,7 +665,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
     }
 }
 
-// 
+
 //CHANGE USER PASSWORD 
 export const changePasswordAction = () => {
     return async (dispatch, getState) => {
@@ -747,6 +746,8 @@ export const changePasswordAction = () => {
 
     }
 }
+
+
 export const logoutAction = () => {
     return async (dispatch, getState) => {
         // const toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
@@ -763,6 +764,8 @@ export const logoutAction = () => {
         // await dispatch({ type: "LOG_OUT" })
     }
 }
+
+
 export const findUserAction = () => {
     return async (dispatch, getState) => {
 
@@ -807,3 +810,4 @@ export const findUserAction = () => {
 
     // }
 }
+

@@ -5,7 +5,7 @@ const Timer = ({exsist,display,minutes,seconds}) => {
   return (
     <>
       {minutes === 0 && seconds === 0 ? null  && exsist===true : (
-        <span style={{display:`${display}`}}>
+        <span className=" border-b" style={{display:`${display}`}}>
           {" "}
           {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
         </span>
