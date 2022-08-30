@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { defaultCustomModalStyle } from "../../../../variables/style";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import PageTitle from "../../../Dashboard/DashboaedComponents/pageTitle/pageTitle";
+import { setPropCoreUser } from "../../../Redux/Action";
 import {
   changePhoneNumber,
   verifyPhoneNumber,
@@ -13,6 +14,7 @@ import {
 import { AuthVerifyCode } from "../../../shared/Input/AuthVerifyCode";
 import Timer from "../../../shared/Time/timer/Timer";
 import PopUp from "../../PopUp/PopUp";
+import { InputError } from "../../showInputError";
 import StaticInputText from "../../staticInputText/textInput";
 import ToolTip from "../../ToolTip";
 import { paragraphText } from "./headParagraphText";
@@ -21,9 +23,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { handleResendCode, checkRegisterComplete } = useSelector(
-    (state) => state.userState
-  );
+  const { userData } = useSelector((state) => state.userState);
 
   // Auth verify code input state
   const { auth1, auth2, auth3, auth4 } = useSelector(
@@ -33,6 +33,15 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   // modal step
   const [modalStep, setModalStep] = useState(1);
 
+  // modal step
+  const [operationType, setOperationType] = useState("");
+
+  // check change phone number completed
+  const [checkCompleted, setCheckCompleted] = useState(false);
+
+  // check change phone number completed
+  const [checkResendCode, setCheckResendCode] = useState(true);
+
   // handle show tool tip
   const [showToolTip, setShowToolTip] = useState(true);
 
@@ -40,9 +49,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(59);
   const [phoneNumberValue, handlePhoneNumberValue] = useState("");
-  
-  const phoneNumber = "09" + phoneNumberValue && phoneNumberValue;
-  console.log(phoneNumber);
+
   // timer
   var minutesTimerValue = 1;
   var secondsTimerValue = 59;
@@ -60,10 +67,13 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       let formdata = new FormData();
       formdata.append("mobile", "09" + phoneNumberValue);
 
-      // set timer
-      const { data, status } = await changePhoneNumber(formdata);
+      if (checkResendCode) {
+        // set timer
+        const { data, status } = await changePhoneNumber(formdata);
+        if (data.status) setModalStep(2);
+        setCheckResendCode(false)
+      }
 
-      if (data.status) setModalStep(2);
     } catch (error) {
       // console.log(error);
     }
@@ -77,28 +87,43 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
     }
   };
   const verifyPhoneUserNumber = async () => {
-    //handle show loadin
-    // {
-    //   loadingState.ProcessingDelay.push("ContentProductionService");
-    //   loadingState.canRequest = false;
-    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    // }
+
+    // handle show loadin
+    {
+      loadingState.ProcessingDelay.push("verifyPhoneNumber");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    }
     try {
       let formdata = new FormData();
       formdata.append("code", auth4 + auth3 + auth2 + auth1);
-      formdata.append("mobile", phoneNumber);
-      const { data, status } = await verifyPhoneNumber(formdata);
-      console.log(data.data);
+      formdata.append("mobile", "09" + phoneNumberValue);
+      const { data, status, code } = await verifyPhoneNumber(formdata);
+
+      if (data.code == 200 & data.status == true) {
+        dispatch(setPropCoreUser(data.user))
+        setCheckCompleted(true);
+      }
       if (data.errors.length != 0) {
+        InputError("authVerifyCodeList", "کد فعال‌سازی اشتباه است.")
+
         toast.error(data.errors[0]);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+    }
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        (item) => item != "verifyPhoneNumber"
+      );
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
   };
 
   useEffect(() => {
-    if (handleResendCode == true) {
+    if (checkResendCode == false) {
       let myInterval = setTimeout(() => {
         if (seconds > 0) {
           setSeconds(seconds - 1);
@@ -106,6 +131,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         if (seconds === 0) {
           if (minutes === 0) {
             clearInterval(myInterval);
+            setCheckResendCode(true)
             setMinutes(1);
             setSeconds(59);
           } else {
@@ -114,6 +140,15 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
           }
         }
       }, 1000);
+    }
+    if (operationType != "") {
+      if (userData.user != undefined) {
+        if (userData.user.mobile == null) {
+          setOperationType("verify")
+        } else {
+          setOperationType("change")
+        }
+      }
     }
   });
 
@@ -134,14 +169,14 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
 
   return (
     <div>
-      {checkRegisterComplete ? (
+      {checkCompleted ? (
         <PopUp
           clickHandler={() => navigate(-1)}
           image={"/img/popUp/tik.svg"}
           type={"sucsess"}
           title={"موفقیت آمیز"}
           text={
-            registerPhone
+            operationType=="verify"
               ? "شماره همراه شما با موفقیت در سگمنتو تایید شد !"
               : "شماره همراه شما با موفقیت در سگمنتو تغییر داده شد !"
           }
@@ -156,9 +191,10 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
           style={defaultCustomModalStyle}
           contentLabel="Example Modal"
         >
-          <div className="report_buy_plan w-[530px] rounded-lg">
+          <div className="report_buy_plan w-[530px] rounded-lg transition-all">
             <PageTitle
-              title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
+              // title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
+              title={userData.user != undefined && userData.user.mobile == null ? "تایید شماره همراه" : "تغییر شماره همراه"}
             />
             <body className=" bg-[#fff]  pt-2 px-2 pb-5">
               <div className=" mt-5">{paragraphText(modalStep)}</div>
@@ -190,15 +226,10 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                       handlerClick={verifyPhoneUserNumber}
                     />
                     <div className=" w-1/3">
-                      {false ? (
-                        clearTimerValue()
-                      ) : (
-                        <Timer minutes={minutes} seconds={seconds} />
-                      )}
-                      <Link
-                        to={"#"}
-                        // onClick={() => dispatch(sendCodEmailAction())}
-                        className="mr-3 border-b"
+                      <Timer minutes={minutes} seconds={seconds} />
+                      <span
+                        onClick={() => checkResendCode && setNewPhoneNumber()}
+                        className={`mr-3 border-b cursor-pointer ${!checkResendCode && " text-sectionDisable cursor-default"}`}
                         data-tip="با کلیک‌کردن، کد جدید دریافت می‌کنید."
                         data-type="light"
                         data-place="top"
@@ -209,7 +240,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                         }}
                       >
                         دریافت مجدد کد
-                      </Link>
+                      </span>
                     </div>
                   </div>
                 )}
