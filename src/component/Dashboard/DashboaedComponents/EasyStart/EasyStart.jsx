@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { ReplaceClass } from "../../../shared/replaceClass";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 
 const EasyStart = ({ startButtonClick }) => {
@@ -36,6 +37,12 @@ const EasyStart = ({ startButtonClick }) => {
               to={"/dashboard/buyPlanEasyToStartModal"}
               state={{ background: location }}
               className="btn-style w-40 mb-5  bottom-0 flex justify-between"
+              onClick={()=>ReplaceClass({
+                elementClass:"easyToStartRocket",
+                oldClass:"easyToStartRocket_animation",
+                newClass:"easyToStartRocket_animation_fire",
+                replaceClass:true
+              })}
             >
               {" "}
               شروع کنیم{" "}
@@ -63,7 +70,9 @@ const EasyStart = ({ startButtonClick }) => {
               <img
                 src="/img/dashboard/EasyStartPage/moshak.svg"
                 alt="EasyStartPage"
-                className="w-[209px] pb-1 ml-8 absolute -bottom-1 -right-14  z-10"
+                // className="w-[209px] animate-pulse pb-1 ml-8 absolute -bottom-24 -right-10  z-10"
+                // className="w-[209px] animate-bounce easyToStartRocket pb-1 ml-8 absolute -bottom-24 -right-10  z-10"
+                className="w-[209px] easyToStartRocket easyToStartRocket_animation pb-1 ml-8 absolute -bottom-24 -right-10  z-10"
               />
               <img
                 src="/img/dashboard/EasyStartPage/easystart.svg"

@@ -4,13 +4,19 @@ import { useState } from "react";
 import { Outlet, Route, Routes, useNavigate } from "react-router";
 import SidebarComponent from "./DashboaedComponents/SidebarComponents/SidebarComponent";
 import BuyPlanEasyToStartModal from "../Utils/EasyToStartModal";
+import PhoneNumberOperations from "../Utils/Modals/phoneNumber/PhoneNumberOperations";
+import { useSelector } from "react-redux";
 
 
 export default function DashboardBody() {
+
+  const { checkVerifyPhoneNumber } = useSelector((state) => state.userState);
+
   const navigate = useNavigate();
 
   const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState({ type: "", result: true }); //handle buy plan type
    const [showWorkSpace, setShowWorkSpace] = useState(true); //handle close buy plan result
+
   //check buy plan result
   useEffect(() => {
     const status_buy_plan = localStorage.getItem("statusBuyPlna");
@@ -34,21 +40,8 @@ export default function DashboardBody() {
     }
   }, []);
 
+  const [showVerifyPhoneNumberModal, setShowVerifyPhoneNumberModal] = useState(false); //handle close buy plan result
 
-  // DashboardHeader nav icon that close the left sidebar
- 
-  // const closeNavItem = () => {
-  //   setCloseNav(!closeNav);
-  // };
-
-
-  // const userToken = localStorage.getItem("token");
-  // useEffect(() => {
-  //   // debugger
-  //   if (!userToken) {
-  //     navigate("/dashboard/accountOperations/login", { replace: true });
-  //   }
-  // }, [userToken])
 
   return (
     <div id="DASHBOARD">
@@ -63,6 +56,10 @@ export default function DashboardBody() {
         <SidebarComponent  />
         
       </div>
+      {showVerifyPhoneNumberModal&&setTimeout(() => {
+        setShowVerifyPhoneNumberModal(true)
+      }, 5000)}
+      {showVerifyPhoneNumberModal&&<PhoneNumberOperations />}
       {showModalBuyPlanResult.type != "" ? (
         <BuyPlanEasyToStartModal checkBuyPlan={showModalBuyPlanResult.result} />
       ) : ("")}

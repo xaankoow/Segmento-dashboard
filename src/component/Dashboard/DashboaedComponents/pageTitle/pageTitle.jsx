@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 export default function PageTitle({
   numberRight,
@@ -6,8 +7,12 @@ export default function PageTitle({
   title,
   hasNumber,
 }) {
+
+  const navigate = useNavigate();
+
+  //TODO: check ico problem (new adding)
   return (
-    <div className="flex gap-6 items-center pr-4 w-full bg-[#FCFCFB] py-3">
+    <div className="flex justify-between gap-6 items-center pr-4 w-full bg-[#FCFCFB] py-3">
       <div className="w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]" />
       <span className="text-lg">{title}</span>
       {hasNumber && (
@@ -21,6 +26,9 @@ export default function PageTitle({
           </span>
         </div>
       )}
+      <div className='flex justify-center ml-6 items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' >
+        <div className='close_modal_ico' onClick={() => navigate(-1)}></div>
+      </div>
     </div>
   );
 }
