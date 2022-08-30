@@ -69,7 +69,7 @@ export default function StaticInputText({
         <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>
         <span className="error_down_input">اطلاعات نامعتبر</span>
       </div>
-      <p className="pt-1">{staticText}</p>
+      <p className="">{staticText}</p>
     </div>
   );
 }
