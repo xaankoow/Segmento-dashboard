@@ -30,8 +30,12 @@ import AuthButton from "../../../Auth/authButton/AuthButton";
 import { TextButton } from "../../../../pages/register/Register";
 import { ClearInputs } from "../../../Utils/ClearInputs/ClearInputs";
 import { CheckFormat } from "../../../Utils/Auth/CheckFormtValue";
+import { Link, useLocation } from "react-router-dom";
+
 export default function EditUserProfile() {
   const { canRequest } = useSelector((state) => state.loadingState);
+
+  const location = useLocation();
 
   const [selectDatas, setSelectDtas] = useState([]);
   const [nameInputValue, setNameInputValue] = useState("");
@@ -149,24 +153,24 @@ export default function EditUserProfile() {
         selectBoxValue4
           ? selectBoxValue4
           : pastData
-          ? pastData.website_traffic
-          : 1
+            ? pastData.website_traffic
+            : 1
       );
       formdata.append(
         "role_in_company",
         selectBoxValue5
           ? selectBoxValue5
           : pastData
-          ? pastData.role_in_company
-          : 1
+            ? pastData.role_in_company
+            : 1
       );
       formdata.append(
         "dating_method",
         selectBoxValue6
           ? selectBoxValue6
           : pastData
-          ? pastData.dating_method
-          : 1
+            ? pastData.dating_method
+            : 1
       );
       // const { data, status } = await keywordService(searchBoxValue);
       const { data } = await editProfile(formdata);
@@ -310,7 +314,7 @@ export default function EditUserProfile() {
           setUserImage={setUserImage}
           userImage={
             (userState.userData.user != undefined) &
-            (userState.userData.user.img != "")
+              (userState.userData.user.img != "")
               ? userState.userData.user.img
               : "/../img/dashboard/userProfile/profileImage.png"
           }
@@ -342,7 +346,7 @@ export default function EditUserProfile() {
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
 
-                // userState.image != "" ? userState.image : userState.userData.user.image
+              // userState.image != "" ? userState.image : userState.userData.user.image
               />
               {/* //  userState.userData.user.image != undefined ?userState.userData.user.image : */}
               <button
@@ -360,7 +364,16 @@ export default function EditUserProfile() {
             {!changepassWord ? (
               <>
                 <div className="mt-14 mb-9">
-                  <span className="text-[#002145]">اطلاعات شخصی من </span>
+                  <div className="flex justify-between">
+                    <span className="text-title">اطلاعات شخصی من </span>
+                    <Link
+                      to={"/dashboard/phoneNumberOperations"}
+                      state={{ background: location }}
+                      className={"text-primary"}
+                    >
+                      تغییر شماره همراه
+                    </Link>
+                  </div>
                   <div className="flex gap-4 my-9 justify-between">
                     <AuthInput
                       textLabelInput="نام "
@@ -483,7 +496,7 @@ export default function EditUserProfile() {
                   handleChange={setnewPass}
                   wrapperClass="mt-2"
                   checkStrongPass
-                  // reduxHandleChange={handleNewtPass}
+                // reduxHandleChange={handleNewtPass}
                 />
                 <AuthInput
                   textLabelInput=" تکرار گذرواژه جدید "
@@ -493,7 +506,7 @@ export default function EditUserProfile() {
                   errorTextId="errEditUserProfilePasswordConfirm"
                   handleChange={setconfrimPass}
                   wrapperClass="mt-2"
-                  // reduxHandleChange={handleConfrimationPass}
+                // reduxHandleChange={handleConfrimationPass}
                 />
                 <div className="flex w-full justify-end gap-7">
                   <button

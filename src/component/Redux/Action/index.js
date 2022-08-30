@@ -34,6 +34,7 @@ export const coreUser = () => {
                 if (status == 200 && data.status == true) {
                     if (data.data.user != undefined) {
                         state.userData = data.data;
+                        state.checkVerifyPhoneNumber = data.data.user.mobile==null?false:true;
                     } else {
                         localStorage.removeItem("token")
                     }
@@ -72,6 +73,22 @@ export const coreUser = () => {
             }
         }
 
+        await dispatch({ type: "CORE_USER", payload: state })
+    }
+}
+
+// set user data
+export const setPropCoreUser = (prop,value) => {
+    return async (dispatch, getState) => {
+        const state = { ...getState().userState }
+        switch (prop) {
+            case "mobile":
+                state.userData.user.mobile = value;
+                break;
+        
+            default:
+                break;
+        }
         await dispatch({ type: "CORE_USER", payload: state })
     }
 }
