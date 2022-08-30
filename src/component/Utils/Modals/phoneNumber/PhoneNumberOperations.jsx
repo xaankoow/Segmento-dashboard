@@ -1,178 +1,255 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { defaultCustomModalStyle } from "../../../../variables/style";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import PageTitle from "../../../Dashboard/DashboaedComponents/pageTitle/pageTitle";
-import { changePhoneNumber, verifyPhoneNumber } from "../../../service/PhoneNumberServices";
+import { setPropCoreUser } from "../../../Redux/Action";
+import {
+  changePhoneNumber,
+  verifyPhoneNumber,
+} from "../../../service/PhoneNumberServices";
 import { AuthVerifyCode } from "../../../shared/Input/AuthVerifyCode";
 import Timer from "../../../shared/Time/timer/Timer";
-import PopUp from '../../PopUp/PopUp'
+import PopUp from "../../PopUp/PopUp";
+import { InputError } from "../../showInputError";
 import StaticInputText from "../../staticInputText/textInput";
-import ToolTip from '../../ToolTip'
+import ToolTip from "../../ToolTip";
 import { paragraphText } from "./headParagraphText";
 
 export default function PhoneNumberOperations({ registerPhone, editePhone }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
+  const { userData } = useSelector((state) => state.userState);
 
-    const { handleResendCode, checkRegisterComplete } = useSelector(state => state.userState)
+  // Auth verify code input state
+  const { auth1, auth2, auth3, auth4 } = useSelector(
+    (state) => state.userState
+  );
 
-    // modal step
-    const [modalStep, setModalStep] = useState(1);
+  // modal step
+  const [modalStep, setModalStep] = useState(1);
 
-    // handle show tool tip
-    const [showToolTip, setShowToolTip] = useState(true);
+  // modal step
+  const [operationType, setOperationType] = useState("");
 
-    //timer state
-    const [minutes, setMinutes] = useState(1);
-    const [seconds, setSeconds] = useState(59);
-    const [phoneNumberValue, handlePhoneNumberValue] = useState("");
+  // check change phone number completed
+  const [checkCompleted, setCheckCompleted] = useState(false);
 
-    // timer
-    var minutesTimerValue = 1;
-    var secondsTimerValue = 59;
+  // check change phone number completed
+  const [checkResendCode, setCheckResendCode] = useState(true);
 
-    const setNewPhoneNumber = async () => {
-        //handle show loadin
-        // {
-        //   loadingState.ProcessingDelay.push("ContentProductionService");
-        //   loadingState.canRequest = false;
-        //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-        // }
-        try {
-            let formdata = new FormData();
-            formdata.append("mobile", phoneNumberValue);
+  // handle show tool tip
+  const [showToolTip, setShowToolTip] = useState(true);
 
-            // set timer
-            const { data, status } = await changePhoneNumber(formdata);
-            console.log(data.data);
-        } catch (error) {
-            // console.log(error);
+  //timer state
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(59);
+  const [phoneNumberValue, handlePhoneNumberValue] = useState("");
+
+  // timer
+  var minutesTimerValue = 1;
+  var secondsTimerValue = 59;
+  const loadingState = useSelector((state) => state.loadingState);
+  const { canRequest } = useSelector((state) => state.loadingState);
+  // api
+  const setNewPhoneNumber = async () => {
+    // handle show loadin
+    {
+      loadingState.ProcessingDelay.push("changephoneNumberService");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    }
+    try {
+      let formdata = new FormData();
+      formdata.append("mobile", "09" + phoneNumberValue);
+
+      if (checkResendCode) {
+        // set timer
+        const { data, status } = await changePhoneNumber(formdata);
+        if (data.status) setModalStep(2);
+        setCheckResendCode(false)
+      }
+
+    } catch (error) {
+      // console.log(error);
+    }
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        (item) => item != "changephoneNumberService"
+      );
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    }
+  };
+  const verifyPhoneUserNumber = async () => {
+
+    // handle show loadin
+    {
+      loadingState.ProcessingDelay.push("verifyPhoneNumber");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    }
+    try {
+      let formdata = new FormData();
+      formdata.append("code", auth4 + auth3 + auth2 + auth1);
+      formdata.append("mobile", "09" + phoneNumberValue);
+      const { data, status, code } = await verifyPhoneNumber(formdata);
+
+      if (data.code == 200 & data.status == true) {
+        dispatch(setPropCoreUser(data.user))
+        setCheckCompleted(true);
+      }
+      if (data.errors.length != 0) {
+        InputError("authVerifyCodeList", "کد فعال‌سازی اشتباه است.")
+
+        toast.error(data.errors[0]);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        (item) => item != "verifyPhoneNumber"
+      );
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    }
+  };
+
+  useEffect(() => {
+    if (checkResendCode == false) {
+      let myInterval = setTimeout(() => {
+        if (seconds > 0) {
+          setSeconds(seconds - 1);
         }
-    };
-    const verifyPhoneUserNumber = async () => {
-        //handle show loadin
-        // {
-        //   loadingState.ProcessingDelay.push("ContentProductionService");
-        //   loadingState.canRequest = false;
-        //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-        // }
-        try {
-            let formdata = new FormData();
-            formdata.append("code", phoneNumberValue);
-            formdata.append("mobile", phoneNumberValue);
-            const { data, status } = await verifyPhoneNumber(formdata);
-            console.log(data.data);
-        } catch (error) {
-            // console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        if (handleResendCode == true) {
-            let myInterval = setTimeout(() => {
-                if (seconds > 0) {
-                    setSeconds(seconds - 1);
-                }
-                if (seconds === 0) {
-                    if (minutes === 0) {
-                        clearInterval(myInterval);
-                        setMinutes(1);
-                        setSeconds(59);
-                    } else {
-                        minutesTimerValue = minutesTimerValue - 1;
-                        secondsTimerValue = 59;
-                    }
-                }
-            }, 1000);
-        }
-    });
-
-
-    // reset redux state
-    useEffect(() => {
-
-        return () => {
-            // clear redux state after the close this section
-        }
-    }, [])
-
-    // clear timer
-    const clearTimerValue = () => {
-        if (minutes != 1 || seconds != 59) {
-
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(myInterval);
+            setCheckResendCode(true)
             setMinutes(1);
             setSeconds(59);
+          } else {
+            minutesTimerValue = minutesTimerValue - 1;
+            secondsTimerValue = 59;
+          }
         }
+      }, 1000);
     }
+    if (operationType != "") {
+      if (userData.user != undefined) {
+        if (userData.user.mobile == null) {
+          setOperationType("verify")
+        } else {
+          setOperationType("change")
+        }
+      }
+    }
+  });
 
-    return (
-        <div>
-            {checkRegisterComplete ? (
-                <PopUp
-                    clickHandler={() => navigate(-1)}
-                    image={"/img/popUp/tik.svg"}
-                    type={"sucsess"}
-                    title={"موفقیت آمیز"}
-                    text={registerPhone ? "شماره همراه شما با موفقیت در سگمنتو تایید شد !" : "شماره همراه شما با موفقیت در سگمنتو تغییر داده شد !"}
-                    buttonText={"باشه، فهمیدم!"}
-                />
-            ) : (
-                <Modal
-                    isOpen={true}
-                    parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
-                    style={defaultCustomModalStyle}
-                    contentLabel="Example Modal"
-                >
-                    <div className='report_buy_plan w-[530px] rounded-lg'>
-                        <PageTitle title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"} />
-                        <body className=' bg-[#fff]  pt-2 px-2 pb-5'>
-                            <div className=' mt-5'>
-                                {paragraphText(modalStep)}
-                            </div>
-                            <div className=' w-96 mx-auto mt-20'>
-                                {modalStep == 1 ? (
-                                    <StaticInputText typeInput={"text"} width={"100%"} staticText={"09"} textLabelInput={"صفحه هدف"} placeholder="شماره همراه" />
-                                ) : <AuthVerifyCode />}
-                            </div>
-                            <div className='mt-24 px-3'>
-                                {modalStep == 1 ? <AuthButton textButton={"دریافت کد تایید"} /> :
-                                    (
-                                        <div className='flex justify-between items-center'>
-                                            <AuthButton textButton={"تایید شماره همراه"} />
-                                            <div className=' w-1/3'>
-                                                {false ? clearTimerValue() :
-                                                    <Timer
-                                                        minutes={minutes}
-                                                        seconds={seconds}
-                                                    />
-                                                }
-                                                <Link
-                                                    to={"#"}
-                                                    // onClick={() => dispatch(sendCodEmailAction())}
-                                                    className="mr-3 border-b"
-                                                    data-tip='با کلیک‌کردن، کد جدید دریافت می‌کنید.'
-                                                    data-type="light"
-                                                    data-place="top"
-                                                    onMouseEnter={() => setShowToolTip(true)}
-                                                    onMouseLeave={() => {
-                                                        setShowToolTip(false);
-                                                        setTimeout(() => setShowToolTip(true), 0);
-                                                    }}>
-                                                    دریافت مجدد کد
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    )}
-                            </div>
-                        </body>
+  // reset redux state
+  useEffect(() => {
+    return () => {
+      // clear redux state after the close this section
+    };
+  }, []);
+
+  // clear timer
+  const clearTimerValue = () => {
+    if (minutes != 1 || seconds != 59) {
+      setMinutes(1);
+      setSeconds(59);
+    }
+  };
+
+  return (
+    <div>
+      {checkCompleted ? (
+        <PopUp
+          clickHandler={() => navigate(-1)}
+          image={"/img/popUp/tik.svg"}
+          type={"sucsess"}
+          title={"موفقیت آمیز"}
+          text={
+            operationType=="verify"
+              ? "شماره همراه شما با موفقیت در سگمنتو تایید شد !"
+              : "شماره همراه شما با موفقیت در سگمنتو تغییر داده شد !"
+          }
+          buttonText={"باشه، فهمیدم!"}
+        />
+      ) : (
+        <Modal
+          isOpen={true}
+          parentSelector={() =>
+            document.querySelector(".app #DASHBOARD .body .main")
+          }
+          style={defaultCustomModalStyle}
+          contentLabel="Example Modal"
+        >
+          <div className="report_buy_plan w-[530px] rounded-lg transition-all">
+            <PageTitle
+              // title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
+              title={userData.user != undefined && userData.user.mobile == null ? "تایید شماره همراه" : "تغییر شماره همراه"}
+            />
+            <body className=" bg-[#fff]  pt-2 px-2 pb-5">
+              <div className=" mt-5">{paragraphText(modalStep)}</div>
+              <div className=" w-96 mx-auto mt-20">
+                {modalStep == 1 ? (
+                  <StaticInputText
+                    typeInput={"text"}
+                    width={"100%"}
+                    staticText={"09"}
+                    textLabelInput={"صفحه هدف"}
+                    placeholder="شماره همراه"
+                    handleChange={(e) => handlePhoneNumberValue(e.target.value)}
+                    maxlength={11}
+                  />
+                ) : (
+                  <AuthVerifyCode />
+                )}
+              </div>
+              <div className="mt-24 px-3">
+                {modalStep == 1 ? (
+                  <AuthButton
+                    textButton={"دریافت کد تایید"}
+                    handlerClick={setNewPhoneNumber}
+                  />
+                ) : (
+                  <div className="flex justify-between items-center">
+                    <AuthButton
+                      textButton={"تایید شماره همراه"}
+                      handlerClick={verifyPhoneUserNumber}
+                    />
+                    <div className=" w-1/3">
+                      <Timer minutes={minutes} seconds={seconds} />
+                      <span
+                        onClick={() => checkResendCode && setNewPhoneNumber()}
+                        className={`mr-3 border-b cursor-pointer ${!checkResendCode && " text-sectionDisable cursor-default"}`}
+                        data-tip="با کلیک‌کردن، کد جدید دریافت می‌کنید."
+                        data-type="light"
+                        data-place="top"
+                        onMouseEnter={() => setShowToolTip(true)}
+                        onMouseLeave={() => {
+                          setShowToolTip(false);
+                          setTimeout(() => setShowToolTip(true), 0);
+                        }}
+                      >
+                        دریافت مجدد کد
+                      </span>
                     </div>
-                    {showToolTip && <ToolTip />}
-                </Modal>
-            )}
-        </div>
-    )
+                  </div>
+                )}
+              </div>
+            </body>
+          </div>
+          {showToolTip && <ToolTip />}
+        </Modal>
+      )}
+    </div>
+  );
 }

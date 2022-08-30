@@ -49,7 +49,7 @@ export default function Forgetpass() {
   // timer
   var minutesTimerValue = 1;
   var secondsTimerValue = 59;
-  
+
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(59);
   // value of input
@@ -75,7 +75,7 @@ export default function Forgetpass() {
   const handleChange = (e) => {
     let { id, value } = e.target;
     setcode(value);
-    setemailInputValue(value); 
+    setemailInputValue(value);
   };
 
   //  active emailcode box
@@ -123,14 +123,14 @@ export default function Forgetpass() {
             </div>
             <div className="items-center flex justify-between mt-10 mb-5">
               <div className="w-50"
-              data-tip='کد را با این ایمیل دریافت می‌کنید' 
-              data-type="light" 
-              data-place="top"
-              onMouseEnter={() => setShowToolTip(true)} 
-              onMouseLeave={() => {
-                setShowToolTip(false);
-                setTimeout(() => setShowToolTip(true), 0);
-              }}>
+                data-tip='کد را با این ایمیل دریافت می‌کنید'
+                data-type="light"
+                data-place="top"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}>
                 <AuthInput
                   textLabelInput="ایمیل"
                   classes={`forgot_password_input`}
@@ -200,9 +200,9 @@ export default function Forgetpass() {
                   />
 
                 </div>
-                  <span className={"authVerifyCodeList hidden absolute right-1 bottom-[-20px] text-[10px] text-[#c42b1c] "}>اطلاعات نامعتبر</span>
+                <span className={"authVerifyCodeList hidden absolute right-1 bottom-[-20px] text-[10px] text-[#c42b1c] "}>اطلاعات نامعتبر</span>
 
-    
+
 
               </div>
               <div className="absolute bottom-0 left-0 ">
@@ -223,14 +223,14 @@ export default function Forgetpass() {
               </div>
             </div>
             <div className="flex gap-4 justify-between my-10"
-             data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.' 
-             data-type="light" 
-             data-place="top"
-             onMouseEnter={() => setShowToolTip(true)} 
-             onMouseLeave={() => {
-               setShowToolTip(false);
-               setTimeout(() => setShowToolTip(true), 0);
-             }}>
+              data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.'
+              data-type="light"
+              data-place="top"
+              onMouseEnter={() => setShowToolTip(true)}
+              onMouseLeave={() => {
+                setShowToolTip(false);
+                setTimeout(() => setShowToolTip(true), 0);
+              }}>
               <AuthInput
                 textLabelInput="گذرواژه "
                 classes={"forgot_password_input"}
@@ -274,14 +274,14 @@ export default function Forgetpass() {
               <div>
                 <Link to={"/dashboard/accountOperations/login"}>
                   <span className="underline text-sm underline-offset-8"
-                   data-tip='برای ساخت حساب کلیک کنید.' 
-                   data-type="light" 
-                   data-place="top"
-                   onMouseEnter={() => setShowToolTip(true)} 
-                   onMouseLeave={() => {
-                     setShowToolTip(false);
-                     setTimeout(() => setShowToolTip(true), 0);
-                   }}>حساب کاربری ندارم!</span>
+                    data-tip='برای ساخت حساب کلیک کنید.'
+                    data-type="light"
+                    data-place="top"
+                    onMouseEnter={() => setShowToolTip(true)}
+                    onMouseLeave={() => {
+                      setShowToolTip(false);
+                      setTimeout(() => setShowToolTip(true), 0);
+                    }}>حساب کاربری ندارم!</span>
                 </Link>
               </div>
             </div>

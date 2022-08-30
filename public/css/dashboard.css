@@ -266,8 +266,8 @@
 	filter: saturate(11);
 }
 
-#DASHBOARD .nav_right .down .information {
-	background-image: url(../img/dashboard/nav_right/information.svg);
+#DASHBOARD .nav_right .down .call-nav-right {
+	background-image: url(../img/dashboard/nav_right/call.svg);
 
 }
 

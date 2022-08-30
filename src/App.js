@@ -40,7 +40,7 @@ export default function App() {
 
   const location = useLocation();
   const background = location.state && location.state.background;
-
+  
   const tabContent = [
     {
       title: " جستجو",
@@ -88,7 +88,6 @@ export default function App() {
                     <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"}/>} />
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
                     <Route path="PageCounter"  element={<PageCounter/>}/>
-                <Route path={`phoneNumberOperations`} element={<PhoneNumberOperations />} />
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>
@@ -102,11 +101,12 @@ export default function App() {
           <Route path={"*"} element={<Link className="btn-style" to="/dashboard">change route</Link>} />
 
         </Routes>
-
+        
         {background != "" && (
           <Routes>
             <Route exact path={`dashboard/buyPlanEasyToStartModal`} element={<BuyPlanEasyToStartModal />} />
             <Route exact path={`dashboard/setWorkSpace`} element={<WorkSpace />} />
+            <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
         <LoadingPage />

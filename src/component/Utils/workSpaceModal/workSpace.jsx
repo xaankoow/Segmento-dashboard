@@ -90,7 +90,7 @@ export default function WorkSpace() {
             <p className='mt-2.5 text-sm text-[#002145]'>
               {WorkSpaceParagraph(stepModal)}
             </p>
-            <div className=' mt-8'>
+            <div className=' mt-4'>
             {/* step, countInput, handleAddStateCountInput */}
             <InputGetWorkSpaceInfo step={stepModal} countInput={stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite} handleAddStateCountInput={handleAddStateCountInput}/>
               {/* {InputGetWorkSpaceInfo(stepModal, stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite, handleAddStateCountInput)} */}

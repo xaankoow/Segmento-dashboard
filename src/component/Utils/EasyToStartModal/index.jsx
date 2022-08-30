@@ -8,6 +8,10 @@ import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/Al
 import SetTitleTabBrowser from '../SetTitleTabBrowser'
 
 export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
+
+  const [rederingWithDelay, setRederingWithDelay] = useState(false);
+
+
   const [stepModal, setStepModal] = useState(1);
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
@@ -17,6 +21,26 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   const [checkErr, setCheckErr] = useState("");
 
   const { forceUpdate } = useSelector(state => state.planState);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setRederingWithDelay(true)
+    }, 500);
+  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      setRederingWithDelay(true)
+    }, 500);
+  }, [])
+
+  useEffect(() => {
+  
+    return () => {
+      
+    }
+  }, [])
+  
+
 
   useEffect(() => {
     const find_buy_type = localStorage.getItem("buyType")
@@ -46,33 +70,38 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   };
 
   return (
-    <div className='buy_plan_modal'>
-      <Modal
-        isOpen={true}
-        parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <div className='w-[907px]'>
-          {checkErr != "" ? (
-            <div className='h-[685px]'>
-              {
-                AleartMessageBuyPlan()
-              }
-            </div>
-          ) : (
-            <Fragment>
-              <Head handleClose={handleClose} stepModal={stepModal} free={free} />
-              <div className={`${stepModal == 1 ? "px-6" : stepModal > 2 ? "px-2" : stepModal == 2 ? " px-4" : ""}`}>
-                <BodyContent setStepModal={setStepModal} setApplyWebAdress={setApplyWebAdress} setPackageUuid={setPackageUuid} stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree} lockNextStep={lockNextStep} setLockNextStep={setLockNextStep} />
-                <FooterBtn applyWebAdress={applyWebAdress} stepModal={stepModal} free={free} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose} lockNextStep={lockNextStep} packageUuid={packageUuid} />
+    <Fragment>
+      {rederingWithDelay ?
+        (
+          <div className='buy_plan_modal'>
+            <Modal
+              isOpen={true}
+              parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+              <div className='w-[907px]'>
+                {checkErr != "" ? (
+                  <div className='h-[685px]'>
+                    {
+                      AleartMessageBuyPlan()
+                    }
+                  </div>
+                ) : (
+                  <Fragment>
+                    <Head handleClose={handleClose} stepModal={stepModal} free={free} />
+                    <div className={`${stepModal == 1 ? "px-6" : stepModal > 2 ? "px-2" : stepModal == 2 ? " px-4" : ""}`}>
+                      <BodyContent setStepModal={setStepModal} setApplyWebAdress={setApplyWebAdress} setPackageUuid={setPackageUuid} stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree} lockNextStep={lockNextStep} setLockNextStep={setLockNextStep} />
+                      <FooterBtn applyWebAdress={applyWebAdress} stepModal={stepModal} free={free} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose} lockNextStep={lockNextStep} packageUuid={packageUuid} />
+                    </div>
+                  </Fragment>
+                )}
               </div>
-            </Fragment>
-          )}
-        </div>
-      </Modal>
-      {forceUpdate ? "" : ""}
-      <SetTitleTabBrowser nameSection={"شروع آسان"} />
-    </div>
+            </Modal>
+            {forceUpdate ? "" : ""}
+            <SetTitleTabBrowser nameSection={"شروع آسان"} />
+          </div>
+        ) : null}
+    </Fragment>
   )
 }
