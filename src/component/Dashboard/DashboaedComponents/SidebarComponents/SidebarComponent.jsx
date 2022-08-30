@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import { setCloseNav } from "../../../Redux/Action/navMenu";
 import { getAllWorkSpace } from "../../../Redux/Action/workSpace";
 import SidebarBaner from "../../../Utils/Baner/Sidebar/SidebarBaner";
+import ToolTip from "../../../Utils/ToolTip";
 import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
 export default function SidebarComponent() {
+
+  const [showToolTip, setShowToolTip] = useState(true);
+
   const [activeIcon, setActiveIcon] = useState(0);
   const { closeNav } = useSelector(state => state.navMenuState)
   const dispatch = useDispatch();
@@ -29,7 +33,7 @@ export default function SidebarComponent() {
   const itemsHoverMenu = [
     { title: "گزارش های منتخب", link: "" },
     { title: "خرید اشتراک", link: "buyPlan" },
-    { title: "شروع آسان", link: "easyStart" },
+    { title: "شروع آسان", link: "/dashboard" },
     { title: "خبرخوان", link: "" },
     { title: "آموزش", link: "" },
     { title: "پیشنهادات و تخفیف ها", link: "" },
@@ -87,14 +91,36 @@ export default function SidebarComponent() {
         <IconsRight setActive={activeIconHandler} />
         <div className="down">
           <div className="dropDownBox mb-5">
-            <div className="support w-7 h-7"></div>
+            <a href="https://segmento.ir/support">
+              <div className="support w-7 h-7"
+                data-tip=' پشتیبانی '
+                data-type="light"
+                data-place="left"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}
+              ></div>
+            </a>
             {/* <div className="support_dropDown dropDownBox1 flex text-center">
               <span> پشتیبانی و تیکت </span>
             </div> */}
           </div>
 
           <div className="dropDownBox mb-5">
-            <div className="information w-7 h-7"></div>
+            <div className="call-nav-right w-6 h-6 text-[20px]"
+              data-tip=' tel:051-38331497 '
+              data-type="light"
+              data-place="left"
+              data-event='hover'
+              data-class='sizeClass'
+              onMouseEnter={() => setShowToolTip(true)}
+              // onMouseLeave={() => {
+              //   setShowToolTip(false);
+              //   setTimeout(() => setShowToolTip(true), 0);
+              // }}
+            ></div>
             {/* <div className="support_dropDown dropDownBox2 text-center">
               <span>منابع و راهنمایی ها</span>
               <div className="w-3 h-3 absolute right-[-5px] bg-[#fff] rotate-45"></div>
@@ -108,6 +134,7 @@ export default function SidebarComponent() {
           </a>
         </div>
       </div>
+      {showToolTip && <ToolTip />}
     </>
   );
 }
