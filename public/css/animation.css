@@ -1,0 +1,18 @@
+.easyToStartRocket_animation{
+    animation: easyToStartRocket_keyFrame 3s ease-out infinite alternate;
+}
+@keyframes easyToStartRocket_keyFrame {
+    
+    0%{transform: translateY(5%);}
+    100%{transform: translateY(-10%);}
+}
+
+.easyToStartRocket_animation_fire{
+    /* animation: easyToStartRocket_keyFrame 4s ease-out infinite alternate; */
+    animation: easyToStartRocket_keyFrame_fire 1s ease-in forwards;
+}
+@keyframes easyToStartRocket_keyFrame_fire {
+    from {transform: translateY(-10%);}
+    0%{transform: translateY(10%);}
+    100%{transform: translateY(-100%)}
+}

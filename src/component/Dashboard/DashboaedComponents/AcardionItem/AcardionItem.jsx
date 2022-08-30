@@ -59,57 +59,57 @@ export default function AcardionItem() {
         },
       ],
     },
-    {
-      title: "سئو تکنیکال",
-      titleIcon: "/img/dashboard/nav_right/teknikal.svg",
-      acardionItems: [
-        {
-          itemTitle: " مانیتورینگ سرعت ",
-          itemIcon: "/img/dashboard/nav_right/speedMonitoring.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "ابزار لایت هاوس  ",
-          itemIcon: "/img/dashboard/nav_right/liteHouse.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "ابزار لایت فلو ",
-          itemIcon: "/img/dashboard/nav_right/lightFlow.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "صفحات یتیم ",
-          itemIcon: "/img/dashboard/nav_right/yatimPage.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: " خودخواری Cannibalization   ",
-          itemIcon: "/img/dashboard/nav_right/cannibalization.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "  ابزار فایل ربات robots.txt   ",
-          itemIcon: "/img/dashboard/nav_right/robots.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "  ابزار انکار لینک Disavow   ",
-          itemIcon: "/img/dashboard/nav_right/Disavow.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "سازنده اسکیما  ",
-          itemIcon: "/img/dashboard/nav_right/skymacreator.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "شبیه ساز نتایج  ",
-          itemIcon: "/img/dashboard/nav_right/result.svg",
-          itemLink: "",
-        },
-      ],
-    },
+    // {
+    //   title: "سئو تکنیکال",
+    //   titleIcon: "/img/dashboard/nav_right/teknikal.svg",
+    //   acardionItems: [
+    //     {
+    //       itemTitle: " مانیتورینگ سرعت ",
+    //       itemIcon: "/img/dashboard/nav_right/speedMonitoring.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "ابزار لایت هاوس  ",
+    //       itemIcon: "/img/dashboard/nav_right/liteHouse.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "ابزار لایت فلو ",
+    //       itemIcon: "/img/dashboard/nav_right/lightFlow.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "صفحات یتیم ",
+    //       itemIcon: "/img/dashboard/nav_right/yatimPage.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: " خودخواری Cannibalization   ",
+    //       itemIcon: "/img/dashboard/nav_right/cannibalization.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "  ابزار فایل ربات robots.txt   ",
+    //       itemIcon: "/img/dashboard/nav_right/robots.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "  ابزار انکار لینک Disavow   ",
+    //       itemIcon: "/img/dashboard/nav_right/Disavow.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "سازنده اسکیما  ",
+    //       itemIcon: "/img/dashboard/nav_right/skymacreator.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "شبیه ساز نتایج  ",
+    //       itemIcon: "/img/dashboard/nav_right/result.svg",
+    //       itemLink: "",
+    //     },
+    //   ],
+    // },
     {
       title: "تولید محتوا",
       titleIcon: "/img/dashboard/nav_right/tolidMohtava.svg",
@@ -200,7 +200,7 @@ export default function AcardionItem() {
                 {item.acardionItems.map((acardionItem, index) => {
                   return (
 
-                    acardionItem.itemLink != "" ? (
+                    acardionItem.itemLink != "" && (
                       <Link to={acardionItem.itemLink} className={"w-auto"}>
                         <div
                           key={index}
@@ -210,14 +210,6 @@ export default function AcardionItem() {
                           <span className={"w-auto"}>{acardionItem.itemTitle}</span>
                         </div>
                       </Link>
-                    ) : (
-                      <div
-                        key={index}
-                        className="flex  items-center gap-3 text-[#002145] mb-3 mr-5 text-sm cursor-default "
-                      >
-                        <img src={acardionItem.itemIcon} alt="icon" className={` ${item.title != "ورک‌اسپیس‌ها"&&"grayscale opacity-10"}`} />
-                        <span className={`w-auto ${item.title != "ورک‌اسپیس‌ها"&&"text-sectionDisable"}`}>{acardionItem.itemTitle}</span>
-                      </div>
                     )
 
 
