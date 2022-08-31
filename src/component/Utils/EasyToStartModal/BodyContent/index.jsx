@@ -4,6 +4,7 @@ import BuyPlnaModal from './BuyPlnaModal'
 import { InputEasyToStartModal } from './HandleInputBody'
 import { Paragraph } from './HandleParagraphBody'
 import ReportInfoPlan from './ReportInfoPlan'
+import { setImages } from './setImages'
 import ShowFinalReportModal from './ShowFinalReportModal'
 import TryFreePlan from './TryFreePlan'
 
@@ -17,7 +18,8 @@ export default function BodyContent({ stepModal, setStepModal, free, lockNextSte
                 </p>
                 {stepModal > 2 & stepModal < 6 ? (
                     <div className='main_contnt_modal text-center w-full'>
-                        <img src="/img/modal/body/siteDesignMan.svg" alt="" className=' m-auto' />
+                        {/* <img src="/img/modal/body/siteDesignMan.svg" alt="" className=' m-auto' /> */}
+                        {setImages(stepModal)}
                     </div>
                 ) : ""}
 

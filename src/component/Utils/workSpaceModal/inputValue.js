@@ -335,11 +335,11 @@ export default function InputGetWorkSpaceInfo({
       {step == 1 ? (
         <div>
           <div className="w-full  flex justify-center relative mb-4">
-            <img
+            {/* <img
               src="/img/dashboard/EasyStartPage/webAdress.svg"
               alt="EasyStartPage"
               className=" w-[328px]"
-            />
+            /> */}
             
           </div>
           <StaticInputText
@@ -355,11 +355,11 @@ export default function InputGetWorkSpaceInfo({
       ) : step == 2 ? (
         <div id="workSpaceModalStep2">
              <div className="w-full  flex justify-center relative mb-4">
-            <img
+            {/* <img
               src="/img/dashboard/EasyStartPage/keywords.svg"
               alt="EasyStartPage"
               className=" w-[228px]"
-            />
+            /> */}
             
           </div>
           <div className=" max-h-[380px] overflow-y-scroll">
@@ -403,11 +403,11 @@ export default function InputGetWorkSpaceInfo({
         <Fragment>
           <div className=" max-h-[380px] overflow-y-scroll">
           <div className="w-full  flex justify-center relative mb-4">
-            <img
+            {/* <img
               src="/img/dashboard/EasyStartPage/Group 2.svg"
               alt="EasyStartPage"
               className=" w-[228px]"
-            />
+            /> */}
             
           </div>
             {addCommercialPageMap.map((item, index) => (

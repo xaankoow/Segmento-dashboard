@@ -10,6 +10,7 @@ import { filterFinancialData } from "../../../Utils/FilterData/filter";
 import { getAllFinancialReportsData } from "../../../service/financialReportsService";
 import { FilterData, filterData } from "./changeDataSearch";
 import { DateObject } from "react-multi-date-picker";
+import ComboBox from "../../../shared/comboBox/ComboBox";
 export default function TableFinancialReports({ title }) {
   const dispatch = useDispatch();
 
@@ -19,7 +20,7 @@ export default function TableFinancialReports({ title }) {
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
   const [numFilter, setNumFilter] = useState(1);
   const [handleClickCopy, setHandleClickCopy] = useState(false);
-
+  const filterBoxDatas=[ "شماره فاکتور","نوع اشتراک","تاریخ خرید","تاریخ انقضا","مبلغ", "وضعیت پرداخت","عملیات"];
   const [financialDataTableOrg, setFinancialDataTableOrg] = useState([]);
   const [financialDataTableFiltered, setFinancialDataTableFiltered] = useState(
     []
@@ -140,14 +141,8 @@ export default function TableFinancialReports({ title }) {
       <div className=" w-full px-10 m-auto">
         <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
           <div className="w-[410px]">
-            <KeyWordsSearch
-              usedBySection={"financialReports/search"}
-              secoundSearch={(e) => setSearchFilterText(e.target.value)}
-              inputPlaceHolder={"فیلد جستجو"}
-              getRadioValue={setSearchFilterOption}
-              value={searchFilterOption}
-              radioValue={searchFilterOption}
-            />
+         
+            <ComboBox placeholder={"فیلد جستجو"}  radioTextItems={filterBoxDatas}  radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}/>
           </div>
           <div className="flex items-center ">
             <span className=" ml-2">مرتب سازی بر اساس</span>
@@ -199,23 +194,7 @@ export default function TableFinancialReports({ title }) {
                 <p className=" w-36 text-center">نوع اشتراک</p>
                 <p className=" w-20 text-center">شماره فاکتور</p>
                 <p className=" w-8 text-center">ردیف</p>
-                <span className="relative ">
-                  <span
-                    className={
-                      handleClickButton
-                        ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-14 -right-2 z-50"
-                        : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute z-50  rounded bg-[#ffffff]"
-                    }
-                  >
-                    کپی شد!
-                  </span>
-                  <p
-                    className=" w-11 text-center cursor-pointer"
-                    onClick={() => copyButton()}
-                  >
-                    {copyItem.length > 0 ? "کپی" : "انتخاب"}
-                  </p>
-                </span>
+                
               </div>
               <div className="overflow-scroll h-[94%] text-xs font-normal">
                 {filterFinancialReportData.length > 0 &&
@@ -283,29 +262,7 @@ export default function TableFinancialReports({ title }) {
                       <p className=" w-20 text-center">{item.order_code}</p>
                       {/* ردیف */}
                       <p className=" w-8 text-center">{index + 1}</p>
-                      {/* انتخاب */}
-                      <p className=" w-11 text-center">
-                        <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
-                          <input
-                            type={"checkbox"}
-                            className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
-                            // className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
-                            onClick={(e) => {
-                              if (e.target.checked) {
-                                setCopyItem([...copyItem, item.order_code]);
-                              } else {
-                                setCopyItem(
-                                  copyItem.filter(
-                                    (copyItems) => copyItems != item.order_code
-                                  )
-                                );
-                              }
-
-                              // handleCheckingInput(e.target.checked, item);
-                            }}
-                          />
-                        </div>
-                      </p>
+                    
                     </div>
                   ))}
               </div>

@@ -20,7 +20,7 @@ export default function AcardionItem() {
       acardionItems: allWorkSpace.map((item, index) => ({
         itemTitle: item.website,
         itemIcon: "/img/dashboard/nav_right/storefront.svg",
-        itemLink: "",
+        itemLink: " ",
       })),
     },
     {

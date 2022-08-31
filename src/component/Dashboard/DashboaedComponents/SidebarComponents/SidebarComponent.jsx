@@ -30,6 +30,8 @@ export default function SidebarComponent() {
     // setCloseNav(true);
   };
 
+
+
   const itemsHoverMenu = [
     { title: "گزارش های منتخب", link: "" },
     { title: "خرید اشتراک", link: "buyPlan" },
@@ -108,8 +110,8 @@ export default function SidebarComponent() {
             </div> */}
           </div>
 
-          <div className="dropDownBox mb-5">
-            <div className="call-nav-right w-6 h-6 text-[20px]"
+          <div className="dropDownBox mb-5  " >
+            <div className="call-nav-right w-6 h-6 text-[20px] support"
               data-tip=' tel:051-38331497 '
               data-type="light"
               data-place="left"
