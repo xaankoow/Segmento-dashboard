@@ -158,7 +158,7 @@ export default function AcardionItem() {
       {data.map((item, index) => {
         return (
           <div className="" key={index}>
-            <div className="flex items-center justify-between m-0 p-0">
+            <div className="flex items-center justify-between m-0 p-0 SidebarHoverBox">
               <div
                 key={index}
                 className="flex items-center gap-3 text-[#002145] mt-4 mb-3  mr-5 text-sm  w-full"

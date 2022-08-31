@@ -30,7 +30,7 @@ export default function ShowFinalReportModal() {
             <div className='support_container '>
                 <p className=''>اگر سوالی دارید، با همکاران ما در واحد پشتیبانی تماس بگیرید.</p>
                 <AuthButton textButton={"برقراری تماس"} />
-                <img src="/img/modal/body/report.svg" alt="" />
+                <img src="/img/dashboard/EasyStartPage/success.svg" alt="" />
             </div>
         </body>
     )
