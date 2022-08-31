@@ -82,7 +82,7 @@ export const FilterData = ({
           calendarPosition="bottom-right"
           onChange={setDatePickerValues}
           format="DD MMMM YYYY - "
-          maxDate={new DateObject()}
+          // maxDate={new DateObject()}
           render={(value, openCalendar) => (
             <div
               className="flex justify-start items-center px-3 h-10 border-[1.5px] border-[#D9D9D9] rounded-sm text-center border-b-[#7D7D7D] hover:border-[#7D7D7D] active:border-b-[#0A65CD]"

@@ -115,13 +115,12 @@ export default function SidebarComponent() {
               data-tip=' tel:051-38331497 '
               data-type="light"
               data-place="left"
-              data-event='hover'
               data-class='sizeClass'
               onMouseEnter={() => setShowToolTip(true)}
-              // onMouseLeave={() => {
-              //   setShowToolTip(false);
-              //   setTimeout(() => setShowToolTip(true), 0);
-              // }}
+              onMouseLeave={() => {
+                setShowToolTip(false);
+                setTimeout(() => setShowToolTip(true), 0);
+              }}
             ></div>
             {/* <div className="support_dropDown dropDownBox2 text-center">
               <span>منابع و راهنمایی ها</span>
