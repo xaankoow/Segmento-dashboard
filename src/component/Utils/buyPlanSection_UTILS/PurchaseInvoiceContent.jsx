@@ -25,6 +25,13 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
     }
   });
 
+  // box-sizing: border-box;
+  // width: 340px;
+  // border-radius: 9px;
+  // border: 1px solid rgba(211, 213, 226, 1);
+  // margin: auto;
+  // padding: 20px 5px 5px 5px;
+
   return (
     <div className='report'>
       <div className='title'><span className='text-shortText'>اشتراک:</span><span className={`${packageSelected.type_text == "برنزی" ? " text-[#BF8970]" : packageSelected.type_text == "نقره ای" ? "text-[#7D7D7D]" : packageSelected.type_text == "طلایی" ? "text-[#FFCE47]" : "text-[#0A65CD]"}`}>{packageSelected.type_text}</span></div>

@@ -75,7 +75,7 @@ export default function SidebarComponent() {
                 alt="icon"
               />
               <Link to={"/dashboard/PageCounter"} className={`text-[${"#0A65CD"}]`}>
-                {closeNav && "پیش خوان"}
+                {closeNav && "پیشخان"}
               </Link>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />

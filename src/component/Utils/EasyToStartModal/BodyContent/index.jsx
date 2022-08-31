@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CardPlans from '../../buyPlanSection_UTILS/CardPlans'
+import PurchaseInvoiceContent from '../../buyPlanSection_UTILS/PurchaseInvoiceContent'
 import BuyPlnaModal from './BuyPlnaModal'
 import { InputEasyToStartModal } from './HandleInputBody'
 import { Paragraph } from './HandleParagraphBody'
@@ -9,6 +10,9 @@ import ShowFinalReportModal from './ShowFinalReportModal'
 import TryFreePlan from './TryFreePlan'
 
 export default function BodyContent({ stepModal, setStepModal, free, lockNextStep, setLockNextStep, setApplyWebAdress }) {
+
+  const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
+
 
     return (
         <div>
@@ -23,10 +27,10 @@ export default function BodyContent({ stepModal, setStepModal, free, lockNextSte
                     </div>
                 ) : ""}
 
-                {stepModal == 2 & free == false ? <ReportInfoPlan /> : ""}
+                {stepModal == 2 & free == false ? <PurchaseInvoiceContent packageUuid={plan.uuid}/> : ""}
                 {stepModal == 2 & free == true ? <TryFreePlan setLockNextStep={setLockNextStep} lockNextStep={lockNextStep} setStepModal={setStepModal} /> : ""}
                 {stepModal > 2 & stepModal < 6 ? InputEasyToStartModal(stepModal, setApplyWebAdress) : ""}
-                {stepModal == 1 ? <BuyPlnaModal /> : ""}
+                {stepModal == 1 ? <BuyPlnaModal plan={plan} setPlan={setPlan}/> : ""}
                 {/* {stepModal == 1 ? <CardPlans /> : ""} */}
                 {stepModal == 6 ? <ShowFinalReportModal/> : ""}
             </body>
