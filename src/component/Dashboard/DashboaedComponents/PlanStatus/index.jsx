@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import { Link } from "react-router-dom";
 import { getPackageInfO } from "../../../service/packages";
+import { setFormatPrice } from "../../../Utils/FORMAT/price";
+import { setFormatNumber } from "../../../Utils/FORMAT/number";
 // import './'
 // import "./output.css"
 // import './script'
@@ -385,15 +387,15 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords.length != 0 && allWords[4].count}
+                      {allWords.length != 0 &&setFormatNumber(allWords[4].count)}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 && (allWords.length != 0 && allWords[4].count) - datas[4].count}
+                      {datas.length > 0 && (allWords.length != 0 && setFormatNumber(allWords[4].count - datas[4].count))}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? datas[4].count : ""}
+                      {datas.length > 0 ? setFormatNumber(datas[4].count) : ""}
                     </span>
                   </div>
                 </div>
@@ -401,7 +403,7 @@ export default function PlanStatus() {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuetwo"></span>{" "}
-                    {datas.length > 0 ? datas[4].count : ""} <br />
+                    {datas.length > 0 ? setFormatNumber(datas[4].count) : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -427,15 +429,15 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords.length != 0 && allWords[20].count}
+                      {allWords.length != 0 && setFormatNumber(allWords[20].count)}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? allWords.length != 0 && allWords[20].count - datas[20].count : ""}
+                      {datas.length > 0 ? allWords.length != 0 && setFormatNumber(allWords[20].count - datas[20].count) : ""}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? datas[20].count : ""}
+                      {datas.length > 0 ? setFormatNumber(datas[20].count) : ""}
                     </span>
                   </div>
                 </div>
@@ -443,7 +445,7 @@ export default function PlanStatus() {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuethree"></span>{" "}
-                    {datas.length > 0 ? datas[20].count : ""} <br />
+                    {datas.length > 0 ? setFormatNumber(datas[20].count) : ""} <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">

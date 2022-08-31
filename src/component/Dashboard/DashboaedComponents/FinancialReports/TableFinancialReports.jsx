@@ -337,7 +337,7 @@ export default function TableFinancialReports({ title }) {
                     />
                   }
                 >
-                  <ExcelSheet data={copyItem} name="Employees">
+                  <ExcelSheet data={financialDataTableOrg} name="Employees">
                     <ExcelColumn label="شماره فاکتور" value={"order_code"} />
                     <ExcelColumn label="نوع اشتراک" value={"description"} />
                     <ExcelColumn label="تاریخ خرید" value={"created_at"} />

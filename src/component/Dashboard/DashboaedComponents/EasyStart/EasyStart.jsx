@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ReplaceClass } from "../../../shared/replaceClass";
+import { ReplaceClass } from "../../../Utils/replaceClass";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 
 const EasyStart = ({ startButtonClick }) => {
@@ -15,7 +15,7 @@ const EasyStart = ({ startButtonClick }) => {
         <button className="btn-style"> برقراری تماس</button>
       </div>
       <div className="flex flex-col relative mt-9 mx-7 mb-7 ">
-        <div className="flex items-center justify-center text-title bg-gold text-base py-5 absolute w-full -top-5  rounded-t-lg z-[2] ">
+        <div className="flex items-center justify-center text-title bg-gold text-base py-5 absolute w-full -top-5  rounded-t-lg z-10 ">
           شروع آسان
         </div>
         <div className="rounded-lg border border-lightGray EasyStartBoxContent flex flex-col  px-7">
