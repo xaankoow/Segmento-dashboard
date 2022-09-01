@@ -141,16 +141,15 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         }
       }, 1000);
     }
-    if (operationType != "") {
-      if (userData.user != undefined) {
-        if (userData.user.mobile == null) {
-          setOperationType("verify")
-        } else {
-          setOperationType("change")
-        }
+    if (userData.user != undefined && operationType != "") {
+      if (userData.user.mobile == null) {
+        setOperationType("verify")
+      } else {
+        setOperationType("change")
       }
     }
   });
+ 
 
   // reset redux state
   useEffect(() => {
@@ -158,6 +157,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       // clear redux state after the close this section
     };
   }, []);
+
 
   // clear timer
   const clearTimerValue = () => {
@@ -176,7 +176,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
           type={"sucsess"}
           title={"موفقیت آمیز"}
           text={
-            operationType=="verify"
+            operationType == "verify"
               ? "شماره همراه شما با موفقیت در سگمنتو تایید شد !"
               : "شماره همراه شما با موفقیت در سگمنتو تغییر داده شد !"
           }

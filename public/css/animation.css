@@ -3,9 +3,9 @@
     opacity: 1;
 }
 @keyframes easyToStartRocket_keyFrame {
-    
     0%{transform: translateY(5%);}
-    100%{transform: translateY(-10%);}
+    70%{opacity: .9;}
+    100%{transform: translateY(-10%);opacity: .7;}
 }
 
 .easyToStartRocket_animation_fire{
