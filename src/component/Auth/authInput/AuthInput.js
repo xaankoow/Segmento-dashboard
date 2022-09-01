@@ -51,7 +51,6 @@ export default function AuthInput({
   return (
     <>
       <div className={`input-wrapper ${wrapperClass}`}>
-
         <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
         <input
           type={isSeePssword}

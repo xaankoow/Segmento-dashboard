@@ -21,9 +21,8 @@ export default function CardPlans({ plan, setPlan }) {
   const [discountInputSilver, setDiscountInputSilver] = useState("");
   const [discountInputDiamond, setDiscountInputDiamond] = useState("");
 
-
-
   const [lastSelectedDiscountInput, setLastSelectedDiscountInput] = useState("");
+
   const handleShowArrowDiscount = (text, arrowTarget) => {
     // 
     if (discountInputGold != "" && arrowTarget != "gold") { setDiscountInputGold(""); }
@@ -103,7 +102,7 @@ export default function CardPlans({ plan, setPlan }) {
           <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}></button>
         </div>
       </div>
-      <div className='silver plan_card'>
+      <div className='silver plan_card mx-1'>
         <span className='title'>نقره ای</span>
         <hr />
         <div className='plan'>
@@ -144,7 +143,7 @@ export default function CardPlans({ plan, setPlan }) {
           <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}></button>
         </div>
       </div>
-      <div className='gold plan_card'>
+      <div className='gold plan_card ml-1'>
         <span className='title'>طلایی</span>
         <hr />
         <div className='plan'>

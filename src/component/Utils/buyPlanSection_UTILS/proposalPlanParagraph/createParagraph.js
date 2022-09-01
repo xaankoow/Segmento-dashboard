@@ -15,7 +15,7 @@ export const Paragraph = (typePlan, indexPlan) => {
             if (indexPlan==4|indexPlan==8|indexPlan==12) {
                  packPrice = allPackageData[indexPlan+4].default_discount
             }else{
-                 packPrice = allPackageData[indexPlan != 13 ? indexPlan : 14].default_discount
+                 packPrice = allPackageData[indexPlan != 16 ? indexPlan+1 : indexPlan].default_discount
             }
             
             setPrice(setFormatPrice(packPrice))
@@ -56,7 +56,7 @@ export const Paragraph = (typePlan, indexPlan) => {
             return `اگر اشتراک 12 ماهه الماسی خریداری کنید روی قیمت نهایی محصول	2 ماه تخفیف معادل ${price} هزارتومان دریافت می‌کنید.`
             // TODO: این متن بصورت ازمایشی قرار داده شده است و همین طور متن هایه پلن 12 ماهه
         case 16:
-            return `قطعا از این بهتر نمیشه، معلومه دنبال بهترین ها هستین`
+            return `قطعا از این بهتر نمیشه، معلومه دنبال بهترین ها هستین.`
         default:
             break;
     }

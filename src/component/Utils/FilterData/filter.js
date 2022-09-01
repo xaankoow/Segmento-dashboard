@@ -11,11 +11,10 @@ import persian_en from "react-date-object/locales/persian_en";
 // filtred data table in the financial section 
 export const filterFinancialData = (allData, filterType, filterValue) => {
 
-    debugger
+    // debugger
     var filteredData = [];
 
-    // filter target search box
-    // if (filterValue!="") {       
+    // filter target search box  
         if (filterValue != "") {
             allData.forEach(element => {
                 switch (filterType) {
@@ -68,10 +67,8 @@ export const filterFinancialData = (allData, filterType, filterValue) => {
                 }
             });
     
-            return filteredData;
         }
-    // }
-
+        return filteredData;
 }
 
 

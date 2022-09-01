@@ -16,10 +16,10 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
       }
       // default_discount_percent
       if (discountStatus.value != 0) {
-        debugger
         let funDisValue = setDiscountPrice(packageSelected.price, discountStatus.value, discountStatus.discountType == "cash" ? true : false);
         packageSelected.default_discount_percent = funDisValue.type == "cash" ? setFormatPrice(packageSelected.price - funDisValue.value) + funDisValue.type : discountStatus.value + funDisValue.type;
         packageSelected.default_discount = packageSelected.price - funDisValue.value;
+        // debugger
         packageSelected.default_discount_price = packageSelected.price - (packageSelected.price - funDisValue.value);
       }
     }
@@ -31,6 +31,11 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
   // border: 1px solid rgba(211, 213, 226, 1);
   // margin: auto;
   // padding: 20px 5px 5px 5px;
+
+  // console.log(packageSelected.default_discount_price)
+  // console.log(setFormatPrice(packageSelected.default_discount_price))
+  // console.log(Math.floor(parseFloat(1927800)))
+  // console.log(Math.floor(257.90))
 
   return (
     <div className='report'>

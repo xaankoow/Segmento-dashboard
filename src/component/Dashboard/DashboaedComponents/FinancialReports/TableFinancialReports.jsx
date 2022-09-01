@@ -25,10 +25,10 @@ export default function TableFinancialReports({ title }) {
   const [financialDataTableFiltered, setFinancialDataTableFiltered] = useState([]);
   console.log(financialDataTableFiltered)
 
-  var filterFinancialReportData =
-    financialDataTableFiltered.length > 0
-      ? financialDataTableFiltered
-      : financialDataTableOrg.length > 0 && financialDataTableOrg;
+  // var filterFinancialReportData =
+  //   financialDataTableFiltered.length > 0
+  //     ? financialDataTableFiltered
+  //     : financialDataTableOrg.length > 0 && financialDataTableOrg;
 
   // data of filtering
   const [userType, setUserType] = useState("");
@@ -43,14 +43,11 @@ export default function TableFinancialReports({ title }) {
   const filterItems = {
     "شماره فاکتور": FactorHandler,
     "نوع اشتراک": userType,
-    //psm: not working
     "تاریخ خرید": datePickerValues,
     "تاریخ انقضا": datePickerValues,
-    مبلغ: [Number(price), Number(price2)],
-      //psm: not working
+    "مبلغ": [Number(price), Number(price2)],
     "وضعیت پرداخت": userType,
-      //psm: not working
-    عملیات: userType,
+    "عملیات": userType,
   };
 
   const [searchFilterText, setSearchFilterText] = useState("");
@@ -200,6 +197,7 @@ export default function TableFinancialReports({ title }) {
               </div>
               <div className="overflow-scroll h-[94%] text-xs font-normal">
                 {/* {financialDataTableFiltered.length > 0 && */}
+                {console.log(financialDataTableFiltered.length)}
                 {financialDataTableFiltered.length!=0&& financialDataTableFiltered.map((item, index) => (
                     <div
                       className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
@@ -273,7 +271,6 @@ export default function TableFinancialReports({ title }) {
         </div>
         <div className="w-full text-left mt-7 pb-5">
           <div className=" inline-block">
-            {/* TODO: HI ALI */}
             {financialDataTableFiltered.length!=0 ? (
               <Fragment>
                 <ExcelFile

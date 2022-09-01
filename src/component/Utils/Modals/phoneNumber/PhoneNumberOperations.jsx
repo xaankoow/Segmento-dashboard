@@ -66,12 +66,16 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
     try {
       let formdata = new FormData();
       formdata.append("mobile", "09" + phoneNumberValue);
-
+      // debugger
       if (checkResendCode) {
         // set timer
-        const { data, status } = await changePhoneNumber(formdata);
-        if (data.status) setModalStep(2);
-        setCheckResendCode(false)
+        const { data } = await changePhoneNumber(formdata);
+        if (data.status) {
+          setCheckResendCode(false)
+          setModalStep(2)
+        } else {
+          InputError("phoneNumberOperationsErrText", data.errors[0])
+        }
       }
 
     } catch (error) {
@@ -86,6 +90,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
   };
+
   const verifyPhoneUserNumber = async () => {
 
     // handle show loadin
@@ -208,6 +213,8 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                     placeholder="شماره همراه"
                     handleChange={(e) => handlePhoneNumberValue(e.target.value)}
                     maxlength={11}
+                    errorTextId="phoneNumberOperationsErrText"
+
                   />
                 ) : (
                   <AuthVerifyCode />
@@ -224,6 +231,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                     <AuthButton
                       textButton={"تایید شماره همراه"}
                       handlerClick={verifyPhoneUserNumber}
+
                     />
                     <div className=" w-1/3">
                       <Timer minutes={minutes} seconds={seconds} />

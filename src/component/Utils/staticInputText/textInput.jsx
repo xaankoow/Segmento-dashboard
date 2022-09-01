@@ -20,7 +20,8 @@ export default function StaticInputText({
   staticText,
   workSpaceTypeState,
   parentClass,
-  handleChange
+  handleChange,
+  errorTextId
 
 }) {
   // check email to be correct
@@ -44,6 +45,8 @@ export default function StaticInputText({
   return (
     <div className={`flex static_text_input w-full ${parentClass}`}>
       <div className={`input-wrapper input-static ${wrapperClass}`}>
+      <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
+
         <input
           type={isSeePssword}
           required

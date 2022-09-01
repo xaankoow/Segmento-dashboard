@@ -1,7 +1,7 @@
 import AuthInput from "../../Auth/authInput/AuthInput"
 import { setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux } from "../../Redux/Action"
 
-export const AuthVerifyCode = () => {
+export const AuthVerifyCode = ({errorTextId}) => {
 
         // <div className="flex flex-col justify-cneter items-center gap-3 mt-20 mb-7">
         //     <span>کد فعال سازی</span>
@@ -72,9 +72,6 @@ export const AuthVerifyCode = () => {
 
           </div>
           <span className={"authVerifyCodeList hidden absolute right-1 bottom-[-20px] text-[10px] text-[#c42b1c] "}>اطلاعات نامعتبر</span>
-
-
-
         </div>
     )
 }

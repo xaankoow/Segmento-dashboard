@@ -7,3 +7,10 @@ export const setFormatNumber=(subNumber)=>{
     return subNumber
 
 }
+
+export const setFloorNumber=(floorNumber)=>{
+
+    const num =Math.floor(parseFloat(floorNumber));
+
+    return num
+}
