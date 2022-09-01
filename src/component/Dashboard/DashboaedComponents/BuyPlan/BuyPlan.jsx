@@ -47,13 +47,13 @@ export default function BuyPlan({ title }) {
   }
 
   return (
-    <div className='plans_body_container buy_plan_section'>
+    <div className='plans_body_container buy_plan_section '>
       <PageTitle title={title} />
       {/* <div className='badge_title'> */}
       {/* <div></div> */}
       {/* <p>خرید اشتراک سگمنتو</p> */}
       {/* </div> */}
-      <div className='main_buy_plan_section overflow-visible max-w-7xl w-full'>
+      <div className='main_buy_plan_section overflow-visible max-w-7xl w-11/12 '>
 
 
         <div className='section_title'>
