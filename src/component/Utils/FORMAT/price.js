@@ -11,18 +11,21 @@ export const setFormatPrice = (price) => {
 
 export const setDiscountPrice = (price, discountValue, isCash) => {
 
-    var computingDiscountPrice ={
-        value:0,
-        type:""
+    var computingDiscountPrice = {
+        value: 0,
+        type: ""
     }
 
     if (isCash == true) {
-        computingDiscountPrice.value=price - discountValue;
-        computingDiscountPrice.type=" هزارتومان ";
-        
+        computingDiscountPrice.value = price - discountValue;
+        computingDiscountPrice.type = " هزارتومان ";
+
     } else {
-        computingDiscountPrice.value=price - (price * `.${discountValue}`);
-        computingDiscountPrice.type=" درصد ";
+        // debugger
+
+        let ds=price * `.${discountValue}`
+        computingDiscountPrice.value = price - (price * `.${discountValue}`);
+        computingDiscountPrice.type = " درصد ";
     }
     return computingDiscountPrice;
 }
