@@ -1,5 +1,6 @@
 .easyToStartRocket_animation{
     animation: easyToStartRocket_keyFrame 3s ease-out infinite alternate;
+    opacity: 1;
 }
 @keyframes easyToStartRocket_keyFrame {
     
@@ -13,6 +14,25 @@
 }
 @keyframes easyToStartRocket_keyFrame_fire {
     from {transform: translateY(-10%);}
-    0%{transform: translateY(10%);}
-    100%{transform: translateY(-100%)}
+    0%{transform: translateY(10%); }
+    50%{opacity: 1;}
+    100%{transform: translateY(-80%); opacity: 0;}
+}
+
+
+.acardionArrow_animation_rotate90{
+    animation: acardionArrow_animation_rotate90_keyFrame 500ms linear infinite alternate;
+    opacity: 1;
+}
+@keyframes acardionArrow_animation_rotate90_keyFrame {
+    
+    to{transform: rotate(-90deg);}
+    /* 100%{transform: translateY(-10%);} */
+}
+
+.acardionArrow_animation_rotate0{
+    animation: acardionArrow_animation_rotate0 1s ease-in forwards;
+}
+@keyframes acardionArrow_animation_rotate0_keyFrame {
+    to{transform: rotate(0deg);}
 }

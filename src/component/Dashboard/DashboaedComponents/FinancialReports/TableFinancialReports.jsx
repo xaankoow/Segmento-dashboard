@@ -22,13 +22,14 @@ export default function TableFinancialReports({ title }) {
   const [handleClickCopy, setHandleClickCopy] = useState(false);
   const filterBoxDatas=[ "شماره فاکتور","نوع اشتراک","تاریخ خرید","تاریخ انقضا","مبلغ", "وضعیت پرداخت","عملیات"];
   const [financialDataTableOrg, setFinancialDataTableOrg] = useState([]);
-  const [financialDataTableFiltered, setFinancialDataTableFiltered] = useState(
-    []
-  );
+  const [financialDataTableFiltered, setFinancialDataTableFiltered] = useState([]);
+  console.log(financialDataTableFiltered)
+
   var filterFinancialReportData =
     financialDataTableFiltered.length > 0
       ? financialDataTableFiltered
       : financialDataTableOrg.length > 0 && financialDataTableOrg;
+
   // data of filtering
   const [userType, setUserType] = useState("");
   const [FactorHandler, setFactorHandler] = useState("");
@@ -64,7 +65,7 @@ export default function TableFinancialReports({ title }) {
   }, []);
 
   const GetFinancialReportsData = async () => {
-    debugger;
+    // debugger;
     let toastMessage = "";
     try {
       if (!loadingState.ProcessingDelay.includes("getAllFinancialReports")) {
@@ -73,6 +74,7 @@ export default function TableFinancialReports({ title }) {
         // debugger
         if (data.status == true && data.code == 200) {
           setFinancialDataTableOrg(data.data);
+          setFinancialDataTableFiltered(data.data);
         }
       }
 
@@ -197,8 +199,8 @@ export default function TableFinancialReports({ title }) {
                 
               </div>
               <div className="overflow-scroll h-[94%] text-xs font-normal">
-                {filterFinancialReportData.length > 0 &&
-                  filterFinancialReportData.map((item, index) => (
+                {/* {financialDataTableFiltered.length > 0 && */}
+                {financialDataTableFiltered.length!=0&& financialDataTableFiltered.map((item, index) => (
                     <div
                       className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                     >
@@ -272,7 +274,7 @@ export default function TableFinancialReports({ title }) {
         <div className="w-full text-left mt-7 pb-5">
           <div className=" inline-block">
             {/* TODO: HI ALI */}
-            {true ? (
+            {financialDataTableFiltered.length!=0 ? (
               <Fragment>
                 <ExcelFile
                   element={
@@ -292,7 +294,7 @@ export default function TableFinancialReports({ title }) {
                     />
                   }
                 >
-                  <ExcelSheet data={copyItem} name="Employees">
+                  <ExcelSheet data={financialDataTableOrg} name="Employees">
                     <ExcelColumn label="شماره فاکتور" value={"order_code"} />
                     <ExcelColumn label="نوع اشتراک" value={"description"} />
                     <ExcelColumn label="تاریخ خرید" value={"created_at"} />

@@ -559,52 +559,49 @@ input[type="radio"]:checked::before {
 
 /* modal step 5 price type*/
 
-.report_container .report {
+ .report {
     box-sizing: border-box;
     width: 340px;
-    /* height: 284px; */
     border-radius: 9px;
     border: 1px solid rgba(211, 213, 226, 1);
     margin: auto;
-    /* background-color: #7d7d7d; */
-    /* margin-top: 70px;  change set*/
     padding: 20px 5px 5px 5px;
 }
 
-.report_container .report div {
+ .report div {
     width: 100%;
     text-align: center;
     margin-bottom: 18px;
 }
 
-.report_container .report span {
+ .report span {
     display: inline-block;
     width: 40%;
     font-size: 14px;
     /* color: rgba(8, 60, 120, 1); */
 }
 
-.report_container .report span:first-of-type {
+ .report span:first-of-type {
     margin-left: 24px;
     text-align: left;
 }
 
-.report_container .report span:last-of-type {
+ .report span:last-of-type {
     text-align: right;
 }
 
-.report_container .report .title span:last-of-type {
+ .report .title span:last-of-type {
     /* color: rgba(255, 206, 71, 1); */
     font-size: 20px !important;
     font-weight: 700;
 }
 
-.report_container .report .date span:last-of-type {
+ .report .date span:last-of-type {
     /* font-size: 20px !important; */
     font-weight: 700;
 }
 
-.report_container .report .final_price {
+ .report .final_price {
     width: 100%;
     padding: 10px 0px;
     background-color: #D9D9D9;

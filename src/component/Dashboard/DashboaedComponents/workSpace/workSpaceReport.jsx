@@ -209,7 +209,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
 
 
                     <div>
-                        <Link to={"/dashboard/easyStart"} className="btn-style mt-7 inline-block"><img className=' ml-3 inline-block' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</Link>
+                        <Link to={"/dashboard/PageCounter"} className="btn-style mt-7 inline-block"><img className=' ml-3 inline-block' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</Link>
                     </div>
                 </div>
             </div>

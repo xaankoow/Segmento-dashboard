@@ -37,7 +37,7 @@ export default function AuthButton({
         (e) => {
           handlerClick(setOnclickValue != "" & setOnclickValue != undefined ? setOnclickValue : null)
         }
-      ) : (
+      ) :reduxHandleClick!=undefined&& (
         (e) => {
           dispatch(reduxHandleClick(setOnclickValue != "" & setOnclickValue != undefined ? setOnclickValue : null))
         }

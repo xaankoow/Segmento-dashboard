@@ -6,6 +6,7 @@ import BodyContent from './BodyContent'
 import FooterBtn from './FooterBtn'
 import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan'
 import SetTitleTabBrowser from '../SetTitleTabBrowser'
+import { ReplaceClass } from '../replaceClass'
 
 export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
 
@@ -36,7 +37,12 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   useEffect(() => {
   
     return () => {
-      
+      ReplaceClass({
+        elementClass:"easyToStartRocket",
+        oldClass:"easyToStartRocket_animation_fire",
+        newClass:"easyToStartRocket_animation",
+        replaceClass:true
+      })
     }
   }, [])
   
