@@ -9,7 +9,7 @@ export default function DiscountTagValue({ tagStatusName, price, planSelected })
     if (discountStatus.value != 0) {
         if (discountStatus.planType == tagStatusName) {
             originalPrice = setFormatPrice(price) + " هزار تومان ماهانه"
-            priceAfterTheDiscount = setFormatPrice(setDiscountPrice(price, discountStatus.value, discountStatus.discountType == "cash" ? true : false).value) + " هزار تومان ماهانه";
+            priceAfterTheDiscount = setFormatPrice(price-setDiscountPrice(price, discountStatus.value, discountStatus.discountType == "cash" ? true : false).value) + " هزار تومان ماهانه";
         }
     }
 

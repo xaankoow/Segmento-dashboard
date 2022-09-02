@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import AuthButton from '../../Auth/authButton/AuthButton';
-import { setDiscountPrice, setFormatPrice } from '../FORMAT/price';
+import { roundPriceToUp, setDiscountPrice, setFormatPrice } from '../FORMAT/price';
 
 export default function PurchaseInvoiceContent({ packageUuid }) {
 
@@ -16,11 +16,11 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
       }
       // default_discount_percent
       if (discountStatus.value != 0) {
+        debugger
         let funDisValue = setDiscountPrice(packageSelected.price, discountStatus.value, discountStatus.discountType == "cash" ? true : false);
-        packageSelected.default_discount_percent = funDisValue.type == "cash" ? setFormatPrice(packageSelected.price - funDisValue.value) + funDisValue.type : discountStatus.value + funDisValue.type;
-        packageSelected.default_discount = packageSelected.price - funDisValue.value;
-        // debugger
-        packageSelected.default_discount_price = packageSelected.price - (packageSelected.price - funDisValue.value);
+        packageSelected.default_discount_percent = funDisValue.type == "cash" ? setFormatPrice(funDisValue.value) + funDisValue.type : discountStatus.value + funDisValue.type;
+        packageSelected.default_discount = roundPriceToUp(funDisValue.value) ;
+        packageSelected.default_discount_price = packageSelected.price -  funDisValue.value;
       }
     }
   });
@@ -35,7 +35,7 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
   // console.log(packageSelected.default_discount_price)
   // console.log(setFormatPrice(packageSelected.default_discount_price))
   // console.log(Math.floor(parseFloat(1927800)))
-  // console.log(Math.floor(257.90))
+  console.log(Math.round(257.90))
 
   return (
     <div className='report'>
