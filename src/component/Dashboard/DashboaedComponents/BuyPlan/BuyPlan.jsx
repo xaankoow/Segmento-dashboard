@@ -71,10 +71,10 @@ export default function BuyPlan({ title }) {
         <AuthButton classes={"m-auto mt-4"} handlerClick={setShowReportModal} setOnclickValue={true} disabled={plan.uuid != "" ? false : true} onClick={() => setShowReportModal(true)} textButton={<Fragment>فعالسازی اشتراک<span className='forward-ico'></span></Fragment>}></AuthButton>
         {/* <AuthButton className='btn-style m-auto mt-4' handlerClick={setShowReportModal(true)} onClick={()=>setShowReportModal(true)}>فعالسازی اشتراک<span className='forward-ico'></span></AuthButton> */}
         {/* </body> */}
-        <div className='footer_message'>
+        <div className='footer_message '>
           <p>آیا صاحب کسب‌و‌کار هستید و به امکانات بیشتری نیاز دارید؟</p>
 
-          <AuthButton classes={"btn-secondary"} textButton={"بله هستم"}/>
+          <AuthButton classes={"btn-secondary my-7"} textButton={"بله هستم"}/>
           {/* <button className="btn_more_information_plan">بله هستم</button> */}
         </div>
       </div>

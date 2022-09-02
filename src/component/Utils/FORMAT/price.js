@@ -11,18 +11,29 @@ export const setFormatPrice = (price) => {
 
 export const setDiscountPrice = (price, discountValue, isCash) => {
 
-    var computingDiscountPrice ={
-        value:0,
-        type:""
+    var computingDiscountPrice = {
+        value: 0,
+        type: ""
     }
 
     if (isCash == true) {
-        computingDiscountPrice.value=price - discountValue;
-        computingDiscountPrice.type=" هزارتومان ";
-        
+        computingDiscountPrice.value =roundPriceToUp(price - discountValue);
+        computingDiscountPrice.type = " هزارتومان ";
+
     } else {
-        computingDiscountPrice.value=price - (price * `.${discountValue}`);
-        computingDiscountPrice.type=" درصد ";
+        computingDiscountPrice.value = roundPriceToUp(price - (price - price * `.${discountValue}`));
+        computingDiscountPrice.type = " درصد ";
     }
     return computingDiscountPrice;
+}
+
+
+export const roundPriceToUp = (price) => {
+    var roundPrice = price;
+    debugger
+    var getLatestNumbers = parseInt(price.toString().substring(price.toString().length, price.toString().length - 3));
+    if (getLatestNumbers > 0) {
+        roundPrice = 1 + parseInt(price.toString().substring(0, price.toString().length - 3)) + "000";
+    }
+    return roundPrice;
 }

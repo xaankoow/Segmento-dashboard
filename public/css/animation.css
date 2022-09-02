@@ -3,9 +3,9 @@
     opacity: 1;
 }
 @keyframes easyToStartRocket_keyFrame {
-    
     0%{transform: translateY(5%);}
-    100%{transform: translateY(-10%);}
+    70%{opacity: .9;}
+    100%{transform: translateY(-10%);opacity: .7;}
 }
 
 .easyToStartRocket_animation_fire{
@@ -35,4 +35,18 @@
 }
 @keyframes acardionArrow_animation_rotate0_keyFrame {
     to{transform: rotate(0deg);}
+}
+
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
 }

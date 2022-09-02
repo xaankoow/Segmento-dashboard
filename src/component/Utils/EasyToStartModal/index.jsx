@@ -13,7 +13,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   const [rederingWithDelay, setRederingWithDelay] = useState(false);
 
 
-  const [stepModal, setStepModal] = useState(1);
+  const [stepModal, setStepModal] = useState(3);
   const [plan, setPlan] = useState("");
   const [free, setFree] = useState(false);
   const [packageUuid, setPackageUuid] = useState("")
@@ -49,7 +49,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
 
 
   useEffect(() => {
-    const find_buy_type = localStorage.getItem("buyType")
+    // const find_buy_type = localStorage.getItem("buyType")
     if (checkBuyPlan == true) {
       if (checkErr != "") {
         setCheckErr(true)
@@ -81,6 +81,8 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
         (
           <div className='buy_plan_modal'>
             <Modal
+            // closeTimeoutMS={2000}
+          
               isOpen={true}
               parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
               style={customStyles}
