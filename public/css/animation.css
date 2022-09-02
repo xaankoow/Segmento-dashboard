@@ -36,3 +36,17 @@
 @keyframes acardionArrow_animation_rotate0_keyFrame {
     to{transform: rotate(0deg);}
 }
+
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
