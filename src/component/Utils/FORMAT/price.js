@@ -21,11 +21,19 @@ export const setDiscountPrice = (price, discountValue, isCash) => {
         computingDiscountPrice.type = " هزارتومان ";
 
     } else {
-        // debugger
-
-        let ds=price * `.${discountValue}`
-        computingDiscountPrice.value = price - (price * `.${discountValue}`);
+        computingDiscountPrice.value = price - (price - price * `.${discountValue}`);
         computingDiscountPrice.type = " درصد ";
     }
     return computingDiscountPrice;
+}
+
+
+export const roundPriceToUp = (price) => {
+    var roundPrice = price;
+    debugger
+    var getLatestNumbers = parseInt(price.toString().substring(price.toString().length, price.toString().length - 3));
+    if (getLatestNumbers > 0) {
+        roundPrice = 1 + parseInt(price.toString().substring(0, price.toString().length - 3)) + "000";
+    }
+    return roundPrice;
 }
