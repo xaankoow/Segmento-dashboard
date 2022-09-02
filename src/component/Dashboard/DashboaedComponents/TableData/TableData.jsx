@@ -151,14 +151,10 @@ export default function Table({
     >
       <div className="min-w-full">
         <div className="flex items-center justify-between bg-[#FCFCFB] w-full px-2">
-          <div className="flex gap-5">
+          <div className="flex gap-4 items-center ">
             <div
-              // className={
-              //   copyItem.length > 0
-              //     ? "text-sm font-medium text-gray-900 pr-2  text-right text-[#0A65CD] relative cursor-pointer"
-              //     : "text-sm font-medium text-gray-900 pr-2  text-right text-[#D9D9D9] relative "
-              // }
-              className={`text-sm font-medium text-gray-900 pr-2  text-right ${ copyItem.length > 0?"text-[#0A65CD] cursor-pointer":"text-[#D9D9D9]"}`}
+            
+              className={`text-sm font-medium text-gray-900  relative text-right ${ copyItem.length > 0?"text-[#0A65CD] btn-secondary m-auto cursor-pointer":"text-[#D9D9D9]"}`}
               onClick={() => {
                 navigator.clipboard.writeText(customCopy());
                 setHandleClickCopy(true);
@@ -170,8 +166,8 @@ export default function Table({
               <span
                 className={
                   (copyItem.length > 0) & handleClickCopy
-                    ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#ffffff] -top-11"
-                    : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
+                    ? "flex tooltip tooltipTop absolute -right-[10%] rounded bg-[#ffffff] -top-11"
+                    : "tooltip -right-[10%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
                 }
               >
                 کپی شد!
@@ -317,7 +313,7 @@ export default function Table({
                         }}
                       />
                     </div>
-                    <div className="text-sm text-gray-900 font-light pr-4 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900 font-light pr-[18px] py-4 whitespace-nowrap">
                       {index + 1}
                     </div>
                     <div className="text-sm text-gray-900 font-light px-5 py-4 whitespace-nowrap">

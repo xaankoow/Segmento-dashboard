@@ -244,7 +244,7 @@ export default function KeyWordsSearch({
               onClick={() => {
                 setInputClick(true);
                 setButtonClick(true);
-                !keywords ? setOpen(!open) : setOpen(true);
+                 setOpen(!open) 
               }}
               onBlur={() => setInputClick(!inputClick)}
             />
@@ -265,7 +265,7 @@ export default function KeyWordsSearch({
           <button
             disabled={NothingSearch ? true : false}
             onClick={() => {
-              keywords && setOpen(!open);
+               setOpen(!open);
             }}
             className={
               inputClick

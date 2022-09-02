@@ -207,7 +207,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                     textLabelInput={"صفحه هدف"}
                     placeholder="شماره همراه"
                     handleChange={(e) => handlePhoneNumberValue(e.target.value)}
-                    maxlength={11}
+                    maxlength={9}
                   />
                 ) : (
                   <AuthVerifyCode />

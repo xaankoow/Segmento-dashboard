@@ -123,7 +123,7 @@ export default function EditUserProfile() {
     let family = "";
     try {
       let formdata = new FormData();
-      if (nameInputValue && familyInputValue) {
+      if (nameInputValue || familyInputValue) {
         family = nameInputValue + " " + familyInputValue;
       } else {
         family = user_name;
@@ -233,6 +233,7 @@ export default function EditUserProfile() {
   });
 
   const handleUpdatePassword = async () => {
+    
     if (
       CheckFormat("password", newPass, "errEditUserProfilePassword") &&
       CheckFormat(
@@ -256,12 +257,12 @@ export default function EditUserProfile() {
         // const { data, status } = await keywordService(searchBoxValue);
         const { data, status } = await editPassword(formdata);
         // setcontent(data.data); //5
-
+    
         if (data.errors.length != 0) {
           toast.error(data.errors[0]);
         } else {
           setUpdatePass(true);
-          ClearInputs();
+          ClearInputs("password");
         }
         setForceUpdate(!forceUpdates);
       } catch (error) {
@@ -459,10 +460,10 @@ export default function EditUserProfile() {
                         textButton={"ذخیره تغییرات"}
                       />
                     </div>
-                    <div className="border-b border-lightGray w-full m-auto mt-7" />
+                    {/* <div className="border-b border-lightGray w-full m-auto mt-7" /> */}
                   </div>
                 </div>
-                <div className=" mb-10">
+                {/* <div className=" mb-10">
                   <span className="text-[#002145] mb-7">
                     {" "}
                     پیغام برای تیم سگمنتو{" "}
@@ -475,7 +476,7 @@ export default function EditUserProfile() {
                   <button className="btn-style mb-9 w-[101px]">
                     ارسال پیام
                   </button>
-                </div>
+                </div> */}
               </>
             ) : (
               <div className="w-full flex flex-col mt-14 gap-7">

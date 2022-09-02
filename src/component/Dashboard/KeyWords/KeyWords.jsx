@@ -63,6 +63,12 @@ const KeyWords = ({ onClickHandler }) => {
   };
   // store data in myList
   var handleSetStoreKeyWords = async () => {
+     //handle show loadin
+     {
+      loadingState.ProcessingDelay.push("saveKeyWords");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+    }
     try {
      
 
@@ -72,6 +78,13 @@ const KeyWords = ({ onClickHandler }) => {
   //  console.log(data);
     } catch (error) {
       // console.log(error);
+    }
+    //handle hide loading
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "saveKeyWords");
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
     }
   };
 
@@ -162,6 +175,7 @@ const KeyWords = ({ onClickHandler }) => {
     }
       <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
+        placeholder={"درج کلمه کلیدی"}
           changeHandler={SearchBoxChangeHandler}
           handlClick={() => {
             setSearchBoxHandleClick(true);

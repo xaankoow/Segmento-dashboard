@@ -34,7 +34,6 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
           console.log(error);
         }
       }
-
     };
 
     if (allWords.length == 0) setPackagesInformation();
@@ -56,8 +55,9 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
     }
   };
 
-  const numStyle = `text-[#7D7D7D] text-[${numFont != undefined ? numFont : "14px"
-    }] pt-[5px] pb-[2px]`;
+  const numStyle = `text-[#7D7D7D] text-[${
+    numFont != undefined ? numFont : "14px"
+  }] pt-[5px] pb-[2px]`;
   var a = 0;
 
   switch (api) {
@@ -83,8 +83,8 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
       break;
     case 2:
       a = {
-        allWords: allWords.length != 0 && allWords[4].count,
-        rest: datas.length > 0 ? datas[4].count : "",
+        allWords: allWords.length != 0 && allWords[3].count,
+        rest: datas.length > 0 ? datas[3].count : "",
       };
       break;
     case 3:
@@ -104,7 +104,7 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
         allWords: allWords.length != 0 && allWords[1].count,
         rest: datas.length > 0 ? datas[1].count : "",
       };
-      
+
       break;
     default:
       break;
@@ -117,13 +117,11 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
         className={numStyle}
         style={{
           color:
-            numberOfDays &&
-              numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
+            a.allWords && a.rest >= Math.round((a.allWords * 70) / 100)
               ? "#10CCAE"
-              : numberOfDaysLeft &&
-                numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
-                ? "#F35242"
-                : "#ffffff",
+              : a.rest && a.rest >= Math.round((a.allWords * 1) / 100)
+              ? "#F35242"
+              : "#F35242",
         }}
       >
         {a.rest}
