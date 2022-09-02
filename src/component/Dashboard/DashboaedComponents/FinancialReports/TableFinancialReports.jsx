@@ -8,27 +8,17 @@ import PageTitle from "../pageTitle/pageTitle";
 import { setFormatPrice } from "../../../Utils/FORMAT/price";
 import { filterFinancialData } from "../../../Utils/FilterData/filter";
 import { getAllFinancialReportsData } from "../../../service/financialReportsService";
-import { FilterData, filterData } from "./changeDataSearch";
+import { FilterData } from "./changeDataSearch";
 import { DateObject } from "react-multi-date-picker";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 export default function TableFinancialReports({ title }) {
-  const dispatch = useDispatch();
 
-  const [copyItem, setCopyItem] = useState([]);
-  const [handleClickButton, setHandleClickButton] = useState(false);
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
   const [numFilter, setNumFilter] = useState(1);
-  const [handleClickCopy, setHandleClickCopy] = useState(false);
   const filterBoxDatas=[ "شماره فاکتور","نوع اشتراک","تاریخ خرید","تاریخ انقضا","مبلغ", "وضعیت پرداخت","عملیات"];
   const [financialDataTableOrg, setFinancialDataTableOrg] = useState([]);
   const [financialDataTableFiltered, setFinancialDataTableFiltered] = useState([]);
-  console.log(financialDataTableFiltered)
-
-  // var filterFinancialReportData =
-  //   financialDataTableFiltered.length > 0
-  //     ? financialDataTableFiltered
-  //     : financialDataTableOrg.length > 0 && financialDataTableOrg;
 
   // data of filtering
   const [userType, setUserType] = useState("");
@@ -52,7 +42,6 @@ export default function TableFinancialReports({ title }) {
 
   const [searchFilterText, setSearchFilterText] = useState("");
 
-  const datePickerRef = useRef();
   const loadingState = useSelector((state) => state.loadingState);
   useEffect(() => {
     // debugger
@@ -84,55 +73,6 @@ export default function TableFinancialReports({ title }) {
   const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
   const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
-  const dataSet1 = [
-    {
-      name: "Johson",
-      amount: 30000,
-      sex: "M",
-      is_married: true,
-    },
-    {
-      name: "Monika",
-      amount: 355000,
-      sex: "F",
-      is_married: false,
-    },
-    {
-      name: "John",
-      amount: 250000,
-      sex: "M",
-      is_married: false,
-    },
-    {
-      name: "Josef",
-      amount: 450500,
-      sex: "M",
-      is_married: true,
-    },
-  ];
-
-  function customCopy() {
-    var myListOutput = "";
-    for (var i = 0; i < copyItem.length; i++) {
-      //check if list is NOT the last in the array, if last don't output a line break
-      if (i != copyItem.length - 1) {
-        let lineItem = copyItem[i] + "\n";
-        myListOutput = myListOutput + lineItem;
-      } else {
-        let lineItem = copyItem[i];
-        myListOutput = myListOutput + lineItem;
-      }
-    }
-    return myListOutput;
-  }
-
-  const copyButton = () => {
-    navigator.clipboard.writeText(customCopy());
-    setHandleClickButton(true);
-    setTimeout(() => {
-      setHandleClickButton(false);
-    }, 1000);
-  };
 
   return (
     <div>
@@ -276,8 +216,6 @@ export default function TableFinancialReports({ title }) {
                 <ExcelFile
                   element={
                     <AuthButton
-                      handlerClick={""}
-                      setOnclickValue={copyItem}
                       textButton={
                         <Fragment>
                           <img
@@ -291,7 +229,7 @@ export default function TableFinancialReports({ title }) {
                     />
                   }
                 >
-                  <ExcelSheet data={financialDataTableOrg} name="Employees">
+                  <ExcelSheet data={financialDataTableFiltered.length>10?financialDataTableFiltered.slice(0,10):financialDataTableFiltered} name="Employees">
                     <ExcelColumn label="شماره فاکتور" value={"order_code"} />
                     <ExcelColumn label="نوع اشتراک" value={"description"} />
                     <ExcelColumn label="تاریخ خرید" value={"created_at"} />

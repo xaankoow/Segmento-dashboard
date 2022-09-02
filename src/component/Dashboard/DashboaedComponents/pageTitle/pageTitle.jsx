@@ -6,6 +6,7 @@ export default function PageTitle({
   numberLeft,
   title,
   hasNumber,
+  closeIco
 }) {
 
   const navigate = useNavigate();
@@ -26,9 +27,11 @@ export default function PageTitle({
           </span>
         </div>
       )}
+      {closeIco&&(
       <div className='flex justify-center ml-6 items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' >
         <div className='close_modal_ico' onClick={() => navigate(-1)}></div>
       </div>
+      )}
     </div>
   );
 }

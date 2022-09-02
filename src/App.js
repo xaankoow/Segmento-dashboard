@@ -67,7 +67,7 @@ export default function App() {
       <div className="app">
 
         <Routes>
-          <Route path="dashboard/*">
+          <Route path="/dashboard/*">
             <Route path="accountOperations">
               <Route exact path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
@@ -109,7 +109,7 @@ export default function App() {
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
-        {/* <LoadingPage /> */}
+        <LoadingPage />
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>

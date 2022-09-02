@@ -42,7 +42,6 @@ export default function DashboardBody() {
 
   const [showVerifyPhoneNumberModal, setShowVerifyPhoneNumberModal] = useState(false); //handle close buy plan result
 
-
   return (
     <div id="DASHBOARD">
       <div className="w-full h-16 bg-[#ffffff] shadow-3xl">
@@ -56,9 +55,9 @@ export default function DashboardBody() {
         <SidebarComponent  />
         
       </div>
-      {showVerifyPhoneNumberModal&&setTimeout(() => {
+      {!checkVerifyPhoneNumber&&setTimeout(() => {
         setShowVerifyPhoneNumberModal(true)
-      }, 5000)}
+      }, 7000)}
       {showVerifyPhoneNumberModal&&<PhoneNumberOperations />}
       {showModalBuyPlanResult.type != "" ? (
         <BuyPlanEasyToStartModal checkBuyPlan={showModalBuyPlanResult.result} />
