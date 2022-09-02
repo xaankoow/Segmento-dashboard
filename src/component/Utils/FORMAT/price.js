@@ -17,11 +17,11 @@ export const setDiscountPrice = (price, discountValue, isCash) => {
     }
 
     if (isCash == true) {
-        computingDiscountPrice.value = price - discountValue;
+        computingDiscountPrice.value =roundPriceToUp(price - discountValue);
         computingDiscountPrice.type = " هزارتومان ";
 
     } else {
-        computingDiscountPrice.value = price - (price - price * `.${discountValue}`);
+        computingDiscountPrice.value = roundPriceToUp(price - (price - price * `.${discountValue}`));
         computingDiscountPrice.type = " درصد ";
     }
     return computingDiscountPrice;
