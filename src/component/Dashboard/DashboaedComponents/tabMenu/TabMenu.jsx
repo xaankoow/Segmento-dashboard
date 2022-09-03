@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import BadgeLimitKeyWords from "../../../Utils/BadgeLimitKeyWords";
+import { useSelector } from "react-redux";
 
 export default function TabMenu({
   tabsContent,
@@ -13,13 +14,14 @@ export default function TabMenu({
 }) {
   // to select tab and show underline of that
   const [activeTab, setActiveTab] = useState(0);
+  const userState = useSelector((state) => state.userState);
   return (
     <div className="text-sm font-medium text-center text-gray-500 text-gray-400 border-gray-700 pt-3 bg-[#fff]">
       <div className="flex gap-6 items-center pr-4">
         <div className="w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]" />
         <span className="text-lg">{title}</span>
         <div className="h-6">
-          <BadgeLimitKeyWords api={amountOfData} />
+     { userState.userData.package &&    <BadgeLimitKeyWords api={amountOfData} />}
         </div>
       </div>
       <Tab.Group>

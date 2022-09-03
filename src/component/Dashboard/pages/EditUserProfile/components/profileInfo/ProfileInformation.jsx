@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-export default function ProfileInformation({ userName, userType, email ,changeUserImage}) {
+export default function ProfileInformation({ userName, userType, email ,changeUserImage,type}) {
   const userState = useSelector((state) => state.userState);
   // const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "../img/dashboard/userProfile/profileImage.png"
   const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : userState.userData.user!=undefined?userState.userData.user.img!=""?userState.userData.user.img:"../img/dashboard/userProfile/profileImage.png":"../img/dashboard/userProfile/profileImage.png"
-  
+console.log(userType)
   return (
     <div className="flex gap-3 items-center">
       <div className="relative">
@@ -24,7 +24,7 @@ export default function ProfileInformation({ userName, userType, email ,changeUs
       </div>
       <div className="mr-2">
         <span className="text-[20px] ml-5 ">{userName}</span>
-       {userType!=="بدون پکیج" &&  <span className={userType == "طلایی"? "text-xs bg-yellow rounded-3xl py-1 px-2 text-center " : userType == "نقره ای"? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center " : userType == "برنزی"? "text-xs bg-[#E99991] rounded-3xl py-1 px-2 text-center ": userType == "14 روز رایگان"? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center " :"text-xs bg-yellow rounded-3xl py-1 px-2 text-center "}>
+       {userType!=="بدون پکیج" &&  <span className={type.includes("طلایی")? "text-xs bg-yellow rounded-3xl py-1 px-2 text-center " : type.includes("نقره ای") ? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center " : type.includes("برنزی") ? "text-xs bg-[#E99991] rounded-3xl py-1 px-2 text-center ":type.includes("الماسی")  ? "text-xs bg-diamond rounded-3xl py-1 px-2 text-white text-center ": type.includes("14 روز رایگان")? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center " :"text-xs bg-yellow rounded-3xl py-1 px-2 text-center "}>
           {"  "}
           {userType +" "+ userState.userData.package.type_text}
           {"  "}

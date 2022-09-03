@@ -24,10 +24,8 @@ export default function IconsRight({ setActive }) {
 
         <div
           id={index}
-          className={items.title == "دپارتمان سئو" ?
-            userState.userData.package != undefined ?
-              index === activeIcon ? activeClass : normalClass :
-              "hidden" : index === activeIcon ? activeClass : normalClass
+          className={
+              index === activeIcon ? activeClass : normalClass 
           }
           key={index}
           onClick={(e) => {

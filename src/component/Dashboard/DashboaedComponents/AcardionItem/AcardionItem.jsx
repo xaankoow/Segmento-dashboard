@@ -1,10 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { setShowWorkSpaceModal } from "../../../Redux/Action/workSpace";
 import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
 
-export default function AcardionItem() {
+export default function AcardionItem({clicked,setClicked}) {
   const dispatch = useDispatch();
 
   const location = useLocation();
@@ -143,8 +144,8 @@ export default function AcardionItem() {
       ],
     },
   ];
-  const [clicked, setClicked] = React.useState(false);
-
+  // const [clicked, setClicked] = React.useState(false);
+  const [ItemsClicked, setItemsClicked] = useState(-1);
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -197,14 +198,15 @@ export default function AcardionItem() {
             </div>
             {clicked === index ? (
               <div className="mr-5 mt-0">
-                {item.acardionItems.map((acardionItem, index) => {
+                {item.acardionItems.map((acardionItem, indexx) => {
                   return (
 
                     acardionItem.itemLink != "" && (
                       <Link to={acardionItem.itemLink} className={"w-auto"}>
                         <div
-                          key={index}
-                          className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
+                        onClick={()=>setItemsClicked(acardionItem.itemTitle)}
+                          key={indexx}
+                          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox ${ clicked === index  && ItemsClicked == acardionItem.itemTitle && "active"}`}
                         >
                           <img src={acardionItem.itemIcon} alt="icon" />
                           <span className={"w-auto"}>{acardionItem.itemTitle}</span>

@@ -21,7 +21,9 @@ export default function PlanStatus() {
   var moment = require("jalali-moment");
 
   var nowDate = new Date();
-
+// user type
+const type=userState.userData.package != undefined? userState.userData.package.type_text: "بدون پکیج";
+            console.log(type)      
   var startDate =
     userState.userData.package != undefined &&
     new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
@@ -224,9 +226,9 @@ export default function PlanStatus() {
             >
               <div className="flex flex-row">
                 <span
-                  id="line2"
-                  className="w-1 h-5 mt-5 mr-5 absolute rounded"
-                ></span>
+                 
+                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${ type.includes("طلایی")? " bg-yellow " : type.includes("نقره ای") ? " bg-secondary " : type.includes("برنزی") ? " bg-[#E99991] ":type.includes("الماسی")  ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center ": type.includes("14 روز رایگان")? " bg-secondary " :" bg-yellow "}`}
+                   ></span>
                 <span className="absolute mt-4 mr-10 ">
                   {" "}
                   {user_package_title}
