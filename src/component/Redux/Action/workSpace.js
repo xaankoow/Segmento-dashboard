@@ -393,7 +393,7 @@ export const addWorkSpace = (step) => {
         //  
         const state = { ...getState().workSpaceState }
         const loadingState = { ...getState().loadingState }
-        // debugger
+        debugger
         const webAdress = state.webAdress;
         // const charKey1 = state.charKey1;
         // const charKey2 = state.charKey2;
@@ -433,15 +433,17 @@ export const addWorkSpace = (step) => {
             websitePage10,
             resultSetWorkSpace
         } = state;
+        
         const keyWords = [keyWord1, keyWord2, keyWord3, keyWord4, keyWord5, keyWord6, keyWord7, keyWord8, keyWord9, keyWord10];
         var keywords = [];
+        
         keyWords.forEach(element => {
             if (element.key != "") {
                 keywords.push(
                     {
                         "key": element.key,
                         "url": "https://" + webAdress + "/" + element.site,
-                        "competitors": step == 5 ? element.competitorSite.map(item => "https://" + item) : []
+                        "competitors": step == 5 ? element.competitorSite.map(item =>"https://" + item).filter(value=>value!="https://") : []
                     }
                 )
             }
@@ -518,8 +520,8 @@ export const addWorkSpace = (step) => {
 
 export const resetWorkSpaceState = () => {
     return async (dispatch, getState) => {
-
-        await dispatch({ type: "RESET_WORK_SPACE_STATE" })
+        const state = { ...getState().workSpaceState }
+        await dispatch({ type: "RESET_WORK_SPACE_STATE" ,payload:state})
     }
 }
 

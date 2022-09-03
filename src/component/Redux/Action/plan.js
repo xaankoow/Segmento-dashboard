@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { coreUser } from ".";
 import { applyDiscount, buyPlna, getAllPlan, getPlanDetails } from "../../service/planService";
 import { creatWorkSpace } from "../../service/workSpaceService";
 import { handleNextInput } from "../../Utils/focusNextInput";
@@ -13,27 +14,30 @@ export const getAllPlanData = () => {
         const state = { ...getState().planState }
         const loadingState = { ...getState().loadingState }
 
-        if (state.allPackageData.length>0) {
-            
+        if (state.allPackageData.length > 0) {
+
             await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
-           
-        }else{
+
+        } else {
             let toastMessage = "";
+
             try {
-                //handle show loadin
-                {
-                    loadingState.ProcessingDelay.push("getAllPlan");
-                    loadingState.canRequest = false;
-                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                if (!loadingState.ProcessingDelay.includes("getAllPlan")) {
+                    //handle show loadin
+                    {
+                        loadingState.ProcessingDelay.push("getAllPlan");
+                        loadingState.canRequest = false;
+                        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                    }
+                    const workSpaces = await getAllPlan()
+                    // debugger
+                    if (workSpaces.data.status == true && workSpaces.data.code == 200) {
+                        state.allPackageData = workSpaces.data.data;
+                    } else {
+
+                    }
+                    await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
                 }
-                const workSpaces = await getAllPlan()
-                // debugger
-                if (workSpaces.data.status == true && workSpaces.data.code == 200) {
-                    state.allPackageData = workSpaces.data.data;
-                } else {
-    
-                }
-                await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
             } catch (error) {
                 // console.log("register error")
                 error.response.data.errors.forEach(element => {
@@ -48,15 +52,24 @@ export const getAllPlanData = () => {
                     draggable: true,
                     progress: undefined,
                 });
+                            //handle hide loading
+            {
+                const loadingState2 = { ...getState().loadingState }
+                var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
+                loadingState2.ProcessingDelay = removeProcessingItem;
+                loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
             }
-    
-    
+            }
+
+
             //handle hide loading
             {
-                var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "getAllPlan");
-                loadingState.ProcessingDelay = removeProcessingItem;
-                loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                const loadingState2 = { ...getState().loadingState }
+                var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
+                loadingState2.ProcessingDelay = removeProcessingItem;
+                loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
+                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
             }
         }
 
@@ -228,6 +241,7 @@ export const tryFreePlan = () => {
         //  
         // debugger
         const state = { ...getState().planState }
+        const userState = { ...getState().userState }
         const loadingState = { ...getState().loadingState }
 
         const packageUuid = state.allPackageData[0].uuid; //انتخاب شناسه پکیج رایگان
@@ -252,7 +266,10 @@ export const tryFreePlan = () => {
                 // debugger
                 if (data.code == 201) {
                     state.checkUseTryFree = true;
+                    dispatch(coreUser())
+                    // userState.userData = data.data;
                     showToast("پلن 14 روزه رایگان برایه شما فعال شد", "success");
+                    // await dispatch({ type: "CORE_USER", payload: userState })
                 } else {
                     state.checkUseTryFree = false;
                     data.errors.forEach(element => {
@@ -328,8 +345,8 @@ export const applyDiscountAction = (discountCode, planType) => {
                     // state.discountValue.value = { value: data.data.value.toString().substring(0, data.data.value.toString().length - 3), planType: planType };
                     // state.discountStatus.value = data.data.value.toString().substring(0, data.data.value.toString().length - 3) ;
                     state.discountStatus.value = data.data.value;
-                    state.discountStatus.planType =planType ;
-                    state.discountStatus.discountType =data.data.unit==1?"percentage":"cash" ;
+                    state.discountStatus.planType = planType;
+                    state.discountStatus.discountType = data.data.unit == 1 ? "percentage" : "cash";
                     state.forceUpdate += 1;
                     showToast(data.data.msg, "success");
                     // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
@@ -423,7 +440,7 @@ export const modalSetWorkSpace = () => {
         try {
             // debugger
             const { data } = await creatWorkSpace(modalWorkSpace);
-            debugger
+            // debugger
             if (data.code == 200 && data.status == true) {
                 localStorage.setItem("modalWorkSpace", data.status);
                 state.forceUpdate += 1;

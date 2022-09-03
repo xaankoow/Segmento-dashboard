@@ -16,7 +16,7 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
       }
       // default_discount_percent
       if (discountStatus.value != 0) {
-        debugger
+        // debugger
         let funDisValue = setDiscountPrice(packageSelected.price, discountStatus.value, discountStatus.discountType == "cash" ? true : false);
         if (funDisValue.value > packageSelected.default_discount) {
           packageSelected.default_discount_percent = funDisValue.type == "cash" ? setFormatPrice(funDisValue.value) + funDisValue.type : discountStatus.value + funDisValue.type;

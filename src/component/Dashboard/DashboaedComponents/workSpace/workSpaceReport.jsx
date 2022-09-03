@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
-import { useSelector } from 'react-redux'
+import React, { Fragment, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
-import AuthButton from '../../../Auth/authButton/AuthButton';
+import { resetWorkSpaceState } from '../../../Redux/Action/workSpace';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 
 export default function WorkSpaceReport({ stepWorkSpace }) {
@@ -44,46 +44,20 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
     keyWords = keyWords.filter(value => value.key != "");
     const commercialPages = [commercialPage1, commercialPage2, commercialPage3, commercialPage4, commercialPage5, commercialPage6, commercialPage7, commercialPage8, commercialPage9, commercialPage10].filter(value => value != "");
     const websitePages = [websitePage1, websitePage2, websitePage3, websitePage4, websitePage5, websitePage6, websitePage7, websitePage8, websitePage9, websitePage10].filter(value => value != "");
-    // var competitorSite=keyWords.map(value=>value.competitorSite.filter(competitor=>competitor.replace("",null)));
     var competitorSite = keyWords;
     competitorSite.forEach(element => {
         const filterCompetitors = element.competitorSite.filter(value => value != "")
         element.competitorSite = filterCompetitors;
     });
-    // debugger
+ 
+    const dispatch=useDispatch()
 
-    const numMap = [0, 2, 4, 6, 8]
-
-    // const [{site:"https://example.ir/page1",key:"a"}]
-    const data = [{ site: "https://example.ir/page1", key: "a" }, { site: "https://example.ir/page1", key: "a" }]
-
-    const handleCommercialTextPriority = index => {
-        switch (index) {
-            case 0:
-                return "یک"
-            case 1:
-                return "دو"
-            case 2:
-                return "سه"
-            case 3:
-                return "چهار"
-            case 4:
-                return "پنج"
-            case 5:
-                return "شیش"
-            case 6:
-                return "هفت"
-            case 7:
-                return "هشت"
-            case 8:
-                return "نه"
-            case 9:
-                return "ده"
-
-            default:
-                break;
-        }
-    }
+    useEffect(() => {
+      return () => {
+        dispatch(resetWorkSpaceState())
+      }
+    }, [])
+    
 
     return (
         <Fragment>

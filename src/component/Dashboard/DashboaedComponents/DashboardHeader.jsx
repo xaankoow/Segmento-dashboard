@@ -12,9 +12,7 @@ const DashboardHeader = () => {
   const dispatch = useDispatch();
   const userToken = localStorage.getItem("token");
   const userState = useSelector((state) => state.userState);
-  const closeNav = useSelector((state) => state.navMenuState);
-  const { checkUseTryFree } = useSelector((state) => state.planState);
-  const [userName, setUserName] = useState("");
+  
   var user_name = "";
   if (userState.userData.user) {
     user_name = userState.userData.user.name

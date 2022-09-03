@@ -5,9 +5,10 @@ import {useSelector } from 'react-redux';
 import { Fragment } from "react";
 
 
-export const InputEasyToStartModal = (stepModal) => {
+export const InputEasyToStartModal = ({stepModal}) => {
+    // debugger
+    // const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2} = useSelector(state => state.planState);
     const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2} = useSelector(state => state.planState);
-
     switch (stepModal) {
 
         case 3:

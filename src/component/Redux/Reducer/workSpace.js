@@ -127,7 +127,7 @@ export const workSpaceReducer = (state =
         case "RESET_WORK_SPACE_STATE":
             return {
                 webAdress: "",
-                allWorkSpace: [],
+                allWorkSpace:  [...action.payload.allWorkSpace] ,
                 webAdressUuid: "",
                 keyWord1: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
                 keyWord2: { key: "", site: "", competitorSite: ["", "", "", "", ""] },

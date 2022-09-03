@@ -13,8 +13,9 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   const [rederingWithDelay, setRederingWithDelay] = useState(false);
 
 
-  const [stepModal, setStepModal] = useState(3);
-  const [plan, setPlan] = useState("");
+  const [stepModal, setStepModal] = useState(1);
+  const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
+
   const [free, setFree] = useState(false);
   const [packageUuid, setPackageUuid] = useState("")
   const [applyWebAdress, setApplyWebAdress] = useState("")
@@ -35,17 +36,17 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   }, [])
 
   useEffect(() => {
-  
+
     return () => {
       ReplaceClass({
-        elementClass:"easyToStartRocket",
-        oldClass:"easyToStartRocket_animation_fire",
-        newClass:"easyToStartRocket_animation",
-        replaceClass:true
+        elementClass: "easyToStartRocket",
+        oldClass: "easyToStartRocket_animation_fire",
+        newClass: "easyToStartRocket_animation",
+        replaceClass: true
       })
     }
   }, [])
-  
+
 
 
   useEffect(() => {
@@ -81,8 +82,8 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
         (
           <div className='buy_plan_modal'>
             <Modal
-            // closeTimeoutMS={2000}
-          
+              // closeTimeoutMS={2000}
+
               isOpen={true}
               parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
               style={customStyles}
@@ -100,7 +101,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
                     <Head handleClose={handleClose} stepModal={stepModal} free={free} />
                     <div className={`${stepModal == 1 ? "px-6" : stepModal > 2 ? "px-2" : stepModal == 2 ? " px-4" : ""}`}>
                       <BodyContent setStepModal={setStepModal} setApplyWebAdress={setApplyWebAdress} setPackageUuid={setPackageUuid} stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree} lockNextStep={lockNextStep} setLockNextStep={setLockNextStep} />
-                      <FooterBtn applyWebAdress={applyWebAdress} stepModal={stepModal} free={free} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose} lockNextStep={lockNextStep} packageUuid={packageUuid} />
+                      <FooterBtn applyWebAdress={applyWebAdress} stepModal={stepModal} free={free} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose} lockNextStep={lockNextStep} packageUuid={plan.uuid} />
                     </div>
                   </Fragment>
                 )}
