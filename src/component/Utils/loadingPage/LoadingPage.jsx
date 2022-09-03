@@ -27,7 +27,7 @@ export default function LoadingPage() {
             style={customStyles}
             contentLabel="Example Modal"
           >
-            <div>
+            <div className='flex justify-center items-center rounded-2xl bg-white w-52 h-52'>
               <div id="loading-container-segmento-logo">
                 <div className="segmento_logo_1"></div>
                 <div className="segmento_logo_2"></div>
@@ -38,7 +38,6 @@ export default function LoadingPage() {
                 <div className="segmento_logo_7"></div>
               </div>
             </div>
-            <p className=' mt-7 text-center'>درحال برسی اطلاعات...</p>
           </Modal>
         </div>
       ) : null}
