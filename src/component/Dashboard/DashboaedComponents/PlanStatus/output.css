@@ -1006,9 +1006,7 @@ a {
 /*باکس راست*/
 
 @media (mix-width: 640px) {
-  #line2 {
-    background-color: #FFCE47;
-  }
+ 
 
   #btn1 {
     background-color: #0A65CD;
@@ -1038,9 +1036,7 @@ a {
 }
 
 @media (min-width: 1024px) {
-  #line2 {
-    background-color: #FFCE47;
-  }
+ 
 
   #btn1 {
     background-color: #0A65CD;

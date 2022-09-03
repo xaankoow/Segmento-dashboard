@@ -10,12 +10,13 @@ import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
 
 export default function SidebarComponent() {
-
   const [showToolTip, setShowToolTip] = useState(true);
 
   const [activeIcon, setActiveIcon] = useState(0);
-  const { closeNav } = useSelector(state => state.navMenuState)
+  const { closeNav } = useSelector((state) => state.navMenuState);
   const dispatch = useDispatch();
+  // item sidebar hover active mode
+  const[clicked,setClicked]=useState(-2);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
 
@@ -26,11 +27,9 @@ export default function SidebarComponent() {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    dispatch(setCloseNav(true))
+    dispatch(setCloseNav(true));
     // setCloseNav(true);
   };
-
-
 
   const itemsHoverMenu = [
     { title: "گزارش های منتخب", link: "" },
@@ -45,28 +44,29 @@ export default function SidebarComponent() {
 
   return (
     <>
-
-
       <div
         className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
         style={{ width: closeNav ? "256px" : "0px" }}
       >
         {activeIcon == 0 ? (
           <div>
-            {itemsHoverMenu.map((item) => {
+            {itemsHoverMenu.map((item, index) => {
               return (
                 <ItemSidebarHover
                   text={item}
                   icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"}
                   textColor={"#002145"}
                   textHover={"#0A65CD"}
+                  index={index}
+                  clicked={clicked}
+                  setClicked={()=>setClicked(index)}
                 />
               );
             })}
           </div>
         ) : activeIcon == 1 ? (
           <div>
-            <div className="flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue ">
+            <div onClick={()=>setClicked(-1)} className="flex items-center gap-3 text-[#002145] my-5 mr-5 cursor-pointer text-sm hover:cursor-pointer hover:text-blue ">
               <img
                 src={
                   // "/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"
@@ -74,12 +74,15 @@ export default function SidebarComponent() {
                 }
                 alt="icon"
               />
-              <Link to={"/dashboard/PageCounter"} className={`text-[${"#0A65CD"}]`}>
+              <Link
+                to={"/dashboard/PageCounter"}
+                className={`text-[${clicked == -1 &&"#0A65CD"}]`}
+              >
                 {closeNav && "پیشخان"}
               </Link>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
-            <AcardionItem />
+            <AcardionItem  clicked={clicked} setClicked={setClicked}/>
           </div>
         ) : null}
         {/* advertisement box */}
@@ -94,8 +97,9 @@ export default function SidebarComponent() {
         <div className="down">
           <div className="dropDownBox mb-5">
             <a href="https://segmento.ir/support">
-              <div className="support w-7 h-7"
-                data-tip=' پشتیبانی '
+              <div
+                className="support w-7 h-7"
+                data-tip=" پشتیبانی "
                 data-type="light"
                 data-place="left"
                 onMouseEnter={() => setShowToolTip(true)}
@@ -110,12 +114,13 @@ export default function SidebarComponent() {
             </div> */}
           </div>
 
-          <div className="dropDownBox mb-5  " >
-            <div className="call-nav-right w-6 h-6 text-[20px] support"
-              data-tip=' tel:051-38331497 '
+          <div className="dropDownBox mb-5  ">
+            <div
+              className="call-nav-right w-6 h-6 text-[20px] support"
+              data-tip=" tel:051-38331497 "
               data-type="light"
               data-place="left"
-              data-class='sizeClass'
+              data-class="sizeClass"
               onMouseEnter={() => setShowToolTip(true)}
               onMouseLeave={() => {
                 setShowToolTip(false);

@@ -344,6 +344,9 @@ export default function EditUserProfile() {
                     ? userState.userData.package.title
                     : "بدون پکیج"
                 }
+                type={  userState.userData.package != undefined
+                  ? userState.userData.package.type_text: "بدون پکیج"
+                }
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
 

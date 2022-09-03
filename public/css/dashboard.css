@@ -297,6 +297,17 @@
 	filter: saturate(11);
 }
 
+#DASHBOARD .active  {
+	color: #0071ff;
+}
+#DASHBOARD .active span {
+	color: #0071ff;
+}
+
+#DASHBOARD .active img {
+	filter: saturate(11);
+}
+
 #DASHBOARD .ICONRIGHT:hover img {
 	filter: saturate(11);
 }
