@@ -2,6 +2,7 @@
 import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_en from "react-date-object/locales/persian_en";
+import { useSelector } from "react-redux";
 // import moment from "jalali-moment";
 // var moment = require("jalali-moment");
 
@@ -14,7 +15,7 @@ export const filterFinancialData = (allData, filterType, filterValue) => {
     allData.forEach((element) => {
       switch (filterType) {
         case "بدون فیلتر":
-         filteredData=allData;
+          filteredData = allData;
           break;
         case "شماره فاکتور":
           //for example: xxxx-xx-xxxx
@@ -131,3 +132,21 @@ export const filterDataWithBetweenTime1 = (data, numCount) => {
 
   return filteredData;
 };
+
+// find package with uuid
+export const FindPackageWithUuid = (uuidPackage) => {
+
+  const { allPackageData } = useSelector(state => state.planState);
+  var filteredData = "0";
+  debugger
+  if (uuidPackage != "") {
+
+    var findIndexPackage = allPackageData.findIndex(value => value.uuid == uuidPackage);
+
+    filteredData = findIndexPackage != -1 && allPackageData[findIndexPackage].price
+  }
+
+  return filteredData;
+};
+
+

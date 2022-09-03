@@ -393,7 +393,7 @@ export const addWorkSpace = (step) => {
         //  
         const state = { ...getState().workSpaceState }
         const loadingState = { ...getState().loadingState }
-        debugger
+        // debugger
         const webAdress = state.webAdress;
         // const charKey1 = state.charKey1;
         // const charKey2 = state.charKey2;

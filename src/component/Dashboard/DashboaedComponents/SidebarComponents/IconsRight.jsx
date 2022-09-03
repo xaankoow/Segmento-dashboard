@@ -11,7 +11,7 @@ export default function IconsRight({ setActive }) {
 
   // TODO:EDITE TITLE IMG
   const navBarRightSection = [
-    { imgSrc: "/img/dashboard/nav_right/pishkhan.svg", title: "منوی اول" },
+    { imgSrc: "/img/dashboard/nav_right/pishkhan.svg", title: "پیشخان" },
     { imgSrc: "/img/dashboard/nav_right/analyze.svg", title: "دپارتمان سئو" }
   ];
 

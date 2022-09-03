@@ -60,6 +60,38 @@ export default function CardPlans({ plan, setPlan }) {
     }
   }
 
+  const [packageBronzePrice, setPackageBronzePrice] = useState(0);
+  const [packageSilverPrice, setPackageSilverPrice] = useState(0);
+  const [packageGoldPrice, setPackageGoldPrice] = useState(0);
+  const [packageDiamondPrice, setPackageDiamondPrice] = useState(0);
+
+  useEffect(() => {
+    if (allPackageData.length != 0) {
+      // debugger
+      var innerPrice = allPackageData[plan.planIndex].price
+      if (plan.planIndex > 0 & plan.planIndex <= 4) {
+        if (innerPrice != packageBronzePrice) {
+          setPackageBronzePrice(allPackageData[plan.planIndex].price)
+        }
+      } else if (plan.planIndex > 4 & plan.planIndex <= 8) {
+        if (innerPrice != packageSilverPrice) {
+          setPackageSilverPrice(allPackageData[plan.planIndex].price)
+        }
+      } else if (plan.planIndex > 8 & plan.planIndex <= 12) {
+        if (innerPrice != packageGoldPrice) {
+          setPackageGoldPrice(allPackageData[plan.planIndex].price)
+        }
+      } else if (plan.planIndex > 12 & plan.planIndex <= 16) {
+        if (innerPrice != packageDiamondPrice) {
+          setPackageDiamondPrice(allPackageData[plan.planIndex].price)
+        }
+      }
+    }
+
+  }, [plan])
+
+  console.log(plan)
+
   return (
     <div className='plan_cards_container'>
       <div className='bronze plan_card'>
@@ -84,7 +116,7 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"bronze"}
-            price={allPackageData[1].price}
+            price={packageBronzePrice!=0?packageBronzePrice:allPackageData[1].price}
             planSelected={plan.type}
           />
         }
@@ -96,7 +128,7 @@ export default function CardPlans({ plan, setPlan }) {
             direction={"rtl"}
             handleArrowPlan={handleShowArrowDiscount}
             targePlanArrow={"bronze"}
-            disable={discount != "" ? true : false}
+            // disable={discount != "" ? true : false}
             errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
           />
           <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}></button>
@@ -125,7 +157,7 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"silver"}
-            price={allPackageData[5].price}
+            price={packageSilverPrice!=0?packageSilverPrice:allPackageData[5].price}
             planSelected={plan.type}
           />
         }
@@ -137,7 +169,7 @@ export default function CardPlans({ plan, setPlan }) {
             direction={"rtl"}
             handleArrowPlan={handleShowArrowDiscount}
             targePlanArrow={"silver"}
-            disable={discount != "" ? true : false}
+            // disable={discount != "" ? true : false}
             errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
           />
           <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}></button>
@@ -164,7 +196,7 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"gold"}
-            price={allPackageData[9].price}
+            price={packageGoldPrice!=0?packageGoldPrice:allPackageData[9].price}
             planSelected={plan.type}
           />
         }
@@ -176,7 +208,7 @@ export default function CardPlans({ plan, setPlan }) {
             direction={"rtl"}
             handleArrowPlan={handleShowArrowDiscount}
             targePlanArrow={"gold"}
-            disable={discount != "" ? true : false}
+            // disable={discount != "" ? true : false}
             errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
           />
           <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}></button>
@@ -204,7 +236,7 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"diamond"}
-            price={allPackageData[13].price}
+            price={packageDiamondPrice!=0?packageDiamondPrice:allPackageData[13].price}
             planSelected={plan.type}
           />
         }
@@ -216,7 +248,7 @@ export default function CardPlans({ plan, setPlan }) {
             direction={"rtl"}
             handleArrowPlan={handleShowArrowDiscount}
             targePlanArrow={"diamond"}
-            disable={discount != "" ? true : false}
+            // disable={discount != "" ? true : false}
             errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
           />
           <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}></button>

@@ -14,3 +14,10 @@ export const setFloorNumber=(floorNumber)=>{
 
     return num
 }
+
+// get number at the strign
+export const getNumberFromString=(findNum)=>{
+    var numb = findNum.match(/\d/g);
+    numb = numb.join("");
+    return numb
+}

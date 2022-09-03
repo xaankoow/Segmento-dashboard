@@ -30,7 +30,7 @@ export const setDiscountPrice = (price, discountValue, isCash) => {
 
 export const roundPriceToUp = (price) => {
     var roundPrice = price;
-    debugger
+    // debugger
     var getLatestNumbers = parseInt(price.toString().substring(price.toString().length, price.toString().length - 3));
     if (getLatestNumbers > 0) {
         roundPrice = 1 + parseInt(price.toString().substring(0, price.toString().length - 3)) + "000";
