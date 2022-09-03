@@ -70,8 +70,8 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
 
     case "isKeyword":
       a = {
-        allWords: allWords.length != 0 && allWords[4].count,
-        rest: datas.length > 0 ? datas[4].count : "",
+        allWords: allWords.length != 0 && allWords[6].count,
+        rest: datas.length > 0 ? datas[6].count : "",
       };
       break;
     //   data of workSpace

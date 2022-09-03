@@ -16,7 +16,7 @@ export default function TableFinancialReports({ title }) {
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
   const [numFilter, setNumFilter] = useState(1);
-  const filterBoxDatas=[ "شماره فاکتور","نوع اشتراک","تاریخ خرید","تاریخ انقضا","مبلغ", "وضعیت پرداخت","عملیات"];
+  const filterBoxDatas=["بدون فیلتر", "شماره فاکتور","نوع اشتراک","تاریخ خرید","تاریخ انقضا","مبلغ", "وضعیت پرداخت","عملیات"];
   const [financialDataTableOrg, setFinancialDataTableOrg] = useState([]);
   const [financialDataTableFiltered, setFinancialDataTableFiltered] = useState([]);
 

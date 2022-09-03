@@ -15,6 +15,8 @@ export const FilterData = ({
   priceHandler1,
 }) => {
   switch (radioTarget) {
+    case "بدون فیلتر":
+      return "";
     case "شماره فاکتور":
       return (
         <input
