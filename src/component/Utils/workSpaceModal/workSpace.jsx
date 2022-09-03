@@ -1,9 +1,9 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import AuthButton from '../../Auth/authButton/AuthButton';
-import { addWorkSpace } from '../../Redux/Action/workSpace';
+import { addWorkSpace, resetWorkSpaceState } from '../../Redux/Action/workSpace';
 import BadgeLimitKeyWords from '../BadgeLimitKeyWords';
 import SetTitleTabBrowser from '../SetTitleTabBrowser';
 import InputGetWorkSpaceInfo from './inputValue';
@@ -57,6 +57,14 @@ export default function WorkSpace() {
     }
   }
 
+  const dispatch=useDispatch()
+
+  useEffect(() => {
+    return () => {
+      
+    }
+  }, [])
+
   return (
     <Fragment>
 
@@ -75,7 +83,7 @@ export default function WorkSpace() {
             </div>
             <div className='close_suport_container'>
               <div className='flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]' >
-                <div className='close_modal_ico w-3 h-3' onClick={() => navigate(-1)}></div>
+                <div className='close_modal_ico w-3 h-3' onClick={() => {navigate(-1);dispatch(resetWorkSpaceState());}}></div>
               </div>
             </div>
           </header>

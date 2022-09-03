@@ -9,10 +9,10 @@ import { setImages } from './setImages'
 import ShowFinalReportModal from './ShowFinalReportModal'
 import TryFreePlan from './TryFreePlan'
 
-export default function BodyContent({ stepModal, setStepModal, free, lockNextStep, setLockNextStep, setApplyWebAdress }) {
+export default function BodyContent({ stepModal, setStepModal, free, lockNextStep, setLockNextStep, setApplyWebAdress,plan, setPlan }) {
 
-  const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
 
+//   debugger
 
     return (
         <div>
@@ -29,7 +29,7 @@ export default function BodyContent({ stepModal, setStepModal, free, lockNextSte
 
                 {stepModal == 2 & free == false ? <PurchaseInvoiceContent packageUuid={plan.uuid}/> : ""}
                 {stepModal == 2 & free == true ? <TryFreePlan setLockNextStep={setLockNextStep} lockNextStep={lockNextStep} setStepModal={setStepModal} /> : ""}
-                {stepModal > 2 & stepModal < 6 ? InputEasyToStartModal(stepModal, setApplyWebAdress) : ""}
+                {stepModal > 2 & stepModal < 6 ? <InputEasyToStartModal stepModal={stepModal}/> : ""}
                 {stepModal == 1 ? <BuyPlnaModal plan={plan} setPlan={setPlan}/> : ""}
                 {/* {stepModal == 1 ? <CardPlans /> : ""} */}
                 {stepModal == 6 ? <ShowFinalReportModal/> : ""}
