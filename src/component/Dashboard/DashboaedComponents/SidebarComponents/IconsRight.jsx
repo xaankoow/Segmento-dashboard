@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import ToolTip from "../../../Utils/ToolTip";
 
 export default function IconsRight({ setActive }) {
@@ -6,44 +7,49 @@ export default function IconsRight({ setActive }) {
 
   const [showToolTip, setShowToolTip] = useState(true);
 
+  const userState = useSelector((state) => state.userState);
+
   // TODO:EDITE TITLE IMG
   const navBarRightSection = [
-    {imgSrc:"/img/dashboard/nav_right/pishkhan.svg",title:"منوی اول"},
-    {imgSrc:"/img/dashboard/nav_right/analyze.svg",title:"دپارتمان سئو"}
+    { imgSrc: "/img/dashboard/nav_right/pishkhan.svg", title: "منوی اول" },
+    { imgSrc: "/img/dashboard/nav_right/analyze.svg", title: "دپارتمان سئو" }
   ];
+
+  var activeClass = "bg-secondary ICONRIGHT nav_right_box flex items-center justify-center relative z-0"
+  var normalClass = "nav_right_box flex items-center justify-center relative z-0"
 
   return (
     <div className="top relative">
-      {navBarRightSection.map((items, index) => {
-        return (
-          <div
-            id={index}
-            className={
-              index === activeIcon
-                ? "bg-secondary ICONRIGHT nav_right_box flex items-center justify-center relative z-0"
-                : "nav_right_box flex items-center justify-center relative z-0"
-            }
-            key={index}
-            onClick={(e) => {
-              setActiveIcon(index);
-              setActive(e);
-            }}
-          >
-            <img id={index} src={items.imgSrc} alt="imageSidebar z-0  "
-              data-tip={items.title}
-              data-type="light"
-              data-place="left"
-              onMouseEnter={() => setShowToolTip(true)}
-              onMouseLeave={() => {
-                setShowToolTip(false);
-                setTimeout(() => setShowToolTip(true), 0);
-              }} />
-            {index === activeIcon && (
-              <hr className="w-5 h-[3px] bg-primary text-[#D9D9D9] rotate-90 absolute -right-2 rounded" />
-            )}
-          </div>
-        );
-      })}
+      {navBarRightSection.map((items, index) => (
+
+        <div
+          id={index}
+          className={items.title == "دپارتمان سئو" ?
+            userState.userData.package != undefined ?
+              index === activeIcon ? activeClass : normalClass :
+              "hidden" : index === activeIcon ? activeClass : normalClass
+          }
+          key={index}
+          onClick={(e) => {
+            setActiveIcon(index);
+            setActive(e);
+          }}
+        >
+          <img id={index} src={items.imgSrc} alt="imageSidebar z-0  "
+            data-tip={items.title}
+            data-type="light"
+            data-place="left"
+            onMouseEnter={() => setShowToolTip(true)}
+            onMouseLeave={() => {
+              setShowToolTip(false);
+              setTimeout(() => setShowToolTip(true), 0);
+            }} />
+          {index === activeIcon && (
+            <hr className="w-5 h-[3px] bg-primary text-[#D9D9D9] rotate-90 absolute -right-2 rounded" />
+          )}
+        </div>
+
+      ))}
       {/* {showToolTip && <ToolTip />} */}
 
       {/* <IconsRight image={"../img/dashboard/nav_right/pishkhan.svg"}/>

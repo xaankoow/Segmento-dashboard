@@ -354,7 +354,7 @@ export default function PlanStatus() {
                 <img src="/img/dashboard/planStatus/balloonBoxDiscount.svg" className="w-full h-full absolute top-0 discountBoxBallonAnimation"/>
               </div>
               <div>
-                <Link to={"buyPlan"}>
+                <Link to={"/dashboard/buyPlan"}>
                   <button
                     id=""
                     className="btn-style mb-2 mt-3 w-[161px] text-white"
