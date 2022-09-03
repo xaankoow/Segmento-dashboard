@@ -223,7 +223,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                       typeInput={"text"}
                       width={"100%"}
                       staticText={"09"}
-                      textLabelInput={"صفحه هدف"}
+                      textLabelInput={"شماره همراه"}
                       placeholder="شماره همراه"
                       handleChange={(e) => handlePhoneNumberValue(e.target.value)}
                       maxlength={11}
