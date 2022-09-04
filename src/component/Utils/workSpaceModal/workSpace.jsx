@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { modalParentSelector } from '../../../variables/style';
 import AuthButton from '../../Auth/authButton/AuthButton';
 import { addWorkSpace, resetWorkSpaceState } from '../../Redux/Action/workSpace';
 import BadgeLimitKeyWords from '../BadgeLimitKeyWords';
@@ -57,6 +58,28 @@ export default function WorkSpace() {
     }
   }
 
+  const handleRemoveStateCountInput = (state) => {
+    switch (state) {
+      case "keyChar":
+        setAddKeyCharInput(addKeyCharInput - 1);
+        break;
+      case "addCommercialPageMap":
+        setAddCommercialPageInput(addCommercialPageInput - 1);
+        break;
+      case "websitePage":
+        console.log("start")
+
+        setAddWebsitePageInput(addWebsitePageInput - 1);
+        break;
+      case "competitorSite":
+        setAddCompetitorSite(addCompetitorSite - 1);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   const dispatch=useDispatch()
 
   useEffect(() => {
@@ -70,7 +93,7 @@ export default function WorkSpace() {
 
       <Modal
         isOpen={true}
-        parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
+        parentSelector={() => document.querySelector(modalParentSelector)}
         style={customStyles}
         contentLabel="Example Modal"
       >
@@ -98,16 +121,16 @@ export default function WorkSpace() {
             <p className='mt-2.5 text-sm text-[#002145]'>
               {WorkSpaceParagraph(stepModal)}
             </p>
-            <div className=' mt-4'>
+            <div className=' '>
             {/* step, countInput, handleAddStateCountInput */}
-            <InputGetWorkSpaceInfo step={stepModal} countInput={stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite} handleAddStateCountInput={handleAddStateCountInput}/>
+            <InputGetWorkSpaceInfo step={stepModal} countInput={stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite} handleAddStateCountInput={handleAddStateCountInput} handleRemoveStateCountInput={handleRemoveStateCountInput}/>
               {/* {InputGetWorkSpaceInfo(stepModal, stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite, handleAddStateCountInput)} */}
             </div>
           </body>
           <footer className='px-5'>
-            {stepModal != 1 ? <span className='back_ico' onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
-            {stepModal != 1 ? <AuthButton classes={"bg-secondary text-[#488CDA]"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان پیکربندی"} /> : <div></div>}
-            {stepModal != 5 ? <AuthButton handlerClick={setStepModal} disabled={webAdress.length != 0 ? false : true} setOnclickValue={stepModal + 1} textButton={<Fragment>گام بعدی<span className='forward-ico'></span></Fragment>} /> : <div></div>}
+            {stepModal != 1 ? <span className={"back_ico ml-24"} onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
+            {stepModal != 1 ? <AuthButton classes={"btn-secondary"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان پیکربندی"} /> : <div></div>}
+            {stepModal != 5 ? <AuthButton handlerClick={setStepModal} disabled={webAdress.length != 0 ? false : true} setOnclickValue={stepModal + 1} textButton={<Fragment>گام بعدی<span className='forward-ico'></span></Fragment>} /> : <div className=' w-32'></div>}
             {/* {stepModal != 5 ? <button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button> : <div></div>} */}
           </footer>
         </div>

@@ -12,3 +12,5 @@ export const defaultCustomModalStyle = {
       'z-index': '100'
     },
   };
+
+  export const modalParentSelector=".app #DASHBOARD .body";

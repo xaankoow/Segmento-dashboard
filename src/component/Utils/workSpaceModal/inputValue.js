@@ -14,6 +14,7 @@ export default function InputGetWorkSpaceInfo({
   step,
   countInput,
   handleAddStateCountInput,
+  handleRemoveStateCountInput
 }) {
   const [addKeyCharMap, setAddKeyCharMap] = useState([1, 2]);
   const [addCommercialPageMap, setAddCommercialPageMap] = useState([1, 2]);
@@ -210,17 +211,45 @@ export default function InputGetWorkSpaceInfo({
     }
   };
 
+  const handleRemoveInput = (type, index) => {
+    switch (type) {
+      case "addWebsitePageMap":
+        let webList = addWebsitePageMap
+        webList.splice(index, 1)
+        handleRemoveStateCountInput("websitePage")
+        setAddWebsitePageMap(webList)
+        break;
+
+      case "addCommercialPageMap":
+        let commercialList = addCommercialPageMap
+        commercialList.splice(index, 1)
+        handleRemoveStateCountInput("commercialPage")
+        setAddCommercialPageMap(commercialList)
+        break;
+        
+        case "addKeyCharMap":
+          let keyCharList = addKeyCharMap
+          keyCharList.splice(index, 1)
+          handleRemoveStateCountInput("keyChar")
+          setAddKeyCharMap(keyCharList)
+          break;
+
+      default:
+        break;
+    }
+    setForceUpdate(!forceUpdate)
+
+  }
+
+
   const handleSetStateCompetitorSite = (keyWordIndex, removeInput) => {
     var competitorSites = addCompetitorSite;
-
     if (removeInput) {
       const targetCompetitorArray = keyWordIndex.split(",");
       const filterCompetitorArray = competitorSites[
         targetCompetitorArray[0] - 1
       ].filter((state) => state != targetCompetitorArray[1]);
       competitorSites[targetCompetitorArray[0] - 1] = filterCompetitorArray;
-      console.log(addCompetitorSite);
-      console.log(competitorSites);
       setAddCompetitorSite(competitorSites);
       setForceUpdate(!forceUpdate);
     } else {
@@ -237,110 +266,18 @@ export default function InputGetWorkSpaceInfo({
   addCompetitorSite.forEach((element) => {
     competitorSitesSumLenght += element.length;
   });
-  // console.log(addCompetitorSite)
-
-  // const contentInputComponent = () => {
-  //     switch (step) {
-  //         case 1:
-  //             return (
-  //                 <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"آدرس وبسایت شما:"} staticText={"https:// "} placeholder={"example.com"} value={webAdress} reduxHandleChange={setWebAdress} />
-  //             );
-  //         case 2:
-  //             return (
-  //                 <div id="workSpaceModalStep2">
-  //                     <div className=" max-h-[380px] overflow-y-scroll">
-  //                         {addKeyCharMap.map((item, index) => (
-  //                             <div className='container_input_step2 mt-7 mb-7'>
-  //                                 <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" value={handleInputValue(item, "keyWords", "key")} reduxHandleChange={setKeyWords} workSpaceTypeState={`keyWord${item}`} />
-  //                                 <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-  //                                 <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه هدف"} value={handleInputValue(item, "keyWords", "site")} reduxHandleChange={setKeyWords} workSpaceTypeState={`site${item}`} staticText={`https://${webAdress}/`} placeholder={"page " + (index + 1)} />
-  //                             </div>
-  //                         ))}
-  //                     </div>
-  //                     <button className='btn-style ' onClick={() => { countInput <= 10 && setAddKeyCharMap([...addKeyCharMap, countInput]); handleAddStateCountInput("keyChar") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" /> کلمه کلیدی جدید </button>
-  //                 </div>
-  //             );
-  //         case 3:
-  //             return (
-  //                 <Fragment>
-  //                     <div className=" max-h-[380px] overflow-y-scroll">
-  //                         {addCommercialPageMap.map((item, index) => (
-  //                             <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={`https://${webAdress}/`} placeholder={"page " + (index + 1)} value={handleInputValue(item, "commercialPage", null)} reduxHandleChange={setCommercialPages} workSpaceTypeState={`commercialPage${item}`} />
-  //                         ))}
-  //                     </div>
-  //                     <button className='btn-style ' onClick={() => { countInput <= 10 && setAddCommercialPageMap([...addCommercialPageMap, countInput]); handleAddStateCountInput("commercialPage") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />صفحه تجاری جدید</button>
-  //                 </Fragment>
-  //             );
-  //         case 4:
-  //             return (
-  //                 <Fragment>
-  //                     <div className=" max-h-[380px] overflow-y-scroll">
-  //                         {addWebsitePageMap.map((item, index) => (
-  //                             <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"افزودن صفحه وبسایت"} staticText={`https://${webAdress}/`} placeholder={"page " + (index + 1)} value={handleInputValue(item, "websitePage", null)} reduxHandleChange={setWebsitePages} workSpaceTypeState={`websitePage${item}`} />
-  //                         ))}
-  //                     </div>
-  //                     <button className='btn-style ' onClick={() => { countInput <= 10 && setAddWebsitePageMap([...addWebsitePageMap, countInput]); handleAddStateCountInput("websitePage") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />صفحه وبسایت جدید</button>
-  //                 </Fragment>
-  //             );
-  //         case 5:
-  //             return (
-  //                 <Fragment>
-  //                     <div id="workSpaceModalStep2">
-  //                         <div className=" max-h-[380px] overflow-y-scroll">
-  //                             <div className='container_input_step2 flex-col'>
-  //                                 {addKeyCharMap.map(itemKey => {
-  //                                     return (
-  //                                         <div className="flex">
-  //                                             <AuthInput textLabelInput="کلمات کلیدی" width={"90%"} typeInput="text" value={handleInputValue(itemKey, "keyWords", "key")} reduxHandleChange={setKeyWords} workSpaceTypeState={`keyWord${itemKey}`} />
-  //                                             <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
-  //                                             <div className=" w-full mb-5">
-  //                                                 {addCompetitorSite && addCompetitorSite[itemKey - 1].map((itemCompetitor, index) => {
-  //                                                     return (<div>
-  //                                                         <div className=" w-[90%] inline-block">
-  //                                                             <StaticInputText parentClass={"mb-7"} typeInput={"text"} width={"100%"} textLabelInput={"سایت رقیب " + (index + 1)} staticText={`https://`} placeholder={"page " + (index + 1)} reduxHandleChange={setCompetitorSite} workSpaceTypeState={`keyWord${itemKey},${itemCompetitor}`} value={handleCompetitorSiteValue(itemKey)[itemCompetitor - 1]} />
-  //                                                         </div>
-  //                                                         <div className=" inline-block mr-2">
-
-  //                                                             <div className='close_suport_container inline-flex'>
-  //                                                                 <div className='flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]' >
-  //                                                                     <div className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 bg-[url('/img/modal/head/closeModal.svg')]" onClick={() => handleSetStateCompetitorSite(`${itemKey},${itemCompetitor}`, true)}></div>
-  //                                                                 </div>
-
-  //                                                             </div>
-  //                                                         </div>
-  //                                                     </div>)
-  //                                                 })}
-  //                                                 { }
-  //                                                 {competitorSitesSumLenght < 5 && <button className='btn-style my-4' onClick={() => { handleSetStateCompetitorSite(itemKey); handleAddStateCountInput("competitorSite") }}><img src="/img/modal/workSpace/body/add.svg" className="ml-4" />افزودن رقیب جدید</button>}
-  //                                             </div>
-  //                                         </div>
-  //                                     )
-  //                                 })}
-  //                             </div>
-  //                         </div>
-  //                     </div>
-  //                 </Fragment>
-  //             );
-  //         default:
-  //             break;
-  //     }
-
-  //     setForceUpdate(forceUpdate + 1);
-  // }
-
-  // console.log(forceUpdate)
 
   return (
     <>
       {step == 1 ? (
-        <div>
+        <div className="mt-5">
           <div className="w-full  flex justify-center relative mb-4">
             {/* <img
               src="/img/dashboard/EasyStartPage/webAdress.svg"
               alt="EasyStartPage"
               className=" w-[328px]"
             /> */}
-            
+
           </div>
           <StaticInputText
             typeInput={"text"}
@@ -354,17 +291,11 @@ export default function InputGetWorkSpaceInfo({
         </div>
       ) : step == 2 ? (
         <div id="workSpaceModalStep2">
-             <div className="w-full  flex justify-center relative mb-4">
-            {/* <img
-              src="/img/dashboard/EasyStartPage/keywords.svg"
-              alt="EasyStartPage"
-              className=" w-[228px]"
-            /> */}
-            
-          </div>
-          <div className=" max-h-[380px] overflow-y-scroll">
+
+          <div className=" max-h-[380px] overflow-y-scroll pt-5">
             {addKeyCharMap.map((item, index) => (
-              <div className="container_input_step2 mt-7 mb-7">
+              <div className="flex items-center justify-between w-full mb-7">
+              <div className="container_input_step2 flex-grow">
                 <AuthInput
                   textLabelInput="کلمات کلیدی"
                   width={"100%"}
@@ -385,12 +316,25 @@ export default function InputGetWorkSpaceInfo({
                   placeholder={"page " + (index + 1)}
                 />
               </div>
+              <div className=" inline-block mr-2">
+                  <div className="close_suport_container inline-flex">
+                    <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
+                      <div
+                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 bg-[url('/img/modal/head/closeModal.svg')]"
+                        onClick={() =>
+                          handleRemoveInput("addKeyCharMap", index)
+                        }
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
           <button
             className="btn-style "
             onClick={() => {
-              countInput <= 10 &&
+              addKeyCharMap.length < 10 &&
                 setAddKeyCharMap([...addKeyCharMap, countInput]);
               handleAddStateCountInput("keyChar");
             }}
@@ -401,33 +345,47 @@ export default function InputGetWorkSpaceInfo({
         </div>
       ) : step == 3 ? (
         <Fragment>
-          <div className=" max-h-[380px] overflow-y-scroll">
-          <div className="w-full  flex justify-center relative mb-4">
-            {/* <img
+          <div className=" max-h-[380px] overflow-y-scroll pt-5">
+            <div className="w-full  flex justify-center relative mb-4">
+              {/* <img
               src="/img/dashboard/EasyStartPage/Group 2.svg"
               alt="EasyStartPage"
               className=" w-[228px]"
             /> */}
-            
-          </div>
+
+            </div>
             {addCommercialPageMap.map((item, index) => (
-              <StaticInputText
-                parentClass={"mb-7"}
-                typeInput={"text"}
-                width={"100%"}
-                textLabelInput={"صفحه تجاری"}
-                staticText={`https://${webAdress}/`}
-                placeholder={"page " + (index + 1)}
-                value={handleInputValue(item, "commercialPage", null)}
-                reduxHandleChange={setCommercialPages}
-                workSpaceTypeState={`commercialPage${item}`}
-              />
+              <div className="flex items-center justify-between w-full mb-7">
+                <StaticInputText
+                  // parentClass={"mb-7"}
+                  typeInput={"text"}
+                  width={"100%"}
+                  textLabelInput={"صفحه تجاری"}
+                  staticText={`https://${webAdress}/`}
+                  placeholder={"page " + (index + 1)}
+                  value={handleInputValue(item, "commercialPage", null)}
+                  reduxHandleChange={setCommercialPages}
+                  workSpaceTypeState={`commercialPage${item}`}
+                />
+                <div className=" inline-block mr-2">
+                  <div className="close_suport_container inline-flex">
+                    <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
+                      <div
+                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 bg-[url('/img/modal/head/closeModal.svg')]"
+                        onClick={() =>
+                          handleRemoveInput("addCommercialPageMap", index)
+                        }
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
           <button
             className="btn-style "
             onClick={() => {
-              countInput <= 10 &&
+              addCommercialPageMap.length < 10 &&
                 setAddCommercialPageMap([...addCommercialPageMap, countInput]);
               handleAddStateCountInput("commercialPage");
             }}
@@ -438,25 +396,42 @@ export default function InputGetWorkSpaceInfo({
         </Fragment>
       ) : step == 4 ? (
         <Fragment>
-          <div className=" max-h-[380px] overflow-y-scroll">
+          <div className=" max-h-[380px] overflow-y-scroll pt-6 mt-5">
             {addWebsitePageMap.map((item, index) => (
-              <StaticInputText
-                parentClass={"mb-7"}
-                typeInput={"text"}
-                width={"100%"}
-                textLabelInput={"افزودن صفحه وبسایت"}
-                staticText={`https://${webAdress}/`}
-                placeholder={"page " + (index + 1)}
-                value={handleInputValue(item, "websitePage", null)}
-                reduxHandleChange={setWebsitePages}
-                workSpaceTypeState={`websitePage${item}`}
-              />
+              <div>
+                <div className="flex items-center justify-between w-full mb-7">
+
+                  <StaticInputText
+                    // parentClass={"mb-7"}
+                    typeInput={"text"}
+                    width={"100%"}
+                    textLabelInput={"افزودن صفحه وبسایت"}
+                    staticText={`https://${webAdress}/`}
+                    placeholder={"page " + (index + 1)}
+                    value={handleInputValue(item, "websitePage", null)}
+                    reduxHandleChange={setWebsitePages}
+                    workSpaceTypeState={`websitePage${item}`}
+                  />
+                  <div className=" inline-block mr-2">
+                    <div className="close_suport_container inline-flex">
+                      <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
+                        <div
+                          className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 bg-[url('/img/modal/head/closeModal.svg')]"
+                          onClick={() =>
+                            handleRemoveInput("addWebsitePageMap", index)
+                          }
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
           <button
             className="btn-style "
             onClick={() => {
-              countInput <= 10 &&
+              addWebsitePageMap.length < 10 &&
                 setAddWebsitePageMap([...addWebsitePageMap, countInput]);
               handleAddStateCountInput("websitePage");
             }}
@@ -467,8 +442,8 @@ export default function InputGetWorkSpaceInfo({
         </Fragment>
       ) : step == 5 ? (
         <Fragment>
-          <div id="workSpaceModalStep2">
-            <div className=" max-h-[380px] overflow-y-scroll">
+          <div id="workSpaceModalStep2" className="mt-5">
+            <div className=" max-h-[380px] overflow-y-scroll pt-6">
               <div className="container_input_step2 flex-col">
                 {addKeyCharMap.map((itemKey) => {
                   return (
@@ -480,6 +455,7 @@ export default function InputGetWorkSpaceInfo({
                         value={handleInputValue(itemKey, "keyWords", "key")}
                         reduxHandleChange={setKeyWords}
                         workSpaceTypeState={`keyWord${itemKey}`}
+                        readOnly
                       />
                       <img
                         src="/img/modal/body/arrow.svg"
@@ -503,7 +479,7 @@ export default function InputGetWorkSpaceInfo({
                                     workSpaceTypeState={`keyWord${itemKey},${itemCompetitor}`}
                                     value={
                                       handleCompetitorSiteValue(itemKey)[
-                                        itemCompetitor - 1
+                                      itemCompetitor - 1
                                       ]
                                     }
                                   />
@@ -527,7 +503,7 @@ export default function InputGetWorkSpaceInfo({
                             );
                           }
                         )}
-                        {}
+                        { }
                         {competitorSitesSumLenght < 5 && (
                           <button
                             className="btn-style my-4"
