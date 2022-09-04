@@ -40,6 +40,7 @@ export const AuthVerifyCode = ({errorTextId}) => {
         // </div>
     return (
         <div className="flex items-center gap-5 flex-col relative m-auto  w-max">
+          کد فعال سازی
           <div className="flex items-center gap-4">
             <AuthInput
               classes={"verify_email_cod input_selector_4"}

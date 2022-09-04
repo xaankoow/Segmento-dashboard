@@ -169,8 +169,9 @@ export default function MyList() {
               </div>
             </div>
             {clicked === index ? (
-              <Table data={tableDataFiltered} WordsSearcher={true} />
-            ) : null}
+              <Table data={tableDataFiltered} WordsSearcher={true} savedItem={item.key} />
+            )  : null}
+            
           </div>
         );
       })}

@@ -1,6 +1,6 @@
 @import url(./dashboard.css);
 @import url(./nav.css);
-/* @import url(./elements.css); */
+@import url(./elements.css);
 @import url(./app.css);
 @import url(./animation.css);
 @import url(./forgotPassword/inputDisable.css);

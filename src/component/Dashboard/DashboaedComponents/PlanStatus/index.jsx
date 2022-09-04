@@ -23,7 +23,7 @@ export default function PlanStatus() {
   var nowDate = new Date();
 // user type
 const type=userState.userData.package != undefined? userState.userData.package.type_text: "بدون پکیج";
-            console.log(type)      
+         
   var startDate =
     userState.userData.package != undefined &&
     new Date(moment(userState.userData.package.start).format("YYYY/M/D"));

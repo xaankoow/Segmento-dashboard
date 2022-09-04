@@ -335,7 +335,7 @@
 }
 
 #DASHBOARD .userProfBox {
-	z-index: 30;
+	z-index: 10000;
 	position: relative;
 	padding: 5px;
 	background-color: white;

@@ -10,6 +10,8 @@ export default function Table({
   contentsProduction,
   openModal,
   iskeyWord,
+  searchBoxValue,
+  savedItem,
 }) {
   const [selectColumnTitle, setSelectColumnTitle] = useState("انتخاب");
   const [handleClickButton, setHandleClickButton] = useState(false);
@@ -33,11 +35,13 @@ export default function Table({
   };
 
   // console.log(copyItem.length);
+  // seperator adjusting
+  let searchBox = searchBoxValue !==undefined ? searchBoxValue.length : savedItem ? savedItem.length :0 ;
   const groupIt = (array) => {
     let resultObj = {};
 
     for (let i = 0; i < array.length; i++) {
-      let currentWord = array[i];
+      let currentWord = array[i].slice(searchBox).trim();
       let firstChar = currentWord[0].toLowerCase();
       let innerArr = [];
       if (resultObj[firstChar] === undefined) {
@@ -50,9 +54,29 @@ export default function Table({
     return resultObj;
   };
   const seperator = groupIt(data);
+
   const a = Object.keys(seperator).map((item) => {
     return item;
   });
+
+  console.log(savedItem && savedItem)
+  const setSepetator = (data) => {
+    const list = [];
+    for (let i = 0; i < a.length; i++) {
+      let lastLetter = "";
+      for (let j = 0; j < data.length; j++) {
+        let ch = data[j].slice(searchBox);
+        let bo = ch.trim().slice(0, 1);
+        if (lastLetter !== a[i]) {
+          if (a[i] == bo) {
+            lastLetter = a[i];
+            list.push(data[j]);
+          }
+        }
+      }
+    }
+    return list;
+  };
 
   //keyWordSearch
   const [secoundSearchBoxValue, setSecoundSearchBoxValue] = useState("");
@@ -62,7 +86,7 @@ export default function Table({
   const radioButtonHandler = (e) => {
     setRadioClickedHandler(e.target.value);
   };
-  if (radioClickedHandler === "1" ) {
+  if (radioClickedHandler === "1") {
     comboboxFiltered = data.filter((item) => {
       return item;
     });
@@ -78,7 +102,7 @@ export default function Table({
     comboboxFiltered = data.filter((item) => {
       return !item.includes(secoundSearchBoxValue);
     });
-  }else{
+  } else {
     comboboxFiltered = data.filter((item) => {
       return item;
     });
@@ -144,6 +168,8 @@ export default function Table({
 
     handleCheckingInput(e.target.checked, item);
   };
+  const seperatorList = setSepetator(filteredDatas);
+  let indexSeprator = 0;
   return (
     <div
       className=" flex grow flex-col border border-[#D9D9D9] p-0 "
@@ -153,8 +179,11 @@ export default function Table({
         <div className="flex items-center justify-between bg-[#FCFCFB] w-full px-2">
           <div className="flex gap-4 items-center ">
             <div
-            
-              className={`text-sm font-medium text-gray-900  relative text-right ${ copyItem.length > 0?"text-[#0A65CD] btn-secondary m-auto cursor-pointer":"text-[#D9D9D9]"}`}
+              className={`text-sm font-medium text-gray-900  relative text-right ${
+                copyItem.length > 0
+                  ? "text-[#0A65CD] btn-secondary m-auto cursor-pointer"
+                  : "text-[#D9D9D9]"
+              }`}
               onClick={() => {
                 navigator.clipboard.writeText(customCopy());
                 setHandleClickCopy(true);
@@ -271,14 +300,17 @@ export default function Table({
             id="table"
           >
             {filteredDatas.map((item, index) => {
-              let letterArray = [""];
+              if (seperatorList[indexSeprator] == item) {
+                indexSeprator = indexSeprator + 1;
+              }
+
               return (
                 <>
-                  {letterArray[index] !== letterArray[index + 1] &&
+                  {seperatorList[indexSeprator - 1] == item &&
                   !contentsProduction ? (
                     <div className="flex items-center justify-center m-2">
                       <div className="bg-gray w-[55px] h-[20px] text-center flex items-center justify-center text-[#ffffff] rounded">
-                        {a[index]}
+                        {a[indexSeprator - 1]}
                       </div>
                       <div className="w-full h-[1px] bg-gray rounded"></div>
                     </div>

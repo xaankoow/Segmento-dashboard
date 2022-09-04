@@ -21,7 +21,7 @@ export const paragraphText = (step, operationType) => {
                 </p>
             )
 
-        default:
-            break;
-    }
-}
+    default:
+      break;
+  }
+};

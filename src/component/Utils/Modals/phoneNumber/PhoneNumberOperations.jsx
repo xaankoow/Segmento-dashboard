@@ -74,13 +74,12 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         // set timer
         const { data } = await changePhoneNumber(formdata);
         if (data.status) {
-          setCheckResendCode(false)
-          setModalStep(2)
+          setCheckResendCode(false);
+          setModalStep(2);
         } else {
-          InputError("phoneNumberOperationsErrText", data.errors[0])
+          InputError("phoneNumberOperationsErrText", data.errors[0]);
         }
       }
-
     } catch (error) {
       // console.log(error);
     }
@@ -95,7 +94,6 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   };
 
   const verifyPhoneUserNumber = async () => {
-
     // handle show loadin
     {
       loadingState.ProcessingDelay.push("verifyPhoneNumber");
@@ -108,12 +106,12 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       formdata.append("mobile", "09" + phoneNumberValue);
       const { data, status, code } = await verifyPhoneNumber(formdata);
 
-      if (data.code == 200 & data.status == true) {
-        dispatch(setPropCoreUser("mobile",data.user.mobile))
+      if ((data.code == 200) & (data.status == true)) {
+        dispatch(setPropCoreUser("mobile", data.user.mobile));
         setCheckCompleted(true);
       }
       if (data.errors.length != 0) {
-        InputError("authVerifyCodeList", "کد فعال‌سازی اشتباه است.")
+        InputError("authVerifyCodeList", "کد فعال‌سازی اشتباه است.");
 
         toast.error(data.errors[0]);
       }
@@ -139,11 +137,11 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         if (seconds === 0) {
           if (minutes === 0) {
             clearInterval(myInterval);
-            setCheckResendCode(true)
+            setCheckResendCode(true);
             setMinutes(1);
             setSeconds(59);
           } else {
-            setMinutes(minutes-1);
+            setMinutes(minutes - 1);
             setSeconds(59);
             // minutesTimerValue = minutesTimerValue - 1;
             // secondsTimerValue = 59;
@@ -154,13 +152,12 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
     // debugger
     if (userData.user != undefined && operationType == "") {
       if (userData.user.mobile == null) {
-        setOperationType("verify")
+        setOperationType("verify");
       } else {
-        setOperationType("change")
+        setOperationType("change");
       }
     }
   });
-
 
   // reset redux state
   useEffect(() => {
@@ -170,11 +167,9 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   }, []);
 
   useEffect(() => {
-    console.log(operationType)
-  }, [operationType])
-  
+    console.log(operationType);
+  }, [operationType]);
 
-  
   // clear timer
   const clearTimerValue = () => {
     if (minutes != 1 || seconds != 59) {
@@ -184,97 +179,107 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   };
 
   return (
-<div id="phoneNumberOparationLayOut">
-  {showModal&&(
+    <div id="phoneNumberOparationLayOut">
+      {showModal && (
         <div>
-        {checkCompleted ? (
-          <PopUp
-            clickHandler={() => operationType == "verify"?setShowModal(false):navigate(-1)}
-            image={"/img/popUp/tik.svg"}
-            type={"sucsess"}
-            title={"موفقیت آمیز"}
-            text={
-              operationType == "verify"
-                ? "شماره همراه شما با موفقیت در سگمنتو تایید شد !"
-                : "شماره همراه شما با موفقیت در سگمنتو تغییر داده شد !"
-            }
-            buttonText={"باشه، فهمیدم!"}
-          />
-        ) : (
-          <Modal
-            isOpen={true}
-            parentSelector={() =>
-              document.querySelector(modalParentSelector)
-            }
-            style={defaultCustomModalStyle}
-            contentLabel="Example Modal"
-            // overlayClassName={"main"}
-          >
-            <div className="report_buy_plan w-[530px] rounded-lg transition-all">
-              <PageTitle
-              closeIco={operationType=="verify"&&true}
-                // title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
-                title={userData.user != undefined && userData.user.mobile == null ? "تایید شماره همراه" : "تغییر شماره همراه"}
-              />
-              <body className=" bg-[#fff]  pt-2 px-2 pb-5">
-                <div className=" mt-5">{paragraphText(modalStep,operationType)}</div>
-                <div className=" w-96 mx-auto mt-20">
-                  {modalStep == 1 ? (
-                    <StaticInputText
-                      typeInput={"text"}
-                      width={"100%"}
-                      staticText={"09"}
-                      textLabelInput={"شماره همراه"}
-                      placeholder="شماره همراه"
-                      handleChange={(e) => handlePhoneNumberValue(e.target.value)}
-                      maxlength={11}
-                      errorTextId="phoneNumberOperationsErrText"
-  
-                    />
-                  ) : (
-                    <AuthVerifyCode />
-                  )}
-                </div>
-                <div className="mt-24 px-3">
-                  {modalStep == 1 ? (
-                    <AuthButton
-                      textButton={"دریافت کد تایید"}
-                      handlerClick={setNewPhoneNumber}
-                    />
-                  ) : (
-                    <div className="flex justify-between items-center">
-                      <AuthButton
-                        textButton={"تایید شماره همراه"}
-                        handlerClick={verifyPhoneUserNumber}
-  
+          {checkCompleted ? (
+            <PopUp
+              clickHandler={() =>
+                operationType == "verify" ? setShowModal(false) : navigate(-1)
+              }
+              image={"/img/popUp/tik.svg"}
+              type={"sucsess"}
+              title={
+                operationType == "verify"
+                  ? "شماره همراه شما ذخیره شد."
+                  : "شماره همراه شما تغییر کرد."
+              }
+              text={"حالا می‌توانید کارتان را ادامه کنید."}
+              buttonText={"باشه، بزن بریم."}
+            />
+          ) : (
+            <Modal
+              isOpen={true}
+              parentSelector={() =>
+                document.querySelector(".app #DASHBOARD .body .main")
+              }
+              style={defaultCustomModalStyle}
+              contentLabel="Example Modal"
+            >
+              <div className="report_buy_plan w-[530px] rounded-lg transition-all">
+                <PageTitle
+                  closeIco={operationType == "verify" && false}
+                  // title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
+                  title={
+                    userData.user != undefined && userData.user.mobile == null
+                      ? "تایید شماره همراه"
+                      : "تغییر شماره همراه"
+                  }
+                />
+                <body className=" bg-[#fff]  pt-2 px-2 pb-5">
+                  <div className=" mt-5">{paragraphText(modalStep)}</div>
+                  <div className=" w-96 mx-auto mt-20">
+                    {modalStep == 1 ? (
+                      <StaticInputText
+                        typeInput={"text"}
+                        width={"100%"}
+                        staticText={"09"}
+                        textLabelInput={"شماره همراه"}
+                        placeholder=""
+                        handleChange={(e) =>
+                          handlePhoneNumberValue(e.target.value)
+                        }
+                        maxlength={11}
+                        errorTextId="phoneNumberOperationsErrText"
                       />
-                      <div className=" w-1/3">
-                        <Timer minutes={minutes} seconds={seconds} />
-                        <span
-                          onClick={() => checkResendCode && setNewPhoneNumber()}
-                          className={`mr-3 border-b cursor-pointer ${!checkResendCode && " text-sectionDisable cursor-default"}`}
-                          data-tip="با کلیک‌کردن، کد جدید دریافت می‌کنید."
-                          data-type="light"
-                          data-place="top"
-                          onMouseEnter={() => setShowToolTip(true)}
-                          onMouseLeave={() => {
-                            setShowToolTip(false);
-                            setTimeout(() => setShowToolTip(true), 0);
-                          }}
-                        >
-                          دریافت مجدد کد
-                        </span>
+                    ) : (
+                      <AuthVerifyCode />
+                    )}
+                  </div>
+                  <div className="mt-24 px-3">
+                    {modalStep == 1 ? (
+                      <AuthButton
+                        textButton={"دریافت کد تایید"}
+                        handlerClick={setNewPhoneNumber}
+                      />
+                    ) : (
+                      <div className="flex justify-between items-center">
+                        <AuthButton
+                          textButton={"تایید شماره همراه"}
+                          handlerClick={verifyPhoneUserNumber}
+                        />
+                        <div className=" w-1/3">
+                          <Timer minutes={minutes} seconds={seconds} />
+                          <span
+                            onClick={() =>
+                              checkResendCode && setNewPhoneNumber()
+                            }
+                            className={`mr-3 border-b cursor-pointer ${
+                              !checkResendCode &&
+                              " text-sectionDisable cursor-default"
+                            }`}
+                            data-tip="با کلیک‌کردن، کد جدید دریافت می‌کنید."
+                            data-type="light"
+                            data-place="top"
+                            onMouseEnter={() => setShowToolTip(true)}
+                            onMouseLeave={() => {
+                              setShowToolTip(false);
+                              setTimeout(() => setShowToolTip(true), 0);
+                            }}
+                          >
+                            دریافت مجدد کد
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              </body>
-            </div>
-            {showToolTip && <ToolTip />}
-          </Modal>
-        )}
-      </div>
-  )}
-</div>
+                    )}
+                  </div>
+                </body>
+              </div>
+              {showToolTip && <ToolTip />}
+            </Modal>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
