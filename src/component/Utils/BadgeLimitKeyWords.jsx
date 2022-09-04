@@ -29,9 +29,9 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
         try {
           const { data, status } = await getPackageInfO(package_uuid);
           setAllWords(data.data.features);
-          console.log(data.data.features);
+   
         } catch (error) {
-          console.log(error);
+         
         }
       }
     };
@@ -49,9 +49,9 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
     try {
       const { data, status } = await usetLimit();
       setDatas(data.data);
-      console.log(data.data);
+      
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

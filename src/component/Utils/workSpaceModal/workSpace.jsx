@@ -67,7 +67,7 @@ export default function WorkSpace() {
         setAddCommercialPageInput(addCommercialPageInput - 1);
         break;
       case "websitePage":
-        console.log("start")
+       
 
         setAddWebsitePageInput(addWebsitePageInput - 1);
         break;

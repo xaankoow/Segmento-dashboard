@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 export const TextBaner=()=>{
 
     const { userData } = useSelector((state) => state.userState);
-    console.log(userData.package)
+   
     if (userData.package==undefined) {
         return "خرید اشتراک سگمنتو است"
     }else if (userData.package.title=="14 روز رایگان") {

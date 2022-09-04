@@ -138,7 +138,6 @@ export const FindPackageWithUuid = (uuidPackage) => {
 
   const { allPackageData } = useSelector(state => state.planState);
   var filteredData = "0";
-  debugger
   if (uuidPackage != "") {
 
     var findIndexPackage = allPackageData.findIndex(value => value.uuid == uuidPackage);

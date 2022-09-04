@@ -63,7 +63,7 @@ export default function TableFinancialReports({ title }) {
           await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
         }
         const { data } = await getAllFinancialReportsData();
-        console.log(data.data)
+
         if (data.status == true && data.code == 200) {
           setFinancialDataTableOrg(data.data);
           setFinancialDataTableFiltered(data.data);
@@ -160,7 +160,7 @@ export default function TableFinancialReports({ title }) {
               </div>
               <div className="overflow-scroll h-[94%] text-xs font-normal">
                 {/* {financialDataTableFiltered.length > 0 && */}
-                {console.log(financialDataTableFiltered.length)}
+              
                 {financialDataTableFiltered.length != 0 && financialDataTableFiltered.map((item, index) => (
                   <div
                     className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}

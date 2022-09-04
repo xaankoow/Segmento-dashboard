@@ -167,7 +167,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   }, []);
 
   useEffect(() => {
-    console.log(operationType);
+    
   }, [operationType]);
 
   // clear timer

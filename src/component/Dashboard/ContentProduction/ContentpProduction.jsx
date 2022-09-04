@@ -69,7 +69,7 @@ export default function ContentpProduction({ onClickHandler }) {
 
   
   
-console.log(content)
+
   return (
     <>
       {keyWordShowSaveModal && (

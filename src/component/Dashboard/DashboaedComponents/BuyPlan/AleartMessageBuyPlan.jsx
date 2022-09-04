@@ -7,7 +7,7 @@ export default function AleartMessageBuyPlan() {
 
   const [financialData, setFinancialData] = useState([])
 
-  console.log(financialData)
+ 
   const typeAlert =
     financialData.length != 0
       && financialData[0].payment_status_text == "پرداخت موفق"
@@ -36,7 +36,7 @@ export default function AleartMessageBuyPlan() {
         }
 
         const { data } = await getAllFinancialReportsData();
-        console.log(data.data)
+       
         if (data.status == true && data.code == 200) {
           setFinancialData(data.data);
         }

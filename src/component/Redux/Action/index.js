@@ -64,7 +64,7 @@ export const coreUser = () => {
             });
             //handle hide loading
             {
-                console.log("remove")
+                
                 const loadingState2 = { ...getState().loadingState }
                 var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "coreUserData");
                 loadingState2.ProcessingDelay = removeProcessingItem;
@@ -256,7 +256,7 @@ export const RegisterUserAction = () => {
                         data.errors.forEach(element => {
                             toastMessage += element + " / ";;
                         });
-                        console.log("register")
+                  
                         showToast(toastMessage, "error");
                     }
                 } catch (error) {
@@ -367,7 +367,7 @@ export const loginUserAction = () => {
                     }
                 } catch (error) {
 
-                    console.log(error)
+                   
                     if (error.response.data.code == 404) {
                         InputError("errRejesterFormatEmail", "ایمیل یا گذرواژه اشتباه است.")
                     } else {
@@ -580,7 +580,7 @@ export const checkVerifyEmailForgotPasswordAction = () => {
                     // }
                     // showPromisToast(check_verify_email(),"checkVerifyEmail")
                 } catch (error) {
-                    console.log(error)
+                  
                     if (error.response.data.code == 404) {
                         InputError("authVerifyCodeList", "کد فعال‌سازی اشتباه است.")
 
