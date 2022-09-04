@@ -12,7 +12,7 @@ const EasyStart = ({ startButtonClick }) => {
         <span className="text-primaryV1">
           اگر سوالی دارید، با همکاران ما در واحد پشتیبانی تماس بگیرید.{" "}
         </span>
-        <button className="btn-style"> برقراری تماس</button>
+        <a href="https://segmento.ir/support"><button className="btn-style"> برقراری تماس</button></a>
       </div>
       <div className="flex flex-col relative mt-9 mx-7 mb-7 ">
         <div className="flex items-center justify-center text-title bg-gold text-base py-5 absolute w-full -top-5  rounded-t-lg z-10 ">

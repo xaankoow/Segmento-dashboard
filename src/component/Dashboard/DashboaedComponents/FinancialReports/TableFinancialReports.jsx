@@ -150,7 +150,7 @@ export default function TableFinancialReports({ title }) {
               <div className=" h-14 text-sm font-normal flex items-center justify-around flex-row-reverse bg-[#FCFCFB]">
                 <p className=" w-28 text-center">عملیات</p>
                 <p className=" w-24 text-center">وضعیت پرداخت</p>
-                <p className=" w-11 text-center">مبلغ</p>
+                <p className=" w-[72px] text-center ">مبلغ (تومان)</p>
                 <p className=" w-[68px] text-center">تاریخ انقضا</p>
                 <p className=" w-16 text-center">تاریخ خرید</p>
                 <p className=" w-36 text-center">نوع اشتراک</p>
@@ -182,7 +182,7 @@ export default function TableFinancialReports({ title }) {
                     </p>
                     {/* مبلغ */}
                     {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
-                    <p className=" w-11 text-center">
+                    <p className=" w-[72px] text-center">
                       {setFormatPrice(item.sub_total)}
                     </p>
                     {/* انقضا */}

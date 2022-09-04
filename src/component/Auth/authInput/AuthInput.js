@@ -25,6 +25,7 @@ export default function AuthInput({
   errorTextId,
   infoStrongPass,
   checkStrongPass,
+  readOnly,
   ref
 
 
@@ -63,6 +64,7 @@ export default function AuthInput({
           className={`${classes}  ${disable == true && " bg-[#D9D9D9] text-[#FCFCFB]"}`}
           value={value}
           dir="auto"
+          readOnly={readOnly!=undefined&&true}
           style={{
             direction,
             width: `${width}`,
