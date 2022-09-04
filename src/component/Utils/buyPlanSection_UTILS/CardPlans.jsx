@@ -67,7 +67,6 @@ export default function CardPlans({ plan, setPlan }) {
 
   useEffect(() => {
     if (allPackageData.length != 0) {
-      // debugger
       var innerPrice = allPackageData[plan.planIndex].price
       if (plan.planIndex > 0 & plan.planIndex <= 4) {
         if (innerPrice != packageBronzePrice) {
@@ -89,8 +88,6 @@ export default function CardPlans({ plan, setPlan }) {
     }
 
   }, [plan])
-
-  console.log(plan)
 
   return (
     <div className='plan_cards_container'>
@@ -131,7 +128,7 @@ export default function CardPlans({ plan, setPlan }) {
             // disable={discount != "" ? true : false}
             errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
           />
-          <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}></button>
+          <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}></button>
         </div>
       </div>
       <div className='silver plan_card mx-1'>
@@ -172,7 +169,7 @@ export default function CardPlans({ plan, setPlan }) {
             // disable={discount != "" ? true : false}
             errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
           />
-          <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}></button>
+          <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}></button>
         </div>
       </div>
       <div className='gold plan_card ml-1'>
@@ -211,7 +208,7 @@ export default function CardPlans({ plan, setPlan }) {
             // disable={discount != "" ? true : false}
             errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
           />
-          <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}></button>
+          <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}></button>
         </div>
       </div>
       <div className='diamond plan_card'>
@@ -251,7 +248,7 @@ export default function CardPlans({ plan, setPlan }) {
             // disable={discount != "" ? true : false}
             errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
           />
-          <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" && discount == "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}></button>
+          <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}></button>
         </div>
       </div>
     </div>

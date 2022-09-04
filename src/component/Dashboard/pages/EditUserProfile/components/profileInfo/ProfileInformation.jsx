@@ -23,8 +23,8 @@ console.log(userType)
         </div>
       </div>
       <div className="mr-2">
-        <span className="text-[20px] ml-5 ">{userName}</span>
-       {userType!=="بدون پکیج" &&  <span className={type.includes("طلایی")? "text-xs bg-yellow rounded-3xl py-1 px-2 text-center " : type.includes("نقره ای") ? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center " : type.includes("برنزی") ? "text-xs bg-[#E99991] rounded-3xl py-1 px-2 text-center ":type.includes("الماسی")  ? "text-xs bg-diamond rounded-3xl py-1 px-2 text-white text-center ": type.includes("14 روز رایگان")? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center " :"text-xs bg-yellow rounded-3xl py-1 px-2 text-center "}>
+        <span className="text-[20px] ml-5 inline-block">{userName}</span>
+       {userType!=="بدون پکیج" &&  <span className={type.includes("طلایی")? "text-xs bg-yellow rounded-3xl py-1 px-2 text-center inline-block" : type.includes("نقره ای") ? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center inline-block" : type.includes("برنزی") ? "text-xs bg-[#E99991] rounded-3xl py-1 px-2 text-center inline-block":type.includes("الماسی")  ? "text-xs bg-diamond rounded-3xl py-1 px-2 text-white text-center inline-block": type.includes("14 روز رایگان")? "text-xs bg-secondary rounded-3xl py-1 px-2 text-center inline-block" :"text-xs bg-yellow rounded-3xl py-1 px-2 text-center inline-block"}>
           {"  "}
           {userType +" "+ userState.userData.package.type_text}
           {"  "}

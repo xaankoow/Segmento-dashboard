@@ -43,11 +43,11 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
     <div className='report'>
       <div className='title'><span className='text-shortText'>اشتراک:</span><span className={`${packageSelected.type_text == "برنزی" ? " text-[#BF8970]" : packageSelected.type_text == "نقره ای" ? "text-[#7D7D7D]" : packageSelected.type_text == "طلایی" ? "text-[#FFCE47]" : "text-[#0A65CD]"}`}>{packageSelected.type_text}</span></div>
       <div className='date'><span>مدت: </span><span>{packageSelected.title}</span></div>
-      <div className='plan_price'><span>قیمت: </span><span>{setFormatPrice(packageSelected.price)} هزار تومان </span></div>
-      <div className="discount"><span>مقدار تخفیف: </span><span>{discountStatus.value != 0 ? packageSelected.default_discount_percent : packageSelected.default_discount_percent + (packageSelected.default_discount_percent.toString().length > 3 ? " هزار تومان " : " درصد ")}</span></div>
+      <div className='plan_price'><span>قیمت: </span><span>{setFormatPrice(packageSelected.price)}  تومان </span></div>
+      <div className="discount"><span>مقدار تخفیف: </span><span>{discountStatus.value != 0 ? packageSelected.default_discount_percent : packageSelected.default_discount_percent + (Math.ceil(packageSelected.default_discount_percent).toString().length > 3 ? "  تومان " : " درصد ")}</span></div>
       {/* <div className="discount"><span>مقدار تخفیف: </span><span>{packageSelected.default_discount_text}</span></div> */}
-      {discountStatus.discountType != "cash" ? <div className='price_discount'><span>مبلغ: </span><span>{setFormatPrice(packageSelected.default_discount)} هزار تومان </span></div> : discountStatus.value == 0 && <div className='price_discount'><span>مبلغ: </span><span>{setFormatPrice(packageSelected.default_discount)} هزار تومان </span></div>}
-      <div className='final_price'><span>قیمت نهایی و پرداخت </span><span>{setFormatPrice(packageSelected.default_discount_price)} هزار تومان </span></div>
+      {discountStatus.discountType != "cash" ? <div className='price_discount'><span>مبلغ تخفیف: </span><span>{setFormatPrice(packageSelected.default_discount)}  تومان </span></div> : discountStatus.value == 0 && <div className='price_discount'><span>مبلغ تخفیف: </span><span>{setFormatPrice(packageSelected.default_discount)}  تومان </span></div>}
+      <div className='final_price'><span>قیمت نهایی و پرداخت </span><span>{setFormatPrice(packageSelected.default_discount_price)}  تومان </span></div>
     </div>
 
   )

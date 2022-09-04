@@ -5,11 +5,11 @@ export default function DiscountTagValue({ tagStatusName, price, planSelected })
     // default_discount_price
     const { discountStatus } = useSelector(state => state.planState);
     var originalPrice = "";
-    var priceAfterTheDiscount = setFormatPrice(price) + " هزار تومان ماهانه";
+    var priceAfterTheDiscount = setFormatPrice(price) + "  تومان ماهانه";
     if (discountStatus.value != 0) {
         if (discountStatus.planType == tagStatusName) {
-            originalPrice = setFormatPrice(price) + " هزار تومان ماهانه"
-            priceAfterTheDiscount = setFormatPrice(price-setDiscountPrice(price, discountStatus.value, discountStatus.discountType == "cash" ? true : false).value) + " هزار تومان ماهانه";
+            originalPrice = setFormatPrice(price) + "  تومان ماهانه"
+            priceAfterTheDiscount = setFormatPrice(price-setDiscountPrice(price, discountStatus.value, discountStatus.discountType == "cash" ? true : false).value) + "  تومان ماهانه";
         }
     }
 

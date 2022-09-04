@@ -373,7 +373,7 @@ export default function EditUserProfile() {
                     <Link
                       to={"/dashboard/phoneNumberOperations"}
                       state={{ background: location }}
-                      className={"text-primary"}
+                      className={"third-btn"}
                     >
                       تغییر شماره همراه
                     </Link>
