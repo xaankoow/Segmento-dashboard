@@ -1,12 +1,14 @@
+import { setFormatNumber } from "./number";
+
 export const setFormatPrice = (price) => {
 
-    const subPrice = price.toString().substring(0, price.toString().length - 3);
-
-    if (subPrice.length > 3) {
-        return subPrice.slice(0, subPrice.length - 3) + "." + subPrice.slice(subPrice.length - 3, subPrice.length)
-    }
-
-    return subPrice
+    // const subPrice = price.toString().substring(0, price.toString().length - 3);
+    // if (subPrice.length > 3) {
+    //     return subPrice.slice(0, subPrice.length - 3) + "." + subPrice.slice(subPrice.length - 3, subPrice.length)
+    // }
+    
+    const setFormat=setFormatNumber(price)
+    return setFormat
 }
 
 export const setDiscountPrice = (price, discountValue, isCash) => {
@@ -18,7 +20,7 @@ export const setDiscountPrice = (price, discountValue, isCash) => {
 
     if (isCash == true) {
         computingDiscountPrice.value =roundPriceToUp(price - discountValue);
-        computingDiscountPrice.type = " هزارتومان ";
+        computingDiscountPrice.type = " تومان ";
 
     } else {
         computingDiscountPrice.value = roundPriceToUp(price - (price - price * `.${discountValue}`));

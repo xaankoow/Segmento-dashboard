@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import { modalParentSelector } from "../../../variables/style";
 import AuthButton from "../../Auth/authButton/AuthButton";
 
 const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan, tryFreePlanClick }) => {
@@ -21,7 +22,7 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
     <Modal
       isOpen={true}
       parentSelector={() =>
-        document.querySelector(".app #DASHBOARD .body .main")
+        document.querySelector(modalParentSelector)
       }
       style={customStyles}
       contentLabel="Example Modal"

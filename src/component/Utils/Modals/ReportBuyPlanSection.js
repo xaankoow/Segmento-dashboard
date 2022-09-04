@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal'
-import { defaultCustomModalStyle } from '../../../variables/style';
+import { defaultCustomModalStyle, modalParentSelector } from '../../../variables/style';
 import AuthButton from '../../Auth/authButton/AuthButton';
 import { buyPlan } from '../../Redux/Action/plan';
 import PurchaseInvoiceContent from '../buyPlanSection_UTILS/PurchaseInvoiceContent';
@@ -10,7 +10,7 @@ export default function ReportBuyPlanSection({ handleClose, packageUuid }) {
   return (
     <Modal
       isOpen={true}
-      parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
+      parentSelector={() => document.querySelector(modalParentSelector)}
       style={defaultCustomModalStyle}
       contentLabel="Example Modal"
     >

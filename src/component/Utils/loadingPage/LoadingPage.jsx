@@ -20,6 +20,7 @@ export default function LoadingPage() {
   return (
     <Fragment>
       {ProcessingDelay.length > 0 && canRequest == false ? (
+      // {true ? (
         <div id='Loadin-Page'>
           <Modal
             isOpen={true}
@@ -27,7 +28,7 @@ export default function LoadingPage() {
             style={customStyles}
             contentLabel="Example Modal"
           >
-            <div className='flex justify-center items-center rounded-2xl bg-white w-52 h-52'>
+            <div className='flex justify-center items-center rounded-2xl bg-white w-52 h-52 animate-pulse'>
               <div id="loading-container-segmento-logo">
                 <div className="segmento_logo_1"></div>
                 <div className="segmento_logo_2"></div>

@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { defaultCustomModalStyle } from "../../../../variables/style";
+import { defaultCustomModalStyle, modalParentSelector } from "../../../../variables/style";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import PageTitle from "../../../Dashboard/DashboaedComponents/pageTitle/pageTitle";
 import { setPropCoreUser } from "../../../Redux/Action";
@@ -50,7 +50,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
 
   //timer state
   const [minutes, setMinutes] = useState(1);
-  const [seconds, setSeconds] = useState(10);
+  const [seconds, setSeconds] = useState(59);
   const [phoneNumberValue, handlePhoneNumberValue] = useState("");
 
   // timer
@@ -184,7 +184,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   };
 
   return (
-<Fragment>
+<div id="phoneNumberOparationLayOut">
   {showModal&&(
         <div>
         {checkCompleted ? (
@@ -204,19 +204,20 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
           <Modal
             isOpen={true}
             parentSelector={() =>
-              document.querySelector(".app #DASHBOARD .body .main")
+              document.querySelector(modalParentSelector)
             }
             style={defaultCustomModalStyle}
             contentLabel="Example Modal"
+            // overlayClassName={"main"}
           >
             <div className="report_buy_plan w-[530px] rounded-lg transition-all">
               <PageTitle
-              closeIco={operationType=="verify"&&false}
+              closeIco={operationType=="verify"&&true}
                 // title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
                 title={userData.user != undefined && userData.user.mobile == null ? "تایید شماره همراه" : "تغییر شماره همراه"}
               />
               <body className=" bg-[#fff]  pt-2 px-2 pb-5">
-                <div className=" mt-5">{paragraphText(modalStep)}</div>
+                <div className=" mt-5">{paragraphText(modalStep,operationType)}</div>
                 <div className=" w-96 mx-auto mt-20">
                   {modalStep == 1 ? (
                     <StaticInputText
@@ -274,6 +275,6 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         )}
       </div>
   )}
-</Fragment>
+</div>
   );
 }
