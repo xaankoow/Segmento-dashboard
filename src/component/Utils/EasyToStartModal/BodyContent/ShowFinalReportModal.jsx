@@ -21,7 +21,7 @@ export default function ShowFinalReportModal() {
     }, [userData]);
 
     return (
-        <body className='final_report_container'>
+        <body className='final_report_container bg-[#fff]'>
             <div className='popup'>
                 <div className='title_popup'>اشتراک فعال سازی شده برای شما: </div>
                 <div className='main_popup'>{title}</div>

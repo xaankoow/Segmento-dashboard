@@ -7,6 +7,7 @@ import FooterBtn from './FooterBtn'
 import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan'
 import SetTitleTabBrowser from '../SetTitleTabBrowser'
 import { ReplaceClass } from '../replaceClass'
+import { modalParentSelector } from '../../../variables/style'
 
 export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
 
@@ -85,7 +86,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
               // closeTimeoutMS={2000}
 
               isOpen={true}
-              parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
+              parentSelector={() => document.querySelector(modalParentSelector)}
               style={customStyles}
               contentLabel="Example Modal"
             >

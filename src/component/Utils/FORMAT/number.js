@@ -1,22 +1,32 @@
-export const setFormatNumber=(subNumber)=>{
+export const setFormatNumber = (subNumber) => {
 
-    if (subNumber.toString().length > 3) {
-        return subNumber.toString().slice(0, subNumber.toString().length - 3) + "." + subNumber.toString().slice(subNumber.toString().length - 3, subNumber.toString().length)
+    const innerNum=Math.ceil(subNumber).toString();;
+    
+
+    if (innerNum.length > 6) {
+
+        return innerNum.slice(0, innerNum.length - 6) + "." +innerNum.slice(innerNum.length - 6, innerNum.length - 3) + "." + innerNum.slice(innerNum.length - 3, innerNum.length)
+   
+    } else if (innerNum.length > 3) {
+
+        return innerNum.slice(0, innerNum.length - 3) + "." + innerNum.slice(innerNum.length - 3, innerNum.length)
+    
     }
+
 
     return subNumber
 
 }
 
-export const setFloorNumber=(floorNumber)=>{
+export const setFloorNumber = (floorNumber) => {
 
-    const num =Math.floor(parseFloat(floorNumber));
+    const num = Math.floor(parseFloat(floorNumber));
 
     return num
 }
 
 // get number at the strign
-export const getNumberFromString=(findNum)=>{
+export const getNumberFromString = (findNum) => {
     var numb = findNum.match(/\d/g);
     numb = numb.join("");
     return numb

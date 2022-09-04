@@ -46,7 +46,7 @@ export const filterFinancialData = (allData, filterType, filterValue) => {
           break;
 
         case "مبلغ":
-          //for example: [2500,3000] (دو میلیون و پانصد هزار تومان)
+          //for example: [2500,3000] (دو میلیون و پانصد  تومان)
           if (
             (element.sub_total >= filterValue[0]) &
             (element.sub_total <= filterValue[1])
