@@ -27,6 +27,7 @@ export default function SidebarComponent() {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
+    setClicked(-2);
     dispatch(setCloseNav(true));
     // setCloseNav(true);
   };
@@ -66,17 +67,18 @@ export default function SidebarComponent() {
           </div>
         ) : activeIcon == 1 ? (
           <div>
-            <div onClick={()=>setClicked(-1)} className="flex items-center gap-3 text-[#002145] my-5 mr-5 cursor-pointer text-sm hover:cursor-pointer hover:text-blue ">
+            <div onClick={()=>setClicked(-1)} className={`flex items-center gap-3 text-[#002145] my-5 mr-5 cursor-pointer text-sm hover:cursor-pointer hover:text-blue ${clicked == -1 && "active"}`}>
               <img
                 src={
                   // "/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"
                   "/img/dashboard/nav_right/dashboardPishKhan.svg"
                 }
                 alt="icon"
+               
               />
               <Link
                 to={"/dashboard/PageCounter"}
-                className={`text-[${clicked == -1 &&"#0A65CD"}]`}
+              
               >
                 {closeNav && "پیشخان"}
               </Link>

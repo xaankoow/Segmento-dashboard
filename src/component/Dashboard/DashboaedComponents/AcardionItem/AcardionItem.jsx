@@ -206,10 +206,10 @@ export default function AcardionItem({clicked,setClicked}) {
                         <div
                         onClick={()=>setItemsClicked(acardionItem.itemTitle)}
                           key={indexx}
-                          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox ${ clicked === index  && ItemsClicked == acardionItem.itemTitle && "active"}`}
+                          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${ clicked === index  && ItemsClicked == acardionItem.itemTitle && "active"}`}
                         >
                           <img src={acardionItem.itemIcon} alt="icon" />
-                          <span className={"w-auto"}>{acardionItem.itemTitle}</span>
+                          <span className={"w-auto hover:text-blue"}>{acardionItem.itemTitle}</span>
                         </div>
                       </Link>
                     )

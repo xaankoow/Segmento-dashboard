@@ -60,6 +60,7 @@ const KeyWords = ({ onClickHandler }) => {
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
   };
+  
   // store data in myList
   var handleSetStoreKeyWords = async () => {
     //handle show loadin
@@ -153,7 +154,7 @@ const KeyWords = ({ onClickHandler }) => {
   const tableAlphabetFiltering = comboboxFiltered.filter((item) => {
     return item.slice(searchBoxValue.length + 1).startsWith(alphabetHandler);
   });
-  console.log(tableAlphabetFiltering);
+
   //check dom
   return (
     <>
@@ -195,6 +196,7 @@ const KeyWords = ({ onClickHandler }) => {
                 !searchBoxValue || !searchBoxHandleClick ? true : false
               }
               iskeyWord={true}
+              searchBoxValue={searchBoxValue}
             />
             <div className="flex flex-col items-center w-[334px] mr-7">
               <KeyWordsSearch
