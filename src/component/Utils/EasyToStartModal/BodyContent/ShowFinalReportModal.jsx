@@ -29,7 +29,7 @@ export default function ShowFinalReportModal() {
             <p className='text-center text-lg'>سگمنتو بهترین مشتریان را دارد! داشتن مشتریانی مثل شما باعث افتخار است.</p>
             <div className='support_container '>
                 <p className=''>اگر سوالی دارید، با همکاران ما در واحد پشتیبانی تماس بگیرید.</p>
-                <AuthButton textButton={"برقراری تماس"} />
+                <a href="https://segmento.ir/support"><AuthButton textButton={"برقراری تماس"} /></a>
                 <img src="/img/dashboard/EasyStartPage/success.svg" alt="" />
             </div>
         </body>
