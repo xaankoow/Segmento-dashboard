@@ -179,6 +179,18 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
     }
   };
 
+  const customStyles = {
+    content: {
+      top: '43vh',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      backgrounColor: "red",
+      'z-index': '100'
+    },
+  };
   return (
     <div id="phoneNumberOparationLayOut">
       {showModal && (
@@ -202,14 +214,15 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
             <Modal
               isOpen={true}
               parentSelector={() =>
-                document.querySelector(".app #DASHBOARD .body .main")
+                document.querySelector(".app #DASHBOARD")
               }
               style={defaultCustomModalStyle}
+              onRequestClose={()=>operationType!="verify"&&navigate(-1)}
               contentLabel="Example Modal"
             >
               <div className="report_buy_plan w-[530px] rounded-lg transition-all">
                 <PageTitle
-                  closeIco={operationType == "verify" && false}
+                  closeIco={operationType != "verify" && true}
                   // title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
                   title={
                     userData.user != undefined && userData.user.mobile == null

@@ -8,6 +8,7 @@ import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/Al
 import SetTitleTabBrowser from '../SetTitleTabBrowser'
 import { ReplaceClass } from '../replaceClass'
 import { modalParentSelector } from '../../../variables/style'
+import { useNavigate } from 'react-router'
 
 export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
 
@@ -24,6 +25,8 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   const [checkErr, setCheckErr] = useState("");
 
   const { forceUpdate } = useSelector(state => state.planState);
+
+  const navigate=useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -89,6 +92,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
               parentSelector={() => document.querySelector(modalParentSelector)}
               style={customStyles}
               contentLabel="Example Modal"
+              onRequestClose={()=>navigate(-1)}
             >
               <div className='w-[907px]'>
                 {checkErr != "" ? (

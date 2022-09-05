@@ -13,8 +13,8 @@ export default function Head({ stepModal, free }) {
       </div>
       <div className='close_suport_container'>
         {stepModal == 1 || stepModal == 2 ?<a href="https://segmento.ir/support"><AuthButton classes={"btn-secondary"} textButton={"پشتیبانی"} /></a> : null}
-        <div className='flex justify-center items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' >
-          <div className='close_modal_ico' onClick={() => navigate(-1)}></div>
+        <div className='flex justify-center items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' onClick={() => navigate(-1)}>
+          <div className='close_modal_ico' ></div>
         </div>
       </div>
     </header>
