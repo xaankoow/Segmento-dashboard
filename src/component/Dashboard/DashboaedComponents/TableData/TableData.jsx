@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Checkbox from "../../../Utils/Elements/CheckBox/Checkbox";
 import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
+import bookmark_svg from '../../../../assets/img/dashboard/table/bookmark.svg'
 
 export default function Table({
   data,
@@ -8,7 +10,9 @@ export default function Table({
   WordsSearcher,
   contentsProduction,
   openModal,
-  iskeyWord
+  iskeyWord,
+  searchBoxValue,
+  savedItem,
 }) {
   const [selectColumnTitle, setSelectColumnTitle] = useState("انتخاب");
   const [handleClickButton, setHandleClickButton] = useState(false);
@@ -16,7 +20,7 @@ export default function Table({
   const [handleClickCopyIndex, SetHandleCopyIndex] = useState(false);
   const [copyItem, setCopyItem] = useState([]);
   // row of table
- 
+
   const [activeRow, setActiveRow] = useState(0);
   const [activeCheckBox, setActiveCheckBox] = useState([]);
   const [isActive, setActive] = useState(false); // <-- set className name when checkbox is checking
@@ -32,11 +36,13 @@ export default function Table({
   };
 
   // console.log(copyItem.length);
+  // seperator adjusting
+  let searchBox = searchBoxValue !==undefined ? searchBoxValue.length : savedItem ? savedItem.length :0 ;
   const groupIt = (array) => {
     let resultObj = {};
 
     for (let i = 0; i < array.length; i++) {
-      let currentWord = array[i];
+      let currentWord = array[i].slice(searchBox).trim();
       let firstChar = currentWord[0].toLowerCase();
       let innerArr = [];
       if (resultObj[firstChar] === undefined) {
@@ -49,9 +55,29 @@ export default function Table({
     return resultObj;
   };
   const seperator = groupIt(data);
+
   const a = Object.keys(seperator).map((item) => {
     return item;
   });
+
+  console.log(savedItem && savedItem)
+  const setSepetator = (data) => {
+    const list = [];
+    for (let i = 0; i < a.length; i++) {
+      let lastLetter = "";
+      for (let j = 0; j < data.length; j++) {
+        let ch = data[j].slice(searchBox);
+        let bo = ch.trim().slice(0, 1);
+        if (lastLetter !== a[i]) {
+          if (a[i] == bo) {
+            lastLetter = a[i];
+            list.push(data[j]);
+          }
+        }
+      }
+    }
+    return list;
+  };
 
   //keyWordSearch
   const [secoundSearchBoxValue, setSecoundSearchBoxValue] = useState("");
@@ -65,17 +91,21 @@ export default function Table({
     comboboxFiltered = data.filter((item) => {
       return item;
     });
-  } else if (radioClickedHandler === "2") {
+  } else if (radioClickedHandler === "2" && secoundSearchBoxValue) {
     comboboxFiltered = data.filter((item) => {
       return item.includes(secoundSearchBoxValue);
     });
-  } else if (radioClickedHandler === "3") {
+  } else if (radioClickedHandler === "3" && secoundSearchBoxValue) {
     comboboxFiltered = data.filter((item) => {
       return item == secoundSearchBoxValue;
     });
-  } else if (radioClickedHandler === "4") {
+  } else if (radioClickedHandler === "4" && secoundSearchBoxValue) {
     comboboxFiltered = data.filter((item) => {
       return !item.includes(secoundSearchBoxValue);
+    });
+  } else {
+    comboboxFiltered = data.filter((item) => {
+      return item;
     });
   }
   const secoundSearchBoxChangeHandler = (e) => {
@@ -127,17 +157,34 @@ export default function Table({
     }
     return myListOutput;
   }
+  const HandleCheckBoxClick = (e, item) => {
+    if (e.target.checked) {
+      setCopyItem([...copyItem, item]);
+      // console.log(copyItem);
+      // console.log(e.target.checked);
+    } else {
+      setCopyItem(copyItem.filter((copyItems) => copyItems != item));
+      // console.log(copyItem);
+    }
+
+    handleCheckingInput(e.target.checked, item);
+  };
+  const seperatorList = setSepetator(filteredDatas);
+  let indexSeprator = 0;
   return (
-    <div className=" flex grow flex-col border border-[#D9D9D9] p-0 " id="TABLE">
+    <div
+      className=" flex grow flex-col border border-[#D9D9D9] p-0 "
+      id="TABLE"
+    >
       <div className="min-w-full">
         <div className="flex items-center justify-between bg-[#FCFCFB] w-full px-2">
-          <div className="flex gap-5">
+          <div className="flex gap-4 items-center ">
             <div
-              className={
+              className={`text-sm font-medium text-gray-900  relative text-right ${
                 copyItem.length > 0
-                  ? "text-sm font-medium text-gray-900 pr-2  text-right text-[#0A65CD] relative cursor-pointer"
-                  : "text-sm font-medium text-gray-900 pr-2  text-right text-[#D9D9D9] relative "
-              }
+                  ? "text-[#0A65CD] btn-secondary m-auto cursor-pointer"
+                  : "text-[#D9D9D9]"
+              }`}
               onClick={() => {
                 navigator.clipboard.writeText(customCopy());
                 setHandleClickCopy(true);
@@ -148,14 +195,14 @@ export default function Table({
             >
               <span
                 className={
-                  copyItem.length > 0 & handleClickCopy
-                    ? "flex tooltip tooltipTop absolute -right-[60%] rounded bg-[#ffffff] -top-11"
-                    : "tooltip -right-[60%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
+                  (copyItem.length > 0) & handleClickCopy
+                    ? "flex tooltip tooltipTop absolute -right-[10%] rounded bg-[#ffffff] -top-11"
+                    : "tooltip -right-[10%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
                 }
               >
                 کپی شد!
               </span>
-              {copyItem.length > 0?"کپی":"انتخاب"}
+              {copyItem.length > 0 ? "کپی" : "انتخاب"}
             </div>
             <div
               className={
@@ -173,8 +220,7 @@ export default function Table({
                   : "text-sm font-medium text-gray-900 pr-2  text-right"
               }
             >
-              {iskeyWord ? "کلمه کلیدی":" ایده های پیشنهادی"}
-             
+              {iskeyWord ? "کلمه کلیدی" : " ایده های پیشنهادی"}
             </div>
           </div>
           <div className="flex gap-4 items-center">
@@ -184,13 +230,13 @@ export default function Table({
                   disabled={NothingSearch ? true : false}
                   className={
                     NothingSearch
-                      ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-[#F2F5F7] flex items-center btn-style"
+                      ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center btn-style"
                       : "btn-style"
                   }
                   onClick={() => openModal()}
                 >
                   <img
-                    src="/img/dashboard/table/bookmark.svg"
+                    src={bookmark_svg}
                     alt="bookmark"
                     className={"ml-3"}
                   />{" "}
@@ -199,18 +245,19 @@ export default function Table({
               </div>
             )}
             {WordsSearcher && (
-              <KeyWordsSearch
-                dataItems={comboboxFiltered}
-                secoundSearch={secoundSearchBoxChangeHandler}
-                radioClickedHandler={radioButtonHandler}
-              />
+              <div className="w-[334px]">
+                <KeyWordsSearch
+                  dataItems={comboboxFiltered}
+                  secoundSearch={secoundSearchBoxChangeHandler}
+                  radioClickedHandler={radioButtonHandler}
+                />
+              </div>
             )}
             <div className="text-sm font-medium text-gray-900 pr-2 py-4 text-right relative">
               <span
-                id="box"
                 className={
                   handleClickButton
-                    ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-[29px] left-[70%]"
+                    ? "flex tooltip tooltipTop absolute  rounded bg-[#ffffff] -top-10 right-11"
                     : "-top-[29px] tooltip tooltipTop left-[70%] hidden absolute  rounded bg-[#ffffff]"
                 }
               >
@@ -219,24 +266,18 @@ export default function Table({
               <button
                 className={
                   isActive
-                    ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-[#0A65CD] flex items-center "
+                    ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-primary flex items-center w-[128px] transition-all"
                     : NothingSearch
-                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-[#F2F5F7] flex items-center"
-                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-[#F2F5F7] flex items-center hover:bg-[#0A65CD] hover:text-[#ffffff]"
+                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center w-[128px]  transition-all"
+                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-secondary flex items-center hover:bg-primary w-[128px] hover:text-[#ffffff]  transition-all"
                 }
                 disabled={NothingSearch ? true : false}
                 onClick={() => {
                   setHandleClickButton(true);
-                  navigator.clipboard.writeText(
-                    createListOutput()
-                    // data.map((item) => {
-                    //   const splitComma = item.split(',').map(item => item.trim());
-                    //   return splitComma.join("\n")
-                    // })
-                  );
+                  navigator.clipboard.writeText(createListOutput());
                   setTimeout(() => {
                     setHandleClickButton(false);
-                  }, 500);
+                  }, 1000);
                 }}
               >
                 <div className="imageIcon ml-3 w-5 h-5"></div>کپی همه{" "}
@@ -256,21 +297,23 @@ export default function Table({
           </div>
         ) : (
           <div
-            className="bg-white text-right w-full overflow-y-scroll max-h-[450px] "
+            className="bg-[#fff] text-right w-full overflow-y-scroll max-h-[450px] "
             id="table"
           >
             {filteredDatas.map((item, index) => {
-              
-              let letterArray = [""];
+              if (seperatorList[indexSeprator] == item) {
+                indexSeprator = indexSeprator + 1;
+              }
+
               return (
                 <>
-                  {letterArray[index] !== letterArray[index + 1] &&
+                  {seperatorList[indexSeprator - 1] == item &&
                   !contentsProduction ? (
                     <div className="flex items-center justify-center m-2">
-                      <div className="bg-[#7D7D7D] w-[55px] h-[20px] text-center flex items-center justify-center text-[#ffffff] rounded">
-                        {a[index]}
+                      <div className="bg-gray w-[55px] h-[20px] text-center flex items-center justify-center text-[#ffffff] rounded">
+                        {a[indexSeprator - 1]}
                       </div>
-                      <div className="w-full h-[1px] bg-[#7D7D7D] rounded"></div>
+                      <div className="w-full h-[1px] bg-gray rounded"></div>
                     </div>
                   ) : null}
 
@@ -283,9 +326,10 @@ export default function Table({
                     }
                   >
                     <div className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ">
+                      {/* <Checkbox handleClick={(e)=>HandleCheckBoxClick(e,item)} /> */}
                       <input
                         type={"checkbox"}
-                        className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
+                        className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
                         onClick={(e) => {
                           if (e.target.checked) {
                             setCopyItem([...copyItem, item]);
@@ -298,11 +342,11 @@ export default function Table({
                             // console.log(copyItem);
                           }
 
-                          handleCheckingInput(e.target.checked,item);
+                          handleCheckingInput(e.target.checked, item);
                         }}
                       />
                     </div>
-                    <div className="text-sm text-gray-900 font-light pr-4 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900 font-light pr-[18px] py-4 whitespace-nowrap">
                       {index + 1}
                     </div>
                     <div className="text-sm text-gray-900 font-light px-5 py-4 whitespace-nowrap">

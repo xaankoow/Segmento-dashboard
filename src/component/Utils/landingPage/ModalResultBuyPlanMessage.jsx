@@ -1,6 +1,8 @@
 import React from 'react'
 import AuthButton from '../../Auth/authButton/AuthButton'
 import Modal from 'react-modal'
+import report_svg from "../../assets/img/modal/body/report.svg";
+
 export default function ModalResultBuyPlanMessage({ title, planType }) {
     return (
         <Modal
@@ -19,7 +21,7 @@ export default function ModalResultBuyPlanMessage({ title, planType }) {
                     <div className='support_container'>
                         <p>تا اینجای کار اگر نیاز به راهنمایی و مشاوره داشتی میتونی از این طریق باهامون تماس بگیری</p>
                         <AuthButton textButton={"مشاوره و تماس"} />
-                        <img src="/img/modal/body/report.svg" alt="" />
+                        <img src={report_svg} alt="" />
                     </div>
                 </body>
             </div>

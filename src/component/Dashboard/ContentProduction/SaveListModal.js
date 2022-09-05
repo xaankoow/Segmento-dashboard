@@ -9,6 +9,9 @@ import {
 import { useEffect } from "react";
 import { Deblur } from "@mui/icons-material";
 import { useSelector } from "react-redux";
+import close_svg from '../../../assets/img/dashboard/nav_right/close.svg';
+import playlist_add_svg from '../../../assets/img/modal/keyWords/playlist_add.svg';
+import update_svg from '../../../assets/img/modal/keyWords/update.svg';
 
 export default function SaveListModal({
   saveButtonHandler,
@@ -60,7 +63,7 @@ export default function SaveListModal({
     setSearchBoxHandleClick(false);
   };
   const handlechangeSaveInput = (e) => {
-    setSaveInputValue(e.target.value);
+    setSaveInputValue(e);
     SaveInputValues(e);
   };
 
@@ -123,11 +126,9 @@ export default function SaveListModal({
     >
       <div className="flex flex-col items-center px-4 py-8 gap-5 z-50 min-w-[500px]" >
       <img
-              src="/img/dashboard/nav_right/close.svg"
+              src={close_svg}
               alt="close"
-              width={"14px"}
-              height={"14px"}
-              className="absolute top-4 left-6 cursor-pointer mb-7"
+             className="absolute top-4 left-3 cursor-pointer mb-7 p-1 w-[20px] h-[20px] rounded-[3px] hover:bg-[#F352421A]"
               onClick={() =>close()}
             />
             <div></div>
@@ -146,7 +147,7 @@ export default function SaveListModal({
               handleSetcontent();
             }}
           >
-            <img src="/img/modal/keyWords/playlist_add.svg" alt="keyWords" />
+            <img src={playlist_add_svg} alt="keyWords" />
             ذخیره لیست جدید
           </button>
         </div>
@@ -169,8 +170,8 @@ export default function SaveListModal({
                 id={index}
                 className={
                   activeBox == index
-                    ? "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] bg-[#F2F5F7] "
-                    : "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-[#F2F5F7] "
+                    ? "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] bg-secondary "
+                    : "flex cursor-pointer items-center border border-[#D9D9D9] rounded-xl justify-between px-3 py-5 mb-4 mt-2 rounded-t-sm hover:border hover:border-[#0A65CD] focus:bg-secondary "
                 }
                 onClick={(e) => {
                   setSaveUpdateValue(item.word);
@@ -231,7 +232,7 @@ export default function SaveListModal({
               setUpdate(!update);
             }}
           >
-            <img src="/img/modal/keyWords/update.svg" alt="keyWords" />
+            <img src={update_svg} alt="keyWords" />
             بروزرسانی لیست
           </button>
         </div>

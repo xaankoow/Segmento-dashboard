@@ -1,10 +1,28 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { setShowWorkSpaceModal } from "../../../Redux/Action/workSpace";
 import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
+import arrow_back_ios_new_svg from "../../../../assets/img/dashboard/nav_right/arrow_back_ios_new.svg";
+import add_circle_svg from "../../../../assets/img/dashboard/nav_right/add_circle.svg";
+import web_svg from "../../../../assets/img/dashboard/nav_right/web.svg";
+import storefront_svg from "../../../../assets/img/dashboard/nav_right/storefront.svg";
+import search_svg from "../../../../assets/img/dashboard/nav_right/search.svg";
+import rotbebandi_svg from "../../../../assets/img/dashboard/nav_right/rotbebandi.svg";
+import searchKeyWord_svg from "../../../../assets/img/dashboard/nav_right/searchKeyWord.svg";
+import pageTejari_svg from "../../../../assets/img/dashboard/nav_right/pageTejari.svg";
+import googleIndex_svg from "../../../../assets/img/dashboard/nav_right/googleIndex.svg";
+import pageSeo_svg from "../../../../assets/img/dashboard/nav_right/pageSeo.svg";
+import monitoring_svg from "../../../../assets/img/dashboard/nav_right/monitoring.svg";
+import tolidMohtava_svg from "../../../../assets/img/dashboard/nav_right/tolidMohtava.svg";
+import trandTypic_svg from "../../../../assets/img/dashboard/nav_right/trandTypic.svg";
+import createIdea_svg from "../../../../assets/img/dashboard/nav_right/createIdea.svg";
+import copyWriter_svg from "../../../../assets/img/dashboard/nav_right/copyWriter.svg";
+import copyWriterAnboh_svg from "../../../../assets/img/dashboard/nav_right/copyWriterAnboh.svg";
+import googleSuggestion_svg from "../../../../assets/img/dashboard/nav_right/googleSuggestion.svg";
 
-export default function AcardionItem() {
+export default function AcardionItem({clicked,setClicked}) {
   const dispatch = useDispatch();
 
   const location = useLocation();
@@ -16,135 +34,135 @@ export default function AcardionItem() {
   const data = [
     {
       title: "ورک‌اسپیس‌ها",
-      titleIcon: "/img/dashboard/nav_right/web.svg",
+      titleIcon: web_svg,
       acardionItems: allWorkSpace.map((item, index) => ({
         itemTitle: item.website,
-        itemIcon: "/img/dashboard/nav_right/storefront.svg",
-        itemLink: "",
+        itemIcon: storefront_svg,
+        itemLink: " ",
       })),
     },
     {
       title: "سئو",
-      titleIcon: "/img/dashboard/nav_right/search.svg",
+      titleIcon: search_svg,
       acardionItems: [
         {
           itemTitle: "رتبه کلمات کلیدی ",
-          itemIcon: "/img/dashboard/nav_right/rotbebandi.svg",
+          itemIcon: rotbebandi_svg,
           itemLink: "",
         },
         {
           itemTitle: "تحقیق کلمه کلیدی ",
-          itemIcon: "/img/dashboard/nav_right/searchKeyWord.svg",
+          itemIcon: searchKeyWord_svg,
           itemLink: "keywordResearch",
         },
         {
           itemTitle: "صفحات تجاری ",
-          itemIcon: "/img/dashboard/nav_right/pageTejari.svg",
+          itemIcon: pageTejari_svg,
           itemLink: "",
         },
         {
           itemTitle: "ایندکسر گوگل",
-          itemIcon: "/img/dashboard/nav_right/googleIndex.svg",
+          itemIcon: googleIndex_svg,
           itemLink: "",
         },
         {
           itemTitle: "آنالیز گوگل",
-          itemIcon: "/img/dashboard/nav_right/pageSeo.svg",
+          itemIcon: pageSeo_svg,
           itemLink: "",
         },
         {
           itemTitle: " آنالیز سئو داخل صفحه",
-          itemIcon: "/img/dashboard/nav_right/monitoring.svg",
+          itemIcon: monitoring_svg,
           itemLink: "",
         },
       ],
     },
-    {
-      title: "سئو تکنیکال",
-      titleIcon: "/img/dashboard/nav_right/teknikal.svg",
-      acardionItems: [
-        {
-          itemTitle: " مانیتورینگ سرعت ",
-          itemIcon: "/img/dashboard/nav_right/speedMonitoring.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "ابزار لایت هاوس  ",
-          itemIcon: "/img/dashboard/nav_right/liteHouse.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "ابزار لایت فلو ",
-          itemIcon: "/img/dashboard/nav_right/lightFlow.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "صفحات یتیم ",
-          itemIcon: "/img/dashboard/nav_right/yatimPage.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: " خودخواری Cannibalization   ",
-          itemIcon: "/img/dashboard/nav_right/cannibalization.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "  ابزار فایل ربات robots.txt   ",
-          itemIcon: "/img/dashboard/nav_right/robots.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "  ابزار انکار لینک Disavow   ",
-          itemIcon: "/img/dashboard/nav_right/Disavow.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "سازنده اسکیما  ",
-          itemIcon: "/img/dashboard/nav_right/skymacreator.svg",
-          itemLink: "",
-        },
-        {
-          itemTitle: "شبیه ساز نتایج  ",
-          itemIcon: "/img/dashboard/nav_right/result.svg",
-          itemLink: "",
-        },
-      ],
-    },
+    // {
+    //   title: "سئو تکنیکال",
+    //   titleIcon: "/img/dashboard/nav_right/teknikal.svg",
+    //   acardionItems: [
+    //     {
+    //       itemTitle: " مانیتورینگ سرعت ",
+    //       itemIcon: "/img/dashboard/nav_right/speedMonitoring.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "ابزار لایت هاوس  ",
+    //       itemIcon: "/img/dashboard/nav_right/liteHouse.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "ابزار لایت فلو ",
+    //       itemIcon: "/img/dashboard/nav_right/lightFlow.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "صفحات یتیم ",
+    //       itemIcon: "/img/dashboard/nav_right/yatimPage.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: " خودخواری Cannibalization   ",
+    //       itemIcon: "/img/dashboard/nav_right/cannibalization.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "  ابزار فایل ربات robots.txt   ",
+    //       itemIcon: "/img/dashboard/nav_right/robots.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "  ابزار انکار لینک Disavow   ",
+    //       itemIcon: "/img/dashboard/nav_right/Disavow.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "سازنده اسکیما  ",
+    //       itemIcon: "/img/dashboard/nav_right/skymacreator.svg",
+    //       itemLink: "",
+    //     },
+    //     {
+    //       itemTitle: "شبیه ساز نتایج  ",
+    //       itemIcon: "/img/dashboard/nav_right/result.svg",
+    //       itemLink: "",
+    //     },
+    //   ],
+    // },
     {
       title: "تولید محتوا",
-      titleIcon: "/img/dashboard/nav_right/tolidMohtava.svg",
+      titleIcon: tolidMohtava_svg,
       itemLink: "",
       acardionItems: [
         {
           itemTitle: " تاپیک ترند",
-          itemIcon: "/img/dashboard/nav_right/trandTypic.svg",
+          itemIcon: trandTypic_svg,
           itemLink: "",
         },
         {
           itemTitle: " ایده ساز",
-          itemIcon: "/img/dashboard/nav_right/createIdea.svg",
+          itemIcon: createIdea_svg,
           itemLink: "contentCreation",
         },
         {
           itemTitle: "کپی رایتر  ",
-          itemIcon: "/img/dashboard/nav_right/copyWriter.svg",
+          itemIcon: copyWriter_svg,
           itemLink: "",
         },
         {
           itemTitle: "کپی رایتر انبوه ",
-          itemIcon: "/img/dashboard/nav_right/copyWriterAnboh.svg",
+          itemIcon: copyWriterAnboh_svg,
           itemLink: "",
         },
         {
           itemTitle: "پیشنهاد ساز گوگل ",
-          itemIcon: "/img/dashboard/nav_right/googleSuggestion.svg",
+          itemIcon: googleSuggestion_svg,
           itemLink: "",
         },
       ],
     },
   ];
-  const [clicked, setClicked] = React.useState(false);
-
+  // const [clicked, setClicked] = React.useState(false);
+  const [ItemsClicked, setItemsClicked] = useState(-1);
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -158,7 +176,7 @@ export default function AcardionItem() {
       {data.map((item, index) => {
         return (
           <div className="" key={index}>
-            <div className="flex items-center justify-between m-0 p-0">
+            <div className="flex items-center justify-between m-0 p-0 SidebarHoverBox">
               <div
                 key={index}
                 className="flex items-center gap-3 text-[#002145] mt-4 mb-3  mr-5 text-sm  w-full"
@@ -180,7 +198,7 @@ export default function AcardionItem() {
                 onClick={() => toggle(index)}
                 className="pl-3 cursor-pointer w-10 h-4 flex justify-end"
               >
-                {clicked === index ? (
+                {/* {clicked === index ? (
                   <img
                     src="/img/dashboard/nav_right/arrow_back_ios_new_down.svg"
                     alt=""
@@ -192,22 +210,33 @@ export default function AcardionItem() {
                     alt=""
                     className="w-3 h-4"
                   />
-                )}
+                  )} */}
+                  <img
+                    src={arrow_back_ios_new_svg}
+                    alt=""
+                    className={`w-3 h-4 ${clicked === index && "-rotate-90"} transition-transform`}
+                  />
               </div>
             </div>
             {clicked === index ? (
               <div className="mr-5 mt-0">
-                {item.acardionItems.map((item, index) => {
+                {item.acardionItems.map((acardionItem, indexx) => {
                   return (
-                    <Link to={item.itemLink!=""?item.itemLink:user.package != undefined ? "buyPlan" : "planStatus"} className={"w-auto"}>
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
-                      >
-                        <img src={item.itemIcon} alt="icon" />
-                        <span className={"w-auto"}>{item.itemTitle}</span>
-                      </div>
-                    </Link>
+
+                    acardionItem.itemLink != "" && (
+                      <Link to={acardionItem.itemLink} className={"w-auto"}>
+                        <div
+                        onClick={()=>setItemsClicked(acardionItem.itemTitle)}
+                          key={indexx}
+                          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${ clicked === index  && ItemsClicked == acardionItem.itemTitle && "active"}`}
+                        >
+                          <img src={acardionItem.itemIcon} alt="icon" />
+                          <span className={"w-auto hover:text-blue"}>{acardionItem.itemTitle}</span>
+                        </div>
+                      </Link>
+                    )
+
+
                   );
                 })}
                 {item.title == "ورک‌اسپیس‌ها" && (
@@ -217,11 +246,11 @@ export default function AcardionItem() {
                     className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                   >
                     <img
-                      src={"/img/dashboard/nav_right/add_circle.svg"}
+                      src={add_circle_svg}
                       alt="icon"
                     />
                     <Link
-                      to={user.userData.package!=undefined?"setWorkSpace":location}
+                      to={user.userData.package != undefined ? "setWorkSpace" : location}
                       state={{ background: location }}
                       className={"w-auto"}
                     >

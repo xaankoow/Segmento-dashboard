@@ -6,6 +6,8 @@ import { setImageProfRedux } from "../../../../../Redux/Action";
 import { useDispatch, useSelector } from "react-redux";
 import AuthButton from "../../../../../Auth/authButton/AuthButton";
 import PopUp from "../../../../../Utils/PopUp/PopUp";
+import close_svg from '../../../../../../assets/img/dashboard/nav_right/close.svg'
+import backup_svg from '../../../../../../assets/img/dashboard/userProfile/backup.svg'
 
 export default function ChangeImageModal({
   close,
@@ -31,23 +33,10 @@ export default function ChangeImageModal({
   const userState = useSelector((state) => state.userState);
   // const userState = useSelector((state) => state.userState);
   const [files, setFiles] = useState([""]);
-  // var user_image = userState.userData.user.image;
-  // console.log(files);
-
-  // const { getRootProps, getInputProps } = useDropzone({
-  //   multiple: false,
-  //   accept: ["JPG", "PNG", "GIF"],
-  //   onDrop: (acceptedFiles) => {
-  //     setFiles(
-  //       acceptedFiles.map((file) =>
-  //         Object.assign(file, {
-  //           preview: URL.createObjectURL(file),
-  //         })
-  //       )
-  //     );
-  //   },
-  // });
-  const [up, setUp] = useState(1);
+  const saveImageButton = () => {
+    setImageChanged(true)
+   
+  };
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["JPG", "PNG", "GIF"],
@@ -59,11 +48,13 @@ export default function ChangeImageModal({
       //   }))
       // ))
 
-      setFiles(acceptedFiles.map((file) =>
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      }))
-      )
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
 
       // setUp(up+1);
       // setFiles(
@@ -75,25 +66,26 @@ export default function ChangeImageModal({
   // console.log(files[0].preview);
   // debugger
   // debugger
-  const imgData =files[0] != "" ? URL.createObjectURL(files[0]) : ""
-  const thumbs = files[0] != "" ? (
-    <>
-      <img
-        src={imgData}
-        onLoad={() => URL.revokeObjectURL(imgData)}
-        // src={userState.image[0].preview}
+  const imgData = files[0] != "" ? URL.createObjectURL(files[0]) : "";
+  const thumbs =
+    files[0] != "" ? (
+      <>
+        <img
+          src={imgData}
+          onLoad={() => URL.revokeObjectURL(imgData)}
+          // src={userState.image[0].preview}
 
-        className="rounded-full my-3 w-[125px] h-[125px]"
-        alt="userImage"
+          className="rounded-full my-3 w-[125px] h-[125px]"
+          alt="userImage"
+        />
+      </>
+    ) : (
+      <img
+        src={userImage}
+        className="rounded-full my-3 max-w-[125px] max-h-[125px]"
+        alt="auserImage"
       />
-    </>
-  ) : (
-    <img
-      src={userImage}
-      className="rounded-full my-3 max-w-[125px] max-h-[125px]"
-      alt="auserImage"
-    />
-  );
+    );
 
   // useEffect(() => {
   //   console.log("use ef revoke");
@@ -114,12 +106,12 @@ export default function ChangeImageModal({
       // onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
-    // className={"myModal"}
+      // className={"myModal"}
     >
       <>
         {imageChanged && (
           <PopUp
-            clickHandler={() => setImageChanged(false)}
+            clickHandler={() => close()}
             image={"/img/popUp/tik.svg"}
             type={"sucsess"}
             buttonText={"باشه، فهمیدم!"}
@@ -131,11 +123,9 @@ export default function ChangeImageModal({
           <div className="w-full flex relative">
             <PageTitle title={"تغییر تصویر پروفایل"} />
             <img
-              src="/img/dashboard/nav_right/close.svg"
+              src={close_svg}
               alt="close"
-              width={"14px"}
-              height={"14px"}
-              className="absolute top-4 left-6 cursor-pointer"
+              className="absolute top-4 left-6 cursor-pointer w-[20px] h-[20px] p-1 rounded-[3px] hover:bg-[#F352421A]"
               onClick={() => close()}
             />
           </div>
@@ -149,7 +139,7 @@ export default function ChangeImageModal({
               >
                 <input {...getInputProps()} className="w-full bg-yellow h-11" />
                 <img
-                  src="/img/dashboard/userProfile/backup.svg"
+                  src={backup_svg}
                   alt="backup"
                   width={"28px"}
                   height={"20px"}
@@ -162,7 +152,10 @@ export default function ChangeImageModal({
                   <span className="text-[#D9D9D9]">—————</span> یا{" "}
                   <span className="text-[#D9D9D9]">—————</span>{" "}
                 </span>
-                <button className="btn-style">  فایل تصویر را انتخاب کنید  </button>
+                <button className="btn-style">
+                  {" "}
+                  فایل تصویر را انتخاب کنید{" "}
+                </button>
               </div>
               <div className="flex justify-end gap-5 mt-7 w-full max-w-[358px]">
                 <button className="btn-secondary" onClick={() => close()}>
@@ -171,7 +164,7 @@ export default function ChangeImageModal({
                 </button>
                 <AuthButton
                   textButton={" ذخیره تغییرات"}
-                  handlerClick={close}
+                  handlerClick={saveImageButton}
                   reduxHandleClick={setImageProfRedux}
                   setOnclickValue={files.length != 0 ? files : []}
                 />

@@ -24,19 +24,29 @@ export const getAllWorkSpace = () => {
     return async (dispatch, getState) => {
         // debugger
         const state = { ...getState().workSpaceState }
+        const loadingState = { ...getState().loadingState }
+
         let toastMessage = "";
         try {
-            // console.log("start get all work space")
-            const workSpaces = await getAllWorkspace()
-            if (workSpaces.data.status == true && workSpaces.data.code == 200) {
-                state.allWorkSpace = workSpaces.data.data;
-            } else {
 
+            if (!loadingState.ProcessingDelay.includes("getAllWorkspace")) {
+                //handle show loadin
+                {
+                    loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "getAllWorkspace");
+                    loadingState.ProcessingDelay.push("getAllWorkspace");
+                    loadingState.canRequest = false;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                }
+
+                const workSpaces = await getAllWorkspace()
+                if (workSpaces.data.status == true && workSpaces.data.code == 200) {
+                    state.allWorkSpace = workSpaces.data.data;
+                }
+                
+                
             }
-            // debugger
-            await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state })
         } catch (error) {
-            // console.log("register error")
+            
             error.response.data.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
@@ -50,6 +60,15 @@ export const getAllWorkSpace = () => {
                 progress: undefined,
             });
         }
+        //handle hide loading
+        {
+            const loadingState1 = { ...getState().loadingState }
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "getAllWorkspace");
+            loadingState1.ProcessingDelay = removeProcessingItem;
+            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+        }
+        await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state })
     }
 }
 
@@ -414,15 +433,17 @@ export const addWorkSpace = (step) => {
             websitePage10,
             resultSetWorkSpace
         } = state;
+        
         const keyWords = [keyWord1, keyWord2, keyWord3, keyWord4, keyWord5, keyWord6, keyWord7, keyWord8, keyWord9, keyWord10];
         var keywords = [];
+        
         keyWords.forEach(element => {
             if (element.key != "") {
                 keywords.push(
                     {
                         "key": element.key,
                         "url": "https://" + webAdress + "/" + element.site,
-                        "competitors": step == 5 ? element.competitorSite.map(item => "https://" + webAdress + "/" + item) : []
+                        "competitors": step == 5 ? element.competitorSite.map(item =>"https://" + item).filter(value=>value!="https://") : []
                     }
                 )
             }
@@ -497,10 +518,18 @@ export const addWorkSpace = (step) => {
 }
 
 
+export const resetLimitState = () => {
+    return async (dispatch, getState) => {
+        const state = { ...getState().workSpaceState }
+        state.checkLimit=!state.checkLimit;
+        await dispatch({ type: "CHECK_LIMIT" ,payload:state})
+    }
+}
+
 export const resetWorkSpaceState = () => {
     return async (dispatch, getState) => {
-
-        await dispatch({ type: "RESET_WORK_SPACE_STATE" })
+        const state = { ...getState().workSpaceState }
+        await dispatch({ type: "RESET_WORK_SPACE_STATE" ,payload:state})
     }
 }
 

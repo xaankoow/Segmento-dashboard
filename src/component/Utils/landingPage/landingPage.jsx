@@ -13,13 +13,18 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   const checkUuid = async (uuidResulte) => {
-    const { data } = await checkDetailUuid(uuidResulte);
-    if (data.data.payment_status_text == "پرداخت نشده") {
-      localStorage.setItem("statusBuyPlna", false)
-    } else {
-      localStorage.setItem("statusBuyPlna", true)
+    try {
+     
+      const { data } = await checkDetailUuid(uuidResulte);
+      if (data.data.payment_status_text == "پرداخت نشده") {
+        localStorage.setItem("statusBuyPlna", false)
+      } else {
+        localStorage.setItem("statusBuyPlna", true)
+      }
+      navigate('/dashboard', { replace: true });
+    } catch (error) {
+      
     }
-    navigate('/dashboard', { replace: true });
   }
 
   return (

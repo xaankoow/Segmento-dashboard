@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { dataTable } from "../../../service/dataTable";
 import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../../DashboaedComponents/TableData/TableData";
+import arrow_downnn_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_downnn_ios_new.svg'
+import arrow_up_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_up_ios_new.svg'
 
 export default function MyList() {
   const [clicked, setClicked] = React.useState(false);
@@ -85,7 +87,7 @@ export default function MyList() {
   return (
     <div className="px-4 py-7 bg-[#ffffff]">
       <div className="flex justify-between items-center mb-4">
-        <span>لیست های اخیر شما:</span>
+        <span> لیست‌های اخیر شما:</span>
 
         <SearchBox
           className={"w-[450px] flex gap-2 items-center"}
@@ -154,13 +156,13 @@ export default function MyList() {
                 >
                   {clicked === index ? (
                     <img
-                      src="/img/dashboard/nav_right/arrow_downnn_ios_new.svg"
+                      src={arrow_downnn_ios_new_svg}
                       alt=""
                       className="cursor-pointer"
                     />
                   ) : (
                     <img
-                      src="/img/dashboard/nav_right/arrow_up_ios_new.svg"
+                      src={arrow_up_ios_new_svg}
                       alt=""
                       className=" cursor-pointer"
                     />
@@ -169,8 +171,9 @@ export default function MyList() {
               </div>
             </div>
             {clicked === index ? (
-              <Table data={tableDataFiltered} WordsSearcher={true} />
-            ) : null}
+              <Table data={tableDataFiltered} WordsSearcher={true} savedItem={item.key} />
+            )  : null}
+            
           </div>
         );
       })}

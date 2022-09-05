@@ -2,8 +2,34 @@
     display: none;
     position: absolute;
     right: 6px;
+    top: 45px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #c42b1c;
+    unicode-bidi: plaintext;
+}
+
+.input-wrapper input + label + .info {
+    /* display: none; */
+    position: absolute;
+    right: 6px;
     top: 50px;
     font-size: 10px;
-    color: #C42B1C;
+    font-weight: 700;
+    color: #7d7d7d;
     unicode-bidi: plaintext;
+    opacity: 0;
+    cursor: default;
+    transition: all 500ms ease-out;
+}
+
+.input-wrapper input:focus + label + .info {
+    /* display: inline-block; */
+    /* display: none; */
+    opacity: 1;
+}
+
+.input-wrapper input:focus + .error_down_input {
+    display: none !important;
+    width: 600px !important;
 }

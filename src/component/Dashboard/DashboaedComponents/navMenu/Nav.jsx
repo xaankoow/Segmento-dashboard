@@ -2,39 +2,24 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
-import { changeRegisterCompleteCheck, findUserAction } from '../../../Redux/Action'
+import { changeRegisterCompleteCheck, coreUser, findUserAction } from '../../../Redux/Action'
 import getCookie from '../../../Utils/findUser'
 
 export default function Nav({ path }) {
 
-
-  // const dispatch=useDispatch();
-  // useEffect(() => {
-  //     dispatch(findUserAction())
-  // }, [])
-
-  // let user=get
-  const { checkRegisterComplete, forceUpdate } = useSelector(state => state.userState)
+  const { checkRegisterComplete, forceUpdate, userData } = useSelector(state => state.userState)
 
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const userToken = localStorage.getItem("token")
+
   //REGISTER COMPLETE => NAVIGATE TO VERIFY FORM
-  // debugger
-  // // console.log(window.location.href.includes("ValidateEmail"));
   if (checkRegisterComplete == true) {
     navigate("/dashboard/accountOperations/ValidateEmail")
     dispatch(changeRegisterCompleteCheck(false));
   }
-  // useEffect(() => {
-  // //   // debugger
-  // if (checkRegisterComplete == true) {
-  //     navigate("/ValidateEmail")
-  //   }
-  // }, [checkRegisterComplete])
 
-  // debugger
   const checkChangePasswordComplete = localStorage.getItem("CHECNGEPASSWORD_COMPLETE");
 
   useEffect(() => {
@@ -43,9 +28,16 @@ export default function Nav({ path }) {
       navigate("/dashboard/accountOperations/login")
     }
   }, [checkChangePasswordComplete])
+
   useEffect(() => {
     if (userToken) {
-      navigate("/dashboard", { replace: true })
+      // debugger
+      dispatch(coreUser());
+      if (userData.package_end_date != null) {
+        navigate("/dashboard/PageCounter", { replace: true })
+      } else {
+        navigate("/dashboard", { replace: true })
+      }
     }
   }, [userToken])
 
@@ -70,17 +62,7 @@ export default function Nav({ path }) {
         </di>
       </div>
       <div>
-
-        {/* <Routes>
-          <Route path={"login"} element={<Link to={"/"} className='btn-style'>ثبت نام</Link>} />
-          <Route path={"forgotpassword"} element={<Link to={"/"} className='btn-style'>ثبت نام</Link>} />
-          <Route exact path={"*"} element={<Link to={"/login"} className='btn-style'>ورود</Link>} />
-        </Routes> */}
-
-        {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
-        {/* <Link to={"/"} className='btn-style'>ثبت نام</Link> */}
-        <Link to={`/dashboard/accountOperations/${path}`} className='btn-style'>{path == "" ? "ورود" : "ثبت نام"}</Link>
-
+        <Link to={`/dashboard/accountOperations/${path}`} className='btn-style'>{path == "login" ? "ورود" : "ثبت نام"}</Link>
       </div>
       {forceUpdate > 0 ? "" : ""}
     </div>

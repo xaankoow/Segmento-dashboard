@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setCloseNav } from "../../../Redux/Action/navMenu";
 import { getAllWorkSpace } from "../../../Redux/Action/workSpace";
+import SidebarBaner from "../../../Utils/Baner/Sidebar/SidebarBaner";
+import ToolTip from "../../../Utils/ToolTip";
 import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
+import sidebarIcon1_svg from "../../../../assets/img/dashboard/sidebarHover/sidebarIcon1.svg";
+import dashboardPishKhan_svg from "../../../../assets/img/dashboard/nav_right/dashboardPishKhan.svg";
 
-export default function SidebarComponent({ closeNav, openMenu }) {
+export default function SidebarComponent() {
+  const [showToolTip, setShowToolTip] = useState(true);
+
   const [activeIcon, setActiveIcon] = useState(0);
+  const { closeNav } = useSelector((state) => state.navMenuState);
+  const dispatch = useDispatch();
+  // item sidebar hover active mode
+  const[clicked,setClicked]=useState(2);
+  const[clicked1,setClicked1]=useState(2);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
 
@@ -18,29 +30,22 @@ export default function SidebarComponent({ closeNav, openMenu }) {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    openMenu()
+    setClicked(-1);
+    dispatch(setCloseNav(true));
+    // setCloseNav(true);
   };
 
-  // const itemsHoverMenu = [
-  //   "گزارش های منتخب",
-  //   "خرید اشتراک",
-  //   "شروع آسان",
-  //   "خبرخوان",
-  //   "آموزش",
-  //   "پیشنهادات و تخفیف ها",
-  //   "پشتیبانی و تیکت",
-  //   "انتخاب سرویس",
-  // ];
   const itemsHoverMenu = [
     { title: "گزارش های منتخب", link: "" },
     { title: "خرید اشتراک", link: "buyPlan" },
-    { title: "شروع آسان", link: "easyStart" },
+    { title: "شروع آسان", link: "/dashboard" },
     { title: "خبرخوان", link: "" },
     { title: "آموزش", link: "" },
     { title: "پیشنهادات و تخفیف ها", link: "" },
     { title: "پشتیبانی و تیکت", link: "" },
-    { title: "انتخاب سرویس", link: "" }
+    { title: "انتخاب سرویس", link: "" },
   ];
+
   return (
     <>
       <div
@@ -49,65 +54,95 @@ export default function SidebarComponent({ closeNav, openMenu }) {
       >
         {activeIcon == 0 ? (
           <div>
-            {itemsHoverMenu.map((item) => {
+            {itemsHoverMenu.map((item, index) => {
               return (
                 <ItemSidebarHover
-                  text={closeNav && item}
-                  icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"}
+                  text={item}
+                  icon={sidebarIcon1_svg}
                   textColor={"#002145"}
                   textHover={"#0A65CD"}
+                  index={index}
+                  clicked={clicked1}
+                  setClicked={()=>setClicked1(index)}
                 />
               );
             })}
           </div>
         ) : activeIcon == 1 ? (
           <div>
-
-            <div className='flex items-center gap-3 text-[#002145] my-5 mr-5 text-sm hover:cursor-pointer hover:text-blue '  >
-              <img src={"/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"} alt='icon' />
-              <span className={`text-[${"#0A65CD"}]`}>{closeNav && "پیشخوان"}</span>
+            <div onClick={()=>setClicked(-1)} className={`flex items-center gap-3 text-[#002145] my-5 mr-5 cursor-pointer text-sm hover:cursor-pointer hover:text-blue ${clicked == -1 && "active"}`}>
+              <img
+                src={dashboardPishKhan_svg}
+                alt="icon"
+               
+              />
+              <Link
+                to={"/dashboard/PageCounter"}
+              
+              >
+                {closeNav && "پیشخان"}
+              </Link>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
-            <AcardionItem />
+            <AcardionItem  clicked={clicked} setClicked={setClicked}/>
           </div>
         ) : null}
         {/* advertisement box */}
         {!disableAdvertisement && closeNav ? (
-          <div className="bg-[#F2F5F7] h-[57px] flex flex-col items-center justify-center mx-3 mb-7  relative bottom-0">
-            <img
-              src="/img/dashboard/nav_right/close.svg"
-              alt="close"
-              className="absolute top-2 left-2 cursor-pointer"
-              onClick={() => setDisableAdvertisement(true)}
-            />
-            <span className="text-[#7D7D7D]">نمونه نوشته داینامیک</span>
-          </div>
+          <SidebarBaner setDisableAdvertisement={setDisableAdvertisement} />
         ) : null}
       </div>
+      {/* ):null} */}
+
       <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
         <IconsRight setActive={activeIconHandler} />
         <div className="down">
-          <div className="dropDownBox ">
-            <div className="support w-7 h-7"></div>
-            <div className="support_dropDown dropDownBox1">
+          <div className="dropDownBox mb-5">
+            <a href="https://segmento.ir/support">
+              <div
+                className="support w-7 h-7"
+                data-tip=" پشتیبانی "
+                data-type="light"
+                data-place="left"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}
+              ></div>
+            </a>
+            {/* <div className="support_dropDown dropDownBox1 flex text-center">
               <span> پشتیبانی و تیکت </span>
-            </div>
+            </div> */}
           </div>
 
-          <div className="dropDownBox">
-            <div className="information w-7 h-7"></div>
-            <div className="support_dropDown dropDownBox2">
+          <div className="dropDownBox mb-5  ">
+            <div
+              className="call-nav-right w-6 h-6 text-[20px] support"
+              data-tip=" tel:051-38331497 "
+              data-type="light"
+              data-place="left"
+              data-class="sizeClass"
+              onMouseEnter={() => setShowToolTip(true)}
+              onMouseLeave={() => {
+                setShowToolTip(false);
+                setTimeout(() => setShowToolTip(true), 0);
+              }}
+            ></div>
+            {/* <div className="support_dropDown dropDownBox2 text-center">
               <span>منابع و راهنمایی ها</span>
-            </div>
+              <div className="w-3 h-3 absolute right-[-5px] bg-[#fff] rotate-45"></div>
+            </div> */}
           </div>
 
-          <div className="line"></div>
+          <div className="line mb-3"></div>
           {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
           <a href={"https://segmento.ir/"}>
             <div className="xaankoo_logo w-11 h-9"></div>
           </a>
         </div>
       </div>
+      {showToolTip && <ToolTip />}
     </>
   );
 }

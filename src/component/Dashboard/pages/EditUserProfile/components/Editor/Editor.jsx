@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Editor } from "react-draft-wysiwyg";
+
 import { Component } from "react";
 class ColorPic extends Component {
   static propTypes = {
@@ -43,7 +44,7 @@ class ColorPic extends Component {
 
 export const EditorCustomizedToolbarOption = () => (
   <Editor
-    toolbarClassName="toolbarClassName border-0 bg-[#FCFCFB] p-2 right relative"
+    toolbarClassName="toolbarClassName border-0 bg-[#FCFCFB] p-2 right relative "
     wrapperClassName="demo-wrapper wrapperClassName min-h-[280px]  border border-[#D9D9D9]  mb-7 right  rtl"
     editorClassName=" min-h-[280px] right p-2 rtl pt-4	"
     toolbar={{
@@ -60,7 +61,7 @@ export const EditorCustomizedToolbarOption = () => (
           "Blockquote",
           "Code",
         ],
-        className: "hidden",
+        className: "EDITOR-USERPROFILE hidden",
         component: undefined,
         dropdownClassName: undefined,
       },
@@ -81,14 +82,14 @@ export const EditorCustomizedToolbarOption = () => (
       link: {
         className:  "mr-7",
       },
-      fontSize: { className: "hidden" },
-      fontFamily: { className: "hidden" },
-      colorPicker: { className: "hidden" },
-      emoji: { className: "hidden" },
-      image: { className: "hidden" },
-      history: { className: "hidden" },
-      embedded: { className: "hidden" },
-      remove: { className: "hidden" },
+      fontSize: { className: 'EDITOR-USERPROFILE hidden' },
+      fontFamily: { className: 'EDITOR-USERPROFILE hidden' },
+      colorPicker: { className: 'EDITOR-USERPROFILE hidden' },
+      emoji: { className: 'EDITOR-USERPROFILE hidden' },
+      image: { className: 'EDITOR-USERPROFILE hidden' },
+      history: { className: 'EDITOR-USERPROFILE hidden' },
+      embedded: { className: 'EDITOR-USERPROFILE hidden' },
+      remove: { className: 'EDITOR-USERPROFILE hidden' },
       colorPicker: { component: ColorPic },
     }}
   />

@@ -1,5 +1,6 @@
 {
-  "_homepage": "https://xaankoow.github.io/segmentor-react",
+  "_homepage": "https://segmento.ir/dashboard",
+  "__homepage": "https://xaankoow.github.io/segmentor-react",
   "name": "xaankoo_segmento",
   "version": "0.20220804.0",
   "private": true,
@@ -31,6 +32,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.3",
     "react-toastify": "^9.0.0",
+    "react-tooltip": "^4.2.21",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "simple-react-validator": "^1.6.1",
@@ -40,12 +42,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start && postcss src/css/app.css -o public/app.css",
+    "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject"
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -66,9 +68,6 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.8",
-    "gh-pages": "^4.0.0",
-    "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    "gh-pages": "^4.0.0"
   }
 }

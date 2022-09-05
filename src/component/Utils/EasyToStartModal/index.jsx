@@ -6,10 +6,18 @@ import BodyContent from './BodyContent'
 import FooterBtn from './FooterBtn'
 import AleartMessageBuyPlan from '../../Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan'
 import SetTitleTabBrowser from '../SetTitleTabBrowser'
+import { ReplaceClass } from '../replaceClass'
+import { modalParentSelector } from '../../../variables/style'
+import { useNavigate } from 'react-router'
 
 export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
+
+  const [rederingWithDelay, setRederingWithDelay] = useState(false);
+
+
   const [stepModal, setStepModal] = useState(1);
-  const [plan, setPlan] = useState("");
+  const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
+
   const [free, setFree] = useState(false);
   const [packageUuid, setPackageUuid] = useState("")
   const [applyWebAdress, setApplyWebAdress] = useState("")
@@ -18,8 +26,35 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
 
   const { forceUpdate } = useSelector(state => state.planState);
 
+  const navigate=useNavigate();
+
   useEffect(() => {
-    const find_buy_type = localStorage.getItem("buyType")
+    setTimeout(() => {
+      setRederingWithDelay(true)
+    }, 500);
+  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      setRederingWithDelay(true)
+    }, 500);
+  }, [])
+
+  useEffect(() => {
+
+    return () => {
+      ReplaceClass({
+        elementClass: "easyToStartRocket",
+        oldClass: "easyToStartRocket_animation_fire",
+        newClass: "easyToStartRocket_animation",
+        replaceClass: true
+      })
+    }
+  }, [])
+
+
+
+  useEffect(() => {
+    // const find_buy_type = localStorage.getItem("buyType")
     if (checkBuyPlan == true) {
       if (checkErr != "") {
         setCheckErr(true)
@@ -46,33 +81,41 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   };
 
   return (
-    <div className='buy_plan_modal'>
-      <Modal
-        isOpen={true}
-        parentSelector={() => document.querySelector(".app #DASHBOARD .body .main")}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <div className='w-[907px]'>
-          {checkErr != "" ? (
-            <div className='h-[685px]'>
-              {
-                AleartMessageBuyPlan()
-              }
-            </div>
-          ) : (
-            <Fragment>
-              <Head handleClose={handleClose} stepModal={stepModal} free={free} />
-              <div className={`${stepModal == 1 ? "px-6" : stepModal > 2 ? "px-2" : stepModal == 2 ? " px-4" : ""}`}>
-                <BodyContent setStepModal={setStepModal} setApplyWebAdress={setApplyWebAdress} setPackageUuid={setPackageUuid} stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree} lockNextStep={lockNextStep} setLockNextStep={setLockNextStep} />
-                <FooterBtn applyWebAdress={applyWebAdress} stepModal={stepModal} free={free} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose} lockNextStep={lockNextStep} packageUuid={packageUuid} />
+    <Fragment>
+      {rederingWithDelay ?
+        (
+          <div className='buy_plan_modal'>
+            <Modal
+              // closeTimeoutMS={2000}
+
+              isOpen={true}
+              parentSelector={() => document.querySelector(modalParentSelector)}
+              style={customStyles}
+              contentLabel="Example Modal"
+              onRequestClose={()=>navigate(-1)}
+            >
+              <div className='w-[907px]'>
+                {checkErr != "" ? (
+                  <div className='h-[685px]'>
+                    {
+                      AleartMessageBuyPlan()
+                    }
+                  </div>
+                ) : (
+                  <Fragment>
+                    <Head handleClose={handleClose} stepModal={stepModal} free={free} />
+                    <div className={`${stepModal == 1 ? "px-6" : stepModal > 2 ? "px-2" : stepModal == 2 ? " px-4" : ""}`}>
+                      <BodyContent setStepModal={setStepModal} setApplyWebAdress={setApplyWebAdress} setPackageUuid={setPackageUuid} stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree} lockNextStep={lockNextStep} setLockNextStep={setLockNextStep} />
+                      <FooterBtn applyWebAdress={applyWebAdress} stepModal={stepModal} free={free} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose} lockNextStep={lockNextStep} packageUuid={plan.uuid} />
+                    </div>
+                  </Fragment>
+                )}
               </div>
-            </Fragment>
-          )}
-        </div>
-      </Modal>
-      {forceUpdate ? "" : ""}
-      <SetTitleTabBrowser nameSection={"شروع آسان"} />
-    </div>
+            </Modal>
+            {forceUpdate ? "" : ""}
+            <SetTitleTabBrowser nameSection={"شروع آسان"} />
+          </div>
+        ) : null}
+    </Fragment>
   )
 }

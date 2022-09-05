@@ -19,7 +19,9 @@ export default function StaticInputText({
   placeholder,
   staticText,
   workSpaceTypeState,
-  parentClass
+  parentClass,
+  handleChange,
+  errorTextId
 
 }) {
   // check email to be correct
@@ -39,13 +41,16 @@ export default function StaticInputText({
       event.preventDefault();
     }
   };
+ 
   return (
     <div className={`flex static_text_input w-full ${parentClass}`}>
       <div className={`input-wrapper input-static ${wrapperClass}`}>
+      <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
+
         <input
           type={isSeePssword}
           required
-          maxlength={maxlength}
+          maxLength={maxlength}
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           disabled={disabled}
@@ -58,16 +63,16 @@ export default function StaticInputText({
             pointerEvents: disabled && "none",
             borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
           }}
-          onChange={(e) => {
-            setInputValue(e.target.value);
-            workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value))
-          }}
+          onChange={reduxHandleChange!=undefined?((e)=> {
+            // setInputValue(e.target.value);
+             workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value)) 
+          }): handleChange ? (e)=>handleChange(e) :null}
           placeholder={placeholder}
         />
         <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>
         <span className="error_down_input">اطلاعات نامعتبر</span>
       </div>
-      <p>{staticText}</p>
+      <p className="">{staticText}</p>
     </div>
   );
 }
