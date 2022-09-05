@@ -181,7 +181,7 @@ export default function AcardionItem({clicked,setClicked}) {
                 onClick={() => toggle(index)}
                 className="pl-3 cursor-pointer w-10 h-4 flex justify-end"
               >
-                {clicked === index ? (
+                {/* {clicked === index ? (
                   <img
                     src="/img/dashboard/nav_right/arrow_back_ios_new_down.svg"
                     alt=""
@@ -193,7 +193,12 @@ export default function AcardionItem({clicked,setClicked}) {
                     alt=""
                     className="w-3 h-4"
                   />
-                )}
+                  )} */}
+                  <img
+                    src="/img/dashboard/nav_right/arrow_back_ios_new.svg"
+                    alt=""
+                    className={`w-3 h-4 ${clicked === index && "-rotate-90"} transition-transform`}
+                  />
               </div>
             </div>
             {clicked === index ? (
