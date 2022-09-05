@@ -65,7 +65,7 @@ const type=userState.userData.package != undefined? userState.userData.package.t
         const { data, status } = await usetLimit();
         setDatas(data.data);
       } catch (error) {
-        console.log(error);
+       
       }
     };
     if (datas.length == 0) pastSelexboxData();
@@ -79,9 +79,9 @@ const type=userState.userData.package != undefined? userState.userData.package.t
         try {
           const { data, status } = await getPackageInfO(package_uuid);
           setAllWords(data.data.features)
-          console.log(data.data.features);
+          
         } catch (error) {
-          console.log(error);
+      
         }
       }
 

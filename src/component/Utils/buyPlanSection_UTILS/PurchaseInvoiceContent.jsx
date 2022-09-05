@@ -37,7 +37,7 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
   // console.log(packageSelected.default_discount_price)
   // console.log(setFormatPrice(packageSelected.default_discount_price))
   // console.log(Math.floor(parseFloat(1927800)))
-  console.log(Math.round(257.90))
+
 
   return (
     <div className='report'>
