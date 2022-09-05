@@ -96,6 +96,7 @@ export default function WorkSpace() {
         parentSelector={() => document.querySelector(modalParentSelector)}
         style={customStyles}
         contentLabel="Example Modal"
+        onRequestClose={()=>navigate(-1)}
       >
         <div className=' w-[862px]'>
           <header className='px-2.5 border-0 bg-[#FCFCFB] mb-2'>
@@ -104,9 +105,9 @@ export default function WorkSpace() {
               <span className='text-lg'>تعریف ورک‌اسپیس جدید</span>
               <span className='info'></span>
             </div>
-            <div className='close_suport_container'>
+            <div className='close_suport_container' onClick={() => {navigate(-1);dispatch(resetWorkSpaceState());}}>
               <div className='flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]' >
-                <div className='close_modal_ico w-3 h-3' onClick={() => {navigate(-1);dispatch(resetWorkSpaceState());}}></div>
+                <div className='close_modal_ico w-3 h-3' ></div>
               </div>
             </div>
           </header>

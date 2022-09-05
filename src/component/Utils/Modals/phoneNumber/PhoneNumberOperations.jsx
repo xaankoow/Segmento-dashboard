@@ -205,6 +205,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                 document.querySelector(".app #DASHBOARD .body .main")
               }
               style={defaultCustomModalStyle}
+              onRequestClose={()=>operationType!="verify"&&navigate(-1)}
               contentLabel="Example Modal"
             >
               <div className="report_buy_plan w-[530px] rounded-lg transition-all">
