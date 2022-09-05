@@ -4,8 +4,10 @@ import { getPackageInfO } from "../service/packages";
 import { usetLimit } from "../service/userLimit";
 
 export default function BadgeLimitKeyWords({ numFont, api }) {
-  const [allWords, setAllWords] = useState([]);
   const userState = useSelector((state) => state.userState);
+  const {checkLimit} = useSelector((state) => state.workSpaceState);
+
+  const [allWords, setAllWords] = useState([]);
   var moment = require("jalali-moment");
   var nowDate = new Date();
   const [datas, setDatas] = useState([]);
@@ -45,6 +47,10 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
     if (datas.length == 0) pastSelexboxData();
   }, [resultSetWorkSpace.reportStatus]);
 
+  useEffect(() => {
+    pastSelexboxData()
+  }, [checkLimit])
+  
   const pastSelexboxData = async () => {
     try {
       const { data, status } = await usetLimit();

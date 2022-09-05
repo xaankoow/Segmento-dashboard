@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { defaultCustomModalStyle, modalParentSelector } from "../../../../variables/style";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import PageTitle from "../../../Dashboard/DashboaedComponents/pageTitle/pageTitle";
-import { setPropCoreUser } from "../../../Redux/Action";
+import { coreUser, setPropCoreUser } from "../../../Redux/Action";
 import {
   changePhoneNumber,
   verifyPhoneNumber,
@@ -107,7 +107,8 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       const { data, status, code } = await verifyPhoneNumber(formdata);
 
       if ((data.code == 200) & (data.status == true)) {
-        dispatch(setPropCoreUser("mobile", data.user.mobile));
+        // dispatch(setPropCoreUser("mobile", data.user.mobile));
+        dispatch(coreUser());
         setCheckCompleted(true);
       }
       if (data.errors.length != 0) {

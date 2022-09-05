@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import ToolTip from "../../../Utils/ToolTip";
 
 export default function IconsRight({ setActive }) {
@@ -11,8 +12,8 @@ export default function IconsRight({ setActive }) {
 
   // TODO:EDITE TITLE IMG
   const navBarRightSection = [
-    { imgSrc: "/img/dashboard/nav_right/pishkhan.svg", title: "خانه" },
-    { imgSrc: "/img/dashboard/nav_right/analyze.svg", title: "دپارتمان سئو" }
+    { imgSrc: "/img/dashboard/nav_right/pishkhan.svg", title: "خانه" ,link:""},
+    { imgSrc: "/img/dashboard/nav_right/analyze.svg", title: "دپارتمان سئو",link:"/dashboard/PageCounter" }
   ];
 
   var activeClass = "bg-secondary ICONRIGHT nav_right_box flex items-center justify-center relative z-0"
@@ -33,6 +34,7 @@ export default function IconsRight({ setActive }) {
             setActive(e);
           }}
         >
+          <Link to={items.link}>
           <img id={index} src={items.imgSrc} alt="imageSidebar z-0  "
             data-tip={items.title}
             data-type="light"
@@ -42,6 +44,7 @@ export default function IconsRight({ setActive }) {
               setShowToolTip(false);
               setTimeout(() => setShowToolTip(true), 0);
             }} />
+            </Link>
           {index === activeIcon && (
             <hr className="w-5 h-[3px] bg-primary text-[#D9D9D9] rotate-90 absolute -right-2 rounded" />
           )}

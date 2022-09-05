@@ -9,6 +9,7 @@ import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUp from "../../Utils/PopUp/PopUp";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import { resetLimitState } from "../../Redux/Action/workSpace";
 
 const KeyWords = ({ onClickHandler }) => {
   const { canRequest } = useSelector((state) => state.loadingState);
@@ -46,6 +47,7 @@ const KeyWords = ({ onClickHandler }) => {
       const { data, status } = await keywordService(dd);
       setKeyWords(data.data.result); //5
       setId(data.data.id);
+      dispatch(resetLimitState())
       // console.log(data.data.id);
     } catch (error) {
       // console.log(error)
@@ -71,6 +73,7 @@ const KeyWords = ({ onClickHandler }) => {
     }
     try {
       const { data, status } = await keywordsStoreService(id);
+      
       showSavePopup(true);
       //  console.log(data);
     } catch (error) {

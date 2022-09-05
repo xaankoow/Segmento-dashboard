@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { resetLimitState } from "../../Redux/Action/workSpace";
 import { ContentProductionService } from "../../service/contentProduction";
 import PopUp from "../../Utils/PopUp/PopUp";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
@@ -51,6 +52,7 @@ export default function ContentpProduction({ onClickHandler }) {
       const { data, status } = await ContentProductionService(formdata);
        
       setcontent([...content,...data.data]);
+      dispatch(resetLimitState())
       // debugger;
 
     } catch (error) {

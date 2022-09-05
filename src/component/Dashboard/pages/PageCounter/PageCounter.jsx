@@ -19,8 +19,8 @@ export default function PageCounter() {
             آدرس وب‌سایت و کلمات کلیدی خودتان را آماده کنید تا شروع کنیم.          </span>
           <span className="text-primaryV1">
             {" "}
-            پس از انتخاب اشتراک و انجام فرایند شروع آسان به داده‌های تمیز و ساده دسترسی دارید که قابل استفاده و مطمئن هستند.          </span>
-
+            پس از طی فرایند به داده های تمیز و ساده دسترسی دارید که قابل استفاده و مطمئن هستند .
+</span>
         </div>
         <div className="flex justify-between items-center mt-16 ">
 

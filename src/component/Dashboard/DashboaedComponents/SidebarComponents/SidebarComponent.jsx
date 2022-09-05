@@ -16,7 +16,8 @@ export default function SidebarComponent() {
   const { closeNav } = useSelector((state) => state.navMenuState);
   const dispatch = useDispatch();
   // item sidebar hover active mode
-  const[clicked,setClicked]=useState(-2);
+  const[clicked,setClicked]=useState(2);
+  const[clicked1,setClicked1]=useState(2);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
 
@@ -27,7 +28,7 @@ export default function SidebarComponent() {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    setClicked(-2);
+    setClicked(-1);
     dispatch(setCloseNav(true));
     // setCloseNav(true);
   };
@@ -59,8 +60,8 @@ export default function SidebarComponent() {
                   textColor={"#002145"}
                   textHover={"#0A65CD"}
                   index={index}
-                  clicked={clicked}
-                  setClicked={()=>setClicked(index)}
+                  clicked={clicked1}
+                  setClicked={()=>setClicked1(index)}
                 />
               );
             })}
