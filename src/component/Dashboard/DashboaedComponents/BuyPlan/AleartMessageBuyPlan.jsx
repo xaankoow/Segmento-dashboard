@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllFinancialReportsData } from "../../../service/financialReportsService";
+import success_ico_svg from "../../../../assets/img/dashboard/buyPlan/alert/success_ico.svg";
+import error_ico_svg from "../../../../assets/img/dashboard/buyPlan/alert/error_ico.svg";
 
 export default function AleartMessageBuyPlan() {
 
@@ -103,13 +105,13 @@ export default function AleartMessageBuyPlan() {
 
             {typeAlert == "success" ? (
               <img
-                src="/img/dashboard/buyPlan/alert/success_ico.svg"
+                src={success_ico_svg}
                 alt=""
                 className=""
               />
             ) : (
               <img
-                src="/img/dashboard/buyPlan/alert/error_ico.svg"
+                src={error_ico_svg}
                 alt=""
                 className=""
               />

@@ -3,6 +3,7 @@ import { setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setSi
 import StaticInputText from "../../staticInputText/textInput";
 import {useSelector } from 'react-redux';
 import { Fragment } from "react";
+import arrow_svg from '../../../../assets/img/modal/body/arrow.svg'
 
 
 export const InputEasyToStartModal = ({stepModal}) => {
@@ -18,12 +19,12 @@ export const InputEasyToStartModal = ({stepModal}) => {
                 <Fragment>
                 <div className='container_input_step2'>
                     <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey1} value={charKey1} />
-                    <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
+                    <img src={arrow_svg} className='arrpw' alt="" />
                     <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه هدف"} staticText={"https://"+webAdress+"/"} value={site1} reduxHandleChange={setSite1} placeholder={"page1"} />
                 </div>
                 <div className='container_input_step2'>
                     <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey2} value={charKey2} />
-                    <img src="/img/modal/body/arrow.svg" className='arrpw' alt="" />
+                    <img src={arrow_svg} className='arrpw' alt="" />
                     <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه هدف"} staticText={"https://"+webAdress+"/"} value={site2} reduxHandleChange={setSite2} placeholder={"page2"} />
                 </div>
             </Fragment>

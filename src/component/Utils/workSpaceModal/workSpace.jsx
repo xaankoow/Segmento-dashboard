@@ -10,6 +10,7 @@ import SetTitleTabBrowser from '../SetTitleTabBrowser';
 import InputGetWorkSpaceInfo from './inputValue';
 import { WorkSpaceParagraph } from './textParagraph';
 import { workSpaceTitle } from './titleWorkSpaceModal';
+import add_circle_svg from "../../../assets/img/modal/workSpace/head/add_circle.svg";
 
 export default function WorkSpace() {
 
@@ -100,7 +101,7 @@ export default function WorkSpace() {
         <div className=' w-[862px]'>
           <header className='px-2.5 border-0 bg-[#FCFCFB] mb-2'>
             <div>
-              <img src="/img/modal/workSpace/head/add_circle.svg" alt="" className='inline-block ml-3' />
+              <img src={add_circle_svg} alt="" className='inline-block ml-3' />
               <span className='text-lg'>تعریف ورک‌اسپیس جدید</span>
               <span className='info'></span>
             </div>

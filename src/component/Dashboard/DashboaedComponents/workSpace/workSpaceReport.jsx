@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { resetWorkSpaceState } from '../../../Redux/Action/workSpace';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
+import workSpace_report_ico_svg from '../../../../assets/img/dashboard/workSpace/headMessageReport/workSpace_report_ico.svg'
+import arrowVector_svg from '../../../../assets/img/modal/workSpace/body/arrowVector.svg'
 
 export default function WorkSpaceReport({ stepWorkSpace }) {
 
@@ -74,7 +76,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                         {/* <p className=' text-xl font-bold text-[#fff] mb-3'>موفقیت آمیز!</p> */}
                         <p className=' text-xl font-bold text-[#fff]'> ورک‌اسپیس جدید با مشخصات زیر تعریف شد!</p>
                     </div>
-                    <img src="/img/dashboard/workSpace/headMessageReport/workSpace_report_ico.svg" alt="" className='' />
+                    <img src={workSpace_report_ico_svg} alt="" className='' />
                 </div>
                 {/* web site name */}
                 <div className='w-full px-48 pb-7'>
@@ -100,7 +102,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                                             <p className=' w-full text-left text-sm mt-3 border border-sectionDisable h-11 pr-2 flex items-center'>{item.key}</p>
                                         </div>
                                     </div>
-                                    <img src="/img/modal/workSpace/body/arrowVector.svg" alt="arrowVector"  />
+                                    <img src={arrowVector_svg} alt="arrowVector"  />
                                     <div className=' w-2/4 pr-3'>
                                         <div className='pr-2'>
                                             <p className=' w-full text-right text-xs'>سایت مرتبط</p>
@@ -166,7 +168,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                                                 <p className=' w-full text-left text-sm mt-3 border border-sectionDisable h-11 p-1 flex items-center justify-start'>{item.key}</p>
                                             </div>
                                         </div>
-                                        <img src="/img/modal/workSpace/body/arrowVector.svg" alt="arrowVector" />
+                                        <img src={arrowVector_svg} alt="arrowVector" />
                                         <div className=' w-2/4 pr-3'>
                                             {item.competitorSite.map((site,index) => (
                                                 <div className='pr-2'>

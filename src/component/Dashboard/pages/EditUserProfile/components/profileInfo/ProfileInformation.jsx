@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import changeImageIcon_svg from '../../../../../../assets/img/dashboard/userProfile/changeImageIcon.png'
+
 export default function ProfileInformation({ userName, userType, email ,changeUserImage,type}) {
   const userState = useSelector((state) => state.userState);
   // const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "../img/dashboard/userProfile/profileImage.png"
@@ -16,7 +18,7 @@ console.log(userType)
         />
         <div className="bg-primary rounded-full absolute -bottom-1 right-0 p-2 border-[3px] border-[#ffffff] cursor-pointer" onClick={()=>changeUserImage()}>
         <img
-          src="/img/dashboard/userProfile/changeImageIcon.png"
+          src={changeImageIcon_svg}
           alt="userImagechange"
           className="w-3 h-3"
         />

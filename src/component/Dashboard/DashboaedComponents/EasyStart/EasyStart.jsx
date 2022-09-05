@@ -2,6 +2,9 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ReplaceClass } from "../../../Utils/replaceClass";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
+import startEasyStartArrow_svg from '../../../../assets/img/dashboard/EasyStartPage/startEasyStartArrow.svg'
+import moshak_svg from '../../../../assets/img/dashboard/EasyStartPage/moshak.svg'
+import easystart_svg from '../../../../assets/img/dashboard/EasyStartPage/easystart.svg'
 
 const EasyStart = ({ startButtonClick }) => {
   const location = useLocation();
@@ -47,7 +50,7 @@ const EasyStart = ({ startButtonClick }) => {
               {" "}
               شروع کنیم{" "}
               <img
-                src="/img/dashboard/EasyStartPage/startEasyStartArrow.svg"
+                src={startEasyStartArrow_svg}
                 alt="EasyStartPage"
                 className=" mr-3"
               />
@@ -68,14 +71,14 @@ const EasyStart = ({ startButtonClick }) => {
               </span>
 
               <img
-                src="/img/dashboard/EasyStartPage/moshak.svg"
+                src={moshak_svg}
                 alt="EasyStartPage"
                 // className="w-[209px] animate-pulse pb-1 ml-8 absolute -bottom-24 -right-10  z-10"
                 // className="w-[209px] animate-bounce easyToStartRocket pb-1 ml-8 absolute -bottom-24 -right-10  z-10"
                 className="w-[209px] easyToStartRocket easyToStartRocket_animation pb-1 ml-8 absolute -bottom-24 -right-10  z-10"
               />
               <img
-                src="/img/dashboard/EasyStartPage/easystart.svg"
+                src={easystart_svg}
                 alt="EasyStartPage"
                 className="w-[209px] pb-1 ml-8 absolute -bottom-4 z-1"
               />

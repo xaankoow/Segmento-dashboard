@@ -10,6 +10,7 @@ import PopUp from "../../Utils/PopUp/PopUp";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { resetLimitState } from "../../Redux/Action/workSpace";
+import bookmark_svg from '../../../assets/img/dashboard/keyWord/bookmark.svg'
 
 const KeyWords = ({ onClickHandler }) => {
   const { canRequest } = useSelector((state) => state.loadingState);
@@ -235,7 +236,7 @@ const KeyWords = ({ onClickHandler }) => {
           handleSetStoreKeyWords();
         }}
       >
-        <img src="/img/dashboard/keyWord/bookmark.svg" alt="" />
+        <img src={bookmark_svg} alt="" />
         ذخیره
       </button>
     </>

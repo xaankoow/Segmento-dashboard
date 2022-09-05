@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import AuthButton from '../../../Auth/authButton/AuthButton';
 import { useSelector } from 'react-redux';
+import success_svg from '../../../../assets/img/dashboard/EasyStartPage/success.svg'
+
 export default function ShowFinalReportModal() {
 
     const { userData } = useSelector((state) => state.userState);
@@ -30,7 +32,7 @@ export default function ShowFinalReportModal() {
             <div className='support_container '>
                 <p className=''>اگر سوالی دارید، با همکاران ما در واحد پشتیبانی تماس بگیرید.</p>
                 <a href="https://segmento.ir/support"><AuthButton textButton={"برقراری تماس"} /></a>
-                <img src="/img/dashboard/EasyStartPage/success.svg" alt="" />
+                <img src={success_svg} alt="" />
             </div>
         </body>
     )

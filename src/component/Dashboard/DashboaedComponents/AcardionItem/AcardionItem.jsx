@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { setShowWorkSpaceModal } from "../../../Redux/Action/workSpace";
 import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
+import arrow_back_ios_new from "../../../../assets/img/dashboard/nav_right/arrow_back_ios_new.svg";
 
 export default function AcardionItem({clicked,setClicked}) {
   const dispatch = useDispatch();
@@ -195,7 +196,7 @@ export default function AcardionItem({clicked,setClicked}) {
                   />
                   )} */}
                   <img
-                    src="/img/dashboard/nav_right/arrow_back_ios_new.svg"
+                    src={arrow_back_ios_new}
                     alt=""
                     className={`w-3 h-4 ${clicked === index && "-rotate-90"} transition-transform`}
                   />

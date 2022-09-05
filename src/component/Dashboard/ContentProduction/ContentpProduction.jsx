@@ -6,6 +6,7 @@ import PopUp from "../../Utils/PopUp/PopUp";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../DashboaedComponents/TableData/TableData";
 import SaveListModal from "./SaveListModal";
+import cached_svg from '../../../assets/img/dashboard/table/cached.svg';
 
 export default function ContentpProduction({ onClickHandler }) {
   // searchBox Value
@@ -153,7 +154,7 @@ export default function ContentpProduction({ onClickHandler }) {
             handleSetContentProduction();
           }}
         >
-          <img src="/img/dashboard/table/cached.svg" alt="cached" />
+          <img src={cached_svg} alt="cached" />
           تولید بیشتر
         </button>
       </div>

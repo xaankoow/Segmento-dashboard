@@ -2,7 +2,229 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a41f2c-2f9e-4fec-8efb-b41413fabe06" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/assets/img/2nabsh.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/ErrorBadge.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/FrameLogin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/FrameloginSun.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/RevealPassword.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/Vector1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/back.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/businessesIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/contactUs.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/EasySart.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/Group 2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/RectangleSiteAdrress.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/easystart.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/keywords.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/money.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/moshak.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/startEasyStartArrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/success.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/tejary.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/EasyStartPage/webAdress.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/buyPlan/alert/error_ico.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/buyPlan/alert/success_ico.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/financialReports/calendar/file_download.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/financialReports/file_download.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/financialReports/numArrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/Ellipse.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/add_card.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/arrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/currency_exchange.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/logout.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/logoutProfile.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/manage_accounts.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/menuicon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/message.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/money.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/notif.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/redlogout.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/segmento-logofa.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/setting.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/settingicon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/statusPlan.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/header/userimage.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/keyWord/bookmark.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/Disavow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/HelpQuestion.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/XaankooLogoTranceparents 3.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/add_circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/analyze.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/arrow_back_ios_new.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/arrow_back_ios_new_down.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/arrow_downnn_ios_new.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/arrow_up_ios_new.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/call.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/cannibalization.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/close.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/copyWriter.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/copyWriterAnboh.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/createIdea.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/dashboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/dashboardPishKhan.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/down.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/googleAnalize.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/googleIndex.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/googleSuggestion.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/information.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/lightFlow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/linkedin.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/liteHouse.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/monitoring.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/news.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/pageSeo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/pageTejari.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/pishkhan.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/result.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/robots.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/rotbebandi.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/searchKeyWord.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/servise.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/skymacreator.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/speedMonitoring.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/storefront.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/support.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/teknikal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/tolidMohtava.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/trandTypic.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/web.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/xaankoo-logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/yatimPage.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/nav_right/youtub.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Ellipse 100.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Vector (2).svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Vector 123.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Vector 1234.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Vector(1).svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Vector(3).svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Vector--.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Vector8.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Vectort.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/Xaankoo-Logo-Tranceparents 3.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/add_card.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/balloonBoxDiscount.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/boxDiscount.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/date_range.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/donut_small.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/fi-rr-align-right 18.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/logout.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/manage_accounts.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/medium-shot-happy-man-smiling 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/off.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/payments.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/segmento-logofa 20.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/support.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/svg (1).svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/vecturtt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/planStatus/ترکر Tracker.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/searchBox/arrow_down_ios_new.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/searchBox/arrow_up_ios_new.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/searchBox/content_copy_blue.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/searchBox/search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/sidebarHover/sidebarIcon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/sidebarHover/sidebarIcon1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/table/add_chart.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/table/bookmark.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/table/cached.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/table/content_copy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/table/content_copy_blue.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/table/content_copy_primary.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/table/content_copy_white.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/userProfile/backup.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/userProfile/changeImageIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/userProfile/profileImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/workSpace/footer/button_ico.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/workSpace/headMessageReport/success_ico.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/dashboard/workSpace/headMessageReport/workSpace_report_ico.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/emkanatIcons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/fi-rr-life-ring.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/gheimatIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/login.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/body/Xaankoo-Logo-Tranceparents1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/body/Xaankoo-Logo-Tranceparents2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/body/arrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/body/arrow_apply_token.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/body/discList.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/body/report.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/body/siteDesignMan.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/buyPlanReport/head/close.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/footer/arrow_14_free.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/footer/moveBack.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/footer/moveForward.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/footer/planInfoMessage.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/head/closeModal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/head/info.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/keyWords/playlist_add.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/keyWords/update.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/workSpace/body/add.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/workSpace/body/arrowVector.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/workSpace/body/beenhere.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/workSpace/body/file_download.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/workSpace/head/add_circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/workSpace/head/closeModal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/modal/workSpace/head/info.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/nartab.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/nav/cookie_communicate.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/nav/course_video.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/nav/diamond_price.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/nav/option_segmento.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/nini_fil.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/otaghak.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/popUp/err_!.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/popUp/error.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/popUp/errorIco.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/popUp/errorrrr.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/popUp/playlist_add.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/popUp/tik.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/popUp/update.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/registerFrame.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/tick.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/topfroosh.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/vector.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/vectorAccountOperations.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/videoIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/workwithusIcon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/ContentpProduction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/ContentpProduction.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/SaveListModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/SaveListModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/AcardionItem/AcardionItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/AcardionItem/AcardionItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/DashboardHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/DashboardHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/EasyStart/EasyStart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/EasyStart/EasyStart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/FinancialReports/changeDataSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/FinancialReports/changeDataSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/PlanStatus/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/PlanStatus/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SearchBox/SearchBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SearchBox/SearchBox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/IconsRight.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/IconsRight.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/SidebarComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/SidebarComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/TableData/TableData.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/TableData/TableData.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/workSpace/workSpaceReport.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/workSpace/workSpaceReport.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/KeyWords/KeyWords.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/KeyWords/KeyWords.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/KeyWords/MyList/MyList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/KeyWords/MyList/MyList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/EditUserProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/EditUserProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/changeImageModal/ChangeImageModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/changeImageModal/ChangeImageModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/profileInfo/ProfileInformation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/profileInfo/ProfileInformation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/selectBox/SelectBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/selectBox/SelectBox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/PageCounter/PageCounter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/PageCounter/PageCounter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Redux/Store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Redux/Store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/Baner/Sidebar/SidebarBaner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/Baner/Sidebar/SidebarBaner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/HandleInputBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/HandleInputBody.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/ShowFinalReportModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/ShowFinalReportModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/setImages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/setImages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BuyPlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BuyPlan.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/landingPage/ModalResultBuyPlanMessage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/landingPage/ModalResultBuyPlanMessage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/workSpaceModal/inputValue.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/workSpaceModal/inputValue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/workSpaceModal/workSpace.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/workSpaceModal/workSpace.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/forgotPassword/Forgotpass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/forgotPassword/Forgotpass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/validateEmail/ValidateEmail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/validateEmail/ValidateEmail.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +259,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/WebstormProjects/ikigai" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\projects\react\segmentor-react\src\assets" />
+    </key>
   </component>
   <component name="RunManager" selected="npm.start">
     <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -86,6 +313,7 @@
       <workItem from="1659697823762" duration="9234000" />
       <workItem from="1659709454640" duration="2262000" />
       <workItem from="1659862492996" duration="595000" />
+      <workItem from="1662407051779" duration="6991000" />
     </task>
     <servers />
   </component>

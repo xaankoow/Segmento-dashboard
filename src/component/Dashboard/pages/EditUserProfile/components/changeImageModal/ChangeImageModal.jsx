@@ -6,6 +6,8 @@ import { setImageProfRedux } from "../../../../../Redux/Action";
 import { useDispatch, useSelector } from "react-redux";
 import AuthButton from "../../../../../Auth/authButton/AuthButton";
 import PopUp from "../../../../../Utils/PopUp/PopUp";
+import close_svg from '../../../../../../assets/img/dashboard/nav_right/close.svg'
+import backup_svg from '../../../../../../assets/img/dashboard/userProfile/backup.svg'
 
 export default function ChangeImageModal({
   close,
@@ -121,7 +123,7 @@ export default function ChangeImageModal({
           <div className="w-full flex relative">
             <PageTitle title={"تغییر تصویر پروفایل"} />
             <img
-              src="/img/dashboard/nav_right/close.svg"
+              src={close_svg}
               alt="close"
               className="absolute top-4 left-6 cursor-pointer w-[20px] h-[20px] p-1 rounded-[3px] hover:bg-[#F352421A]"
               onClick={() => close()}
@@ -137,7 +139,7 @@ export default function ChangeImageModal({
               >
                 <input {...getInputProps()} className="w-full bg-yellow h-11" />
                 <img
-                  src="/img/dashboard/userProfile/backup.svg"
+                  src={backup_svg}
                   alt="backup"
                   width={"28px"}
                   height={"20px"}

@@ -9,6 +9,8 @@ import Timer from "../../component/shared/Time/timer/Timer";
 import ToolTip from "../../component/Utils/ToolTip";
 import { TextButton } from "../register/Register";
 import "./forgotpass.css";
+import registerFrame_svg from "../../assets/img/registerFrame.svg";
+import businessesIcon_png from "../../assets/img/businessesIcon.png";
 
 export default function Forgetpass() {
 
@@ -287,8 +289,8 @@ export default function Forgetpass() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-4">
-            <img className="w-100" src="/img/registerFrame.svg" alt="registerFrame" />
-            <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
+            <img className="w-100" src={registerFrame_svg} alt="registerFrame" />
+            <img className="w-100" src={businessesIcon_png} alt="businessesIcon" />
           </div>
         </div>
       </div>

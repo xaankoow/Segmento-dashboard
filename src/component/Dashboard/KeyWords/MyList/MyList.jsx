@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { dataTable } from "../../../service/dataTable";
 import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../../DashboaedComponents/TableData/TableData";
+import arrow_downnn_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_downnn_ios_new.svg'
+import arrow_up_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_up_ios_new.svg'
 
 export default function MyList() {
   const [clicked, setClicked] = React.useState(false);
@@ -154,13 +156,13 @@ export default function MyList() {
                 >
                   {clicked === index ? (
                     <img
-                      src="/img/dashboard/nav_right/arrow_downnn_ios_new.svg"
+                      src={arrow_downnn_ios_new_svg}
                       alt=""
                       className="cursor-pointer"
                     />
                   ) : (
                     <img
-                      src="/img/dashboard/nav_right/arrow_up_ios_new.svg"
+                      src={arrow_up_ios_new_svg}
                       alt=""
                       className=" cursor-pointer"
                     />

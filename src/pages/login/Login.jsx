@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import { loginUserAction, setEmailRedux, setNameRedux, setPasswordRedux } from '../../component/Redux/Action';
 import Nav from '../../component/Dashboard/DashboaedComponents/navMenu/Nav';
 import ToolTip from '../../component/Utils/ToolTip';
+import FrameloginSun_png from '../../assets/img/FrameloginSun.png';
+import login_svg from '../../assets/img/login.svg';
+import businessesIcon_png from '../../assets/img/businessesIcon.png';
 
 export default function Login() {
 
@@ -46,9 +49,9 @@ export default function Login() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <img className="w-20  rotate_sun" src="/img/FrameloginSun.png" alt="registerFrame" />
-            <img className="w-100" src="/img/login.svg" alt="registerFrame" />
-            <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
+            <img className="w-20  rotate_sun" src={FrameloginSun_png} alt="registerFrame" />
+            <img className="w-100" src={login_svg} alt="registerFrame" />
+            <img className="w-100" src={businessesIcon_png} alt="businessesIcon" />
           </div>
         </div>
       </div>

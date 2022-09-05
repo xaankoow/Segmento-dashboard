@@ -8,6 +8,9 @@ import { RegisterUserAction, setEmailRedux, setNameRedux, setPasswordConfirmRedu
 import Nav from "../../component/Dashboard/DashboaedComponents/navMenu/Nav";
 import ToolTip from "../../component/Utils/ToolTip";
 import { CheckFormat } from "../../component/Utils/Auth/CheckFormtValue";
+import registerFrame_svg from "../../assets/img/registerFrame.svg";
+import businessesIcon_svg from "../../assets/img/businessesIcon.png";
+
 export const TextButton = React.createContext();
 export default function Register() {
 
@@ -81,8 +84,8 @@ export default function Register() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-4">
-            <img className="w-100" src="/img/registerFrame.svg" alt="registerFrame" />
-            <img className="w-100" src="/img/businessesIcon.png" alt="businessesIcon" />
+            <img className="w-100" src={registerFrame_svg} alt="registerFrame" />
+            <img className="w-100" src={businessesIcon_svg} alt="businessesIcon" />
           </div>
         </div>
       </div>

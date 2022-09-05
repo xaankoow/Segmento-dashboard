@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import startEasyStartArrow_svg from '../../../../assets/img/dashboard/EasyStartPage/startEasyStartArrow.svg'
 
 export default function PageCounter() {
 
@@ -31,7 +32,7 @@ export default function PageCounter() {
           >
             شروع کنیم
             <img
-              src="/img/dashboard/EasyStartPage/startEasyStartArrow.svg"
+              src={startEasyStartArrow_svg}
               alt="EasyStartPage"
               className=" mr-3"
             />

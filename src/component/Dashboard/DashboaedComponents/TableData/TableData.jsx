@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Checkbox from "../../../Utils/Elements/CheckBox/Checkbox";
 import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
+import bookmark_svg from '../../../../assets/img/dashboard/table/bookmark.svg'
 
 export default function Table({
   data,
@@ -235,7 +236,7 @@ export default function Table({
                   onClick={() => openModal()}
                 >
                   <img
-                    src="/img/dashboard/table/bookmark.svg"
+                    src={bookmark_svg}
                     alt="bookmark"
                     className={"ml-3"}
                   />{" "}

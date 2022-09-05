@@ -7,6 +7,16 @@ import { Doughnut } from "react-chartjs-2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getAllWorkSpace } from "../../Redux/Action/workSpace";
 import { setCloseNav } from "../../Redux/Action/navMenu";
+import segmento_logofa_svg from '../../../assets/img/dashboard/header/segmento-logofa.svg';
+import manage_accounts_svg from '../../../assets/img/dashboard/header/manage_accounts.svg';
+import add_card_svg from '../../../assets/img/dashboard/header/add_card.svg';
+import statusPlan_svg from '../../../assets/img/dashboard/header/statusPlan.svg';
+import money_svg from '../../../assets/img/dashboard/header/money.svg';
+import arrow_svg from '../../../assets/img/dashboard/header/arrow.svg';
+import redlogout_svg from '../../../assets/img/dashboard/header/redlogout.svg';
+import notif_svg from '../../../assets/img/dashboard/header/notif.svg';
+import message_svg from '../../../assets/img/dashboard/header/message.svg';
+import settingicon_svg from '../../../assets/img/dashboard/header/settingicon.svg';
 
 const DashboardHeader = () => {
   const dispatch = useDispatch();
@@ -114,7 +124,7 @@ const DashboardHeader = () => {
         <div className="flex items-center gap-3 hover:cursor-pointer">
           {/* <div className='Iconimage w-7 h-8'></div> */}
           <img
-            src="/img/dashboard/header/segmento-logofa.svg"
+            src={segmento_logofa_svg}
             className="w-7 h-8"
             alt=""
           />
@@ -195,7 +205,7 @@ const DashboardHeader = () => {
             <div className="flex text-xs items-center justify-between w-full p-1 hover:bg-lightBlue mt-1">
               <div className="flex items-center">
                 <img
-                  src="/img/dashboard/header/manage_accounts.svg"
+                  src={manage_accounts_svg}
                   alt="manage_accounts"
                 />
                 {/* <Link to={"userProfile"} state={{ background: location }}>تنظیمات حساب کاربری</Link> */}
@@ -204,7 +214,7 @@ const DashboardHeader = () => {
             </div>
             <div className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue ">
               <div className="flex items-center gap-1">
-                <img src="/img/dashboard/header/add_card.svg" alt="add_card" />
+                <img src={add_card_svg} alt="add_card" />
                 <Link to={"buyPlan"}>خرید اشتراک</Link>
               </div>
             </div>
@@ -212,22 +222,22 @@ const DashboardHeader = () => {
             <div className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue ">
               <div className="flex items-center gap-1">
                 <img
-                  src="/img/dashboard/header/statusPlan.svg"
+                  src={statusPlan_svg}
                   alt="currency_exchange"
                 />
                 <Link to={"planStatus"}> وضعیت اشتراک</Link>
               </div>
-              {/* <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
+              {/* <img src={arrow_svg} alt="arrow" className='ml-3' /> */}
             </div>
             <div className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue mb-1">
               <div className="flex items-center gap-1">
                 <img
-                  src="/img/dashboard/header/money.svg"
+                  src={money_svg}
                   alt="currency_exchange"
                 />
                 <Link to={"financialReports"}> گزارش های مالی </Link>
               </div>
-              {/* <img src="/img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
+              {/* <img src={arrow_svg} alt="arrow" className='ml-3' /> */}
             </div>
             <div className="border-b border-lightGray w-full " />
             <div
@@ -238,17 +248,17 @@ const DashboardHeader = () => {
                 <span className="text-red">خروج از حساب کاربری</span>
               </div>
               <img
-                src="/img/dashboard/header/redlogout.svg"
+                src={redlogout_svg}
                 alt="logout"
                 className="ml-1"
               />
-              {/* <img src="../img/dashboard/header/arrow.svg" alt="arrow" className='ml-3' /> */}
+              {/* <img src={arrow_svg} alt="arrow" className='ml-3' /> */}
             </div>
           </div>
         </div>
         <div className="flex items-center gap-3 ml-7">
           <img
-            src="/img/dashboard/header/notif.svg"
+            src={notif_svg}
             alt="notif"
             className="cursor-pointer"
           />
@@ -257,13 +267,13 @@ const DashboardHeader = () => {
               33
             </span>
             <img
-              src="/img/dashboard/header/message.svg"
+              src={message_svg}
               alt="message"
               className="cursor-pointer"
             />
           </div>
           <img
-            src="/img/dashboard/header/settingicon.svg"
+            src={settingicon_svg}
             alt="settingicon"
             className="cursor-pointer"
           />
