@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import AuthButton from '../../../Auth/authButton/AuthButton';
-import { useSelector } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllWorkSpace } from '../../../Redux/Action/workSpace';
 import success_svg from '../../../../assets/img/dashboard/EasyStartPage/success.svg'

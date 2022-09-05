@@ -4,7 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { setShowWorkSpaceModal } from "../../../Redux/Action/workSpace";
 import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
-import arrow_back_ios_new from "../../../../assets/img/dashboard/nav_right/arrow_back_ios_new.svg";
+import arrow_back_ios_new_svg from "../../../../assets/img/dashboard/nav_right/arrow_back_ios_new.svg";
+import add_circle_svg from "../../../../assets/img/dashboard/nav_right/add_circle.svg";
+import web_svg from "../../../../assets/img/dashboard/nav_right/web.svg";
+import storefront_svg from "../../../../assets/img/dashboard/nav_right/storefront.svg";
+import search_svg from "../../../../assets/img/dashboard/nav_right/search.svg";
+import rotbebandi_svg from "../../../../assets/img/dashboard/nav_right/rotbebandi.svg";
+import searchKeyWord_svg from "../../../../assets/img/dashboard/nav_right/searchKeyWord.svg";
+import pageTejari_svg from "../../../../assets/img/dashboard/nav_right/pageTejari.svg";
+import googleIndex_svg from "../../../../assets/img/dashboard/nav_right/googleIndex.svg";
+import pageSeo_svg from "../../../../assets/img/dashboard/nav_right/pageSeo.svg";
+import monitoring_svg from "../../../../assets/img/dashboard/nav_right/monitoring.svg";
+import tolidMohtava_svg from "../../../../assets/img/dashboard/nav_right/tolidMohtava.svg";
+import trandTypic_svg from "../../../../assets/img/dashboard/nav_right/trandTypic.svg";
+import createIdea_svg from "../../../../assets/img/dashboard/nav_right/createIdea.svg";
+import copyWriter_svg from "../../../../assets/img/dashboard/nav_right/copyWriter.svg";
+import copyWriterAnboh_svg from "../../../../assets/img/dashboard/nav_right/copyWriterAnboh.svg";
+import googleSuggestion_svg from "../../../../assets/img/dashboard/nav_right/googleSuggestion.svg";
 
 export default function AcardionItem({clicked,setClicked}) {
   const dispatch = useDispatch();
@@ -18,45 +34,45 @@ export default function AcardionItem({clicked,setClicked}) {
   const data = [
     {
       title: "ورک‌اسپیس‌ها",
-      titleIcon: "/img/dashboard/nav_right/web.svg",
+      titleIcon: web_svg,
       acardionItems: allWorkSpace.map((item, index) => ({
         itemTitle: item.website,
-        itemIcon: "/img/dashboard/nav_right/storefront.svg",
+        itemIcon: storefront_svg,
         itemLink: " ",
       })),
     },
     {
       title: "سئو",
-      titleIcon: "/img/dashboard/nav_right/search.svg",
+      titleIcon: search_svg,
       acardionItems: [
         {
           itemTitle: "رتبه کلمات کلیدی ",
-          itemIcon: "/img/dashboard/nav_right/rotbebandi.svg",
+          itemIcon: rotbebandi_svg,
           itemLink: "",
         },
         {
           itemTitle: "تحقیق کلمه کلیدی ",
-          itemIcon: "/img/dashboard/nav_right/searchKeyWord.svg",
+          itemIcon: searchKeyWord_svg,
           itemLink: "keywordResearch",
         },
         {
           itemTitle: "صفحات تجاری ",
-          itemIcon: "/img/dashboard/nav_right/pageTejari.svg",
+          itemIcon: pageTejari_svg,
           itemLink: "",
         },
         {
           itemTitle: "ایندکسر گوگل",
-          itemIcon: "/img/dashboard/nav_right/googleIndex.svg",
+          itemIcon: googleIndex_svg,
           itemLink: "",
         },
         {
           itemTitle: "آنالیز گوگل",
-          itemIcon: "/img/dashboard/nav_right/pageSeo.svg",
+          itemIcon: pageSeo_svg,
           itemLink: "",
         },
         {
           itemTitle: " آنالیز سئو داخل صفحه",
-          itemIcon: "/img/dashboard/nav_right/monitoring.svg",
+          itemIcon: monitoring_svg,
           itemLink: "",
         },
       ],
@@ -114,32 +130,32 @@ export default function AcardionItem({clicked,setClicked}) {
     // },
     {
       title: "تولید محتوا",
-      titleIcon: "/img/dashboard/nav_right/tolidMohtava.svg",
+      titleIcon: tolidMohtava_svg,
       itemLink: "",
       acardionItems: [
         {
           itemTitle: " تاپیک ترند",
-          itemIcon: "/img/dashboard/nav_right/trandTypic.svg",
+          itemIcon: trandTypic_svg,
           itemLink: "",
         },
         {
           itemTitle: " ایده ساز",
-          itemIcon: "/img/dashboard/nav_right/createIdea.svg",
+          itemIcon: createIdea_svg,
           itemLink: "contentCreation",
         },
         {
           itemTitle: "کپی رایتر  ",
-          itemIcon: "/img/dashboard/nav_right/copyWriter.svg",
+          itemIcon: copyWriter_svg,
           itemLink: "",
         },
         {
           itemTitle: "کپی رایتر انبوه ",
-          itemIcon: "/img/dashboard/nav_right/copyWriterAnboh.svg",
+          itemIcon: copyWriterAnboh_svg,
           itemLink: "",
         },
         {
           itemTitle: "پیشنهاد ساز گوگل ",
-          itemIcon: "/img/dashboard/nav_right/googleSuggestion.svg",
+          itemIcon: googleSuggestion_svg,
           itemLink: "",
         },
       ],
@@ -196,7 +212,7 @@ export default function AcardionItem({clicked,setClicked}) {
                   />
                   )} */}
                   <img
-                    src={arrow_back_ios_new}
+                    src={arrow_back_ios_new_svg}
                     alt=""
                     className={`w-3 h-4 ${clicked === index && "-rotate-90"} transition-transform`}
                   />
@@ -230,7 +246,7 @@ export default function AcardionItem({clicked,setClicked}) {
                     className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                   >
                     <img
-                      src={"/img/dashboard/nav_right/add_circle.svg"}
+                      src={add_circle_svg}
                       alt="icon"
                     />
                     <Link
