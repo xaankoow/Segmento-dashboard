@@ -18,7 +18,7 @@
 
 .ReactModal__Overlay {
     background-color: rgba(217, 217, 217, 0.6) !important;
-    z-index: 10;
+    z-index: 10000;
     position: absolute !important;
 }
 
@@ -50,7 +50,7 @@
     box-sizing: border-box;
     /* height: 408px; */
     /* width: 100%; change style*/
-    border-radius: 9px;
+    /* border-radius: 9px; */
     /* border: 1px solid #f2f5f7; change style */
     /* padding: 18px; change set*/
 }
@@ -81,23 +81,23 @@
     cursor: pointer;
 }
 
-.ReactModal__Content header .close_modal_ico {
+.ReactModal__Content .close_modal_ico {
     display: inline-block;
     height: 8px;
     width: 8px;
-    background-image: url(/%PUBLIC_URL%/img/modal/head/closeModal.svg);
+    background-image: url(/img/modal/head/closeModal.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer !important;
 }
 
-.ReactModal__Content header .close_suport_container {
+.ReactModal__Content .close_suport_container {
     display: flex;
     align-items: center;
 }
 
-.ReactModal__Content header .close_suport_container button {
+.ReactModal__Content .close_suport_container button {
     margin-left: 10px;
 }
 
@@ -434,9 +434,12 @@ input[type="radio"] {
     /* place-content: center; */
     z-index: 100000;
 }
-
+input[type="radio"]:hover {
+    outline: #0A65CD !important;
+    border: 2px solid rgba(10, 101, 205, 1);
+  }
 input[type="radio"]:checked {
-    border: 3px solid rgba(10, 101, 205, 1);
+    border: 4px solid rgba(10, 101, 205, 1);
 
     /* outline: 3px solid rgba(10, 101, 205, 1); */
 }
@@ -495,7 +498,7 @@ input[type="radio"]:checked::before {
     display: inline-block;
     height: 24px;
     width: 24px;
-    background-image: url(/%PUBLIC_URL%/img/modal/footer/moveBack.svg);
+    background-image: url(/img/modal/footer/moveBack.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -507,7 +510,7 @@ input[type="radio"]:checked::before {
     height: 15px;
     width: 15px;
     margin-right: 14px;
-    background-image: url(/%PUBLIC_URL%/img/modal/footer/moveForward.svg);
+    background-image: url(/img/modal/footer/moveForward.svg);
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
@@ -523,6 +526,10 @@ input[type="radio"]:checked::before {
     box-sizing: content-box;
     background-repeat: no-repeat;
     background-size: cover;
+    
+}
+button:hover  .forward-14_free_ico{
+    filter: brightness(0) invert(1);
 }
 
 
@@ -556,55 +563,52 @@ input[type="radio"]:checked::before {
 
 /* modal step 5 price type*/
 
-.report_container .report {
+ .report {
     box-sizing: border-box;
     width: 340px;
-    /* height: 284px; */
     border-radius: 9px;
     border: 1px solid rgba(211, 213, 226, 1);
     margin: auto;
-    /* background-color: #7d7d7d; */
-    /* margin-top: 70px;  change set*/
     padding: 20px 5px 5px 5px;
 }
 
-.report_container .report div {
+ .report div {
     width: 100%;
     text-align: center;
     margin-bottom: 18px;
 }
 
-.report_container .report span {
+ .report span {
     display: inline-block;
     width: 40%;
     font-size: 14px;
-    color: rgba(8, 60, 120, 1);
+    /* color: rgba(8, 60, 120, 1); */
 }
 
-.report_container .report span:first-of-type {
+ .report span:first-of-type {
     margin-left: 24px;
     text-align: left;
 }
 
-.report_container .report span:last-of-type {
+ .report span:last-of-type {
     text-align: right;
 }
 
-.report_container .report .title span:last-of-type {
+ .report .title span:last-of-type {
     /* color: rgba(255, 206, 71, 1); */
     font-size: 20px !important;
     font-weight: 700;
 }
 
-.report_container .report .date span:last-of-type {
+ .report .date span:last-of-type {
     /* font-size: 20px !important; */
     font-weight: 700;
 }
 
-.report_container .report .final_price {
+ .report .final_price {
     width: 100%;
     padding: 10px 0px;
-    background-color: rgba(211, 213, 226, 1);
+    background-color: #D9D9D9;
     border-radius: 0px 0px 9px 9px;
     margin: 0px;
 }
@@ -758,22 +762,6 @@ input[type="radio"]:checked::before {
     width: 100%;
     text-align: center;
     margin-top: 10px;
-}
-
-.plan_list_option .btn_read_policy_container div {
-    width: 467px;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    margin: 10px auto;
-    /* margin: auto;
-}
-.plan_list_option .btn_read_policy_container  button{
-    display: inline-block;
-    /* margin: auto; */
-    /* position: absolute; */
-    /* left: 0px; */
-    /* float: left; */
 }
 
 .plan_list_option .btn_read_policy_container p {
