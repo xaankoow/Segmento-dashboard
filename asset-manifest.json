@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/segmentor-react/static/css/main.7e833284.chunk.css",
-    "main.js": "/segmentor-react/static/js/main.a616a94d.chunk.js",
-    "main.js.map": "/segmentor-react/static/js/main.a616a94d.chunk.js.map",
+    "main.js": "/segmentor-react/static/js/main.85019541.chunk.js",
+    "main.js.map": "/segmentor-react/static/js/main.85019541.chunk.js.map",
     "runtime-main.js": "/segmentor-react/static/js/runtime-main.adf6cd0f.js",
     "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.adf6cd0f.js.map",
     "static/css/2.d62a005b.chunk.css": "/segmentor-react/static/css/2.d62a005b.chunk.css",
@@ -17,7 +17,6 @@
     "static/media/add_card.e5297ebd.svg": "/segmentor-react/static/media/add_card.e5297ebd.svg",
     "static/media/add_chart.73783231.svg": "/segmentor-react/static/media/add_chart.73783231.svg",
     "static/media/add_circle.92546b46.svg": "/segmentor-react/static/media/add_circle.92546b46.svg",
-    "static/media/adminIco.8cafb473.svg": "/segmentor-react/static/media/adminIco.8cafb473.svg",
     "static/media/analyze.afd6186c.svg": "/segmentor-react/static/media/analyze.afd6186c.svg",
     "static/media/arrow.017e482f.svg": "/segmentor-react/static/media/arrow.017e482f.svg",
     "static/media/arrow.18948b6b.svg": "/segmentor-react/static/media/arrow.18948b6b.svg",
@@ -58,8 +57,6 @@
     "static/media/money.34beb72e.svg": "/segmentor-react/static/media/money.34beb72e.svg",
     "static/media/money.ee01869c.svg": "/segmentor-react/static/media/money.ee01869c.svg",
     "static/media/monitoring.0ca5905d.svg": "/segmentor-react/static/media/monitoring.0ca5905d.svg",
-    "static/media/mood_bad.d07d2b09.svg": "/segmentor-react/static/media/mood_bad.d07d2b09.svg",
-    "static/media/mood_happy.8e0ffacc.svg": "/segmentor-react/static/media/mood_happy.8e0ffacc.svg",
     "static/media/moshak.c607a769.svg": "/segmentor-react/static/media/moshak.c607a769.svg",
     "static/media/moveBack.87b1f552.svg": "/segmentor-react/static/media/moveBack.87b1f552.svg",
     "static/media/notif.ad866bf4.svg": "/segmentor-react/static/media/notif.ad866bf4.svg",
@@ -98,6 +95,6 @@
     "static/css/2.d62a005b.chunk.css",
     "static/js/2.ff570949.chunk.js",
     "static/css/main.7e833284.chunk.css",
-    "static/js/main.a616a94d.chunk.js"
+    "static/js/main.85019541.chunk.js"
   ]
 }
