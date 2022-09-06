@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/segmentor-react/static/css/main.7e833284.chunk.css",
-    "main.js": "/segmentor-react/static/js/main.2c798d3d.chunk.js",
-    "main.js.map": "/segmentor-react/static/js/main.2c798d3d.chunk.js.map",
+    "main.js": "/segmentor-react/static/js/main.a616a94d.chunk.js",
+    "main.js.map": "/segmentor-react/static/js/main.a616a94d.chunk.js.map",
     "runtime-main.js": "/segmentor-react/static/js/runtime-main.adf6cd0f.js",
     "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.adf6cd0f.js.map",
     "static/css/2.d62a005b.chunk.css": "/segmentor-react/static/css/2.d62a005b.chunk.css",
@@ -23,8 +23,10 @@
     "static/media/arrow.18948b6b.svg": "/segmentor-react/static/media/arrow.18948b6b.svg",
     "static/media/arrowVector.1b98f549.svg": "/segmentor-react/static/media/arrowVector.1b98f549.svg",
     "static/media/arrow_back_ios_new.afcb730c.svg": "/segmentor-react/static/media/arrow_back_ios_new.afcb730c.svg",
+    "static/media/arrow_down_ios_new.efb84b9d.svg": "/segmentor-react/static/media/arrow_down_ios_new.efb84b9d.svg",
     "static/media/arrow_downnn_ios_new.b9697c9d.svg": "/segmentor-react/static/media/arrow_downnn_ios_new.b9697c9d.svg",
     "static/media/arrow_up_ios_new.398fb03f.svg": "/segmentor-react/static/media/arrow_up_ios_new.398fb03f.svg",
+    "static/media/arrow_up_ios_new.9c919bae.svg": "/segmentor-react/static/media/arrow_up_ios_new.9c919bae.svg",
     "static/media/back.a5f1615e.svg": "/segmentor-react/static/media/back.a5f1615e.svg",
     "static/media/backup.f18f9e29.svg": "/segmentor-react/static/media/backup.f18f9e29.svg",
     "static/media/balloonBoxDiscount.1648c34a.svg": "/segmentor-react/static/media/balloonBoxDiscount.1648c34a.svg",
@@ -96,6 +98,6 @@
     "static/css/2.d62a005b.chunk.css",
     "static/js/2.ff570949.chunk.js",
     "static/css/main.7e833284.chunk.css",
-    "static/js/main.2c798d3d.chunk.js"
+    "static/js/main.a616a94d.chunk.js"
   ]
 }
