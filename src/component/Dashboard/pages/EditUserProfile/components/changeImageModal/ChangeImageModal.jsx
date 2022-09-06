@@ -8,6 +8,7 @@ import AuthButton from "../../../../../Auth/authButton/AuthButton";
 import PopUp from "../../../../../Utils/PopUp/PopUp";
 import close_svg from '../../../../../../assets/img/dashboard/nav_right/close.svg'
 import backup_svg from '../../../../../../assets/img/dashboard/userProfile/backup.svg'
+import tik_svg from '../../../../../../assets/img/popUp/tik.svg'
 
 export default function ChangeImageModal({
   close,
@@ -112,7 +113,7 @@ export default function ChangeImageModal({
         {imageChanged && (
           <PopUp
             clickHandler={() => close()}
-            image={"/img/popUp/tik.svg"}
+            image={tik_svg}
             type={"sucsess"}
             buttonText={"باشه، فهمیدم!"}
             text={" تصویر پروفایل شما با موفقیت تغییر کرد!   "}

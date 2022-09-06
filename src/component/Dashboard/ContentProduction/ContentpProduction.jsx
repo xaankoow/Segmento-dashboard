@@ -7,6 +7,8 @@ import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../DashboaedComponents/TableData/TableData";
 import SaveListModal from "./SaveListModal";
 import cached_svg from '../../../assets/img/dashboard/table/cached.svg';
+import update_svg from '../../../assets/img/popUp/update.svg'
+import playlist_add_svg from '../../../assets/img/popUp/playlist_add.svg'
 
 export default function ContentpProduction({ onClickHandler }) {
   // searchBox Value
@@ -95,7 +97,7 @@ export default function ContentpProduction({ onClickHandler }) {
       {UpdatePpUp && (
         <PopUp
           clickHandler={() => showUpdatePpUp(false)}
-          image={"/img/popUp/update.svg"}
+          image={update_svg}
           type={"sucsess"}
           buttonText={"باشه"}
           text={"لیست " + " " + activeboxValue + " " + "بروزرسانی شد!"}
@@ -105,7 +107,7 @@ export default function ContentpProduction({ onClickHandler }) {
       {SavePopup && (
         <PopUp
           clickHandler={() => showSavePopup(false)}
-          image={"/img/popUp/playlist_add.svg"}
+          image={playlist_add_svg}
           type={"sucsess"}
           buttonText={"باشه"}
           text={

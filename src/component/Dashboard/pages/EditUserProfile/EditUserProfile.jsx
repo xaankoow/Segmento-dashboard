@@ -3,6 +3,7 @@ import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import ProfileInformation from "./components/profileInfo/ProfileInformation";
 import AuthInput from "../../../Auth/authInput/AuthInput";
 import logoutProfile_svg from '../../../../assets/img/dashboard/header/logoutProfile.svg'
+import tik_svg from '../../../../assets/img/popUp/tik.svg'
 // import {
 //   EditorComposer,
 //   Editor,
@@ -325,7 +326,7 @@ export default function EditUserProfile() {
       {updatePass && (
         <PopUp
           clickHandler={() => setUpdatePass(false)}
-          image={"/img/popUp/tik.svg"}
+          image={tik_svg}
           type={"sucsess"}
           buttonText={" باشه، بزن بریم"}
           text={" حالا می‌توانید کارتان را شروع کنید.   "}

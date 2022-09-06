@@ -17,6 +17,7 @@ import redlogout_svg from '../../../assets/img/dashboard/header/redlogout.svg';
 import notif_svg from '../../../assets/img/dashboard/header/notif.svg';
 import message_svg from '../../../assets/img/dashboard/header/message.svg';
 import settingicon_svg from '../../../assets/img/dashboard/header/settingicon.svg';
+import profileImage_png from '../../../assets/img/dashboard/userProfile/profileImage.png';
 
 const DashboardHeader = () => {
   const dispatch = useDispatch();
@@ -139,8 +140,8 @@ const DashboardHeader = () => {
                 userState.userData.user != undefined
                   ? userState.userData.user.img != ""
                     ? userState.userData.user.img
-                    : "/../img/dashboard/userProfile/profileImage.png"
-                  : "/../img/dashboard/userProfile/profileImage.png"
+                    : profileImage_png
+                  : profileImage_png
               }
               className="rounded w-10 h-10"
               alt="userImage"
