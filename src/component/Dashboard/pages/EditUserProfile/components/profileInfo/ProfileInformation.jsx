@@ -4,7 +4,7 @@ export default function ProfileInformation({ userName, userType, email ,changeUs
   const userState = useSelector((state) => state.userState);
   // const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "../img/dashboard/userProfile/profileImage.png"
   const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : userState.userData.user!=undefined?userState.userData.user.img!=""?userState.userData.user.img:"../img/dashboard/userProfile/profileImage.png":"../img/dashboard/userProfile/profileImage.png"
-console.log(userType)
+
   return (
     <div className="flex gap-3 items-center">
       <div className="relative">

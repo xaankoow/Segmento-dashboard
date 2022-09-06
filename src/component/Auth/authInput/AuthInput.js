@@ -26,8 +26,8 @@ export default function AuthInput({
   infoStrongPass,
   checkStrongPass,
   readOnly,
-  ref
-
+  ref,
+  defaultValue
 
 }) {
   // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)  
@@ -54,6 +54,7 @@ export default function AuthInput({
       <div className={`input-wrapper ${wrapperClass}`}>
         <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
         <input
+        defaultValue={defaultValue}
           type={isSeePssword}
           required
           maxLength={maxlength}
