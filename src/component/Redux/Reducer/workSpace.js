@@ -37,6 +37,7 @@ export const workSpaceReducer = (state =
         competitorSite: [],
         resultSetWorkSpace: { reportStatus: false, reportStep: 0 },
         showWorkSpaceModal: false,
+        checkLimit:true,
         forceUpdate: 0
     }, action) => {
     switch (action.type) {
@@ -80,6 +81,8 @@ export const workSpaceReducer = (state =
         case "MODAL_SET_WORK_SPACE_PLAN":
             return { ...action.payload }
 
+        case "CHECK_LIMIT":
+            return { ...action.payload }
         case "FORCE_UPDATE":
             return { ...action.payload }
 

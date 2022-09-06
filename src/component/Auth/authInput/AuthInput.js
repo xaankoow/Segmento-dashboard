@@ -27,7 +27,9 @@ export default function AuthInput({
   checkStrongPass,
   readOnly,
   ref,
-  defaultValue
+  inputId,
+  selectWithOnClick
+
 
 }) {
   // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)  
@@ -54,10 +56,10 @@ export default function AuthInput({
       <div className={`input-wrapper ${wrapperClass}`}>
         <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
         <input
-        defaultValue={defaultValue}
-          type={isSeePssword}
+        id={inputId!=undefined?inputId:""}
+          type="text"
           required
-          maxLength={maxlength}
+          maxLength={1}
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           ref={ref}
@@ -72,6 +74,7 @@ export default function AuthInput({
             pointerEvents: disable && "none",
             borderBottom: disable ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
           }}
+          onClick={(e)=>selectWithOnClick&&e.currentTarget.select()}
           onChange={(e) => {
             checkStrongPass!=undefined&&CheckFormat("password",e.target.value,errorTextId)
             handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow);
@@ -83,6 +86,7 @@ export default function AuthInput({
 
 
           }}
+          
         />
 
         <label className={disable ? "text-[#fff]" : ""} for="user">{textLabelInput}</label>

@@ -16,6 +16,9 @@ import ToolTip from "../../component/Utils/ToolTip";
 import { TextButton } from "../register/Register";
 // css
 import "./validateEmail.css";
+import Fi_rr_life_ring_svg from '../../assets/img/fi-rr-life-ring.svg';
+import contactUs_svg from '../../assets/img/contactUs.svg';
+import back_svg from '../../assets/img/back.svg';
 
 export default function ValidateEmail() {
 
@@ -75,7 +78,7 @@ export default function ValidateEmail() {
           <div className="h-10 w-7/12 m-auto text-center relative">
             <Link to={"/dashboard/accountOperations/login"}>
               <img
-                src="/img/back.svg"
+                src={back_svg}
                 alt="back"
                 className="absolute py-2 top-0 right-0"
               />
@@ -108,8 +111,8 @@ export default function ValidateEmail() {
         </div>
         </div>
           <div className="flex gap-4 justify-center mx-auto absolute bottom-5">
-            <img src="/img/contactUs.svg" alt="contactUs" />
-            <img src="/img/fi-rr-life-ring.svg" alt="fi-rr-life-ring.svg" />
+            <img src={contactUs_svg} alt="contactUs" />
+            <img src={Fi_rr_life_ring_svg} alt="fi-rr-life-ring.svg" />
           </div>
       {showToolTip && <ToolTip />}
     </div>

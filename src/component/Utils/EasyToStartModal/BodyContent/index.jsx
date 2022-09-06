@@ -8,6 +8,7 @@ import ReportInfoPlan from './ReportInfoPlan'
 import { setImages } from './setImages'
 import ShowFinalReportModal from './ShowFinalReportModal'
 import TryFreePlan from './TryFreePlan'
+import siteDesignMan_svg from '../../../../assets/img/modal/body/siteDesignMan.svg'
 
 export default function BodyContent({ stepModal, setStepModal, free, lockNextStep, setLockNextStep, setApplyWebAdress,plan, setPlan }) {
 
@@ -22,7 +23,7 @@ export default function BodyContent({ stepModal, setStepModal, free, lockNextSte
                 </p>
                 {stepModal > 2 & stepModal < 6 ? (
                     <div className='main_contnt_modal text-center w-full'>
-                        {/* <img src="/img/modal/body/siteDesignMan.svg" alt="" className=' m-auto' /> */}
+                        {/* <img src={siteDesignMan_svg} alt="" className=' m-auto' /> */}
                         {setImages(stepModal)}
                     </div>
                 ) : ""}

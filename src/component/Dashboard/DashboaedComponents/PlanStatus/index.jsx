@@ -14,6 +14,10 @@ import { setFormatNumber } from "../../../Utils/FORMAT/number";
 // import './'
 // import "./output.css"
 // import './script'
+import date_range_svg from '../../../../assets/img/dashboard/planStatus/date_range.svg'
+import boxDiscount_svg from '../../../../assets/img/dashboard/planStatus/boxDiscount.svg'
+import balloonBoxDiscount_svg from '../../../../assets/img/dashboard/planStatus/balloonBoxDiscount.svg'
+
 export default function PlanStatus() {
   const [datas, setDatas] = useState([]);
   const [allWords, setAllWords] = useState([]);
@@ -291,7 +295,7 @@ const type=userState.userData.package != undefined? userState.userData.package.t
                 {/* <img className="mt-5 mr-5 " src="../picture/date_range.svg" alt="" /> */}
                 <img
                   className="mt-5 mr-5 w-5 h-5"
-                  src="/img/dashboard/planStatus/date_range.svg"
+                  src={date_range_svg}
                   alt=""
                 />
                 <span className=" mt-5 mr-3 text-sm">روز‌‌های باقی‌مانده</span>
@@ -351,9 +355,9 @@ const type=userState.userData.package != undefined? userState.userData.package.t
                 </div>
               </div> */}
               <div className="w-64 h-64 relative">
-                <img src="/img/dashboard/planStatus/boxDiscount.svg" className="w-full h-full"/>
+                <img src={boxDiscount_svg} className="w-full h-full"/>
                 {/* <img src="/img/dashboard/planStatus/balloonBoxDiscount.svg" className="w-full h-full absolute top-0 animate-pulse"/> */}
-                <img src="/img/dashboard/planStatus/balloonBoxDiscount.svg" className="w-full h-full absolute top-0 discountBoxBallonAnimation"/>
+                <img src={balloonBoxDiscount_svg} className="w-full h-full absolute top-0 discountBoxBallonAnimation"/>
               </div>
               <div>
                 <Link to={"/dashboard/buyPlan"}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import startEasyStartArrow_svg from '../../../../assets/img/dashboard/EasyStartPage/startEasyStartArrow.svg'
 
 export default function PageCounter() {
 
@@ -19,8 +20,8 @@ export default function PageCounter() {
             آدرس وب‌سایت و کلمات کلیدی خودتان را آماده کنید تا شروع کنیم.          </span>
           <span className="text-primaryV1">
             {" "}
-            پس از انتخاب اشتراک و انجام فرایند شروع آسان به داده‌های تمیز و ساده دسترسی دارید که قابل استفاده و مطمئن هستند.          </span>
-
+            پس از طی فرایند به داده های تمیز و ساده دسترسی دارید که قابل استفاده و مطمئن هستند .
+</span>
         </div>
         <div className="flex justify-between items-center mt-16 ">
 
@@ -31,7 +32,7 @@ export default function PageCounter() {
           >
             شروع کنیم
             <img
-              src="/img/dashboard/EasyStartPage/startEasyStartArrow.svg"
+              src={startEasyStartArrow_svg}
               alt="EasyStartPage"
               className=" mr-3"
             />

@@ -28,8 +28,8 @@ export default function PageTitle({
         </div>
       )}
       {closeIco&&(
-      <div className='flex justify-center ml-6 items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' >
-        <div className='close_modal_ico' onClick={() => navigate(-1)}></div>
+      <div className='flex justify-center ml-6 items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' onClick={() => navigate(-1)}>
+        <div className='close_modal_ico' ></div>
       </div>
       )}
     </div>

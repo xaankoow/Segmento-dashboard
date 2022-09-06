@@ -8,6 +8,8 @@ import ToolTip from "../../../Utils/ToolTip";
 import AcardionItem from "../AcardionItem/AcardionItem";
 import IconsRight from "./IconsRight";
 import ItemSidebarHover from "./ItemSidebarHover";
+import sidebarIcon1_svg from "../../../../assets/img/dashboard/sidebarHover/sidebarIcon1.svg";
+import dashboardPishKhan_svg from "../../../../assets/img/dashboard/nav_right/dashboardPishKhan.svg";
 
 export default function SidebarComponent() {
   const [showToolTip, setShowToolTip] = useState(true);
@@ -16,7 +18,8 @@ export default function SidebarComponent() {
   const { closeNav } = useSelector((state) => state.navMenuState);
   const dispatch = useDispatch();
   // item sidebar hover active mode
-  const[clicked,setClicked]=useState(-2);
+  const[clicked,setClicked]=useState(2);
+  const[clicked1,setClicked1]=useState(2);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
   // useEffect(() => {
 
@@ -27,7 +30,7 @@ export default function SidebarComponent() {
   // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    setClicked(-2);
+    setClicked(-1);
     dispatch(setCloseNav(true));
     // setCloseNav(true);
   };
@@ -55,12 +58,12 @@ export default function SidebarComponent() {
               return (
                 <ItemSidebarHover
                   text={item}
-                  icon={"../img/dashboard/sidebarHover/sidebarIcon1.svg"}
+                  icon={sidebarIcon1_svg}
                   textColor={"#002145"}
                   textHover={"#0A65CD"}
                   index={index}
-                  clicked={clicked}
-                  setClicked={()=>setClicked(index)}
+                  clicked={clicked1}
+                  setClicked={()=>setClicked1(index)}
                 />
               );
             })}
@@ -69,10 +72,7 @@ export default function SidebarComponent() {
           <div>
             <div onClick={()=>setClicked(-1)} className={`flex items-center gap-3 text-[#002145] my-5 mr-5 cursor-pointer text-sm hover:cursor-pointer hover:text-blue ${clicked == -1 && "active"}`}>
               <img
-                src={
-                  // "/%PUBLIC_URL%/img/dashboard/nav_right/dashboardPishKhan.svg"
-                  "/img/dashboard/nav_right/dashboardPishKhan.svg"
-                }
+                src={dashboardPishKhan_svg}
                 alt="icon"
                
               />

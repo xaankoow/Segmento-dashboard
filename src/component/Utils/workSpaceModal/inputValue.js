@@ -9,6 +9,10 @@ import {
   setWebsitePages,
 } from "../../Redux/Action/workSpace";
 import StaticInputText from "../staticInputText/textInput";
+import webAdress_svg from "../../../assets/img/dashboard/EasyStartPage/webAdress.svg";
+import arrow_svg from "../../../assets/img/modal/body/arrow.svg";
+import add_svg from "../../../assets/img/modal/workSpace/body/add.svg";
+import Group2_svg from "../../../assets/img/dashboard/EasyStartPage/Group 2.svg";
 
 export default function InputGetWorkSpaceInfo({
   step,
@@ -273,7 +277,7 @@ export default function InputGetWorkSpaceInfo({
         <div className="mt-5">
           <div className="w-full  flex justify-center relative mb-4">
             {/* <img
-              src="/img/dashboard/EasyStartPage/webAdress.svg"
+              src={webAdress_svg}
               alt="EasyStartPage"
               className=" w-[328px]"
             /> */}
@@ -304,7 +308,7 @@ export default function InputGetWorkSpaceInfo({
                   reduxHandleChange={setKeyWords}
                   workSpaceTypeState={`keyWord${item}`}
                 />
-                <img src="/img/modal/body/arrow.svg" className="arrpw" alt="" />
+                <img src={arrow_svg} className="arrpw" alt="" />
                 <StaticInputText
                   typeInput={"text"}
                   width={"100%"}
@@ -339,7 +343,7 @@ export default function InputGetWorkSpaceInfo({
               handleAddStateCountInput("keyChar");
             }}
           >
-            <img src="/img/modal/workSpace/body/add.svg" className="ml-4" />{" "}
+            <img src={add_svg} className="ml-4" />{" "}
             کلمه کلیدی جدید{" "}
           </button>
         </div>
@@ -348,7 +352,7 @@ export default function InputGetWorkSpaceInfo({
           <div className=" max-h-[380px] overflow-y-scroll pt-5">
             <div className="w-full  flex justify-center relative mb-4">
               {/* <img
-              src="/img/dashboard/EasyStartPage/Group 2.svg"
+              src={Group2_svg}
               alt="EasyStartPage"
               className=" w-[228px]"
             /> */}
@@ -390,7 +394,7 @@ export default function InputGetWorkSpaceInfo({
               handleAddStateCountInput("commercialPage");
             }}
           >
-            <img src="/img/modal/workSpace/body/add.svg" className="ml-4" />
+            <img src={add_svg} className="ml-4" />
             صفحه تجاری جدید
           </button>
         </Fragment>
@@ -436,7 +440,7 @@ export default function InputGetWorkSpaceInfo({
               handleAddStateCountInput("websitePage");
             }}
           >
-            <img src="/img/modal/workSpace/body/add.svg" className="ml-4" />
+            <img src={add_svg} className="ml-4" />
             صفحه وبسایت جدید
           </button>
         </Fragment>
@@ -458,7 +462,7 @@ export default function InputGetWorkSpaceInfo({
                         readOnly
                       />
                       <img
-                        src="/img/modal/body/arrow.svg"
+                        src={arrow_svg}
                         className="arrpw"
                         alt=""
                       />
@@ -513,7 +517,7 @@ export default function InputGetWorkSpaceInfo({
                             }}
                           >
                             <img
-                              src="/img/modal/workSpace/body/add.svg"
+                              src={add_svg}
                               className="ml-4"
                             />
                             افزودن رقیب جدید

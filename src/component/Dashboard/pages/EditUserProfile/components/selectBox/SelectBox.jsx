@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import down_svg from '../../../../../../assets/img/dashboard/nav_right/down.svg'
 
 export default function SelectBox({
   optionItems,
@@ -55,7 +56,7 @@ export default function SelectBox({
             })}
         </select>
         <img
-          src="/img/dashboard/nav_right/down.svg"
+          src={down_svg}
           alt="down"
           className={
             open

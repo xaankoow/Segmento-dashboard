@@ -518,6 +518,14 @@ export const addWorkSpace = (step) => {
 }
 
 
+export const resetLimitState = () => {
+    return async (dispatch, getState) => {
+        const state = { ...getState().workSpaceState }
+        state.checkLimit=!state.checkLimit;
+        await dispatch({ type: "CHECK_LIMIT" ,payload:state})
+    }
+}
+
 export const resetWorkSpaceState = () => {
     return async (dispatch, getState) => {
         const state = { ...getState().workSpaceState }

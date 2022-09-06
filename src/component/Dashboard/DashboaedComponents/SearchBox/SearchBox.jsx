@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import AuthButton from "../../../Auth/authButton/AuthButton";
+import search_svg from '../../../../assets/img/dashboard/searchBox/search.svg'
 
 export default function SearchBox({
   changeHandler,
@@ -19,13 +21,14 @@ export default function SearchBox({
         onChange={(e) => changeHandler(e)}
         placeholder={placeholder ? placeholder : "  جستجوی لیست"}
       />
-      <button
+      <AuthButton handlerClick={handlClick} disabled={!canRequest} textButton={<img src={search_svg} alt="search" />}/>
+      {/* <button
         className="btn-style h-10"
         onClick={handlClick}
         disabled={!canRequest}
       >
-        <img src="/img/dashboard/searchBox/search.svg" alt="search" />
-      </button>
+        
+      </button> */}
     </div>
   );
 }

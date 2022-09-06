@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { defaultCustomModalStyle, modalParentSelector } from "../../../../variables/style";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import PageTitle from "../../../Dashboard/DashboaedComponents/pageTitle/pageTitle";
-import { setPropCoreUser } from "../../../Redux/Action";
+import { coreUser, setPropCoreUser } from "../../../Redux/Action";
 import {
   changePhoneNumber,
   verifyPhoneNumber,
@@ -18,6 +18,9 @@ import { InputError } from "../../showInputError";
 import StaticInputText from "../../staticInputText/textInput";
 import ToolTip from "../../ToolTip";
 import { paragraphText } from "./headParagraphText";
+
+import moveBackIco_svg from "../../../../assets/img/modal/footer/moveBack.svg"
+// import moveBackIco from "./src/assets/img/modal/footer/moveBack"
 
 export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   const dispatch = useDispatch();
@@ -31,7 +34,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   );
 
   // modal step
-  const [modalStep, setModalStep] = useState(1);
+  const [modalStep, setModalStep] = useState(2);
 
   // modal step
   const [operationType, setOperationType] = useState("");
@@ -60,36 +63,41 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   const { canRequest } = useSelector((state) => state.loadingState);
   // api
   const setNewPhoneNumber = async () => {
-    // handle show loadin
-    {
-      loadingState.ProcessingDelay.push("changephoneNumberService");
-      loadingState.canRequest = false;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    }
-    try {
-      let formdata = new FormData();
-      formdata.append("mobile", "09" + phoneNumberValue);
-      // debugger
-      if (checkResendCode) {
-        // set timer
-        const { data } = await changePhoneNumber(formdata);
-        if (data.status) {
-          setCheckResendCode(false);
-          setModalStep(2);
-        } else {
-          InputError("phoneNumberOperationsErrText", data.errors[0]);
-        }
+    if (phoneNumberValue.length!=9) {
+      InputError("phoneNumberOperationsErrText", "لطفا یک شماره تلفن معتبر وارد کنید");
+    } else {
+      
+      // handle show loadin
+      {
+        loadingState.ProcessingDelay.push("changephoneNumberService");
+        loadingState.canRequest = false;
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
       }
-    } catch (error) {
-      // console.log(error);
-    }
-    {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(
-        (item) => item != "changephoneNumberService"
-      );
-      loadingState.ProcessingDelay = removeProcessingItem;
-      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+      try {
+        let formdata = new FormData();
+        formdata.append("mobile", "09" + phoneNumberValue);
+        // debugger
+        if (checkResendCode) {
+          // set timer
+          const { data } = await changePhoneNumber(formdata);
+          if (data.status) {
+            setCheckResendCode(false);
+            setModalStep(2);
+          } else {
+            InputError("phoneNumberOperationsErrText", data.errors[0]);
+          }
+        }
+      } catch (error) {
+        // console.log(error);
+      }
+      {
+        var removeProcessingItem = loadingState.ProcessingDelay.filter(
+          (item) => item != "changephoneNumberService"
+        );
+        loadingState.ProcessingDelay = removeProcessingItem;
+        loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+      }
     }
   };
 
@@ -107,7 +115,8 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       const { data, status, code } = await verifyPhoneNumber(formdata);
 
       if ((data.code == 200) & (data.status == true)) {
-        dispatch(setPropCoreUser("mobile", data.user.mobile));
+        // dispatch(setPropCoreUser("mobile", data.user.mobile));
+        dispatch(coreUser());
         setCheckCompleted(true);
       }
       if (data.errors.length != 0) {
@@ -178,6 +187,18 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
     }
   };
 
+  const customStyles = {
+    content: {
+      top: '43vh',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      backgrounColor: "red",
+      'z-index': '100'
+    },
+  };
   return (
     <div id="phoneNumberOparationLayOut">
       {showModal && (
@@ -201,14 +222,15 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
             <Modal
               isOpen={true}
               parentSelector={() =>
-                document.querySelector(".app #DASHBOARD .body .main")
+                document.querySelector(".app #DASHBOARD")
               }
               style={defaultCustomModalStyle}
+              onRequestClose={()=>operationType!="verify"&&navigate(-1)}
               contentLabel="Example Modal"
             >
               <div className="report_buy_plan w-[530px] rounded-lg transition-all">
                 <PageTitle
-                  closeIco={operationType == "verify" && false}
+                  closeIco={operationType != "verify" && true}
                   // title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
                   title={
                     userData.user != undefined && userData.user.mobile == null
@@ -217,7 +239,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                   }
                 />
                 <body className=" bg-[#fff]  pt-2 px-2 pb-5">
-                  <div className=" mt-5">{paragraphText(modalStep)}</div>
+                  <div className=" mt-5">{paragraphText(modalStep,operationType)}</div>
                   <div className=" w-96 mx-auto mt-20">
                     {modalStep == 1 ? (
                       <StaticInputText
@@ -229,7 +251,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                         handleChange={(e) =>
                           handlePhoneNumberValue(e.target.value)
                         }
-                        maxlength={11}
+                        maxlength={9}
                         errorTextId="phoneNumberOperationsErrText"
                       />
                     ) : (
@@ -241,11 +263,15 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                       <AuthButton
                         textButton={"دریافت کد تایید"}
                         handlerClick={setNewPhoneNumber}
+                        classes="m-auto"
                       />
                     ) : (
                       <div className="flex justify-between items-center">
+                        <div>
+                          <img src={moveBackIco_svg} alt="move Back" className=" cursor-pointer ml-32" onClick={()=> setModalStep(1)}/>
+                        </div>
                         <AuthButton
-                          textButton={"تایید شماره همراه"}
+                          textButton={"تایید کد"}
                           handlerClick={verifyPhoneUserNumber}
                         />
                         <div className=" w-1/3">
@@ -254,10 +280,10 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                             onClick={() =>
                               checkResendCode && setNewPhoneNumber()
                             }
-                            className={`mr-3 border-b cursor-pointer ${
+                            className={`mr-3 border-b cursor-pointer  ${
                               !checkResendCode &&
                               " text-sectionDisable cursor-default"
-                            }`}
+                            } hover:text-[#0AC7E2]`}
                             data-tip="با کلیک‌کردن، کد جدید دریافت می‌کنید."
                             data-type="light"
                             data-place="top"

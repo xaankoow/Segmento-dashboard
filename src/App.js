@@ -90,6 +90,7 @@ export default function App() {
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
                     <Route path="PageCounter"  element={<PageCounter/>}/>
                     <Route path="Support"  element={<Support/>}/>
+                    <Route path="Support"  element={<Support/>}/>
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>
@@ -101,6 +102,7 @@ export default function App() {
 
           <Route path="/payment*" element={<LandingPage />} />
           <Route path={"*"} element={<Link className="btn-style" to="/dashboard">change route</Link>} />
+          {/* <Route path={"*"} element={()=>navigate("/dashboard",{replace:true})} /> */}
 
         </Routes>
         

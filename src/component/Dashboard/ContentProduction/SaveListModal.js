@@ -9,6 +9,9 @@ import {
 import { useEffect } from "react";
 import { Deblur } from "@mui/icons-material";
 import { useSelector } from "react-redux";
+import close_svg from '../../../assets/img/dashboard/nav_right/close.svg';
+import playlist_add_svg from '../../../assets/img/modal/keyWords/playlist_add.svg';
+import update_svg from '../../../assets/img/modal/keyWords/update.svg';
 
 export default function SaveListModal({
   saveButtonHandler,
@@ -123,7 +126,7 @@ export default function SaveListModal({
     >
       <div className="flex flex-col items-center px-4 py-8 gap-5 z-50 min-w-[500px]" >
       <img
-              src="/img/dashboard/nav_right/close.svg"
+              src={close_svg}
               alt="close"
              className="absolute top-4 left-3 cursor-pointer mb-7 p-1 w-[20px] h-[20px] rounded-[3px] hover:bg-[#F352421A]"
               onClick={() =>close()}
@@ -144,7 +147,7 @@ export default function SaveListModal({
               handleSetcontent();
             }}
           >
-            <img src="/img/modal/keyWords/playlist_add.svg" alt="keyWords" />
+            <img src={playlist_add_svg} alt="keyWords" />
             ذخیره لیست جدید
           </button>
         </div>
@@ -229,7 +232,7 @@ export default function SaveListModal({
               setUpdate(!update);
             }}
           >
-            <img src="/img/modal/keyWords/update.svg" alt="keyWords" />
+            <img src={update_svg} alt="keyWords" />
             بروزرسانی لیست
           </button>
         </div>

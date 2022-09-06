@@ -11,6 +11,9 @@ import { getAllFinancialReportsData } from "../../../service/financialReportsSer
 import { FilterData } from "./changeDataSearch";
 import { DateObject } from "react-multi-date-picker";
 import ComboBox from "../../../shared/comboBox/ComboBox";
+import file_download_svg from '../../../../assets/img/dashboard/financialReports/file_download.svg'
+
+
 export default function TableFinancialReports({ title }) {
 
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
@@ -241,7 +244,7 @@ export default function TableFinancialReports({ title }) {
                       textButton={
                         <Fragment>
                           <img
-                            src="/img/dashboard/financialReports/file_download.svg"
+                            src={file_download_svg}
                             className=" ml-3"
                             alt="financialReports"
                           />{" "}

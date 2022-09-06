@@ -33,10 +33,10 @@ export const getAllPlanData = () => {
                     // debugger
                     if (workSpaces.data.status == true && workSpaces.data.code == 200) {
                         state.allPackageData = workSpaces.data.data;
+                        await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
                     } else {
 
                     }
-                    await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
                 }
             } catch (error) {
                 // console.log("register error")

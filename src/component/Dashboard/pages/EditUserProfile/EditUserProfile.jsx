@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import ProfileInformation from "./components/profileInfo/ProfileInformation";
 import AuthInput from "../../../Auth/authInput/AuthInput";
+import logoutProfile_svg from '../../../../assets/img/dashboard/header/logoutProfile.svg'
 // import {
 //   EditorComposer,
 //   Editor,
@@ -361,7 +362,7 @@ export default function EditUserProfile() {
               >
                 خروج{" "}
                 <img
-                  src="/img/dashboard/header/logoutProfile.svg"
+                  src={logoutProfile_svg}
                   alt="logout"
                   className="mr-3"
                 />
