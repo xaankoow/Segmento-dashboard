@@ -388,7 +388,7 @@ export default function EditUserProfile() {
                       typeInput="text"
                       handleChange={handleNameInput}
                       ref={nameEmpty}
-                      value={nameInputValue}
+                      
                       
                     />
 
@@ -398,7 +398,7 @@ export default function EditUserProfile() {
                       typeInput="text"
                       handleChange={handlefamilyInput}
                       ref={familyEmpty}
-                      value={familyInputValue}
+                     
                       
                     />
                   </div>

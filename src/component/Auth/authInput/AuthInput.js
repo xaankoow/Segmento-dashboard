@@ -26,9 +26,7 @@ export default function AuthInput({
   infoStrongPass,
   checkStrongPass,
   readOnly,
-  ref,
-  inputId,
-  selectWithOnClick
+  ref
 
 
 }) {
@@ -56,10 +54,9 @@ export default function AuthInput({
       <div className={`input-wrapper ${wrapperClass}`}>
         <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
         <input
-        id={inputId!=undefined?inputId:""}
-          type="text"
+          type={isSeePssword}
           required
-          maxLength={1}
+          maxLength={maxlength}
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           ref={ref}
@@ -74,7 +71,6 @@ export default function AuthInput({
             pointerEvents: disable && "none",
             borderBottom: disable ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
           }}
-          onClick={(e)=>selectWithOnClick&&e.currentTarget.select()}
           onChange={(e) => {
             checkStrongPass!=undefined&&CheckFormat("password",e.target.value,errorTextId)
             handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow);
@@ -86,7 +82,6 @@ export default function AuthInput({
 
 
           }}
-          
         />
 
         <label className={disable ? "text-[#fff]" : ""} for="user">{textLabelInput}</label>
