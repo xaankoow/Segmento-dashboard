@@ -10,28 +10,28 @@ export const AuthVerifyCode = ({ errorTextId }) => {
   //         <AuthInput
   //             classes={"verify_email_cod input_selector_4"}
   //             notCheckValue={true}
-  //             maxLength="1"
+  //             maxLength={1}
   //             pressNumber={true}
   //             reduxHandleChange={setAuth1Redux}
   //         />
   //         <AuthInput
   //             classes={"verify_email_cod input_selector_3"}
   //             notCheckValue={true}
-  //             maxLength="1"
+  //             maxLength={1}
   //             pressNumber={true}
   //             reduxHandleChange={setAuth2Redux}
   //         />
   //         <AuthInput
   //             classes={"verify_email_cod input_selector_2"}
   //             notCheckValue={true}
-  //             maxLength="1"
+  //             maxLength={1}
   //             pressNumber={true}
   //             reduxHandleChange={setAuth3Redux}
   //         />
   //         <AuthInput
   //             classes={"verify_email_cod"}
   //             notCheckValue={true}
-  //             maxLength="1"
+  //             maxLength={1}
   //             pressNumber={true}
   //             reduxHandleChange={setAuth4Redux}
   //         />
@@ -49,7 +49,7 @@ export const AuthVerifyCode = ({ errorTextId }) => {
           classes={"verify_email_cod input_selector_4"}
           notCheckValue={true}
           reduxHandleChange={setAuth1Redux}
-          maxLength="1"
+          maxLength={1}
           pressNumber={true}
           selectWithOnClick
         />
@@ -57,7 +57,7 @@ export const AuthVerifyCode = ({ errorTextId }) => {
           classes={"verify_email_cod input_selector_3"}
           notCheckValue={true}
           reduxHandleChange={setAuth2Redux}
-          maxLength="1"
+          maxLength={1}
           pressNumber={true}
           selectWithOnClick
         />
@@ -65,7 +65,7 @@ export const AuthVerifyCode = ({ errorTextId }) => {
           classes={"verify_email_cod input_selector_2"}
           notCheckValue={true}
           reduxHandleChange={setAuth3Redux}
-          maxLength="1"
+          maxLength={1}
           pressNumber={true}
           selectWithOnClick
         />
