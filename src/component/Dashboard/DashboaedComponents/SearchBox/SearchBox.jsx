@@ -21,7 +21,7 @@ export default function SearchBox({
         onChange={(e) => changeHandler(e)}
         placeholder={placeholder ? placeholder : "  جستجوی لیست"}
       />
-      <AuthButton handlerClick={handlClick} disabled={!canRequest} textButton={<img src={search_svg} alt="search" />}/>
+      <AuthButton handlerClick={handlClick} disabled={!canRequest} classes="h-10" textButton={<img src={search_svg} alt="search" />}/>
       {/* <button
         className="btn-style h-10"
         onClick={handlClick}

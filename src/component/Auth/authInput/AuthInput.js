@@ -57,9 +57,9 @@ export default function AuthInput({
         <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
         <input
         id={inputId!=undefined?inputId:""}
-          type="text"
+          type={typeInput}
           required
-          maxLength={1}
+          maxLength={maxlength}
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           ref={ref}
