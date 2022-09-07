@@ -11,6 +11,7 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { resetLimitState } from "../../Redux/Action/workSpace";
 import bookmark_svg from '../../../assets/img/dashboard/keyWord/bookmark.svg'
+import playlist_add_svg from '../../../assets/img/popUp/playlist_add.svg'
 
 const KeyWords = ({ onClickHandler }) => {
   const { canRequest } = useSelector((state) => state.loadingState);
@@ -165,7 +166,7 @@ const KeyWords = ({ onClickHandler }) => {
       {SavePopup && (
         <PopUp
           clickHandler={() => showSavePopup(false)}
-          image={"/img/popUp/playlist_add.svg"}
+          image={playlist_add_svg}
           type={"sucsess"}
           buttonText={"باشه، فهمیدم!"}
           text={"لیست جدید شما با موفقیت ذخیره شد !"}

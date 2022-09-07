@@ -1,6 +1,8 @@
 import { data } from "autoprefixer";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
+import arrow_down_ios_new_svg from '../../../../assets/img/dashboard/searchBox/arrow_down_ios_new.svg'
+import arrow_up_ios_new_svg from '../../../../assets/img/dashboard/searchBox/arrow_up_ios_new.svg'
 
 export default function KeyWordsSearch({
   NothingSearch,
@@ -278,8 +280,8 @@ export default function KeyWordsSearch({
             <img
               src={
                 open
-                  ? "/img/dashboard/searchBox/arrow_down_ios_new.svg"
-                  : "/img/dashboard/searchBox/arrow_up_ios_new.svg"
+                  ? arrow_down_ios_new_svg
+                  : arrow_up_ios_new_svg
                 // ? "../../../../img/dashboard/searchBox/arrow_down_ios_new.svg"
                 // : "../../../../img/dashboard/searchBox/arrow_up_ios_new.svg"
               }

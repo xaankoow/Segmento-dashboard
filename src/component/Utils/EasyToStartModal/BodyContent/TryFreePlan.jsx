@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AuthButton from '../../../Auth/authButton/AuthButton'
 import Checkbox from '../../Elements/CheckBox/Checkbox';
 import PopUp from '../../PopUp/PopUp'
+import errorIco_svg from '../../../../assets/img/popUp/errorIco.svg'
 
 export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModal }) {
   const [showPopUp, setShowPopUp] = useState(true);
@@ -48,7 +49,7 @@ export default function TryFreePlan({ setLockNextStep, lockNextStep, setStepModa
         // <div className=' pt-6 pb-3'>
         <PopUp
           clickHandler={() => setShowPopUp(false)}
-          image={"/img/popUp/errorIco.svg"}
+          image={errorIco_svg}
           type={"error"}
           buttonText={"	باشه قبوله!"}
           text={"کاربر گرامی توجه داشته باشید، اگر در پایان 14 روز اشتراک تهیه نکنید، اطلاعات آماری حساب‌تان حذف می‌شود."}

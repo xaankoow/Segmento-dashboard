@@ -18,6 +18,7 @@ import { InputError } from "../../showInputError";
 import StaticInputText from "../../staticInputText/textInput";
 import ToolTip from "../../ToolTip";
 import { paragraphText } from "./headParagraphText";
+import tik_svg from "../../../../assets/img/popUp/tik.svg";
 
 import moveBackIco_svg from "../../../../assets/img/modal/footer/moveBack.svg"
 // import moveBackIco from "./src/assets/img/modal/footer/moveBack"
@@ -208,7 +209,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
               clickHandler={() =>
                 operationType == "verify" ? setShowModal(false) : navigate(-1)
               }
-              image={"/img/popUp/tik.svg"}
+              image={tik_svg}
               type={"sucsess"}
               title={
                 operationType == "verify"
