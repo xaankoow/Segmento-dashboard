@@ -81,7 +81,8 @@ margin: 0px 20px;
   align-items: center;
   justify-content: center;
   padding: 8px 20px;
-  transition: all 0.08s ease-in-out;
+  /* transition: all 0.08s ease-in-out; */
+  transition: background 0.5s ease-in-out;
 }
 
 .btn-secondary:hover {
