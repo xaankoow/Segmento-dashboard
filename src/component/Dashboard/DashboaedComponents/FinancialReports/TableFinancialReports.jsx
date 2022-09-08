@@ -234,6 +234,8 @@ export default function TableFinancialReports({ title }) {
             </div>
           </div>
         </div>
+
+        
         <div className="w-full text-left mt-7 pb-5">
           <div className=" inline-block">
             {financialDataTableFiltered.length != 0 ? (

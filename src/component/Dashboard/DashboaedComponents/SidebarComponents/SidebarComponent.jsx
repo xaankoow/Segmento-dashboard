@@ -100,7 +100,7 @@ export default function SidebarComponent() {
           <div className="dropDownBox mb-5">
             <a href="https://segmento.ir/support">
               <div
-                className="support w-7 h-7"
+                className="support w-8 h-8"
                 data-tip=" پشتیبانی "
                 data-type="light"
                 data-place="left"
@@ -138,7 +138,7 @@ export default function SidebarComponent() {
           <div className="line mb-3"></div>
           {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
           <a href={"https://segmento.ir/"}>
-            <div className="xaankoo_logo w-11 h-9 mb-3"></div>
+            <div className="xaankoo_logo w-11 h-9 mb-4"></div>
           </a>
         </div>
       </div>

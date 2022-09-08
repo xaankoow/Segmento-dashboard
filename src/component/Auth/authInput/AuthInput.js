@@ -28,7 +28,8 @@ export default function AuthInput({
   readOnly,
   ref,
   inputId,
-  selectWithOnClick
+  selectWithOnClick,
+  placeholder
 
 
 }) {
@@ -56,6 +57,7 @@ export default function AuthInput({
       <div className={`input-wrapper ${wrapperClass}`}>
         <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
         <input
+        placeholder={placeholder}
         id={inputId!=undefined?inputId:""}
           type={typeInput}
           required
