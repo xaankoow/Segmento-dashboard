@@ -4,6 +4,7 @@ import AuthInput from "../../../Auth/authInput/AuthInput";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import { ticketCategories } from "../../../../variables/support";
 import AuthButton from "../../../Auth/authButton/AuthButton";
+import SupportMessage from "../../../shared/message/SendMessage.jsx/index";
 export default function NewTicket() {
   const [filterCategories, setFilterCategories] = useState("امور مالی");
   return (
@@ -36,20 +37,36 @@ export default function NewTicket() {
             <ComboBox
               radioTextItems={ticketCategories}
               radioClickedHandler={(e) => setFilterCategories(e.target.value)}
-              
             />
           </div>
           <div className="flex items-center gap-3 ">
             <span>اولویت</span>
             <div className="  border-sectionDisable flex gap-3 py-3 px-4 rounded border">
-              <AuthButton classes={"btn-secondary h-10 w-[101px]"} textButton={"معمولی"} />
-              <AuthButton classes={"btn-secondary h-10 w-[101px]"} textButton={"مهم"} />
-              <AuthButton classes={"btn-secondary h-10"} textButton={"بسیار مهم"} />
+              <AuthButton
+                classes={"btn-secondary h-10 w-[101px]"}
+                textButton={"معمولی"}
+              />
+              <AuthButton
+                classes={"btn-secondary h-10 w-[101px]"}
+                textButton={"مهم"}
+              />
+              <AuthButton
+                classes={"btn-secondary h-10"}
+                textButton={"بسیار مهم"}
+              />
             </div>
           </div>
         </div>{" "}
+        <div className="w-2/3 mx-auto flex  justify-center">
+          <SupportMessage />
+        </div>
+        <div className="w-2/3 mx-auto flex  justify-center">
+          <AuthButton
+            classes={"btn-style h-10 w-[111px] mt-5"}
+            textButton={"ارسال تیکت"}
+          />
+        </div>
       </div>
-      
     </div>
   );
 }
