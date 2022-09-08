@@ -118,8 +118,8 @@ export default function SidebarComponent() {
 
           <div className="dropDownBox mb-5  ">
             <div
-              className="call-nav-right w-[25px] h-[25px] text-[20px] "
-              data-tip=" tel:051-38331497 "
+              className="call-nav-right w-6 h-6 text-[20px] support"
+              data-tip="شماره تماس: 051-38331497"
               data-type="light"
               data-place="left"
               data-class="sizeClass"

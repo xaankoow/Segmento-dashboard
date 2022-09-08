@@ -89,6 +89,10 @@ margin: 0px 20px;
   color: white;
 }
 
+.btn-secondary:hover img{
+  filter: brightness(0) invert(1);
+}
+
 .btn-secondary:active {
   background-color: #0B4B94;
   color: white;

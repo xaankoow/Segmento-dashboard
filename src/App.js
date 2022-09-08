@@ -28,6 +28,7 @@ import LandingPage from "./component/Utils/landingPage/landingPage";
 import PageCounter from "./component/Dashboard/pages/PageCounter/PageCounter";
 import PhoneNumberOperations from "./component/Utils/Modals/phoneNumber/PhoneNumberOperations";
 import Support from "./component/Dashboard/pages/Support&Tickets/Support";
+import SupportMessage from "./component/Dashboard/DashboaedComponents/support/index";
 
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
@@ -90,7 +91,7 @@ export default function App() {
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
                     <Route path="PageCounter"  element={<PageCounter/>}/>
                     <Route path="Support"  element={<Support/>}/>
-                    {/* <Route path="Support"  element={<Support/>}/> */}
+                    <Route path="SupportMessage"  element={<SupportMessage/>}/>
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>
@@ -113,7 +114,7 @@ export default function App() {
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
-        <LoadingPage />
+        {/* <LoadingPage /> */}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>
