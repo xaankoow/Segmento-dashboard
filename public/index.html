@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="stylesheet" href="%PUBLIC_URL%/iranyekan-font.css" />
-    <link rel="stylesheet" href="%PUBLIC_URL%/style-typogrsrhy.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script >
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
     tailwind.config = {
-  
+
       theme: {
         extend: {
           boxShadow: {
@@ -30,61 +26,64 @@
         screens: {
           "2xl": { max: "1535px" },
           // => @media (max-width: 1535px) { ... }
-    
+
           xl: { max: "1279px" },
           // => @media (max-width: 1279px) { ... }
-    
+
           lg: { max: "1023px" },
           // => @media (max-width: 1023px) { ... }
-    
+
           md: { max: "767px" },
           // => @media (max-width: 767px) { ... }
-    
+
           sm: { max: "639px" },
           // => @media (max-width: 639px) { ... }
         },
-      colors: {
-        lightGray: "#D3D5E2",
-        sectionDisable:"#D9D9D9",
-        gray: "#7D7D7D",
-        yellow: "#ffce47",
-        white:"#FCFCFB",
-        blue: "#0071ff",
-        lightBlue:"#F2F5F7",
-        dds: "#0071ff",
-        primary: "#0A65CD",
-        red: "#F35242",
-        lightYellow:"#FFDC5D",
-        shortText: "#0A65CD",
-        primaryV1: "#083C78", // paragraph
-        title: "#002145", // paragraph
-        secondary: "#F2F5F7",
-        diamond: "#0A65CD",
-        gold: "#FFCE47",
-        silver: "#7D7D7D",
-        bronze: "#BF8970"
+        colors: {
+          hoverBtnType1: "#7D7D7D",
+          lightGray: "#D3D5E2",
+          sectionDisable: "#D9D9D9",
+          gray: "#7D7D7D",
+          yellow: "#ffce47",
+          white: "#FCFCFB",
+          blue: "#0071ff",
+          success: "#10CCAE",
+          lightBlue: "#F2F5F7",
+          dds: "#0071ff",
+          primary: "#0A65CD",
+          red: "#F35242",
+          lightYellow: "#FFDC5D",
+          shortText: "#0A65CD",
+          primaryV1: "#083C78", // paragraph
+          title: "#002145", // paragraph
+          secondary: "#F2F5F7",
+          diamond: "#0A65CD",
+          gold: "#FFCE47",
+          silver: "#7D7D7D",
+          bronze: "#BF8970"
+        },
+        fontSize: {
+          s: ".625rem",
+          xs: ".75rem",
+          sm: ".875rem",
+          tiny: ".875rem",
+          base: "1rem",
+          lg: "1.125rem",
+          xl: "1.25rem",
+          "2xl": "1.5rem",
+          "3xl": "1.875rem",
+          "4xl": "2.25rem",
+          "5xl": "3rem",
+          "6xl": "4rem",
+          "7xl": "5rem",
+          small: ".5rem",
+        },
       },
-      fontSize: {
-        xs: ".75rem",
-        sm: ".875rem",
-        tiny: ".875rem",
-        base: "1rem",
-        lg: "1.125rem",
-        xl: "1.25rem",
-        "2xl": "1.5rem",
-        "3xl": "1.875rem",
-        "4xl": "2.25rem",
-        "5xl": "3rem",
-        "6xl": "4rem",
-        "7xl": "5rem",
-        small: ".5rem",
-      },
-    },
-  }
+    }
 
-    </script>
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  </script>
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -93,21 +92,18 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link rel="stylesheet" href="%PUBLIC_URL%/css/style.css" />
-    <title>سگمنتو</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+ 
+  <title>سگمنتو</title>
+</head>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script type="text/javascript">
+    !function () { var i = "uxwIyK", a = window, d = document; function g() { var g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); } "complete" === d.readyState ? g() : a.attachEvent ? a.attachEvent("onload", g) : a.addEventListener("load", g, !1); }();
+  </script>
+</body>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+
+
 </html>

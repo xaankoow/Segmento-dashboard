@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Checkbox from "../../../Utils/Elements/CheckBox/Checkbox";
 import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
 import bookmark_svg from '../../../../assets/img/dashboard/table/bookmark.svg'
+import add_chart_svg from '../../../../assets/img/dashboard/table/add_chart.svg'
 
 export default function Table({
   data,
@@ -288,7 +289,7 @@ export default function Table({
         {NothingSearch ? (
           <div className="w-full flex flex-col items-center justify-center gap-3 min-h-[401px]">
             <img
-              src={"/img/dashboard/table/add_chart.svg"}
+              src={add_chart_svg}
               alt="imgNothingSearch"
             />
             <span className="text-[#E5E5E5]">

@@ -3,6 +3,7 @@ import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import ProfileInformation from "./components/profileInfo/ProfileInformation";
 import AuthInput from "../../../Auth/authInput/AuthInput";
 import logoutProfile_svg from '../../../../assets/img/dashboard/header/logoutProfile.svg'
+import tik_svg from '../../../../assets/img/popUp/tik.svg'
 // import {
 //   EditorComposer,
 //   Editor,
@@ -37,10 +38,12 @@ export default function EditUserProfile() {
   const { canRequest } = useSelector((state) => state.loadingState);
 
   const location = useLocation();
-
+ // data of select box thet is related to the past info
+ const [pastData, setPastData] = useState("");
+ const pastDataName= pastData? pastData.name.split(/(\s+)/) :"";
   const [selectDatas, setSelectDtas] = useState([]);
-  const [nameInputValue, setNameInputValue] = useState("");
-  const [familyInputValue, setfamilyInputValue] = useState("");
+  const [nameInputValue, setNameInputValue] = useState(pastDataName[0]);
+  const [familyInputValue, setfamilyInputValue] = useState(pastDataName[2]);
   // user Image
 
   const [image, setUserImage] = useState([]);
@@ -202,13 +205,13 @@ export default function EditUserProfile() {
     }
   };
 
-  // data of select box thet is related to the past info
-  const [pastData, setPastData] = useState("");
+ 
+
   useEffect(() => {
     if (!pastData) {
       pastSelexboxData();
     }
-  });
+  },[pastData]);
 
   const pastSelexboxData = async () => {
     // debugger
@@ -325,7 +328,7 @@ export default function EditUserProfile() {
       {updatePass && (
         <PopUp
           clickHandler={() => setUpdatePass(false)}
-          image={"/img/popUp/tik.svg"}
+          image={tik_svg}
           type={"sucsess"}
           buttonText={" باشه، بزن بریم"}
           text={" حالا می‌توانید کارتان را شروع کنید.   "}
@@ -386,6 +389,8 @@ export default function EditUserProfile() {
                       typeInput="text"
                       handleChange={handleNameInput}
                       ref={nameEmpty}
+                      
+                      
                     />
 
                     <AuthInput
@@ -394,6 +399,8 @@ export default function EditUserProfile() {
                       typeInput="text"
                       handleChange={handlefamilyInput}
                       ref={familyEmpty}
+                     
+                      
                     />
                   </div>
                   <AuthInput

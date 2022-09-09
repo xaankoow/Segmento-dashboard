@@ -4,6 +4,7 @@ import { planReducer } from "./plan";
 import { workSpaceReducer } from "./workSpace";
 import { loadingReducer } from "./loading";
 import { navMenu } from "./navMenu";
+import {testReducer} from "./test"
 // import plan from './plan'
 
 
@@ -12,6 +13,7 @@ export const reducers = combineReducers({
     planState: planReducer,
     workSpaceState: workSpaceReducer,
     loadingState: loadingReducer,
-    navMenuState: navMenu
+    navMenuState: navMenu,
+    // textState:testReducer
     // user:userReducer
 })

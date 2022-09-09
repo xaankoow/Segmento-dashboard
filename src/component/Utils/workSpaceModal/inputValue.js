@@ -324,7 +324,7 @@ export default function InputGetWorkSpaceInfo({
                   <div className="close_suport_container inline-flex">
                     <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
                       <div
-                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 bg-[url('/img/modal/head/closeModal.svg')]"
+                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 close_modal_ico"
                         onClick={() =>
                           handleRemoveInput("addKeyCharMap", index)
                         }
@@ -375,7 +375,7 @@ export default function InputGetWorkSpaceInfo({
                   <div className="close_suport_container inline-flex">
                     <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
                       <div
-                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 bg-[url('/img/modal/head/closeModal.svg')]"
+                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 close_modal_ico"
                         onClick={() =>
                           handleRemoveInput("addCommercialPageMap", index)
                         }
@@ -420,7 +420,7 @@ export default function InputGetWorkSpaceInfo({
                     <div className="close_suport_container inline-flex">
                       <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
                         <div
-                          className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 bg-[url('/img/modal/head/closeModal.svg')]"
+                          className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 close_modal_ico"
                           onClick={() =>
                             handleRemoveInput("addWebsitePageMap", index)
                           }
@@ -492,7 +492,7 @@ export default function InputGetWorkSpaceInfo({
                                   <div className="close_suport_container inline-flex">
                                     <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
                                       <div
-                                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 bg-[url('/img/modal/head/closeModal.svg')]"
+                                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 close_modal_ico"
                                         onClick={() =>
                                           handleSetStateCompetitorSite(
                                             `${itemKey},${itemCompetitor}`,
