@@ -53,9 +53,9 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
               <div>
                 <AuthButton textButton={"اشتراک میخرم"} handlerClick={tryFreePlanClick} setOnclickValue={1} />
               </div>
-              <span className="buttonText mt-5" onClick={() => clickHandler()}>{buttonText}</span>
+              <span className="buttonText mt-5 third-btn" onClick={() => clickHandler()}>{buttonText}</span>
             </div>
-          ) : <span className="buttonText mt-5" onClick={() => clickHandler()}>{buttonText}</span>}
+          ) : <span className="buttonText mt-5 third-btn" onClick={() => clickHandler()}>{buttonText}</span>}
 
         </div>
       </div>

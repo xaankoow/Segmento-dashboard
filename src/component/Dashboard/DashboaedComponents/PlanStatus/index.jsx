@@ -1,40 +1,38 @@
-// import { Chart } from 'chart.js';
 import React, { useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import PageTitle from "../pageTitle/pageTitle";
 import { usetLimit } from "../../../service/userLimit";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import { Link } from "react-router-dom";
 import { getPackageInfO } from "../../../service/packages";
-import { setFormatPrice } from "../../../Utils/FORMAT/price";
 import { setFormatNumber } from "../../../Utils/FORMAT/number";
-// import './'
-// import "./output.css"
-// import './script'
 import date_range_svg from '../../../../assets/img/dashboard/planStatus/date_range.svg'
 import boxDiscount_svg from '../../../../assets/img/dashboard/planStatus/boxDiscount.svg'
 import balloonBoxDiscount_svg from '../../../../assets/img/dashboard/planStatus/balloonBoxDiscount.svg'
 
 export default function PlanStatus() {
+
+  var moment = require("jalali-moment");
+
   const [datas, setDatas] = useState([]);
   const [allWords, setAllWords] = useState([]);
   const userState = useSelector((state) => state.userState);
-  var moment = require("jalali-moment");
 
   var nowDate = new Date();
-// user type
-const type=userState.userData.package != undefined? userState.userData.package.type_text: "بدون پکیج";
-         
+
+  // user type
+  const type = userState.userData.package != undefined ? userState.userData.package.type_text : "بدون پکیج";
+
   var startDate =
     userState.userData.package != undefined &&
     new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
   var expiryDate =
     userState.userData.package != undefined &&
     new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
-  // console.log(startDate)
+
   var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
   var timeSecDays = Math.abs(expiryDate - startDate);
 
@@ -62,18 +60,19 @@ const type=userState.userData.package != undefined? userState.userData.package.t
 
   const content = datas.length > 0 && datas[20].count;
   const keyword = datas.length > 0 && datas[4].count;
-  const dateExColor = datas.length > 0 && datas[4].count;
+
   useEffect(() => {
     const pastSelexboxData = async () => {
       try {
         const { data, status } = await usetLimit();
         setDatas(data.data);
       } catch (error) {
-       
+
       }
     };
     if (datas.length == 0) pastSelexboxData();
   }, []);
+
   useEffect(() => {
     const setPackagesInformation = async () => {
       let package_uuid = "";
@@ -83,9 +82,9 @@ const type=userState.userData.package != undefined? userState.userData.package.t
         try {
           const { data, status } = await getPackageInfO(package_uuid);
           setAllWords(data.data.features)
-          
+
         } catch (error) {
-      
+
         }
       }
 
@@ -95,11 +94,10 @@ const type=userState.userData.package != undefined? userState.userData.package.t
   }, [userState.userData.package]);
 
   const data = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        // data: [numberOfDays,numberOfDaysLeft],
+        // data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         cutout: 50,
         backgroundColor:
@@ -114,34 +112,20 @@ const type=userState.userData.package != undefined? userState.userData.package.t
                 ? ["#D9D9D9", "#F35242"]
                 : ["#D9D9D9", "#ffffff"],
         borderWidth: 0,
-        borderRadius: 7,
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
-        // borderWidth: 1,
+        borderRadius: 7
       },
     ],
   };
 
   const miniChartSetting2 = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        // data: [30, 70],
         data: [
           datas.length > 0 && allWords.length != 0 && allWords[20].count - datas[20].count,
           datas.length > 0 && datas[20].count,
         ],
         cutout: 36,
-        // cutout: 38,
-        // width:35,
-        // height:35,
         backgroundColor:
           content && content >= Math.round((allWords.length != 0 && allWords[20].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
@@ -154,33 +138,19 @@ const type=userState.userData.package != undefined? userState.userData.package.t
               ],
         borderWidth: 0,
         borderRadius: 5,
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
-        // borderWidth: 1,
       },
     ],
   };
 
   const miniChartSetting = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        // data: [30, 70],
         data: [
           datas.length > 0 && allWords.length != 0 && allWords[4].count - datas[4].count,
           datas.length > 0 && datas[4].count,
         ],
         cutout: 36,
-        // cutout: 38,
-        // width:35,
-        // height:35,
         backgroundColor:
           keyword && keyword >= Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
@@ -193,21 +163,9 @@ const type=userState.userData.package != undefined? userState.userData.package.t
               ],
         borderWidth: 0,
         borderRadius: 5,
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
-        // borderWidth: 1,
       },
     ],
   };
-
-  // console.log(new Date(moment('2022/08/18').locale("fa").format("YYYY/M/D")))
-  // console.log(userState.userData.package != undefined && moment("2022/08/18").locale("fa").format("YYYY/M/D"))
 
   return (
     <div className="">
@@ -215,11 +173,6 @@ const type=userState.userData.package != undefined? userState.userData.package.t
       <div className="mx-auto w-full mt-9">
         <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-[#fff]">
           {/* <!--عنوان 1--> */}
-
-          {/* <div className="flex flex-row items-center">
-                        <span id="line1" className="w-0.5 h-5 mt-5"></span>
-                        <span className="mr-3 mt-4 ">وضعیت اشتراک</span>
-                    </div> */}
 
           <div className="flex lg:flex-row md:flex-row sm:flex-col  justify-between lg:pt-16 md:pt-16 gap-10">
             {/* <!--باکس راست--> */}
@@ -230,9 +183,9 @@ const type=userState.userData.package != undefined? userState.userData.package.t
             >
               <div className="flex flex-row">
                 <span
-                 
-                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${ type.includes("طلایی")? " bg-yellow " : type.includes("نقره ای") ? " bg-secondary " : type.includes("برنزی") ? " bg-[#E99991] ":type.includes("الماسی")  ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center ": type.includes("14 روز رایگان")? " bg-secondary " :" bg-yellow "}`}
-                   ></span>
+
+                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${type.includes("طلایی") ? " bg-yellow " : type.includes("نقره ای") ? " bg-secondary " : type.includes("برنزی") ? " bg-[#E99991] " : type.includes("الماسی") ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center " : type.includes("14 روز رایگان") ? " bg-secondary " : " bg-yellow "}`}
+                ></span>
                 <span className="absolute mt-4 mr-10 ">
                   {" "}
                   {user_package_title}
@@ -355,9 +308,9 @@ const type=userState.userData.package != undefined? userState.userData.package.t
                 </div>
               </div> */}
               <div className="w-64 h-64 relative">
-                <img src={boxDiscount_svg} className="w-full h-full"/>
+                <img src={boxDiscount_svg} className="w-full h-full" />
                 {/* <img src="/img/dashboard/planStatus/balloonBoxDiscount.svg" className="w-full h-full absolute top-0 animate-pulse"/> */}
-                <img src={balloonBoxDiscount_svg} className="w-full h-full absolute top-0 discountBoxBallonAnimation"/>
+                <img src={balloonBoxDiscount_svg} className="w-full h-full absolute top-0 discountBoxBallonAnimation" />
               </div>
               <div>
                 <Link to={"/dashboard/buyPlan"}>
@@ -393,7 +346,7 @@ const type=userState.userData.package != undefined? userState.userData.package.t
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords.length != 0 &&setFormatNumber(allWords[4].count)}
+                      {allWords.length != 0 && setFormatNumber(allWords[4].count)}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
