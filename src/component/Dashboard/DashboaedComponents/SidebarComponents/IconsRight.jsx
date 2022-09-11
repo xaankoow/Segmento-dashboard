@@ -15,7 +15,7 @@ export default function IconsRight({ setActive }) {
   // TODO:EDITE TITLE IMG
   const navBarRightSection = [
     { imgSrc: pishkhan_svg, title: "خانه" ,link:""},
-    { imgSrc: analyze_svg, title: "دپارتمان سئو",link:"/dashboard/PageCounter" }
+    { imgSrc: analyze_svg, title: " ابزار سئو",link:"/dashboard/PageCounter" }
   ];
 
   var activeClass = "bg-secondary ICONRIGHT nav_right_box flex items-center justify-center relative z-0"

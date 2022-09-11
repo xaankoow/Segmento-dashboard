@@ -1,7 +1,8 @@
 import React from 'react'
+import { ImageContainer } from '../../../../assets/img/IMG'
 import AuthButton from '../../../Auth/authButton/AuthButton'
 import { EditorCustomizedToolbarOption } from '../../../Dashboard/pages/EditUserProfile/components/Editor/Editor'
-import { ImageContainer } from '../../IMG'
+
 
 export default function index() {
     return (

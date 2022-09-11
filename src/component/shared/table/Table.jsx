@@ -1,14 +1,14 @@
 import React from "react";
 
-export default function Table({ columnItem, rowsItem, rowKey }) {
+export default function Table({ columnItem, rowsItem, rowKey,classname }) {
   // data pattern that we should pass
   //  const rowKey = [ "row.id", "row.name", "row.famil"]; => thats for key of object row + keyname
   return (
-    <div class="container flex justify-center mx-auto">
-      <div class="flex flex-col">
+    <div class={`w-full flex justify-center mx-auto ${classname}`}>
+      <div class="flex flex-col w-full">
         <div class="w-full">
-          <div class=" rounded-lg border border-[#D9D9D9]  h-[672px] overflow-scroll">
-            <table class="  rounded p-0 m-0" id="">
+          <div class=" rounded-lg border border-[#D9D9D9]  h-[672px] overflow-scroll w-full">
+            <table class="w-full rounded p-0 m-0" id="">
               <tr
                 className="rounded"
                 style={{ backgroundColor: "#FCFCFB", borderRadius: "5px" }}

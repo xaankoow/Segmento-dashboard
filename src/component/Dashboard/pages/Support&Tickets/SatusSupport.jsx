@@ -1,18 +1,18 @@
 import React from "react";
+import { useState } from "react";
+import { ImageContainer } from "../../../../assets/img/IMG";
+import { filterBoxDatas, titleOfReportSupportTable } from "../../../../variables/support";
 import AuthButton from "../../../Auth/authButton/AuthButton";
+import ComboBox from "../../../shared/comboBox/ComboBox";
+import GuideBox from "../../../shared/GuideBox/GuideBox";
 import Table from "../../../shared/table/Table";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
+import { FilterDataSupport } from "./changeData";
 
 export default function ReportSupport() {
-  const a = [
-    { title: "ردیف", class: "px-9" },
-    { title: "شناسه تیکت", class: "px-9" },
-    { title: "عنوان", class: "pl-[160px] text-right" },
-    { title: "دسته بندی", class: "pl-[50px] text-center" },
-    { title: "آخرین بروز رسانی", class: "pl-[50px] py-[18px] text-center" },
-    { title: "وضعیت", class: "pl-9" },
-    { title: "عملیات", class: "px-3" },
-  ];
+  const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
+
+ 
   const b = [
     {
       id: 1,
@@ -21,7 +21,11 @@ export default function ReportSupport() {
       categories: "امور مالی",
       date: "1401/2/2",
       status: "پاسخ داده شد",
-      operation:<div>czdczdc</div>
+      operation: (
+        <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
+          <img src={ImageContainer.visibility} alt="" />
+        </div>
+      ),
     },
     {
       id: 1,
@@ -29,8 +33,16 @@ export default function ReportSupport() {
       title: "نمونه نوشته برای عنوان",
       categories: "امور مالی",
       date: "1401/2/2",
-      status: <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center">پاسخ داده شد</div>,
-      operation:<div>czdczdc</div>
+      status: (
+        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center">
+          پاسخ داده شد
+        </div>
+      ),
+      operation: (
+        <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
+          <img src={ImageContainer.visibility} alt="" />
+        </div>
+      ),
     },
     {
       id: 1,
@@ -38,26 +50,53 @@ export default function ReportSupport() {
       title: "نمونه نوشته برای عنوان",
       categories: "امور مالی",
       date: "1401/2/2",
-      status: <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center">در انتظار پاسخ</div>,
-      operation:<div className="w-16 h-10 rounded-lg bg-lightBlue"><img src="" alt="" /></div>
+      status: (
+        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center">
+          در انتظار پاسخ
+        </div>
+      ),
+      operation: (
+        <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
+          <img src={ImageContainer.visibility} alt="" />
+        </div>
+      ),
     },
-    
   ];
-  const rowKey = ["row.id", "row.factorNumber", "row.title", "row.categories","row.date","row.status","row.operation"];
+  const rowKey = [
+    "row.id",
+    "row.factorNumber",
+    "row.title",
+    "row.categories",
+    "row.date",
+    "row.status",
+    "row.operation",
+  ];
   return (
     <>
       <PageTitle title={"پشتیبانی و تیکت ها (تیکت جدید) "} />
-      <div className="">
-        {/* <ComboBox placeholder={"فیلد جستجو"} radioTextItems={filterBoxDatas} radioClickedHandler={(e) => setSearchFilterOption(e.target.value)} /> */}
-      </div>
-      <div className="flex items-center ">
-        <span className=" ml-2">مرتب سازی بر اساس</span>
+      <GuideBox
+        classname={"mt-7 mx-9"}
+        text={
+          "تمامِ تیکت‌هایی که برای واحد امور پشتیبانی سگمنتو ارسال کرده‌اید، در این صفحه لیست شده‌اند:"
+        }
+        buttonName={"ارسال تیکت جدید"}
+        linkTo={""}
+      />
+      <div className="flex mx-9 justify-between my-5">
+        <div className="min-w-[420px]">
+          <ComboBox placeholder={"فیلد جستجو"} radioTextItems={filterBoxDatas} radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}/>
+        </div>
+
+        <div className="flex items-center gap-4 ">
+          <span className="">مرتب سازی بر اساس</span>
+          <FilterDataSupport    radioTarget={searchFilterOption} />
+        </div>
+        <div className=" inline-block">
+          <AuthButton textButton={"اعمال"} classes={"btn-secondary"} />
+        </div>
       </div>
 
-      <div className=" inline-block">
-        <AuthButton textButton={"اعمال"} classes={"btn-secondary"} />
-      </div>
-      <Table columnItem={a} rowsItem={b} rowKey={rowKey} />
+      <Table columnItem={titleOfReportSupportTable} rowsItem={b} rowKey={rowKey} classname={"px-9"} />
     </>
   );
 }
