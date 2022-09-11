@@ -4,12 +4,13 @@ import CloseSection from './CloseSection'
 import HeaderCardInfo from './HeaderCardInfo'
 import SendMessage from '../../../shared/message/SendMessage.jsx/index'
 import PageTitle from '../pageTitle/pageTitle'
+import AuthButton from '../../../Auth/authButton/AuthButton'
 
 export default function index() {
   return (
     <div className=' px-7'>
-      <PageTitle title={"پشتیبانی و تیکت ها "}/>
-      <CloseSection/>
+      <PageTitle title={"پشتیبانی و تیکت ها "} />
+      <CloseSection />
       <HeaderCardInfo />
       <Message />
       <Message type={"admin"} />
@@ -41,9 +42,10 @@ export default function index() {
           </div>
         </div>
         <div className=' px-10 '>
-      <SendMessage />
+          <SendMessage />
         </div>
       </div>
+      <AuthButton textButton={"ارسال پاسخ"} classes="m-auto mt-7"/>
     </div>
   )
 }

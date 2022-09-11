@@ -11,24 +11,34 @@ import ToolTip from '../../component/Utils/ToolTip';
 import FrameloginSun_png from '../../assets/img/FrameloginSun.png';
 import login_svg from '../../assets/img/login.svg';
 import businessesIcon_png from '../../assets/img/businessesIcon.png';
+import { useDispatch } from 'react-redux';
+import SubmitForm from '../../component/Utils/Submit';
+// import SubmitForm from '../../component/Utils/SubmitForm'
+
 
 export default function Login() {
 
   const [showToolTip, setShowToolTip] = useState(true);
 
+  const dispath=useDispatch();
+  
   return (
     <div className="flex flex-col items-center w-full justify-center overflow-hidden">
       <Nav path={"register"} />
       <div className="w-full px-28">
         <div className="gap-10 flex items-center flex-row justify-between 2xl:py-10 md:py-10 min-w-full">
-          <div className="w-6/12 flex flex-col items-center gap-11">
+          {/* <form onSubmit={(e)=>OnSubmitForm(e,loginUserAction,true)} className="w-6/12 flex flex-col items-center gap-11"> */}
+          <SubmitForm submitFun={loginUserAction} formClass="w-6/12 flex flex-col items-center gap-11" dispatchOption>
+          {/* <div className="w-6/12 flex flex-col items-center gap-11"> */}
             <AuthInput textLabelInput="ایمیل" width={"100%"} reduxHandleChange={setEmailRedux} errorTextId="errRejesterFormatEmail" />
             <AuthInput textLabelInput="گذرواژه " width={"100%"} typeInput="password" isPassword={true} reduxHandleChange={setPasswordRedux} errorTextId="errRejesterPassword" />
             <div className="flex items-center w-full justify-between">
               <div className="flex gap-5">
+                {/* <input type="" /> */}
                 {/* <TextButton.Provider value={"ورود"}> */}
-                  <AuthButton classes={"btn-style"} reduxHandleClick={loginUserAction} textButton={"ورود"}/>
+                  <AuthButton classes={"btn-style"} submitType textButton={"ورود"}/>
                 {/* </TextButton.Provider> */}
+                {/* <input type="submit" value={"submit btn"} className="btn-style"/> */}
                 <button className=" bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">
                   <span className="text-white">	ورود با گوگل</span> <GoogleIcon className="google w-6 h-6" />
                 </button>
@@ -47,7 +57,11 @@ export default function Login() {
                 </div>
               </Link>
             </div>
-          </div>
+          {/* </div> */}
+          </SubmitForm>
+
+
+
           <div className="flex flex-col gap-4">
             <img className="w-20  rotate_sun" src={FrameloginSun_png} alt="registerFrame" />
             <img className="w-100" src={login_svg} alt="registerFrame" />

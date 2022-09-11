@@ -28,6 +28,7 @@ export default function AuthButton({
       className={`${classes != undefined&&classes.includes("btn-secondary") == true ? classes : " btn-style " + classes}`}
       disabled={disabled != undefined ? disabled ? true : !canRequest : !canRequest}
       style={style}
+      type={submitType!=undefined?"submit":"button"}
       onClick={handlerClick != undefined & handlerClick != "" & reduxHandleClick != undefined ? (
         (e) => {
           handlerClick()

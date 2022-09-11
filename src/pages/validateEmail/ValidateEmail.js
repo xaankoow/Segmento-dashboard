@@ -19,6 +19,7 @@ import "./validateEmail.css";
 import Fi_rr_life_ring_svg from '../../assets/img/fi-rr-life-ring.svg';
 import contactUs_svg from '../../assets/img/contactUs.svg';
 import back_svg from '../../assets/img/back.svg';
+import SubmitForm from "../../component/Utils/Submit";
 
 export default function ValidateEmail() {
 
@@ -44,36 +45,48 @@ export default function ValidateEmail() {
           </div>
           <div className="flex flex-col justify-cneter items-center gap-3 mt-20 mb-7">
             <span>کد فعال سازی</span>
-            <div className="flex gap-5">
+            <SubmitForm SubmitForm={checkVerifyEmailAction} dispatchOption formClass={"flex gap-5"}>
+
+            {/* <div className="flex gap-5"> */}
               <AuthInput
                 classes={"verify_email_cod input_selector_4"}
                 notCheckValue={true}
-                maxLength="1"
+                maxlength={1}
                 pressNumber={true}
                 reduxHandleChange={setAuth1Redux}
+                selectWithOnClick
               />
               <AuthInput
                 classes={"verify_email_cod input_selector_3"}
                 notCheckValue={true}
-                maxLength="1"
+                maxlength={1}
                 pressNumber={true}
                 reduxHandleChange={setAuth2Redux}
+                selectWithOnClick
               />
               <AuthInput
                 classes={"verify_email_cod input_selector_2"}
                 notCheckValue={true}
-                maxLength="1"
+                maxlength={1}
                 pressNumber={true}
                 reduxHandleChange={setAuth3Redux}
+                selectWithOnClick
               />
               <AuthInput
                 classes={"verify_email_cod"}
                 notCheckValue={true}
-                maxLength="1"
+                maxlength={1}
                 pressNumber={true}
                 reduxHandleChange={setAuth4Redux}
+                selectWithOnClick
               />
-            </div>
+            {/* </div> */}
+
+            </SubmitForm>
+
+
+
+
           </div>
           <div className="h-10 w-7/12 m-auto text-center relative">
             <Link to={"/dashboard/accountOperations/login"}>

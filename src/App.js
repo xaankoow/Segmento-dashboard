@@ -104,7 +104,7 @@ export default function App() {
           </Route>
 
           <Route path="/payment*" element={<LandingPage />} />
-          <Route path={"*"} element={<Link className="btn-style" to="/dashboard">change route</Link>} />
+          <Route path={"*"} element={<Page404 />} />
           {/* <Route path={"*"} element={()=>navigate("/dashboard",{replace:true})} /> */}
 
         </Routes>
