@@ -14,10 +14,12 @@ export default function Support() {
         break;
     }
   };
+
   return (
     <>
       <PageTitle title={"پشتیبانی و تیکت ها (تیکت جدید) "} />
       {setPage()}
+     
     </>
   );
 }

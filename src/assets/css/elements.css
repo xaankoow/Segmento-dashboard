@@ -18,6 +18,10 @@
   transition: background 0.5s ease-in-out;
 }
 
+.table-border{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 .btn-style:hover {
   background: #0ac7e2 !important;
   /* transform: translate3d(10px,25px,0px); */
