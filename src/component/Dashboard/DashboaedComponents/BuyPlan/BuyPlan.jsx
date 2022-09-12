@@ -53,7 +53,7 @@ export default function BuyPlan({ title }) {
         <div className='section_title'>
           <div>
             <p>رایگان شروع کنید؛ قدرتمند ادامه دهید</p>
-            <button className="btn_more_information_plan">توضیحات بیشتر</button>
+            <button className="btn-secondary mt-2 mb-3 m-auto">توضیحات بیشتر</button>
           </div>
         </div>
         <CardPlans plan={plan} setPlan={setPlan} />
