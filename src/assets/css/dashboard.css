@@ -19,7 +19,7 @@
 
 #DASHBOARD .list_hover {
 	/* transition: left 2s 2s; */
-	
+
 	/* transition: width 0.2s ease-in; */
 }
 
@@ -130,7 +130,7 @@
 	transform: translate(-50%, 0);
 }
 
-#DASHBOARD  .support_dropDown {
+#DASHBOARD .support_dropDown {
 	position: absolute;
 	z-index: 5;
 	width: 100px;
@@ -293,13 +293,30 @@
 	color: #0071ff;
 }
 
+#DASHBOARD .SidebarHoverBox:hover a {
+	color: #0071ff;
+}
+
 #DASHBOARD .SidebarHoverBox:hover img {
 	filter: saturate(11);
 }
 
-#DASHBOARD .active  {
+#DASHBOARD .active {
 	color: #0071ff;
 }
+
+#DASHBOARD .active:hover img {
+	filter: saturate(11);
+}
+
+#DASHBOARD .active:hover span {
+	color: #0071ff;
+}
+
+#DASHBOARD .active a {
+	color: #0071ff;
+}
+
 #DASHBOARD .active span {
 	color: #0071ff;
 }
@@ -311,12 +328,15 @@
 #DASHBOARD .ICONRIGHT:hover img {
 	filter: saturate(11);
 }
+
 #DASHBOARD .ICONRIGHT:active img {
 	filter: saturate(11);
 }
+
 #DASHBOARD .ICONRIGHT:focus img {
 	filter: saturate(11);
 }
+
 #DASHBOARD .menuimage {
 	background-image: url(../img/dashboard/header/menuicon.svg);
 
@@ -348,8 +368,8 @@
 #DASHBOARD .userProfBox:hover {
 	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
 	border-radius: 3px;
-	
-	
+
+
 }
 
 #DASHBOARD .userHeaderProfInfo {
@@ -577,9 +597,10 @@
 	background-color: #D9D9D9 !important;
 }
 
-#keyWordSearch  .btnDisabled:disabled{
+#keyWordSearch .btnDisabled:disabled {
 	border-right: 1px solid #7D7D7D !important;
 }
+
 .z-0 {
 	z-index: 0 !important;
 }

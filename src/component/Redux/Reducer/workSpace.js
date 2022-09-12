@@ -35,6 +35,8 @@ export const workSpaceReducer = (state =
         websitePage10: "",
         testSpeedPage: [],
         competitorSite: [],
+        limitsDatas: [],
+        allLimitsDatas: [],
         resultSetWorkSpace: { reportStatus: false, reportStep: 0 },
         showWorkSpaceModal: false,
         checkLimit:true,
@@ -123,6 +125,8 @@ export const workSpaceReducer = (state =
                 websitePage10: "",
                 testSpeedPage: [],
                 competitorSite: [],
+                limitsDatas: [],
+                allLimitsDatas: [],
                 resultSetWorkSpace: { reportStatus: false, reportStep: 0 },
                 showWorkSpaceModal: false,
                 forceUpdate: 0
@@ -164,6 +168,8 @@ export const workSpaceReducer = (state =
                 websitePage10: "",
                 testSpeedPage: [],
                 competitorSite: [],
+                limitsDatas: [],
+                allLimitsDatas: [],
                 resultSetWorkSpace: { reportStatus: false, reportStep: 0 },
                 showWorkSpaceModal: false,
                 forceUpdate: 0

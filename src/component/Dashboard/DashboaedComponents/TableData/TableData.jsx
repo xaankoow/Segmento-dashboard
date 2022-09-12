@@ -61,7 +61,7 @@ export default function Table({
     return item;
   });
 
-  console.log(savedItem && savedItem)
+ 
   const setSepetator = (data) => {
     const list = [];
     for (let i = 0; i < a.length; i++) {
