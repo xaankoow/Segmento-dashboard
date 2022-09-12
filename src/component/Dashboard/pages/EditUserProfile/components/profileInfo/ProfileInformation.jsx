@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import changeImageIcon_svg from '../../../../../../assets/img/dashboard/userProfile/changeImageIcon.png'
+import { ImageContainer } from "../../../../../../assets/img/IMG";
 
 export default function ProfileInformation({ userName, userType, email ,changeUserImage,type}) {
   const userState = useSelector((state) => state.userState);
   // const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "../img/dashboard/userProfile/profileImage.png"
-  const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : userState.userData.user!=undefined?userState.userData.user.img!=""?userState.userData.user.img:"../img/dashboard/userProfile/profileImage.png":"../img/dashboard/userProfile/profileImage.png"
+  const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : userState.userData.user!=undefined?userState.userData.user.img!=""?userState.userData.user.img:`${ImageContainer.preUserProf}`:`${ImageContainer.preUserProf}`
 
   return (
     <div className="flex gap-3 items-center">

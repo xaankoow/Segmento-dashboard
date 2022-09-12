@@ -93,7 +93,8 @@ export default function PlanStatus() {
     datasets: [
       {
         label: "# of Votes",
-        data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
+        data: userState.userData.package != undefined?[numberOfDays - numberOfDaysLeft, numberOfDaysLeft]:[1,0],
+        // data: [1, 0],
         cutout: 50,
         backgroundColor: !numberOfDays
           ? ["#D9D9D9", "#F35242"]

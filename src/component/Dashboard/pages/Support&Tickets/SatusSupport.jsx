@@ -88,7 +88,7 @@ export default function ReportSupport() {
         </div>
 
         <div className="flex items-center gap-4 ">
-          <span className="">مرتب سازی بر اساس</span>
+        {searchFilterOption !== "بدون فیلتر" &&  <span className="">مرتب سازی بر اساس</span>} 
           <FilterDataSupport    radioTarget={searchFilterOption} />
         </div>
         <div className=" inline-block">

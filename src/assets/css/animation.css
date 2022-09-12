@@ -52,9 +52,8 @@
 }
 
 .header_animation{
-    animation: header_keyFrame  ;
-    animation-duration: 1s;
-    animation-direction: initial;
+    
+    animation: header_keyFrame 200ms ease-out forwards;
     
 }
 @keyframes header_keyFrame {

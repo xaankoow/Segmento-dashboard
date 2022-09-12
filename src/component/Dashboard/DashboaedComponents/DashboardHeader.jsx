@@ -133,7 +133,7 @@ const DashboardHeader = () => {
         </div>
       </div>
       <div className="flex items-center gap-9">
-        <div className="header_animation userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64">
+        <div className="header_animation userProfBox rounded transition-[shadow] hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64">
           <div className="flex gap-3 items-center cursor-pointer ">
             <img
               src={
