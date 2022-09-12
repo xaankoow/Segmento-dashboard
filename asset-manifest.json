@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/segmentor-react/static/css/main.f1cecea9.chunk.css",
-    "main.js": "/segmentor-react/static/js/main.53f9414b.chunk.js",
-    "main.js.map": "/segmentor-react/static/js/main.53f9414b.chunk.js.map",
+    "main.js": "/segmentor-react/static/js/main.7411b839.chunk.js",
+    "main.js.map": "/segmentor-react/static/js/main.7411b839.chunk.js.map",
     "runtime-main.js": "/segmentor-react/static/js/runtime-main.adf6cd0f.js",
     "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.adf6cd0f.js.map",
     "static/css/2.62a17324.chunk.css": "/segmentor-react/static/css/2.62a17324.chunk.css",
@@ -90,7 +90,7 @@
     "static/media/trandTypic.83d93426.svg": "/segmentor-react/static/media/trandTypic.83d93426.svg",
     "static/media/update.1df139fe.svg": "/segmentor-react/static/media/update.1df139fe.svg",
     "static/media/update.9aa57a02.svg": "/segmentor-react/static/media/update.9aa57a02.svg",
-    "static/media/visibility.705719af.svg": "/segmentor-react/static/media/visibility.705719af.svg",
+    "static/media/visibility.2357361b.svg": "/segmentor-react/static/media/visibility.2357361b.svg",
     "static/media/web.7a22cd88.svg": "/segmentor-react/static/media/web.7a22cd88.svg",
     "static/media/webAdress.7970efe7.svg": "/segmentor-react/static/media/webAdress.7970efe7.svg",
     "static/media/workSpace_report_ico.cb413126.svg": "/segmentor-react/static/media/workSpace_report_ico.cb413126.svg"
@@ -100,6 +100,6 @@
     "static/css/2.62a17324.chunk.css",
     "static/js/2.cbe7caa2.chunk.js",
     "static/css/main.f1cecea9.chunk.css",
-    "static/js/main.53f9414b.chunk.js"
+    "static/js/main.7411b839.chunk.js"
   ]
 }
