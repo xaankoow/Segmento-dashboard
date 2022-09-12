@@ -21,13 +21,7 @@ export default function SidebarComponent() {
   const[clicked,setClicked]=useState(2);
   const[clicked1,setClicked1]=useState(2);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
-  // useEffect(() => {
 
-  // getAllWorkSpace()();
-  // }, [])
-  // debugger
-  // console.log(allWorkSpace)
-  // console.log(allWorkSpace)
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
     setClicked(-1);

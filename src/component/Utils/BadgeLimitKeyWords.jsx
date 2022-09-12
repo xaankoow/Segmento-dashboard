@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { allLimitDataFeature, limitDataFeature } from "../Redux/Action/workSpace";
 import { getPackageInfO } from "../service/packages";
 import { usetLimit } from "../service/userLimit";
 
 export default function BadgeLimitKeyWords({ numFont, api }) {
   const userState = useSelector((state) => state.userState);
-  const {checkLimit} = useSelector((state) => state.workSpaceState);
+  const { checkLimit } = useSelector((state) => state.workSpaceState);
 
-  const [allWords, setAllWords] = useState([]);
+
   var moment = require("jalali-moment");
   var nowDate = new Date();
-  const [datas, setDatas] = useState([]);
+
+  //store badge redux
+  const dispatch = useDispatch();
+  const { limitsDatas } = useSelector((state) => state.workSpaceState);
+  const { allLimitsDatas } = useSelector((state) => state.workSpaceState);
+ 
   var startDate =
     userState.userData.package != undefined &&
     new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
@@ -22,44 +28,14 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
 
   var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
   var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+  
   useEffect(() => {
-    const setPackagesInformation = async () => {
-      let package_uuid = "";
-
-      if (userState.userData.package != undefined) {
-        package_uuid = userState.userData.package.uuid;
-        try {
-          const { data, status } = await getPackageInfO(package_uuid);
-          setAllWords(data.data.features);
-   
-        } catch (error) {
-         
-        }
-      }
-    };
-
-    if (allWords.length == 0) setPackagesInformation();
+    
+    dispatch(allLimitDataFeature())
   }, [userState.userData.package]);
 
-  const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
 
-  useEffect(() => {
-    if (datas.length == 0) pastSelexboxData();
-  }, [resultSetWorkSpace.reportStatus]);
 
-  useEffect(() => {
-    pastSelexboxData()
-  }, [checkLimit])
-  
-  const pastSelexboxData = async () => {
-    try {
-      const { data, status } = await usetLimit();
-      setDatas(data.data);
-      
-    } catch (error) {
-      
-    }
-  };
 
   const numStyle = `text-[#7D7D7D] text-[${
     numFont != undefined ? numFont : "14px"
@@ -69,46 +45,46 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
   switch (api) {
     case "isContentProduction":
       a = {
-        allWords: allWords.length != 0 && allWords[20].count,
-        rest: datas.length > 0 ? datas[20].count : "",
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[20].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[20].count : "",
       };
       break;
 
     case "isKeyword":
       a = {
-        allWords: allWords.length != 0 && allWords[6].count,
-        rest: datas.length > 0 ? datas[6].count : "",
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[6].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[6].count : "",
       };
       break;
     //   data of workSpace
     case 1:
       a = {
-        allWords: allWords.length != 0 && allWords[2].count,
-        rest: datas.length > 0 ? datas[2].count : "",
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[2].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[2].count : "",
       };
       break;
     case 2:
       a = {
-        allWords: allWords.length != 0 && allWords[3].count,
-        rest: datas.length > 0 ? datas[3].count : "",
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[3].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[3].count : "",
       };
       break;
     case 3:
       a = {
-        allWords: allWords.length != 0 && allWords[19].count,
-        rest: datas.length > 0 ? datas[19].count : "",
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[19].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[19].count : "",
       };
       break;
     case 4:
       a = {
-        allWords: allWords.length != 0 && allWords[18].count,
-        rest: datas.length > 0 ? datas[18].count : "",
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[18].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[18].count : "",
       };
       break;
     case 5:
       a = {
-        allWords: allWords.length != 0 && allWords[1].count,
-        rest: datas.length > 0 ? datas[1].count : "",
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[1].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[1].count : "",
       };
 
       break;
