@@ -292,6 +292,9 @@
 #DASHBOARD .SidebarHoverBox:hover span {
 	color: #0071ff;
 }
+#DASHBOARD .SidebarHoverBox:hover a {
+	color: #0071ff;
+}
 
 #DASHBOARD .SidebarHoverBox:hover img {
 	filter: saturate(11);
@@ -300,6 +303,11 @@
 #DASHBOARD .active  {
 	color: #0071ff;
 }
+
+#DASHBOARD .active a{
+	color: #0071ff;
+}
+
 #DASHBOARD .active span {
 	color: #0071ff;
 }

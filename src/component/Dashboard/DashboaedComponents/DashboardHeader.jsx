@@ -133,7 +133,7 @@ const DashboardHeader = () => {
         </div>
       </div>
       <div className="flex items-center gap-9">
-        <div className="userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64">
+        <div className="header_animation userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64">
           <div className="flex gap-3 items-center cursor-pointer ">
             <img
               src={
@@ -201,7 +201,7 @@ const DashboardHeader = () => {
               )}
             </div>
           </div>
-          <div className="cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo">
+          <div className="header_animation cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo">
             <div className="border-b border-lightGray w-52 " />
             <div className="flex text-xs items-center justify-between w-full p-1 hover:bg-lightBlue mt-1">
               <div className="flex items-center">

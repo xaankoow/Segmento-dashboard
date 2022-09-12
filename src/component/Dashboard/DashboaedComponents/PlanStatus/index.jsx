@@ -9,12 +9,11 @@ import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import { Link } from "react-router-dom";
 import { getPackageInfO } from "../../../service/packages";
 import { setFormatNumber } from "../../../Utils/FORMAT/number";
-import date_range_svg from '../../../../assets/img/dashboard/planStatus/date_range.svg'
-import boxDiscount_svg from '../../../../assets/img/dashboard/planStatus/boxDiscount.svg'
-import balloonBoxDiscount_svg from '../../../../assets/img/dashboard/planStatus/balloonBoxDiscount.svg'
+import date_range_svg from "../../../../assets/img/dashboard/planStatus/date_range.svg";
+import boxDiscount_svg from "../../../../assets/img/dashboard/planStatus/boxDiscount.svg";
+import balloonBoxDiscount_svg from "../../../../assets/img/dashboard/planStatus/balloonBoxDiscount.svg";
 
 export default function PlanStatus() {
-
   var moment = require("jalali-moment");
 
   const [datas, setDatas] = useState([]);
@@ -24,7 +23,10 @@ export default function PlanStatus() {
   var nowDate = new Date();
 
   // user type
-  const type = userState.userData.package != undefined ? userState.userData.package.type_text : "بدون پکیج";
+  const type =
+    userState.userData.package != undefined
+      ? userState.userData.package.type_text
+      : "بدون پکیج";
 
   var startDate =
     userState.userData.package != undefined &&
@@ -66,9 +68,7 @@ export default function PlanStatus() {
       try {
         const { data, status } = await usetLimit();
         setDatas(data.data);
-      } catch (error) {
-
-      }
+      } catch (error) {}
     };
     if (datas.length == 0) pastSelexboxData();
   }, []);
@@ -81,13 +81,9 @@ export default function PlanStatus() {
         package_uuid = userState.userData.package.uuid;
         try {
           const { data, status } = await getPackageInfO(package_uuid);
-          setAllWords(data.data.features)
-
-        } catch (error) {
-
-        }
+          setAllWords(data.data.features);
+        } catch (error) {}
       }
-
     };
 
     if (allWords.length == 0) setPackagesInformation();
@@ -97,22 +93,21 @@ export default function PlanStatus() {
     datasets: [
       {
         label: "# of Votes",
-        // data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
         cutout: 50,
-        backgroundColor:
-          numberOfDays &&
-            numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
-            ? ["#D9D9D9", "#10CCAE"]
-            : numberOfDaysLeft &&
-              numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : numberOfDaysLeft &&
-                numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
-                ? ["#D9D9D9", "#F35242"]
-                : ["#D9D9D9", "#ffffff"],
+        backgroundColor: !numberOfDays
+          ? ["#D9D9D9", "#F35242"]
+          : numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
+          ? ["#D9D9D9", "#10CCAE"]
+          : numberOfDaysLeft &&
+            numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+          ? ["#D9D9D9", "#FFCE47"]
+          : numberOfDaysLeft &&
+            numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+          ? ["#D9D9D9", "#F35242"]
+          : ["#D9D9D9", "#F35242"],
         borderWidth: 0,
-        borderRadius: 7
+        borderRadius: 7,
       },
     ],
   };
@@ -122,24 +117,54 @@ export default function PlanStatus() {
       {
         label: "# of Votes",
         data: [
-          datas.length > 0 && allWords.length != 0 && allWords[20].count - datas[20].count,
-          datas.length > 0 && datas[20].count,
+          datas.length > 0 ?
+            allWords.length != 0 &&
+            allWords[20].count - datas[20].count : 1,
+          datas.length > 0 ? datas[20].count :0,
         ],
         cutout: 36,
         backgroundColor:
-          content && content >= Math.round((allWords.length != 0 && allWords[20].count * 70) / 100)
+          content ?
+          content >=
+            Math.round((allWords.length != 0 && allWords[20].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : content && content >= Math.round((allWords.length != 0 && allWords[20].count * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : content &&
-              content >= Math.round((allWords.length != 0 && allWords[20].count * 1) / 100) && [
-                "#D9D9D9",
-                "#F35242",
-              ],
+            : content &&
+              content >=
+                Math.round(
+                  (allWords.length != 0 && allWords[20].count * 30) / 100
+                )
+            ? ["#D9D9D9", "#FFCE47"]
+            : content &&
+              content >=
+                Math.round(
+                  (allWords.length != 0 && allWords[20].count * 1) / 100
+                ) && ["#D9D9D9", "#F35242"] : ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
       },
     ],
+  };
+  const backGround = () => {
+    if (keyword) {
+      if (
+        keyword >=
+        Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
+      ) {
+        return "#10CCAE";
+      } else if (
+        keyword >=
+        Math.round((allWords.length != 0 && allWords[4].count * 30) / 100)
+      ) {
+        return "#FFCE47";
+      } else if (
+        keyword >=
+        Math.round((allWords.length != 0 && allWords[4].count * 1) / 100)
+      ) {
+        return "#F35242";
+      }
+    } else {
+      return "#F35242";
+    }
   };
 
   const miniChartSetting = {
@@ -147,20 +172,28 @@ export default function PlanStatus() {
       {
         label: "# of Votes",
         data: [
-          datas.length > 0 && allWords.length != 0 && allWords[4].count - datas[4].count,
+          datas.length > 0 ?
+            allWords.length != 0 &&
+            allWords[4].count - datas[4].count: 1,
           datas.length > 0 && datas[4].count,
         ],
         cutout: 36,
         backgroundColor:
-          keyword && keyword >= Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
+          keyword ?
+          keyword >=
+            Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : keyword && keyword >= Math.round((allWords.length != 0 && allWords[4].count * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : keyword &&
-              keyword >= Math.round((allWords.length != 0 && allWords[4].count * 1) / 100) && [
-                "#D9D9D9",
-                "#F35242",
-              ],
+            : keyword &&
+              keyword >=
+                Math.round(
+                  (allWords.length != 0 && allWords[4].count * 30) / 100
+                )
+            ? ["#D9D9D9", "#FFCE47"]
+            : keyword &&
+              keyword >=
+                Math.round(
+                  (allWords.length != 0 && allWords[4].count * 1) / 100
+                ) && ["#D9D9D9", "#F35242"]:["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
       },
@@ -183,8 +216,19 @@ export default function PlanStatus() {
             >
               <div className="flex flex-row">
                 <span
-
-                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${type.includes("طلایی") ? " bg-yellow " : type.includes("نقره ای") ? " bg-secondary " : type.includes("برنزی") ? " bg-[#E99991] " : type.includes("الماسی") ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center " : type.includes("14 روز رایگان") ? " bg-secondary " : " bg-yellow "}`}
+                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${
+                    type.includes("طلایی")
+                      ? " bg-yellow "
+                      : type.includes("نقره ای")
+                      ? " bg-secondary "
+                      : type.includes("برنزی")
+                      ? " bg-[#E99991] "
+                      : type.includes("الماسی")
+                      ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center "
+                      : type.includes("14 روز رایگان")
+                      ? " bg-secondary "
+                      : " bg-yellow "
+                  }`}
                 ></span>
                 <span className="absolute mt-4 mr-10 ">
                   {" "}
@@ -198,10 +242,11 @@ export default function PlanStatus() {
               >
                 <div className="flex flex-row justify-between">
                   <span>تاریخ خرید اشتراک</span>
-                  {userState.userData.package != undefined &&
-                    moment(userState.userData.package.start)
-                      .locale("fa")
-                      .format("YYYY/M/D")}
+                  {userState.userData.package != undefined
+                    ? moment(userState.userData.package.start)
+                        .locale("fa")
+                        .format("YYYY/M/D")
+                    : "00/00"}
                 </div>
 
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
@@ -209,14 +254,11 @@ export default function PlanStatus() {
                 <div className="flex flex-row justify-between ">
                   <span>تاریخ اتمام اشتراک</span>
                   <span>
-                    {userState.userData.package != undefined &&
-                      moment(userState.userData.package.end)
-                        .locale("fa")
-                        .format("YYYY/M/D")}
-
-                    {/* {package_end_dates && moment(package_end_dates.substring(0, 10))
-                      .locale("fa")
-                      .format("YYYY/M/D")} */}
+                    {userState.userData.package != undefined
+                      ? moment(userState.userData.package.end)
+                          .locale("fa")
+                          .format("YYYY/M/D")
+                      : "00/00"}
                   </span>
                 </div>
 
@@ -225,7 +267,7 @@ export default function PlanStatus() {
                 <div className="flex flex-row justify-between ">
                   <span>روز‌‌های باقی‌مانده</span>
                   <span>
-                    {userState.userData.package && numberOfDaysLeft} روز
+                    {userState.userData.package ? numberOfDaysLeft : "0"} روز
                   </span>
                 </div>
 
@@ -256,7 +298,7 @@ export default function PlanStatus() {
 
               <div className="mt-7 w-[143px] h-[143px] float-left relative mx-auto">
                 <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center">
-                  {userState.userData.package && numberOfDaysLeft}
+                  {userState.userData.package ? numberOfDaysLeft : "0"}
                   <br />
                   روز باقی‌مانده
                 </div>
@@ -270,14 +312,17 @@ export default function PlanStatus() {
               </div>
 
               <div className="flex flex-row justify-around justify-center items-center py-2 text-xs ">
-                <div className="flex flex-row">
-                  <span id="child1" className="w-1.5 h-1.5"></span>
+                <div className="flex items-center  flex-row">
+                  <span id="child3" className="w-1.5 h-1.5"></span>
                   <span id="child2">مصرف شده</span>
                 </div>
 
-                <div className="flex flex-row">
-                  <span id="child3" className="w-1.5 h-1.5"></span>
-                  <span id="child4">باقی مانده </span>
+                <div className="flex items-center flex-row gap-1">
+                  <span
+                    id=""
+                    className={`w-1.5 h-1.5 rounded-sm bg-[${backGround()}]`}
+                  ></span>
+                  <span id="">باقی مانده </span>
                 </div>
               </div>
             </div>
@@ -288,29 +333,12 @@ export default function PlanStatus() {
               id="item3"
               className="bg-[#FCFCFB] flex flex-col justify-between items-center lg:mr-10 rounded pt-5  md:mx-2 sm:mx-auto md:mt-2 sm:mt-2 w-[35%]"
             >
-              {/* <div className="text-center">
-
-                <span id="shape">تخفیف</span>
-                <h1 id="off" className="font-extrabold">
-                  30%
-                </h1>
-
-                <span className="mt-1">اشتراک {user_package_type_text}</span>
-
-                <div id="box-off">
-                  <div className="flex flex-row my-4">
-                    <span>فقط</span>
-                    <span className="mx-1 px-3 bg-[#0B4B94] rounded-2xl text-[#fff]">
-                      10
-                    </span>
-                    <span>روز دیگر فرصت دارید</span>
-                  </div>
-                </div>
-              </div> */}
               <div className="w-64 h-64 relative">
                 <img src={boxDiscount_svg} className="w-full h-full" />
-                {/* <img src="/img/dashboard/planStatus/balloonBoxDiscount.svg" className="w-full h-full absolute top-0 animate-pulse"/> */}
-                <img src={balloonBoxDiscount_svg} className="w-full h-full absolute top-0 discountBoxBallonAnimation" />
+                <img
+                  src={balloonBoxDiscount_svg}
+                  className="w-full h-full absolute top-0 discountBoxBallonAnimation"
+                />
               </div>
               <div>
                 <Link to={"/dashboard/buyPlan"}>
@@ -346,15 +374,20 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords.length != 0 && setFormatNumber(allWords[4].count)}
+                      {allWords.length != 0
+                        ? setFormatNumber(allWords[4].count)
+                        : "0"}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 && (allWords.length != 0 && setFormatNumber(allWords[4].count - datas[4].count))}
+                      {datas.length > 0
+                        ? allWords.length != 0 &&
+                          setFormatNumber(allWords[4].count - datas[4].count)
+                        : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? setFormatNumber(datas[4].count) : ""}
+                      {datas.length > 0 ? setFormatNumber(datas[4].count) : "0"}
                     </span>
                   </div>
                 </div>
@@ -362,7 +395,8 @@ export default function PlanStatus() {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuetwo"></span>{" "}
-                    {datas.length > 0 ? setFormatNumber(datas[4].count) : ""} <br />
+                    {datas.length > 0 ? setFormatNumber(datas[4].count) : "0"}{" "}
+                    <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -370,7 +404,6 @@ export default function PlanStatus() {
                       data={miniChartSetting}
                       options={{ maintainAspectRatio: false }}
                     />
-                    {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                   </figure>
                 </div>
               </div>
@@ -388,15 +421,22 @@ export default function PlanStatus() {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords.length != 0 && setFormatNumber(allWords[20].count)}
+                      {allWords.length != 0
+                        ? setFormatNumber(allWords[20].count)
+                        : "0"}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? allWords.length != 0 && setFormatNumber(allWords[20].count - datas[20].count) : ""}
+                      {datas.length > 0
+                        ? allWords.length != 0 &&
+                          setFormatNumber(allWords[20].count - datas[20].count)
+                        : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? setFormatNumber(datas[20].count) : ""}
+                      {datas.length > 0
+                        ? setFormatNumber(datas[20].count)
+                        : "0"}
                     </span>
                   </div>
                 </div>
@@ -404,7 +444,8 @@ export default function PlanStatus() {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuethree"></span>{" "}
-                    {datas.length > 0 ? setFormatNumber(datas[20].count) : ""} <br />
+                    {datas.length > 0 ? setFormatNumber(datas[20].count) : "0"}{" "}
+                    <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -412,7 +453,6 @@ export default function PlanStatus() {
                       data={miniChartSetting2}
                       options={{ maintainAspectRatio: false }}
                     />
-                    {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                   </figure>
                 </div>
               </div>
