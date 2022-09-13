@@ -13,4 +13,4 @@ export const defaultCustomModalStyle = {
     },
   };
 
-  export const modalParentSelector=".app #DASHBOARD .body";
+  export const modalParentSelector=".app #DASHBOARD .body .main";
