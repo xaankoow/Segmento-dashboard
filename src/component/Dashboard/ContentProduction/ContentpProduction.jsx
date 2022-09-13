@@ -116,7 +116,7 @@ export default function ContentpProduction({ onClickHandler }) {
           title={"موفقیت آمیز"}
         />
       )}
-      <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
+      <div className="PopUpMap pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
         placeholder={"برای نمونه (کتاب)"}
           changeHandler={SearchBoxChangeHandler}
@@ -127,7 +127,7 @@ export default function ContentpProduction({ onClickHandler }) {
           className="w-[97%] flex items-center gap-2 justify-between"
         />
         
-        <div className="flex flex-col  w-[97%]">
+        <div id="contentProductionLayOutId" className="flex flex-col  w-[97%]">
           {!searchBoxValue || !searchBoxHandleClick ? (
             <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
           ) : null}

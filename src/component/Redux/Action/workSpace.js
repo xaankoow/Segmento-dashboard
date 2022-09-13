@@ -461,8 +461,8 @@ export const addWorkSpace = (step) => {
           competitors:
             step == 5
               ? element.competitorSite
-                  .map((item) => "https://" + item)
-                  .filter((value) => value != "https://")
+                .map((item) => "https://" + item)
+                .filter((value) => value != "https://")
               : [],
         });
       }
@@ -604,23 +604,43 @@ export const allLimitDataFeature = () => {
   return async (dispatch, getState) => {
     const state = { ...getState().workSpaceState };
     const userState = { ...getState().userState };
+    const loadingState = { ...getState().loadingState }
+    
     let package_uuid = "";
 
     if (userState.userData.package != undefined) {
       package_uuid = userState.userData.package.uuid;
-    
-    try {
-      const infoPackage = await getPackageInfO(package_uuid);
-      const limitPackage = await usetLimit();
-      if (limitPackage.data.code == 200 && limitPackage.data.status == true&&infoPackage.data.code == 200 && infoPackage.data.status == true) {
-        state.limitsDatas = limitPackage.data.data;
+
+      if (!loadingState.ProcessingDelay.includes("usetLimit")) {
+        //handle show loadin
+        {
+          loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
+          loadingState.ProcessingDelay.push("usetLimit");
+          loadingState.canRequest = false;
+          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+        }
+
+        try {
+          const infoPackage = await getPackageInfO(package_uuid);
+          const limitPackage = await usetLimit();
+          if (limitPackage.data.code == 200 && limitPackage.data.status == true && infoPackage.data.code == 200 && infoPackage.data.status == true) {
+            state.limitsDatas = limitPackage.data.data;
             state.allLimitsDatas = infoPackage.data.data.features;
-      } 
-    //   if (infoPackage.data.code == 200 && infoPackage.data.status == true) {
-    //     state.allLimitsDatas = infoPackage.data.data.features;
-    //   }
-    } catch (error) {}
-    await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state });
-}
+          }
+          //   if (infoPackage.data.code == 200 && infoPackage.data.status == true) {
+          //     state.allLimitsDatas = infoPackage.data.data.features;
+          //   }
+        } catch (error) { }
+        //handle hide loading
+        {
+          const loadingState1 = { ...getState().loadingState }
+          var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "usetLimit");
+          loadingState1.ProcessingDelay = removeProcessingItem;
+          loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+        }
+      }
+      await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state });
+    }
   };
 };

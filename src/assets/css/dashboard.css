@@ -8,7 +8,8 @@
 } */
 
 #DASHBOARD {
-	position: relative;
+	position: fixed;
+	top: 0px;
 	width: 100vw;
 	height: 100vh;
 	background-color: #f5f7f7;
