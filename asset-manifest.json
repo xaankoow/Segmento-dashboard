@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/segmentor-react/static/css/main.f1cecea9.chunk.css",
-    "main.js": "/segmentor-react/static/js/main.7411b839.chunk.js",
-    "main.js.map": "/segmentor-react/static/js/main.7411b839.chunk.js.map",
-    "runtime-main.js": "/segmentor-react/static/js/runtime-main.adf6cd0f.js",
-    "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.adf6cd0f.js.map",
+    "main.css": "/segmentor-react/static/css/main.a75baa05.chunk.css",
+    "main.js": "/segmentor-react/static/js/main.b0ebceeb.chunk.js",
+    "main.js.map": "/segmentor-react/static/js/main.b0ebceeb.chunk.js.map",
+    "runtime-main.js": "/segmentor-react/static/js/runtime-main.00ff7fff.js",
+    "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.00ff7fff.js.map",
     "static/css/2.62a17324.chunk.css": "/segmentor-react/static/css/2.62a17324.chunk.css",
-    "static/js/2.cbe7caa2.chunk.js": "/segmentor-react/static/js/2.cbe7caa2.chunk.js",
-    "static/js/2.cbe7caa2.chunk.js.map": "/segmentor-react/static/js/2.cbe7caa2.chunk.js.map",
+    "static/js/2.25a53692.chunk.js": "/segmentor-react/static/js/2.25a53692.chunk.js",
+    "static/js/2.25a53692.chunk.js.map": "/segmentor-react/static/js/2.25a53692.chunk.js.map",
     "index.html": "/segmentor-react/index.html",
     "static/css/2.62a17324.chunk.css.map": "/segmentor-react/static/css/2.62a17324.chunk.css.map",
-    "static/css/main.f1cecea9.chunk.css.map": "/segmentor-react/static/css/main.f1cecea9.chunk.css.map",
-    "static/js/2.cbe7caa2.chunk.js.LICENSE.txt": "/segmentor-react/static/js/2.cbe7caa2.chunk.js.LICENSE.txt",
+    "static/css/main.a75baa05.chunk.css.map": "/segmentor-react/static/css/main.a75baa05.chunk.css.map",
+    "static/js/2.25a53692.chunk.js.LICENSE.txt": "/segmentor-react/static/js/2.25a53692.chunk.js.LICENSE.txt",
     "static/media/Group 2.a032fcd0.svg": "/segmentor-react/static/media/Group 2.a032fcd0.svg",
     "static/media/iranyekan-font.css": "/segmentor-react/static/media/IRANYekanMedium.87d172af.ttf",
     "static/media/add.e91e6772.svg": "/segmentor-react/static/media/add.e91e6772.svg",
@@ -36,6 +36,7 @@
     "static/media/boxDiscount.38986779.svg": "/segmentor-react/static/media/boxDiscount.38986779.svg",
     "static/media/businessesIcon.6afda9f1.png": "/segmentor-react/static/media/businessesIcon.6afda9f1.png",
     "static/media/cached.1c5a0f1b.svg": "/segmentor-react/static/media/cached.1c5a0f1b.svg",
+    "static/media/close.22f45335.svg": "/segmentor-react/static/media/close.22f45335.svg",
     "static/media/close.e53e7fae.svg": "/segmentor-react/static/media/close.e53e7fae.svg",
     "static/media/contactUs.37ee8202.svg": "/segmentor-react/static/media/contactUs.37ee8202.svg",
     "static/media/copyWriter.8de5a8a8.svg": "/segmentor-react/static/media/copyWriter.8de5a8a8.svg",
@@ -96,10 +97,10 @@
     "static/media/workSpace_report_ico.cb413126.svg": "/segmentor-react/static/media/workSpace_report_ico.cb413126.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.adf6cd0f.js",
+    "static/js/runtime-main.00ff7fff.js",
     "static/css/2.62a17324.chunk.css",
-    "static/js/2.cbe7caa2.chunk.js",
-    "static/css/main.f1cecea9.chunk.css",
-    "static/js/main.7411b839.chunk.js"
+    "static/js/2.25a53692.chunk.js",
+    "static/css/main.a75baa05.chunk.css",
+    "static/js/main.b0ebceeb.chunk.js"
   ]
 }
