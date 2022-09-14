@@ -21,6 +21,7 @@ import { paragraphText } from "./headParagraphText";
 import tik_svg from "../../../../assets/img/popUp/tik.svg";
 
 import moveBackIco_svg from "../../../../assets/img/modal/footer/moveBack.svg"
+import { afterOpenOrCloseAnyModal } from "../../../../variables/modal";
 // import moveBackIco from "./src/assets/img/modal/footer/moveBack"
 
 export default function PhoneNumberOperations({ registerPhone, editePhone }) {
@@ -35,7 +36,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   );
 
   // modal step
-  const [modalStep, setModalStep] = useState(2);
+  const [modalStep, setModalStep] = useState(1);
 
   // modal step
   const [operationType, setOperationType] = useState("");
@@ -223,8 +224,10 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
             <Modal
               isOpen={true}
               parentSelector={() =>
-                document.querySelector(".app #DASHBOARD")
+                document.querySelector(".app #DASHBOARD .body .main")
               }
+              onAfterOpen={()=>afterOpenOrCloseAnyModal({open:true})}
+              onAfterClose={()=>afterOpenOrCloseAnyModal({open:false})}
               style={defaultCustomModalStyle}
               onRequestClose={()=>operationType!="verify"&&navigate(-1)}
               contentLabel="Example Modal"

@@ -114,7 +114,6 @@ const DashboardHeader = () => {
   // }, [checkUseTryFree]);
 
   const location = useLocation();
-
   return (
     <div className="flex h-full items-center justify-between px-5">
       <div className="flex items-center gap-7">

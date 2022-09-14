@@ -41,6 +41,8 @@ export default function IconsRight({ setActive }) {
             data-tip={items.title}
             data-type="light"
             data-place="left"
+            width={"24px"}
+            height={"24px"}
             onMouseEnter={() => setShowToolTip(true)}
             onMouseLeave={() => {
               setShowToolTip(false);

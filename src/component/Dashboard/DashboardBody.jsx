@@ -6,7 +6,9 @@ import SidebarComponent from "./DashboaedComponents/SidebarComponents/SidebarCom
 import BuyPlanEasyToStartModal from "../Utils/EasyToStartModal";
 import PhoneNumberOperations from "../Utils/Modals/phoneNumber/PhoneNumberOperations";
 import { useSelector } from "react-redux";
+import PopUp from "../Utils/PopUp/PopUp";
 
+// import PopUp from "../../../Utils/PopUp/PopUp";
 
 export default function DashboardBody() {
 
@@ -44,12 +46,20 @@ export default function DashboardBody() {
 
   return (
     <div id="DASHBOARD">
-      <div className="w-full h-16 bg-[#ffffff] shadow-3xl">
+      <div className="w-full h-16 bg-[#ffffff] shadow-3xl" >
         <DashboardHeader  />
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
-        <div className="bg-[#ffffff] overflow-y-scroll pb-24 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main">
+        <div id="dashboardMap" className="bg-[#ffffff] overflow-y-scroll pb-24 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main">
           <Outlet />
+          {/* <PopUp
+          // clickHandler={() => setUpdatePass(false)}
+          // image={tik_svg}
+          type={"sucsess"}
+          buttonText={" باشه، بزن بریم"}
+          text={" حالا می‌توانید کارتان را شروع کنید.   "}
+          title={" گذرواژه جدید ذخیره شد."}
+        /> */}
         </div>
         {/* <SidebarComponent closeNav={closeNav} openMenu={() => setCloseNav(true)} /> */}
         <SidebarComponent  />

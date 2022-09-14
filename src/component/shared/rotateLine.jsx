@@ -10,6 +10,7 @@ export default function RotateLine({ lineData, firstText, title }) {
       <div className="rotate-[23deg]  ">
         <div className="w-3 h-3 bg-silver rounded-full absolute -right-2 -top-1 z-10"></div>
 
+<<<<<<< HEAD
         {lineData.map((item, index) => {
           let n = index * -8;
           return (
@@ -26,6 +27,17 @@ export default function RotateLine({ lineData, firstText, title }) {
               >
                 <div className="w-2 h-2 bg-sectionDisable rounded-full absolute left-0 -top-1 "></div>
               </div>
+=======
+    // 8 rotate
+    // 55 top 
+    // -5 right
+    // 10 width
+    
+    return (
+        <div>
+            <div id="div-with-line" className=' bg-[#eee] w-[280px] relative h-10 right-[200px]'>
+                <div id="line" className=' w-[279px]  bg-[#ddd] h-1 rotate-[7deg] absolute right-0 top-[18px]'></div>
+>>>>>>> 62d261051dea88db525b96e73afbb26dc989b1aa
             </div>
           );
         })}
