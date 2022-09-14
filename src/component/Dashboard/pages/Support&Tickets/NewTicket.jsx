@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { helpText } from "../../../../variables/support";
 import AuthInput from "../../../Auth/authInput/AuthInput";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import { ticketCategories } from "../../../../variables/support";
 import AuthButton from "../../../Auth/authButton/AuthButton";
+import {setNewTicket} from "../../../service/ticket";
 import SupportMessage from "../../../shared/message/SendMessage.jsx/index";
 export default function NewTicket({ categories }) {
   const [filterCategories, setFilterCategories] = useState(categories);
-
+ 
+  const handleSetNewTicket = async () => {
+    //handle show loadin
+    // {
+    //   loadingState.ProcessingDelay.push("keywordService");
+    //   loadingState.canRequest = false;
+    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    // }
+    try {
+      let formdata = new FormData();
+      formdata.append("name","");
+      const { data } = await setNewTicket(formdata);
+      if ((data.code == 200) & (data.status == true)) {
+      }
+    
+      }
+    catch (error) {
+    }
+    // {
+    //   var removeProcessingItem = loadingState.ProcessingDelay.filter(
+    //     (item) => item != "keywordService"
+    //   );
+    //   loadingState.ProcessingDelay = removeProcessingItem;
+    //   loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    // }
+  };
   return (
     <div className="my-7 flex flex-col gap-7 justify-center">
       <div className="border rounded-lg border-sectionDisable py-4 px-7 mx-9">
@@ -56,10 +83,10 @@ export default function NewTicket({ categories }) {
           <SupportMessage />
         </div>
         <div className="w-2/3 mx-auto flex  justify-center">
-          <AuthButton
-            classes={"btn-style h-10 w-[111px] mt-5"}
-            textButton={"ارسال تیکت"}
-          />
+          <button onClick={handleSetNewTicket}  className={"btn-style h-10 w-[111px] mt-5"}>
+          ارسال تیکت
+          </button>
+         
         </div>
       </div>
     </div>

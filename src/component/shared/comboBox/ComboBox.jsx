@@ -39,7 +39,7 @@ export default function ComboBox({
               }
               readOnly={true}
               placeholder={!radioText && placeholder}
-              value={selectedItem? selectedItem: radioText}
+              value={radioText? radioText: selectedItem}
               onClick={() => {
                 setInputClick(true);
                 setOpen(!open);

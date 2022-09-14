@@ -1,12 +1,22 @@
-import {ImageContainer} from "../assets/img/IMG/index"
+import  {ImageContainer}  from "../assets/img/IMG/index";
 export const ticketCategories = [
-{ text: "امور اداری",img:ImageContainer.omorEdari} ,
-{ text:"امور مالی",img:ImageContainer.omorMali},
-{ text: "امور فنی",img:ImageContainer.omorFani},
-{ text: "سوالات پیش از خرید",img:ImageContainer.soalatPishKharid},
-{ text: "همکاری",img:ImageContainer.hamkari},
-{ text:  "پیشنهادات و انتقاد",img:ImageContainer.idea},
+  "امور اداری",
+  "امور مالی",
+  "امور فنی",
+  "سوالات پیش از خرید",
+  "همکاری",
+  "پیشنهادات و انتقاد",
 ];
+export const imgCategories = [
+  ImageContainer.omorEdari,
+  ImageContainer.omorMali,
+  ImageContainer.omorFani,
+  ImageContainer.soalatPishKharid,
+  ImageContainer.hamkari,
+  ImageContainer.idea
+]
+
+  
 
 export const helpText = [
 "نمونه متن برای نوشتن نکات مهم برای تیکت"  ,
