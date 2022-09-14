@@ -92,8 +92,8 @@ export default function App() {
                     <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"}/>} />
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
                     <Route path="PageCounter"  element={<PageCounter/>}/>
-                    <Route path="Support"  element={<Support/>}/>
                     <Route path="ReportSupport"  element={<ReportSupport/>}/>
+                    <Route path="NewTicket"  element={<Support/>}/>
                     <Route path="SupportMessage"  element={<SupportMessage/>}/>
                     <Route path="TitleCopywriter"  element={<TitleCopywriter/>}/>
                     <Route path="" element={<EasyStart />} />

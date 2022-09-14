@@ -94,7 +94,6 @@ export default function PlanStatus() {
       {
         label: "# of Votes",
         data: userState.userData.package != undefined?[numberOfDays - numberOfDaysLeft, numberOfDaysLeft]:[1,0],
-        // data: [1, 0],
         cutout: 50,
         backgroundColor: !numberOfDays
           ? ["#D9D9D9", "#F35242"]
@@ -228,7 +227,7 @@ export default function PlanStatus() {
                       ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center "
                       : type.includes("14 روز رایگان")
                       ? " bg-secondary "
-                      : " bg-yellow "
+                      : "  "
                   }`}
                 ></span>
                 <span className="absolute mt-4 mr-10 ">

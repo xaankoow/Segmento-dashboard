@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
-import { filterBoxDatas, titleOfReportSupportTable } from "../../../../variables/support";
+import {
+  filterBoxDatas,
+  titleOfReportSupportTable,
+} from "../../../../variables/support";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import GuideBox from "../../../shared/GuideBox/GuideBox";
@@ -12,7 +16,6 @@ import { FilterDataSupport } from "./changeData";
 export default function ReportSupport() {
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
 
- 
   const b = [
     {
       id: 1,
@@ -22,9 +25,11 @@ export default function ReportSupport() {
       date: "1401/2/2",
       status: "پاسخ داده شد",
       operation: (
+        <Link to={"NewTicket"}>
         <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
           <img src={ImageContainer.visibility} alt="" />
         </div>
+        </Link>
       ),
     },
     {
@@ -39,9 +44,11 @@ export default function ReportSupport() {
         </div>
       ),
       operation: (
+        <Link to={"NewTicket"}>
         <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
           <img src={ImageContainer.visibility} alt="" />
         </div>
+        </Link>
       ),
     },
     {
@@ -56,9 +63,12 @@ export default function ReportSupport() {
         </div>
       ),
       operation: (
-        <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
-          <img src={ImageContainer.visibility} alt="" />
-        </div>
+        <Link to={"NewTicket"}>
+          {" "}
+          <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
+            <img src={ImageContainer.visibility} alt="" />
+          </div>
+        </Link>
       ),
     },
   ];
@@ -80,23 +90,34 @@ export default function ReportSupport() {
           "تمامِ تیکت‌هایی که برای واحد امور پشتیبانی سگمنتو ارسال کرده‌اید، در این صفحه لیست شده‌اند:"
         }
         buttonName={"ارسال تیکت جدید"}
-        linkTo={""}
+        linkTo={"NewTicket"}
       />
       <div className="flex mx-9 justify-between my-5">
         <div className="min-w-[420px]">
-          <ComboBox placeholder={"فیلد جستجو"} radioTextItems={filterBoxDatas} radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}/>
+          <ComboBox
+            placeholder={"فیلد جستجو"}
+            radioTextItems={filterBoxDatas}
+            radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}
+          />
         </div>
 
         <div className="flex items-center gap-4 ">
-        {searchFilterOption !== "بدون فیلتر" &&  <span className="">مرتب سازی بر اساس</span>} 
-          <FilterDataSupport    radioTarget={searchFilterOption} />
+          {searchFilterOption !== "بدون فیلتر" && (
+            <span className="">مرتب سازی بر اساس</span>
+          )}
+          <FilterDataSupport radioTarget={searchFilterOption} />
         </div>
         <div className=" inline-block">
           <AuthButton textButton={"اعمال"} classes={"btn-secondary"} />
         </div>
       </div>
 
-      <Table columnItem={titleOfReportSupportTable} rowsItem={b} rowKey={rowKey} classname={"px-9"} />
+      <Table
+        columnItem={titleOfReportSupportTable}
+        rowsItem={b}
+        rowKey={rowKey}
+        classname={"px-9"}
+      />
     </>
   );
 }

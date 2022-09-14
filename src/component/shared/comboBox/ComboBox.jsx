@@ -7,6 +7,7 @@ export default function ComboBox({
   checkedItem,
   searchBox,
   radioClickedHandler,
+  selectedItem,
   placeholder,
 }) {
   const [radioText, setRadioText] = useState("");
@@ -38,7 +39,7 @@ export default function ComboBox({
               }
               readOnly={true}
               placeholder={!radioText && placeholder}
-              value={radioText}
+              value={selectedItem? selectedItem: radioText}
               onClick={() => {
                 setInputClick(true);
                 setOpen(!open);

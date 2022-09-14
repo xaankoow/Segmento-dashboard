@@ -36,7 +36,7 @@ export default function SidebarComponent() {
     { title: "خبرخوان", link: "" },
     { title: "آموزش", link: "" },
     { title: "پیشنهادات و تخفیف ها", link: "" },
-    { title: "پشتیبانی و تیکت", link: "" },
+    { title: "پشتیبانی و تیکت", link: "ReportSupport" },
     { title: "انتخاب سرویس", link: "" },
   ];
 
@@ -92,7 +92,7 @@ export default function SidebarComponent() {
         <IconsRight setActive={activeIconHandler} />
         <div className="down">
           <div className="dropDownBox mb-5">
-            <a href="https://segmento.ir/support">
+            <Link to="ReportSupport">
               <div
                 className="support w-8 h-8"
                 data-tip=" پشتیبانی "
@@ -104,7 +104,7 @@ export default function SidebarComponent() {
                   setTimeout(() => setShowToolTip(true), 0);
                 }}
               ></div>
-            </a>
+            </Link>
             {/* <div className="support_dropDown dropDownBox1 flex text-center">
               <span> پشتیبانی و تیکت </span>
             </div> */}
