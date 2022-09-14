@@ -6,11 +6,7 @@ import { ImageContainer } from "../../../../../../assets/img/IMG";
 export default function ProfileInformation({ userName, userType, email ,changeUserImage,type}) {
   const userState = useSelector((state) => state.userState);
   // const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : "../img/dashboard/userProfile/profileImage.png"
-<<<<<<< HEAD
-  const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : userState.userData.user!=undefined?userState.userData.user.img!=""?userState.userData.user.img:`${ImageContainer.preUserProf}`:`${ImageContainer.preUserProf}`
-=======
   const imgData = userState.image[0] != "" ? URL.createObjectURL(userState.image[0]) : userState.userData.user!=undefined?userState.userData.user.img!=""?userState.userData.user.img:ImageContainer.userAvatar:ImageContainer.userAvatar
->>>>>>> 62d261051dea88db525b96e73afbb26dc989b1aa
 
   return (
     <div className="flex gap-3 items-center">
