@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/segmentor-react/static/css/main.a75baa05.chunk.css",
-    "main.js": "/segmentor-react/static/js/main.b0ebceeb.chunk.js",
-    "main.js.map": "/segmentor-react/static/js/main.b0ebceeb.chunk.js.map",
-    "runtime-main.js": "/segmentor-react/static/js/runtime-main.00ff7fff.js",
-    "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.00ff7fff.js.map",
+    "main.css": "/segmentor-react/static/css/main.f4333144.chunk.css",
+    "main.js": "/segmentor-react/static/js/main.c4653a7c.chunk.js",
+    "main.js.map": "/segmentor-react/static/js/main.c4653a7c.chunk.js.map",
+    "runtime-main.js": "/segmentor-react/static/js/runtime-main.adf6cd0f.js",
+    "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.adf6cd0f.js.map",
     "static/css/2.62a17324.chunk.css": "/segmentor-react/static/css/2.62a17324.chunk.css",
-    "static/js/2.25a53692.chunk.js": "/segmentor-react/static/js/2.25a53692.chunk.js",
-    "static/js/2.25a53692.chunk.js.map": "/segmentor-react/static/js/2.25a53692.chunk.js.map",
+    "static/js/2.95da439b.chunk.js": "/segmentor-react/static/js/2.95da439b.chunk.js",
+    "static/js/2.95da439b.chunk.js.map": "/segmentor-react/static/js/2.95da439b.chunk.js.map",
     "index.html": "/segmentor-react/index.html",
     "static/css/2.62a17324.chunk.css.map": "/segmentor-react/static/css/2.62a17324.chunk.css.map",
-    "static/css/main.a75baa05.chunk.css.map": "/segmentor-react/static/css/main.a75baa05.chunk.css.map",
-    "static/js/2.25a53692.chunk.js.LICENSE.txt": "/segmentor-react/static/js/2.25a53692.chunk.js.LICENSE.txt",
+    "static/css/main.f4333144.chunk.css.map": "/segmentor-react/static/css/main.f4333144.chunk.css.map",
+    "static/js/2.95da439b.chunk.js.LICENSE.txt": "/segmentor-react/static/js/2.95da439b.chunk.js.LICENSE.txt",
     "static/media/Group 2.a032fcd0.svg": "/segmentor-react/static/media/Group 2.a032fcd0.svg",
     "static/media/iranyekan-font.css": "/segmentor-react/static/media/IRANYekanMedium.87d172af.ttf",
     "static/media/add.e91e6772.svg": "/segmentor-react/static/media/add.e91e6772.svg",
@@ -53,6 +53,8 @@
     "static/media/file_download.c3bc9d09.svg": "/segmentor-react/static/media/file_download.c3bc9d09.svg",
     "static/media/googleIndex.10695474.svg": "/segmentor-react/static/media/googleIndex.10695474.svg",
     "static/media/googleSuggestion.374211c3.svg": "/segmentor-react/static/media/googleSuggestion.374211c3.svg",
+    "static/media/hamkari.f9165371.svg": "/segmentor-react/static/media/hamkari.f9165371.svg",
+    "static/media/idea.c97c72b6.svg": "/segmentor-react/static/media/idea.c97c72b6.svg",
     "static/media/info.06e7547e.svg": "/segmentor-react/static/media/info.06e7547e.svg",
     "static/media/keywords.02dd6ca3.svg": "/segmentor-react/static/media/keywords.02dd6ca3.svg",
     "static/media/login.97b503f6.svg": "/segmentor-react/static/media/login.97b503f6.svg",
@@ -66,6 +68,9 @@
     "static/media/mood_happy.8e0ffacc.svg": "/segmentor-react/static/media/mood_happy.8e0ffacc.svg",
     "static/media/moshak.c607a769.svg": "/segmentor-react/static/media/moshak.c607a769.svg",
     "static/media/notif.ad866bf4.svg": "/segmentor-react/static/media/notif.ad866bf4.svg",
+    "static/media/omorEdari.645df515.svg": "/segmentor-react/static/media/omorEdari.645df515.svg",
+    "static/media/omorFani.19ba4c9d.svg": "/segmentor-react/static/media/omorFani.19ba4c9d.svg",
+    "static/media/omorMali.30f23709.svg": "/segmentor-react/static/media/omorMali.30f23709.svg",
     "static/media/pageSeo.aad59769.svg": "/segmentor-react/static/media/pageSeo.aad59769.svg",
     "static/media/pageTejari.c6cdcc26.svg": "/segmentor-react/static/media/pageTejari.c6cdcc26.svg",
     "static/media/pishkhan.3924cf8d.svg": "/segmentor-react/static/media/pishkhan.3924cf8d.svg",
@@ -81,6 +86,7 @@
     "static/media/settingicon.38ddfc45.svg": "/segmentor-react/static/media/settingicon.38ddfc45.svg",
     "static/media/sidebarIcon1.50bbec2a.svg": "/segmentor-react/static/media/sidebarIcon1.50bbec2a.svg",
     "static/media/siteDesignMan.f22b7b93.svg": "/segmentor-react/static/media/siteDesignMan.f22b7b93.svg",
+    "static/media/soalatPishKharid.0065b20b.svg": "/segmentor-react/static/media/soalatPishKharid.0065b20b.svg",
     "static/media/startEasyStartArrow.be580e93.svg": "/segmentor-react/static/media/startEasyStartArrow.be580e93.svg",
     "static/media/statusPlan.16056b0f.svg": "/segmentor-react/static/media/statusPlan.16056b0f.svg",
     "static/media/storefront.81ad02c7.svg": "/segmentor-react/static/media/storefront.81ad02c7.svg",
@@ -97,10 +103,10 @@
     "static/media/workSpace_report_ico.cb413126.svg": "/segmentor-react/static/media/workSpace_report_ico.cb413126.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.00ff7fff.js",
+    "static/js/runtime-main.adf6cd0f.js",
     "static/css/2.62a17324.chunk.css",
-    "static/js/2.25a53692.chunk.js",
-    "static/css/main.a75baa05.chunk.css",
-    "static/js/main.b0ebceeb.chunk.js"
+    "static/js/2.95da439b.chunk.js",
+    "static/css/main.f4333144.chunk.css",
+    "static/js/main.c4653a7c.chunk.js"
   ]
 }
