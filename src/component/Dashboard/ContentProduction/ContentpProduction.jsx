@@ -77,6 +77,14 @@ export default function ContentpProduction({ onClickHandler }) {
 
   return (
     <>
+    {/* <PopUp
+          clickHandler={() => showUpdatePpUp(false)}
+          image={update_svg}
+          type={"sucsess"}
+          buttonText={"باشه"}
+          text={"لیست " + " "  + " " + "بروزرسانی شد!"}
+          title={"موفقیت آمیز"}
+        /> */}
       {keyWordShowSaveModal && (
         <Fragment>
           <SaveListModal

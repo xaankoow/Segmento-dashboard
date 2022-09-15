@@ -244,7 +244,7 @@ export const tryFreePlan = () => {
         const userState = { ...getState().userState }
         const loadingState = { ...getState().loadingState }
 
-        const packageUuid = state.allPackageData[0].uuid; //انتخاب شناسه پکیج رایگان
+        const packageUuid = state.allPackageData[1].uuid; //انتخاب شناسه پکیج رایگان
         if (packageUuid) {
 
 

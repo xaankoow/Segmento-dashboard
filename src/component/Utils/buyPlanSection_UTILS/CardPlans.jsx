@@ -68,19 +68,19 @@ export default function CardPlans({ plan, setPlan }) {
   useEffect(() => {
     if (allPackageData.length != 0) {
       var innerPrice = allPackageData[plan.planIndex].price
-      if (plan.planIndex > 0 & plan.planIndex <= 4) {
+      if (plan.planIndex > 1 & plan.planIndex <= 5) {
         if (innerPrice != packageBronzePrice) {
           setPackageBronzePrice(allPackageData[plan.planIndex].price)
         }
-      } else if (plan.planIndex > 4 & plan.planIndex <= 8) {
+      } else if (plan.planIndex > 5 & plan.planIndex <= 9) {
         if (innerPrice != packageSilverPrice) {
           setPackageSilverPrice(allPackageData[plan.planIndex].price)
         }
-      } else if (plan.planIndex > 8 & plan.planIndex <= 12) {
+      } else if (plan.planIndex > 9 & plan.planIndex <= 13) {
         if (innerPrice != packageGoldPrice) {
           setPackageGoldPrice(allPackageData[plan.planIndex].price)
         }
-      } else if (plan.planIndex > 12 & plan.planIndex <= 16) {
+      } else if (plan.planIndex > 13 & plan.planIndex <= 17) {
         if (innerPrice != packageDiamondPrice) {
           setPackageDiamondPrice(allPackageData[plan.planIndex].price)
         }
@@ -113,7 +113,7 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"bronze"}
-            price={packageBronzePrice!=0?packageBronzePrice:allPackageData[1].price}
+            price={packageBronzePrice!=0?packageBronzePrice:allPackageData[2].price}
             planSelected={plan.type}
           />
         }
@@ -154,7 +154,7 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"silver"}
-            price={packageSilverPrice!=0?packageSilverPrice:allPackageData[5].price}
+            price={packageSilverPrice!=0?packageSilverPrice:allPackageData[6].price}
             planSelected={plan.type}
           />
         }
@@ -193,7 +193,7 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"gold"}
-            price={packageGoldPrice!=0?packageGoldPrice:allPackageData[9].price}
+            price={packageGoldPrice!=0?packageGoldPrice:allPackageData[10].price}
             planSelected={plan.type}
           />
         }
@@ -233,7 +233,7 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"diamond"}
-            price={packageDiamondPrice!=0?packageDiamondPrice:allPackageData[13].price}
+            price={packageDiamondPrice!=0?packageDiamondPrice:allPackageData[14].price}
             planSelected={plan.type}
           />
         }
