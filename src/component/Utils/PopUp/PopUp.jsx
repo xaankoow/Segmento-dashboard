@@ -40,7 +40,9 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
           style={{
             backgroundColor:
               type === "sucsess"
-                ? " #10CCAE "
+                ? " #10CCAE ":
+              type === "warning"
+                ? " #FFCE47 "
                 : "error"
                   ? "#F24939F2"
                   : type === "info"

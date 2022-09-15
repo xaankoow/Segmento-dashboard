@@ -172,6 +172,8 @@ export default function AcardionItem({clicked,setClicked}) {
     setClicked(index);
   };
   // debugger
+  const { limitsDatas } = useSelector((state) => state.workSpaceState);
+
   return (
     <>
       {data.map((item, index) => {
@@ -263,7 +265,7 @@ export default function AcardionItem({clicked,setClicked}) {
                       alt="icon"
                     />
                     <Link
-                      to={user.userData.package != undefined ? "setWorkSpace" : location}
+                      to={user.userData.package != undefined ?limitsDatas.length > 0 && limitsDatas[2].count>0? "setWorkSpace":"checkLimit": location}
                       onClick={()=>user.userData.package == undefined && showToast("شما پلن فعالی ندارید", "error")}
                       state={{ background: location }}
                       className={"w-auto"}

@@ -56,7 +56,9 @@ const DashboardHeader = () => {
 
     var nowDate = new Date();
 
-    if (userState.userData.package != undefined) {
+    if (userState.userData.package != undefined ) {
+      if (userState.userData.package.start!=null) {
+        
       var startDate = new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
       var expiryDate = new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
 
@@ -86,6 +88,8 @@ const DashboardHeader = () => {
           ],
         }
       )
+    }
+
     }
 
   }, [userState.userData.package])

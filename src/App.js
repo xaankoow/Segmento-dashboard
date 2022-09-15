@@ -31,7 +31,9 @@ import Support from "./component/Dashboard/pages/Support&Tickets/Support";
 import SupportMessage from "./component/Dashboard/DashboaedComponents/support/index";
 import TitleCopywriter from "./pages/titleCopywriter";
 import ReportSupport from "./component/Dashboard/pages/Support&Tickets/SatusSupport";
-
+import PopUp from "./component/Utils/PopUp/PopUp";
+import errorIco_svg from './assets/img/popUp/errorIco.svg'
+import update_svg from './assets/img/popUp/update.svg'
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
   const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
@@ -44,7 +46,7 @@ export default function App() {
 
   const location = useLocation();
   const background = location.state && location.state.background;
-  
+
   const tabContent = [
     {
       title: " جستجو",
@@ -89,13 +91,13 @@ export default function App() {
                     <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
                     <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
                     <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"}/>} />
-                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
-                    <Route path="PageCounter"  element={<PageCounter/>}/>
-                    <Route path="ReportSupport"  element={<ReportSupport/>}/>
-                    <Route path="NewTicket"  element={<Support/>}/>
-                    <Route path="SupportMessage"  element={<SupportMessage/>}/>
-                    <Route path="TitleCopywriter"  element={<TitleCopywriter/>}/>
+                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />} />
+                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />} />
+                    <Route path="PageCounter" element={<PageCounter />} />
+                    <Route path="ReportSupport" element={<ReportSupport />} />
+                    <Route path="NewTicket" element={<Support />} />
+                    <Route path="SupportMessage" element={<SupportMessage />} />
+                    <Route path="TitleCopywriter" element={<TitleCopywriter />} />
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>
@@ -110,11 +112,25 @@ export default function App() {
           {/* <Route path={"*"} element={()=>navigate("/dashboard",{replace:true})} /> */}
 
         </Routes>
-        
+        {/* import update_svg from '../../../assets/img/popUp/update.svg' */}
         {background != "" && (
           <Routes>
             <Route exact path={`dashboard/buyPlanEasyToStartModal`} element={<BuyPlanEasyToStartModal />} />
             <Route exact path={`dashboard/setWorkSpace`} element={<WorkSpace />} />
+            <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
+
+            {/* availability tools popup */}
+            <Route exact path={`dashboard/checkLimit`} element={<PopUp
+              clickHandler={() => navigate(-1)}
+              image={errorIco_svg}
+              type={"warning"}
+              buttonText={"باشه"}
+              text={
+                "کاربر گرامی منابع اشتراک فعلی شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید."
+              }
+              title={"موفقیت آمیز"}
+            />} />
+            <Route exact path={`dashboard/checkedPackage`} element={<WorkSpace />} />
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}

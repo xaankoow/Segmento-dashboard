@@ -252,7 +252,7 @@ if ( userState.userData.package != undefined) {
                   {userState.userData.package != undefined &&userState.userData.package.start!=null?
                     moment(userState.userData.package.start)
                       .locale("fa")
-                      .format("YYYY/M/D"):"--"}
+                      .format("YYYY/M/D"):"00/00/00"}
                 </div>
 
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
@@ -263,7 +263,7 @@ if ( userState.userData.package != undefined) {
                     {userState.userData.package != undefined &&userState.userData.package.start!=null?
                       moment(userState.userData.package.end)
                         .locale("fa")
-                        .format("YYYY/M/D"):"--"}
+                        .format("YYYY/M/D"):"00/00/00"}
 
                     {/* {package_end_dates && moment(package_end_dates.substring(0, 10))
                       .locale("fa")
