@@ -468,3 +468,7 @@ a {
 .EDITOR-USERPROFILE{
     display: none !important;
 }
+
+#CATEGORIES:hover img{
+    filter: grayscale(0)
+}
