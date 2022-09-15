@@ -21,6 +21,7 @@ import createIdea_svg from "../../../../assets/img/dashboard/nav_right/createIde
 import copyWriter_svg from "../../../../assets/img/dashboard/nav_right/copyWriter.svg";
 import copyWriterAnboh_svg from "../../../../assets/img/dashboard/nav_right/copyWriterAnboh.svg";
 import googleSuggestion_svg from "../../../../assets/img/dashboard/nav_right/googleSuggestion.svg";
+import { showToast } from "../../../Utils/toastifyPromise";
 
 export default function AcardionItem({clicked,setClicked}) {
   const dispatch = useDispatch();
@@ -223,8 +224,8 @@ export default function AcardionItem({clicked,setClicked}) {
                 {item.acardionItems.map((acardionItem, indexx) => {
                   return (
 
-                    acardionItem.itemLink != "" && (
-                      <Link to={acardionItem.itemLink} className={"w-auto"}>
+                    acardionItem.itemLink == " " ? (
+                      <div className={"w-auto"}>
                         <div
                         onClick={()=>setItemsClicked(acardionItem.itemTitle)}
                           key={indexx}
@@ -233,7 +234,19 @@ export default function AcardionItem({clicked,setClicked}) {
                           <img src={acardionItem.itemIcon} alt="icon" />
                           <span className={"w-auto hover:text-blue"}>{acardionItem.itemTitle}</span>
                         </div>
-                      </Link>
+                      </div>
+                  
+                    ):acardionItem.itemLink != ""&&(
+                      <Link to={acardionItem.itemLink} className={"w-auto"}>
+                      <div
+                      onClick={()=>setItemsClicked(acardionItem.itemTitle)}
+                        key={indexx}
+                        className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${ clicked === index  && ItemsClicked == acardionItem.itemTitle && "active"}`}
+                      >
+                        <img src={acardionItem.itemIcon} alt="icon" />
+                        <span className={"w-auto hover:text-blue"}>{acardionItem.itemTitle}</span>
+                      </div>
+                    </Link>
                     )
 
 
@@ -251,6 +264,7 @@ export default function AcardionItem({clicked,setClicked}) {
                     />
                     <Link
                       to={user.userData.package != undefined ? "setWorkSpace" : location}
+                      onClick={()=>user.userData.package == undefined && showToast("شما پلن فعالی ندارید", "error")}
                       state={{ background: location }}
                       className={"w-auto"}
                     >

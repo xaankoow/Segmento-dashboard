@@ -1,28 +1,24 @@
-// import { Chart } from 'chart.js';
 import React, { useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import PageTitle from "../pageTitle/pageTitle";
 import { usetLimit } from "../../../service/userLimit";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import { Link } from "react-router-dom";
 import { getPackageInfO } from "../../../service/packages";
-import { setFormatPrice } from "../../../Utils/FORMAT/price";
 import { setFormatNumber } from "../../../Utils/FORMAT/number";
-// import './'
-// import "./output.css"
-// import './script'
-import date_range_svg from '../../../../assets/img/dashboard/planStatus/date_range.svg'
-import boxDiscount_svg from '../../../../assets/img/dashboard/planStatus/boxDiscount.svg'
-import balloonBoxDiscount_svg from '../../../../assets/img/dashboard/planStatus/balloonBoxDiscount.svg'
+import date_range_svg from "../../../../assets/img/dashboard/planStatus/date_range.svg";
+import boxDiscount_svg from "../../../../assets/img/dashboard/planStatus/boxDiscount.svg";
+import balloonBoxDiscount_svg from "../../../../assets/img/dashboard/planStatus/balloonBoxDiscount.svg";
 
 export default function PlanStatus() {
+  var moment = require("jalali-moment");
+
   const [datas, setDatas] = useState([]);
   const [allWords, setAllWords] = useState([]);
   const userState = useSelector((state) => state.userState);
-  var moment = require("jalali-moment");
 
   var nowDate = new Date();
 // user type
@@ -71,18 +67,17 @@ if ( userState.userData.package != undefined) {
 
   const content = datas.length > 0 && datas[20].count;
   const keyword = datas.length > 0 && datas[4].count;
-  const dateExColor = datas.length > 0 && datas[4].count;
+
   useEffect(() => {
     const pastSelexboxData = async () => {
       try {
         const { data, status } = await usetLimit();
         setDatas(data.data);
-      } catch (error) {
-       
-      }
+      } catch (error) {}
     };
     if (datas.length == 0) pastSelexboxData();
   }, []);
+
   useEffect(() => {
     const setPackagesInformation = async () => {
       let package_uuid = "";
@@ -91,50 +86,33 @@ if ( userState.userData.package != undefined) {
         package_uuid = userState.userData.package.uuid;
         try {
           const { data, status } = await getPackageInfO(package_uuid);
-          setAllWords(data.data.features)
-          
-        } catch (error) {
-      
-        }
+          setAllWords(data.data.features);
+        } catch (error) {}
       }
-
     };
 
     if (allWords.length == 0) setPackagesInformation();
   }, [userState.userData.package]);
 
-  console.log(numberOfDays)
-  console.log(numberOfDaysLeft)
   const data = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        // data: [numberOfDays,numberOfDaysLeft],
-        data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
+        data: userState.userData.package != undefined?[numberOfDays - numberOfDaysLeft, numberOfDaysLeft]:[1,0],
         cutout: 50,
-        backgroundColor:
-          numberOfDays &&
-            numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
-            ? ["#D9D9D9", "#10CCAE"]
-            : numberOfDaysLeft &&
-              numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : numberOfDaysLeft &&
-                numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
-                ? ["#D9D9D9", "#F35242"]
-                : ["#D9D9D9", "#ffffff"],
+        backgroundColor: !numberOfDays
+          ? ["#D9D9D9", "#F35242"]
+          : numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
+          ? ["#D9D9D9", "#10CCAE"]
+          : numberOfDaysLeft &&
+            numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+          ? ["#D9D9D9", "#FFCE47"]
+          : numberOfDaysLeft &&
+            numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+          ? ["#D9D9D9", "#F35242"]
+          : ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 7,
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
-        // borderWidth: 1,
       },
     ],
   };
@@ -142,85 +120,92 @@ if ( userState.userData.package != undefined) {
 // debugger
 
   const miniChartSetting2 = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        // data: [30, 70],
         data: [
-          datas.length > 0 & allWords.length != 0 && allWords[20].count - datas[20].count,
-          datas.length > 0 && datas[20].count,
+          datas.length > 0 ?
+            allWords.length != 0 &&
+            allWords[20].count - datas[20].count : 1,
+          datas.length > 0 ? datas[20].count :0,
         ],
         cutout: 36,
-        // cutout: 38,
-        // width:35,
-        // height:35,
         backgroundColor:
-          content && content >= Math.round((allWords.length != 0 && allWords[20].count * 70) / 100)
+          content ?
+          content >=
+            Math.round((allWords.length != 0 && allWords[20].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : content && content >= Math.round((allWords.length != 0 && allWords[20].count * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : content &&
-              content >= Math.round((allWords.length != 0 && allWords[20].count * 1) / 100) && [
-                "#D9D9D9",
-                "#F35242",
-              ],
+            : content &&
+              content >=
+                Math.round(
+                  (allWords.length != 0 && allWords[20].count * 30) / 100
+                )
+            ? ["#D9D9D9", "#FFCE47"]
+            : content &&
+              content >=
+                Math.round(
+                  (allWords.length != 0 && allWords[20].count * 1) / 100
+                ) && ["#D9D9D9", "#F35242"] : ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
-        // borderWidth: 1,
       },
     ],
+  };
+  const backGround = () => {
+    if (keyword) {
+      if (
+        keyword >=
+        Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
+      ) {
+        return "#10CCAE";
+      } else if (
+        keyword >=
+        Math.round((allWords.length != 0 && allWords[4].count * 30) / 100)
+      ) {
+        return "#FFCE47";
+      } else if (
+        keyword >=
+        Math.round((allWords.length != 0 && allWords[4].count * 1) / 100)
+      ) {
+        return "#F35242";
+      }
+    } else {
+      return "#F35242";
+    }
   };
 
   const miniChartSetting = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
         label: "# of Votes",
-        // data: [30, 70],
         data: [
-          datas.length > 0 && allWords.length != 0 && allWords[4].count - datas[4].count,
+          datas.length > 0 ?
+            allWords.length != 0 &&
+            allWords[4].count - datas[4].count: 1,
           datas.length > 0 && datas[4].count,
         ],
         cutout: 36,
-        // cutout: 38,
-        // width:35,
-        // height:35,
         backgroundColor:
-          keyword && keyword >= Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
+          keyword ?
+          keyword >=
+            Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
-            : keyword && keyword >= Math.round((allWords.length != 0 && allWords[4].count * 30) / 100)
-              ? ["#D9D9D9", "#FFCE47"]
-              : keyword &&
-              keyword >= Math.round((allWords.length != 0 && allWords[4].count * 1) / 100) && [
-                "#D9D9D9",
-                "#F35242",
-              ],
+            : keyword &&
+              keyword >=
+                Math.round(
+                  (allWords.length != 0 && allWords[4].count * 30) / 100
+                )
+            ? ["#D9D9D9", "#FFCE47"]
+            : keyword &&
+              keyword >=
+                Math.round(
+                  (allWords.length != 0 && allWords[4].count * 1) / 100
+                ) && ["#D9D9D9", "#F35242"]:["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
-        // borderWidth: 1,
       },
     ],
   };
-
-  // console.log(new Date(moment('2022/08/18').locale("fa").format("YYYY/M/D")))
-  // console.log(userState.userData.package != undefined && moment("2022/08/18").locale("fa").format("YYYY/M/D"))
 
   return (
     <div className="">
@@ -228,11 +213,6 @@ if ( userState.userData.package != undefined) {
       <div className="mx-auto w-full mt-9">
         <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-[#fff]">
           {/* <!--عنوان 1--> */}
-
-          {/* <div className="flex flex-row items-center">
-                        <span id="line1" className="w-0.5 h-5 mt-5"></span>
-                        <span className="mr-3 mt-4 ">وضعیت اشتراک</span>
-                    </div> */}
 
           <div className="flex lg:flex-row md:flex-row sm:flex-col  justify-between lg:pt-16 md:pt-16 gap-10">
             {/* <!--باکس راست--> */}
@@ -243,9 +223,20 @@ if ( userState.userData.package != undefined) {
             >
               <div className="flex flex-row">
                 <span
-                 
-                  // className={`w-1 h-5 mt-5 mr-5 absolute rounded ${ type.includes("طلایی")? " bg-yellow " : type.includes("نقره ای") ? " bg-secondary " : type.includes("برنزی") ? " bg-[#E99991] ":type.includes("الماسی")  ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center ": type.includes("14 روز رایگان")? " bg-secondary " :" bg-yellow "}`}
-                   ></span>
+                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${
+                    type.includes("طلایی")
+                      ? " bg-yellow "
+                      : type.includes("نقره ای")
+                      ? " bg-secondary "
+                      : type.includes("برنزی")
+                      ? " bg-[#E99991] "
+                      : type.includes("الماسی")
+                      ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center "
+                      : type.includes("14 روز رایگان")
+                      ? " bg-secondary "
+                      : "  "
+                  }`}
+                ></span>
                 <span className="absolute mt-4 mr-10 ">
                   {" "}
                   {user_package_title}
@@ -285,7 +276,7 @@ if ( userState.userData.package != undefined) {
                 <div className="flex flex-row justify-between ">
                   <span>روز‌‌های باقی‌مانده</span>
                   <span>
-                    {userState.userData.package && numberOfDaysLeft} روز
+                    {userState.userData.package ? numberOfDaysLeft : "0"} روز
                   </span>
                 </div>
 
@@ -316,7 +307,7 @@ if ( userState.userData.package != undefined) {
 
               <div className="mt-7 w-[143px] h-[143px] float-left relative mx-auto">
                 <div className="w-full h-10 text-xs absolute top-1/2 left-0 my-[-20px] leading-5 text-center">
-                  {userState.userData.package && numberOfDaysLeft}
+                  {userState.userData.package ? numberOfDaysLeft : "0"}
                   <br />
                   روز باقی‌مانده
                 </div>
@@ -330,14 +321,17 @@ if ( userState.userData.package != undefined) {
               </div>
 
               <div className="flex flex-row justify-around justify-center items-center py-2 text-xs ">
-                <div className="flex flex-row">
-                  <span id="child1" className="w-1.5 h-1.5"></span>
+                <div className="flex items-center  flex-row">
+                  <span id="child3" className="w-1.5 h-1.5"></span>
                   <span id="child2">مصرف شده</span>
                 </div>
 
-                <div className="flex flex-row">
-                  <span id="child3" className="w-1.5 h-1.5"></span>
-                  <span id="child4">باقی مانده </span>
+                <div className="flex items-center flex-row gap-1">
+                  <span
+                    id=""
+                    className={`w-1.5 h-1.5 rounded-sm bg-[${backGround()}]`}
+                  ></span>
+                  <span id="">باقی مانده </span>
                 </div>
               </div>
             </div>
@@ -348,29 +342,12 @@ if ( userState.userData.package != undefined) {
               id="item3"
               className="bg-[#FCFCFB] flex flex-col justify-between items-center lg:mr-10 rounded pt-5  md:mx-2 sm:mx-auto md:mt-2 sm:mt-2 w-[35%]"
             >
-              {/* <div className="text-center">
-
-                <span id="shape">تخفیف</span>
-                <h1 id="off" className="font-extrabold">
-                  30%
-                </h1>
-
-                <span className="mt-1">اشتراک {user_package_type_text}</span>
-
-                <div id="box-off">
-                  <div className="flex flex-row my-4">
-                    <span>فقط</span>
-                    <span className="mx-1 px-3 bg-[#0B4B94] rounded-2xl text-[#fff]">
-                      10
-                    </span>
-                    <span>روز دیگر فرصت دارید</span>
-                  </div>
-                </div>
-              </div> */}
               <div className="w-64 h-64 relative">
-                <img src={boxDiscount_svg} className="w-full h-full"/>
-                {/* <img src="/img/dashboard/planStatus/balloonBoxDiscount.svg" className="w-full h-full absolute top-0 animate-pulse"/> */}
-                <img src={balloonBoxDiscount_svg} className="w-full h-full absolute top-0 discountBoxBallonAnimation"/>
+                <img src={boxDiscount_svg} className="w-full h-full" />
+                <img
+                  src={balloonBoxDiscount_svg}
+                  className="w-full h-full absolute top-0 discountBoxBallonAnimation"
+                />
               </div>
               <div>
                 <Link to={"/dashboard/buyPlan"}>
@@ -406,15 +383,20 @@ if ( userState.userData.package != undefined) {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords.length != 0 &&setFormatNumber(allWords[4].count)}
+                      {allWords.length != 0
+                        ? setFormatNumber(allWords[4].count)
+                        : "0"}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 && (allWords.length != 0 && setFormatNumber(allWords[4].count - datas[4].count))}
+                      {datas.length > 0
+                        ? allWords.length != 0 &&
+                          setFormatNumber(allWords[4].count - datas[4].count)
+                        : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? setFormatNumber(datas[4].count) : ""}
+                      {datas.length > 0 ? setFormatNumber(datas[4].count) : "0"}
                     </span>
                   </div>
                 </div>
@@ -422,7 +404,8 @@ if ( userState.userData.package != undefined) {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuetwo"></span>{" "}
-                    {datas.length > 0 ? setFormatNumber(datas[4].count) : ""} <br />
+                    {datas.length > 0 ? setFormatNumber(datas[4].count) : "0"}{" "}
+                    <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -430,7 +413,6 @@ if ( userState.userData.package != undefined) {
                       data={miniChartSetting}
                       options={{ maintainAspectRatio: false }}
                     />
-                    {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                   </figure>
                 </div>
               </div>
@@ -448,15 +430,22 @@ if ( userState.userData.package != undefined) {
                   <div className="flex flex-row  text-[10px] mt-6">
                     <span className="mr-4">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
-                      {allWords.length != 0 && setFormatNumber(allWords[20].count)}
+                      {allWords.length != 0
+                        ? setFormatNumber(allWords[20].count)
+                        : "0"}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? allWords.length != 0 && setFormatNumber(allWords[20].count - datas[20].count) : ""}
+                      {datas.length > 0
+                        ? allWords.length != 0 &&
+                          setFormatNumber(allWords[20].count - datas[20].count)
+                        : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? setFormatNumber(datas[20].count) : ""}
+                      {datas.length > 0
+                        ? setFormatNumber(datas[20].count)
+                        : "0"}
                     </span>
                   </div>
                 </div>
@@ -464,7 +453,8 @@ if ( userState.userData.package != undefined) {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuethree"></span>{" "}
-                    {datas.length > 0 ? setFormatNumber(datas[20].count) : ""} <br />
+                    {datas.length > 0 ? setFormatNumber(datas[20].count) : "0"}{" "}
+                    <br />
                     کلمه باقی مانده
                   </div>
                   <figure className="flex bottom-1 relative h-full text-center justify-center">
@@ -472,7 +462,6 @@ if ( userState.userData.package != undefined) {
                       data={miniChartSetting2}
                       options={{ maintainAspectRatio: false }}
                     />
-                    {/* <canvas id="chartCanvas1" width="90" height="90"></canvas> */}
                   </figure>
                 </div>
               </div>

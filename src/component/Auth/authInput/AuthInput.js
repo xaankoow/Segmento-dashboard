@@ -77,6 +77,9 @@ export default function AuthInput({
             borderBottom: disable ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
           }}
           onClick={(e)=>selectWithOnClick&&e.currentTarget.select()}
+          onKeyUp={(e)=>{
+            reduxHandleChange != undefined & selectWithOnClick !=undefined&& dispatch(reduxHandleChange(e.target.value))
+          }}
           onChange={(e) => {
             checkStrongPass!=undefined&&CheckFormat("password",e.target.value,errorTextId)
             handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow);
@@ -84,9 +87,7 @@ export default function AuthInput({
             setInputValue(e.target.value);
             workSpaceTypeState != undefined & reduxHandleChange != undefined ?
               dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) :
-              reduxHandleChange != undefined && dispatch(reduxHandleChange(e.target.value))
-
-
+              reduxHandleChange != undefined & selectWithOnClick ==undefined && dispatch(reduxHandleChange(e.target.value))
           }}
           
         />

@@ -11,6 +11,8 @@ import { TextButton } from "../register/Register";
 import "./forgotpass.css";
 import registerFrame_svg from "../../assets/img/registerFrame.svg";
 import businessesIcon_png from "../../assets/img/businessesIcon.png";
+import SubmitForm from "../../component/Utils/Submit";
+import { AuthVerifyCode } from "../../component/shared/Input/AuthVerifyCode";
 
 export default function Forgetpass() {
 
@@ -123,6 +125,9 @@ export default function Forgetpass() {
                 برای بازیابی گذرواژه، نیاز به یک کد دارید که براتون ایمیل میشه.
               </span>
             </div>
+
+
+
             <div className="items-center flex justify-between mt-10 mb-5">
               <div className="w-50"
                 data-tip='کد را با این ایمیل دریافت می‌کنید'
@@ -133,14 +138,17 @@ export default function Forgetpass() {
                   setShowToolTip(false);
                   setTimeout(() => setShowToolTip(true), 0);
                 }}>
-                <AuthInput
-                  textLabelInput="ایمیل"
-                  classes={`forgot_password_input`}
-                  reduxHandleChange={setEmailRedux}
-                  chechvalue={chechValueEmail}
-                  disabled={forgotPasswordStep == 2 ? true : false}
-                  errorTextId="errRejesterFormatEmail"
-                />
+                <SubmitForm submitFun={sendForgotPasswordEmailCodeAction} dispatchOption>
+
+                  <AuthInput
+                    textLabelInput="ایمیل"
+                    classes={`forgot_password_input`}
+                    reduxHandleChange={setEmailRedux}
+                    chechvalue={chechValueEmail}
+                    disabled={forgotPasswordStep == 2 ? true : false}
+                    errorTextId="errRejesterFormatEmail"
+                  />
+                </SubmitForm>
               </div>
               <div className="flex items-center">
                 {handleResendCode == true ? clearTimerValue() :
@@ -160,9 +168,25 @@ export default function Forgetpass() {
                 </TextButton.Provider>
               </div>
             </div>
-            <div className="flex items-center justify-between mt-5 relative">
+
+
+
+
+
+
+
+
+
+
+            <SubmitForm submitFun={checkVerifyEmailForgotPasswordAction} dispatchOption formClass={"flex items-center justify-between mt-5 relative"}>
+              {/* <div className="flex items-center justify-between mt-5 relative"> */}
               <div className="flex items-center gap-5 flex-col">
                 <span className={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? "lockStyle" : "" : "lockStyle"}>کد فعال سازی</span>
+              
+              
+              
+              
+              
                 <div className="flex items-center gap-4">
                   <AuthInput
                     classes={"verify_email_cod input_selector_4"}
@@ -170,8 +194,9 @@ export default function Forgetpass() {
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setAuth1Redux}
-                    maxLength="1"
+                    maxlength={1}
                     pressNumber={true}
+                    selectWithOnClick
                   />
                   <AuthInput
                     classes={"verify_email_cod input_selector_3"}
@@ -179,8 +204,9 @@ export default function Forgetpass() {
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setAuth2Redux}
-                    maxLength="1"
+                    maxlength={1}
                     pressNumber={true}
+                    selectWithOnClick
                   />
                   <AuthInput
                     classes={"verify_email_cod input_selector_2"}
@@ -188,8 +214,9 @@ export default function Forgetpass() {
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setAuth3Redux}
-                    maxLength="1"
+                    maxlength={1}
                     pressNumber={true}
+                    selectWithOnClick
                   />
                   <AuthInput
                     classes={"verify_email_cod"}
@@ -197,11 +224,23 @@ export default function Forgetpass() {
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
                     chechvalue={chechvalue}
                     reduxHandleChange={setAuth4Redux}
-                    maxLength="1"
+                    maxlength={1}
                     pressNumber={true}
+                    selectWithOnClick
                   />
 
                 </div>
+                {/* <AuthVerifyCode/> */}
+
+
+
+
+
+
+
+
+
+
                 <span className={"authVerifyCodeList hidden absolute right-1 bottom-[-20px] text-[10px] text-[#c42b1c] "}>اطلاعات نامعتبر</span>
 
 
@@ -223,48 +262,68 @@ export default function Forgetpass() {
                   />
                 </TextButton.Provider>
               </div>
-            </div>
-            <div className="flex gap-4 justify-between my-10"
-              data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.'
-              data-type="light"
-              data-place="top"
-              onMouseEnter={() => setShowToolTip(true)}
-              onMouseLeave={() => {
-                setShowToolTip(false);
-                setTimeout(() => setShowToolTip(true), 0);
-              }}>
-              <AuthInput
-                textLabelInput="گذرواژه "
-                classes={"forgot_password_input"}
-                typeInput="password"
-                isPassword={true}
-                disable={forgotPasswordStep > 1 ? false : true}
-                chechvalue={chechvalue}
-                reduxHandleChange={setPasswordRedux}
-                errorTextId="errRejesterPassword"
-                checkStrongPass
-              />
-              <div className="flex flex-col items-start relative">
+              {/* </div> */}
+
+
+            </SubmitForm>
+
+
+
+
+
+
+
+
+
+
+
+
+            <SubmitForm submitFun={changePasswordAction} dispatchOption formClass={"flex gap-4 justify-between my-10"}>
+              <div className="flex gap-4 justify-between my-10"
+                data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.'
+                data-type="light"
+                data-place="top"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}>
                 <AuthInput
-                  textLabelInput=" تکرار گذرواژه  "
+                  textLabelInput="گذرواژه "
                   classes={"forgot_password_input"}
                   typeInput="password"
                   isPassword={true}
                   disable={forgotPasswordStep > 1 ? false : true}
                   chechvalue={chechvalue}
-                  reduxHandleChange={setPasswordConfirmRedux}
-                  errorTextId="errRejesterPasswordConfirm"
+                  reduxHandleChange={setPasswordRedux}
+                  errorTextId="errRejesterPassword"
+                  checkStrongPass
                 />
-                <div className="ErrorBadgeBox">
-                  <img
-                    sdivrc="/img/ErrorBadge.svg"
-                    alt="ErrorBadge"
-                    className="bg[#C42B1C] p-1 rounded-full"
+                <div className="flex flex-col items-start relative">
+                  <AuthInput
+                    textLabelInput=" تکرار گذرواژه  "
+                    classes={"forgot_password_input"}
+                    typeInput="password"
+                    isPassword={true}
+                    disable={forgotPasswordStep > 1 ? false : true}
+                    chechvalue={chechvalue}
+                    reduxHandleChange={setPasswordConfirmRedux}
+                    errorTextId="errRejesterPasswordConfirm"
                   />
-                  <h5>گذرواژه همخوانی ندارد</h5>
+                  <div className="ErrorBadgeBox">
+                    <img
+                      sdivrc="/img/ErrorBadge.svg"
+                      alt="ErrorBadge"
+                      className="bg[#C42B1C] p-1 rounded-full"
+                    />
+                    <h5>گذرواژه همخوانی ندارد</h5>
+                  </div>
                 </div>
               </div>
-            </div>
+            </SubmitForm>
+
+
+
             <div className="flex items-center justify-between">
               <TextButton.Provider value={"ذخیره گذرواژه و ورود"}>
                 <AuthButton
@@ -274,7 +333,7 @@ export default function Forgetpass() {
                 />
               </TextButton.Provider>
               <div>
-                <Link to={"/dashboard/accountOperations/login"}>
+                <Link to={"/dashboard/accountOperations/register"}>
                   <span className="underline text-sm underline-offset-8"
                     data-tip='برای ساخت حساب کلیک کنید.'
                     data-type="light"

@@ -1,5 +1,4 @@
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { keywordService } from "../../service/keyWordsService";
 import AlphabetKeyWord from "../DashboaedComponents/AlphabetKeyWord/AlphabetKeyWord";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
@@ -7,13 +6,13 @@ import Table from "../DashboaedComponents/TableData/TableData";
 import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
 import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUp from "../../Utils/PopUp/PopUp";
-import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { resetLimitState } from "../../Redux/Action/workSpace";
 import bookmark_svg from '../../../assets/img/dashboard/keyWord/bookmark.svg'
 import playlist_add_svg from '../../../assets/img/popUp/playlist_add.svg'
 
 const KeyWords = ({ onClickHandler }) => {
+  const toolsLimit = useSelector((state) => state.workSpaceState.limitsDatas);
   const { canRequest } = useSelector((state) => state.loadingState);
   // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");
@@ -45,12 +44,26 @@ const KeyWords = ({ onClickHandler }) => {
         characters: true,
       };
       // const { data, status } = await keywordService(searchBoxValue);
-
-      const { data, status } = await keywordService(dd);
-      setKeyWords(data.data.result); //5
-      setId(data.data.id);
-      dispatch(resetLimitState())
-      // console.log(data.data.id);
+      debugger
+      // console.log(toolsLimit[20].count)
+      if (toolsLimit[6].count<0) {
+        
+        const { data, status } = await keywordService(dd);
+        setKeyWords(data.data.result); //5
+        setId(data.data.id);
+        dispatch(resetLimitState())
+        // console.log(data.data.id);
+      } else {
+        <PopUp
+        clickHandler={() => showSavePopup(false)}
+        image={playlist_add_svg}
+        type={"sucsess"}
+        buttonText={"باشه، فهمیدم!"}
+        text={"لیست جدید شما با موفقیت ذخیره شد !"}
+        title={"موفقیت آمیز"}
+        targetTag={"#keyWordsLayOutId"}
+      />
+      }
     } catch (error) {
       // console.log(error)
     }
@@ -163,6 +176,15 @@ const KeyWords = ({ onClickHandler }) => {
   //check dom
   return (
     <>
+    {/* <PopUp
+        clickHandler={() => showSavePopup(false)}
+        image={playlist_add_svg}
+        type={"sucsess"}
+        buttonText={"باشه، فهمیدم!"}
+        text={"لیست جدید شما با موفقیت ذخیره شد !"}
+        title={"موفقیت آمیز"}
+        targetTag={"#keyWordsLayOutId"}
+      /> */}
       {SavePopup && (
         <PopUp
           clickHandler={() => showSavePopup(false)}
@@ -173,7 +195,7 @@ const KeyWords = ({ onClickHandler }) => {
           title={"موفقیت آمیز"}
         />
       )}
-      <div className="pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
+      <div className="PopUpMap pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
           placeholder={"درج کلمه کلیدی"}
           changeHandler={SearchBoxChangeHandler}
@@ -188,7 +210,7 @@ const KeyWords = ({ onClickHandler }) => {
           {!searchBoxValue || !searchBoxHandleClick ? (
             <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
           ) : null}
-          <div className="flex  justify-between w-full mt-5">
+          <div id="keyWordsLayOutId" className="flex  justify-between w-full mt-5">
             <Table
               data={
                 tableAlphabetFiltering

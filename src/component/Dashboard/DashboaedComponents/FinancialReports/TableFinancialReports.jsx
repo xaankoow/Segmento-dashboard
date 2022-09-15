@@ -11,20 +11,29 @@ import { getAllFinancialReportsData } from "../../../service/financialReportsSer
 import { FilterData } from "./changeDataSearch";
 import { DateObject } from "react-multi-date-picker";
 import ComboBox from "../../../shared/comboBox/ComboBox";
-import file_download_svg from '../../../../assets/img/dashboard/financialReports/file_download.svg'
-
+import file_download_svg from "../../../../assets/img/dashboard/financialReports/file_download.svg";
 
 export default function TableFinancialReports({ title }) {
-
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
   const [numFilter, setNumFilter] = useState(1);
-  const filterBoxDatas=["بدون فیلتر", "شماره فاکتور","نوع اشتراک","تاریخ خرید","تاریخ انقضا","مبلغ", "وضعیت پرداخت","عملیات"];
+  const filterBoxDatas = [
+    "بدون فیلتر",
+    "شماره فاکتور",
+    "نوع اشتراک",
+    "تاریخ خرید",
+    "تاریخ انقضا",
+    "مبلغ",
+    "وضعیت پرداخت",
+    "عملیات",
+  ];
   const [financialDataTableOrg, setFinancialDataTableOrg] = useState([]);
-  const [financialDataTableFiltered, setFinancialDataTableFiltered] = useState([]);
+  const [financialDataTableFiltered, setFinancialDataTableFiltered] = useState(
+    []
+  );
 
-  const dispatch=useDispatch();
-  
+  const dispatch = useDispatch();
+
   // data of filtering
   const [userType, setUserType] = useState("");
   const [FactorHandler, setFactorHandler] = useState("");
@@ -40,9 +49,9 @@ export default function TableFinancialReports({ title }) {
     "نوع اشتراک": userType,
     "تاریخ خرید": datePickerValues,
     "تاریخ انقضا": datePickerValues,
-    "مبلغ": [Number(price), Number(price2)],
+    مبلغ: [Number(price), Number(price2)],
     "وضعیت پرداخت": userType,
-    "عملیات": userType,
+    عملیات: userType,
   };
 
   const [searchFilterText, setSearchFilterText] = useState("");
@@ -63,7 +72,10 @@ export default function TableFinancialReports({ title }) {
         {
           loadingState.ProcessingDelay.push("getAllFinancialReports");
           loadingState.canRequest = false;
-          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+          await dispatch({
+            type: "SET_PROCESSING_DELAY",
+            payload: loadingState,
+          });
         }
         const { data } = await getAllFinancialReportsData();
 
@@ -78,7 +90,10 @@ export default function TableFinancialReports({ title }) {
           );
           loadingState.ProcessingDelay = removeProcessingItem;
           loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+          await dispatch({
+            type: "SET_PROCESSING_DELAY",
+            payload: loadingState,
+          });
         }
       }
     } catch (error) {
@@ -99,18 +114,22 @@ export default function TableFinancialReports({ title }) {
   const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
   const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
-
   return (
     <div>
       <PageTitle title={title} />
       <div className=" w-full px-10 m-auto">
         <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
           <div className="w-[410px]">
-
-            <ComboBox placeholder={"فیلد جستجو"} radioTextItems={filterBoxDatas} radioClickedHandler={(e) => setSearchFilterOption(e.target.value)} />
+            <ComboBox
+              placeholder={"فیلد جستجو"}
+              radioTextItems={filterBoxDatas}
+              radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}
+            />
           </div>
           <div className="flex items-center ">
-            <span className=" ml-2">مرتب سازی بر اساس</span>
+            {searchFilterOption !== "بدون فیلتر" && (
+              <span className=" ml-2">مرتب سازی بر اساس</span>
+            )}
 
             <FilterData
               radioTarget={searchFilterOption}
@@ -159,83 +178,82 @@ export default function TableFinancialReports({ title }) {
                 <p className=" w-36 text-center">نوع اشتراک</p>
                 <p className=" w-20 text-center">شماره فاکتور</p>
                 <p className=" w-8 text-center">ردیف</p>
-
               </div>
               <div className="overflow-scroll h-[94%] text-xs font-normal">
                 {/* {financialDataTableFiltered.length > 0 && */}
-              
-                {financialDataTableFiltered.length != 0 && financialDataTableFiltered.map((item, index) => (
-                  <div
-                    className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
-                  >
-                    {/* عملیات */}
-                    <p className=" w-28 text-center">{item.type_text}</p>
-                    {/* وضعیت */}
-                    <p className=" w-24 text-center">
-                      <span
-                        className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text == "پرداخت ناموفق"
-                            ? " bg-[#F35242]"
-                            : item.payment_status_text == "پرداخت نشده"
+
+                {financialDataTableFiltered.length != 0 &&
+                  financialDataTableFiltered.map((item, index) => (
+                    <div
+                      className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
+                    >
+                      {/* عملیات */}
+                      <p className=" w-28 text-center">{item.type_text}</p>
+                      {/* وضعیت */}
+                      <p className=" w-24 text-center">
+                        <span
+                          className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${
+                            item.payment_status_text == "پرداخت ناموفق"
+                              ? " bg-[#F35242]"
+                              : item.payment_status_text == "پرداخت نشده"
                               ? "bg-yellow"
                               : "bg-[#10CCAE]"
                           }`}
-                      >
-                        {item.payment_status_text}
-                      </span>
-                    </p>
-                    {/* مبلغ */}
-                    {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
-                    <p className=" w-[72px] text-center">
-                      {setFormatPrice(item.sub_total)}
-                    </p>
-                    {/* انقضا */}
-                    <p className=" w-16 text-center">
-                      {(item.user != undefined) &
-                        (item.user.package_end_date != null) &&
-                        moment(
-                          item.user.package_end_date
-                            .substring(0, 10)
-                            .replaceAll("-", "/")
-                        )
-                          .locale("fa")
-                          .format("YYYY/M/D")}
-                    </p>
-                    {/* خرید */}
-                    <p className=" w-[68px] text-center">
-                      {item.created_at != undefined &&
-                        moment(
-                          item.created_at
-                            .substring(0, 10)
-                            .replaceAll("-", "/")
-                        )
-                          .locale("fa")
-                          .format("YYYY/M/D")}
-                    </p>
-                    {/* نوع اشتراک */}
-                    <p className=" w-36 text-center">
-                      {item.user != undefined &&
+                        >
+                          {item.payment_status_text}
+                        </span>
+                      </p>
+                      {/* مبلغ */}
+                      {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
+                      <p className=" w-[72px] text-center">
+                        {setFormatPrice(item.sub_total)}
+                      </p>
+                      {/* انقضا */}
+                      <p className=" w-16 text-center">
+                        {(item.user != undefined) &
+                          (item.user.package_end_date != null) &&
+                          moment(
+                            item.user.package_end_date
+                              .substring(0, 10)
+                              .replaceAll("-", "/")
+                          )
+                            .locale("fa")
+                            .format("YYYY/M/D")}
+                      </p>
+                      {/* خرید */}
+                      <p className=" w-[68px] text-center">
+                        {item.created_at != undefined &&
+                          moment(
+                            item.created_at
+                              .substring(0, 10)
+                              .replaceAll("-", "/")
+                          )
+                            .locale("fa")
+                            .format("YYYY/M/D")}
+                      </p>
+                      {/* نوع اشتراک */}
+                      <p className=" w-36 text-center">
+                        {item.user != undefined &&
                         item.description
                           .substring(31, item.description.length)
                           .includes("رایگان") == true
-                        ? "14 روز رایگان"
-                        : item.description.substring(
-                          31,
-                          item.description.length
-                        )}
-                    </p>
-                    {/* شماره فاکتور */}
-                    <p className=" w-20 text-center">{item.order_code}</p>
-                    {/* ردیف */}
-                    <p className=" w-8 text-center">{index + 1}</p>
-
-                  </div>
-                ))}
+                          ? "14 روز رایگان"
+                          : item.description.substring(
+                              31,
+                              item.description.length
+                            )}
+                      </p>
+                      {/* شماره فاکتور */}
+                      <p className=" w-20 text-center">{item.order_code}</p>
+                      {/* ردیف */}
+                      <p className=" w-8 text-center">{index + 1}</p>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
         </div>
 
-        
         <div className="w-full text-left mt-7 pb-5">
           <div className=" inline-block">
             {financialDataTableFiltered.length != 0 ? (
@@ -256,7 +274,14 @@ export default function TableFinancialReports({ title }) {
                     />
                   }
                 >
-                  <ExcelSheet data={financialDataTableFiltered.length > 10 ? financialDataTableFiltered.slice(0, 10) : financialDataTableFiltered} name="Employees">
+                  <ExcelSheet
+                    data={
+                      financialDataTableFiltered.length > 10
+                        ? financialDataTableFiltered.slice(0, 10)
+                        : financialDataTableFiltered
+                    }
+                    name="Employees"
+                  >
                     <ExcelColumn label="شماره فاکتور" value={"order_code"} />
                     <ExcelColumn label="نوع اشتراک" value={"description"} />
                     <ExcelColumn label="تاریخ خرید" value={"created_at"} />

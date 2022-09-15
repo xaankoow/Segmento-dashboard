@@ -29,6 +29,8 @@ import PageCounter from "./component/Dashboard/pages/PageCounter/PageCounter";
 import PhoneNumberOperations from "./component/Utils/Modals/phoneNumber/PhoneNumberOperations";
 import Support from "./component/Dashboard/pages/Support&Tickets/Support";
 import SupportMessage from "./component/Dashboard/DashboaedComponents/support/index";
+import TitleCopywriter from "./pages/titleCopywriter";
+import ReportSupport from "./component/Dashboard/pages/Support&Tickets/SatusSupport";
 
 export default function App() {
   const { forceUpdate } = useSelector((state) => state.userState);
@@ -90,8 +92,10 @@ export default function App() {
                     <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"}/>} />
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"}/>} />
                     <Route path="PageCounter"  element={<PageCounter/>}/>
-                    <Route path="Support"  element={<Support/>}/>
+                    <Route path="ReportSupport"  element={<ReportSupport/>}/>
+                    <Route path="NewTicket"  element={<Support/>}/>
                     <Route path="SupportMessage"  element={<SupportMessage/>}/>
+                    <Route path="TitleCopywriter"  element={<TitleCopywriter/>}/>
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />
                   </Route>

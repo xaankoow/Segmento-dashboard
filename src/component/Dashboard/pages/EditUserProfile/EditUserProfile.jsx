@@ -33,6 +33,7 @@ import { TextButton } from "../../../../pages/register/Register";
 import { ClearInputs } from "../../../Utils/ClearInputs/ClearInputs";
 import { CheckFormat } from "../../../Utils/Auth/CheckFormtValue";
 import { Link, useLocation } from "react-router-dom";
+import { ImageContainer } from "../../../../assets/img/IMG";
 
 export default function EditUserProfile() {
   const { canRequest } = useSelector((state) => state.loadingState);
@@ -321,7 +322,7 @@ export default function EditUserProfile() {
             (userState.userData.user != undefined) &
               (userState.userData.user.img != "")
               ? userState.userData.user.img
-              : "/../img/dashboard/userProfile/profileImage.png"
+              : ImageContainer.preUserProf
           }
         />
       )}

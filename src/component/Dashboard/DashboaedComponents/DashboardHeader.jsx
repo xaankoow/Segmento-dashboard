@@ -114,7 +114,6 @@ const DashboardHeader = () => {
   // }, [checkUseTryFree]);
 
   const location = useLocation();
-
   return (
     <div className="flex h-full items-center justify-between px-5">
       <div className="flex items-center gap-7">
@@ -133,7 +132,7 @@ const DashboardHeader = () => {
         </div>
       </div>
       <div className="flex items-center gap-9">
-        <div className="userProfBox rounded hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64">
+        <div className="header_animation userProfBox rounded transition-[shadow] hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64">
           <div className="flex gap-3 items-center cursor-pointer ">
             <img
               src={
@@ -171,7 +170,7 @@ const DashboardHeader = () => {
                     />
                   </div>
                   <span className="text-xs absolute bottom-0 right-6 w-max">
-                    {userState.userData.package.title +" "+ userState.userData.package.type_text}
+                    {userState.userData.package.title=="پکیج پایه"|userState.userData.package.title=="14 روز رایگان"?userState.userData.package.title:userState.userData.package.title +" "+ userState.userData.package.type_text}
                   </span>
                 </div>
               ) : (
@@ -201,7 +200,7 @@ const DashboardHeader = () => {
               )}
             </div>
           </div>
-          <div className="cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo">
+          <div className="header_animation cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo">
             <div className="border-b border-lightGray w-52 " />
             <div className="flex text-xs items-center justify-between w-full p-1 hover:bg-lightBlue mt-1">
               <div className="flex items-center">

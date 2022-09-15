@@ -1,9 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
+import { afterOpenOrCloseAnyModal } from "../../../variables/modal";
 import { modalParentSelector } from "../../../variables/style";
 import AuthButton from "../../Auth/authButton/AuthButton";
 
-const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan, tryFreePlanClick }) => {
+const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan, tryFreePlanClick , targetTag }) => {
 
   const customStyles = {
     content: {
@@ -18,12 +19,18 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
     },
   };
 
+  // document.getElementsByClassName(".body").scrollTop=0;
+  // debugger
   return (
     <Modal
       isOpen={true}
       parentSelector={() =>
-        document.querySelector(modalParentSelector)
+        // document.querySelector(modalParentSelector)
+        document.querySelector(targetTag!=undefined?targetTag:"#DASHBOARD .body .main")
+        // document.querySelector("#DASHBOARD .body .main #keyWordsLayOutId div")
       }
+      onAfterOpen={()=>afterOpenOrCloseAnyModal({open:true})}
+      onAfterClose={()=>afterOpenOrCloseAnyModal({open:false})}
       style={customStyles}
       contentLabel="Example Modal"
     >
@@ -53,9 +60,9 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
               <div>
                 <AuthButton textButton={"اشتراک میخرم"} handlerClick={tryFreePlanClick} setOnclickValue={1} />
               </div>
-              <span className="buttonText mt-5" onClick={() => clickHandler()}>{buttonText}</span>
+              <span className="buttonText mt-5 third-btn" onClick={() => clickHandler()}>{buttonText}</span>
             </div>
-          ) : <span className="buttonText mt-5" onClick={() => clickHandler()}>{buttonText}</span>}
+          ) : <span className="buttonText mt-5 third-btn" onClick={() => clickHandler()}>{buttonText}</span>}
 
         </div>
       </div>

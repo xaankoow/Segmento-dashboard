@@ -49,7 +49,7 @@ export default function BuyPlan(setPlan) {
                         </div>
                     </div>
                     <div className='price'>
-                        <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>79  تومان ماهانه</p>
+                        <p style={plan.substring(0, 1) == "b" ? { color: "rgba(10, 101, 205, 1)" } : null}>79  تومان</p>
                     </div>
                     <div className='input_apply_token_container'>
                         <AuthInput
@@ -98,7 +98,7 @@ export default function BuyPlan(setPlan) {
                         </div>
                     </div>
                     <div className='price'>
-                        <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>189  تومان ماهانه</p>
+                        <p style={plan.substring(0, 1) == "s" ? { color: "rgba(10, 101, 205, 1)" } : null}>189  تومان</p>
                     </div>
                     <div className='input_apply_token_container'>
                         <AuthInput
@@ -147,7 +147,7 @@ export default function BuyPlan(setPlan) {
                         </div>
                     </div>
                     <div className='price'>
-                        <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>249  تومان ماهانه</p>
+                        <p style={plan.substring(0, 1) == "g" ? { color: "rgba(10, 101, 205, 1)" } : null}>249  تومان</p>
                     </div>
                     <div className='input_apply_token_container'>
                         <AuthInput
@@ -197,7 +197,7 @@ export default function BuyPlan(setPlan) {
                         </div>
                     </div>
                     <div className='price'>
-                        <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>249  تومان ماهانه</p>
+                        <p style={plan.substring(0, 1) == "d" ? { color: "rgba(10, 101, 205, 1)" } : null}>249  تومان</p>
                     </div>
                     <div className='input_apply_token_container'>
                         <AuthInput

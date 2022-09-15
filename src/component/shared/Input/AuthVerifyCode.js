@@ -2,7 +2,7 @@ import { useRef } from "react"
 import AuthInput from "../../Auth/authInput/AuthInput"
 import { setAuth1Redux, setAuth2Redux, setAuth3Redux, setAuth4Redux } from "../../Redux/Action"
 
-export const AuthVerifyCode = ({ errorTextId }) => {
+export const AuthVerifyCode = ({ errorTextId ,disable}) => {
 
   // <div className="flex flex-col justify-cneter items-center gap-3 mt-20 mb-7">
   //     <span>کد فعال سازی</span>
@@ -49,15 +49,16 @@ export const AuthVerifyCode = ({ errorTextId }) => {
           classes={"verify_email_cod input_selector_4"}
           notCheckValue={true}
           reduxHandleChange={setAuth1Redux}
-          maxLength={1}
+          maxlength={1}
           pressNumber={true}
+          disable={disable!=undefined&&disable}
           selectWithOnClick
         />
         <AuthInput
           classes={"verify_email_cod input_selector_3"}
           notCheckValue={true}
           reduxHandleChange={setAuth2Redux}
-          maxLength={1}
+          maxlength={1}
           pressNumber={true}
           selectWithOnClick
         />
@@ -65,7 +66,7 @@ export const AuthVerifyCode = ({ errorTextId }) => {
           classes={"verify_email_cod input_selector_2"}
           notCheckValue={true}
           reduxHandleChange={setAuth3Redux}
-          maxLength={1}
+          maxlength={1}
           pressNumber={true}
           selectWithOnClick
         />
@@ -74,7 +75,7 @@ export const AuthVerifyCode = ({ errorTextId }) => {
           classes={"verify_email_cod"}
           notCheckValue={true}
           reduxHandleChange={setAuth4Redux}
-          maxLength={1}
+          maxlength={1}
           pressNumber={true}
           selectWithOnClick
         />

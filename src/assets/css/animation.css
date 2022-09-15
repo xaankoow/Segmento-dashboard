@@ -50,3 +50,20 @@
 .ReactModal__Overlay--before-close{
     opacity: 0;
 }
+
+.header_animation{
+    
+    animation: header_keyFrame 200ms ease-out forwards;
+    
+}
+@keyframes header_keyFrame {
+   
+    from {
+        opacity: 0.5;
+      }
+    
+      to {
+        opacity: 1;
+      }
+  
+}

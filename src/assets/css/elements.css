@@ -4,7 +4,7 @@
 }
 
 .btn-style {
-  background: rgba(10, 101, 205, 1);
+  background: rgba(10, 101, 205, 1) !important;
   font-size: 14px !important;
   color: white;
   border: none;
@@ -16,6 +16,10 @@
   padding: 9px 20px;
   /* transition: background 0.08s ease-in-out; */
   transition: background 0.5s ease-in-out;
+}
+
+.table-border{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .btn-style:hover {
