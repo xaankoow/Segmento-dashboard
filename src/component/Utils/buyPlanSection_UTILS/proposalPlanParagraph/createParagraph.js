@@ -8,14 +8,17 @@ export const Paragraph = (typePlan, indexPlan) => {
     const { allPackageData } = useSelector(state => state.planState);
     // const price = allPackageData.lenght > 0 ? allPackageData[indexPlan].default_discount:0;
     useEffect(() => {
+        indexPlan++
         // debugger
         if (allPackageData.length > 0) {
             var packPrice;
             // debugger
-            if (indexPlan==4|indexPlan==8|indexPlan==12) {
+            // console.log(indexPlan)
+            // if (indexPlan==4|indexPlan==8|indexPlan==12) {
+            if (indexPlan==6|indexPlan==10|indexPlan==12) {
                 packPrice = allPackageData[indexPlan+4].default_discount
             }else{
-                packPrice = allPackageData[indexPlan != 16 ? indexPlan+1 : indexPlan].default_discount
+                packPrice = allPackageData[indexPlan != 16 ?  +1 : indexPlan].default_discount
             }
             // console.log(Math.ceil(packPrice))
             
@@ -26,37 +29,36 @@ export const Paragraph = (typePlan, indexPlan) => {
 
     switch (indexPlan) {
         // سه ماهه
-        case 2:
+        case 3:
             return `اگر اشتراک 6 ماهه خریداری کنید روی قیمت نهایی محصول	یک ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-        case 6:
+        case 7:
             return `اگر اشتراک 6 ماهه خریداری کنید روی قیمت نهایی محصول	یک ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-        case 10:
+        case 11:
             return `اگر اشتراک 6 ماهه خریداری کنید روی قیمت نهایی محصول	یک ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-        case 14:
+        case 15:
             return `اگر اشتراک 6 ماهه خریداری کنید روی قیمت نهایی محصول	یک ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
 
 
         // شیش ماهه
-        case 3:
+        case 4:
             return `اگر اشتراک 12 ماهه خریداری کنید روی قیمت نهایی محصول	2 ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-        case 7:
+        case 8:
             return `اگر اشتراک 12 ماهه خریداری کنید روی قیمت نهایی محصول	2 ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-        case 11:
+        case 12:
             return `اگر اشتراک 12 ماهه خریداری کنید روی قیمت نهایی محصول	2 ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-        case 15:
+        case 16:
             return `اگر اشتراک 12 ماهه خریداری کنید روی قیمت نهایی محصول	2 ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
 
 
 
         // دوازده ماهه
-        case 4:
+        case 5:
             return `اگر اشتراک 12 ماهه نقره ای خریداری کنید روی قیمت نهایی محصول	2 ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-        case 8:
+        case 9:
             return `اگر اشتراک 12 ماهه طلایی خریداری کنید روی قیمت نهایی محصول	2 ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-        case 12:
+        case 13:
             return `اگر اشتراک 12 ماهه الماسی خریداری کنید روی قیمت نهایی محصول	2 ماه تخفیف معادل ${price} تومان دریافت می‌کنید.`
-            // TODO: این متن بصورت ازمایشی قرار داده شده است و همین طور متن هایه پلن 12 ماهه
-        case 16:
+        case 17:
             return `قطعا از این بهتر نمیشه، معلومه دنبال بهترین ها هستین.`
         default:
             break;
