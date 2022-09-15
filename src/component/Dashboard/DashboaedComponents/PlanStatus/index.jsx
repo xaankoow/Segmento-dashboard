@@ -28,22 +28,31 @@ export default function PlanStatus() {
 // user type
 const type=userState.userData.package != undefined? userState.userData.package.type_text: "بدون پکیج";
          
-  var startDate =
-    userState.userData.package != undefined &&
-    new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
-  var expiryDate =
-    userState.userData.package != undefined &&
-    new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
-  // console.log(startDate)
-  var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
-  var timeSecDays = Math.abs(expiryDate - startDate);
+var user_package_title = "--";
+var package_end_dates = "--";
+var user_package_type_text = "--";
+var numberOfDaysLeft = 0;
+    var numberOfDays = 1;
 
-  var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
-  var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+if ( userState.userData.package != undefined) {
+  if (userState.userData.package.start !=null) {
+    
+    var startDate =
+      userState.userData.package != undefined &&
+      new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
+    var expiryDate =
+      userState.userData.package != undefined &&
+      new Date(moment(userState.userData.user.package_end_date).format("YYYY/M/D"));
+    // console.log(startDate)
+    var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
+    var timeSecDays = Math.abs(expiryDate - startDate);
+  
+     numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
+     numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+  }
+  
+}
 
-  var user_package_title = "";
-  var package_end_dates = "";
-  var user_package_type_text = "";
 
   if (userState.userData.package) {
     user_package_title = userState.userData.package.title
@@ -94,6 +103,8 @@ const type=userState.userData.package != undefined? userState.userData.package.t
     if (allWords.length == 0) setPackagesInformation();
   }, [userState.userData.package]);
 
+  console.log(numberOfDays)
+  console.log(numberOfDaysLeft)
   const data = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -128,6 +139,8 @@ const type=userState.userData.package != undefined? userState.userData.package.t
     ],
   };
 
+// debugger
+
   const miniChartSetting2 = {
     // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -135,7 +148,7 @@ const type=userState.userData.package != undefined? userState.userData.package.t
         label: "# of Votes",
         // data: [30, 70],
         data: [
-          datas.length > 0 && allWords.length != 0 && allWords[20].count - datas[20].count,
+          datas.length > 0 & allWords.length != 0 && allWords[20].count - datas[20].count,
           datas.length > 0 && datas[20].count,
         ],
         cutout: 36,
@@ -231,7 +244,7 @@ const type=userState.userData.package != undefined? userState.userData.package.t
               <div className="flex flex-row">
                 <span
                  
-                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${ type.includes("طلایی")? " bg-yellow " : type.includes("نقره ای") ? " bg-secondary " : type.includes("برنزی") ? " bg-[#E99991] ":type.includes("الماسی")  ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center ": type.includes("14 روز رایگان")? " bg-secondary " :" bg-yellow "}`}
+                  // className={`w-1 h-5 mt-5 mr-5 absolute rounded ${ type.includes("طلایی")? " bg-yellow " : type.includes("نقره ای") ? " bg-secondary " : type.includes("برنزی") ? " bg-[#E99991] ":type.includes("الماسی")  ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center ": type.includes("14 روز رایگان")? " bg-secondary " :" bg-yellow "}`}
                    ></span>
                 <span className="absolute mt-4 mr-10 ">
                   {" "}
@@ -245,10 +258,10 @@ const type=userState.userData.package != undefined? userState.userData.package.t
               >
                 <div className="flex flex-row justify-between">
                   <span>تاریخ خرید اشتراک</span>
-                  {userState.userData.package != undefined &&
+                  {userState.userData.package != undefined &&userState.userData.package.start!=null?
                     moment(userState.userData.package.start)
                       .locale("fa")
-                      .format("YYYY/M/D")}
+                      .format("YYYY/M/D"):"--"}
                 </div>
 
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
@@ -256,10 +269,10 @@ const type=userState.userData.package != undefined? userState.userData.package.t
                 <div className="flex flex-row justify-between ">
                   <span>تاریخ اتمام اشتراک</span>
                   <span>
-                    {userState.userData.package != undefined &&
+                    {userState.userData.package != undefined &&userState.userData.package.start!=null?
                       moment(userState.userData.package.end)
                         .locale("fa")
-                        .format("YYYY/M/D")}
+                        .format("YYYY/M/D"):"--"}
 
                     {/* {package_end_dates && moment(package_end_dates.substring(0, 10))
                       .locale("fa")
