@@ -11,6 +11,7 @@ import InputGetWorkSpaceInfo from './inputValue';
 import { WorkSpaceParagraph } from './textParagraph';
 import { workSpaceTitle } from './titleWorkSpaceModal';
 import add_circle_svg from "../../../assets/img/modal/workSpace/head/add_circle.svg";
+// import { ChackingAvailabilityTools } from '../CheckingAvailabilityTools';
 
 export default function WorkSpace() {
 
@@ -82,11 +83,14 @@ export default function WorkSpace() {
   }
 
   const dispatch=useDispatch()
-
+  // debugger
   useEffect(() => {
-    return () => {
-      
-    }
+    // return () => {
+      // navigate("/dashboard/"+ChackingAvailabilityTools({path:"setWorkSpace",section:"workSpace"}))
+      // navigate("setWorkSpace")
+      // ChackingAvailabilityTools({path:"setWorkSpace",section:"workspace"})
+      // console.log("start")
+    // }
   }, [])
 
   return (
