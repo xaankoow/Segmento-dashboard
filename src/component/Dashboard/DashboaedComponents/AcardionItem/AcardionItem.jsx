@@ -57,6 +57,7 @@ export default function AcardionItem({clicked,setClicked}) {
           itemTitle: "تحقیق کلمه کلیدی ",
           itemIcon: searchKeyWord_svg,
           itemLink: "keywordResearch",
+          section: "keyWords"
         },
         {
           itemTitle: "صفحات تجاری ",
@@ -140,26 +141,31 @@ export default function AcardionItem({clicked,setClicked}) {
           itemTitle: " تاپیک ترند",
           itemIcon: trandTypic_svg,
           itemLink: "",
+          section: ""
         },
         {
           itemTitle: " ایده ساز",
           itemIcon: createIdea_svg,
           itemLink: "contentCreation",
+          section: ""
         },
         {
           itemTitle: "کپی رایتر  ",
           itemIcon: copyWriter_svg,
           itemLink: "",
+          section: ""
         },
         {
           itemTitle: "کپی رایتر انبوه ",
           itemIcon: copyWriterAnboh_svg,
           itemLink: "",
+          section: ""
         },
         {
           itemTitle: "پیشنهاد ساز گوگل ",
           itemIcon: googleSuggestion_svg,
           itemLink: "",
+          section: ""
         },
       ],
     },
@@ -241,7 +247,7 @@ export default function AcardionItem({clicked,setClicked}) {
                       </div>
                   
                     ):acardionItem.itemLink != ""&&(
-                      <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
+                      <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
                       <div
                       onClick={()=>setItemsClicked(acardionItem.itemTitle)}
                         key={indexx}

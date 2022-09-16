@@ -8,11 +8,10 @@ export const ChackingAvailabilityTools = ({ path, section, userState, workSpaceS
 
     debugger
     const limit = FindLimitTools(section, workSpaceState).limit
-    if (userState.userData.package.price == 0) {
-        return "checkedPackage"
-    } else if (limit == 0) {
+    if ( limit == 0) {
         return "checkLimit"
-
+    } else if (userState.userData.package.price == 0) {
+        return "checkedPackage"
     }
     return path
 
