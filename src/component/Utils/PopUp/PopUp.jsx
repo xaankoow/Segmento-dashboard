@@ -32,7 +32,7 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
       style={customStyles}
       contentLabel="Example Modal"
     >
-      <div className="popUpContainer">
+      <div className="popUpContainer w-96 rounded-lg">
         <div
           className="PopUpBox h-28"
           style={{
