@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AuthButton from '../../../Auth/authButton/AuthButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllWorkSpace } from '../../../Redux/Action/workSpace';
+import { allLimitDataFeature, getAllWorkSpace } from '../../../Redux/Action/workSpace';
 import success_svg from '../../../../assets/img/dashboard/EasyStartPage/success.svg'
 
 export default function ShowFinalReportModal() {
@@ -26,10 +26,14 @@ export default function ShowFinalReportModal() {
     const dispatch = useDispatch();
     useEffect(() => {
       return () => {
-        dispatch(getAllWorkSpace())
-      }
-    }, [])
-    
+        initWorkSpaceOption()
+    }
+}, [])
+
+const initWorkSpaceOption=async()=>{
+    await dispatch(allLimitDataFeature())
+    await dispatch(getAllWorkSpace())
+    }
     return (
         <body className='final_report_container bg-[#fff]'>
             <div className='popup'>
