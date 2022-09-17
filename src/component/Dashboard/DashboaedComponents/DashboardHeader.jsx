@@ -55,13 +55,11 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
   useEffect(() => {
     var nowDate = new Date();
 
-    if (userState.userData.package != undefined) {
-      var startDate = new Date(
-        moment(userState.userData.package.start).format("YYYY/M/D")
-      );
-      var expiryDate = new Date(
-        moment(userState.userData.package.end).format("YYYY/M/D")
-      );
+    if (userState.userData.package != undefined ) {
+      if (userState.userData.package.start!=null) {
+        
+      var startDate = new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
+      var expiryDate = new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
 
       var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
       var timeSecDays = Math.abs(expiryDate - startDate);
@@ -92,7 +90,12 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
         ],
       });
     }
-  }, [userState.userData.package]);
+
+    }
+
+  }, [userState.userData.package])
+
+
 
   useEffect(() => {
     // debugger
@@ -168,9 +171,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
                     />
                   </div>
                   <span className="text-xs absolute bottom-0 right-6 w-max">
-                    {userState.userData.package.title +
-                      " " +
-                      userState.userData.package.type_text}
+                    {userState.userData.package.title=="پکیج پایه"|userState.userData.package.title=="14 روز رایگان"?userState.userData.package.title:userState.userData.package.title +" "+ userState.userData.package.type_text}
                   </span>
                 </div>
               ) : (

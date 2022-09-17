@@ -22,6 +22,7 @@ import copyWriter_svg from "../../../../assets/img/dashboard/nav_right/copyWrite
 import copyWriterAnboh_svg from "../../../../assets/img/dashboard/nav_right/copyWriterAnboh.svg";
 import googleSuggestion_svg from "../../../../assets/img/dashboard/nav_right/googleSuggestion.svg";
 import { showToast } from "../../../Utils/toastifyPromise";
+import { ChackingAvailabilityTools } from "../../../Utils/CheckingAvailabilityTools";
 
 export default function AcardionItem({clicked,setClicked}) {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ export default function AcardionItem({clicked,setClicked}) {
 
   const user = useSelector((state) => state.userState);
   // debugger
+  const workSpaceState = useSelector((state) => state.workSpaceState);
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
   // console.log(allWorkSpace);
   const data = [
@@ -55,6 +57,7 @@ export default function AcardionItem({clicked,setClicked}) {
           itemTitle: "تحقیق کلمه کلیدی ",
           itemIcon: searchKeyWord_svg,
           itemLink: "keywordResearch",
+          section: "keyWords"
         },
         {
           itemTitle: "صفحات تجاری ",
@@ -138,26 +141,31 @@ export default function AcardionItem({clicked,setClicked}) {
           itemTitle: " تاپیک ترند",
           itemIcon: trandTypic_svg,
           itemLink: "",
+          section: ""
         },
         {
           itemTitle: " ایده ساز",
           itemIcon: createIdea_svg,
           itemLink: "contentCreation",
+          section: ""
         },
         {
           itemTitle: "کپی رایتر  ",
           itemIcon: copyWriter_svg,
           itemLink: "",
+          section: ""
         },
         {
           itemTitle: "کپی رایتر انبوه ",
           itemIcon: copyWriterAnboh_svg,
           itemLink: "",
+          section: ""
         },
         {
           itemTitle: "پیشنهاد ساز گوگل ",
           itemIcon: googleSuggestion_svg,
           itemLink: "",
+          section: ""
         },
       ],
     },
@@ -172,6 +180,8 @@ export default function AcardionItem({clicked,setClicked}) {
     setClicked(index);
   };
   // debugger
+  const { limitsDatas } = useSelector((state) => state.workSpaceState);
+
   return (
     <>
       {data.map((item, index) => {
@@ -237,7 +247,7 @@ export default function AcardionItem({clicked,setClicked}) {
                       </div>
                   
                     ):acardionItem.itemLink != ""&&(
-                      <Link to={acardionItem.itemLink} className={"w-auto"}>
+                      <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
                       <div
                       onClick={()=>setItemsClicked(acardionItem.itemTitle)}
                         key={indexx}
@@ -263,7 +273,9 @@ export default function AcardionItem({clicked,setClicked}) {
                       alt="icon"
                     />
                     <Link
-                      to={user.userData.package != undefined ? "setWorkSpace" : location}
+                      // to={user.userData.package != undefined ?limitsDatas.length > 0 && limitsDatas[2].count>0? "setWorkSpace":"checkLimit": location}
+                      to={user.userData.package != undefined ?`${ChackingAvailabilityTools({path:"setWorkSpace",userState:user,workSpaceState:workSpaceState})}`: location}
+                      // to={user.userData.package != undefined ?`${<ChackingAvailabilityTools path={"setWorkSpace"} section="workspace"/>}`: location}
                       onClick={()=>user.userData.package == undefined && showToast("شما پلن فعالی ندارید", "error")}
                       state={{ background: location }}
                       className={"w-auto"}

@@ -21,29 +21,34 @@ export default function PlanStatus() {
   const userState = useSelector((state) => state.userState);
 
   var nowDate = new Date();
+// user type
+const type=userState.userData.package != undefined? userState.userData.package.type_text: "بدون پکیج";
+         
+var user_package_title = "--";
+var package_end_dates = "--";
+var user_package_type_text = "--";
+var numberOfDaysLeft = 0;
+    var numberOfDays = 1;
 
-  // user type
-  const type =
-    userState.userData.package != undefined
-      ? userState.userData.package.type_text
-      : "بدون پکیج";
+if ( userState.userData.package != undefined) {
+  if (userState.userData.package.start !=null) {
+    
+    var startDate =
+      userState.userData.package != undefined &&
+      new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
+    var expiryDate =
+      userState.userData.package != undefined &&
+      new Date(moment(userState.userData.user.package_end_date).format("YYYY/M/D"));
+    // console.log(startDate)
+    var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
+    var timeSecDays = Math.abs(expiryDate - startDate);
+  
+     numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
+     numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+  }
+  
+}
 
-  var startDate =
-    userState.userData.package != undefined &&
-    new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
-  var expiryDate =
-    userState.userData.package != undefined &&
-    new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
-
-  var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
-  var timeSecDays = Math.abs(expiryDate - startDate);
-
-  var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
-  var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
-
-  var user_package_title = "";
-  var package_end_dates = "";
-  var user_package_type_text = "";
 
   if (userState.userData.package) {
     user_package_title = userState.userData.package.title
@@ -111,6 +116,8 @@ export default function PlanStatus() {
       },
     ],
   };
+
+// debugger
 
   const miniChartSetting2 = {
     datasets: [
@@ -242,11 +249,10 @@ export default function PlanStatus() {
               >
                 <div className="flex flex-row justify-between">
                   <span>تاریخ خرید اشتراک</span>
-                  {userState.userData.package != undefined
-                    ? moment(userState.userData.package.start)
-                        .locale("fa")
-                        .format("YYYY/M/D")
-                    : "00/00"}
+                  {userState.userData.package != undefined &&userState.userData.package.start!=null?
+                    moment(userState.userData.package.start)
+                      .locale("fa")
+                      .format("YYYY/M/D"):"00/00/00"}
                 </div>
 
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
@@ -254,11 +260,14 @@ export default function PlanStatus() {
                 <div className="flex flex-row justify-between ">
                   <span>تاریخ اتمام اشتراک</span>
                   <span>
-                    {userState.userData.package != undefined
-                      ? moment(userState.userData.package.end)
-                          .locale("fa")
-                          .format("YYYY/M/D")
-                      : "00/00"}
+                    {userState.userData.package != undefined &&userState.userData.package.start!=null?
+                      moment(userState.userData.package.end)
+                        .locale("fa")
+                        .format("YYYY/M/D"):"00/00/00"}
+
+                    {/* {package_end_dates && moment(package_end_dates.substring(0, 10))
+                      .locale("fa")
+                      .format("YYYY/M/D")} */}
                   </span>
                 </div>
 
