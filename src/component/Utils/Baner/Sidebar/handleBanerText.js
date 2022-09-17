@@ -6,7 +6,7 @@ export const TextBaner=()=>{
    
     if (userData.package==undefined) {
         return "خرید اشتراک سگمنتو است"
-    }else if (userData.package.title=="14 روز رایگان") {
+    }else if (userData.package.title=="14 روز رایگان"|userData.package.title=="پکیج پایه") {
         return "خرید اشتراک سگمنتو است"
     }else if (userData.package.type_text=="برنزی"|userData.package.type_text=="نقره ای") {
         return "ارتقا اشتراک سگمنتو است"

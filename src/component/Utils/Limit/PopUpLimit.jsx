@@ -9,8 +9,9 @@ import ContentText from './ContentText';
 import FooterBtn from './FooterBtn';
 import { FindLimitTools } from '../FindLimitTools';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 
-export default function PopUpLimit({ section }) {
+export default function PopUpLimit({ section, handleClose }) {
 
     const workSpaceState = useSelector((state) => state.workSpaceState);
 
@@ -20,25 +21,39 @@ export default function PopUpLimit({ section }) {
     const [typeLimit, setTypeLimit] = useState("") // buy plan / default user plan
     const [typePopUp, setTypePopUp] = useState("warning")
 
-    const checkLimit=FindLimitTools("workSpace",workSpaceState).limit
-    const checkBusiness=workSpaceState.businessCustomer;
+    const [checkLimit, setCheckLimit] = useState(0)
+    const checkBusiness = workSpaceState.businessCustomer;
 
-
+    const location = useLocation();
 
     useEffect(() => {
-        if (!checkBusiness) {
+        let limit = FindLimitTools(section, workSpaceState).limit
+        if (checkLimit != limit) {
+            setCheckLimit(limit)
+        }
+        // initTypeLimit()
+    }, [workSpaceState.limitsDatas])
+
+    useEffect(() => {
+        initTypeLimit()
+
+    }, [checkLimit])
+
+
+    const initTypeLimit = () => {
+        if (!checkBusiness.last) {
             setShow(true);
             setTypeLimit("default")
+        } else if (checkBusiness.last & checkBusiness.current & checkLimit == 0) {
+            setShow(true);
+            setTypeLimit("business")
+        } else if (checkBusiness.last & !checkBusiness.current) {
+            setShow(true);
+            setTypeLimit("defaultBusiness")
+        } else {
+            setShow(false)
+
         }
-    }, [section])
-    
-    switch (section) {
-        case "workSpace":
-            
-            break;
-    
-        default:
-            break;
     }
 
 
@@ -74,17 +89,17 @@ export default function PopUpLimit({ section }) {
                             }}
                         >
                             <div className='w-full flex justify-end items-center px-3'>
-                                <div className='flex justify-center items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' onClick={() => setShow(false)}>
+                                <div className='flex justify-center items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' onClick={() => handleClose != undefined ? handleClose(false) : setShow(false)}>
                                     <div className='close_modal_ico' ></div>
                                 </div>
                             </div>
                         </div>
                         <div className="popUpContent mt-3">
 
-                            <ContentText />
+                            <ContentText typeLimit={typeLimit} />
 
                             <div className=' mb-4 w-full'>
-                            <FooterBtn typeLimit={typeLimit} closePopUp={setShow}/>
+                                <FooterBtn typeLimit={typeLimit} closePopUp={setShow} handleClose={handleClose} />
                             </div>
 
                         </div>
