@@ -17,6 +17,7 @@ import {
 export const ChackBusinessCustomer = () => {
   return async (dispatch, getState) => {
     const state = { ...getState().workSpaceState };
+    const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState };
     let toastMessage = "";
     try {
@@ -31,12 +32,15 @@ export const ChackBusinessCustomer = () => {
           });
         }
         const { data } = await getAllFinancialReportsData();
-        
+        // debugger
         if (data.status == true && data.code == 200) {
 
           const findSuccessReport=data.data.findIndex(state=>state.order_status_text=="فعال شده")
 
-          state.businessCustomer=findSuccessReport!=-1?true:false;
+          state.businessCustomer={
+            current:userState.userData.package.type_text!="پکیج پایه"?true:false,
+            last:findSuccessReport!=-1?true:false
+          }
         }
 
         //handle hide loading
@@ -668,7 +672,7 @@ export const allLimitDataFeature = () => {
       if (!loadingState.ProcessingDelay.includes("usetLimit")) {
         //handle show loadin
         {
-          loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
+          // loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
           loadingState.ProcessingDelay.push("usetLimit");
           loadingState.canRequest = false;
           await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
@@ -681,9 +685,6 @@ export const allLimitDataFeature = () => {
             state.limitsDatas = limitPackage.data.data;
             state.allLimitsDatas = infoPackage.data.data.features;
           }
-          //   if (infoPackage.data.code == 200 && infoPackage.data.status == true) {
-          //     state.allLimitsDatas = infoPackage.data.data.features;
-          //   }
         } catch (error) { }
         //handle hide loading
         {
@@ -697,4 +698,15 @@ export const allLimitDataFeature = () => {
       await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state });
     }
   };
+};
+
+export const handleLowOffLimitCount = (section,numLowOff) => {
+  return async (dispatch, getState) => {
+    const state = { ...getState().workSpaceState };
+    const findFeatureIndex= state.limitsDatas.findIndex(state=>state.feature_title==section)
+    if (findFeatureIndex!=-1) {
+      state.limitsDatas[findFeatureIndex].count-=numLowOff
+    }
+      await dispatch({ type: "LOW_OFF_FEATURE_COUNT", payload: state });
+    }
 };

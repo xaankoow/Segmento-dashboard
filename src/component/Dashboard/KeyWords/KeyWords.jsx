@@ -7,7 +7,7 @@ import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch
 import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUp from "../../Utils/PopUp/PopUp";
 import { useDispatch, useSelector } from "react-redux";
-import { resetLimitState } from "../../Redux/Action/workSpace";
+import { handleLowOffLimitCount, resetLimitState } from "../../Redux/Action/workSpace";
 import bookmark_svg from '../../../assets/img/dashboard/keyWord/bookmark.svg'
 import playlist_add_svg from '../../../assets/img/popUp/playlist_add.svg'
 import { useLocation } from "react-router";
@@ -22,6 +22,9 @@ const KeyWords = ({ onClickHandler }) => {
   const keyWordSearchTexts = ["همه عبارات", "B", "C", "D"];
   const [keyWords, setKeyWords] = useState([]); //1
   const [seperator, setSeperator] = useState(false);
+
+  const [showPopUpLimit, setShowPopUpLimit] = useState(true);
+
   const [id, setId] = useState("");
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
@@ -48,25 +51,27 @@ const KeyWords = ({ onClickHandler }) => {
       // const { data, status } = await keywordService(searchBoxValue);
       // debugger
       // console.log(toolsLimit[20].count)
-      if (toolsLimit[6].count<0) {
+      // if (toolsLimit[6].count<0) {
         
         const { data, status } = await keywordService(dd);
         setKeyWords(data.data.result); //5
         setId(data.data.id);
+        dispatch(handleLowOffLimitCount("GOOGLE_TITLE_BUILDER",1))
         dispatch(resetLimitState())
         // console.log(data.data.id);
-      } else {
-        <PopUp
-        clickHandler={() => showSavePopup(false)}
-        image={playlist_add_svg}
-        type={"sucsess"}
-        buttonText={"باشه، فهمیدم!"}
-        text={"لیست جدید شما با موفقیت ذخیره شد !"}
-        title={"موفقیت آمیز"}
-        targetTag={"#keyWordsLayOutId"}
-      />
-      }
+      // } else {
+      //   <PopUp
+      //   clickHandler={() => showSavePopup(false)}
+      //   image={playlist_add_svg}
+      //   type={"sucsess"}
+      //   buttonText={"باشه، فهمیدم!"}
+      //   text={"لیست جدید شما با موفقیت ذخیره شد !"}
+      //   title={"موفقیت آمیز"}
+      //   targetTag={"#keyWordsLayOutId"}
+      // />
+      // }
     } catch (error) {
+      setShowPopUpLimit(true)
       // console.log(error)
     }
     //handle hide loading
@@ -268,7 +273,9 @@ const KeyWords = ({ onClickHandler }) => {
         <img src={bookmark_svg} alt="" />
         ذخیره
       </button>
-      <PopUpLimit section={"keyWords"}/>
+      {/* <PopUpLimit section={"keyWords"}/> */}
+      {showPopUpLimit?<PopUpLimit section={"contentCreation"} handleClose={setShowPopUpLimit}/>:null}
+      
     </>
   );
 };
