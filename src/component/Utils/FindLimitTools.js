@@ -1,4 +1,4 @@
-export const FindLimitTools = (section,workSpaceState) => {
+export const FindLimitTools = (section, workSpaceState) => {
 
     // const { limitsDatas } = useSelector((state) => state.workSpaceState);
     // const { allLimitsDatas } = useSelector((state) => state.workSpaceState);
@@ -7,21 +7,18 @@ export const FindLimitTools = (section,workSpaceState) => {
         all: 0,
         limit: 0
     }
-// debugger
     switch (section) {
         case "workSpace":
-            // debugger
-            limitInfo.all = workSpaceState.allLimitsDatas.length != 0 ? workSpaceState.allLimitsDatas[2].count:0;
+            limitInfo.all = workSpaceState.allLimitsDatas.length != 0 ? workSpaceState.allLimitsDatas[2].count : 0;
             limitInfo.limit = workSpaceState.limitsDatas.length > 0 ? workSpaceState.limitsDatas[2].count : 0;
-            // limitInfo.limit = 0;
-            //   a = {
-            //     allWords: allLimitsDatas.length != 0 && allLimitsDatas[2].count,
-            //     rest: limitsDatas.length > 0 ? limitsDatas[2].count : "",
-            //   };
             break;
         case "keyWords":
-            limitInfo.all = workSpaceState.allLimitsDatas.length != 0 && workSpaceState.allLimitsDatas[3].count;
-            limitInfo.limit = workSpaceState.limitsDatas.length > 0 ? workSpaceState.limitsDatas[3].count : 0;
+            limitInfo.all = workSpaceState.allLimitsDatas.length != 0 && workSpaceState.allLimitsDatas[6].count;
+            limitInfo.limit = workSpaceState.limitsDatas.length > 0 ? workSpaceState.limitsDatas[6].count : 0;
+            break;
+        case "contentCreation":
+            limitInfo.all = workSpaceState.allLimitsDatas.length != 0 && workSpaceState.allLimitsDatas[20].count;
+            limitInfo.limit = workSpaceState.limitsDatas.length > 0 ? workSpaceState.limitsDatas[20].count : 0;
             break;
         // case "commercialPage":
         //     a = {
