@@ -7,23 +7,23 @@ import { Doughnut } from "react-chartjs-2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getAllWorkSpace } from "../../Redux/Action/workSpace";
 import { setCloseNav } from "../../Redux/Action/navMenu";
-import segmento_logofa_svg from '../../../assets/img/dashboard/header/segmento-logofa.svg';
-import manage_accounts_svg from '../../../assets/img/dashboard/header/manage_accounts.svg';
-import add_card_svg from '../../../assets/img/dashboard/header/add_card.svg';
-import statusPlan_svg from '../../../assets/img/dashboard/header/statusPlan.svg';
-import money_svg from '../../../assets/img/dashboard/header/money.svg';
-import arrow_svg from '../../../assets/img/dashboard/header/arrow.svg';
-import redlogout_svg from '../../../assets/img/dashboard/header/redlogout.svg';
-import notif_svg from '../../../assets/img/dashboard/header/notif.svg';
-import message_svg from '../../../assets/img/dashboard/header/message.svg';
-import settingicon_svg from '../../../assets/img/dashboard/header/settingicon.svg';
-import profileImage_png from '../../../assets/img/dashboard/userProfile/profileImage.png';
+import segmento_logofa_svg from "../../../assets/img/dashboard/header/segmento-logofa.svg";
+import manage_accounts_svg from "../../../assets/img/dashboard/header/manage_accounts.svg";
+import add_card_svg from "../../../assets/img/dashboard/header/add_card.svg";
+import statusPlan_svg from "../../../assets/img/dashboard/header/statusPlan.svg";
+import money_svg from "../../../assets/img/dashboard/header/money.svg";
+import arrow_svg from "../../../assets/img/dashboard/header/arrow.svg";
+import redlogout_svg from "../../../assets/img/dashboard/header/redlogout.svg";
+import notif_svg from "../../../assets/img/dashboard/header/notif.svg";
+import message_svg from "../../../assets/img/dashboard/header/message.svg";
+import settingicon_svg from "../../../assets/img/dashboard/header/settingicon.svg";
+import profileImage_png from "../../../assets/img/dashboard/userProfile/profileImage.png";
 
-const DashboardHeader = () => {
+const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
   const dispatch = useDispatch();
   const userToken = localStorage.getItem("token");
   const userState = useSelector((state) => state.userState);
-  
+
   var user_name = "";
   if (userState.userData.user) {
     user_name = userState.userData.user.name
@@ -53,12 +53,15 @@ const DashboardHeader = () => {
     ],
   });
   useEffect(() => {
-
     var nowDate = new Date();
 
     if (userState.userData.package != undefined) {
-      var startDate = new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
-      var expiryDate = new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
+      var startDate = new Date(
+        moment(userState.userData.package.start).format("YYYY/M/D")
+      );
+      var expiryDate = new Date(
+        moment(userState.userData.package.end).format("YYYY/M/D")
+      );
 
       var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
       var timeSecDays = Math.abs(expiryDate - startDate);
@@ -66,31 +69,30 @@ const DashboardHeader = () => {
       var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
       var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
 
-      setDoughnutChartData(
-        {
-          datasets: [
-            {
-              label: "# of Votes32",
-              data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
-              cutout: 5,
-              backgroundColor:
-                numberOfDays && numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
-                  ? ["#D9D9D9", "#10CCAE"]
-                  : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
-                    ? ["#D9D9D9", "#FFCE47"]
-                    : numberOfDaysLeft && numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
-                      ? ["#D9D9D9", "#F35242"] : ["#D9D9D9", "#ffffff"],
-              borderWidth: 0,
-              borderRadius: 7,
-            },
-          ],
-        }
-      )
+      setDoughnutChartData({
+        datasets: [
+          {
+            label: "# of Votes32",
+            data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
+            cutout: 5,
+            backgroundColor:
+              numberOfDays &&
+              numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
+                ? ["#D9D9D9", "#10CCAE"]
+                : numberOfDaysLeft &&
+                  numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+                ? ["#D9D9D9", "#FFCE47"]
+                : numberOfDaysLeft &&
+                  numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+                ? ["#D9D9D9", "#F35242"]
+                : ["#D9D9D9", "#ffffff"],
+            borderWidth: 0,
+            borderRadius: 7,
+          },
+        ],
+      });
     }
-
-  }, [userState.userData.package])
-
-
+  }, [userState.userData.package]);
 
   useEffect(() => {
     // debugger
@@ -123,11 +125,7 @@ const DashboardHeader = () => {
         ></div>
         <div className="flex items-center gap-3 hover:cursor-pointer">
           {/* <div className='Iconimage w-7 h-8'></div> */}
-          <img
-            src={segmento_logofa_svg}
-            className="w-7 h-8"
-            alt=""
-          />
+          <img src={segmento_logofa_svg} className="w-7 h-8" alt="" />
           <span className="">سگمنتو segmento</span>
         </div>
       </div>
@@ -170,7 +168,9 @@ const DashboardHeader = () => {
                     />
                   </div>
                   <span className="text-xs absolute bottom-0 right-6 w-max">
-                    {userState.userData.package.title +" "+ userState.userData.package.type_text}
+                    {userState.userData.package.title +
+                      " " +
+                      userState.userData.package.type_text}
                   </span>
                 </div>
               ) : (
@@ -202,39 +202,54 @@ const DashboardHeader = () => {
           </div>
           <div className="header_animation cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo">
             <div className="border-b border-lightGray w-52 " />
-            <div className="flex text-xs items-center justify-between w-full p-1 hover:bg-lightBlue mt-1">
+            <div
+              className="flex text-xs items-center justify-between w-full p-1 hover:bg-lightBlue mt-1"
+              onClick={() => {
+                setActiveIconHandlerClicked(-3);
+                setClicked1(-3);
+              }}
+            >
               <div className="flex items-center">
-                <img
-                  src={manage_accounts_svg}
-                  alt="manage_accounts"
-                />
+                <img src={manage_accounts_svg} alt="manage_accounts" />
                 {/* <Link to={"userProfile"} state={{ background: location }}>تنظیمات حساب کاربری</Link> */}
                 <Link to={"userProfile"}>تنظیمات حساب کاربری</Link>
               </div>
             </div>
-            <div className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue ">
+            <div
+              className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue "
+              onClick={() => {
+                setActiveIconHandlerClicked(-3);
+                setClicked1(-3);
+              }}
+            >
               <div className="flex items-center gap-1">
                 <img src={add_card_svg} alt="add_card" />
                 <Link to={"buyPlan"}>خرید اشتراک</Link>
               </div>
             </div>
 
-            <div className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue ">
+            <div
+              className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue "
+              onClick={() => {
+                setActiveIconHandlerClicked(-3);
+                setClicked1(-3);
+              }}
+            >
               <div className="flex items-center gap-1">
-                <img
-                  src={statusPlan_svg}
-                  alt="currency_exchange"
-                />
+                <img src={statusPlan_svg} alt="currency_exchange" />
                 <Link to={"planStatus"}> وضعیت اشتراک</Link>
               </div>
               {/* <img src={arrow_svg} alt="arrow" className='ml-3' /> */}
             </div>
-            <div className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue mb-1">
+            <div
+              className="flex text-xs items-center justify-between w-full p-2 hover:bg-lightBlue mb-1"
+              onClick={() => {
+                setActiveIconHandlerClicked(-3);
+                setClicked1(-3);
+              }}
+            >
               <div className="flex items-center gap-1">
-                <img
-                  src={money_svg}
-                  alt="currency_exchange"
-                />
+                <img src={money_svg} alt="currency_exchange" />
                 <Link to={"financialReports"}> گزارش های مالی </Link>
               </div>
               {/* <img src={arrow_svg} alt="arrow" className='ml-3' /> */}
@@ -247,30 +262,18 @@ const DashboardHeader = () => {
               <div className="flex items-center pr-2">
                 <span className="text-red">خروج از حساب کاربری</span>
               </div>
-              <img
-                src={redlogout_svg}
-                alt="logout"
-                className="ml-1"
-              />
+              <img src={redlogout_svg} alt="logout" className="ml-1" />
               {/* <img src={arrow_svg} alt="arrow" className='ml-3' /> */}
             </div>
           </div>
         </div>
         <div className="flex items-center gap-3 ml-7">
-          <img
-            src={notif_svg}
-            alt="notif"
-            className="cursor-pointer"
-          />
+          <img src={notif_svg} alt="notif" className="cursor-pointer" />
           <div className="flex items-center justify-center relative text-[#fff] text-small ">
             <span className="text-white left-3.5 -top-1 absolute text-center rounded-full bg-red notifNumber hidden">
               33
             </span>
-            <img
-              src={message_svg}
-              alt="message"
-              className="cursor-pointer"
-            />
+            <img src={message_svg} alt="message" className="cursor-pointer" />
           </div>
           <img
             src={settingicon_svg}

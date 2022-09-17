@@ -18,7 +18,10 @@ export default function DashboardBody() {
 
   const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState({ type: "", result: true }); //handle buy plan type
    const [showWorkSpace, setShowWorkSpace] = useState(true); //handle close buy plan result
-
+  // item sidebar hover active mode
+ 
+  const[clicked,setActiveIconHandlerClicked]=useState(2);
+  const[clicked1,setClicked1]=useState(2);
   //check buy plan result
   useEffect(() => {
     const status_buy_plan = localStorage.getItem("statusBuyPlna");
@@ -47,7 +50,7 @@ export default function DashboardBody() {
   return (
     <div id="DASHBOARD">
       <div className="w-full h-16 bg-[#ffffff] shadow-3xl" >
-        <DashboardHeader  />
+        <DashboardHeader  setActiveIconHandlerClicked={setActiveIconHandlerClicked} setClicked1={setClicked1} />
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
         <div id="dashboardMap" className="bg-[#ffffff] overflow-y-scroll pb-24 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main">
@@ -55,7 +58,7 @@ export default function DashboardBody() {
        
         </div>
        
-        <SidebarComponent  />
+        <SidebarComponent  setActiveIconHandlerClicked={setActiveIconHandlerClicked} hoverIconClicked={clicked} clicked1={clicked1} setClicked1={setClicked1}  />
         
       </div>
       {!checkVerifyPhoneNumber&&setTimeout(() => {

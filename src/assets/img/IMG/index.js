@@ -9,6 +9,7 @@ import omorEdari  from '../dashboard/support/omorEdari.svg';
 import omorFani  from '../dashboard/support/omorFani.svg';
 import omorMali  from '../dashboard/support/omorMali.svg';
 import soalatPishKharid  from '../dashboard/support/soalatPishKharid.svg';
+import copyIcon  from '../dashboard/table/content_copy.svg';
 
 export const ImageContainer={
   infoBlue,
@@ -22,4 +23,5 @@ export const ImageContainer={
   omorFani,
   omorMali,
   soalatPishKharid,
+  copyIcon,
 }

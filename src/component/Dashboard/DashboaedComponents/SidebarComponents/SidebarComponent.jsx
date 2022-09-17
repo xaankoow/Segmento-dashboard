@@ -11,22 +11,26 @@ import ItemSidebarHover from "./ItemSidebarHover";
 import sidebarIcon1_svg from "../../../../assets/img/dashboard/sidebarHover/sidebarIcon1.svg";
 import dashboardPishKhan_svg from "../../../../assets/img/dashboard/nav_right/dashboardPishKhan.svg";
 
-export default function SidebarComponent() {
+export default function SidebarComponent({
+  setActiveIconHandlerClicked,
+  hoverIconClicked,
+  clicked1,
+  setClicked1,
+}) {
   const [showToolTip, setShowToolTip] = useState(true);
 
   const [activeIcon, setActiveIcon] = useState(0);
   const { closeNav } = useSelector((state) => state.navMenuState);
   const dispatch = useDispatch();
-  // item sidebar hover active mode
-  const[clicked,setClicked]=useState(2);
-  const[clicked1,setClicked1]=useState(2);
+
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
 
   const activeIconHandler = (e) => {
     setActiveIcon(e.target.id);
-    setClicked(-1);
+    setActiveIconHandlerClicked(-1);
+    setClicked1(2);
     dispatch(setCloseNav(true));
-    // setCloseNav(true);
+   
   };
 
   const itemsHoverMenu = [
@@ -57,28 +61,27 @@ export default function SidebarComponent() {
                   textHover={"#0A65CD"}
                   index={index}
                   clicked={clicked1}
-                  setClicked={()=>setClicked1(index)}
+                  setClicked={() => setClicked1(index)}
                 />
               );
             })}
           </div>
         ) : activeIcon == 1 ? (
           <div>
-            <div onClick={()=>setClicked(-1)} className={`flex items-center gap-3 text-[#002145] my-5 mr-5 cursor-pointer text-sm hover:cursor-pointer hover:text-blue ${clicked == -1 && "active"}`}>
-              <img
-                src={dashboardPishKhan_svg}
-                alt="icon"
-               
-              />
-              <Link
-                to={"/dashboard/PageCounter"}
-              
-              >
-                {closeNav && "پیشخان"}
-              </Link>
+            <div
+              onClick={() => setActiveIconHandlerClicked(-1)}
+              className={`flex items-center gap-3 text-[#002145] my-5 mr-5 cursor-pointer text-sm hover:cursor-pointer hover:text-blue ${
+                hoverIconClicked == -1 && "active"
+              }`}
+            >
+              <img src={dashboardPishKhan_svg} alt="icon" />
+              <Link to={"/dashboard/PageCounter"}>{closeNav && "پیشخان"}</Link>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
-            <AcardionItem  clicked={clicked} setClicked={setClicked}/>
+            <AcardionItem
+              clicked={hoverIconClicked}
+              setClicked={setActiveIconHandlerClicked}
+            />
           </div>
         ) : null}
         {/* advertisement box */}
