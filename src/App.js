@@ -7,7 +7,7 @@ import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
 import PlanStatus from "./component/Dashboard/DashboaedComponents/PlanStatus";
 import EditUserProfile from "./component/Dashboard/pages/EditUserProfile/EditUserProfile";
@@ -35,14 +35,28 @@ import PopUp from "./component/Utils/PopUp/PopUp";
 import errorIco_svg from './assets/img/popUp/errorIco.svg'
 import update_svg from './assets/img/popUp/update.svg'
 import AuthButton from "./component/Auth/authButton/AuthButton";
+import { allLimitDataFeature, ChackBusinessCustomer } from "./component/Redux/Action/workSpace";
+
 export default function App() {
+  
   const { forceUpdate } = useSelector((state) => state.userState);
+  const userState = useSelector((state) => state.userState);
   const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
   const navigate = useNavigate();
+
+  const dispatch=useDispatch()
 
   useEffect(() => {
     resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
   }, [resultSetWorkSpace.reportStatus])
+
+  useEffect(() => {
+    dispatch(allLimitDataFeature())
+    dispatch(ChackBusinessCustomer())
+  }, [userState.userData.package]);
+  // useEffect(() => {
+  // }, [])
+  
 
 
   const location = useLocation();
@@ -92,7 +106,7 @@ export default function App() {
                     <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
                     <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
                     <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-                    <Route exact path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />} />
+                    <Route path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />} />
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />} />
                     <Route path="PageCounter" element={<PageCounter />} />
                     <Route path="ReportSupport" element={<ReportSupport />} />
@@ -122,44 +136,44 @@ export default function App() {
 
             {/* availability tools popup */}
             <Route exact path={`dashboard/checkLimit`} element={
-            
-            <PopUp
-              image={errorIco_svg}
-              type={"warning"}
-              buttonText={"باشه"}
-              text={
-                "کاربر گرامی منابع اشتراک فعلی شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید."
-              }
-              createFooterTag={(
-                <div className="flex justify-between items-center w-full px-3">
-                  <span className="buttonText mt-5 third-btn" onClick={() => navigate(-1)}>باشه، فهمیدم!</span>
-                  <div>
-                    <AuthButton textButton={"خرید اشتراک"} setOnclickValue={1} />
+
+              <PopUp
+                image={errorIco_svg}
+                type={"warning"}
+                buttonText={"باشه"}
+                text={
+                  "کاربر گرامی منابع اشتراک فعلی شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید."
+                }
+                createFooterTag={(
+                  <div className="flex justify-between items-center w-full px-3">
+                    <span className="buttonText mt-5 third-btn" onClick={() => navigate(-1)}>باشه، فهمیدم!</span>
+                    <div>
+                      <AuthButton textButton={"خرید اشتراک"} setOnclickValue={1} />
+                    </div>
                   </div>
-                </div>
-              )}
-              title={"موفقیت آمیز"}
-            />} />
+                )}
+                title={"موفقیت آمیز"}
+              />} />
 
 
             <Route exact path={`dashboard/checkedPackage`} element={
-                        <PopUp
-                        image={errorIco_svg}
-                        type={"warning"}
-                        buttonText={"باشه"}
-                        text={
-                          "کاربر گرامی زمان اشتراک شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید. "
-                        }
-                        createFooterTag={(
-                          <div className="flex justify-between items-center w-full px-3">
-                            <span className="buttonText mt-5 third-btn" onClick={() => navigate(-1)}>باشه، فهمیدم!</span>
-                            <div>
-                              <AuthButton textButton={"خرید اشتراک"} setOnclickValue={1} />
-                            </div>
-                          </div>
-                        )}
-                        title={"موفقیت آمیز"}
-                      />} />
+              <PopUp
+                image={errorIco_svg}
+                type={"warning"}
+                buttonText={"باشه"}
+                text={
+                  "کاربر گرامی زمان اشتراک شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید. "
+                }
+                createFooterTag={(
+                  <div className="flex justify-between items-center w-full px-3">
+                    <span className="buttonText mt-5 third-btn" onClick={() => navigate(-1)}>باشه، فهمیدم!</span>
+                    <div>
+                      <AuthButton textButton={"خرید اشتراک"} setOnclickValue={1} />
+                    </div>
+                  </div>
+                )}
+                title={"موفقیت آمیز"}
+              />} />
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}

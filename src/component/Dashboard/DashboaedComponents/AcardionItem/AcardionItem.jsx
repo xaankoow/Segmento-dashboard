@@ -57,7 +57,7 @@ export default function AcardionItem({clicked,setClicked}) {
           itemTitle: "تحقیق کلمه کلیدی ",
           itemIcon: searchKeyWord_svg,
           itemLink: "keywordResearch",
-          section: "keyWords"
+          // section: ""
         },
         {
           itemTitle: "صفحات تجاری ",
@@ -247,7 +247,8 @@ export default function AcardionItem({clicked,setClicked}) {
                       </div>
                   
                     ):acardionItem.itemLink != ""&&(
-                      <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
+                      // <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
+                      <Link to={acardionItem.itemLink} className={"w-auto"}>
                       <div
                       onClick={()=>setItemsClicked(acardionItem.itemTitle)}
                         key={indexx}
@@ -274,7 +275,7 @@ export default function AcardionItem({clicked,setClicked}) {
                     />
                     <Link
                       // to={user.userData.package != undefined ?limitsDatas.length > 0 && limitsDatas[2].count>0? "setWorkSpace":"checkLimit": location}
-                      to={user.userData.package != undefined ?`${ChackingAvailabilityTools({path:"setWorkSpace",userState:user,workSpaceState:workSpaceState})}`: location}
+                      to={user.userData.package != undefined ?`${ChackingAvailabilityTools({path:"setWorkSpace",section:"workSpace",userState:user,workSpaceState:workSpaceState})}`: location}
                       // to={user.userData.package != undefined ?`${<ChackingAvailabilityTools path={"setWorkSpace"} section="workspace"/>}`: location}
                       onClick={()=>user.userData.package == undefined && showToast("شما پلن فعالی ندارید", "error")}
                       state={{ background: location }}

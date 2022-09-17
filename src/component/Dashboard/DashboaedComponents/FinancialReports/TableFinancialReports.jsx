@@ -59,9 +59,9 @@ export default function TableFinancialReports({ title }) {
   const loadingState = useSelector((state) => state.loadingState);
   useEffect(() => {
     // debugger
-    if (financialDataTableOrg.length == 0) {
+    // if (financialDataTableOrg.length == 0) {
       GetFinancialReportsData();
-    }
+    // }
   }, []);
 
   const GetFinancialReportsData = async () => {
@@ -108,6 +108,7 @@ export default function TableFinancialReports({ title }) {
       }
     }
   };
+  
   var moment = require("jalali-moment");
 
   const ExcelFile = ReactExport.ExcelFile;

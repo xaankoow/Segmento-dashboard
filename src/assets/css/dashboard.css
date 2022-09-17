@@ -440,7 +440,8 @@
 	/* dialog */
 	box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
 	border-radius: 9px;
-	Width: 384.92px;
+	overflow: hidden;
+	/* Width: 384.92px; */
 	/* Height: 301.12px; */
 }
 
@@ -453,7 +454,7 @@
 }
 
 #DASHBOARD .popUpContainer .PopUpBox {
-	border-radius: 9px;
+	/* border-radius: 9px; */
 	display: flex;
 	justify-content: center;
 }
