@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { getAllFinancialReportsData } from "../../service/financialReportsService";
 import { getPackageInfO } from "../../service/packages";
 import { usetLimit } from "../../service/userLimit";
 import {
@@ -12,6 +13,59 @@ import {
   showPromisToast,
   showToast,
 } from "../../Utils/toastifyPromise";
+
+export const ChackBusinessCustomer = () => {
+  return async (dispatch, getState) => {
+    const state = { ...getState().workSpaceState };
+    const loadingState = { ...getState().loadingState };
+    let toastMessage = "";
+    try {
+      if (!loadingState.ProcessingDelay.includes("getAllFinancialReports")) {
+        //handle show loadin
+        {
+          loadingState.ProcessingDelay.push("getAllFinancialReports");
+          loadingState.canRequest = false;
+          await dispatch({
+            type: "SET_PROCESSING_DELAY",
+            payload: loadingState,
+          });
+        }
+        const { data } = await getAllFinancialReportsData();
+        
+        if (data.status == true && data.code == 200) {
+
+          const findSuccessReport=data.data.findIndex(state=>state.order_status_text=="فعال شده")
+
+          state.businessCustomer=findSuccessReport!=-1?true:false;
+        }
+
+        //handle hide loading
+        {
+          var removeProcessingItem = loadingState.ProcessingDelay.filter(
+            (item) => item != "getAllFinancialReports"
+          );
+          loadingState.ProcessingDelay = removeProcessingItem;
+          loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+          await dispatch({
+            type: "SET_PROCESSING_DELAY",
+            payload: loadingState,
+          });
+        }
+      }
+    } catch (error) {
+      //handle hide loading
+      {
+        var removeProcessingItem = loadingState.ProcessingDelay.filter(
+          (item) => item != "getAllFinancialReports"
+        );
+        loadingState.ProcessingDelay = removeProcessingItem;
+        loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+      }
+    }
+    await dispatch({ type: "CHECK_BUSSINESS", payload: state });
+  }
+};
 
 export const setWebAdress = (adress) => {
   return async (dispatch, getState) => {
@@ -605,7 +659,7 @@ export const allLimitDataFeature = () => {
     const state = { ...getState().workSpaceState };
     const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState }
-    
+
     let package_uuid = "";
 
     if (userState.userData.package != undefined) {

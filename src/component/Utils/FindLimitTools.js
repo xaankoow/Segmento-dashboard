@@ -10,15 +10,16 @@ export const FindLimitTools = (section,workSpaceState) => {
 // debugger
     switch (section) {
         case "workSpace":
-            limitInfo.all = workSpaceState.allLimitsDatas.length != 0 && workSpaceState.allLimitsDatas[2].count;
+            // debugger
+            limitInfo.all = workSpaceState.allLimitsDatas.length != 0 ? workSpaceState.allLimitsDatas[2].count:0;
             limitInfo.limit = workSpaceState.limitsDatas.length > 0 ? workSpaceState.limitsDatas[2].count : 0;
+            // limitInfo.limit = 0;
             //   a = {
             //     allWords: allLimitsDatas.length != 0 && allLimitsDatas[2].count,
             //     rest: limitsDatas.length > 0 ? limitsDatas[2].count : "",
             //   };
             break;
         case "keyWords":
-            // debugger
             limitInfo.all = workSpaceState.allLimitsDatas.length != 0 && workSpaceState.allLimitsDatas[3].count;
             limitInfo.limit = workSpaceState.limitsDatas.length > 0 ? workSpaceState.limitsDatas[3].count : 0;
             break;

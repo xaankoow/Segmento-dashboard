@@ -5,6 +5,7 @@ import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showToast } from "../../Utils/toastifyPromise";
+import { ChackBusinessCustomer } from "./workSpace";
 
 
 // get all user data in api
@@ -35,6 +36,8 @@ export const coreUser = () => {
                     if (data.data.user != undefined) {
                         state.userData = data.data;
                         state.checkVerifyPhoneNumber = data.data.user.mobile==null?false:true;
+                        // await dispatch(ChackBusinessCustomer())
+                        
                     } else {
                         localStorage.removeItem("token")
                     }

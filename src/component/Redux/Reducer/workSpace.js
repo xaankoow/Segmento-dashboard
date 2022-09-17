@@ -39,6 +39,7 @@ export const workSpaceReducer = (state =
         allLimitsDatas: [],
         resultSetWorkSpace: { reportStatus: false, reportStep: 0 },
         showWorkSpaceModal: false,
+        businessCustomer:false,
         checkLimit:true,
         forceUpdate: 0
     }, action) => {
@@ -84,6 +85,8 @@ export const workSpaceReducer = (state =
             return { ...action.payload }
 
         case "CHECK_LIMIT":
+            return { ...action.payload }
+        case "CHECK_BUSSINESS":
             return { ...action.payload }
         case "FORCE_UPDATE":
             return { ...action.payload }
