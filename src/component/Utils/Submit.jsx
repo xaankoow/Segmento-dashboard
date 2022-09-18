@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 
-export default function SubmitForm({ children, submitFun, dispatchOption , formClass }) {
+export default function SubmitForm({ children, submitFun, dispatchOption , formClass , resetRadioKeyWordsSection , outSideFun}) {
 
     const dispatch = useDispatch();
 
     const onSubmitForm = (element, fun, dispatchOption) => {
 
         element.preventDefault();
+        
+        if (outSideFun!= undefined) {
+            outSideFun()
+        }
+
         if (dispatchOption!=undefined) {
             dispatch(fun())
         } else {
