@@ -43,23 +43,27 @@ export default function Nav({ path }) {
 
   return (
     <div id='nav-option-head' className='w-full flex items-center justify-between px-28'>
-      <div className='flex justify-around items-center'>
-        <div className="flex justify-center items-center pl-5">
+      <div className='flex justify-around items-center' id="NAV">
+        <div className="flex justify-center items-center pl-5 active ">
           <span className='logo_nav option_segmento_logo' />
-          <a href='#'>امکانات</a>
+          <a href={"https://segmento.ir/features/"} >امکانات</a>
         </div>
-        <div className="flex justify-center items-center pl-5">
+        <div className="flex justify-center items-center pl-5 active">
           <span className='logo_nav course_video_logo' />
-          <a href='#'>ویدئو آموزشی</a>
+          <a href={"https://segmento.ir/knowledge/ "} >ویدئو آموزشی</a>
         </div>
-        <div className="flex justify-center items-center pl-5">
+        <div className="flex justify-center items-center pl-5 active">
           <span className='logo_nav diamond_price_logo' />
-          <a href='#'>قیمت گذاری</a>
+          <a href={"https://segmento.ir/pricing/"} >قیمت گذاری</a>
         </div>
-        <di className="flex justify-center items-center pl-5" v>
+        <div className="flex justify-center items-center pl-5 active" >
           <span className='logo_nav cookie_communicate_logo' />
-          <a href='#'>همکاری با آژانس ها</a>
-        </di>
+          <a href={"https://segmento.ir/about/business/ "} >همکاری با آژانس ها</a>
+        </div>
+        <div className="flex justify-center items-center pl-5 active" >
+          <span className='logo_nav handshake_logo' />
+          <a href={"https://segmento.ir/about/affiliate/"} >همکاری در فروش</a>
+        </div>
       </div>
       <div>
         <Link to={`/dashboard/accountOperations/${path}`} className='btn-style'>{path == "login" ? "ورود" : "ثبت نام"}</Link>

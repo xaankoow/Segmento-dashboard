@@ -72,6 +72,7 @@ const KeyWords = ({ onClickHandler }) => {
       //   title={"موفقیت آمیز"}
       //   targetTag={"#keyWordsLayOutId"}
       // />
+      
       // }
     } catch (error) {
       setShowPopUpLimit(true);
@@ -142,6 +143,7 @@ const KeyWords = ({ onClickHandler }) => {
   const secoundSearchBoxChangeHandler = (e) => {
     setSecoundSearchBoxValue(e.target.value);
     setAlphabetHandler("");
+    
   };
 
   //  filter from comboBox
@@ -152,6 +154,7 @@ const KeyWords = ({ onClickHandler }) => {
   const radioButtonHandler = (e) => {
     setRadioClickedHandler(e.target.value);
     setAlphabetHandler("");
+   
   };
 
   if (radioClickedHandler === "1" && searchBoxValue) {
@@ -218,6 +221,7 @@ const KeyWords = ({ onClickHandler }) => {
           handlClick={() => {
             setSearchBoxHandleClick(true);
             handleSetKeyWords();
+            
           }}
           className="w-[97%] flex items-center gap-2 justify-between"
         />
