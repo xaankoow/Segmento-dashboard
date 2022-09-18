@@ -37,7 +37,7 @@ export default function ValidateEmail() {
               <br />
               برای آغاز ماجراجویی‌ در سگمنتو همین حالا کدی که از طریق ایمیل دریافت کردید رو در کادر زیر بنویسید.
               <br />
-              <br/>
+              <br />
 
               اگر ایمیلی دریافت نکردید، روی گزینه دریافت مجدد کد، کلیک کنید. کامپیوترها خیلی هم باهوش نیستن و ممکنه اشتباه کرده باشن :)
 
@@ -47,7 +47,7 @@ export default function ValidateEmail() {
             <span>کد فعال سازی</span>
             <SubmitForm SubmitForm={checkVerifyEmailAction} dispatchOption formClass={"flex gap-5"}>
 
-            {/* <div className="flex gap-5"> */}
+              {/* <div className="flex gap-5"> */}
               <AuthInput
                 classes={"verify_email_cod input_selector_4"}
                 notCheckValue={true}
@@ -80,7 +80,7 @@ export default function ValidateEmail() {
                 reduxHandleChange={setAuth4Redux}
                 selectWithOnClick
               />
-            {/* </div> */}
+              {/* </div> */}
 
             </SubmitForm>
 
@@ -122,11 +122,23 @@ export default function ValidateEmail() {
             </Link>
           </div>
         </div>
-        </div>
-          <div className="flex gap-4 justify-center mx-auto absolute bottom-5">
-            <img src={contactUs_svg} alt="contactUs" />
-            <img src={Fi_rr_life_ring_svg} alt="fi-rr-life-ring.svg" />
-          </div>
+      </div>
+      <div className="flex gap-4 justify-center mx-auto absolute bottom-5">
+        <img src={contactUs_svg} alt="contactUs"
+          data-tip="شماره تماس: 38331497-051"
+          data-type="light"
+          data-place="top"
+          data-class="sizeClass"
+          onMouseEnter={() => setShowToolTip(true)}
+          onMouseLeave={() => {
+            setShowToolTip(false);
+            setTimeout(() => setShowToolTip(true), 0);
+          }}
+        />
+        <a href="https://segmento.ir/support">
+          <img src={Fi_rr_life_ring_svg} alt="fi-rr-life-ring.svg" />
+        </a>
+      </div>
       {showToolTip && <ToolTip />}
     </div>
   );

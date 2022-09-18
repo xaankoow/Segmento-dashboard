@@ -22,6 +22,7 @@ export const getAllPlanData = () => {
             let toastMessage = "";
 
             try {
+                // debugger
                 if (!loadingState.ProcessingDelay.includes("getAllPlan")) {
                     //handle show loadin
                     {
@@ -52,24 +53,14 @@ export const getAllPlanData = () => {
                     draggable: true,
                     progress: undefined,
                 });
-                            //handle hide loading
-            {
-                const loadingState2 = { ...getState().loadingState }
-                var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
-                loadingState2.ProcessingDelay = removeProcessingItem;
-                loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
-                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
-            }
-            }
-
-
-            //handle hide loading
-            {
-                const loadingState2 = { ...getState().loadingState }
-                var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
-                loadingState2.ProcessingDelay = removeProcessingItem;
-                loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
-                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
+                //handle hide loading
+                {
+                    const loadingState2 = { ...getState().loadingState }
+                    var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
+                    loadingState2.ProcessingDelay = removeProcessingItem;
+                    loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
+                }
             }
         }
 
