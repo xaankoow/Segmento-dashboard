@@ -46,24 +46,24 @@ const KeyWords = ({ onClickHandler }) => {
       // const { data, status } = await keywordService(searchBoxValue);
       debugger
       // console.log(toolsLimit[20].count)
-      if (toolsLimit[6].count<0) {
+      // if (toolsLimit[6].count<0) {
         
         const { data, status } = await keywordService(dd);
         setKeyWords(data.data.result); //5
         setId(data.data.id);
         dispatch(resetLimitState())
         // console.log(data.data.id);
-      } else {
-        <PopUp
-        clickHandler={() => showSavePopup(false)}
-        image={playlist_add_svg}
-        type={"sucsess"}
-        buttonText={"باشه، فهمیدم!"}
-        text={"لیست جدید شما با موفقیت ذخیره شد !"}
-        title={"موفقیت آمیز"}
-        targetTag={"#keyWordsLayOutId"}
-      />
-      }
+      // } else {
+      //   <PopUp
+      //   clickHandler={() => showSavePopup(false)}
+      //   image={playlist_add_svg}
+      //   type={"sucsess"}
+      //   buttonText={"باشه، فهمیدم!"}
+      //   text={"لیست جدید شما با موفقیت ذخیره شد !"}
+      //   title={"موفقیت آمیز"}
+      //   targetTag={"#keyWordsLayOutId"}
+      // />
+      // }
     } catch (error) {
       // console.log(error)
     }

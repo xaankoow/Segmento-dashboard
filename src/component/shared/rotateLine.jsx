@@ -5,6 +5,7 @@ export default function RotateLine({
   firstText,
   title,
   lineChartClass,
+  degree,
 }) {
   return (
     <div className={` absolute  flex items-center h-[348px] pb-14 `}>
@@ -14,7 +15,7 @@ export default function RotateLine({
           <span className="text-lg">{title}</span>
         </div>
         <div>
-        <div className={`rotate-[23deg]  h-[65px]`}>
+        <div className={`${degree} h-[65px]`}>
           <div className="w-3 h-3 bg-silver rounded-full  absolute -right-2 -top-1 z-10"></div>
 
           {lineData.map((item, index) => {

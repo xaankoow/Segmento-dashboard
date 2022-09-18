@@ -247,7 +247,8 @@ export default function AcardionItem({clicked,setClicked}) {
                       </div>
                   
                     ):acardionItem.itemLink != ""&&(
-                      <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
+                      // <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
+                      <Link to={acardionItem.itemLink} className={"w-auto"}>
                       <div
                       onClick={()=>setItemsClicked(acardionItem.itemTitle)}
                         key={indexx}

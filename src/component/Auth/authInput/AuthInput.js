@@ -29,7 +29,8 @@ export default function AuthInput({
   ref,
   inputId,
   selectWithOnClick,
-  placeholder
+  placeholder,
+  handleChangeValue
 
 
 }) {
@@ -84,6 +85,7 @@ export default function AuthInput({
             checkStrongPass!=undefined&&CheckFormat("password",e.target.value,errorTextId)
             handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow);
             handleChange != undefined && handleChange(e.target.value)
+            handleChangeValue != undefined && handleChangeValue()
             setInputValue(e.target.value);
             workSpaceTypeState != undefined & reduxHandleChange != undefined ?
               dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) :
