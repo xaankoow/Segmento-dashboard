@@ -16,9 +16,9 @@ import {
 
 export const ChackBusinessCustomer = () => {
   return async (dispatch, getState) => {
-    const state = { ...getState().workSpaceState };
     const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState };
+
     let toastMessage = "";
     try {
       if (!loadingState.ProcessingDelay.includes("getAllFinancialReports")) {
@@ -31,43 +31,49 @@ export const ChackBusinessCustomer = () => {
             payload: loadingState,
           });
         }
-        const { data } = await getAllFinancialReportsData();
         // debugger
+        const { data } = await getAllFinancialReportsData();
         if (data.status == true && data.code == 200) {
+          const state = { ...getState().workSpaceState };
 
-          const findSuccessReport=data.data.findIndex(state=>state.order_status_text=="فعال شده")
+          const findSuccessReport = data.data.findIndex(state => state.order_status_text == "فعال شده")
 
-          state.businessCustomer={
-            current:userState.userData.package.type_text!="پکیج پایه"?true:false,
-            last:findSuccessReport!=-1?true:false
+          state.businessCustomer = {
+            current: userState.userData.package.type_text != "پکیج پایه" ? true : false,
+            last: findSuccessReport != -1 ? true : false
           }
+          await dispatch({ type: "CHECK_BUSSINESS", payload: state });
+
         }
 
         //handle hide loading
         {
-          var removeProcessingItem = loadingState.ProcessingDelay.filter(
+          const loadingState1 = { ...getState().loadingState };
+          var removeProcessingItem = loadingState1.ProcessingDelay.filter(
             (item) => item != "getAllFinancialReports"
           );
-          loadingState.ProcessingDelay = removeProcessingItem;
-          loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+          loadingState1.ProcessingDelay = removeProcessingItem;
+          loadingState1.canRequest = removeProcessingItem > 0 ? false : true;
           await dispatch({
             type: "SET_PROCESSING_DELAY",
-            payload: loadingState,
+            payload: loadingState1,
           });
         }
       }
     } catch (error) {
       //handle hide loading
       {
-        var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        const loadingState2 = { ...getState().loadingState };
+        var removeProcessingItem = loadingState2.ProcessingDelay.filter(
           (item) => item != "getAllFinancialReports"
         );
-        loadingState.ProcessingDelay = removeProcessingItem;
-        loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+        loadingState2.ProcessingDelay = removeProcessingItem;
+        loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
+        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 });
       }
     }
-    await dispatch({ type: "CHECK_BUSSINESS", payload: state });
+
+
   }
 };
 
@@ -89,7 +95,7 @@ export const setShowWorkSpaceModal = (value) => {
 export const getAllWorkSpace = () => {
   return async (dispatch, getState) => {
     // debugger
-    const state = { ...getState().workSpaceState };
+    // var state = { ...getState().workSpaceState };
     const loadingState = { ...getState().loadingState };
 
     let toastMessage = "";
@@ -110,7 +116,9 @@ export const getAllWorkSpace = () => {
 
         const workSpaces = await getAllWorkspace();
         if (workSpaces.data.status == true && workSpaces.data.code == 200) {
+          const state = { ...getState().workSpaceState };
           state.allWorkSpace = workSpaces.data.data;
+          await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state });
         }
       }
     } catch (error) {
@@ -137,7 +145,7 @@ export const getAllWorkSpace = () => {
       loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 });
     }
-    await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state });
+
   };
 };
 
@@ -660,7 +668,6 @@ export const resetWorkSpaceState = () => {
 //all limit
 export const allLimitDataFeature = () => {
   return async (dispatch, getState) => {
-    const state = { ...getState().workSpaceState };
     const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState }
 
@@ -682,31 +689,42 @@ export const allLimitDataFeature = () => {
           const infoPackage = await getPackageInfO(package_uuid);
           const limitPackage = await usetLimit();
           if (limitPackage.data.code == 200 && limitPackage.data.status == true && infoPackage.data.code == 200 && infoPackage.data.status == true) {
+            const state = { ...getState().workSpaceState };
             state.limitsDatas = limitPackage.data.data;
             state.allLimitsDatas = infoPackage.data.data.features;
+            await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state });
           }
-        } catch (error) { }
-        //handle hide loading
-        {
-          const loadingState1 = { ...getState().loadingState }
-          var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "usetLimit");
-          loadingState1.ProcessingDelay = removeProcessingItem;
-          loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
-          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+          //handle hide loading
+          {
+            const loadingState1 = { ...getState().loadingState }
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "usetLimit");
+            loadingState1.ProcessingDelay = removeProcessingItem;
+            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+          }
+        } catch (error) {
+          //handle hide loading
+          {
+            const loadingState1 = { ...getState().loadingState }
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "usetLimit");
+            loadingState1.ProcessingDelay = removeProcessingItem;
+            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+          }
         }
+
       }
-      await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state });
     }
   };
 };
 
-export const handleLowOffLimitCount = (section,numLowOff) => {
+export const handleLowOffLimitCount = (section, numLowOff) => {
   return async (dispatch, getState) => {
     const state = { ...getState().workSpaceState };
-    const findFeatureIndex= state.limitsDatas.findIndex(state=>state.feature_title==section)
-    if (findFeatureIndex!=-1) {
-      state.limitsDatas[findFeatureIndex].count-=numLowOff
+    const findFeatureIndex = state.limitsDatas.findIndex(state => state.feature_title == section)
+    if (findFeatureIndex != -1) {
+      state.limitsDatas[findFeatureIndex].count -= numLowOff
     }
-      await dispatch({ type: "LOW_OFF_FEATURE_COUNT", payload: state });
-    }
+    await dispatch({ type: "LOW_OFF_FEATURE_COUNT", payload: state });
+  }
 };

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { allLimitDataFeature, getAllWorkSpace, resetWorkSpaceState } from '../../../Redux/Action/workSpace';
+import { allLimitDataFeature, ChackBusinessCustomer, getAllWorkSpace, resetWorkSpaceState } from '../../../Redux/Action/workSpace';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 import workSpace_report_ico_svg from '../../../../assets/img/dashboard/workSpace/headMessageReport/workSpace_report_ico.svg'
 import arrowVector_svg from '../../../../assets/img/modal/workSpace/body/arrowVector.svg'
@@ -52,19 +52,20 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
         const filterCompetitors = element.competitorSite.filter(value => value != "")
         element.competitorSite = filterCompetitors;
     });
- 
-    const dispatch=useDispatch()
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
-      return () => {
-        init()
-      }
+        return () => {
+            init()
+        }
     }, [])
 
-    const init=async()=>{
-        await dispatch(resetWorkSpaceState())
-        await dispatch(getAllWorkSpace())
-        await dispatch(allLimitDataFeature())
+    const init = async () => {
+        dispatch(resetWorkSpaceState())
+        dispatch(ChackBusinessCustomer())
+        dispatch(getAllWorkSpace())
+        dispatch(allLimitDataFeature())
     }
 
     return (
@@ -90,7 +91,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                         <div className='flex gap-6 justify-between items-center relative'>
                             <div className='w-[20px] h-[2px] bg-primary rotate-90 rounded absolute -right-[10px]' />
                             <span className=' text-sm mr-3'>آدرس وبسایت شما: </span>
-                            <span className='text-sm float-left'>{"https://" +webAdress}</span>
+                            <span className='text-sm float-left'>{"https://" + webAdress}</span>
                         </div>
                     </div>
                     {/* site key words */}
@@ -108,11 +109,11 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                                             <p className=' w-full text-left text-sm mt-3 border border-sectionDisable h-11 pr-2 flex items-center'>{item.key}</p>
                                         </div>
                                     </div>
-                                    <img src={arrowVector_svg} alt="arrowVector"  />
+                                    <img src={arrowVector_svg} alt="arrowVector" />
                                     <div className=' w-2/4 pr-3'>
                                         <div className='pr-2'>
                                             <p className=' w-full text-right text-xs'>سایت مرتبط</p>
-                                            <p className=' w-full text-left text-sm mt-3 border border-sectionDisable h-11 p-1 flex items-center justify-end'>{"https://" + webAdress + (item.site!=""? `/${item.site}`:"")}</p>
+                                            <p className=' w-full text-left text-sm mt-3 border border-sectionDisable h-11 p-1 flex items-center justify-end'>{"https://" + webAdress + (item.site != "" ? `/${item.site}` : "")}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -176,9 +177,9 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                                         </div>
                                         <img src={arrowVector_svg} alt="arrowVector" />
                                         <div className=' w-2/4 pr-3'>
-                                            {item.competitorSite.map((site,index) => (
+                                            {item.competitorSite.map((site, index) => (
                                                 <div className='pr-2'>
-                                                    <p className=' w-full text-right text-xs'>سایت رقیب {index}</p>
+                                                    <p className=' w-full text-right text-xs'>سایت رقیب {index + 1}</p>
                                                     <p className=' w-full text-left text-sm mt-3 border border-sectionDisable h-11 p-1 flex items-center justify-end'>{"https://" + site}</p>
                                                 </div>
                                             ))}
@@ -195,7 +196,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
                     </div>
                 </div>
             </div>
-            <SetTitleTabBrowser nameSection={"رسید ورک اسپیس"}/>
+            <SetTitleTabBrowser nameSection={"رسید ورک اسپیس"} />
         </Fragment>
     )
 }
