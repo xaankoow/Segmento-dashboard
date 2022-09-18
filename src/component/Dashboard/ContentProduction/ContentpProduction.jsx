@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resetLimitState } from "../../Redux/Action/workSpace";
+import { handleLowOffLimitCount, resetLimitState } from "../../Redux/Action/workSpace";
 import { ContentProductionService } from "../../service/contentProduction";
 import PopUp from "../../Utils/PopUp/PopUp";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
@@ -9,6 +9,8 @@ import SaveListModal from "./SaveListModal";
 import cached_svg from '../../../assets/img/dashboard/table/cached.svg';
 import update_svg from '../../../assets/img/popUp/update.svg'
 import playlist_add_svg from '../../../assets/img/popUp/playlist_add.svg'
+import PopUpLimit from "../../Utils/Limit/PopUpLimit";
+import AuthButton from "../../Auth/authButton/AuthButton";
 
 export default function ContentpProduction({ onClickHandler }) {
   // searchBox Value
@@ -19,6 +21,7 @@ export default function ContentpProduction({ onClickHandler }) {
   const [SaveInputValue, SetSaveInputValues] = useState("");
   const [boxIndex, setUpdateBoxIndex] = useState(-1);
   const [activeboxValue, setActiveboxValue] = useState("");
+  const [showPopUpLimit, setShowPopUpLimit] = useState(true);
   const SaveInputValues = (e) => {
     SetSaveInputValues(e);
   };
@@ -53,12 +56,13 @@ export default function ContentpProduction({ onClickHandler }) {
       formdata.append("limit", 10);
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await ContentProductionService(formdata);
-       
       setcontent([...content,...data.data]);
+      dispatch(handleLowOffLimitCount("WORD_BATCH_LIMIT",10))
       dispatch(resetLimitState())
       // debugger;
-
+      
     } catch (error) {
+      setShowPopUpLimit(true)
       // console.log(error);
     }
     //handle hide loading
@@ -153,22 +157,23 @@ export default function ContentpProduction({ onClickHandler }) {
         </div>
       </div>
       <div className=" pb-4">
-        <button
-          className={
-            searchBoxValue && searchBoxHandleClick
-              ? "btn-style mr-5 mt-5 flex gap-3"
-              : "bg-lightGray btn-style mr-5 mt-5 flex gap-3"
-          }
+        <AuthButton
+        classes={searchBoxValue && searchBoxHandleClick
+          ? "btn-style mr-5 mt-5 flex gap-3"
+          : "bg-lightGray btn-style mr-5 mt-5 flex gap-3"}
           disabled={searchBoxHandleClick ? false : true}
-          onClick={(e) => {
-            handleSetContentProduction();
-          }}
-        >
-          <img src={cached_svg} alt="cached" />
+          handlerClick={handleSetContentProduction}
+          textButton={
+            <>
+            <img src={cached_svg} alt="cached" />
           تولید بیشتر
-        </button>
+            </>
+          }
+        />
       </div>
-      {/* {number ? "" : ""} */}
+      {showPopUpLimit?<PopUpLimit section={"contentCreation"} handleClose={setShowPopUpLimit}/>:null}
+      
+      
     </>
   );
 }

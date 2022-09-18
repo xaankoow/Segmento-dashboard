@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { resetWorkSpaceState } from '../../../Redux/Action/workSpace';
+import { allLimitDataFeature, getAllWorkSpace, resetWorkSpaceState } from '../../../Redux/Action/workSpace';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
 import workSpace_report_ico_svg from '../../../../assets/img/dashboard/workSpace/headMessageReport/workSpace_report_ico.svg'
 import arrowVector_svg from '../../../../assets/img/modal/workSpace/body/arrowVector.svg'
+import { ImageContainer } from '../../../../assets/img/IMG';
 
 export default function WorkSpaceReport({ stepWorkSpace }) {
 
@@ -56,10 +57,15 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
 
     useEffect(() => {
       return () => {
-        dispatch(resetWorkSpaceState())
+        init()
       }
     }, [])
-    
+
+    const init=async()=>{
+        await dispatch(resetWorkSpaceState())
+        await dispatch(getAllWorkSpace())
+        await dispatch(allLimitDataFeature())
+    }
 
     return (
         <Fragment>
@@ -185,7 +191,7 @@ export default function WorkSpaceReport({ stepWorkSpace }) {
 
 
                     <div>
-                        <Link to={"/dashboard/PageCounter"} className="btn-style mt-7 inline-block"><img className=' ml-3 inline-block' src='/img/dashboard/workSpace/footer/button_ico.svg' />پیشخان</Link>
+                        <Link to={"/dashboard/PageCounter"} className="btn-style mt-7 inline-block"><img className=' ml-3 inline-block' src={ImageContainer.pishkhan} />پیشخان</Link>
                     </div>
                 </div>
             </div>

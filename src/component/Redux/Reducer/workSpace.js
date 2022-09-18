@@ -39,6 +39,7 @@ export const workSpaceReducer = (state =
         allLimitsDatas: [],
         resultSetWorkSpace: { reportStatus: false, reportStep: 0 },
         showWorkSpaceModal: false,
+        businessCustomer:false,
         checkLimit:true,
         forceUpdate: 0
     }, action) => {
@@ -85,6 +86,10 @@ export const workSpaceReducer = (state =
 
         case "CHECK_LIMIT":
             return { ...action.payload }
+        case "CHECK_BUSSINESS":
+            return { ...action.payload }
+        case "LOW_OFF_FEATURE_COUNT":
+            return { ...action.payload }
         case "FORCE_UPDATE":
             return { ...action.payload }
 
@@ -129,12 +134,14 @@ export const workSpaceReducer = (state =
                 allLimitsDatas: [],
                 resultSetWorkSpace: { reportStatus: false, reportStep: 0 },
                 showWorkSpaceModal: false,
+                businessCustomer:false,
+                checkLimit:true,
                 forceUpdate: 0
             }
         case "RESET_WORK_SPACE_STATE":
             return {
                 webAdress: "",
-                allWorkSpace:  [...action.payload.allWorkSpace] ,
+                allWorkSpace: [],
                 webAdressUuid: "",
                 keyWord1: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
                 keyWord2: { key: "", site: "", competitorSite: ["", "", "", "", ""] },
@@ -172,6 +179,8 @@ export const workSpaceReducer = (state =
                 allLimitsDatas: [],
                 resultSetWorkSpace: { reportStatus: false, reportStep: 0 },
                 showWorkSpaceModal: false,
+                businessCustomer:false,
+                checkLimit:true,
                 forceUpdate: 0
             }
 
