@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AuthButton from '../../../Auth/authButton/AuthButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { allLimitDataFeature, getAllWorkSpace } from '../../../Redux/Action/workSpace';
+import { allLimitDataFeature, ChackBusinessCustomer, getAllWorkSpace } from '../../../Redux/Action/workSpace';
 import success_svg from '../../../../assets/img/dashboard/EasyStartPage/success.svg'
 
 export default function ShowFinalReportModal() {
@@ -25,14 +25,15 @@ export default function ShowFinalReportModal() {
 
     const dispatch = useDispatch();
     useEffect(() => {
-      return () => {
-        initWorkSpaceOption()
-    }
-}, [])
+        return () => {
+            initWorkSpaceOption()
+        }
+    }, [])
 
-const initWorkSpaceOption=async()=>{
-    await dispatch(allLimitDataFeature())
-    await dispatch(getAllWorkSpace())
+    const initWorkSpaceOption = async () => {
+        dispatch(allLimitDataFeature())
+        dispatch(getAllWorkSpace())
+        dispatch(ChackBusinessCustomer())
     }
     return (
         <body className='final_report_container bg-[#fff]'>
