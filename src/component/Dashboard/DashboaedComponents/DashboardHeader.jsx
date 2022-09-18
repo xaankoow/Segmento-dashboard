@@ -115,10 +115,10 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
     }, [forceUpdate]);
     const init = async () => {
 
-      await dispatch(coreUser());
+       dispatch(coreUser());
       await dispatch(getAllWorkSpace());
       await dispatch(ChackBusinessCustomer())
-      await dispatch(allLimitDataFeature())
+       dispatch(allLimitDataFeature())
     }
   // useEffect(() => {
   //   dispatch(coreUser());

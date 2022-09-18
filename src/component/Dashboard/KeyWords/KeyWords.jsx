@@ -7,9 +7,12 @@ import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch
 import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUp from "../../Utils/PopUp/PopUp";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLowOffLimitCount, resetLimitState } from "../../Redux/Action/workSpace";
-import bookmark_svg from '../../../assets/img/dashboard/keyWord/bookmark.svg'
-import playlist_add_svg from '../../../assets/img/popUp/playlist_add.svg'
+import {
+  handleLowOffLimitCount,
+  resetLimitState,
+} from "../../Redux/Action/workSpace";
+import bookmark_svg from "../../../assets/img/dashboard/keyWord/bookmark.svg";
+import playlist_add_svg from "../../../assets/img/popUp/playlist_add.svg";
 import { useLocation } from "react-router";
 import PopUpLimit from "../../Utils/Limit/PopUpLimit";
 
@@ -52,13 +55,13 @@ const KeyWords = ({ onClickHandler }) => {
       // debugger
       // console.log(toolsLimit[20].count)
       // if (toolsLimit[6].count<0) {
-        
-        const { data, status } = await keywordService(dd);
-        setKeyWords(data.data.result); //5
-        setId(data.data.id);
-        dispatch(handleLowOffLimitCount("GOOGLE_TITLE_BUILDER",1))
-        dispatch(resetLimitState())
-        // console.log(data.data.id);
+
+      const { data, status } = await keywordService(dd);
+      setKeyWords(data.data.result); //5
+      setId(data.data.id);
+      dispatch(handleLowOffLimitCount("GOOGLE_TITLE_BUILDER", 1));
+      dispatch(resetLimitState());
+      // console.log(data.data.id);
       // } else {
       //   <PopUp
       //   clickHandler={() => showSavePopup(false)}
@@ -71,7 +74,7 @@ const KeyWords = ({ onClickHandler }) => {
       // />
       // }
     } catch (error) {
-      setShowPopUpLimit(true)
+      setShowPopUpLimit(true);
       // console.log(error)
     }
     //handle hide loading
@@ -84,7 +87,7 @@ const KeyWords = ({ onClickHandler }) => {
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
   };
-  
+
   // store data in myList
   var handleSetStoreKeyWords = async () => {
     //handle show loadin
@@ -95,7 +98,7 @@ const KeyWords = ({ onClickHandler }) => {
     }
     try {
       const { data, status } = await keywordsStoreService(id);
-      
+
       showSavePopup(true);
       //  console.log(data);
     } catch (error) {
@@ -120,12 +123,14 @@ const KeyWords = ({ onClickHandler }) => {
   //filter from searchBox  in table
 
   var tableDataFiltered = [];
+  var lengthTable = 0;
   Object.keys(keyWords).map((item) => {
     // console.log(datass.data[item].length);
     if (keyWords[item] != null) {
       for (let i = 0; i < keyWords[item].length - 1; i++) {
         if (keyWords[item][i].includes(searchBoxValue)) {
           tableDataFiltered.push(keyWords[item][i]);
+          lengthTable ++
         }
         // return
       }
@@ -181,13 +186,13 @@ const KeyWords = ({ onClickHandler }) => {
   });
 
   // const history = useHistory()
-  const location = useLocation()
+  const location = useLocation();
 
   //check dom
   return (
     <>
-    {/* <button className="btn-style" onClick={()=>history}>change route</button> */}
-    {/* <PopUp
+      {/* <button className="btn-style" onClick={()=>history}>change route</button> */}
+      {/* <PopUp
         clickHandler={() => showSavePopup(false)}
         image={playlist_add_svg}
         type={"sucsess"}
@@ -219,9 +224,14 @@ const KeyWords = ({ onClickHandler }) => {
 
         <div className="flex flex-col  w-[97%]">
           {!searchBoxValue || !searchBoxHandleClick ? (
-            <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
-          ) : null}
-          <div id="keyWordsLayOutId" className="flex  justify-between w-full mt-5">
+            <span className="text-right mt-4">هیچ  تحقیقی انجام نشده!</span>
+          ) : (
+            <span className="text-right mt-4">{lengthTable} کلمه کلیدی یافت شد .</span>
+          )}
+          <div
+            id="keyWordsLayOutId"
+            className="flex  justify-between w-full mt-5"
+          >
             <Table
               data={
                 tableAlphabetFiltering
@@ -274,8 +284,12 @@ const KeyWords = ({ onClickHandler }) => {
         ذخیره
       </button>
       {/* <PopUpLimit section={"keyWords"}/> */}
-      {showPopUpLimit?<PopUpLimit section={"contentCreation"} handleClose={setShowPopUpLimit}/>:null}
-      
+      {showPopUpLimit ? (
+        <PopUpLimit
+          section={"contentCreation"}
+          handleClose={setShowPopUpLimit}
+        />
+      ) : null}
     </>
   );
 };

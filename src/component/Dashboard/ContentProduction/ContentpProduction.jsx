@@ -141,8 +141,8 @@ export default function ContentpProduction({ onClickHandler }) {
         
         <div id="contentProductionLayOutId" className="flex flex-col  w-[97%]">
           {!searchBoxValue || !searchBoxHandleClick ? (
-            <span className="text-right mt-4">هیچ کلمه ای جستجو نکردید!</span>
-          ) : null}
+            <span className="text-right mt-4">هیچ  تحقیقی انجام نشده!</span>
+            ) : null}
           <div className="flex  justify-between w-full mt-5">
             <Table
               data={content}
