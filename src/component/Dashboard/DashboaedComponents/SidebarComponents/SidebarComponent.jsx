@@ -85,9 +85,9 @@ export default function SidebarComponent({
           </div>
         ) : null}
         {/* advertisement box */}
-        {!disableAdvertisement && closeNav ? (
+        {/* {!disableAdvertisement && closeNav ? (
           <SidebarBaner setDisableAdvertisement={setDisableAdvertisement} />
-        ) : null}
+        ) : null} */}
       </div>
       {/* ):null} */}
 

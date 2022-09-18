@@ -327,6 +327,13 @@
 	color: #0071ff;
 }
 
+#NAV .active:hover a {
+	color: #0071ff !important;
+	
+}
+#NAV .active:hover span {
+filter: saturate(11);
+}
 #DASHBOARD .active:hover img {
 	filter: saturate(11);
 }

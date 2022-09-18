@@ -66,7 +66,7 @@ if ( userState.userData.package != undefined) {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   const content = datas.length > 0 && datas[20].count;
-  const keyword = datas.length > 0 && datas[4].count;
+  const keyword = datas.length > 0 && datas[6].count;
 
   useEffect(() => {
     const pastSelexboxData = async () => {
@@ -155,17 +155,17 @@ if ( userState.userData.package != undefined) {
     if (keyword) {
       if (
         keyword >=
-        Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
+        Math.round((allWords.length != 0 && allWords[6].count * 70) / 100)
       ) {
         return "#10CCAE";
       } else if (
         keyword >=
-        Math.round((allWords.length != 0 && allWords[4].count * 30) / 100)
+        Math.round((allWords.length != 0 && allWords[6].count * 30) / 100)
       ) {
         return "#FFCE47";
       } else if (
         keyword >=
-        Math.round((allWords.length != 0 && allWords[4].count * 1) / 100)
+        Math.round((allWords.length != 0 && allWords[6].count * 1) / 100)
       ) {
         return "#F35242";
       }
@@ -181,25 +181,25 @@ if ( userState.userData.package != undefined) {
         data: [
           datas.length > 0 ?
             allWords.length != 0 &&
-            allWords[4].count - datas[4].count: 1,
-          datas.length > 0 && datas[4].count,
+            allWords[6].count - datas[6].count: 1,
+          datas.length > 0 && datas[6].count,
         ],
         cutout: 36,
         backgroundColor:
           keyword ?
           keyword >=
-            Math.round((allWords.length != 0 && allWords[4].count * 70) / 100)
+            Math.round((allWords.length != 0 && allWords[6].count * 70) / 100)
             ? ["#D9D9D9", "#10CCAE"]
             : keyword &&
               keyword >=
                 Math.round(
-                  (allWords.length != 0 && allWords[4].count * 30) / 100
+                  (allWords.length != 0 && allWords[6].count * 30) / 100
                 )
             ? ["#D9D9D9", "#FFCE47"]
             : keyword &&
               keyword >=
                 Math.round(
-                  (allWords.length != 0 && allWords[4].count * 1) / 100
+                  (allWords.length != 0 && allWords[6].count * 1) / 100
                 ) && ["#D9D9D9", "#F35242"]:["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
@@ -385,19 +385,19 @@ if ( userState.userData.package != undefined) {
                     <span className="mr-4 ">تعداد کل کلمات</span>
                     <span id="border" className="mr-3">
                       {allWords.length != 0
-                        ? setFormatNumber(allWords[4].count)
+                        ? setFormatNumber(allWords[6].count)
                         : "0"}
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
                       {datas.length > 0
                         ? allWords.length != 0 &&
-                          setFormatNumber(allWords[4].count - datas[4].count)
+                          setFormatNumber(allWords[6].count - datas[6].count)
                         : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? setFormatNumber(datas[4].count) : "0"}
+                      {datas.length > 0 ? setFormatNumber(datas[6].count) : "0"}
                     </span>
                   </div>
                 </div>
@@ -405,7 +405,7 @@ if ( userState.userData.package != undefined) {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuetwo"></span>{" "}
-                    {datas.length > 0 ? setFormatNumber(datas[4].count) : "0"}{" "}
+                    {datas.length > 0 ? setFormatNumber(datas[6].count) : "0"}{" "}
                     <br />
                     کلمه باقی مانده
                   </div>

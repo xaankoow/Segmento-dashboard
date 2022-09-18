@@ -1,14 +1,17 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLowOffLimitCount, resetLimitState } from "../../Redux/Action/workSpace";
+import {
+  handleLowOffLimitCount,
+  resetLimitState,
+} from "../../Redux/Action/workSpace";
 import { ContentProductionService } from "../../service/contentProduction";
 import PopUp from "../../Utils/PopUp/PopUp";
 import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../DashboaedComponents/TableData/TableData";
 import SaveListModal from "./SaveListModal";
-import cached_svg from '../../../assets/img/dashboard/table/cached.svg';
-import update_svg from '../../../assets/img/popUp/update.svg'
-import playlist_add_svg from '../../../assets/img/popUp/playlist_add.svg'
+import cached_svg from "../../../assets/img/dashboard/table/cached.svg";
+import update_svg from "../../../assets/img/popUp/update.svg";
+import playlist_add_svg from "../../../assets/img/popUp/playlist_add.svg";
 import PopUpLimit from "../../Utils/Limit/PopUpLimit";
 import AuthButton from "../../Auth/authButton/AuthButton";
 
@@ -22,6 +25,16 @@ export default function ContentpProduction({ onClickHandler }) {
   const [boxIndex, setUpdateBoxIndex] = useState(-1);
   const [activeboxValue, setActiveboxValue] = useState("");
   const [showPopUpLimit, setShowPopUpLimit] = useState(true);
+
+  // search box click
+  const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
+  //filter from searchBox  in table
+
+  const [content, setcontent] = useState([]);
+  const [forceUpdate, setForceUpdate] = useState(false);
+  const loadingState = useSelector((state) => state.loadingState);
+  const dispatch = useDispatch();
+
   const SaveInputValues = (e) => {
     SetSaveInputValues(e);
   };
@@ -32,17 +45,9 @@ export default function ContentpProduction({ onClickHandler }) {
   const SearchBoxChangeHandler = (e) => {
     setSearchBoxValue(e.target.value);
     setSearchBoxHandleClick(false);
+    setcontent([]);
   };
 
-  // search box click
-  const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
-  //filter from searchBox  in table
-
-  const [content, setcontent] = useState([]);
-
-  const loadingState = useSelector((state) => state.loadingState);
-  const dispatch = useDispatch();
-  
   const handleSetContentProduction = async () => {
     //handle show loadin
     {
@@ -56,13 +61,14 @@ export default function ContentpProduction({ onClickHandler }) {
       formdata.append("limit", 10);
       // const { data, status } = await keywordService(searchBoxValue);
       const { data, status } = await ContentProductionService(formdata);
-      setcontent([...content,...data.data]);
-      dispatch(handleLowOffLimitCount("WORD_BATCH_LIMIT",10))
-      dispatch(resetLimitState())
+
+      setcontent([...content, ...data.data]);
+      setForceUpdate(!forceUpdate);
+      dispatch(handleLowOffLimitCount("WORD_BATCH_LIMIT", 10));
+      dispatch(resetLimitState());
       // debugger;
-      
     } catch (error) {
-      setShowPopUpLimit(true)
+      setShowPopUpLimit(true);
       // console.log(error);
     }
     //handle hide loading
@@ -76,12 +82,9 @@ export default function ContentpProduction({ onClickHandler }) {
     }
   };
 
-  
-  
-
   return (
     <>
-    {/* <PopUp
+      {/* <PopUp
           clickHandler={() => showUpdatePpUp(false)}
           image={update_svg}
           type={"sucsess"}
@@ -130,7 +133,7 @@ export default function ContentpProduction({ onClickHandler }) {
       )}
       <div className="PopUpMap pt-3 flex flex-col justify-center items-center bg-[#ffffff]">
         <SearchBox
-        placeholder={"برای نمونه (کتاب)"}
+          placeholder={"برای نمونه (کتاب)"}
           changeHandler={SearchBoxChangeHandler}
           handlClick={() => {
             setSearchBoxHandleClick(true);
@@ -139,11 +142,11 @@ export default function ContentpProduction({ onClickHandler }) {
           handleClear
           className="w-[97%] flex items-center gap-2 justify-between"
         />
-        
+
         <div id="contentProductionLayOutId" className="flex flex-col  w-[97%]">
           {!searchBoxValue || !searchBoxHandleClick ? (
-            <span className="text-right mt-4">هیچ  تحقیقی انجام نشده!</span>
-            ) : null}
+            <span className="text-right mt-4">هیچ تحقیقی انجام نشده!</span>
+          ) : null}
           <div className="flex  justify-between w-full mt-5">
             <Table
               data={content}
@@ -159,22 +162,27 @@ export default function ContentpProduction({ onClickHandler }) {
       </div>
       <div className=" pb-4">
         <AuthButton
-        classes={searchBoxValue && searchBoxHandleClick
-          ? "btn-style mr-5 mt-5 flex gap-3"
-          : "bg-lightGray btn-style mr-5 mt-5 flex gap-3"}
+          classes={
+            searchBoxValue && searchBoxHandleClick
+              ? "btn-style mr-5 mt-5 flex gap-3"
+              : "bg-lightGray btn-style mr-5 mt-5 flex gap-3"
+          }
           disabled={searchBoxHandleClick ? false : true}
           handlerClick={handleSetContentProduction}
           textButton={
             <>
-            <img src={cached_svg} alt="cached" />
-          تولید بیشتر
+              <img src={cached_svg} alt="cached" />
+              تولید بیشتر
             </>
           }
         />
       </div>
-      {showPopUpLimit?<PopUpLimit section={"contentCreation"} handleClose={setShowPopUpLimit}/>:null}
-      
-      
+      {showPopUpLimit ? (
+        <PopUpLimit
+          section={"contentCreation"}
+          handleClose={setShowPopUpLimit}
+        />
+      ) : null}
     </>
   );
 }
