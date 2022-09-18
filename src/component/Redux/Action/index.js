@@ -35,9 +35,9 @@ export const coreUser = () => {
                 if (status == 200 && data.status == true) {
                     if (data.data.user != undefined) {
                         state.userData = data.data;
-                        state.checkVerifyPhoneNumber = data.data.user.mobile==null?false:true;
+                        state.checkVerifyPhoneNumber = data.data.user.mobile == null ? false : true;
                         // await dispatch(ChackBusinessCustomer())
-                        
+
                     } else {
                         localStorage.removeItem("token")
                     }
@@ -67,7 +67,7 @@ export const coreUser = () => {
             });
             //handle hide loading
             {
-                
+
                 const loadingState2 = { ...getState().loadingState }
                 var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "coreUserData");
                 loadingState2.ProcessingDelay = removeProcessingItem;
@@ -81,14 +81,14 @@ export const coreUser = () => {
 }
 
 // set user data
-export const setPropCoreUser = (prop,value) => {
+export const setPropCoreUser = (prop, value) => {
     return async (dispatch, getState) => {
         const state = { ...getState().userState }
         switch (prop) {
             case "mobile":
                 state.userData.user.mobile = value;
                 break;
-        
+
             default:
                 break;
         }
@@ -259,7 +259,7 @@ export const RegisterUserAction = () => {
                         data.errors.forEach(element => {
                             toastMessage += element + " / ";;
                         });
-                  
+
                         showToast(toastMessage, "error");
                     }
                 } catch (error) {
@@ -326,7 +326,7 @@ export const loginUserAction = () => {
                     state.checkRegisterComplete = false;
 
                     if (data.code === 200) {
-                        state.userData=data.data.user;
+                        state.userData = data.data.user;
                         localStorage.setItem("token", data.data.token);
                         state.forceUpdate += 1;
                     } else if (data.code === 205) {
@@ -370,7 +370,7 @@ export const loginUserAction = () => {
                     }
                 } catch (error) {
 
-                   
+
                     if (error.response.data.code == 404) {
                         InputError("errRejesterFormatEmail", "ایمیل یا گذرواژه اشتباه است.")
                     } else {
@@ -583,7 +583,7 @@ export const checkVerifyEmailForgotPasswordAction = () => {
                     // }
                     // showPromisToast(check_verify_email(),"checkVerifyEmail")
                 } catch (error) {
-                  
+
                     if (error.response.data.code == 404) {
                         InputError("authVerifyCodeList", "کد فعال‌سازی اشتباه است.")
 

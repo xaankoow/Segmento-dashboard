@@ -99,6 +99,17 @@
 	border-style: solid;
 	border-color: transparent #ffffff;
 }
+.tooltip-left::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent #ffffff;
+}
+
 
 #DASHBOARD .tooltip {
 	position: absolute;
@@ -130,7 +141,17 @@
 	border-top-color: #ffffff;
 	transform: translate(-50%, 0);
 }
-
+#DASHBOARD .tooltip-bottom::before {
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 0.5em solid transparent;
+	border-top-color: #ffffff;
+	transform: translate(-50%, 0);
+}
 #DASHBOARD .support_dropDown {
 	position: absolute;
 	z-index: 5;

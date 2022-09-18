@@ -5,7 +5,7 @@ import { coreUser, logoutAction } from "../../Redux/Action";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { getAllWorkSpace } from "../../Redux/Action/workSpace";
+import { allLimitDataFeature, ChackBusinessCustomer, getAllWorkSpace } from "../../Redux/Action/workSpace";
 import { setCloseNav } from "../../Redux/Action/navMenu";
 import segmento_logofa_svg from "../../../assets/img/dashboard/header/segmento-logofa.svg";
 import manage_accounts_svg from "../../../assets/img/dashboard/header/manage_accounts.svg";
@@ -55,41 +55,41 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
   useEffect(() => {
     var nowDate = new Date();
 
-    if (userState.userData.package != undefined ) {
-      if (userState.userData.package.start!=null) {
-        
-      var startDate = new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
-      var expiryDate = new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
+    if (userState.userData.package != undefined) {
+      if (userState.userData.package.start != null) {
 
-      var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
-      var timeSecDays = Math.abs(expiryDate - startDate);
+        var startDate = new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
+        var expiryDate = new Date(moment(userState.userData.package.end).format("YYYY/M/D"));
 
-      var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
-      var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+        var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
+        var timeSecDays = Math.abs(expiryDate - startDate);
 
-      setDoughnutChartData({
-        datasets: [
-          {
-            label: "# of Votes32",
-            data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
-            cutout: 5,
-            backgroundColor:
-              numberOfDays &&
-              numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
-                ? ["#D9D9D9", "#10CCAE"]
-                : numberOfDaysLeft &&
-                  numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
-                ? ["#D9D9D9", "#FFCE47"]
-                : numberOfDaysLeft &&
-                  numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
-                ? ["#D9D9D9", "#F35242"]
-                : ["#D9D9D9", "#ffffff"],
-            borderWidth: 0,
-            borderRadius: 7,
-          },
-        ],
-      });
-    }
+        var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
+        var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+
+        setDoughnutChartData({
+          datasets: [
+            {
+              label: "# of Votes32",
+              data: [numberOfDays - numberOfDaysLeft, numberOfDaysLeft],
+              cutout: 5,
+              backgroundColor:
+                numberOfDays &&
+                  numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
+                  ? ["#D9D9D9", "#10CCAE"]
+                  : numberOfDaysLeft &&
+                    numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+                    ? ["#D9D9D9", "#FFCE47"]
+                    : numberOfDaysLeft &&
+                      numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+                      ? ["#D9D9D9", "#F35242"]
+                      : ["#D9D9D9", "#ffffff"],
+              borderWidth: 0,
+              borderRadius: 7,
+            },
+          ],
+        });
+      }
 
     }
 
@@ -106,14 +106,20 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
 
   useEffect(() => {
     if (userToken != null) {
-      setTimeout(() => {
-        dispatch(coreUser());
-      }, 1000);
-      setTimeout(() => {
-        dispatch(getAllWorkSpace());
-      }, 2000);
+      // setTimeout(() => {
+      init()
+      // }, 1000);
+      // setTimeout(() => {
+        // }, 2000);
+      }
+    }, [forceUpdate]);
+    const init = async () => {
+
+       dispatch(coreUser());
+      await dispatch(getAllWorkSpace());
+      await dispatch(ChackBusinessCustomer())
+       dispatch(allLimitDataFeature())
     }
-  }, [forceUpdate]);
   // useEffect(() => {
   //   dispatch(coreUser());
   // }, [checkUseTryFree]);
@@ -171,7 +177,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
                     />
                   </div>
                   <span className="text-xs absolute bottom-0 right-6 w-max">
-                    {userState.userData.package.title=="پکیج پایه"|userState.userData.package.title=="14 روز رایگان"?userState.userData.package.title:userState.userData.package.title +" "+ userState.userData.package.type_text}
+                    {userState.userData.package.title == "پکیج پایه" | userState.userData.package.title == "14 روز رایگان" ? userState.userData.package.title : userState.userData.package.title + " " + userState.userData.package.type_text}
                   </span>
                 </div>
               ) : (

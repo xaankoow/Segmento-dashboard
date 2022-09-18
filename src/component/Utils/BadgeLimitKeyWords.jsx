@@ -27,14 +27,7 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
   var timeSecDays = Math.abs(expiryDate - startDate);
 
   var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
-  var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
-  
-  useEffect(() => {
-    
-    dispatch(allLimitDataFeature())
-  }, [userState.userData.package]);
-
-
+  var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));  
 
 
   const numStyle = `text-[#7D7D7D] text-[${

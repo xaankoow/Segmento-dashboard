@@ -40,22 +40,12 @@ import { allLimitDataFeature, ChackBusinessCustomer } from "./component/Redux/Ac
 export default function App() {
   
   const { forceUpdate } = useSelector((state) => state.userState);
-  const userState = useSelector((state) => state.userState);
   const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
   const navigate = useNavigate();
-
-  const dispatch=useDispatch()
 
   useEffect(() => {
     resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
   }, [resultSetWorkSpace.reportStatus])
-
-  useEffect(() => {
-    dispatch(allLimitDataFeature())
-    dispatch(ChackBusinessCustomer())
-  }, [userState.userData.package]);
-  // useEffect(() => {
-  // }, [])
   
 
 
@@ -124,10 +114,8 @@ export default function App() {
 
           <Route path="/payment*" element={<LandingPage />} />
           <Route path={"*"} element={<Page404 />} />
-          {/* <Route path={"*"} element={()=>navigate("/dashboard",{replace:true})} /> */}
 
         </Routes>
-        {/* import update_svg from '../../../assets/img/popUp/update.svg' */}
         {background != "" && (
           <Routes>
             <Route exact path={`dashboard/buyPlanEasyToStartModal`} element={<BuyPlanEasyToStartModal />} />

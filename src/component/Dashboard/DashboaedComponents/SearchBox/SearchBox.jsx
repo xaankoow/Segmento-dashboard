@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import AuthButton from "../../../Auth/authButton/AuthButton";
-import search_svg from '../../../../assets/img/dashboard/searchBox/search.svg'
+import search_svg from "../../../../assets/img/dashboard/searchBox/search.svg";
+import SubmitForm from "../../../Utils/Submit";
 
 export default function SearchBox({
   changeHandler,
@@ -13,7 +14,7 @@ export default function SearchBox({
 }) {
   const { canRequest } = useSelector((state) => state.loadingState);
   return (
-    <div className={className}>
+    <SubmitForm submitFun={handlClick} formClass={className}>
       <input
         value={searchBoxValue}
         type="text"
@@ -21,7 +22,12 @@ export default function SearchBox({
         onChange={(e) => changeHandler(e)}
         placeholder={placeholder ? placeholder : "  جستجوی لیست"}
       />
-      <AuthButton handlerClick={handlClick} disabled={!canRequest} classes="h-10" textButton={<img src={search_svg} alt="search" />}/>
+      <AuthButton
+        handlerClick={handlClick}
+        disabled={!canRequest}
+        classes="h-10"
+        textButton={<img src={search_svg} alt="search" />}
+      />
       {/* <button
         className="btn-style h-10"
         onClick={handlClick}
@@ -29,6 +35,6 @@ export default function SearchBox({
       >
         
       </button> */}
-    </div>
+    </SubmitForm>
   );
 }

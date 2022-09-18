@@ -11,6 +11,7 @@ import omorMali  from '../dashboard/support/omorMali.svg';
 import soalatPishKharid  from '../dashboard/support/soalatPishKharid.svg';
 import copyIcon  from '../dashboard/table/content_copy.svg';
 import popUpWarning  from '../popUp/errorIco.svg';//import errorIco_svg from './assets/img/popUp/errorIco.svg'
+import pishkhan  from '../dashboard/workSpace/footer/button_ico.svg';///img/dashboard/workSpace/footer/button_ico.svg
 
 export const ImageContainer={
   infoBlue,
@@ -27,6 +28,8 @@ export const ImageContainer={
   copyIcon,
   
   // popUp img
-  popUpWarning
+  popUpWarning,
+
+  pishkhan
 
 }
