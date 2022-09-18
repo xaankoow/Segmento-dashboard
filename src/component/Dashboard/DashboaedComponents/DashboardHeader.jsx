@@ -112,13 +112,13 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
       // setTimeout(() => {
         // }, 2000);
       }
-    }, [forceUpdate]);
-    const init = async () => {
+    }, []);
+    const init = async() => {
 
-       dispatch(coreUser());
-      await dispatch(getAllWorkSpace());
-      await dispatch(ChackBusinessCustomer())
-       dispatch(allLimitDataFeature())
+     await dispatch(coreUser());
+     dispatch(getAllWorkSpace());
+     dispatch(ChackBusinessCustomer())
+     dispatch(allLimitDataFeature())
     }
   // useEffect(() => {
   //   dispatch(coreUser());

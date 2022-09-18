@@ -136,6 +136,7 @@ export default function ContentpProduction({ onClickHandler }) {
             setSearchBoxHandleClick(true);
             handleSetContentProduction();
           }}
+          handleClear
           className="w-[97%] flex items-center gap-2 justify-between"
         />
         
