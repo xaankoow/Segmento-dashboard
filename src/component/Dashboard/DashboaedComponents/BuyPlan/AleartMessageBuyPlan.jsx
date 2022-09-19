@@ -10,11 +10,12 @@ export default function AleartMessageBuyPlan() {
   const [financialData, setFinancialData] = useState([])
 
  
-  const typeAlert =
-    financialData.length != 0
-      && financialData[0].payment_status_text == "پرداخت موفق"
-      ? "success"
-      : "err";
+  const typeAlert ="success"
+  // const typeAlert =
+  //   financialData.length != 0
+  //     && financialData[0].payment_status_text == "پرداخت موفق"
+  //     ? "success"
+  //     : "err";
 
   const dispatch = useDispatch();
 
