@@ -7,7 +7,6 @@ export default function FooterBtn({ typeLimit, closePopUp ,handleClose}) {
     const location = useLocation();
     const navigate=useNavigate();
 
-    console.log('location.state.background', location)
     return (
         <>
             {typeLimit == "default" ? (

@@ -8,7 +8,7 @@ export default function ShowFinalReportModal() {
 
     const { userData } = useSelector((state) => state.userState);
 
-    // debugger
+
     const [title, setTitle] = useState(""); //handle close buy plan result
     const [typePlan, setTypePlan] = useState(""); //handle buy plan type
 

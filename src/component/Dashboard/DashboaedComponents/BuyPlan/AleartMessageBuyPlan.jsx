@@ -8,12 +8,12 @@ import error_ico_svg from "../../../../assets/img/dashboard/buyPlan/alert/error_
 export default function AleartMessageBuyPlan() {
   const [financialData, setFinancialData] = useState([]);
 
-  // const typeAlert ="success"
-  const typeAlert =
-    financialData.length != 0 &&
-    financialData[0].payment_status_text == "پرداخت موفق"
-      ? "err"
-      : "err";
+  const typeAlert ="success"
+  // const typeAlert =
+  //   financialData.length != 0 &&
+  //   financialData[0].payment_status_text == "پرداخت موفق"
+  //     ? "err"
+  //     : "err";
 
   const dispatch = useDispatch();
 

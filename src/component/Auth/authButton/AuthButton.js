@@ -18,17 +18,17 @@ export default function AuthButton({
   const { canRequest } = useSelector(state => state.loadingState)
   const value = useContext(TextButton);
   const dispatch = useDispatch()
-  // debugger
+
   var ds = "";
 
   return (
     <button
       variant="contained"
       // className={` ${classes != undefined ? classes : ""} ${classes != undefined&&classes.includes("btn-secondary") == true ? classes : "btn-style" + classes}`}
-      className={`${classes != undefined&&classes.includes("btn-secondary") == true ? classes : " btn-style " + classes}`}
+      className={`${classes != undefined && classes.includes("btn-secondary") == true ? classes : " btn-style " + classes}`}
       disabled={disabled != undefined ? disabled ? true : !canRequest : !canRequest}
       style={style}
-      type={submitType!=undefined?"submit":"button"}
+      type={submitType != undefined ? "submit" : "button"}
       onClick={handlerClick != undefined & handlerClick != "" & reduxHandleClick != undefined ? (
         (e) => {
           handlerClick()
@@ -38,7 +38,7 @@ export default function AuthButton({
         (e) => {
           handlerClick(setOnclickValue != "" & setOnclickValue != undefined ? setOnclickValue : null)
         }
-      ) :reduxHandleClick!=undefined&& (
+      ) : reduxHandleClick != undefined && (
         (e) => {
           dispatch(reduxHandleClick(setOnclickValue != "" & setOnclickValue != undefined ? setOnclickValue : null))
         }

@@ -14,12 +14,13 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   const checkUuid = async () => {
+    debugger
 
-    const getAndSplitHash=window.location.hash.split("?")   //?filter=a  a0ed15bb-3ba6-433a-ae2b-47249f60cf55
-    const uuidResulte=getAndSplitHash[1].substring(5,41)
+    const getAndSplitHash = window.location.hash.split("?")   //?filter=a  a0ed15bb-3ba6-433a-ae2b-47249f60cf55
+    const uuidResulte = getAndSplitHash[1].substring(5, 41)
 
     try {
-      debugger
+
       const { data } = await checkDetailUuid(uuidResulte);
       if (data.data.payment_status_text == "پرداخت نشده") {
         localStorage.setItem("statusBuyPlna", false)

@@ -253,7 +253,7 @@ export const RegisterUserAction = () => {
                         // await dispatch({ type: "SEND_CODE_EMAIL", payload: state})
                         // showPromisToast(send_code_email(),"sendCod")
                         // return Promise.resolve()
-                        // debugger
+
                     } else {
                         data.errors.forEach(element => {
                             toastMessage += element + " / ";;
@@ -479,7 +479,7 @@ export const checkVerifyEmailAction = () => {
             let toastMessage = "";
             try {
                 // const code = internal_auth1 + internal_auth2 + internal_auth3 + internal_auth4;
-                const code =internal_auth4  +internal_auth3 +internal_auth2 +internal_auth1   ;
+                const code = internal_auth4 + internal_auth3 + internal_auth2 + internal_auth1;
                 let formdata = new FormData();
                 formdata.append("code", code)
                 formdata.append("email", internal_email)
@@ -801,18 +801,16 @@ export const findUserAction = () => {
 
             try {
                 const dd = await findUser(token);
-                // debugger
+
 
                 // if (status == 200 && data.status == true) {
-                //     debugger
-                //     console.log("find user")
+                //     
                 //     // toast.update(toastPromise, { render: "وارد حساب کاربری شدید", type: "success", isLoading: false, autoClose: 3000 })
                 // } else {
                 //     // data.errors.forEach(element => {
                 //     //     toastMessage += element;
                 //     // });
                 //     // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                //     console.log(data.errors)
                 // }
 
                 await dispatch({ type: "FIND_USER", payload: state })
@@ -822,7 +820,6 @@ export const findUserAction = () => {
                 //     toastMessage += element;
                 // });
                 // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
-                // console.log(error)
             }
         }
 

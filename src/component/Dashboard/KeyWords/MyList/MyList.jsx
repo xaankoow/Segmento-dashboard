@@ -55,10 +55,8 @@ export default function MyList() {
       for (let index = data.data.length; index >= 0; index--) {
         if (data.data[index] != undefined) listDatas.push(data.data[index]);
       }
-      // console.log(listDatas);
       setTableDatas(listDatas);
     } catch (error) {
-      // console.log(error);
     }
 
 
@@ -102,7 +100,7 @@ export default function MyList() {
         Object.keys(result).map((items) => {
           if (result[items] != null) {
             for (let i = 0; i < result[items].length - 1; i++) {
-              // debugger
+
               lengthTable++;
             }
           }
@@ -112,7 +110,7 @@ export default function MyList() {
           Object.keys(result).map((items) => {
             if (result[items] != null) {
               for (let i = 0; i < result[items].length - 1; i++) {
-                // debugger
+
                 tableDataFiltered.push(result[items][i]);
               }
             }
@@ -172,8 +170,8 @@ export default function MyList() {
             </div>
             {clicked === index ? (
               <Table data={tableDataFiltered} WordsSearcher={true} savedItem={item.key} />
-            )  : null}
-            
+            ) : null}
+
           </div>
         );
       })}

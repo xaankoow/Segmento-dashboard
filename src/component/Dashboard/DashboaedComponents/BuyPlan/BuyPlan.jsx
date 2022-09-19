@@ -15,32 +15,17 @@ export default function BuyPlan({ title }) {
 
   const { discount, discountStatus, allPackageData } = useSelector(state => state.planState);
 
-  // debugger
+
   const { canRequest } = useSelector((state) => state.loadingState);
   const dispatch = useDispatch();
 
-  // console.log(allPackageData)
   useEffect(() => {
     dispatch(getAllPlanData())
   }, [])
 
   const [showReportModal, setShowReportModal] = useState(false);
 
-
-  // const [free, setFree] = useState(false);
-
   const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
-  // 
-  // const [showModal, setShowModal] = useState(true);
-
-
-
-
-
-
-
-
-
 
   const handleCloseReportModal = () => {
     setShowReportModal(false)
@@ -54,7 +39,7 @@ export default function BuyPlan({ title }) {
           <div>
             <p>رایگان شروع کنید؛ قدرتمند ادامه دهید</p>
             <a href="https://segmento.ir/pricing/">
-            <button className="btn-secondary mt-2 mb-3 m-auto">توضیحات بیشتر</button>
+              <button className="btn-secondary mt-2 mb-3 m-auto">توضیحات بیشتر</button>
             </a>
           </div>
         </div>
@@ -64,7 +49,7 @@ export default function BuyPlan({ title }) {
         <div className='footer_message '>
           <p>آیا صاحب کسب‌و‌کار هستید و به امکانات بیشتری نیاز دارید؟</p>
           <a href="https://segmento.ir/about/support/">
-          <AuthButton classes={"btn-secondary my-7"} textButton={"بله هستم"} />
+            <AuthButton classes={"btn-secondary my-7"} textButton={"بله هستم"} />
           </a>
         </div>
       </div>

@@ -17,11 +17,11 @@ export default function DashboardBody() {
   const navigate = useNavigate();
 
   const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState({ type: "", result: true }); //handle buy plan type
-   const [showWorkSpace, setShowWorkSpace] = useState(true); //handle close buy plan result
+  const [showWorkSpace, setShowWorkSpace] = useState(true); //handle close buy plan result
   // item sidebar hover active mode
- 
-  const[clicked,setActiveIconHandlerClicked]=useState(2);
-  const[clicked1,setClicked1]=useState(2);
+
+  const [clicked, setActiveIconHandlerClicked] = useState(2);
+  const [clicked1, setClicked1] = useState(2);
   //check buy plan result
   useEffect(() => {
     const status_buy_plan = localStorage.getItem("statusBuyPlna");
@@ -32,16 +32,22 @@ export default function DashboardBody() {
       status_buy_plan != null &&
       status_buy_plan != ""
     ) {
-      if (buy_type == "modal") {
-        if (status_buy_plan == true) {
-          setShowWorkSpace(false);
-          setShowModalBuyPlanResult({ type: "modal", result: true });
+      if (buy_type != null) {
+
+        if (buy_type == "modal") {
+          if (status_buy_plan == true) {
+            setShowWorkSpace(false);
+            setShowModalBuyPlanResult({ type: "modal", result: true });
+          } else {
+            setShowModalBuyPlanResult({ type: "modal", result: false });
+          }
         } else {
-          setShowModalBuyPlanResult({ type: "modal", result: false });
+          debugger
+          localStorage.removeItem("buyType")
+          navigate("/dashboard/buyPlan/buyInfo");
         }
-      } else {
-        navigate("/dashboard/buyPlan/buyInfo");
       }
+
     }
   }, []);
 
@@ -50,21 +56,21 @@ export default function DashboardBody() {
   return (
     <div id="DASHBOARD">
       <div className="w-full h-16 bg-[#ffffff] shadow-3xl" >
-        <DashboardHeader  setActiveIconHandlerClicked={setActiveIconHandlerClicked} setClicked1={setClicked1} />
+        <DashboardHeader setActiveIconHandlerClicked={setActiveIconHandlerClicked} setClicked1={setClicked1} />
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
         <div id="dashboardMap" className="bg-[#ffffff] overflow-y-scroll pb-24 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main">
           <Outlet />
-       
+
         </div>
-       
-        <SidebarComponent  setActiveIconHandlerClicked={setActiveIconHandlerClicked} hoverIconClicked={clicked} clicked1={clicked1} setClicked1={setClicked1}  />
-        
+
+        <SidebarComponent setActiveIconHandlerClicked={setActiveIconHandlerClicked} hoverIconClicked={clicked} clicked1={clicked1} setClicked1={setClicked1} />
+
       </div>
-      {!checkVerifyPhoneNumber&&setTimeout(() => {
+      {!checkVerifyPhoneNumber && setTimeout(() => {
         setShowVerifyPhoneNumberModal(true)
       }, 7000)}
-      {/* {showVerifyPhoneNumberModal&&<PhoneNumberOperations />} */}
+      {showVerifyPhoneNumberModal && <PhoneNumberOperations />}
       {showModalBuyPlanResult.type != "" ? (
         <BuyPlanEasyToStartModal checkBuyPlan={showModalBuyPlanResult.result} />
       ) : ("")}

@@ -6,22 +6,16 @@ export const Paragraph = (typePlan, indexPlan) => {
 
     const [price, setPrice] = useState(0);
     const { allPackageData } = useSelector(state => state.planState);
-    // const price = allPackageData.lenght > 0 ? allPackageData[indexPlan].default_discount:0;
+
     useEffect(() => {
-        // indexPlan++
         if (allPackageData.length > 0) {
             var packPrice;
-            // debugger
-            // console.log(indexPlan)
-            // if (indexPlan==4|indexPlan==8|indexPlan==12) {
-                // debugger
-                if (indexPlan==5|indexPlan==9|indexPlan==13) {
-                    packPrice = allPackageData[indexPlan+4].default_discount
-                }else{
-                packPrice = allPackageData[indexPlan != 17 ?  indexPlan+1 : indexPlan].default_discount
+
+            if (indexPlan == 5 | indexPlan == 9 | indexPlan == 13) {
+                packPrice = allPackageData[indexPlan + 4].default_discount
+            } else {
+                packPrice = allPackageData[indexPlan != 17 ? indexPlan + 1 : indexPlan].default_discount
             }
-            // console.log(Math.ceil(packPrice))
-            
             setPrice(setFormatPrice(Math.ceil(packPrice)))
         }
     }, [indexPlan])

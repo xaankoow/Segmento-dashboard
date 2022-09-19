@@ -98,7 +98,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
 
 
   useEffect(() => {
-    // debugger
+
     if (!userToken) {
       navigate("/dashboard/accountOperations/login", { replace: true });
     }
@@ -110,16 +110,16 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
       init()
       // }, 1000);
       // setTimeout(() => {
-        // }, 2000);
-      }
-    }, []);
-    const init = async() => {
-
-     await dispatch(coreUser());
-     dispatch(getAllWorkSpace());
-     dispatch(ChackBusinessCustomer())
-     dispatch(allLimitDataFeature())
+      // }, 2000);
     }
+  }, []);
+  const init = async () => {
+
+    await dispatch(coreUser());
+    dispatch(getAllWorkSpace());
+    dispatch(ChackBusinessCustomer())
+    dispatch(allLimitDataFeature())
+  }
   // useEffect(() => {
   //   dispatch(coreUser());
   // }, [checkUseTryFree]);
@@ -133,11 +133,11 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
           onClick={() => dispatch(setCloseNav())}
         ></div>
         <a href="https://segmento.ir/">
-        <div className="flex items-center gap-3 hover:cursor-pointer">
-          {/* <div className='Iconimage w-7 h-8'></div> */}
-          <img src={segmento_logofa_svg} className="w-7 h-8" alt="" />
-          <span className="">سگمنتو segmento</span>
-        </div>
+          <div className="flex items-center gap-3 hover:cursor-pointer">
+            {/* <div className='Iconimage w-7 h-8'></div> */}
+            <img src={segmento_logofa_svg} className="w-7 h-8" alt="" />
+            <span className="">سگمنتو segmento</span>
+          </div>
         </a>
       </div>
       <div className="flex items-center gap-9">

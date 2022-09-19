@@ -6,9 +6,9 @@ export const ChackingAvailabilityTools = ({ path, section, userState, workSpaceS
 
     // const userState = useSelector((state) => state.userState);
 
-    // debugger
+
     const limit = FindLimitTools(section, workSpaceState).limit
-    if ( limit == 0) {
+    if (limit == 0) {
         return "checkLimit"
     } else if (userState.userData.package.title == "پکیج پایه  ") {
         return "checkedPackage"

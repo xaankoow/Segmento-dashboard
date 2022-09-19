@@ -12,7 +12,7 @@ import arrow_downnn_ios_new_svg from '../../../../assets/img/dashboard/nav_right
 import arrow_up_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_up_ios_new.svg';
 
 export default function MyList() {
-  const {canRequest}=useSelector(state=>state.loadingState)
+  const { canRequest } = useSelector(state => state.loadingState)
   const [clicked, setClicked] = React.useState(false);
   // set api data
   const [tableDatas, setTableDatas] = useState([]);
@@ -22,8 +22,8 @@ export default function MyList() {
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
   // jalali moment
   var moment = require("jalali-moment");
-  
-  const dispatch =useDispatch();
+
+  const dispatch = useDispatch();
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -34,12 +34,12 @@ export default function MyList() {
 
   useEffect(() => {
     // if (canRequest) {
-      // debugger
-      handleGetcontent();
+
+    handleGetcontent();
     // }
   }, []);
   const loadingState = useSelector(state => state.loadingState)
- 
+
   const handleGetcontent = async () => {
     // dispatch(addLoadingItem("ContentProductionGetService"))
     //handle show loadin
@@ -51,14 +51,13 @@ export default function MyList() {
     try {
       const { data, status } = await ContentProductionGetService();
       const tableDataFiltered = [];
-      for (let index = data.data.length; index >=0; index--) {
+      for (let index = data.data.length; index >= 0; index--) {
         if (data.data[index] != undefined)
-        tableDataFiltered.push(data.data[index]);
+          tableDataFiltered.push(data.data[index]);
       }
-      
+
       setTableDatas(tableDataFiltered);
     } catch (error) {
-      // console.log(error);
     }
     //handle hide loading
     {
@@ -82,7 +81,7 @@ export default function MyList() {
     if (!searchBoxHandleClick) return tableDatas;
     else return item.word.includes(searchBoxValue);
   });
-  
+
   return (
     <div className="px-4 py-7 bg-[#ffffff]">
       <div className="flex justify-between items-center mb-4">

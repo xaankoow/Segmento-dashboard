@@ -82,7 +82,6 @@ export default function SaveListModal({
         setUpdate(!update);
         handleGetcontent();
       } catch (error) {
-        // console.log(error);
       }
     };
     var handleUpdate = async () => {
@@ -96,16 +95,14 @@ export default function SaveListModal({
         setUpdate(!update);
         handleGetcontent()
       } catch (error) {
-        // console.log(error);
       }
     };
     var handleGetcontent = async () => {
       try {
         const { data, status } = await ContentProductionGetService();
-        // debugger;
+        ;
         setcontent(data.data);
       } catch (error) {
-        // console.log(error);
       }
     };
   }
@@ -122,16 +119,16 @@ export default function SaveListModal({
       // onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
-      // className={"myModal"}
+    // className={"myModal"}
     >
       <div className="flex flex-col items-center px-4 py-8 gap-5 z-50 min-w-[500px]" >
-      <img
-              src={close_svg}
-              alt="close"
-             className="absolute top-4 left-3 cursor-pointer mb-7 p-1 w-[20px] h-[20px] rounded-[3px] hover:bg-[#F352421A]"
-              onClick={() =>close()}
-            />
-            <div></div>
+        <img
+          src={close_svg}
+          alt="close"
+          className="absolute top-4 left-3 cursor-pointer mb-7 p-1 w-[20px] h-[20px] rounded-[3px] hover:bg-[#F352421A]"
+          onClick={() => close()}
+        />
+        <div></div>
         <AuthInput
           textLabelInput="افزودن لیست جدید "
           width={"100%"}

@@ -114,7 +114,7 @@ export default function App() {
             </Route>
           </Route>
 
-          <Route path="/payment*" element={<LandingPage />} />
+          {/* <Route path="/payment*" element={<LandingPage />} /> */}
           <Route path={"*"} element={<Page404 />} />
 
         </Routes>

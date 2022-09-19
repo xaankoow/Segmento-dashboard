@@ -21,33 +21,32 @@ export default function PlanStatus() {
   const userState = useSelector((state) => state.userState);
 
   var nowDate = new Date();
-// user type
-const type=userState.userData.package != undefined? userState.userData.package.type_text: "بدون پکیج";
-         
-var user_package_title = "--";
-var package_end_dates = "--";
-var user_package_type_text = "--";
-var numberOfDaysLeft = 0;
-    var numberOfDays = 1;
+  // user type
+  const type = userState.userData.package != undefined ? userState.userData.package.type_text : "بدون پکیج";
 
-if ( userState.userData.package != undefined) {
-  if (userState.userData.package.start !=null) {
-    
-    var startDate =
-      userState.userData.package != undefined &&
-      new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
-    var expiryDate =
-      userState.userData.package != undefined &&
-      new Date(moment(userState.userData.user.package_end_date).format("YYYY/M/D"));
-    // console.log(startDate)
-    var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
-    var timeSecDays = Math.abs(expiryDate - startDate);
-  
-     numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
-     numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+  var user_package_title = "--";
+  var package_end_dates = "--";
+  var user_package_type_text = "--";
+  var numberOfDaysLeft = 0;
+  var numberOfDays = 1;
+
+  if (userState.userData.package != undefined) {
+    if (userState.userData.package.start != null) {
+
+      var startDate =
+        userState.userData.package != undefined &&
+        new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
+      var expiryDate =
+        userState.userData.package != undefined &&
+        new Date(moment(userState.userData.user.package_end_date).format("YYYY/M/D"));
+      var timeSecDaysLeft = Math.abs(expiryDate - nowDate);
+      var timeSecDays = Math.abs(expiryDate - startDate);
+
+      numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
+      numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
+    }
+
   }
-  
-}
 
 
   if (userState.userData.package) {
@@ -73,7 +72,7 @@ if ( userState.userData.package != undefined) {
       try {
         const { data, status } = await usetLimit();
         setDatas(data.data);
-      } catch (error) {}
+      } catch (error) { }
     };
     if (datas.length == 0) pastSelexboxData();
   }, []);
@@ -87,7 +86,7 @@ if ( userState.userData.package != undefined) {
         try {
           const { data, status } = await getPackageInfO(package_uuid);
           setAllWords(data.data.features);
-        } catch (error) {}
+        } catch (error) { }
       }
     };
 
@@ -98,26 +97,26 @@ if ( userState.userData.package != undefined) {
     datasets: [
       {
         label: "# of Votes",
-        data: userState.userData.package != undefined?[numberOfDays - numberOfDaysLeft, numberOfDaysLeft]:[1,0],
+        data: userState.userData.package != undefined ? [numberOfDays - numberOfDaysLeft, numberOfDaysLeft] : [1, 0],
         cutout: 50,
         backgroundColor: !numberOfDays
           ? ["#D9D9D9", "#F35242"]
           : numberOfDaysLeft >= Math.round((numberOfDays * 70) / 100)
-          ? ["#D9D9D9", "#10CCAE"]
-          : numberOfDaysLeft &&
-            numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
-          ? ["#D9D9D9", "#FFCE47"]
-          : numberOfDaysLeft &&
-            numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
-          ? ["#D9D9D9", "#F35242"]
-          : ["#D9D9D9", "#F35242"],
+            ? ["#D9D9D9", "#10CCAE"]
+            : numberOfDaysLeft &&
+              numberOfDaysLeft >= Math.round((numberOfDays * 30) / 100)
+              ? ["#D9D9D9", "#FFCE47"]
+              : numberOfDaysLeft &&
+                numberOfDaysLeft >= Math.round((numberOfDays * 1) / 100)
+                ? ["#D9D9D9", "#F35242"]
+                : ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 7,
       },
     ],
   };
 
-// debugger
+
 
   const miniChartSetting2 = {
     datasets: [
@@ -127,22 +126,22 @@ if ( userState.userData.package != undefined) {
           datas.length > 0 ?
             allWords.length != 0 &&
             allWords[20].count - datas[20].count : 1,
-          datas.length > 0 ? datas[20].count :0,
+          datas.length > 0 ? datas[20].count : 0,
         ],
         cutout: 36,
         backgroundColor:
           content ?
-          content >=
-            Math.round((allWords.length != 0 && allWords[20].count * 70) / 100)
-            ? ["#D9D9D9", "#10CCAE"]
-            : content &&
-              content >=
+            content >=
+              Math.round((allWords.length != 0 && allWords[20].count * 70) / 100)
+              ? ["#D9D9D9", "#10CCAE"]
+              : content &&
+                content >=
                 Math.round(
                   (allWords.length != 0 && allWords[20].count * 30) / 100
                 )
-            ? ["#D9D9D9", "#FFCE47"]
-            : content &&
-              content >=
+                ? ["#D9D9D9", "#FFCE47"]
+                : content &&
+                content >=
                 Math.round(
                   (allWords.length != 0 && allWords[20].count * 1) / 100
                 ) && ["#D9D9D9", "#F35242"] : ["#D9D9D9", "#F35242"],
@@ -181,26 +180,26 @@ if ( userState.userData.package != undefined) {
         data: [
           datas.length > 0 ?
             allWords.length != 0 &&
-            allWords[6].count - datas[6].count: 1,
+            allWords[6].count - datas[6].count : 1,
           datas.length > 0 && datas[6].count,
         ],
         cutout: 36,
         backgroundColor:
           keyword ?
-          keyword >=
-            Math.round((allWords.length != 0 && allWords[6].count * 70) / 100)
-            ? ["#D9D9D9", "#10CCAE"]
-            : keyword &&
-              keyword >=
+            keyword >=
+              Math.round((allWords.length != 0 && allWords[6].count * 70) / 100)
+              ? ["#D9D9D9", "#10CCAE"]
+              : keyword &&
+                keyword >=
                 Math.round(
                   (allWords.length != 0 && allWords[6].count * 30) / 100
                 )
-            ? ["#D9D9D9", "#FFCE47"]
-            : keyword &&
-              keyword >=
+                ? ["#D9D9D9", "#FFCE47"]
+                : keyword &&
+                keyword >=
                 Math.round(
                   (allWords.length != 0 && allWords[6].count * 1) / 100
-                ) && ["#D9D9D9", "#F35242"]:["#D9D9D9", "#F35242"],
+                ) && ["#D9D9D9", "#F35242"] : ["#D9D9D9", "#F35242"],
         borderWidth: 0,
         borderRadius: 5,
       },
@@ -223,19 +222,18 @@ if ( userState.userData.package != undefined) {
             >
               <div className="flex flex-row">
                 <span
-                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${
-                    type.includes("طلایی")
+                  className={`w-1 h-5 mt-5 mr-5 absolute rounded ${type.includes("طلایی")
                       ? " bg-yellow "
                       : type.includes("نقره ای")
-                      ? " bg-secondary "
-                      : type.includes("برنزی")
-                      ? " bg-[#E99991] "
-                      : type.includes("الماسی")
-                      ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center "
-                      : type.includes("14 روز رایگان")
-                      ? " bg-secondary "
-                      : "  "
-                  }`}
+                        ? " bg-secondary "
+                        : type.includes("برنزی")
+                          ? " bg-[#E99991] "
+                          : type.includes("الماسی")
+                            ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center "
+                            : type.includes("14 روز رایگان")
+                              ? " bg-secondary "
+                              : "  "
+                    }`}
                 ></span>
                 <span className="absolute mt-4 mr-10 ">
                   {" "}
@@ -249,10 +247,10 @@ if ( userState.userData.package != undefined) {
               >
                 <div className="flex flex-row justify-between">
                   <span>تاریخ خرید اشتراک</span>
-                  {userState.userData.package != undefined &&userState.userData.package.start!=null?
+                  {userState.userData.package != undefined && userState.userData.package.start != null ?
                     moment(userState.userData.package.start)
                       .locale("fa")
-                      .format("YYYY/M/D"):"00/00/00"}
+                      .format("YYYY/M/D") : "00/00/00"}
                 </div>
 
                 <hr className="my-2 mx-1 border-[#D9D9D9]" />
@@ -260,10 +258,10 @@ if ( userState.userData.package != undefined) {
                 <div className="flex flex-row justify-between ">
                   <span>تاریخ اتمام اشتراک</span>
                   <span>
-                    {userState.userData.package != undefined &&userState.userData.package.start!=null?
+                    {userState.userData.package != undefined && userState.userData.package.start != null ?
                       moment(userState.userData.package.end)
                         .locale("fa")
-                        .format("YYYY/M/D"):"00/00/00"}
+                        .format("YYYY/M/D") : "00/00/00"}
 
                     {/* {package_end_dates && moment(package_end_dates.substring(0, 10))
                       .locale("fa")
@@ -280,12 +278,12 @@ if ( userState.userData.package != undefined) {
                   </span>
                 </div>
                 <Link to={"/dashboard/buyPlan"}>
-                <button
-                  id="btn1"
-                  className="btn-style w-[122px] flex flex-row justify-center items-center rounded-lg mx-auto  mt-8 py-auto text-[#ffff]"
-                >
-                  تمدید اشتراک
-                </button>
+                  <button
+                    id="btn1"
+                    className="btn-style w-[122px] flex flex-row justify-center items-center rounded-lg mx-auto  mt-8 py-auto text-[#ffff]"
+                  >
+                    تمدید اشتراک
+                  </button>
                 </Link>
               </div>
             </div>
@@ -392,7 +390,7 @@ if ( userState.userData.package != undefined) {
                     <span id="border" className="mr-3">
                       {datas.length > 0
                         ? allWords.length != 0 &&
-                          setFormatNumber(allWords[6].count - datas[6].count)
+                        setFormatNumber(allWords[6].count - datas[6].count)
                         : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
@@ -439,7 +437,7 @@ if ( userState.userData.package != undefined) {
                     <span id="border" className="mr-3">
                       {datas.length > 0
                         ? allWords.length != 0 &&
-                          setFormatNumber(allWords[20].count - datas[20].count)
+                        setFormatNumber(allWords[20].count - datas[20].count)
                         : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>

@@ -6,8 +6,8 @@ export const setFormatPrice = (price) => {
     // if (subPrice.length > 3) {
     //     return subPrice.slice(0, subPrice.length - 3) + "." + subPrice.slice(subPrice.length - 3, subPrice.length)
     // }
-    
-    const setFormat=setFormatNumber(price)
+
+    const setFormat = setFormatNumber(price)
     return setFormat
 }
 
@@ -19,7 +19,7 @@ export const setDiscountPrice = (price, discountValue, isCash) => {
     }
 
     if (isCash == true) {
-        computingDiscountPrice.value =roundPriceToUp(price - discountValue);
+        computingDiscountPrice.value = roundPriceToUp(price - discountValue);
         computingDiscountPrice.type = " تومان ";
 
     } else {
@@ -32,7 +32,7 @@ export const setDiscountPrice = (price, discountValue, isCash) => {
 
 export const roundPriceToUp = (price) => {
     var roundPrice = price;
-    // debugger
+
     var getLatestNumbers = parseInt(price.toString().substring(price.toString().length, price.toString().length - 3));
     if (getLatestNumbers > 0) {
         roundPrice = 1 + parseInt(price.toString().substring(0, price.toString().length - 3)) + "000";

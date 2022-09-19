@@ -103,7 +103,7 @@ export const filterDataWithBetweenTime = (data, time, buyOrExpair) => {
       });
     } else if (buyOrExpair === "expair") {
       data.forEach((element) => {
-        // debugger
+
         let elDate = parseInt(
           new DateObject(
             element.user.package_end_date.substring(0, 10).replaceAll("-", "/")

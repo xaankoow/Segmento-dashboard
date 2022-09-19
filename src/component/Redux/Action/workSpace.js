@@ -31,7 +31,7 @@ export const ChackBusinessCustomer = () => {
             payload: loadingState,
           });
         }
-        // debugger
+
         const { data } = await getAllFinancialReportsData();
         if (data.status == true && data.code == 200) {
           const state = { ...getState().workSpaceState };
@@ -94,7 +94,7 @@ export const setShowWorkSpaceModal = (value) => {
 };
 export const getAllWorkSpace = () => {
   return async (dispatch, getState) => {
-    // debugger
+
     // var state = { ...getState().workSpaceState };
     const loadingState = { ...getState().loadingState };
 
@@ -223,7 +223,7 @@ export const setKeyWords = (value, stateKey) => {
 export const setCommercialPages = (adress, stateCommercial) => {
   return async (dispatch, getState) => {
     const state = { ...getState().workSpaceState };
-    // debugger
+
     switch (stateCommercial) {
       case "commercialPage1":
         state.commercialPage1 = adress;
@@ -265,7 +265,7 @@ export const setCommercialPages = (adress, stateCommercial) => {
 export const setWebsitePages = (adress, stateWebsitePage) => {
   return async (dispatch, getState) => {
     const state = { ...getState().workSpaceState };
-    // debugger
+
     switch (stateWebsitePage) {
       case "websitePage1":
         state.websitePage1 = adress;
@@ -307,7 +307,7 @@ export const setWebsitePages = (adress, stateWebsitePage) => {
 export const setCompetitorSite = (adress, competitorSite) => {
   return async (dispatch, getState) => {
     const state = { ...getState().workSpaceState };
-    // debugger
+
     var handleCompetitorIndex = competitorSite.split(",");
     switch (handleCompetitorIndex[0]) {
       case "keyWord1":
@@ -368,7 +368,7 @@ export const workSpaceWebsite = () => {
         var row = {
           website: webAdress,
         };
-        // debugger
+
         const { data } = await website(row);
         if (data.code == 200 && data.status == true) {
           state.webAdressUuid = data.data.uuid;
@@ -464,7 +464,7 @@ export const addWorkSpace = (step) => {
     //
     const state = { ...getState().workSpaceState };
     const loadingState = { ...getState().loadingState };
-    // debugger
+
     const webAdress = state.webAdress;
     // const charKey1 = state.charKey1;
     // const charKey2 = state.charKey2;
@@ -586,12 +586,12 @@ export const addWorkSpace = (step) => {
       }
 
       const { data } = await creatWorkSpace(modalWorkSpace);
-      // debugger
+
       if (data.code == 200 && data.status == true) {
         // getAllWorkSpace();
         const workSpaces = await getAllWorkspace();
         if (workSpaces.data.status == true && workSpaces.data.code == 200) {
-          // debugger
+
           state.allWorkSpace = workSpaces.data.data;
         }
         state.resultSetWorkSpace = { reportStatus: false, reportStep: step };

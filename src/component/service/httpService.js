@@ -1,19 +1,19 @@
 import axios from "axios";
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
-const token=localStorage.getItem("token");
+const token = localStorage.getItem("token");
 
-// debugger
 
-if (token!=="undefined"&&token!=null&&token) {
+
+if (token !== "undefined" && token != null && token) {
     // axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
-    axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
 }
 
 
-axios.interceptors.response.use(null,error=>{
-    const expectedError=error.response&&error.response.status>=400&&error.response.status<500;
-    if(!expectedError){
+axios.interceptors.response.use(null, error => {
+    const expectedError = error.response && error.response.status >= 400 && error.response.status < 500;
+    if (!expectedError) {
         toast.error("مشکلی از سمت سرور رخ داده است.", {
             position: "top-right",
             closeOnClick: true
@@ -23,9 +23,9 @@ axios.interceptors.response.use(null,error=>{
 })
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default{
-    get:axios.get,
-    post:axios.post,
-    put:axios.put,
-    delete:axios.delete
+export default {
+    get: axios.get,
+    post: axios.post,
+    put: axios.put,
+    delete: axios.delete
 }

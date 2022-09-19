@@ -27,7 +27,7 @@ export default function Table({
   const [isActive, setActive] = useState(false); // <-- set className name when checkbox is checking
 
   const handleCheckingInput = () => {
-    // debugger;
+    ;
 
     if (copyItem.length > 0) {
       setSelectColumnTitle("کپی");
@@ -36,9 +36,8 @@ export default function Table({
     }
   };
 
-  // console.log(copyItem.length);
   // seperator adjusting
-  let searchBox = searchBoxValue !==undefined ? searchBoxValue.length : savedItem ? savedItem.length :0 ;
+  let searchBox = searchBoxValue !== undefined ? searchBoxValue.length : savedItem ? savedItem.length : 0;
   const groupIt = (array) => {
     let resultObj = {};
 
@@ -61,7 +60,7 @@ export default function Table({
     return item;
   });
 
- 
+
   const setSepetator = (data) => {
     const list = [];
     for (let i = 0; i < a.length; i++) {
@@ -161,11 +160,8 @@ export default function Table({
   const HandleCheckBoxClick = (e, item) => {
     if (e.target.checked) {
       setCopyItem([...copyItem, item]);
-      // console.log(copyItem);
-      // console.log(e.target.checked);
     } else {
       setCopyItem(copyItem.filter((copyItems) => copyItems != item));
-      // console.log(copyItem);
     }
 
     handleCheckingInput(e.target.checked, item);
@@ -181,11 +177,10 @@ export default function Table({
         <div className="flex items-center justify-between bg-[#FCFCFB] w-full px-2">
           <div className="flex gap-4 items-center ">
             <div
-              className={`text-sm font-medium text-gray-900  relative text-right ${
-                copyItem.length > 0
+              className={`text-sm font-medium text-gray-900  relative text-right ${copyItem.length > 0
                   ? "text-[#0A65CD] btn-secondary m-auto cursor-pointer"
                   : "text-[#D9D9D9]"
-              }`}
+                }`}
               onClick={() => {
                 navigator.clipboard.writeText(customCopy());
                 setHandleClickCopy(true);
@@ -269,8 +264,8 @@ export default function Table({
                   isActive
                     ? "copyAllButton rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-primary flex items-center w-[128px] transition-all"
                     : NothingSearch
-                    ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center w-[128px]  transition-all"
-                    : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-secondary flex items-center hover:bg-primary w-[128px] hover:text-[#ffffff]  transition-all"
+                      ? "copyAllButtondisabled rounded-[9px] py-[8px] px-5 text-[#ffffff] bg-secondary flex items-center w-[128px]  transition-all"
+                      : "copyAllButton rounded-[9px] py-[8px] px-5 text-[#488CDA] bg-secondary flex items-center hover:bg-primary w-[128px] hover:text-[#ffffff]  transition-all"
                 }
                 disabled={NothingSearch ? true : false}
                 onClick={() => {
@@ -309,7 +304,7 @@ export default function Table({
               return (
                 <>
                   {seperatorList[indexSeprator - 1] == item &&
-                  !contentsProduction ? (
+                    !contentsProduction ? (
                     <div className="flex items-center justify-center m-2">
                       <div className="bg-gray w-[55px] h-[20px] text-center flex items-center justify-center text-[#ffffff] rounded">
                         {a[indexSeprator - 1]}
@@ -334,13 +329,10 @@ export default function Table({
                         onClick={(e) => {
                           if (e.target.checked) {
                             setCopyItem([...copyItem, item]);
-                            // console.log(copyItem);
-                            // console.log(e.target.checked);
                           } else {
                             setCopyItem(
                               copyItem.filter((copyItems) => copyItems != item)
                             );
-                            // console.log(copyItem);
                           }
 
                           handleCheckingInput(e.target.checked, item);

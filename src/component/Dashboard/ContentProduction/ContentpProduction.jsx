@@ -66,10 +66,9 @@ export default function ContentpProduction({ onClickHandler }) {
       setForceUpdate(!forceUpdate);
       dispatch(handleLowOffLimitCount("WORD_BATCH_LIMIT", 10));
       dispatch(resetLimitState());
-      // debugger;
+      ;
     } catch (error) {
       setShowPopUpLimit(true);
-      // console.log(error);
     }
     //handle hide loading
     {

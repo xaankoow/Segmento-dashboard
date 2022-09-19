@@ -1,10 +1,10 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import Modal from 'react-modal'
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { modalParentSelector } from '../../../variables/style';
 import AuthButton from '../../Auth/authButton/AuthButton';
-import { addWorkSpace, resetWorkSpaceState } from '../../Redux/Action/workSpace';
+import { addWorkSpace } from '../../Redux/Action/workSpace';
 import BadgeLimitKeyWords from '../BadgeLimitKeyWords';
 import SetTitleTabBrowser from '../SetTitleTabBrowser';
 import InputGetWorkSpaceInfo from './inputValue';
@@ -13,11 +13,10 @@ import { workSpaceTitle } from './titleWorkSpaceModal';
 import add_circle_svg from "../../../assets/img/modal/workSpace/head/add_circle.svg";
 import PopUpLimit from '../Limit/PopUpLimit';
 import { FindLimitTools } from '../FindLimitTools';
-// import { ChackingAvailabilityTools } from '../CheckingAvailabilityTools';
 
 export default function WorkSpace() {
 
-  // debugger
+
   const [stepModal, setStepModal] = useState(1);
   const { webAdress } = useSelector(state => state.workSpaceState)
   const workSpaceState = useSelector(state => state.workSpaceState)
@@ -85,17 +84,6 @@ export default function WorkSpace() {
     }
   }
 
-  const dispatch = useDispatch()
-  // debugger
-  useEffect(() => {
-    // return () => {
-    // navigate("/dashboard/"+ChackingAvailabilityTools({path:"setWorkSpace",section:"workSpace"}))
-    // navigate("setWorkSpace")
-    // ChackingAvailabilityTools({path:"setWorkSpace",section:"workspace"})
-    // console.log("start")
-    // }
-  }, [])
-
   return (
     <Fragment>
       {FindLimitTools("workSpace", workSpaceState).limit == 0 ?
@@ -135,14 +123,12 @@ export default function WorkSpace() {
                 <div className=' '>
                   {/* step, countInput, handleAddStateCountInput */}
                   <InputGetWorkSpaceInfo step={stepModal} countInput={stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite} handleAddStateCountInput={handleAddStateCountInput} handleRemoveStateCountInput={handleRemoveStateCountInput} />
-                  {/* {InputGetWorkSpaceInfo(stepModal, stepModal == 2 ? addKeyCharInput : stepModal == 3 ? addCommercialPageInput : stepModal == 4 ? addWebsitePageInput : stepModal == 5 && addCompetitorSite, handleAddStateCountInput)} */}
                 </div>
               </body>
               <footer className='px-5'>
                 {stepModal != 1 ? <span className={"back_ico ml-24"} onClick={() => setStepModal(stepModal - 1)}></span> : <div></div>}
                 {stepModal != 1 ? <AuthButton classes={"btn-secondary"} reduxHandleClick={addWorkSpace} setOnclickValue={stepModal} textButton={"پایان پیکربندی"} /> : <div></div>}
                 {stepModal != 5 ? <AuthButton handlerClick={setStepModal} disabled={webAdress.length != 0 ? false : true} setOnclickValue={stepModal + 1} textButton={<Fragment>گام بعدی<span className='forward-ico'></span></Fragment>} /> : <div className=' w-32'></div>}
-                {/* {stepModal != 5 ? <button className='btn-style ' onClick={() => setStepModal(stepModal + 1)}>ادامه<span className='forward-ico'></span></button> : <div></div>} */}
               </footer>
             </div>
           </Modal>

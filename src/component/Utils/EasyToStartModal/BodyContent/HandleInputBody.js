@@ -1,15 +1,15 @@
 import AuthInput from "../../../Auth/authInput/AuthInput";
 import { setCharKey1, setCharKey2, setCommercialPage1, setCommercialPage2, setSite1, setSite2, setWebAdress } from "../../../Redux/Action/plan";
 import StaticInputText from "../../staticInputText/textInput";
-import {useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Fragment } from "react";
 import arrow_svg from '../../../../assets/img/modal/body/arrow.svg'
 
 
-export const InputEasyToStartModal = ({stepModal}) => {
-    // debugger
+export const InputEasyToStartModal = ({ stepModal }) => {
+
     // const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2} = useSelector(state => state.planState);
-    const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2} = useSelector(state => state.planState);
+    const { webAdress, charKey1, charKey2, site1, site2, commercialPage1, commercialPage2 } = useSelector(state => state.planState);
     switch (stepModal) {
 
         case 3:
@@ -17,23 +17,23 @@ export const InputEasyToStartModal = ({stepModal}) => {
         case 4:
             return (
                 <Fragment>
-                <div className='container_input_step2'>
-                    <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey1} value={charKey1} />
-                    <img src={arrow_svg} className='arrpw' alt="" />
-                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه هدف"} staticText={"https://"+webAdress+"/"} value={site1} reduxHandleChange={setSite1} placeholder={"page1"} />
-                </div>
-                <div className='container_input_step2'>
-                    <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey2} value={charKey2} />
-                    <img src={arrow_svg} className='arrpw' alt="" />
-                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه هدف"} staticText={"https://"+webAdress+"/"} value={site2} reduxHandleChange={setSite2} placeholder={"page2"} />
-                </div>
-            </Fragment>
+                    <div className='container_input_step2'>
+                        <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey1} value={charKey1} />
+                        <img src={arrow_svg} className='arrpw' alt="" />
+                        <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه هدف"} staticText={"https://" + webAdress + "/"} value={site1} reduxHandleChange={setSite1} placeholder={"page1"} />
+                    </div>
+                    <div className='container_input_step2'>
+                        <AuthInput textLabelInput="کلمات کلیدی" width={"100%"} typeInput="text" reduxHandleChange={setCharKey2} value={charKey2} />
+                        <img src={arrow_svg} className='arrpw' alt="" />
+                        <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه هدف"} staticText={"https://" + webAdress + "/"} value={site2} reduxHandleChange={setSite2} placeholder={"page2"} />
+                    </div>
+                </Fragment>
             );
         case 5:
             return (
                 <div className='container_input_step3'>
-                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://"+webAdress+"/" } placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
-                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://"+webAdress+"/" } placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
+                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://" + webAdress + "/"} placeholder={"test"} reduxHandleChange={setCommercialPage1} value={commercialPage1} />
+                    <StaticInputText typeInput={"text"} width={"100%"} textLabelInput={"صفحه تجاری"} staticText={"https://" + webAdress + "/"} placeholder={"test"} reduxHandleChange={setCommercialPage2} value={commercialPage2} />
                 </div>
             );
         default:

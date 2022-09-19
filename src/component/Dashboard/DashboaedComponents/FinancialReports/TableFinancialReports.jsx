@@ -58,9 +58,9 @@ export default function TableFinancialReports({ title }) {
 
   const loadingState = useSelector((state) => state.loadingState);
   useEffect(() => {
-    // debugger
+
     // if (financialDataTableOrg.length == 0) {
-      GetFinancialReportsData();
+    GetFinancialReportsData();
     // }
   }, []);
 
@@ -108,7 +108,7 @@ export default function TableFinancialReports({ title }) {
       }
     }
   };
-  
+
   var moment = require("jalali-moment");
 
   const ExcelFile = ReactExport.ExcelFile;
@@ -193,13 +193,12 @@ export default function TableFinancialReports({ title }) {
                       {/* وضعیت */}
                       <p className=" w-24 text-center">
                         <span
-                          className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${
-                            item.payment_status_text == "پرداخت ناموفق"
+                          className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text == "پرداخت ناموفق"
                               ? " bg-[#F35242]"
                               : item.payment_status_text == "پرداخت نشده"
-                              ? "bg-yellow"
-                              : "bg-[#10CCAE]"
-                          }`}
+                                ? "bg-yellow"
+                                : "bg-[#10CCAE]"
+                            }`}
                         >
                           {item.payment_status_text}
                         </span>
@@ -235,14 +234,14 @@ export default function TableFinancialReports({ title }) {
                       {/* نوع اشتراک */}
                       <p className=" w-36 text-center">
                         {item.user != undefined &&
-                        item.description
-                          .substring(31, item.description.length)
-                          .includes("رایگان") == true
+                          item.description
+                            .substring(31, item.description.length)
+                            .includes("رایگان") == true
                           ? "14 روز رایگان"
                           : item.description.substring(
-                              31,
-                              item.description.length
-                            )}
+                            31,
+                            item.description.length
+                          )}
                       </p>
                       {/* شماره فاکتور */}
                       <p className=" w-20 text-center">{item.order_code}</p>

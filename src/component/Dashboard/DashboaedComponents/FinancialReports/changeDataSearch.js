@@ -45,7 +45,7 @@ export const FilterData = ({
       );
 
     case "تاریخ خرید":
-      // debugger
+
       return (
         <DatePicker
           range

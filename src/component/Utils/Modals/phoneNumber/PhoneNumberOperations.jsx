@@ -65,10 +65,10 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   const { canRequest } = useSelector((state) => state.loadingState);
   // api
   const setNewPhoneNumber = async () => {
-    if (phoneNumberValue.length!=9) {
+    if (phoneNumberValue.length != 9) {
       InputError("phoneNumberOperationsErrText", "لطفا یک شماره تلفن معتبر وارد کنید");
     } else {
-      
+
       // handle show loadin
       {
         loadingState.ProcessingDelay.push("changephoneNumberService");
@@ -78,7 +78,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       try {
         let formdata = new FormData();
         formdata.append("mobile", "09" + phoneNumberValue);
-        // debugger
+
         if (checkResendCode) {
           // set timer
           const { data } = await changePhoneNumber(formdata);
@@ -90,7 +90,6 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
           }
         }
       } catch (error) {
-        // console.log(error);
       }
       {
         var removeProcessingItem = loadingState.ProcessingDelay.filter(
@@ -117,7 +116,6 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       const { data, status, code } = await verifyPhoneNumber(formdata);
 
       if ((data.code == 200) & (data.status == true)) {
-        // dispatch(setPropCoreUser("mobile", data.user.mobile));
         dispatch(coreUser());
         setCheckCompleted(true);
       }
@@ -127,7 +125,6 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         toast.error(data.errors[0]);
       }
     } catch (error) {
-      // console.log(error);
     }
     {
       var removeProcessingItem = loadingState.ProcessingDelay.filter(
@@ -160,7 +157,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         }
       }, 1000);
     }
-    // debugger
+
     if (userData.user != undefined && operationType == "") {
       if (userData.user.mobile == null) {
         setOperationType("verify");
@@ -178,7 +175,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
   }, []);
 
   useEffect(() => {
-    
+
   }, [operationType]);
 
   // clear timer
@@ -226,10 +223,10 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
               parentSelector={() =>
                 document.querySelector(".app #DASHBOARD .body .main")
               }
-              onAfterOpen={()=>afterOpenOrCloseAnyModal({open:true})}
-              onAfterClose={()=>afterOpenOrCloseAnyModal({open:false})}
+              onAfterOpen={() => afterOpenOrCloseAnyModal({ open: true })}
+              onAfterClose={() => afterOpenOrCloseAnyModal({ open: false })}
               style={defaultCustomModalStyle}
-              onRequestClose={()=>operationType!="verify"&&navigate(-1)}
+              onRequestClose={() => operationType != "verify" && navigate(-1)}
               contentLabel="Example Modal"
             >
               <div className="report_buy_plan w-[530px] rounded-lg transition-all">
@@ -243,7 +240,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                   }
                 />
                 <body className=" bg-[#fff]  pt-2 px-2 pb-5">
-                  <div className=" mt-5">{paragraphText(modalStep,operationType)}</div>
+                  <div className=" mt-5">{paragraphText(modalStep, operationType)}</div>
                   <div className=" w-96 mx-auto mt-20">
                     {modalStep == 1 ? (
                       <StaticInputText
@@ -272,7 +269,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                     ) : (
                       <div className="flex justify-between items-center">
                         <div>
-                          <img src={moveBackIco_svg} alt="move Back" className=" cursor-pointer ml-32" onClick={()=> setModalStep(1)}/>
+                          <img src={moveBackIco_svg} alt="move Back" className=" cursor-pointer ml-32" onClick={() => setModalStep(1)} />
                         </div>
                         <AuthButton
                           textButton={"تایید کد"}
@@ -284,10 +281,9 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                             onClick={() =>
                               checkResendCode && setNewPhoneNumber()
                             }
-                            className={`mr-3 border-b cursor-pointer  ${
-                              !checkResendCode &&
+                            className={`mr-3 border-b cursor-pointer  ${!checkResendCode &&
                               " text-sectionDisable cursor-default"
-                            } hover:text-[#0AC7E2]`}
+                              } hover:text-[#0AC7E2]`}
                             data-tip="با کلیک‌کردن، کد جدید دریافت می‌کنید."
                             data-type="light"
                             data-place="top"

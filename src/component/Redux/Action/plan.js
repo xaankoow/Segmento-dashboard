@@ -10,7 +10,7 @@ import { showInputErrorToast, showPromisToast, showToast } from "../../Utils/toa
 
 export const getAllPlanData = () => {
     return async (dispatch, getState) => {
-        // debugger
+
         const state = { ...getState().planState }
         const loadingState = { ...getState().loadingState }
 
@@ -22,7 +22,7 @@ export const getAllPlanData = () => {
             let toastMessage = "";
 
             try {
-                // debugger
+
                 if (!loadingState.ProcessingDelay.includes("getAllPlan")) {
                     //handle show loadin
                     {
@@ -31,7 +31,7 @@ export const getAllPlanData = () => {
                         await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
                     }
                     const workSpaces = await getAllPlan()
-                    // debugger
+
                     if (workSpaces.data.status == true && workSpaces.data.code == 200) {
                         state.allPackageData = workSpaces.data.data;
                         await dispatch({ type: "MODAL_PLAN_GET_ALL_PLAN_DATA", payload: state })
@@ -48,7 +48,6 @@ export const getAllPlanData = () => {
                     }
                 }
             } catch (error) {
-                // console.log("register error")
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
@@ -182,7 +181,7 @@ export const buyPlan = (buyType) => {
 
         const packageUuid = state.packageUuid;
         const discount = state.discount;
-        // debugger
+
         if (packageUuid) {
 
 
@@ -238,7 +237,7 @@ export const buyPlan = (buyType) => {
 export const tryFreePlan = () => {
     return async (dispatch, getState) => {
         //  
-        // debugger
+
         const state = { ...getState().planState }
         const userState = { ...getState().userState }
         const loadingState = { ...getState().loadingState }
@@ -262,7 +261,7 @@ export const tryFreePlan = () => {
             let toastMessage = "";
             try {
                 const { data } = await buyPlna(packageInfo);
-                // debugger
+
                 if (data.code == 201) {
                     state.checkUseTryFree = true;
                     dispatch(coreUser())
@@ -340,14 +339,14 @@ export const applyDiscountAction = (discountCode, planType) => {
                 // const { data, status } = await applyDiscount("sample-code");
                 if (data.code == 200 && data.data.status == true) {
                     state.discount = discountCode;
-                    // debugger
+
                     // state.discountValue.value = { value: data.data.value.toString().substring(0, data.data.value.toString().length - 3), planType: planType };
                     // state.discountStatus.value = data.data.value.toString().substring(0, data.data.value.toString().length - 3) ;
                     state.discountStatus.value = data.data.value;
                     state.discountStatus.planType = planType;
                     state.discountStatus.discountType = data.data.unit == 1 ? "percentage" : "cash";
                     state.forceUpdate += 1;
-                    InputError("discount", "کدتخفیف درست است","#10CCAE",true)
+                    InputError("discount", "کدتخفیف درست است", "#10CCAE", true)
                     // showToast(data.data.msg, "success");
                     // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
                 } else {
@@ -400,7 +399,7 @@ export const modalSetWorkSpace = () => {
         const commercialPage2 = state.commercialPage1;
         // const packageUuid=state.packageUuid;
         // const discount=state.discount;
-        // debugger
+
         // if (packageUuid) {
         // let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
 
@@ -438,9 +437,9 @@ export const modalSetWorkSpace = () => {
 
         let toastMessage = "";
         try {
-            // debugger
+
             const { data } = await creatWorkSpace(modalWorkSpace);
-            // debugger
+
             if (data.code == 200 && data.status == true) {
                 localStorage.setItem("modalWorkSpace", data.status);
                 state.forceUpdate += 1;

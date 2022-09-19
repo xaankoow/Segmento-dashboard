@@ -16,7 +16,7 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
       }
       // default_discount_percent
       if (discountStatus.value != 0) {
-        // debugger
+
         let funDisValue = setDiscountPrice(packageSelected.price, discountStatus.value, discountStatus.discountType == "cash" ? true : false);
         if (funDisValue.value > packageSelected.default_discount) {
           packageSelected.default_discount_percent = funDisValue.type == "cash" ? setFormatPrice(funDisValue.value) + funDisValue.type : discountStatus.value + funDisValue.type;
@@ -34,9 +34,6 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
   // margin: auto;
   // padding: 20px 5px 5px 5px;
 
-  // console.log(packageSelected.default_discount_price)
-  // console.log(setFormatPrice(packageSelected.default_discount_price))
-  // console.log(Math.floor(parseFloat(1927800)))
 
 
   return (

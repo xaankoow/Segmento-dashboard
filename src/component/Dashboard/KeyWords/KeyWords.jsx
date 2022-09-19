@@ -25,7 +25,7 @@ const KeyWords = ({ onClickHandler }) => {
   const keyWordSearchTexts = ["همه عبارات", "B", "C", "D"];
   const [keyWords, setKeyWords] = useState([]); //1
   const [seperator, setSeperator] = useState(false);
-  
+
   const [resetRadioText, setResetRadioText] = useState(1);
 
   const [showPopUpLimit, setShowPopUpLimit] = useState(true);
@@ -54,8 +54,7 @@ const KeyWords = ({ onClickHandler }) => {
         characters: true,
       };
       // const { data, status } = await keywordService(searchBoxValue);
-      // debugger
-      // console.log(toolsLimit[20].count)
+
       // if (toolsLimit[6].count<0) {
 
       const { data, status } = await keywordService(dd);
@@ -63,7 +62,6 @@ const KeyWords = ({ onClickHandler }) => {
       setId(data.data.id);
       dispatch(handleLowOffLimitCount("GOOGLE_TITLE_BUILDER", 1));
       dispatch(resetLimitState());
-      // console.log(data.data.id);
       // } else {
       //   <PopUp
       //   clickHandler={() => showSavePopup(false)}
@@ -74,11 +72,10 @@ const KeyWords = ({ onClickHandler }) => {
       //   title={"موفقیت آمیز"}
       //   targetTag={"#keyWordsLayOutId"}
       // />
-      
+
       // }
     } catch (error) {
       setShowPopUpLimit(true);
-      // console.log(error)
     }
     //handle hide loading
     {
@@ -103,9 +100,7 @@ const KeyWords = ({ onClickHandler }) => {
       const { data, status } = await keywordsStoreService(id);
 
       showSavePopup(true);
-      //  console.log(data);
     } catch (error) {
-      // console.log(error);
     }
     //handle hide loading
     {
@@ -118,7 +113,6 @@ const KeyWords = ({ onClickHandler }) => {
     }
   };
 
-  // console.log(datass.data);
   // search box click
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
 
@@ -128,12 +122,11 @@ const KeyWords = ({ onClickHandler }) => {
   var tableDataFiltered = [];
   var lengthTable = 0;
   Object.keys(keyWords).map((item) => {
-    // console.log(datass.data[item].length);
     if (keyWords[item] != null) {
       for (let i = 0; i < keyWords[item].length - 1; i++) {
         if (keyWords[item][i].includes(searchBoxValue)) {
           tableDataFiltered.push(keyWords[item][i]);
-          lengthTable ++
+          lengthTable++
         }
         // return
       }
@@ -145,7 +138,7 @@ const KeyWords = ({ onClickHandler }) => {
   const secoundSearchBoxChangeHandler = (e) => {
     setSecoundSearchBoxValue(e.target.value);
     setAlphabetHandler("");
-    
+
   };
 
   //  filter from comboBox
@@ -156,7 +149,7 @@ const KeyWords = ({ onClickHandler }) => {
   const radioButtonHandler = (e) => {
     setRadioClickedHandler(e.target.value);
     setAlphabetHandler("");
-   
+
   };
 
   if (radioClickedHandler === "1" && searchBoxValue) {
@@ -223,7 +216,7 @@ const KeyWords = ({ onClickHandler }) => {
           handlClick={() => {
             setSearchBoxHandleClick(true);
             handleSetKeyWords();
-            
+
           }}
           resetRadioText={resetRadioText}
           setResetRadioText={setResetRadioText}
@@ -246,8 +239,8 @@ const KeyWords = ({ onClickHandler }) => {
                 tableAlphabetFiltering
                   ? tableAlphabetFiltering
                   : comboboxFiltered
-                  ? comboboxFiltered
-                  : tableDataFiltered
+                    ? comboboxFiltered
+                    : tableDataFiltered
               }
               NothingSearch={
                 !searchBoxValue || !searchBoxHandleClick ? true : false

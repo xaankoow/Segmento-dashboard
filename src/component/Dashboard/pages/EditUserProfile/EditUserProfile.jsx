@@ -39,9 +39,9 @@ export default function EditUserProfile() {
   const { canRequest } = useSelector((state) => state.loadingState);
 
   const location = useLocation();
- // data of select box thet is related to the past info
- const [pastData, setPastData] = useState("");
- const pastDataName= pastData? pastData.name.split(/(\s+)/) :"";
+  // data of select box thet is related to the past info
+  const [pastData, setPastData] = useState("");
+  const pastDataName = pastData ? pastData.name.split(/(\s+)/) : "";
   const [selectDatas, setSelectDtas] = useState([]);
   const [nameInputValue, setNameInputValue] = useState(pastDataName[0]);
   const [familyInputValue, setfamilyInputValue] = useState(pastDataName[2]);
@@ -110,7 +110,6 @@ export default function EditUserProfile() {
       // setcontent(data.data); //5
       setSelectDtas(data.data);
     } catch (error) {
-      // console.log(error);
     }
   };
 
@@ -133,7 +132,7 @@ export default function EditUserProfile() {
       } else {
         family = user_name;
       }
-      // debugger
+
       // const [file] = acceptedFiles;
       const imgData = userState.image[0] != "" ? userState.image[0] : "";
       // const imgData1 = imgData != "" ? URL.revokeObjectURL(imgData) : "";
@@ -191,7 +190,6 @@ export default function EditUserProfile() {
         toastMessage += element + " / ";
       });
       showToast(toastMessage, "error");
-      // console.log(error);
       // toast.error("اطلاعات شما ذخیره نشد !");
     }
 
@@ -206,39 +204,36 @@ export default function EditUserProfile() {
     }
   };
 
- 
+
 
   useEffect(() => {
     if (!pastData) {
       pastSelexboxData();
     }
-  },[pastData]);
+  }, [pastData]);
 
   const pastSelexboxData = async () => {
-    // debugger
+
     if (userState.userData.user != undefined) {
       var uuidUser = userState.userData.user.uuid;
 
-      // console.log(uuidUser);
       try {
         // const { data, status } = await getPastDatas(uuidUser); // ---------
         const { data, status } = await getPastDatas(uuidUser); // --------- ایمپورت اشتباه
         setPastData(data.data); //5
       } catch (error) {
-        // console.log(error);
       }
     }
   };
 
   // select box data
   const data = [];
-  // console.log(data)
   Object.keys(selectDatas).map((item) => {
     data.push(selectDatas[item]);
   });
 
   const handleUpdatePassword = async () => {
-    
+
     if (
       CheckFormat("password", newPass, "errEditUserProfilePassword") &&
       CheckFormat(
@@ -262,7 +257,7 @@ export default function EditUserProfile() {
         // const { data, status } = await keywordService(searchBoxValue);
         const { data, status } = await editPassword(formdata);
         // setcontent(data.data); //5
-    
+
         if (data.errors.length != 0) {
           toast.error(data.errors[0]);
         } else {
@@ -271,7 +266,6 @@ export default function EditUserProfile() {
         }
         setForceUpdate(!forceUpdates);
       } catch (error) {
-        // console.log(error);
         toast.error("لطفا فیلد ها را با دقت پر کنید");
       }
 
@@ -302,7 +296,7 @@ export default function EditUserProfile() {
     if (selectDatas.length == 0) {
       selexboxData();
     }
-    // debugger
+
     // if (userToken) { ------------ این مورد اضافی به نظر میاد و نیازی نیست چونکه داخل هدر داشبورد صدا زدم
     // dispatch(coreUser());
     //   dispatch(getAllWorkSpace());
@@ -349,8 +343,8 @@ export default function EditUserProfile() {
                     ? userState.userData.package.title
                     : "بدون پکیج"
                 }
-                type={  userState.userData.package != undefined
-                  ? userState.userData.package.type_text: "بدون پکیج"
+                type={userState.userData.package != undefined
+                  ? userState.userData.package.type_text : "بدون پکیج"
                 }
                 email={user_email}
                 changeUserImage={() => setOpenChangeImageModal(true)}
@@ -390,8 +384,8 @@ export default function EditUserProfile() {
                       typeInput="text"
                       handleChange={handleNameInput}
                       ref={nameEmpty}
-                      
-                      
+
+
                     />
 
                     <AuthInput
@@ -400,8 +394,8 @@ export default function EditUserProfile() {
                       typeInput="text"
                       handleChange={handlefamilyInput}
                       ref={familyEmpty}
-                     
-                      
+
+
                     />
                   </div>
                   <AuthInput

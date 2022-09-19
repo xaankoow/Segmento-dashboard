@@ -36,13 +36,13 @@ export default function ChangeImageModal({
   const [files, setFiles] = useState([""]);
   const saveImageButton = () => {
     setImageChanged(true)
-   
+
   };
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["JPG", "PNG", "GIF"],
     onDrop: (acceptedFiles) => {
-      // debugger
+
       // dispatch(setImageProfRedux(acceptedFiles.map((file) =>
       //   Object.assign(file, {
       //     preview: URL.createObjectURL(file),
@@ -64,9 +64,8 @@ export default function ChangeImageModal({
     },
   });
 
-  // console.log(files[0].preview);
-  // debugger
-  // debugger
+
+
   const imgData = files[0] != "" ? URL.createObjectURL(files[0]) : "";
   const thumbs =
     files[0] != "" ? (
@@ -89,14 +88,10 @@ export default function ChangeImageModal({
     );
 
   // useEffect(() => {
-  //   console.log("use ef revoke");
   //   // Make sure to revoke the data uris to avoid memory leaks
   //   userState.image.forEach((file) => URL.revokeObjectURL(file.preview));
   // }, [userState.image]);
-  // console.log(files);
-  // debugger
-  // console.log(files[0]);
-  // console.log(files)
+
   return (
     <Modal
       isOpen={isOpen ? true : false}
@@ -107,7 +102,7 @@ export default function ChangeImageModal({
       // onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
-      // className={"myModal"}
+    // className={"myModal"}
     >
       <>
         {imageChanged && (
