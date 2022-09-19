@@ -36,6 +36,7 @@ import errorIco_svg from './assets/img/popUp/errorIco.svg'
 import update_svg from './assets/img/popUp/update.svg'
 import AuthButton from "./component/Auth/authButton/AuthButton";
 import { allLimitDataFeature, ChackBusinessCustomer } from "./component/Redux/Action/workSpace";
+import TitleCopyWriterBulk from "./pages/titleCopyWriterBulk/TitleCopyWriterBulk";
 
 export default function App() {
   
@@ -102,6 +103,7 @@ export default function App() {
                     <Route path="ReportSupport" element={<ReportSupport />} />
                     <Route path="NewTicket" element={<Support />} />
                     <Route path="SupportMessage" element={<SupportMessage />} />
+                    <Route path="TitleCopyWriterBulk" element={<TitleCopyWriterBulk />} />
                     <Route path="TitleCopywriter" element={<TitleCopywriter />} />
                     <Route path="" element={<EasyStart />} />
                     <Route path="*" element={<Page404 />} />

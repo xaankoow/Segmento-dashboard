@@ -6,18 +6,16 @@ import success_ico_svg from "../../../../assets/img/dashboard/buyPlan/alert/succ
 import error_ico_svg from "../../../../assets/img/dashboard/buyPlan/alert/error_ico.svg";
 
 export default function AleartMessageBuyPlan() {
+  const [financialData, setFinancialData] = useState([]);
 
-  const [financialData, setFinancialData] = useState([])
-
- 
+  // const typeAlert ="success"
   const typeAlert =
-    financialData.length != 0
-      && financialData[0].payment_status_text == "پرداخت موفق"
-      ? "success"
+    financialData.length != 0 &&
+    financialData[0].payment_status_text == "پرداخت موفق"
+      ? "err"
       : "err";
 
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     if (financialData.length == 0) {
@@ -34,11 +32,14 @@ export default function AleartMessageBuyPlan() {
         {
           loadingState.ProcessingDelay.push("getAllFinancialReports");
           loadingState.canRequest = false;
-          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+          await dispatch({
+            type: "SET_PROCESSING_DELAY",
+            payload: loadingState,
+          });
         }
 
         const { data } = await getAllFinancialReportsData();
-       
+
         if (data.status == true && data.code == 200) {
           setFinancialData(data.data);
         }
@@ -49,7 +50,10 @@ export default function AleartMessageBuyPlan() {
           );
           loadingState.ProcessingDelay = removeProcessingItem;
           loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+          await dispatch({
+            type: "SET_PROCESSING_DELAY",
+            payload: loadingState,
+          });
         }
       }
     } catch (error) {
@@ -74,21 +78,29 @@ export default function AleartMessageBuyPlan() {
       {financialData.length > 0 ? (
         <div className=" px-10 mt-12">
           <div
-            className={`flex justify-between pl-10 pr-4 py-5  ${typeAlert == "success" ? "bg-[#10CCAE]" : "bg-[#F35242]"
-              } rounded-lg`}
+            className={`flex justify-between pl-10 pr-4 py-5  ${
+              typeAlert == "success" ? "bg-[#10CCAE]" : "bg-[#F35242]"
+            } rounded-lg`}
           >
-            <div>
-              <p className=" text-lg font-normal text-[#fff] min-w-[104px]" >
-                {typeAlert == "success"
-                  ? "تبریک به شما    "
-                  : ``}
-              </p>
-            </div>
+            {typeAlert == "success" ? (
+              <div>
+                <p className=" text-lg font-normal text-[#fff] min-w-[104px]">
+                  "تبریک به شما "
+                </p>
+              </div>
+            ) : (
+              ``
+            )}
 
             {typeAlert == "success" ? (
               <div className="w-full flex flex-col justify-center items-center">
                 <span className=" text-[#fff]">اشتراک فعال‌شده برای شما:</span>
-                <span className=" text-[#fff]">{financialData.length != 0&&financialData[0].package.title +" "+ financialData[0].package.type_text}</span>
+                <span className=" text-[#fff]">
+                  {financialData.length != 0 &&
+                    financialData[0].package.title +
+                      " " +
+                      financialData[0].package.type_text}
+                </span>
               </div>
             ) : (
               <div className="w-full flex flex-col my-auto justify-center ">
@@ -104,41 +116,34 @@ export default function AleartMessageBuyPlan() {
             )}
 
             {typeAlert == "success" ? (
-              <img
-                src={success_ico_svg}
-                alt=""
-                className=""
-              />
+              <img src={success_ico_svg} alt="" className="" />
             ) : (
-              <img
-                src={error_ico_svg}
-                alt=""
-                className=""
-              />
+              <img src={error_ico_svg} alt="" className="" />
             )}
           </div>
           <div className=" mt-7">
             {typeAlert == "success" ? (
-              <Fragment>
+              <div className="flex gap-3">
                 <Link
                   to={"/dashboard/planStatus"}
-                  className="btn-style ml-7 inline-block"
+                  className="btn-style ml-7 inline-block w-[153px]"
                 >
                   مشاهده اشتراک
                 </Link>
                 <Link
                   to={"/dashboard/easyStart"}
-                  className="btn-secondary inline-block"
+                  className="btn-secondary inline-block w-[85px]"
                 >
                   داشبورد
                 </Link>
-              </Fragment>
+              </div>
             ) : (
               <Link
                 to={"/dashboard/buyPlan"}
-                className="btn-style inline-block"
+                className="btn-style inline-block w-[153px]"
               >
-                خرید مجدد اشتراک              </Link>
+                خرید مجدد اشتراک{" "}
+              </Link>
             )}
           </div>
         </div>
