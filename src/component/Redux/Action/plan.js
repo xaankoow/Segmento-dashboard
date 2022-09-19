@@ -38,6 +38,14 @@ export const getAllPlanData = () => {
                     } else {
 
                     }
+                    //handle hide loading
+                    {
+                        const loadingState2 = { ...getState().loadingState }
+                        var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
+                        loadingState2.ProcessingDelay = removeProcessingItem;
+                        loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
+                        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
+                    }
                 }
             } catch (error) {
                 // console.log("register error")
@@ -339,7 +347,7 @@ export const applyDiscountAction = (discountCode, planType) => {
                     state.discountStatus.planType = planType;
                     state.discountStatus.discountType = data.data.unit == 1 ? "percentage" : "cash";
                     state.forceUpdate += 1;
-                    showToast(data.data.msg, "success");
+                    // showToast(data.data.msg, "success");
                     // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
                 } else {
                     // data.errors.forEach(element => {

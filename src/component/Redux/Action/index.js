@@ -7,7 +7,6 @@ import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showToast } from "../../Utils/toastifyPromise";
 import { ChackBusinessCustomer } from "./workSpace";
 
-
 // get all user data in api
 export const coreUser = () => {
     return async (dispatch, getState) => {

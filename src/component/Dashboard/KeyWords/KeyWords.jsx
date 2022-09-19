@@ -25,6 +25,8 @@ const KeyWords = ({ onClickHandler }) => {
   const keyWordSearchTexts = ["همه عبارات", "B", "C", "D"];
   const [keyWords, setKeyWords] = useState([]); //1
   const [seperator, setSeperator] = useState(false);
+  
+  const [resetRadioText, setResetRadioText] = useState(1);
 
   const [showPopUpLimit, setShowPopUpLimit] = useState(true);
 
@@ -223,6 +225,9 @@ const KeyWords = ({ onClickHandler }) => {
             handleSetKeyWords();
             
           }}
+          resetRadioText={resetRadioText}
+          setResetRadioText={setResetRadioText}
+          handleClear
           className="w-[97%] flex items-center gap-2 justify-between"
         />
 
@@ -260,6 +265,7 @@ const KeyWords = ({ onClickHandler }) => {
                 secoundSearch={secoundSearchBoxChangeHandler}
                 radioClickedHandler={radioButtonHandler}
                 radioTextItems={keyWordSearchTexts}
+                resetRadioText={resetRadioText}
               />
               <span className="mt-5">جستجو بر اساس حروف الفبا</span>
               <AlphabetKeyWord

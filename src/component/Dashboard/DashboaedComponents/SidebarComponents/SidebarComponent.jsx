@@ -95,7 +95,8 @@ export default function SidebarComponent({
         <IconsRight setActive={activeIconHandler} />
         <div className="down">
           <div className="dropDownBox mb-5">
-            <Link to="ReportSupport">
+            <a href="https://segmento.ir/about/support/">
+            {/* <Link to="ReportSupport"> */}
               <div
                 className="support w-8 h-8"
                 data-tip=" پشتیبانی "
@@ -107,7 +108,8 @@ export default function SidebarComponent({
                   setTimeout(() => setShowToolTip(true), 0);
                 }}
               ></div>
-            </Link>
+            {/* </Link> */}
+              </a>
             {/* <div className="support_dropDown dropDownBox1 flex text-center">
               <span> پشتیبانی و تیکت </span>
             </div> */}

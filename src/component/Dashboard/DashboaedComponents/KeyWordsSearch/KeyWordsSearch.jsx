@@ -15,6 +15,7 @@ export default function KeyWordsSearch({
   radioValue,
   value,
   keywords,
+resetRadioText
 }) {
   const SCTN = usedBySection != undefined ? usedBySection.split("/") : "";
   const [inputClick, setInputClick] = useState(false);
@@ -31,6 +32,10 @@ export default function KeyWordsSearch({
     setClicked(index);
   };
 
+  useEffect(() => {
+    setRadioText("همه عبارات")
+  }, [resetRadioText])
+  
   const ref = useRef();
   useEffect(() => {
     setplaceholderPadding(radioText.length);
@@ -213,26 +218,23 @@ export default function KeyWordsSearch({
                   SCTN[0] == "financialReports"
                     ? "18px"
                     : radioText.length >= 18
-                    ? "127px"
-                    : radioText.length >= 13
-                    ? "98px"
-                    : "90px",
+                      ? "127px"
+                      : radioText.length >= 13
+                        ? "98px"
+                        : "90px",
               }}
-              className={`${
-                !radioText
-                  ? `pr-2 w-full  h-11 ${
-                      SCTN[1] == "sort"
-                        ? " border-l-0 border-y-2 border-r-2 cursor-pointer rounded-r"
-                        : "border-2"
-                    } border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
+              className={`${!radioText
+                  ? `pr-2 w-full  h-11 ${SCTN[1] == "sort"
+                    ? " border-l-0 border-y-2 border-r-2 cursor-pointer rounded-r"
+                    : "border-2"
+                  } border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
                   : NothingSearch
-                  ? "disableInput w-full placeholder-[#7D7D7D]  h-11"
-                  : ` h-11 w-full ${
-                      SCTN[1] == "sort"
-                        ? " border-l-0 border-y-2 border-r-2 cursor-pointer rounded-r"
-                        : "border-2"
+                    ? "disableInput w-full placeholder-[#7D7D7D]  h-11"
+                    : ` h-11 w-full ${SCTN[1] == "sort"
+                      ? " border-l-0 border-y-2 border-r-2 cursor-pointer rounded-r"
+                      : "border-2"
                     } border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9]`
-              }
+                }
                   rounded-l-none`}
               readOnly={SCTN[1] == "sort" ? true : false}
               value={value ? value : null}
@@ -246,7 +248,7 @@ export default function KeyWordsSearch({
               onClick={() => {
                 setInputClick(true);
                 setButtonClick(true);
-                 setOpen(!open) 
+                setOpen(!open)
               }}
               onBlur={() => setInputClick(!inputClick)}
             />
@@ -267,14 +269,14 @@ export default function KeyWordsSearch({
           <button
             disabled={NothingSearch ? true : false}
             onClick={() => {
-               setOpen(!open);
+              setOpen(!open);
             }}
             className={
               inputClick
                 ? " left-1 h-11 border-2 border-[#D9D9D9] border-b-[#0A65CD] border-r-0 w-[44px] rounded-l flex justify-center items-center"
                 : NothingSearch
-                ? "btnDisabled  bg-[#D9D9D9] placeholder-[#7D7D7D] border-0  left-1 h-11 w-[44px] rounded-l flex justify-center items-center"
-                : " left-1 h-11 border-2 border-[#D9D9D9] border-b-[#7D7D7D] border-r-0 w-[44px] rounded-l flex justify-center items-center"
+                  ? "btnDisabled  bg-[#D9D9D9] placeholder-[#7D7D7D] border-0  left-1 h-11 w-[44px] rounded-l flex justify-center items-center"
+                  : " left-1 h-11 border-2 border-[#D9D9D9] border-b-[#7D7D7D] border-r-0 w-[44px] rounded-l flex justify-center items-center"
             }
           >
             <img

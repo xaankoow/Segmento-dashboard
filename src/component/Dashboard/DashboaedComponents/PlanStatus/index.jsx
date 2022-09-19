@@ -279,13 +279,14 @@ if ( userState.userData.package != undefined) {
                     {userState.userData.package ? numberOfDaysLeft : "0"} روز
                   </span>
                 </div>
-
+                <Link to={"/dashboard/buyPlan"}>
                 <button
                   id="btn1"
                   className="btn-style w-[122px] flex flex-row justify-center items-center rounded-lg mx-auto  mt-8 py-auto text-[#ffff]"
                 >
                   تمدید اشتراک
                 </button>
+                </Link>
               </div>
             </div>
 
