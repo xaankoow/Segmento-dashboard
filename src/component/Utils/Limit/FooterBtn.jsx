@@ -7,24 +7,26 @@ export default function FooterBtn({ typeLimit, closePopUp ,handleClose}) {
     const location = useLocation();
     const navigate=useNavigate();
 
+    console.log('location.state.background', location)
     return (
         <>
             {typeLimit == "default" ? (
                 <div className="flex justify-between items-center w-full px-3">
-                    <Link className='third-btn' to={"/dashboard/buyPlan"} state={{ background: location }}>فعالسازی 14 روز رایگان</Link>
-                    <Link className='btn-style' to={"/dashboard/buyPlan"} state={{ background: location }}>اشتراک میخرم</Link>
+                            
+                    <Link className='third-btn' to={"/dashboard/buyPlanEasyToStartModal"} state={{ background: location.state!=null ?location.state.background:location.pathname }}>فعالسازی 14 روز رایگان</Link>
+                    <Link className='btn-style' to={"/dashboard/buyPlan"}>اشتراک میخرم</Link>
                 </div>
             ) : typeLimit == "defaultBusiness" ? (
                 <div className="flex justify-between items-center w-full px-3">
                     <span className='third-btn' onClick={()=>closePopUp(false)}>حذف اطلاعات و بازگشت به حساب رایگان</span>
-                    {/* <Link className='third-btn' to={"/dashboard/buyPlan"} state={{ background: location }}>حذف اطلاعات و بازگشت به حساب رایگان</Link> */}
-                    <Link className='btn-style' to={"/dashboard/buyPlan"} state={{ background: location }}>اشتراک میخرم</Link>
+                    {/* <Link className='third-btn' to={"/dashboard/buyPlan"}>حذف اطلاعات و بازگشت به حساب رایگان</Link> */}
+                    <Link className='btn-style' to={"/dashboard/buyPlan"}>اشتراک میخرم</Link>
                 </div>
 
             ) : typeLimit == "business" ? (
                 <div className="flex justify-between items-center w-full px-3">
                     <div></div>
-                    <Link className='btn-style' to={"/dashboard/buyPlan"} state={{ background: location }}>اشتراک میخرم</Link>
+                    <Link className='btn-style' to={"/dashboard/buyPlan"}>اشتراک میخرم</Link>
                 </div>
             ) : ""}
 

@@ -9,7 +9,7 @@ export default function SubmitForm({ children, submitFun, dispatchOption , formC
 
         element.preventDefault();
         
-        if (outSideFun!= undefined) {
+        if (outSideFun!= "") {
             outSideFun()
         }
 

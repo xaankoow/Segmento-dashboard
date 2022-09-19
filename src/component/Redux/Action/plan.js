@@ -347,6 +347,7 @@ export const applyDiscountAction = (discountCode, planType) => {
                     state.discountStatus.planType = planType;
                     state.discountStatus.discountType = data.data.unit == 1 ? "percentage" : "cash";
                     state.forceUpdate += 1;
+                    InputError("discount", "کدتخفیف درست است","#10CCAE",true)
                     // showToast(data.data.msg, "success");
                     // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
                 } else {
