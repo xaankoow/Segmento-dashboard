@@ -136,7 +136,7 @@ export default function SidebarComponent({
 
           <div className="line mb-3"></div>
           {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
-          <a href={"https://segmento.ir/"}>
+          <a href={"https://xaankoo.com/"}>
             <div className="xaankoo_logo w-11 h-9 mb-4"></div>
           </a>
         </div>
