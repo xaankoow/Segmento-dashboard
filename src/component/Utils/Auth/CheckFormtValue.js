@@ -35,7 +35,7 @@ export const CheckFormat = (type, value, errId) => {
             const checSpecialCharacterPass = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})'); // check exist special character
             if (!checkLenghtPass.test(value)) {
                 CHECK = false
-                InputError(errId, "گذرواژه ضعیف: خوب نیست.","#F35242",true)
+                InputError(errId, "خوب نیست.","#F35242",true)
                 break;
             }
 
@@ -51,15 +51,15 @@ export const CheckFormat = (type, value, errId) => {
 
             if (strong_score==1) {
                 CHECK = true
-                InputError(errId, "گذرواژه متوسط: گذرواژه نامطمئن است.","#F35242",true)
+                InputError(errId, "گذرواژه نامطمئن است.","#F35242",true)
                 
             } else if(strong_score==2){
                 CHECK = true
-                InputError(errId, "گذرواژه قوی: حالا گذرواژه‌ مطمئن است.", "#10CCAE",true)
+                InputError(errId, "حالا گذرواژه‌ مطمئن است.", "#10CCAE",true)
                 
             } else if(strong_score==3){
                 CHECK = true
-                InputError(errId, "گذرواژه بسیار قوی: به‌به چه رمزی، کارتون خیلی درسته.", "#10CCAE",true)
+                InputError(errId, "به‌به چه رمزی، کارتون خیلی درسته.", "#10CCAE",true)
                 
             }
 
