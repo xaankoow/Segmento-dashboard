@@ -115,7 +115,7 @@ export default function WorkSpace() {
                   <span className='text-lg'>تعریف ورک‌اسپیس جدید</span>
                   <span className='info'></span>
                 </div>
-                <div className='close_suport_container' onClick={() => { navigate(-1); dispatch(resetWorkSpaceState()); }}>
+                <div className='close_suport_container' onClick={() => { navigate(-1); }}>
                   <div className='flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]' >
                     <div className='close_modal_ico w-3 h-3' ></div>
                   </div>

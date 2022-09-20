@@ -478,7 +478,8 @@ export const checkVerifyEmailAction = () => {
 
             let toastMessage = "";
             try {
-                const code = internal_auth1 + internal_auth2 + internal_auth3 + internal_auth4;
+                // const code = internal_auth1 + internal_auth2 + internal_auth3 + internal_auth4;
+                const code =internal_auth4  +internal_auth3 +internal_auth2 +internal_auth1   ;
                 let formdata = new FormData();
                 formdata.append("code", code)
                 formdata.append("email", internal_email)

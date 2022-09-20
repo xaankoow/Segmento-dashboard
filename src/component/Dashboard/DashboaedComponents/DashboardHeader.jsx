@@ -132,11 +132,13 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
           className="menuimage w-6 h-6 hover:cursor-pointer"
           onClick={() => dispatch(setCloseNav())}
         ></div>
+        <a href="https://segmento.ir/">
         <div className="flex items-center gap-3 hover:cursor-pointer">
           {/* <div className='Iconimage w-7 h-8'></div> */}
           <img src={segmento_logofa_svg} className="w-7 h-8" alt="" />
           <span className="">سگمنتو segmento</span>
         </div>
+        </a>
       </div>
       <div className="flex items-center gap-9">
         <div className="header_animation userProfBox rounded transition-[shadow] hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64">

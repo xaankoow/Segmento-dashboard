@@ -23,7 +23,7 @@ export default function SearchBox({
 
   }
   return (
-    <SubmitForm submitFun={handlClick} formClass={className} outSideFun={resetKeyWordComboBox}>
+    <SubmitForm submitFun={handlClick} formClass={className} outSideFun={handleClear != undefined ? resetKeyWordComboBox : ""}>
       <input
         id="lajdk"
         value={searchBoxValue}
