@@ -4,10 +4,16 @@ import { useNavigate } from 'react-router'
 export default function Page404() {
 
   const navigate = useNavigate()
+  const userToken = localStorage.getItem("token")
 
   useEffect(() => {
 
-    navigate("/dashboard", { replace: true })
+    if (userToken) {
+
+      navigate("/dashboard", { replace: true })
+    }else{
+      navigate("/dashboard/accountOperations/login", { replace: true });
+    }
   }, [])
 
 

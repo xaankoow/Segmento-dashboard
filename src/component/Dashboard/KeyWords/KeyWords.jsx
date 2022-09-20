@@ -235,7 +235,7 @@ const KeyWords = ({ onClickHandler }) => {
           {!searchBoxValue || !searchBoxHandleClick ? (
             <span className="text-right mt-4">هیچ  تحقیقی انجام نشده!</span>
           ) : (
-            <span className="text-right mt-4">{lengthTable} کلمه کلیدی یافت شد .</span>
+            <span className="text-right mt-4">{lengthTable}کلمه کلیدی یافت شد.</span>
           )}
           <div
             id="keyWordsLayOutId"
