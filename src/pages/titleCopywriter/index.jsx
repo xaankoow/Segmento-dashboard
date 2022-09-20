@@ -141,7 +141,7 @@ export default function TitleCopywriter() {
           </div>
       )}
 
-      <div className="border border-sectionDisable rounded-3 relative h-[900px] mx-9 mt-7 flex items-center ">
+      {/* <div className="border border-sectionDisable rounded-3 relative h-[900px] mx-9 mt-7 flex items-center ">
       <RotateLine
           lineData={lineData2}
           lineChartClass={""}
@@ -187,9 +187,9 @@ export default function TitleCopywriter() {
             );
           })}
         </div>
-      
+       */}
         {/* <Canvas/> */}
-      </div>
+      {/* </div> */}
     </>
   );
 }

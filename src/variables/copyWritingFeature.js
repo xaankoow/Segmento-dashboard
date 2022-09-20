@@ -203,3 +203,6 @@ export const lineData3 = [
     text: "",
   },
 ];
+
+export const categoriesQuestion=["موضوعات مقایسه‌ای","موضوعات سوالی","موضوعات متفرقه"];
+
