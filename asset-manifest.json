@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/segmentor-react/static/css/main.baf23377.chunk.css",
-    "main.js": "/segmentor-react/static/js/main.d177f0db.chunk.js",
-    "main.js.map": "/segmentor-react/static/js/main.d177f0db.chunk.js.map",
+    "main.js": "/segmentor-react/static/js/main.86ff6b88.chunk.js",
+    "main.js.map": "/segmentor-react/static/js/main.86ff6b88.chunk.js.map",
     "runtime-main.js": "/segmentor-react/static/js/runtime-main.adf6cd0f.js",
     "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.adf6cd0f.js.map",
     "static/css/2.62a17324.chunk.css": "/segmentor-react/static/css/2.62a17324.chunk.css",
@@ -108,6 +108,6 @@
     "static/css/2.62a17324.chunk.css",
     "static/js/2.3e222f0a.chunk.js",
     "static/css/main.baf23377.chunk.css",
-    "static/js/main.d177f0db.chunk.js"
+    "static/js/main.86ff6b88.chunk.js"
   ]
 }
