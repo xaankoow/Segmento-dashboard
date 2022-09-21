@@ -120,9 +120,6 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
      dispatch(ChackBusinessCustomer())
      dispatch(allLimitDataFeature())
     }
-  // useEffect(() => {
-  //   dispatch(coreUser());
-  // }, [checkUseTryFree]);
 
   const location = useLocation();
   return (
