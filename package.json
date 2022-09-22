@@ -27,6 +27,7 @@
     "react-helmet": "^6.1.0",
     "react-modal": "^3.15.1",
     "react-multi-date-picker": "^3.3.0",
+    "react-polygon": "^0.2.0",
     "react-redux": "^8.0.1",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
