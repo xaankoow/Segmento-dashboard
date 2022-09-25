@@ -4,9 +4,14 @@ import AuthInput from "../../component/Auth/authInput/AuthInput";
 import PageTitle from "../../component/Dashboard/DashboaedComponents/pageTitle/pageTitle";
 import RotateLine from "../../component/shared/rotateLine";
 import add_chart_svg from "../../assets/img/dashboard/table/add_chart.svg";
-import { categoriesQuestion, lineData } from "../../variables/copyWritingFeature";
+import {
+  categoriesQuestion,
+  lineData,
+} from "../../variables/copyWritingFeature";
 import { ImageContainer } from "../../assets/img/IMG";
 import SubmitForm from "../../component/Utils/Submit";
+import TextArea from "../../component/shared/TeaxtArea/TextArea";
+import { useEffect } from "react";
 
 export default function TitleCopyWriterBulk() {
   const [keyWordValue, setKeyWordValue] = useState("");
@@ -50,13 +55,21 @@ export default function TitleCopyWriterBulk() {
     }, 500);
     setActiveRow(index);
   };
+  useEffect(()=>{
+    
+  })
+  let listOfKeyWords = [];
+  
 
   const createTitleButton = () => {
     setTitle(true);
+   return listOfKeyWords = keyWordValue.split(/\r?\n/);
+  
+   
   };
-
-  const [radioCategoris,setRadioCategories]=useState(-1)
-
+  listOfKeyWords = keyWordValue.split(/\r?\n/);
+  // console.log("listOfKeyWords", listOfKeyWords);
+  const [radioCategoris, setRadioCategories] = useState(-1);
 
   return (
     <>
@@ -64,91 +77,105 @@ export default function TitleCopyWriterBulk() {
         title={"ابزار کپی رایتینگ عنوان انبوه (Bulk Title Copywriter)"}
       />
       <div className="mx-9 mt-9 mb-7">
-        
-          <AuthInput
-            textLabelInput={"1. درج کلمات کلیدی"}
-            classes={"w-full !h-[222px]"}
-            handleChange={setKeyWordValue}
-            handleChangeValue={() => setTitle(false)}
-          />{" "}
-      
+        <TextArea
+          textLabelInput={"1. درج کلمات کلیدی ( در هر خط فقط یک کلمه وارد کنید )"}
+          classes={
+            "w-full !h-[222px] border border-sectionDisable !p-5 !rounded-lg overflow-y-auto leading-relaxed"
+          }
+          handleChange={setKeyWordValue}
+          handleChangeValue={() => setTitle(false)}
+        />{" "}
       </div>
-      <span className=" text-[10px] mx-11">2. انتخاب موضوع</span>
-      <div className="border border-sectionDisable rounded-lg mx-9 mb-4 flex justify-around h-[67px] items-center">
-        {
-          categoriesQuestion.map((item,index)=>{
-            return <div className="flex items-center " key={index}>
-               <input type="radio"  onClick={()=>setRadioCategories(index)} name="categories"/>
-                <span className={radioCategoris===index ? "":`text-silver `}>{item}</span>
+      <span className=" text-[10px] mx-11 ">2. انتخاب موضوع</span>
+      <div className="border border-sectionDisable rounded-lg mx-9 mb-4 flex justify-around h-[67px] items-center ">
+        {categoriesQuestion.map((item, index) => {
+          return (
+            <div className="flex items-center " key={index}>
+              <input
+                type="radio"
+                onClick={() => setRadioCategories(index)}
+                name="categories"
+              />
+              <span className={radioCategoris === index ? "" : `text-silver `}>
+                {item}
+              </span>
             </div>
-          })
-        }
+          );
+        })}
       </div>
       <AuthButton
         textButton={"تولید عنوان"}
         classes={"mx-auto"}
         handlerClick={() => createTitleButton()}
       />
-      <span className="text-[10px] mx-11 mt-7 mb-2">3. نمایش عناوین پیشنهادی</span>
+      <span className="text-[10px] mx-11 mt-7 mb-2">
+        3. نمایش عناوین پیشنهادی
+      </span>
 
-      {title && keyWordValue.length !== 0 ? (
-        <div className="border border-sectionDisable rounded-3 relative h-[352px] mx-9 flex items-center">
-          <RotateLine
-            lineData={lineData}
-            lineChartClass={""}
-            title={"موضوعات مقایسه‌ای"}
-            degree={"rotate-[23deg]"}
-          />
+      {radioCategoris === 0 && title && keyWordValue.length !== 0 ? (
+        listOfKeyWords.map((keyword ,index) => {
+          return (
+            <div className={`border border-sectionDisable rounded-lg relative h-[352px] mx-9 flex items-center ${index>0 && "mt-4"}`}>
+              <RotateLine
+                lineData={lineData}
+                lineChartClass={""}
+                title={"موضوعات مقایسه‌ای"}
+                degree={"rotate-[23deg]"}
+                isBlusk={true}
+                keyword={keyword}
+              />
 
-          <button
-            className="btn-secondary mr-[18px] mt-24 flex items-center gap-3 z-10 relative"
-            onClick={() => copyIssue(lineData)}
-          >
-            <span
-              className={
-                handleCopyIssue
-                  ? `flex tooltip tooltip-bottom absolute right-[45px] -bottom-12 rounded bg-[#ffffff] `
-                  : "  hidden"
-              }
-            >
-              کپی شد!
-            </span>
-            <img src={ImageContainer.copyIcon} alt="copyIcon" /> کپی موضوعات
-          </button>
-          <div className=" absolute flex flex-col right-[485px] gap-[18px] top-[43px] hover:text-primary">
-            {lineData.map((item, index) => {
-              return (
-                <div
-                  className={` flex gap-3 items-center relative hover:text-primary`}
-                  onClick={() =>
-                    copyItem(
-                      item.textUp + " " + keyWordValue + " " + item.text,
-                      index
-                    )
+              <button
+                className="btn-secondary mr-[18px] mt-24 flex items-center gap-3 z-10 relative"
+                onClick={() => copyIssue(lineData)}
+              >
+                <span
+                  className={
+                    handleCopyIssue
+                      ? `flex tooltip tooltip-bottom absolute right-[45px] -bottom-12 rounded bg-[#ffffff] `
+                      : "  hidden"
                   }
                 >
-                  {item.textUp && <span>{item.textUp}</span>}
-                  <span className="text-silver">
-                    {title && keyWordValue.length > 0 && keyWordValue}
-                  </span>
-                  {item.text && <span>{item.text}</span>}
-                  <div class=" absolute left-[14px] content_copy_blue w-4 h-5 "></div>
-                  {activeRow === index ? (
-                    <span
-                      className={
-                        handleCopy
-                          ? `flex tooltip tooltip-left absolute ${item.oriantation} rounded bg-[#ffffff] `
-                          : "  hidden"
+                  کپی شد!
+                </span>
+                <img src={ImageContainer.copyIcon} alt="copyIcon" /> کپی موضوعات
+              </button>
+              <div className=" absolute flex flex-col right-[485px] gap-[18px] top-[43px] hover:text-primary">
+                {lineData.map((item, index) => {
+                  return (
+                    <div
+                      className={` flex gap-3 items-center relative hover:text-primary`}
+                      onClick={() =>
+                        copyItem(
+                          item.textUp + " " + keyWordValue + " " + item.text,
+                          index
+                        )
                       }
                     >
-                      کپی شد!
-                    </span>
-                  ) : null}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+                      {item.textUp && <span>{item.textUp}</span>}
+                      <span className="text-silver">
+                        {title && keyWordValue.length > 0 && keyword}
+                      </span>
+                      {item.text && <span>{item.text}</span>}
+                      <div class=" absolute left-[14px] content_copy_blue w-4 h-5 "></div>
+                      {activeRow === index ? (
+                        <span
+                          className={
+                            handleCopy
+                              ? `flex tooltip tooltip-left absolute ${item.oriantation} rounded bg-[#ffffff] `
+                              : "  hidden"
+                          }
+                        >
+                          کپی شد!
+                        </span>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })
       ) : (
         <div className="h-[70%] flex flex-col items-center justify-center gap-3  border border-sectionDisable rounded-lg  mx-9">
           <img src={add_chart_svg} alt="imgNothingSearch" />

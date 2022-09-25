@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import PageTitle from "../../component/Dashboard/DashboaedComponents/pageTitle/pageTitle";
-import add_chart_svg from '../../assets/img/dashboard/table/add_chart.svg';
+import add_chart_svg from "../../assets/img/dashboard/table/add_chart.svg";
 import RotateLine from "../../component/shared/rotateLine";
 import {
   lineData,
@@ -12,6 +12,7 @@ import {
 import { ImageContainer } from "../../assets/img/IMG/index";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import Canvas from "../../component/shared/Canvas/Canvas";
+import { keywords } from "../../component/service/workSpaceService";
 
 export default function TitleCopywriter() {
   const [keyWordValue, setKeyWordValue] = useState("");
@@ -55,6 +56,26 @@ export default function TitleCopywriter() {
     }, 500);
     setActiveRow(index);
   };
+  const [copyAllArray,setCopyAllArray]=useState([])
+  useEffect(()=>{
+    for (let index = 0; index < lineData.length; index++) {
+            setCopyAllArray([...copyAllArray,lineData[index].textUp + " " + keyWordValue + " " + lineData[index].text])
+    
+ }
+
+  },[keyWordValue])
+  console.log(copyAllArray)
+  const copyAll = () => {
+
+    return copyAllArray
+  
+
+    
+ 
+      
+ 
+
+  };
   return (
     <>
       <PageTitle title={"ابزار کپی رایتینگ عنوان (Title Copywriter)"} />
@@ -71,7 +92,7 @@ export default function TitleCopywriter() {
         classes={"mx-auto"}
         handlerClick={() => setTitle(true)}
       />
-      { keyWordValue.length !== 0 ? (
+      {keyWordValue.length !== 0 ? (
         <div className="border border-sectionDisable rounded-3 relative h-[352px] mx-9 mt-7 flex items-center">
           <RotateLine
             lineData={lineData}
@@ -131,16 +152,14 @@ export default function TitleCopywriter() {
         </div>
       ) : (
         <div className="h-[70%] flex flex-col items-center justify-center gap-3  border border-sectionDisable rounded-lg mt-7 mx-9">
-            <img
-              src={add_chart_svg}
-              alt="imgNothingSearch"
-            />
-            <span className="text-[#E5E5E5]">
-              اطلاعاتی برای نمایش وجود ندارد!
-            </span>
-          </div>
+          <img src={add_chart_svg} alt="imgNothingSearch" />
+          <span className="text-[#E5E5E5]">
+            اطلاعاتی برای نمایش وجود ندارد!
+          </span>
+        </div>
       )}
 
+      <button className="mx-9 btn-style mt-4 flex items-center gap-3" onClick={()=>navigator.clipboard.writeText(copyAll())}><img src={ImageContainer.copyIconWhite} alt="" />کپی همه </button>
       {/* <div className="border border-sectionDisable rounded-3 relative h-[900px] mx-9 mt-7 flex items-center ">
       <RotateLine
           lineData={lineData2}
@@ -188,7 +207,7 @@ export default function TitleCopywriter() {
           })}
         </div>
        */}
-        {/* <Canvas/> */}
+      {/* <Canvas/> */}
       {/* </div> */}
     </>
   );

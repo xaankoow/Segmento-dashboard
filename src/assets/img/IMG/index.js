@@ -10,6 +10,7 @@ import omorFani  from '../dashboard/support/omorFani.svg';
 import omorMali  from '../dashboard/support/omorMali.svg';
 import soalatPishKharid  from '../dashboard/support/soalatPishKharid.svg';
 import copyIcon  from '../dashboard/table/content_copy.svg';
+import copyIconWhite  from '../dashboard/table/content_copy_white.svg';
 import popUpWarning  from '../popUp/errorIco.svg';//import errorIco_svg from './assets/img/popUp/errorIco.svg'
 import pishkhan  from '../dashboard/workSpace/footer/button_ico.svg';///img/dashboard/workSpace/footer/button_ico.svg
 
@@ -26,7 +27,7 @@ export const ImageContainer={
   omorMali,
   soalatPishKharid,
   copyIcon,
-  
+  copyIconWhite,
   // popUp img
   popUpWarning,
 
