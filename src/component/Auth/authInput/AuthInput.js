@@ -1,18 +1,17 @@
-import { borderBottom } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import "./authInput.css";
 export default function AuthInput({
-  textLabelInput,
-  width,
-  typeInput,
+
+  textLabelInput, //place holder text (moved to top)
+  width, // set input width
+  typeInput, //set input type
   isPassword,
-  notCheckValue,
-  handleChange,
-  reduxHandleChange,
-  disable,
-  chechvalue,
+  handleChange, //using onChange
+  reduxHandleChange, //using onChange with redux
+  disable, //handle disable input (true/false)
+  chechvalue, //
   maxlength,
   classes,
   pressNumber,
@@ -31,28 +30,16 @@ export default function AuthInput({
   selectWithOnClick,
   placeholder,
   handleChangeValue
-
-
 }) {
-  // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)  
-  // const validateEmail = (email) => {
-  //   var re = /\S+@\S+\.\S+/;
-  //   return re.test(email);
-  // };
-  // console.log(reduxHandleChange)
 
-  const [isSeePssword, setSeePassword] = useState(typeInput);
-  const [valueInput, setInputValue] = useState("");
-
-  //redux options
   const dispatch = useDispatch()
 
-  // to be just number when we type
   const pressNumberValue = (event) => {
     if (!/[0-9]/.test(event.key)) {
       event.preventDefault();
     }
   };
+
   return (
     <>
       <div className={`input-wrapper ${wrapperClass}`}>
@@ -86,7 +73,6 @@ export default function AuthInput({
             handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow);
             handleChange != undefined && handleChange(e.target.value)
             handleChangeValue != undefined && handleChangeValue()
-            setInputValue(e.target.value);
             workSpaceTypeState != undefined & reduxHandleChange != undefined ?
               dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) :
               reduxHandleChange != undefined & selectWithOnClick ==undefined && dispatch(reduxHandleChange(e.target.value))
@@ -95,6 +81,7 @@ export default function AuthInput({
         />
 
         <label className={disable ? "text-[#fff]" : ""} for="user">{textLabelInput}</label>
+
         {/* TODO: CHANGE INFO TEXT WITH STIKY NOTE IN OFFICE */}
         {infoStrongPass == true ? <span className={` info w-[200%] `}>با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن بسازید.</span> : null}
       </div>
