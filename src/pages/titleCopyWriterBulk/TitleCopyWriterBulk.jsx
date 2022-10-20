@@ -7,6 +7,8 @@ import add_chart_svg from "../../assets/img/dashboard/table/add_chart.svg";
 import {
   categoriesQuestion,
   lineData,
+  lineData2,
+  lineData3,
 } from "../../variables/copyWritingFeature";
 import { ImageContainer } from "../../assets/img/IMG";
 import SubmitForm from "../../component/Utils/Submit";
@@ -19,6 +21,7 @@ export default function TitleCopyWriterBulk() {
   const [handleCopy, setHandleCopy] = useState(false);
   const [activeRow, setActiveRow] = useState(0);
   const [handleCopyIssue, setHandleCopyIssue] = useState(false);
+  const [handleCopyAllIssue, setHandleCopyAllIssue] = useState("");
   // copy
   const copyIssue = (arrayData) => {
     var myListOutput = "";
@@ -55,30 +58,70 @@ export default function TitleCopyWriterBulk() {
     }, 500);
     setActiveRow(index);
   };
-  useEffect(()=>{
-    
-  })
+  useEffect(() => {});
   let listOfKeyWords = [];
-  
 
   const createTitleButton = () => {
     setTitle(true);
-   return listOfKeyWords = keyWordValue.split(/\r?\n/);
-  
-   
+    return (listOfKeyWords = keyWordValue.split(/\r?\n/));
   };
+  // list of value that we write in textArea
   listOfKeyWords = keyWordValue.split(/\r?\n/);
-  // console.log("listOfKeyWords", listOfKeyWords);
+  var filtered = listOfKeyWords.filter(function (el) {
+    return el != "";
+  });
+  //
+
   const [radioCategoris, setRadioCategories] = useState(-1);
+  const listAllItem = [];
+  switch (radioCategoris) {
+    case 0:
+      listAllItem.push(...lineData);
+      break;
+    case 1:
+      listAllItem.push(...lineData2);
+      break;
+    case 2:
+      listAllItem.push(...lineData3);
+      break;
+    default:
+      break;
+  }
+
+  const copyAll = (arrayData) => {
+    var myListOutput = "";
+    const checkTitleValue = title && keyWordValue.length > 0 && keyWordValue;
+    listOfKeyWords.map((item) => {
+      for (var i = 0; i < arrayData.length; i++) {
+        //check if list is NOT the last in the array, if last don't output a line break
+        if (i != arrayData.length - 1) {
+          let lineItem =
+            arrayData[i].textUp + " " + item + " " + arrayData[i].text + "\n";
+          myListOutput = myListOutput + lineItem;
+        } else {
+          let lineItem =
+            arrayData[i].textUp + " " + item + " " + arrayData[i].text + "\n";
+          myListOutput = myListOutput + lineItem;
+        }
+      }
+    });
+    setHandleCopyAllIssue(true);
+    setTimeout(() => {
+      setHandleCopyAllIssue(false);
+    }, 500);
+    navigator.clipboard.writeText(myListOutput);
+  };
 
   return (
     <>
       <PageTitle
-        title={"ابزار کپی رایتینگ عنوان انبوه (Bulk Title Copywriter)"}
+        title={"ابزار عنوان‌نویس انبوه"}
       />
       <div className="mx-9 mt-9 mb-7">
         <TextArea
-          textLabelInput={"1. درج کلمات کلیدی ( در هر خط فقط یک کلمه وارد کنید )"}
+          textLabelInput={
+            "1. درج کلمات کلیدی (در هر خط فقط یک کلمه وارد کنید)"
+          }
           classes={
             "w-full !h-[222px] border border-sectionDisable !p-5 !rounded-lg overflow-y-auto leading-relaxed"
           }
@@ -86,7 +129,7 @@ export default function TitleCopyWriterBulk() {
           handleChangeValue={() => setTitle(false)}
         />{" "}
       </div>
-      <span className=" text-[10px] mx-11 ">2. انتخاب موضوع</span>
+      <span className=" text-[10px] mx-11 ">2. انتخاب جنس موضوع</span>
       <div className="border border-sectionDisable rounded-lg mx-9 mb-4 flex justify-around h-[67px] items-center ">
         {categoriesQuestion.map((item, index) => {
           return (
@@ -113,9 +156,13 @@ export default function TitleCopyWriterBulk() {
       </span>
 
       {radioCategoris === 0 && title && keyWordValue.length !== 0 ? (
-        listOfKeyWords.map((keyword ,index) => {
+        filtered.map((keyword, index) => {
           return (
-            <div className={`border border-sectionDisable rounded-lg relative h-[352px] mx-9 flex items-center ${index>0 && "mt-4"}`}>
+            <div
+              className={`border border-sectionDisable rounded-lg relative h-[352px] mx-9 flex items-center ${
+                index > 0 && "mt-4"
+              }`}
+            >
               <RotateLine
                 lineData={lineData}
                 lineChartClass={""}
@@ -184,6 +231,22 @@ export default function TitleCopyWriterBulk() {
           </span>
         </div>
       )}
+      <button
+        className="mx-9 btn-style mt-4 flex items-center gap-3 relative "
+        onClick={() => copyAll(listAllItem)}
+      >
+        <span
+          className={
+            handleCopyAllIssue
+              ? `flex tooltip tooltip-left absolute  top-0 right-[133px] rounded !text-[8px] bg-[#ffffff] `
+              : "  hidden"
+          }
+        >
+          کپی شد!
+        </span>
+        <img src={ImageContainer.copyIconWhite} alt="" />
+        کپی همه{" "}
+      </button>
     </>
   );
 }

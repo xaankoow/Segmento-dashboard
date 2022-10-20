@@ -10,9 +10,7 @@ import {
   lineData2,
 } from "../../variables/copyWritingFeature";
 import { ImageContainer } from "../../assets/img/IMG/index";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-import Canvas from "../../component/shared/Canvas/Canvas";
-import { keywords } from "../../component/service/workSpaceService";
+
 
 export default function TitleCopywriter() {
   const [keyWordValue, setKeyWordValue] = useState("");
@@ -20,6 +18,7 @@ export default function TitleCopywriter() {
   const [handleCopy, setHandleCopy] = useState(false);
   const [activeRow, setActiveRow] = useState(0);
   const [handleCopyIssue, setHandleCopyIssue] = useState(false);
+  const[handleCopyAllIssue,setHandleCopyAllIssue]=useState("");
   // copy
   const copyIssue = (arrayData) => {
     var myListOutput = "";
@@ -56,29 +55,41 @@ export default function TitleCopywriter() {
     }, 500);
     setActiveRow(index);
   };
-  const [copyAllArray,setCopyAllArray]=useState([])
-  useEffect(()=>{
-    for (let index = 0; index < lineData.length; index++) {
-            setCopyAllArray([...copyAllArray,lineData[index].textUp + " " + keyWordValue + " " + lineData[index].text])
-    
- }
-
-  },[keyWordValue])
-  console.log(copyAllArray)
-  const copyAll = () => {
-
-    return copyAllArray
-  
-
-    
  
-      
- 
-
+  const listAllItem=[]
+  listAllItem.push(...lineData)
+  listAllItem.push(...lineData2)
+  listAllItem.push(...lineData3)
+  const copyAll = (arrayData) => {
+    var myListOutput = "";
+    const checkTitleValue = title && keyWordValue.length > 0 && keyWordValue;
+    for (var i = 0; i < arrayData.length; i++) {
+      //check if list is NOT the last in the array, if last don't output a line break
+      if (i != arrayData.length - 1) {
+        let lineItem =
+          arrayData[i].textUp +
+          " " +
+          checkTitleValue +
+          " " +
+          arrayData[i].text +
+          "\n";
+        myListOutput = myListOutput + lineItem;
+      } else {
+        let lineItem =
+          arrayData[i].textUp + " " + checkTitleValue + " " + arrayData[i].text;
+        myListOutput = myListOutput + lineItem;
+      }
+    }
+    setHandleCopyAllIssue(true);
+    setTimeout(() => {
+      setHandleCopyAllIssue(false);
+    }, 500);
+    navigator.clipboard.writeText(myListOutput);
+    
   };
   return (
     <>
-      <PageTitle title={"ابزار کپی رایتینگ عنوان (Title Copywriter)"} />
+      <PageTitle title={"‌ابزار عنوان‌نویس"} />
       <div className="mx-9 mt-9 mb-7">
         <AuthInput
           textLabelInput={"درج کلمه کلیدی"}
@@ -159,7 +170,22 @@ export default function TitleCopywriter() {
         </div>
       )}
 
-      <button className="mx-9 btn-style mt-4 flex items-center gap-3" onClick={()=>navigator.clipboard.writeText(copyAll())}><img src={ImageContainer.copyIconWhite} alt="" />کپی همه </button>
+      <button
+        className="mx-9 btn-style mt-4 flex items-center gap-3 relative"
+        onClick={() => copyAll(listAllItem)}
+      >
+        <span
+              className={
+                handleCopyAllIssue
+                  ? `flex tooltip tooltip-left absolute  top-0 right-[133px] rounded !text-[8px] bg-[#ffffff] `
+                  : "  hidden"
+              }
+            >
+              کپی شد!
+            </span>
+        <img src={ImageContainer.copyIconWhite} alt="" />
+        کپی همه{" "}
+      </button>
       {/* <div className="border border-sectionDisable rounded-3 relative h-[900px] mx-9 mt-7 flex items-center ">
       <RotateLine
           lineData={lineData2}

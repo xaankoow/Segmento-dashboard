@@ -37,6 +37,7 @@ import update_svg from './assets/img/popUp/update.svg'
 import AuthButton from "./component/Auth/authButton/AuthButton";
 import { allLimitDataFeature, ChackBusinessCustomer } from "./component/Redux/Action/workSpace";
 import TitleCopyWriterBulk from "./pages/titleCopyWriterBulk/TitleCopyWriterBulk";
+import WorkSpaceManagement from "./pages/workSpace management/WorkSpaceManagement"
 
 export default function App() {
   
@@ -55,7 +56,7 @@ export default function App() {
 
   const tabContent = [
     {
-      title: " جستجو",
+      title: " جستجوی کلمه جدید",
       content: <KeyWords />,
     },
     {
@@ -65,7 +66,7 @@ export default function App() {
   ];
   const tabContent2 = [
     {
-      title: "جستجو",
+      title: "جستجوی ایده جدید",
       content: <ContentpProduction />,
     },
     {
@@ -97,6 +98,7 @@ export default function App() {
                     <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
                     <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
                     <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
+                    <Route path="WorkSpaceManagement" element={<WorkSpaceManagement/>}/>
                     <Route path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />} />
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />} />
                     <Route path="PageCounter" element={<PageCounter />} />

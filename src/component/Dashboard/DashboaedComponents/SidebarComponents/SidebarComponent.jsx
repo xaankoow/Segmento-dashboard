@@ -40,7 +40,7 @@ export default function SidebarComponent({
     { title: "خبرخوان", link: "" },
     { title: "آموزش", link: "" },
     { title: "پیشنهادات و تخفیف ها", link: "" },
-    // { title: "پشتیبانی و تیکت", link: "ReportSupport" },
+    { title: "پشتیبانی و تیکت", link: "ReportSupport" },
     { title: "انتخاب سرویس", link: "" },
   ];
 
