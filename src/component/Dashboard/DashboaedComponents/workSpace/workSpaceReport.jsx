@@ -7,7 +7,9 @@ import workSpace_report_ico_svg from '../../../../assets/img/dashboard/workSpace
 import arrowVector_svg from '../../../../assets/img/modal/workSpace/body/arrowVector.svg'
 import { ImageContainer } from '../../../../assets/img/IMG';
 
-export default function WorkSpaceReport({ stepWorkSpace }) {
+export default function WorkSpaceReport() {
+
+    const stepWorkSpace = useSelector((state) => state.workSpaceState.reportStep);
 
     const {
         webAdress,

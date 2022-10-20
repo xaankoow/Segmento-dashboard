@@ -50,7 +50,7 @@ export default function ValidateEmail() {
               {/* <div className="flex gap-5"> */}
               <AuthInput
                 classes={"verify_email_cod input_selector_4"}
-                notCheckValue={true}
+                
                 maxlength={1}
                 pressNumber={true}
                 reduxHandleChange={setAuth1Redux}
@@ -58,7 +58,7 @@ export default function ValidateEmail() {
               />
               <AuthInput
                 classes={"verify_email_cod input_selector_3"}
-                notCheckValue={true}
+                
                 maxlength={1}
                 pressNumber={true}
                 reduxHandleChange={setAuth2Redux}
@@ -66,7 +66,7 @@ export default function ValidateEmail() {
               />
               <AuthInput
                 classes={"verify_email_cod input_selector_2"}
-                notCheckValue={true}
+                
                 maxlength={1}
                 pressNumber={true}
                 reduxHandleChange={setAuth3Redux}
@@ -74,7 +74,7 @@ export default function ValidateEmail() {
               />
               <AuthInput
                 classes={"verify_email_cod"}
-                notCheckValue={true}
+                
                 maxlength={1}
                 pressNumber={true}
                 reduxHandleChange={setAuth4Redux}

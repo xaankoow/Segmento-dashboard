@@ -1,17 +1,11 @@
 .input-wrapper {
   position: relative;
-  /* width: 100%; */
   line-height: 14px;
-  /* margin: 0 10px; */
   display: inline-block;
-  /* direction: auto; */
   width: 100%;
 }
 
-
-
 label {
-
   color: #7D7D7D;
   font-size: 12px;
   text-transform: uppercase;
@@ -48,12 +42,9 @@ label {
 }
 
 input {
-  /* font-size: 13px; */
   color: #555;
   outline: none;
   border: 1.5px solid rgba(211, 213, 226, 1);
-  /* padding: 0px 10px; */
-  /* height: px; */
   background-color: white;
   border-radius: 3px;
   position: relative;
@@ -85,10 +76,7 @@ textarea{
   font-size: 14px;
   padding: 0px 6px;
   background-color: white;
-
 }
-
-
 
 input:invalid+label {
   -webkit-transform: translateY(0);
@@ -104,7 +92,6 @@ textarea:invalid+label {
   -ms-transform: translateY(0);
   transform: translateY(0);
 }
-
 
 .imageInputIcon {
   position: absolute;
