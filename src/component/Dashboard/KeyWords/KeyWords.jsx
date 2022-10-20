@@ -53,29 +53,14 @@ const KeyWords = ({ onClickHandler }) => {
         type: "",
         characters: true,
       };
-      // const { data, status } = await keywordService(searchBoxValue);
-      // debugger
-      // console.log(toolsLimit[20].count)
-      // if (toolsLimit[6].count<0) {
+    
 
       const { data, status } = await keywordService(dd);
       setKeyWords(data.data.result); //5
       setId(data.data.id);
       dispatch(handleLowOffLimitCount("GOOGLE_TITLE_BUILDER", 1));
       dispatch(resetLimitState());
-      // console.log(data.data.id);
-      // } else {
-      //   <PopUp
-      //   clickHandler={() => showSavePopup(false)}
-      //   image={playlist_add_svg}
-      //   type={"sucsess"}
-      //   buttonText={"باشه، فهمیدم!"}
-      //   text={"لیست جدید شما با موفقیت ذخیره شد !"}
-      //   title={"موفقیت آمیز"}
-      //   targetTag={"#keyWordsLayOutId"}
-      // />
-      
-      // }
+
     } catch (error) {
       setShowPopUpLimit(true);
       // console.log(error)
@@ -196,16 +181,7 @@ const KeyWords = ({ onClickHandler }) => {
   //check dom
   return (
     <>
-      {/* <button className="btn-style" onClick={()=>history}>change route</button> */}
-      {/* <PopUp
-        clickHandler={() => showSavePopup(false)}
-        image={playlist_add_svg}
-        type={"sucsess"}
-        buttonText={"باشه، فهمیدم!"}
-        text={"لیست جدید شما با موفقیت ذخیره شد !"}
-        title={"موفقیت آمیز"}
-        targetTag={"#keyWordsLayOutId"}
-      /> */}
+   
       {SavePopup && (
         <PopUp
           clickHandler={() => showSavePopup(false)}
