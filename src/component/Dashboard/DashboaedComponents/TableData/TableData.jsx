@@ -198,7 +198,7 @@ export default function Table({
                 className={
                   (copyItem.length > 0) & handleClickCopy
                     ? "flex tooltip tooltipTop absolute -right-[10%] rounded bg-[#ffffff] -top-11"
-                    : "tooltip -right-[10%]  tooltipTop hidden absolute -top-11  rounded bg-[#ffffff]"
+                    : " hidden "
                 }
               >
                 کپی شد!
@@ -221,7 +221,7 @@ export default function Table({
                   : "text-sm font-medium text-gray-900 pr-2  text-right"
               }
             >
-              {iskeyWord ? "کلمه کلیدی" : " ایده های پیشنهادی"}
+              {iskeyWord ? "کلمه کلیدی" : " ایده‌های پیشنهادی"}
             </div>
           </div>
           <div className="flex gap-4 items-center">

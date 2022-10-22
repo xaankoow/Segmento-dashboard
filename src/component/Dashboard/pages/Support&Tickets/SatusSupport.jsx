@@ -39,7 +39,7 @@ export default function ReportSupport() {
       categories: "امور مالی",
       date: "1401/2/2",
       status: (
-        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center">
+        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center mx-auto">
           پاسخ داده شد
         </div>
       ),
@@ -58,7 +58,7 @@ export default function ReportSupport() {
       categories: "امور مالی",
       date: "1401/2/2",
       status: (
-        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center">
+        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center mx-auto">
           در انتظار پاسخ
         </div>
       ),
@@ -90,7 +90,7 @@ export default function ReportSupport() {
           "تمامِ تیکت‌هایی که برای واحد امور پشتیبانی سگمنتو ارسال کرده‌اید، در این صفحه لیست شده‌اند:"
         }
         buttonName={"ارسال تیکت جدید"}
-        linkTo={"NewTicket"}
+        linkTo={""}
       />
       <div className="flex mx-9 justify-between my-5">
         <div className="min-w-[420px]">

@@ -53,7 +53,7 @@ export const coreUser = () => {
               data.data.user.mobile == null ? false : true;
             // await dispatch(ChackBusinessCustomer())
           } else {
-            localStorage.removeItem("token");
+            // localStorage.removeItem("token");
           }
         }
         //handle hide loading

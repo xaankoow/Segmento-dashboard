@@ -35,6 +35,7 @@ import PopUp from "./component/Utils/PopUp/PopUp";
 import errorIco_svg from './assets/img/popUp/errorIco.svg'
 import AuthButton from "./component/Auth/authButton/AuthButton";
 import TitleCopyWriterBulk from "./pages/titleCopyWriterBulk/TitleCopyWriterBulk";
+import WorkSpaceManagement from "./pages/workSpace management/WorkSpaceManagement"
 import { DashboardRote } from "./Route";
 
 export default function App() {
@@ -52,7 +53,7 @@ export default function App() {
 
   const tabContent = [
     {
-      title: " جستجو",
+      title: " جستجوی کلمه جدید",
       content: <KeyWords />,
     },
     {
@@ -62,7 +63,7 @@ export default function App() {
   ];
   const tabContent2 = [
     {
-      title: "جستجو",
+      title: "جستجوی ایده جدید",
       content: <ContentpProduction />,
     },
     {
@@ -96,6 +97,7 @@ export default function App() {
                     <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
                     <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
                     <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
+                    <Route path="WorkSpaceManagement" element={<WorkSpaceManagement/>}/>
                     <Route path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />} />
                     <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />} />
                     <Route path="PageCounter" element={<PageCounter />} />
@@ -161,7 +163,7 @@ export default function App() {
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
-        <LoadingPage />
+        {/* <LoadingPage /> */}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>

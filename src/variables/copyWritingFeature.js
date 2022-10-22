@@ -150,42 +150,52 @@ export const lineData3 = [
   {
     text: "با",
     width: "w-[309.28px]",
+    textUp: "",
   },
   {
     text: "بدون",
     width: "w-[294.53px]",
+    textUp: "",
   },
   {
     text: "است",
     width: "w-[285.26px]",
+    textUp: "",
   },
   {
     text: "برای",
     width: "w-[282px]",
+    textUp: "",
   },
   {
     text: "به",
     width: "w-[285.26px]",
+    textUp: "",
   },
   {
     text: "نزدیک",
     width: "w-[295px]",
+    textUp: "",
   },
   {
     text: " (ویژگی)",
     width: "w-[309.50px]",
+    textUp: "",
   },
   {
     text: "شدن",
     width: "w-[295px]",
+    textUp: "",
   },
   {
     text: "توانستن  ........ ",
     width: "w-[295px]",
+    textUp: "",
   },
   {
     text: "بودن",
     width: "w-[295px]",
+    textUp: "",
   },
   {
     textUp: "عدد",
@@ -204,5 +214,8 @@ export const lineData3 = [
   },
 ];
 
-export const categoriesQuestion=["موضوعات مقایسه‌ای","موضوعات سوالی","موضوعات متفرقه"];
-
+export const categoriesQuestion = [
+  "موضوعات مقایسه‌ای",
+  "موضوعات سوالی",
+  "موضوعات متفرقه",
+];

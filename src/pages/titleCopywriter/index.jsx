@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import PageTitle from "../../component/Dashboard/DashboaedComponents/pageTitle/pageTitle";
-import add_chart_svg from '../../assets/img/dashboard/table/add_chart.svg';
+import add_chart_svg from "../../assets/img/dashboard/table/add_chart.svg";
 import RotateLine from "../../component/shared/rotateLine";
 import {
   lineData,
@@ -10,8 +10,7 @@ import {
   lineData2,
 } from "../../variables/copyWritingFeature";
 import { ImageContainer } from "../../assets/img/IMG/index";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-import Canvas from "../../component/shared/Canvas/Canvas";
+
 
 export default function TitleCopywriter() {
   const [keyWordValue, setKeyWordValue] = useState("");
@@ -19,6 +18,7 @@ export default function TitleCopywriter() {
   const [handleCopy, setHandleCopy] = useState(false);
   const [activeRow, setActiveRow] = useState(0);
   const [handleCopyIssue, setHandleCopyIssue] = useState(false);
+  const[handleCopyAllIssue,setHandleCopyAllIssue]=useState("");
   // copy
   const copyIssue = (arrayData) => {
     var myListOutput = "";
@@ -55,9 +55,41 @@ export default function TitleCopywriter() {
     }, 500);
     setActiveRow(index);
   };
+ 
+  const listAllItem=[]
+  listAllItem.push(...lineData)
+  listAllItem.push(...lineData2)
+  listAllItem.push(...lineData3)
+  const copyAll = (arrayData) => {
+    var myListOutput = "";
+    const checkTitleValue = title && keyWordValue.length > 0 && keyWordValue;
+    for (var i = 0; i < arrayData.length; i++) {
+      //check if list is NOT the last in the array, if last don't output a line break
+      if (i != arrayData.length - 1) {
+        let lineItem =
+          arrayData[i].textUp +
+          " " +
+          checkTitleValue +
+          " " +
+          arrayData[i].text +
+          "\n";
+        myListOutput = myListOutput + lineItem;
+      } else {
+        let lineItem =
+          arrayData[i].textUp + " " + checkTitleValue + " " + arrayData[i].text;
+        myListOutput = myListOutput + lineItem;
+      }
+    }
+    setHandleCopyAllIssue(true);
+    setTimeout(() => {
+      setHandleCopyAllIssue(false);
+    }, 500);
+    navigator.clipboard.writeText(myListOutput);
+    
+  };
   return (
     <>
-      <PageTitle title={"ابزار کپی رایتینگ عنوان (Title Copywriter)"} />
+      <PageTitle title={"‌ابزار عنوان‌نویس"} />
       <div className="mx-9 mt-9 mb-7">
         <AuthInput
           textLabelInput={"درج کلمه کلیدی"}
@@ -71,7 +103,7 @@ export default function TitleCopywriter() {
         classes={"mx-auto"}
         handlerClick={() => setTitle(true)}
       />
-      { keyWordValue.length !== 0 ? (
+      {keyWordValue.length !== 0 ? (
         <div className="border border-sectionDisable rounded-3 relative h-[352px] mx-9 mt-7 flex items-center">
           <RotateLine
             lineData={lineData}
@@ -131,16 +163,29 @@ export default function TitleCopywriter() {
         </div>
       ) : (
         <div className="h-[70%] flex flex-col items-center justify-center gap-3  border border-sectionDisable rounded-lg mt-7 mx-9">
-            <img
-              src={add_chart_svg}
-              alt="imgNothingSearch"
-            />
-            <span className="text-[#E5E5E5]">
-              اطلاعاتی برای نمایش وجود ندارد!
-            </span>
-          </div>
+          <img src={add_chart_svg} alt="imgNothingSearch" />
+          <span className="text-[#E5E5E5]">
+            اطلاعاتی برای نمایش وجود ندارد!
+          </span>
+        </div>
       )}
 
+      <button
+        className="mx-9 btn-style mt-4 flex items-center gap-3 relative"
+        onClick={() => copyAll(listAllItem)}
+      >
+        <span
+              className={
+                handleCopyAllIssue
+                  ? `flex tooltip tooltip-left absolute  top-0 right-[133px] rounded !text-[8px] bg-[#ffffff] `
+                  : "  hidden"
+              }
+            >
+              کپی شد!
+            </span>
+        <img src={ImageContainer.copyIconWhite} alt="" />
+        کپی همه{" "}
+      </button>
       {/* <div className="border border-sectionDisable rounded-3 relative h-[900px] mx-9 mt-7 flex items-center ">
       <RotateLine
           lineData={lineData2}
@@ -188,7 +233,7 @@ export default function TitleCopywriter() {
           })}
         </div>
        */}
-        {/* <Canvas/> */}
+      {/* <Canvas/> */}
       {/* </div> */}
     </>
   );
