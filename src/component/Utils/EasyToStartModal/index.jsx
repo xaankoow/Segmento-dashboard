@@ -11,11 +11,10 @@ import { modalParentSelector } from '../../../variables/style'
 import { useNavigate } from 'react-router'
 
 export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
-
   const [rederingWithDelay, setRederingWithDelay] = useState(false);
 
 
-  const [stepModal, setStepModal] = useState(1);
+  const [stepModal, setStepModal] = useState(3);
   const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
 
   const [free, setFree] = useState(false);

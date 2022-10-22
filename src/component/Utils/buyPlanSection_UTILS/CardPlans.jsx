@@ -67,22 +67,22 @@ export default function CardPlans({ plan, setPlan }) {
 
   useEffect(() => {
     if (allPackageData.length != 0) {
-      var innerPrice = allPackageData[plan.planIndex].price
+      var innerPrice = allPackageData[plan.planIndex]
       if (plan.planIndex > 1 & plan.planIndex <= 5) {
         if (innerPrice != packageBronzePrice) {
-          setPackageBronzePrice(allPackageData[plan.planIndex].price)
+          setPackageBronzePrice(innerPrice)
         }
       } else if (plan.planIndex > 5 & plan.planIndex <= 9) {
         if (innerPrice != packageSilverPrice) {
-          setPackageSilverPrice(allPackageData[plan.planIndex].price)
+          setPackageSilverPrice(innerPrice)
         }
       } else if (plan.planIndex > 9 & plan.planIndex <= 13) {
         if (innerPrice != packageGoldPrice) {
-          setPackageGoldPrice(allPackageData[plan.planIndex].price)
+          setPackageGoldPrice(innerPrice)
         }
       } else if (plan.planIndex > 13 & plan.planIndex <= 17) {
         if (innerPrice != packageDiamondPrice) {
-          setPackageDiamondPrice(allPackageData[plan.planIndex].price)
+          setPackageDiamondPrice(innerPrice)
         }
       }
     }
@@ -113,8 +113,8 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"bronze"}
-            price={packageBronzePrice!=0?packageBronzePrice:allPackageData[2].price}
-            planSelected={plan.type}
+            price={packageBronzePrice!=0?packageBronzePrice:allPackageData[2]}
+            planSelected={plan}
           />
         }
         <div className='input_apply_token_container'>
@@ -154,8 +154,9 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"silver"}
-            price={packageSilverPrice!=0?packageSilverPrice:allPackageData[6].price}
-            planSelected={plan.type}
+            price={packageSilverPrice!=0?packageSilverPrice:allPackageData[6]}
+            planSelected={plan}
+            // defaultDiscount={allPackageData[6].}
           />
         }
         <div className='input_apply_token_container'>
@@ -193,8 +194,8 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"gold"}
-            price={packageGoldPrice!=0?packageGoldPrice:allPackageData[10].price}
-            planSelected={plan.type}
+            price={packageGoldPrice!=0?packageGoldPrice:allPackageData[10]}
+            planSelected={plan}
           />
         }
         <div className='input_apply_token_container'>
@@ -233,8 +234,8 @@ export default function CardPlans({ plan, setPlan }) {
         {allPackageData.length > 1 &&
           <DiscountTagValue
             tagStatusName={"diamond"}
-            price={packageDiamondPrice!=0?packageDiamondPrice:allPackageData[14].price}
-            planSelected={plan.type}
+            price={packageDiamondPrice!=0?packageDiamondPrice:allPackageData[14]}
+            planSelected={plan}
           />
         }
         <div className='input_apply_token_container'>
