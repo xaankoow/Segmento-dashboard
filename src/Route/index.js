@@ -18,6 +18,7 @@ import MyList from "../component/Dashboard/KeyWords/MyList/MyList";
 import ContentpProduction from "../component/Dashboard/ContentProduction/ContentpProduction";
 import MylistContentProduction from "../component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx"
 import { useSelector } from "react-redux";
+import RankTracking from "../component/Dashboard/RankTracking/RankTracking";
 
 
 
@@ -42,6 +43,25 @@ const tabContent = [
     },
   ];
 
+  const ranktrakingTabs = [
+    {
+      title: "نمای کلی",
+      content: <RankTracking />,
+    },
+    {
+      title: "کلمات کلیدی",
+      content: <MylistContentProduction />,
+    },
+    {
+      title: "رقبا",
+      content: <MylistContentProduction />,
+    },
+    {
+      title: "گزارش گیری",
+      content: <MylistContentProduction />,
+    },
+  ];
+
 export const DashboardRote=[
     {path:"userProfile",component:<EditUserProfile/>},
     {path:"planStatus",component:<PlanStatus />},
@@ -51,6 +71,7 @@ export const DashboardRote=[
     {path:"workSpaceReport",component:<WorkSpaceReport />},
     {path:"keywordResearch",component:<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />},
     {path:"contentCreation",component:<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />},
+    {path:"rank-tracking",component:<TabMenu tabsContent={ranktrakingTabs} title={"ابزار رتبه سنج (رنک ترکینگ Rank Tracking)"} amountOfData={"isContentProduction"} />},
     {path:"PageCounter",component:<PageCounter />},
     {path:"ReportSupport",component:<ReportSupport />},
     {path:"NewTicket",component:<Support />},

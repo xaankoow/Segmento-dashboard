@@ -170,6 +170,22 @@ export default function AcardionItem({clicked,setClicked}) {
         },
       ],
     },
+
+
+
+    {
+      title: "سئو تکنیکال",
+      titleIcon: copyWriter_svg,
+      itemLink: "",
+      acardionItems: [
+        {
+          itemTitle: "ابزار رتبه سنج",
+          itemIcon: copyWriterAnboh_svg,
+          itemLink: "rank-tracking",
+          section: ""
+        },
+      ],
+    },
   ];
   // const [clicked, setClicked] = React.useState(false);
   const [ItemsClicked, setItemsClicked] = useState(-1);
