@@ -20,8 +20,8 @@ export default function MyList() {
   // check wich api checked
   const tableDataFiltered = [];
 
-  const toggle = (index) => {
-    if (clicked === index) {
+  const toggle = (index,e) => {
+    if (clicked === index && e.target == e.currentTarget) {
       // if active close
       return setClicked(null);
     }
@@ -127,7 +127,7 @@ export default function MyList() {
           });
         }
         return (
-          <div className="flex flex-col border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2">
+          <div  onClick={(e) => toggle(index,e)} className="flex flex-col  border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2">
             <div
               className={
                 clicked === index
@@ -151,7 +151,7 @@ export default function MyList() {
                   </span>
                 </div>
                 <div
-                  onClick={() => toggle(index)}
+                 onClick={(e) => toggle(index,e)}
                   className="pl-5 cursor-pointer"
                 >
                   {clicked === index ? (
