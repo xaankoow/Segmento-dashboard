@@ -1,4 +1,4 @@
-import  {ImageContainer}  from "../assets/img/IMG/index";
+import { ImageContainer } from "../assets/img/IMG/index";
 export const ticketCategories = [
   "امور اداری",
   "امور مالی",
@@ -16,13 +16,13 @@ export const imgCategories = [
   ImageContainer.idea
 ]
 
-  
-
 export const helpText = [
-"نمونه متن برای نوشتن نکات مهم برای تیکت"  ,
-"نمونه متن برای نوشتن نکات مهم برای تیکت"  ,
-"نمونه متن برای نوشتن نکات مهم برای تیکت"  ,
+  "نمونه متن برای نوشتن نکات مهم برای تیکت",
+  "نمونه متن برای نوشتن نکات مهم برای تیکت",
+  "نمونه متن برای نوشتن نکات مهم برای تیکت",
 ];
+
+
 export const titleOfReportSupportTable = [
   { title: "ردیف", class: "px-8" },
   { title: "شناسه تیکت", class: "px-8" },
@@ -32,4 +32,5 @@ export const titleOfReportSupportTable = [
   { title: "وضعیت", class: "text-center " },
   { title: "عملیات", class: "flex justify-center" },
 ];
-export const filterBoxDatas=["بدون فیلتر","شناسه تیکت","عنوان","دسته بندی","دپارتمان","آخرین بروز رسانی","وضعیت"]
+
+export const filterBoxDatas = ["بدون فیلتر", "شناسه تیکت", "عنوان", "دسته بندی", "دپارتمان", "آخرین بروز رسانی", "وضعیت"]
