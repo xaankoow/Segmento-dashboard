@@ -37,7 +37,7 @@ import AuthButton from "./component/Auth/authButton/AuthButton";
 import TitleCopyWriterBulk from "./pages/titleCopyWriterBulk/TitleCopyWriterBulk";
 import WorkSpaceManagement from "./pages/workSpace management/WorkSpaceManagement"
 import { DashboardRote } from "./Route";
-
+import {RoundPriceToUp} from './component/Utils/FORMAT/price'
 export default function App() {
   
   const { forceUpdate } = useSelector((state) => state.userState);
@@ -72,6 +72,7 @@ export default function App() {
     },
   ];
 
+  
   return (
     <Fragment>
       <div className="app">
