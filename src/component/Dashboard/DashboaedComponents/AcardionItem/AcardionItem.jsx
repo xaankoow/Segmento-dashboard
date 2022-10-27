@@ -68,7 +68,7 @@ export default function AcardionItem({clicked,setClicked}) {
         {
           itemTitle: "ایندکسر گوگل",
           itemIcon: googleIndex_svg,
-          itemLink: "",
+          itemLink: "GoogleIndexer",
         },
         {
           itemTitle: "آنالیز گوگل",

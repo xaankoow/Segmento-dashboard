@@ -18,6 +18,7 @@ import MyList from "../component/Dashboard/KeyWords/MyList/MyList";
 import ContentpProduction from "../component/Dashboard/ContentProduction/ContentpProduction";
 import MylistContentProduction from "../component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx"
 import { useSelector } from "react-redux";
+import GoogleIndexer from "../pages/GoogleIndexer";
 
 
 
@@ -57,6 +58,7 @@ export const DashboardRote=[
     {path:"SupportMessage",component:<SupportMessage />},
     {path:"TitleCopyWriterBulk",component:<TitleCopyWriterBulk />},
     {path:"TitleCopywriter",component:<TitleCopywriter />},
+    {path:"GoogleIndexer",component:<GoogleIndexer />},
     {path:"",component:<EasyStart />},
     {path:"*",component:<Page404 />},
 ]

@@ -92,23 +92,6 @@ export default function App() {
                     {DashboardRote.map(item=>(
                       <Route path={item.path} element={item.component} />
                     ))}
-                    {/* <Route path="userProfile" element={<EditUserProfile />} />
-                    <Route path="planStatus" element={<PlanStatus />} />
-                    <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
-                    <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
-                    <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
-                    <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-                    <Route path="WorkSpaceManagement" element={<WorkSpaceManagement/>}/>
-                    <Route path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />} />
-                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />} />
-                    <Route path="PageCounter" element={<PageCounter />} />
-                    <Route path="ReportSupport" element={<ReportSupport />} />
-                    <Route path="NewTicket" element={<Support />} />
-                    <Route path="SupportMessage" element={<SupportMessage />} />
-                    <Route path="TitleCopyWriterBulk" element={<TitleCopyWriterBulk />} />
-                    <Route path="TitleCopywriter" element={<TitleCopywriter />} />
-                    <Route path="" element={<EasyStart />} />
-                    <Route path="*" element={<Page404 />} /> */}
                   </Route>
                 </Routes>
               </>)

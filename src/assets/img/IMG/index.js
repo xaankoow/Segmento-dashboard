@@ -18,7 +18,8 @@ import garbage  from '../dashboard/usableImage/delete.svg';
 import blueVisible  from '../dashboard/usableImage/visibility.svg';
 import workSpace  from '../dashboard/nav_right/workspaces.svg';
 import popupError  from '../popUp/errorIco.svg';
-
+// import add_svg from "../../../assets/img/modal/workSpace/body/add.svg";
+import plus from '../../img/modal/workSpace/body/add.svg'
 
 export const ImageContainer={
   infoBlue,
@@ -41,6 +42,9 @@ export const ImageContainer={
   blueVisible,
   workSpace,
   popupError,
-  pishkhan
+  pishkhan,
+
+  // btn ico
+  plus
 
 }
