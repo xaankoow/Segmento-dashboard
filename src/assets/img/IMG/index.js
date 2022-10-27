@@ -20,6 +20,8 @@ import workSpace  from '../dashboard/nav_right/workspaces.svg';
 import popupError  from '../popUp/errorIco.svg';
 // import add_svg from "../../../assets/img/modal/workSpace/body/add.svg";
 import plus from '../../img/modal/workSpace/body/add.svg'
+import darkBlueCopy from "../dashboard/usableImage/content_copy.svg"
+
 
 export const ImageContainer={
   infoBlue,
@@ -34,6 +36,7 @@ export const ImageContainer={
   omorMali,
   soalatPishKharid,
   copyIcon,
+  darkBlueCopy,
   copyIconWhite,
   // popUp img
   popUpWarning,
