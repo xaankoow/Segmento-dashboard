@@ -56,7 +56,7 @@ export const DashboardRote=[
     {path:"contentCreation",component:<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />},
     {path:"PageCounter",component:<PageCounter />},
     {path:"ReportSupport",component:<ReportSupport />},
-    {path:"NewTicket",component:<Support />},
+    {path:"ReportSupport/NewTicket",component:<Support />},
     {path:"SupportMessage",component:<SupportMessage />},
     {path:"TitleCopyWriterBulk",component:<TitleCopyWriterBulk />},
     {path:"TitleCopywriter",component:<TitleCopywriter />},

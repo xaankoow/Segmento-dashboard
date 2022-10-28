@@ -47,7 +47,7 @@ export default function SidebarComponent({
   return (
     <>
       <div
-        className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between"
+        className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between min-w-[256px]"
         style={{ width: closeNav ? "256px" : "0px" }}
       >
         {activeIcon == 0 ? (
@@ -91,7 +91,7 @@ export default function SidebarComponent({
       </div>
       {/* ):null} */}
 
-      <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
+      <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh] min-w-[56px]">
         <IconsRight setActive={activeIconHandler} />
         <div className="down">
           <div className="dropDownBox mb-5">

@@ -16,7 +16,7 @@ export default function ChooseCategories({link,clickedItem,setClicked,setCategor
             <div
             id="CATEGORIES"
               onClick={() => {setClicked(index);setCategoriValue(item)}}
-              className={`w-[260px] h-[140px] border border-sectionDisable  hover:grayscale-0 rounded-lg relative flex flex-col justify-center items-center hover:border-[#0AC7E2]  active:border-[#0AC7E2]  focus:border-primary ${
+              className={`w-[260px] h-[140px] border border-sectionDisable  hover:grayscale-0 rounded-lg relative flex flex-col justify-center items-center hover:border-[#0AC7E2]  active:border-[#0AC7E2]  focus:border-primary cursor-pointer ${
                 clickedItem === index && "border-[#0AC7E2]"
               }`}
             >
