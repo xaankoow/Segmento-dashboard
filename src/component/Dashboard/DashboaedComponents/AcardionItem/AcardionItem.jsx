@@ -23,6 +23,7 @@ import copyWriterAnboh_svg from "../../../../assets/img/dashboard/nav_right/copy
 import googleSuggestion_svg from "../../../../assets/img/dashboard/nav_right/googleSuggestion.svg";
 import { showToast } from "../../../Utils/toastifyPromise";
 import { ChackingAvailabilityTools } from "../../../Utils/CheckingAvailabilityTools";
+import { ImageContainer } from "../../../../assets/img/IMG";
 
 export default function AcardionItem({ clicked, setClicked }) {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ export default function AcardionItem({ clicked, setClicked }) {
         {
           itemTitle: "ایندکسر گوگل",
           itemIcon: googleIndex_svg,
-          itemLink: "",
+          itemLink: "GoogleIndexer",
         },
         {
           itemTitle: "آنالیز گوگل",
@@ -265,7 +266,7 @@ export default function AcardionItem({ clicked, setClicked }) {
                 {item.title == "ورک‌اسپیس‌ها" && (
                   <div
                     key={index}
-                    // onClick={()=>dispatch(setShowWorkSpaceModal(true))}
+                    
                     className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                   >
                     <img
@@ -273,20 +274,25 @@ export default function AcardionItem({ clicked, setClicked }) {
                       alt="icon"
                     />
                     <Link
-                      // to={user.userData.package != undefined ?limitsDatas.length > 0 && limitsDatas[2].count>0? "setWorkSpace":"checkLimit": location}
-                      // to={user.userData.package != undefined ?`${ChackingAvailabilityTools({path:"setWorkSpace",section:"workSpace",userState:user,workSpaceState:workSpaceState})}`: location}
-                      to={user.userData.package != undefined ? `setWorkSpace` : location}
-                      // to={user.userData.package != undefined ?`${<ChackingAvailabilityTools path={"setWorkSpace"} section="workspace"/>}`: location}
-                      onClick={() => user.userData.package == undefined && showToast("شما پلن فعالی ندارید", "error")}
+                     
+                      to={user.userData.package != undefined ?`setWorkSpace`: location}
+                       onClick={()=>user.userData.package == undefined && showToast("شما پلن فعالی ندارید", "error")}
                       state={{ background: location }}
                       className={"w-auto"}
                     >
                       افزودن سایت
                     </Link>
+                   
                   </div>
                 )}
               </div>
             ) : null}
+            {/* TODO */}
+                            {/* {item.title == "ورک‌اسپیس‌ها" && <div>  
+
+                              adcnskb\ch
+                            </div> } */}
+
             {index == 0 && (
               <div className="border-b border-lightGray w-11/12 m-auto" />
             )}

@@ -2,12 +2,12 @@ import React, { Fragment, useEffect } from "react";
 import Register from "./pages/register/Register";
 import "./App.css";
 import Forgotpass from "./pages/forgotPassword/Forgotpass";
-import { Routes, Route, useLocation, useNavigate, Link } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import { ToastContainer } from "react-toastify";
 import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
 import PlanStatus from "./component/Dashboard/DashboaedComponents/PlanStatus";
 import EditUserProfile from "./component/Dashboard/pages/EditUserProfile/EditUserProfile";
@@ -33,11 +33,11 @@ import TitleCopywriter from "./pages/titleCopywriter";
 import ReportSupport from "./component/Dashboard/pages/Support&Tickets/SatusSupport";
 import PopUp from "./component/Utils/PopUp/PopUp";
 import errorIco_svg from './assets/img/popUp/errorIco.svg'
-import update_svg from './assets/img/popUp/update.svg'
 import AuthButton from "./component/Auth/authButton/AuthButton";
-import { allLimitDataFeature, ChackBusinessCustomer } from "./component/Redux/Action/workSpace";
 import TitleCopyWriterBulk from "./pages/titleCopyWriterBulk/TitleCopyWriterBulk";
-
+import WorkSpaceManagement from "./pages/workSpace management/WorkSpaceManagement"
+import { DashboardRote } from "./Route";
+import {RoundPriceToUp} from './component/Utils/FORMAT/price'
 export default function App() {
   
   const { forceUpdate } = useSelector((state) => state.userState);
@@ -48,14 +48,12 @@ export default function App() {
     resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
   }, [resultSetWorkSpace.reportStatus])
   
-
-
   const location = useLocation();
   const background = location.state && location.state.background;
 
   const tabContent = [
     {
-      title: " جستجو",
+      title: " جستجوی کلمه جدید",
       content: <KeyWords />,
     },
     {
@@ -65,7 +63,7 @@ export default function App() {
   ];
   const tabContent2 = [
     {
-      title: "جستجو",
+      title: "جستجوی ایده جدید",
       content: <ContentpProduction />,
     },
     {
@@ -74,10 +72,10 @@ export default function App() {
     },
   ];
 
+  
   return (
     <Fragment>
       <div className="app">
-
         <Routes>
           <Route path="/dashboard/*">
             <Route path="accountOperations">
@@ -91,32 +89,17 @@ export default function App() {
               (<>
                 <Routes location={background || location}>
                   <Route path="*" element={<DashboardBody />}>
-                    <Route path="userProfile" element={<EditUserProfile />} />
-                    <Route path="planStatus" element={<PlanStatus />} />
-                    <Route path="buyPlan/buyInfo" element={<AleartMessageBuyPlan />} />
-                    <Route path="buyPlan" element={<BuyPlan title={"خرید اشتراک سگمنتو"} />} />
-                    <Route path="financialReports" element={<TableFinancialReports title={"گزارش‌های مالی"} />} />
-                    <Route path="workSpaceReport" element={<WorkSpaceReport stepWorkSpace={resultSetWorkSpace.reportStep} />} />
-                    <Route path="keywordResearch" element={<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />} />
-                    <Route path="contentCreation" element={<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />} />
-                    <Route path="PageCounter" element={<PageCounter />} />
-                    <Route path="ReportSupport" element={<ReportSupport />} />
-                    <Route path="NewTicket" element={<Support />} />
-                    <Route path="SupportMessage" element={<SupportMessage />} />
-                    <Route path="TitleCopyWriterBulk" element={<TitleCopyWriterBulk />} />
-                    <Route path="TitleCopywriter" element={<TitleCopywriter />} />
-                    <Route path="" element={<EasyStart />} />
-                    <Route path="*" element={<Page404 />} />
+                    {DashboardRote.map(item=>(
+                      <Route path={item.path} element={item.component} />
+                    ))}
                   </Route>
                 </Routes>
               </>)
             }>
             </Route>
           </Route>
-
-          {/* <Route path="/payment*" element={<LandingPage />} /> */}
+          <Route path="/payment*" element={<LandingPage />} />
           <Route path={"*"} element={<Page404 />} />
-
         </Routes>
         {background != "" && (
           <Routes>
@@ -126,7 +109,6 @@ export default function App() {
 
             {/* availability tools popup */}
             <Route exact path={`dashboard/checkLimit`} element={
-
               <PopUp
                 image={errorIco_svg}
                 type={"warning"}
@@ -144,8 +126,6 @@ export default function App() {
                 )}
                 title={"موفقیت آمیز"}
               />} />
-
-
             <Route exact path={`dashboard/checkedPackage`} element={
               <PopUp
                 image={errorIco_svg}
@@ -167,7 +147,7 @@ export default function App() {
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
-        <LoadingPage />
+        {/* <LoadingPage /> */}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>

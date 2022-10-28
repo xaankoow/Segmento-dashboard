@@ -75,10 +75,12 @@ export const getAllPlanData = () => {
 }
 
 
-export const setWebAdress = adress => {
+export const setWebAdress = (adress) => {
     return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        state.webAdress = adress;
+        debugger
+        const ds=adress.replace("https://", "");
+        state.webAdress = ds;
         await dispatch({ type: "MODAL_PLAN_WEB_ADRESS", payload: state })
     }
 }
@@ -319,8 +321,6 @@ export const applyDiscountAction = (discountCode, planType) => {
         const state = { ...getState().planState }
         const loadingState = { ...getState().loadingState }
         if (discountCode) {
-            // let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
-
 
             //handle show loadin
             {
@@ -329,40 +329,28 @@ export const applyDiscountAction = (discountCode, planType) => {
                 await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
             }
 
-
             var formdata = new FormData();
             formdata.append("code", discountCode)
 
             let toastMessage = "";
             try {
                 const { data, status } = await applyDiscount(formdata);
-                // const { data, status } = await applyDiscount("sample-code");
                 if (data.code == 200 && data.data.status == true) {
                     state.discount = discountCode;
-
-                    // state.discountValue.value = { value: data.data.value.toString().substring(0, data.data.value.toString().length - 3), planType: planType };
-                    // state.discountStatus.value = data.data.value.toString().substring(0, data.data.value.toString().length - 3) ;
                     state.discountStatus.value = data.data.value;
                     state.discountStatus.planType = planType;
                     state.discountStatus.discountType = data.data.unit == 1 ? "percentage" : "cash";
                     state.forceUpdate += 1;
-                    InputError("discount", "کدتخفیف درست است", "#10CCAE", true)
-                    // showToast(data.data.msg, "success");
-                    // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
+                    InputError("discount", "کدتخفیف درست است","#10CCAE",true)
                 } else {
-                    // data.errors.forEach(element => {
-                    //     toastMessage += element + " / ";
-                    // });
                     showToast(data.data.msg, "error");
                     InputError("discount", data.data.msg)
-                    // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
                 }
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
                 showToast(toastMessage, "error");
-                // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
             }
         } else {
             showInputErrorToast();

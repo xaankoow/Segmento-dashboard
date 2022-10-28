@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a41f2c-2f9e-4fec-8efb-b41413fabe06" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/ContentpProduction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/ContentProduction/ContentpProduction.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/DashboardHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/DashboardHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/KeyWordsSearch/KeyWordsSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/KeyWordsSearch/KeyWordsSearch.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/TableData/TableData.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/TableData/TableData.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/KeyWords/KeyWords.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/KeyWords/KeyWords.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/EditUserProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/EditUserProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/changeImageModal/ChangeImageModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/pages/EditUserProfile/components/changeImageModal/ChangeImageModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/TryFreePlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/EasyToStartModal/BodyContent/TryFreePlan.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Utils/Modals/phoneNumber/PhoneNumberOperations.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/Modals/phoneNumber/PhoneNumberOperations.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/shared/comboBox/ComboBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/shared/comboBox/ComboBox.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +92,7 @@
       <workItem from="1659709454640" duration="2262000" />
       <workItem from="1659862492996" duration="595000" />
       <workItem from="1662407051779" duration="13434000" />
-      <workItem from="1662492138917" duration="2934000" />
+      <workItem from="1662492138917" duration="4000000" />
     </task>
     <servers />
   </component>

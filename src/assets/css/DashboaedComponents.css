@@ -465,10 +465,28 @@ a {
     text-align: center;
     font-size: 10px;
 }
-.EDITOR-USERPROFILE{
+
+.EDITOR-USERPROFILE {
     display: none !important;
 }
 
-#CATEGORIES:hover img{
+#CATEGORIES:hover img {
     filter: grayscale(0)
+}
+
+/* title copy writer when hover */
+.showCopy:hover span {
+    color: #002145 !important;
+}
+.showCopy:active span {
+    color: #0A65CD !important;
+}
+.showCopy:hover img{
+    display: block;
+   
+}
+.showCopy:active img{
+    display: block;
+    filter: saturate(11);
+    
 }

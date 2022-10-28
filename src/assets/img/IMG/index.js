@@ -10,8 +10,18 @@ import omorFani  from '../dashboard/support/omorFani.svg';
 import omorMali  from '../dashboard/support/omorMali.svg';
 import soalatPishKharid  from '../dashboard/support/soalatPishKharid.svg';
 import copyIcon  from '../dashboard/table/content_copy.svg';
+import copyIconWhite  from '../dashboard/table/content_copy_white.svg';
 import popUpWarning  from '../popUp/errorIco.svg';//import errorIco_svg from './assets/img/popUp/errorIco.svg'
 import pishkhan  from '../dashboard/workSpace/footer/button_ico.svg';///img/dashboard/workSpace/footer/button_ico.svg
+import download  from '../dashboard/usableImage/download.svg';
+import garbage  from '../dashboard/usableImage/delete.svg';
+import blueVisible  from '../dashboard/usableImage/visibility.svg';
+import workSpace  from '../dashboard/nav_right/workspaces.svg';
+import popupError  from '../popUp/errorIco.svg';
+// import add_svg from "../../../assets/img/modal/workSpace/body/add.svg";
+import plus from '../../img/modal/workSpace/body/add.svg'
+import darkBlueCopy from "../dashboard/usableImage/content_copy.svg"
+
 
 export const ImageContainer={
   infoBlue,
@@ -26,10 +36,18 @@ export const ImageContainer={
   omorMali,
   soalatPishKharid,
   copyIcon,
-  
+  darkBlueCopy,
+  copyIconWhite,
   // popUp img
   popUpWarning,
+  download,
+  garbage,
+  blueVisible,
+  workSpace,
+  popupError,
+  pishkhan,
 
-  pishkhan
+  // btn ico
+  plus
 
 }

@@ -9,28 +9,28 @@ export const AuthVerifyCode = ({ errorTextId ,disable}) => {
   //     <div className="flex gap-5">
   //         <AuthInput
   //             classes={"verify_email_cod input_selector_4"}
-  //             notCheckValue={true}
+  //             
   //             maxLength={1}
   //             pressNumber={true}
   //             reduxHandleChange={setAuth1Redux}
   //         />
   //         <AuthInput
   //             classes={"verify_email_cod input_selector_3"}
-  //             notCheckValue={true}
+  //             
   //             maxLength={1}
   //             pressNumber={true}
   //             reduxHandleChange={setAuth2Redux}
   //         />
   //         <AuthInput
   //             classes={"verify_email_cod input_selector_2"}
-  //             notCheckValue={true}
+  //             
   //             maxLength={1}
   //             pressNumber={true}
   //             reduxHandleChange={setAuth3Redux}
   //         />
   //         <AuthInput
   //             classes={"verify_email_cod"}
-  //             notCheckValue={true}
+  //             
   //             maxLength={1}
   //             pressNumber={true}
   //             reduxHandleChange={setAuth4Redux}
@@ -47,7 +47,7 @@ export const AuthVerifyCode = ({ errorTextId ,disable}) => {
       <div className="flex items-center gap-4">
         <AuthInput
           classes={"verify_email_cod input_selector_4"}
-          notCheckValue={true}
+          
           reduxHandleChange={setAuth1Redux}
           maxlength={1}
           pressNumber={true}
@@ -56,7 +56,7 @@ export const AuthVerifyCode = ({ errorTextId ,disable}) => {
         />
         <AuthInput
           classes={"verify_email_cod input_selector_3"}
-          notCheckValue={true}
+          
           reduxHandleChange={setAuth2Redux}
           maxlength={1}
           pressNumber={true}
@@ -64,7 +64,7 @@ export const AuthVerifyCode = ({ errorTextId ,disable}) => {
         />
         <AuthInput
           classes={"verify_email_cod input_selector_2"}
-          notCheckValue={true}
+          
           reduxHandleChange={setAuth3Redux}
           maxlength={1}
           pressNumber={true}
@@ -73,7 +73,7 @@ export const AuthVerifyCode = ({ errorTextId ,disable}) => {
         <AuthInput
         inputId="kld"
           classes={"verify_email_cod"}
-          notCheckValue={true}
+          
           reduxHandleChange={setAuth4Redux}
           maxlength={1}
           pressNumber={true}

@@ -8,9 +8,8 @@ export default function SubmitForm({ children, submitFun, dispatchOption, formCl
     const onSubmitForm = (element, fun, dispatchOption) => {
 
         element.preventDefault();
-
-        if (outSideFun != "" & outSideFun != undefined) {
-
+        
+        if (outSideFun!= ""&outSideFun!=undefined) {
             outSideFun()
         }
 

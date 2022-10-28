@@ -70,7 +70,7 @@ export default function DashboardBody() {
       {!checkVerifyPhoneNumber && setTimeout(() => {
         setShowVerifyPhoneNumberModal(true)
       }, 7000)}
-      {showVerifyPhoneNumberModal && <PhoneNumberOperations />}
+      {showVerifyPhoneNumberModal&&<PhoneNumberOperations />}
       {showModalBuyPlanResult.type != "" ? (
         <BuyPlanEasyToStartModal checkBuyPlan={showModalBuyPlanResult.result} />
       ) : ("")}

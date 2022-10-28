@@ -110,19 +110,16 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
       init()
       // }, 1000);
       // setTimeout(() => {
-      // }, 2000);
-    }
-  }, []);
-  const init = async () => {
+        // }, 2000);
+      }
+    }, []);
+    const init = async() => {
 
-    await dispatch(coreUser());
-    dispatch(getAllWorkSpace());
-    dispatch(ChackBusinessCustomer())
-    dispatch(allLimitDataFeature())
-  }
-  // useEffect(() => {
-  //   dispatch(coreUser());
-  // }, [checkUseTryFree]);
+     await dispatch(coreUser());
+     dispatch(getAllWorkSpace());
+     dispatch(ChackBusinessCustomer())
+     dispatch(allLimitDataFeature())
+    }
 
   const location = useLocation();
   return (

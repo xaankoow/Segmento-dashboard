@@ -11,6 +11,30 @@
 @import url(./loading.css);
 @import url(./DashboaedComponents.css);
 
+
+.polygone_line_style{
+/* background-color: red; */
+}
+.polygone_line_style1{
+  position: absolute;
+  width: 375px;
+  height: 500px;
+  right: 250px;
+  top: 200px;
+  stroke: #D9D9D9;
+  stroke-width: 1px;
+}
+.polygone_parent svg{
+  position: absolute;
+  top: 300px;
+  height: 592px;
+  width: 375px;
+  overflow: visible;
+}
+.r--poly-polygon{
+display: none;
+}
+
 /* change default toolTip style */
 .Toastify__toast-container{
   z-index: 100000000 !important;

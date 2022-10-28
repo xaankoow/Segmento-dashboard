@@ -12,14 +12,12 @@ import "./forgotpass.css";
 import registerFrame_svg from "../../assets/img/registerFrame.svg";
 import businessesIcon_png from "../../assets/img/businessesIcon.png";
 import SubmitForm from "../../component/Utils/Submit";
-import { AuthVerifyCode } from "../../component/shared/Input/AuthVerifyCode";
 
 export default function Forgetpass() {
 
   const { forgotPasswordStep, handleResendCode } = useSelector(state => state.userState)
 
   const [showToolTip, setShowToolTip] = useState(true);
-
 
   useEffect(() => {
     if (handleResendCode == false) {
@@ -30,7 +28,6 @@ export default function Forgetpass() {
         if (seconds === 0) {
           if (minutes === 0) {
             clearInterval(myInterval);
-            setDisabledCodeButton(false);
             setMinutes(1);
             setSeconds(59);
           } else {
@@ -56,63 +53,8 @@ export default function Forgetpass() {
 
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(59);
-  // value of input
-  const [valusecode, setcode] = useState("");
-  const [emailInputValue, setemailInputValue] = useState("");
-  // enable codebox
-  const [disabled, setDisabled] = useState(true);
   // enable pass
   const [disabledpass, setDisabledPass] = useState(true);
-  const [chechvalue, setChechValue] = useState(false);
-  // check email to be correct format
-  const [chechValueEmail, setChechValueEmail] = useState(false);
-  const validateEmail = (email) => {
-    var re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
-  //display timer
-  const [display, setDisplay] = useState("");
-  // getTextButton accept code button
-  const [getTextButton, setgetTextButton] = useState("دریافت کد");
-  // get code disabled
-  const [disabledcodeButton, setDisabledCodeButton] = useState(false);
-  const handleChange = (e) => {
-    let { id, value } = e.target;
-    setcode(value);
-    setemailInputValue(value);
-  };
-
-  //  active emailcode box
-  const handlerClickButton = (e) => {
-    if (emailInputValue.length > 10 && validateEmail(valusecode)) {
-      setDisabled(false);
-      setDisabledCodeButton(true);
-      setgetTextButton("دریافت مجدد کد");
-      setChechValueEmail(false);
-    } else {
-      setChechValueEmail(true);
-    }
-  };
-
-  //  active passwordbox
-  const handlerClickButtonAccept = (e) => {
-    setDisabledCodeButton(true);
-    // ? problemmmmmmmmmmmmmmmmmmmmmmmmmm
-    if (valusecode.length) {
-      setDisabledPass(false);
-    }
-    //none display timer
-    setDisplay("none");
-  };
-  // check value to be not empty
-  const checkInputValue = () => {
-    if (!valusecode) {
-      setChechValue(true);
-    } else {
-      setChechValue(false);
-    }
-  };
-
 
   return (
     <div className="flex flex-col items-center w-full justify-center overflow-hidden">
@@ -125,9 +67,6 @@ export default function Forgetpass() {
                 برای بازیابی گذرواژه، نیاز به یک کد دارید که براتون ایمیل میشه.
               </span>
             </div>
-
-
-
             <div className="items-center flex justify-between mt-10 mb-5">
               <div className="w-50"
                 data-tip='کد را با این ایمیل دریافت می‌کنید'
@@ -139,12 +78,10 @@ export default function Forgetpass() {
                   setTimeout(() => setShowToolTip(true), 0);
                 }}>
                 <SubmitForm submitFun={sendForgotPasswordEmailCodeAction} dispatchOption>
-
                   <AuthInput
                     textLabelInput="ایمیل"
                     classes={`forgot_password_input`}
                     reduxHandleChange={setEmailRedux}
-                    chechvalue={chechValueEmail}
                     disabled={forgotPasswordStep == 2 ? true : false}
                     errorTextId="errRejesterFormatEmail"
                   />
@@ -152,14 +89,12 @@ export default function Forgetpass() {
               </div>
               <div className="flex items-center">
                 {handleResendCode == true ? clearTimerValue() :
-
                   <Timer
-                    display={display}
                     minutes={minutes}
                     seconds={seconds}
                   />
                 }
-                <TextButton.Provider value={getTextButton}>
+                <TextButton.Provider value={"دریافت کد"}>
                   <AuthButton
                     classes={forgotPasswordStep > 0 ? "btn_complete" : ""}
                     reduxHandleClick={sendForgotPasswordEmailCodeAction}
@@ -168,31 +103,13 @@ export default function Forgetpass() {
                 </TextButton.Provider>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
             <SubmitForm submitFun={checkVerifyEmailForgotPasswordAction} dispatchOption formClass={"flex items-center justify-between mt-5 relative"}>
-              {/* <div className="flex items-center justify-between mt-5 relative"> */}
               <div className="flex items-center gap-5 flex-col">
                 <span className={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? "lockStyle" : "" : "lockStyle"}>کد فعال سازی</span>
-              
-              
-              
-              
-              
                 <div className="flex items-center gap-4">
                   <AuthInput
                     classes={"verify_email_cod input_selector_4"}
-                    notCheckValue={true}
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                    chechvalue={chechvalue}
                     reduxHandleChange={setAuth1Redux}
                     maxlength={1}
                     pressNumber={true}
@@ -200,9 +117,7 @@ export default function Forgetpass() {
                   />
                   <AuthInput
                     classes={"verify_email_cod input_selector_3"}
-                    notCheckValue={true}
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                    chechvalue={chechvalue}
                     reduxHandleChange={setAuth2Redux}
                     maxlength={1}
                     pressNumber={true}
@@ -210,9 +125,7 @@ export default function Forgetpass() {
                   />
                   <AuthInput
                     classes={"verify_email_cod input_selector_2"}
-                    notCheckValue={true}
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                    chechvalue={chechvalue}
                     reduxHandleChange={setAuth3Redux}
                     maxlength={1}
                     pressNumber={true}
@@ -220,31 +133,15 @@ export default function Forgetpass() {
                   />
                   <AuthInput
                     classes={"verify_email_cod"}
-                    notCheckValue={true}
                     disable={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? true : false : true}
-                    chechvalue={chechvalue}
                     reduxHandleChange={setAuth4Redux}
                     maxlength={1}
                     pressNumber={true}
                     selectWithOnClick
                   />
-
                 </div>
                 {/* <AuthVerifyCode/> */}
-
-
-
-
-
-
-
-
-
-
                 <span className={"authVerifyCodeList hidden absolute right-1 bottom-[-20px] text-[10px] text-[#c42b1c] "}>اطلاعات نامعتبر</span>
-
-
-
               </div>
               <div className="absolute bottom-0 left-0 ">
                 <TextButton.Provider value={"تایید کد"}>
@@ -255,29 +152,12 @@ export default function Forgetpass() {
                     bgcolor={
                       !disabledpass
                         ? "#009FB9"
-                        : disabled
-                          ? "#D3D5E2"
-                          : "#0A65CD"
+                        : "#D3D5E2"
                     }
                   />
                 </TextButton.Provider>
               </div>
-              {/* </div> */}
-
-
             </SubmitForm>
-
-
-
-
-
-
-
-
-
-
-
-
             <SubmitForm submitFun={changePasswordAction} dispatchOption formClass={"flex gap-4 justify-between my-10"}>
               <div className="flex gap-4 justify-between my-10"
                 data-tip='با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن (حداقل 8 حرف) بسازید.'
@@ -294,7 +174,6 @@ export default function Forgetpass() {
                   typeInput="password"
                   isPassword={true}
                   disable={forgotPasswordStep > 1 ? false : true}
-                  chechvalue={chechvalue}
                   reduxHandleChange={setPasswordRedux}
                   errorTextId="errRejesterPassword"
                   checkStrongPass
@@ -306,7 +185,6 @@ export default function Forgetpass() {
                     typeInput="password"
                     isPassword={true}
                     disable={forgotPasswordStep > 1 ? false : true}
-                    chechvalue={chechvalue}
                     reduxHandleChange={setPasswordConfirmRedux}
                     errorTextId="errRejesterPasswordConfirm"
                   />
@@ -321,9 +199,6 @@ export default function Forgetpass() {
                 </div>
               </div>
             </SubmitForm>
-
-
-
             <div className="flex items-center justify-between">
               <TextButton.Provider value={"ذخیره گذرواژه و ورود"}>
                 <AuthButton

@@ -9,7 +9,7 @@ import AuthButton from '../../../Auth/authButton/AuthButton'
 export default function index() {
   return (
     <div className=' px-7'>
-      <PageTitle title={"پشتیبانی و تیکت ها "} />
+      <PageTitle title={"پشتیبانی و تیکت‌ها "} />
       <CloseSection />
       <HeaderCardInfo />
       <Message />

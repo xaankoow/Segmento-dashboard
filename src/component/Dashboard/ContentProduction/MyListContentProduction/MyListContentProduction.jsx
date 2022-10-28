@@ -1,18 +1,13 @@
-import { Tab } from "@headlessui/react";
-import { list } from "postcss";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLoadingItem, removeLoadingItem } from "../../../Redux/Action/loading";
 import { ContentProductionGetService } from "../../../service/contentProductionStore";
-import { dataTableContentProduction } from "../../../service/dataTable";
 import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../../DashboaedComponents/TableData/TableData";
 import arrow_downnn_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_downnn_ios_new.svg';
 import arrow_up_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_up_ios_new.svg';
 
 export default function MyList() {
-  const { canRequest } = useSelector(state => state.loadingState)
   const [clicked, setClicked] = React.useState(false);
   // set api data
   const [tableDatas, setTableDatas] = useState([]);
@@ -33,16 +28,12 @@ export default function MyList() {
   };
 
   useEffect(() => {
-    // if (canRequest) {
-
-    handleGetcontent();
-    // }
+      handleGetcontent();
   }, []);
+
   const loadingState = useSelector(state => state.loadingState)
 
   const handleGetcontent = async () => {
-    // dispatch(addLoadingItem("ContentProductionGetService"))
-    //handle show loadin
     {
       loadingState.ProcessingDelay.push("ContentProductionGetService");
       loadingState.canRequest = false;
@@ -66,8 +57,6 @@ export default function MyList() {
       loadingState.canRequest = removeProcessingItem > 0 ? false : true;
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
     }
-
-    // dispatch(removeLoadingItem("ContentProductionGetService"))
   };
   // SearchBox value
   const changeHandlerSearchBox = (e) => {
@@ -86,14 +75,12 @@ export default function MyList() {
     <div className="px-4 py-7 bg-[#ffffff]">
       <div className="flex justify-between items-center mb-4">
         <span> لیست‌های اخیر شما:</span>
-
         <SearchBox
           className={"w-[450px] flex gap-2 items-center"}
           changeHandler={changeHandlerSearchBox}
           handlClick={() => setSearchBoxHandleClick(true)}
         />
       </div>
-
       {filterTableDatas.map((item, index) => {
         return (
           <div

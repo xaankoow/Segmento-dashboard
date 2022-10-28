@@ -19,13 +19,10 @@ export default function AuthButton({
   const value = useContext(TextButton);
   const dispatch = useDispatch()
 
-  var ds = "";
-
   return (
     <button
       variant="contained"
-      // className={` ${classes != undefined ? classes : ""} ${classes != undefined&&classes.includes("btn-secondary") == true ? classes : "btn-style" + classes}`}
-      className={`${classes != undefined && classes.includes("btn-secondary") == true ? classes : " btn-style " + classes}`}
+      className={`${classes != undefined&&classes.includes("btn-secondary") == true ? classes : " btn-style " + classes}`}
       disabled={disabled != undefined ? disabled ? true : !canRequest : !canRequest}
       style={style}
       type={submitType != undefined ? "submit" : "button"}
