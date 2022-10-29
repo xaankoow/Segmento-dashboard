@@ -107,7 +107,7 @@ export const lineData2 = [
   },
   {
     text: "",
-    textUp: "کی",
+    textUp: "کِی",
     id: "17",
     width: "w-[295px]",
   },
@@ -119,7 +119,7 @@ export const lineData2 = [
   },
   {
     text: "",
-    textUp: "",
+    textUp: "کی",
     id: "19",
     width: "w-[295px]",
   },
@@ -166,8 +166,8 @@ export const lineData2 = [
     width: "w-[295px]",
   },
   {
-    text: "اگر",
-    textUp: "",
+    text: "",
+    textUp: "اگر",
     id: "27",
     width: "w-[295px]",
   },
@@ -260,7 +260,9 @@ export const categoriesQuestion = [
     classname: {
       height: "h-[352px]",
       top: "-top-[324px]",
-      right: " right-[165px]",
+      right: " right-[169px]",
+      marginRight:"-mr-3",
+      marginTop:""
     },
     lineData:lineData
   },
@@ -270,6 +272,8 @@ export const categoriesQuestion = [
       height: "h-[900px]",
       top: "-top-[50px]",
       right: " right-[147px]",
+      marginRight:"-mr-3",
+      marginTop:"-mt-10"
     },
     lineData:lineData2
   },
@@ -279,6 +283,8 @@ export const categoriesQuestion = [
       height: "h-[594px]",
       top: "-top-[203px]",
       right: " right-[150px]",
+      marginRight:"-mr-3",
+      marginTop:""
     },
     lineData:lineData3
   },

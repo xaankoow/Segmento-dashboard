@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { dataTable } from "../../../service/dataTable";
 import SearchBox from "../../DashboaedComponents/SearchBox/SearchBox";
 import Table from "../../DashboaedComponents/TableData/TableData";
-import arrow_downnn_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_downnn_ios_new.svg'
-import arrow_up_ios_new_svg from '../../../../assets/img/dashboard/nav_right/arrow_up_ios_new.svg'
+import arrow_downnn_ios_new_svg from "../../../../assets/img/dashboard/nav_right/arrow_downnn_ios_new.svg";
+import arrow_up_ios_new_svg from "../../../../assets/img/dashboard/nav_right/arrow_up_ios_new.svg";
 
 export default function MyList() {
   const [clicked, setClicked] = React.useState(false);
@@ -19,9 +19,15 @@ export default function MyList() {
   const [searchBoxHandleClick, setSearchBoxHandleClick] = useState(false);
   // check wich api checked
   const tableDataFiltered = [];
-
-  const toggle = (index,e) => {
-    if (clicked === index && e.target == e.currentTarget) {
+  const image = (
+    <img src={arrow_downnn_ios_new_svg} alt="" className="cursor-pointer" />
+  );
+  const toggle = (index, e) => {
+  // to close the list
+    if (
+      (clicked === index && e.target == e.currentTarget) ||
+      e.target == image
+    ) {
       // if active close
       return setClicked(null);
     }
@@ -35,18 +41,15 @@ export default function MyList() {
     // }
   }, []);
 
-
-  const loadingState = useSelector(state => state.loadingState)
-  const dispatch = useDispatch()
+  const loadingState = useSelector((state) => state.loadingState);
+  const dispatch = useDispatch();
   const handleFetchingTableData = async () => {
-
     //handle show loadin
     {
       loadingState.ProcessingDelay.push("dataTable");
       loadingState.canRequest = false;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
-
 
     try {
       const dataRaw = { type: "suggest_google_character" };
@@ -61,15 +64,15 @@ export default function MyList() {
       // console.log(error);
     }
 
-
     //handle hide loading
     {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "dataTable");
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        (item) => item != "dataTable"
+      );
       loadingState.ProcessingDelay = removeProcessingItem;
       loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
-
   };
   // SearchBox value
   const changeHandlerSearchBox = (e) => {
@@ -127,7 +130,11 @@ export default function MyList() {
           });
         }
         return (
-          <div  onClick={(e) => toggle(index,e)} className="flex flex-col  border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2">
+          <div
+            key={index}
+            onClick={(e) => toggle(index, e)}
+            className="flex flex-col  border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2"
+          >
             <div
               className={
                 clicked === index
@@ -150,10 +157,9 @@ export default function MyList() {
                     {convertToPersianNumber(item.created_at.substring(7, 18))}
                   </span>
                 </div>
-                <div
-                 onClick={(e) => toggle(index,e)}
-                  className="pl-5 cursor-pointer"
-                >
+                <div className="pl-5 cursor-pointer" onClick={()=>""}>
+                  <>
+                  
                   {clicked === index ? (
                     <img
                       src={arrow_downnn_ios_new_svg}
@@ -166,14 +172,19 @@ export default function MyList() {
                       alt=""
                       className=" cursor-pointer"
                     />
+                    
                   )}
+                  </>
                 </div>
               </div>
             </div>
             {clicked === index ? (
-              <Table data={tableDataFiltered} WordsSearcher={true} savedItem={item.key} />
-            )  : null}
-            
+              <Table
+                data={tableDataFiltered}
+                WordsSearcher={true}
+                savedItem={item.key}
+              />
+            ) : null}
           </div>
         );
       })}

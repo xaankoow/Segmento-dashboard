@@ -48,10 +48,12 @@ export const EditorCustomizedToolbarOption = () => {
   const [ editorState, setEditorState ] = useState(EditorState.createEmpty());
   const onEditorStateChange = editorState => {
       setEditorState(editorState);
-    };
+  };
+
 console.log('editorState', editorState)
   return (
     <Editor
+   
       editorState={editorState}
       onEditorStateChange={onEditorStateChange}
       toolbarClassName="toolbarClassName border-0 bg-[#FCFCFB] p-2 right relative "

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
 import {
@@ -7,6 +8,7 @@ import {
   titleOfReportSupportTable,
 } from "../../../../variables/support";
 import AuthButton from "../../../Auth/authButton/AuthButton";
+import { getAllTiket } from "../../../service/ticket";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import GuideBox from "../../../shared/GuideBox/GuideBox";
 import Table from "../../../shared/table/Table";
@@ -15,51 +17,35 @@ import { FilterDataSupport } from "./changeData";
 
 export default function ReportSupport() {
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
+  const { uuid } = useSelector((state) => state.ticketState);
+  // api state to get tickets
+  const [tickets, setTickets] = useState([]);
 
-  const b = [
-    {
-      id: 1,
-      factorNumber: "SEG-5242",
+  const handleTickets = async () => {
+    try {
+      const { data } = await getAllTiket();
+      if ((data.code == 200) & (data.status == true)) {
+        console.log(data.data);
+        setTickets(data.data);
+      }
+    } catch (error) {
+      
+    }
+  };
+  useEffect(() => {
+    if (tickets.length <= 0) handleTickets();
+  });
+
+  const arrayOfTickets = tickets.map((item, index) => {
+    return {
+      id: index+1,
+      ticket_id: item.ticket_id,
       title: "نمونه نوشته برای عنوان",
       categories: "امور مالی",
-      date: "1401/2/2",
-      status: "پاسخ داده شد",
-      operation: (
-        <Link to={"NewTicket"}>
-        <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
-          <img src={ImageContainer.visibility} alt="" />
-        </div>
-        </Link>
-      ),
-    },
-    {
-      id: 1,
-      factorNumber: "SEG-5242",
-      title: "نمونه نوشته برای عنوان",
-      categories: "امور مالی",
-      date: "1401/2/2",
+      updated_at: ("("+item.updated_at.slice(0,5)+")  "+item.updated_at.slice(8,18)),
       status: (
-        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center mx-auto">
-          پاسخ داده شد
-        </div>
-      ),
-      operation: (
-        <Link to={"NewTicket"}>
-        <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
-          <img src={ImageContainer.visibility} alt="" />
-        </div>
-        </Link>
-      ),
-    },
-    {
-      id: 1,
-      factorNumber: "SEG-5242",
-      title: "نمونه نوشته برای عنوان",
-      categories: "امور مالی",
-      date: "1401/2/2",
-      status: (
-        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center mx-auto">
-          در انتظار پاسخ
+        <div className={`${item.status ==1 ?"bg-[#10CCAE]":"bg-[#D9D9D9]"} w-[85px] h-7 text-white rounded-3xl flex justify-center items-center mx-auto`}>
+          {item.status}{" "}
         </div>
       ),
       operation: (
@@ -70,14 +56,16 @@ export default function ReportSupport() {
           </div>
         </Link>
       ),
-    },
-  ];
+    };
+  });
+ 
+
   const rowKey = [
-    "row.id",
-    "row.factorNumber",
+    "row.id ",
+    "row.ticket_id",
     "row.title",
     "row.categories",
-    "row.date",
+    "row.updated_at",
     "row.status",
     "row.operation",
   ];
@@ -114,7 +102,7 @@ export default function ReportSupport() {
 
       <Table
         columnItem={titleOfReportSupportTable}
-        rowsItem={b}
+        rowsItem={arrayOfTickets}
         rowKey={rowKey}
         classname={"px-9"}
       />

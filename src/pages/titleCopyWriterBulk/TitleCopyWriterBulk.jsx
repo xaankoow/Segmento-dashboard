@@ -21,7 +21,7 @@ export default function TitleCopyWriterBulk() {
   const [title, setTitle] = useState(false);
 
   const [handleCopyAllIssue, setHandleCopyAllIssue] = useState("");
-  
+
   useEffect(() => {});
   let listOfKeyWords = [];
 
@@ -118,50 +118,57 @@ export default function TitleCopyWriterBulk() {
 
       {radioCategoris === 0 && title && keyWordValue.length !== 0 ? (
         filtered.map((keyword, index) => {
-        return  <LinesComponent
-            titleName={"موضوعات مقایسه‌ای"}
-            keyWordValue={keyword}
-            lineData={lineData}
-            isBulk={true}
-            bluskId={index}
-            title={title}
-            classname={{
-              height: "h-[352px]",
-              top: "-top-[324px]",
-              right: " right-[165px]",
-            }}
-          />;
+          return (
+            <LinesComponent
+              titleName={"موضوعات مقایسه‌ای"}
+              keyWordValue={keyword}
+              lineData={lineData}
+              isBulk={true}
+              bluskId={index}
+              title={title}
+              classname={{
+                height: "h-[352px]",
+                marginRight: "-mr-3",
+                marginTop: "",
+              }}
+            />
+          );
         })
-      ) :radioCategoris === 1 && title && keyWordValue.length !== 0 ? 
-      filtered.map((keyword, index) => {
-        return  <LinesComponent
-            titleName={"موضوعات سوالی"}
-            keyWordValue={keyword}
-            lineData={lineData2}
-            isBulk={true}
-            title={title}
-            classname={{
-              height: "h-[900px]",
-              top: "-top-[50px]",
-              right: " right-[147px]",
-            }}
-          />;
-        }) :radioCategoris === 2 && title && keyWordValue.length !== 0 ? 
+      ) : radioCategoris === 1 && title && keyWordValue.length !== 0 ? (
         filtered.map((keyword, index) => {
-          return  <LinesComponent
+          return (
+            <LinesComponent
+              titleName={"موضوعات سوالی"}
+              keyWordValue={keyword}
+              lineData={lineData2}
+              isBulk={true}
+              title={title}
+              classname={{
+                height: "h-[900px]",
+                marginRight: "-mr-3",
+                marginTop: "-mt-10",
+              }}
+            />
+          );
+        })
+      ) : radioCategoris === 2 && title && keyWordValue.length !== 0 ? (
+        filtered.map((keyword, index) => {
+          return (
+            <LinesComponent
               titleName={"موضوعات متفرقه"}
-               keyWordValue={keyword}
-               isBulk={true}
+              keyWordValue={keyword}
+              isBulk={true}
               lineData={lineData3}
               title={title}
               classname={{
                 height: "h-[594px]",
-                top: "-top-[203px]",
-                right: " right-[150px]",
+                marginRight: "-mr-3",
+                marginTop: "",
               }}
-            />;
-          }) :
-      (
+            />
+          );
+        })
+      ) : (
         <div className="h-[70%] flex flex-col items-center justify-center gap-3  border border-sectionDisable rounded-lg  mx-9">
           <img src={add_chart_svg} alt="imgNothingSearch" />
           <span className="text-[#E5E5E5]">
@@ -169,7 +176,7 @@ export default function TitleCopyWriterBulk() {
           </span>
         </div>
       )}
-    <div className="flex relative">
+      <div className="flex relative">
         <button
           className={`mx-9 btn-style mt-4 flex items-center gap-3 `}
           disabled={title === false && true}

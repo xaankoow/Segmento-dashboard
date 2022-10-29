@@ -29,7 +29,7 @@ export default function LinesComponent({
     }, 500);
   };
   // copy
-  
+
   const copyItem = (data, index) => {
     navigator.clipboard.writeText(data);
     setHandleCopy(true);
@@ -39,11 +39,8 @@ export default function LinesComponent({
     setActiveRow(index);
   };
   const copyText = (textUp, keyWordValue, text, id) => {
-    copyItem(
-      textUp + " " + keyWordValue + " " + text,
-      id
-    )
-    setText(textUp + " " + keyWordValue + " " + text)
+    copyItem(textUp + " " + keyWordValue + " " + text, id);
+    setText(textUp + " " + keyWordValue + " " + text);
   };
   // just for title copy bulk
   const copyIssuee = (arrayData) => {
@@ -85,10 +82,7 @@ export default function LinesComponent({
         {isBulk && keyWordValue}
       </div>
 
-      <CreateRotateLine
-        array={lineData}
-        classname={`absolute  ${classname && classname.top}`}
-      />
+      <CreateRotateLine array={lineData} />
 
       <button
         className="btn-secondary absolute mt-24 flex items-center gap-3 z-10 "
@@ -105,7 +99,7 @@ export default function LinesComponent({
         </span>
         <img src={ImageContainer.copyIcon} alt="copyIcon" /> کپی موضوعات
       </button>
-      <div className=" absolute flex flex-col right-[526px] gap-[18px] hover:text-primary">
+      <div className={`  flex flex-col ${classname && classname.marginRight} ${classname && classname.marginTop} gap-[18px] hover:text-primary`}>
         {lineData.map((item, index) => {
           return (
             <div
@@ -121,8 +115,13 @@ export default function LinesComponent({
                 </span>
                 {item.text && <span>{item.text}</span>}
                 <div class=" absolute left-[14px] content_copy_blue w-4 h-5 "></div>
-                <img src={ImageContainer.darkBlueCopy} className="hidden" alt="" />
-                {text ===  item.textUp + " " + keyWordValue + " " + item.text  && activeRow === item.id ? (
+                <img
+                  src={ImageContainer.darkBlueCopy}
+                  className="hidden"
+                  alt=""
+                />
+                {text === item.textUp + " " + keyWordValue + " " + item.text &&
+                activeRow === item.id ? (
                   <span
                     className={
                       handleCopy
