@@ -38,6 +38,8 @@ export default function ChangeImageModal({
     setImageChanged(true)
    
   };
+
+  
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["JPG", "PNG", "GIF"],
