@@ -18,6 +18,7 @@ import MyList from "../component/Dashboard/KeyWords/MyList/MyList";
 import ContentpProduction from "../component/Dashboard/ContentProduction/ContentpProduction";
 import MylistContentProduction from "../component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx"
 import { useSelector } from "react-redux";
+import GoogleIndexer from "../pages/GoogleIndexer";
 import WorkSpaceManagement from "../pages/workSpace management/WorkSpaceManagement";
 
 
@@ -55,10 +56,11 @@ export const DashboardRote=[
     {path:"contentCreation",component:<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />},
     {path:"PageCounter",component:<PageCounter />},
     {path:"ReportSupport",component:<ReportSupport />},
-    {path:"NewTicket",component:<Support />},
-    {path:"SupportMessage",component:<SupportMessage />},
+    {path:"ReportSupport/NewTicket",component:<Support />},
+    {path:"ReportSupport/SupportMessage",component:<SupportMessage />},
     {path:"TitleCopyWriterBulk",component:<TitleCopyWriterBulk />},
     {path:"TitleCopywriter",component:<TitleCopywriter />},
+    {path:"GoogleIndexer",component:<GoogleIndexer />},
     {path:"",component:<EasyStart />},
     {path:"*",component:<Page404 />},
 ]
