@@ -153,13 +153,13 @@ export default function AcardionItem({clicked,setClicked}) {
         {
           itemTitle: "کپی رایتر  ",
           itemIcon: copyWriter_svg,
-          itemLink: "",
+          itemLink: "TitleCopywriter",
           section: ""
         },
         {
           itemTitle: "کپی رایتر انبوه ",
           itemIcon: copyWriterAnboh_svg,
-          itemLink: "",
+          itemLink: "TitleCopyWriterBulk",
           section: ""
         },
         {
