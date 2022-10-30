@@ -329,12 +329,212 @@ export default function RankTracking({ onClickHandler }) {
           </div>
           <div className="chart__content">
 
+            <div className="chart__filters">
+
+              <div className="filter">
+                <div className="filter__content">
+                  <div className="filter__color filter__color--green"></div>
+                  <div className="filter__title">1 ماه قبل</div>
+                </div>
+                <div className="filter__action">#</div>
+              </div>
+
+              <div className="filter">
+                <div className="filter__content">
+                  <div className="filter__color filter__color--blue"></div>
+                  <div className="filter__title">1 ماه قبل</div>
+                </div>
+                <div className="filter__action">#</div>
+              </div>
+
+              <div className="filter">
+                <div className="filter__content">
+                  <div className="filter__color filter__color--red"></div>
+                  <div className="filter__title">1 ماه قبل</div>
+                </div>
+                <div className="filter__action">#</div>
+              </div>
+
+            </div>
+
+
+            <div className="chart__chart">
+              <Line options={options} data={data} />
+            </div>
+          </div>
+        </div>
+
+        <div className="tracker__report-section">
+          <div className="report__title">
+            آمار و گزارش های نسبی
+          </div>
+          <div className="report__filter">
+
+            <div className="filter__content">
+
+              <div className="filter__title">
+                <img src={pishkhan_svg} />
+                <span>فیلتر براساس</span>
+              </div>
+
+              <div className="filter__items">
+                <div className="filter__item filter__item--active ">
+                  1 هفته
+                </div>
+                <div className="filter__item">
+                  2 هفته
+                </div>
+                <div className="filter__item">
+                  4 هفته
+                </div>
+                <div className="filter__item">
+                  8 هفته
+                </div>
+                <div className="filter__item">
+                  12 هفته
+                </div>
+              </div>
+
+            </div>
+
+            <img src={pishkhan_svg} className="filter__action" />
+
+          </div>
+
+
+
+          <div className="report__charts">
+
+            <div className="chart">
+              <div className="chart__title">نسبت کل کلمات</div>
+              <div className="chart__chart">
+                [chart]
+              </div>
+              <div className="chart__points">
+                <div className="point">
+                  <div className="point__color point__color--red"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--blue"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--green"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--yellow"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--purple"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div className="chart">
+              <div className="chart__title">نسبت کل کلمات</div>
+              <div className="chart__chart">
+                [chart]
+              </div>
+              <div className="chart__points">
+                <div className="point">
+                  <div className="point__color point__color--red"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--blue"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--green"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--yellow"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--purple"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div className="chart">
+              <div className="chart__title">نسبت کل کلمات</div>
+              <div className="chart__chart">
+                [chart]
+              </div>
+              <div className="chart__points">
+                <div className="point">
+                  <div className="point__color point__color--red"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--blue"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--green"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--yellow"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--purple"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div className="chart">
+              <div className="chart__title">نسبت کل کلمات</div>
+              <div className="chart__chart">
+                [chart]
+              </div>
+              <div className="chart__points">
+                <div className="point">
+                  <div className="point__color point__color--red"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--blue"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--green"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--yellow"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+                <div className="point">
+                  <div className="point__color point__color--purple"></div>
+                  <div className="point__title">نمونه نوشته</div>
+                </div>
+              </div>
+
+            </div>
+
+
           </div>
 
         </div>
-
-
-
       </div>
     </>
   );

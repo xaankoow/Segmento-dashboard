@@ -1,0 +1,223 @@
+.keyword {
+    padding: 20px;
+}
+
+.keyword .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keyword .header .header__action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.keyword .header .header__action>img {
+    border-radius: 9px;
+    padding: 9px;
+    width: 65px;
+    height: 38px;
+    margin: 0 0 0 10px;
+    background-color: #F2F5F7;
+}
+
+.keyword .header .header__action .header__btn {
+    font-size: .9em;
+}
+
+.keyword .header .header__action .header__btn>span {
+    margin: 0 0 0 5px;
+    color: #ffffff;
+}
+
+
+
+.keyword .keyword__table {
+    margin: 20px 0;
+}
+
+.keyword .keyword__table th {
+    font-size: .9em;
+    white-space: nowrap
+}
+
+.keyword .keyword__actions {
+    margin: 20px 0;
+}
+
+.keyword .keyword__actions .filter {
+    margin: 20px 0;
+}
+
+.keyword .keyword__actions .filter .filter__title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 145px;
+}
+
+.keyword .keyword__actions .filter .filter__title img {
+    margin: 0 0 0 5px;
+    background: #F2F5F7;
+    border-radius: 9px;
+    padding: 9px;
+    width: 35px;
+    height: 35px;
+}
+
+
+.keyword .keyword__actions .filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.keyword .keyword__chart-section {
+    border: 1px solid #D9D9D9;
+    border-radius: 3px;
+    margin-top: 40px;
+}
+
+.keyword .keyword__chart-section .chart__header {
+    padding: 10px;
+    background: #FCFCFB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keyword .keyword__chart-section .chart__header .chart__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keyword .keyword__chart-section .chart__header .chart__actions .chart__action {
+    background-color: #F2F5F7;
+    border-radius: 9px;
+    padding: 10px;
+    width: 35px;
+    height: 35px;
+    margin: 0 10px 0 0;
+}
+
+.keyword .keyword__chart-section .chart__header .chart__actions .chart__action.chart__action--save {
+    border-radius: 9px;
+    padding: 9px;
+    width: 60px;
+    height: 35px;
+    margin: 0 20px 0 0;
+}
+
+.keyword .keyword__chart-section .chart__content {
+    padding: 10px;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__filters {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__filters .filter {
+    font-size: .8em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    width: 150px;
+    padding: 3px 2px;
+    margin: 0 0 0 15px;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__color {
+    padding: 2px;
+    background-color: #7D7D7D;
+    border-radius: 30px;
+    position: absolute;
+    height: 100%;
+    width: 3px;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__title {
+    margin: 0 7px;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--green {
+    background-color: #70D981;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--blue {
+    background-color: #283F79;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--red {
+    background-color: #C46F74;
+}
+
+.keyword .keyword__chart-section .chart__content .chart__chart {
+    padding: 25px 10px;
+}
+
+
+.keywordModal .keywordModal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.9em;
+}
+
+.keywordModal body {
+    background-color: #ffffff;
+}
+
+.keywordModal body .rowbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.keywordModal body .rowbox input {
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: .9em;
+}
+
+.keywordModal body .rowbox img {
+    margin: 0 4px;
+}
+
+.keywordModal .report_container button{
+    margin: 0;
+}
+
+.keywordModal .report_container button.btn-style *,
+.keywordModal .report_container button.action__btn{
+    font-size: .9em !important;
+}
+
+.keywordModal body .action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.keywordModal body .action .action__btn img {
+    margin-left: 10px;
+}
