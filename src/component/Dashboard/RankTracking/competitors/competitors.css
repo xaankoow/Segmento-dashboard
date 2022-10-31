@@ -1,20 +1,20 @@
-.keyword {
+.competitors {
     padding: 20px;
 }
 
-.keyword .header {
+.competitors .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.keyword .header .header__action {
+.competitors .header .header__action {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.keyword .header .header__action>img {
+.competitors .header .header__action>img {
     border-radius: 9px;
     padding: 9px;
     width: 65px;
@@ -23,70 +23,128 @@
     background-color: #F2F5F7;
 }
 
-.keyword .header .header__action .header__btn {
+.competitors .header .header__action .header__btn {
     font-size: .9em;
 }
 
-.keyword .header .header__action .header__btn>span {
+.competitors .header .header__action .header__btn>span {
     margin: 0 0 0 5px;
     color: #ffffff;
 }
 
 
-.keyword .keyword__content{
-    margin: 40px 0;
+.competitors .competitors__content {
+    margin: 10px 0 70px 0;
 }
 
-.keyword .keyword__content .item {
+.competitors .competitors__content .item {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 10px 0;
+    margin: 0 0 20px 0;
 }
 
-.keyword .keyword__content .item .item__title{
+.competitors .competitors__content .item .item__action {
+    padding: 10px;
+}
+
+.competitors .competitors__content .item .item__title {
     text-align: right;
     margin-bottom: 5px;
 }
 
-.keyword .keyword__content .item .item__content,
-.keyword .keyword__content .item .item__content table {
+.competitors .competitors__content .item .item__title {
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.competitors .competitors__content .item .chartCell {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.competitors .competitors__content .item .chartCell .chartHelp .chartHelp__item {
+    position: relative;
+    margin: 10px 0;
+    padding: 0 20px 0 0;
+    text-align: right;
+}
+
+.competitors .competitors__content .item .chartCell .chartHelp .chartHelp__item::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: 0;
+    top: 1px;
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.competitors .competitors__content .item .chartCell .chartHelp .chartHelp__item.chartHelp__item--red::before {
+    background-color: #F35242;
+}
+
+.competitors .competitors__content .item .chartCell .chartHelp .chartHelp__item.chartHelp__item--blue::before {
+    background-color: #0AC7E2;
+}
+
+.competitors .competitors__content .item .actionCell img {
+    width: 20px;
+    margin: 10px auto;
+}
+
+.competitors .competitors__content .item.item--empty .item__palceholder {
+    width: 100%;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 20px;
+    color: #D9D9D9;
+}
+
+.competitors .competitors__content .item.item--empty .item__palceholder img{
+    margin: 20px auto;
+}
+
+.competitors .competitors__content .item .item__content,
+.competitors .competitors__content .item .item__content table {
     width: 100%;
 }
 
-.keyword .keyword__content .item .item__content table,
-.keyword .keyword__content .item .item__content table tr td {
+.competitors .competitors__content .item .item__content table,
+.competitors .competitors__content .item .item__content table tr td {
     border: 1px solid #D9D9D9;
     font-size: .9em;
-    padding: 5px;
+    padding: 3px;
 }
 
 
-.keyword .keyword__table {
+.competitors .competitors__table {
     margin: 20px 0;
 }
 
-.keyword .keyword__table th {
+.competitors .competitors__table th {
     font-size: .9em;
     white-space: nowrap
 }
 
-.keyword .keyword__actions {
+.competitors .competitors__actions {
     margin: 20px 0;
 }
 
-.keyword .keyword__actions .filter {
+.competitors .competitors__actions .filter {
     margin: 20px 0;
 }
 
-.keyword .keyword__actions .filter .filter__title {
+.competitors .competitors__actions .filter .filter__title {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 145px;
 }
 
-.keyword .keyword__actions .filter .filter__title img {
+.competitors .competitors__actions .filter .filter__title img {
     margin: 0 0 0 5px;
     background: #F2F5F7;
     border-radius: 9px;
@@ -96,20 +154,20 @@
 }
 
 
-.keyword .keyword__actions .filter {
+.competitors .competitors__actions .filter {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 
-.keyword .keyword__chart-section {
+.competitors .competitors__chart-section {
     border: 1px solid #D9D9D9;
     border-radius: 3px;
     margin-top: 40px;
 }
 
-.keyword .keyword__chart-section .chart__header {
+.competitors .competitors__chart-section .chart__header {
     padding: 10px;
     background: #FCFCFB;
     display: flex;
@@ -117,13 +175,13 @@
     align-items: center;
 }
 
-.keyword .keyword__chart-section .chart__header .chart__actions {
+.competitors .competitors__chart-section .chart__header .chart__actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.keyword .keyword__chart-section .chart__header .chart__actions .chart__action {
+.competitors .competitors__chart-section .chart__header .chart__actions .chart__action {
     background-color: #F2F5F7;
     border-radius: 9px;
     padding: 10px;
@@ -132,7 +190,7 @@
     margin: 0 10px 0 0;
 }
 
-.keyword .keyword__chart-section .chart__header .chart__actions .chart__action.chart__action--save {
+.competitors .competitors__chart-section .chart__header .chart__actions .chart__action.chart__action--save {
     border-radius: 9px;
     padding: 9px;
     width: 60px;
@@ -140,17 +198,17 @@
     margin: 0 20px 0 0;
 }
 
-.keyword .keyword__chart-section .chart__content {
+.competitors .competitors__chart-section .chart__content {
     padding: 10px;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__filters {
+.competitors .competitors__chart-section .chart__content .chart__filters {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__filters .filter {
+.competitors .competitors__chart-section .chart__content .chart__filters .filter {
     font-size: .8em;
     display: flex;
     justify-content: space-between;
@@ -162,14 +220,14 @@
     margin: 0 0 0 15px;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__content {
+.competitors .competitors__chart-section .chart__content .chart__filters .filter .filter__content {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     position: relative;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__color {
+.competitors .competitors__chart-section .chart__content .chart__filters .filter .filter__color {
     padding: 2px;
     background-color: #7D7D7D;
     border-radius: 30px;
@@ -178,28 +236,28 @@
     width: 3px;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__title {
+.competitors .competitors__chart-section .chart__content .chart__filters .filter .filter__title {
     margin: 0 7px;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--green {
+.competitors .competitors__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--green {
     background-color: #70D981;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--blue {
+.competitors .competitors__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--blue {
     background-color: #283F79;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--red {
+.competitors .competitors__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--red {
     background-color: #C46F74;
 }
 
-.keyword .keyword__chart-section .chart__content .chart__chart {
+.competitors .competitors__chart-section .chart__content .chart__chart {
     padding: 25px 10px;
 }
 
 
-.keywordModal .keywordModal__header {
+.competitorsModal .competitorsModal__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -207,18 +265,30 @@
     font-size: 0.9em;
 }
 
-.keywordModal body {
+.competitorsModal body {
     background-color: #ffffff;
 }
 
-.keywordModal body .rowbox {
+.competitorsModal body .rowbox {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin: 10px 0;
 }
 
-.keywordModal body .rowbox input {
+.competitorsModal body .rowbox .rowbox__collection {
+    width: 100%;
+}
+
+.competitorsModal body .rowbox .rowbox__collection .action{
+    margin: 10px 0;
+}
+
+.competitorsModal body .rowbox .rowbox__collection .action .action__icon{
+    margin: 0 0 0 10px;
+}
+
+.competitorsModal body .rowbox input {
     border: 2px solid #ccc;
     padding: 10px;
     border-radius: 4px;
@@ -226,97 +296,26 @@
     font-size: .9em;
 }
 
-.keywordModal body .rowbox img {
+.competitorsModal body .rowbox img {
     margin: 0 4px;
 }
 
-.keywordModal .report_container button {
+.competitorsModal .report_container button {
     margin: 0;
 }
 
-.keywordModal .report_container button.btn-style *,
-.keywordModal .report_container button.action__btn {
+.competitorsModal .report_container button.btn-style *,
+.competitorsModal .report_container button.action__btn {
     font-size: .9em !important;
 }
 
-.keywordModal body .action {
+.competitorsModal body .action {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     margin-top: 20px;
 }
 
-.keywordModal body .action .action__btn img {
+.competitorsModal body .action .action__btn img {
     margin-left: 10px;
-}
-
-
-.tagModal body {
-    background-color: #ffffff;
-}
-
-.tagModal .tagModal__add {
-    padding: 0 0 15px 0;
-    border-bottom: 1px solid #7D7D7D;
-}
-
-.tagModal .tagModal__input {
-    text-align: right;
-    font-size: .8em;
-    padding-bottom: 5px;
-    margin: 10px 0;
-}
-
-.tagModal .tagModal__input .tagModal__label {
-    margin-bottom: 3px;
-}
-
-.tagModal .tagModal__input input {
-    padding: 10px;
-    width: 100%;
-    border-bottom: 3px solid #0A65CD;
-    ;
-}
-
-.tagModal .tagModal__search {
-    margin-top: 10px;
-}
-
-.tagModal .tagModal__search .search__input {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.tagModal .tagModal__search .search__input input {
-    margin: 0 0 0 10px;
-}
-
-.tagModal .tagModal__search .result .result__item {
-    border-radius: 0 0 10px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px;
-    font-size: .9em;
-    border: 1px solid #D9D9D9;
-    color: #002145;
-    background: #FCFCFB;
-    margin: 12px 0;
-    cursor: pointer;
-}
-
-.tagModal .tagModal__search .result .result__item:hover {
-    border: 1px solid #0A65CD;
-}
-
-.tagModal .tagModal__search .result .result__item .result__count {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #7D7D7D;
-}
-
-.tagModal .tagModal__search .result .result__item .result__count .result__text {
-    margin: 0 5px;
 }

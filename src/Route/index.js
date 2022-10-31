@@ -20,6 +20,7 @@ import MylistContentProduction from "../component/Dashboard/ContentProduction/My
 import { useSelector } from "react-redux";
 import RankTracking from "../component/Dashboard/RankTracking/RankTracking";
 import Keyword from "../component/Dashboard/RankTracking/keyword/Keyword";
+import Report from "../component/Dashboard/RankTracking/report/Report";
 import Competitors from "../component/Dashboard/RankTracking/competitors/Competitors";
 
 
@@ -60,7 +61,7 @@ const ranktrakingTabs = [
   },
   {
     title: "گزارش گیری",
-    content: <MylistContentProduction />,
+    content: <Report />,
   },
 ];
 
