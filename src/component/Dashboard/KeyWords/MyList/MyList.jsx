@@ -23,11 +23,8 @@ export default function MyList() {
     <img src={arrow_downnn_ios_new_svg} alt="" className="cursor-pointer" />
   );
   const toggle = (index, e) => {
-  // to close the list
-    if (
-      (clicked === index && e.target == e.currentTarget) ||
-      e.target == image
-    ) {
+    // to close the list
+    if (clicked === index) {
       // if active close
       return setClicked(null);
     }
@@ -132,14 +129,14 @@ export default function MyList() {
         return (
           <div
             key={index}
-            onClick={(e) => toggle(index, e)}
-            className="flex flex-col  border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3 py-5 mb-4 mt-2"
+            className={`${clicked === index && "pb-5"} flex flex-col  border border-[#D9D9D9]  rounded-xl rounded-t-sm px-3  mb-4 mt-2`}
           >
             <div
+              onClick={(e) => toggle(index, e)}
               className={
                 clicked === index
-                  ? "mb-5 flex items-center  justify-between"
-                  : "flex items-center  justify-between  "
+                  ? " flex items-center cursor-pointer py-5 justify-between"
+                  : "flex items-center cursor-pointer py-5 justify-between  "
               }
             >
               <div className="flex items-center gap-6 w-[265px]">
@@ -157,24 +154,12 @@ export default function MyList() {
                     {convertToPersianNumber(item.created_at.substring(7, 18))}
                   </span>
                 </div>
-                <div className="pl-5 cursor-pointer" onClick={()=>""}>
-                  <>
-                  
-                  {clicked === index ? (
-                    <img
-                      src={arrow_downnn_ios_new_svg}
-                      alt=""
-                      className="cursor-pointer"
-                    />
-                  ) : (
-                    <img
-                      src={arrow_up_ios_new_svg}
-                      alt=""
-                      className=" cursor-pointer"
-                    />
-                    
-                  )}
-                  </>
+                <div className="pl-5 cursor-pointer" onClick={() => ""}>
+                  <img
+                    src={arrow_up_ios_new_svg}
+                    alt=""
+                    className={`${clicked === index && "-rotate-180"} transition-transform cursor-pointer`}
+                  />
                 </div>
               </div>
             </div>

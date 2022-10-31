@@ -8,7 +8,7 @@ import {
   titleOfReportSupportTable,
 } from "../../../../variables/support";
 import AuthButton from "../../../Auth/authButton/AuthButton";
-import { getAllTiket } from "../../../service/ticket";
+import { getSupportChatData } from "../../../service/ticket";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import GuideBox from "../../../shared/GuideBox/GuideBox";
 import Table from "../../../shared/table/Table";
@@ -23,7 +23,7 @@ export default function ReportSupport() {
 
   const handleTickets = async () => {
     try {
-      const { data } = await getAllTiket();
+      const { data } = await getSupportChatData();
       if ((data.code == 200) & (data.status == true)) {
         console.log(data.data);
         setTickets(data.data);

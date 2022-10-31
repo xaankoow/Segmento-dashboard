@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from "draft-js";
-
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Component } from "react";
 import { useState } from "react";
 class ColorPic extends Component {
@@ -45,17 +44,16 @@ class ColorPic extends Component {
 }
 
 export const EditorCustomizedToolbarOption = () => {
-  const [ editorState, setEditorState ] = useState(EditorState.createEmpty());
-  const onEditorStateChange = editorState => {
-      setEditorState(editorState);
-  };
+  const [text, setText] = useState(
+    () => EditorState.createEmpty(),);
+  
 
-console.log('editorState', editorState)
+console.log('editorState', text)
   return (
     <Editor
    
-      editorState={editorState}
-      onEditorStateChange={onEditorStateChange}
+      editorState={text}
+      onEditorStateChange={setText}
       toolbarClassName="toolbarClassName border-0 bg-[#FCFCFB] p-2 right relative "
       wrapperClassName="demo-wrapper wrapperClassName min-h-[280px]  border border-[#D9D9D9]  mb-7 right  rtl"
       editorClassName=" min-h-[280px] right p-2 rtl pt-4	"

@@ -9,33 +9,14 @@ import Login from "./pages/login/Login.jsx";
 import DashboardBody from "./component/Dashboard/DashboardBody";
 import { useSelector } from "react-redux";
 import LoadingPage from "./component/Utils/loadingPage/LoadingPage";
-import PlanStatus from "./component/Dashboard/DashboaedComponents/PlanStatus";
-import EditUserProfile from "./component/Dashboard/pages/EditUserProfile/EditUserProfile";
-import TableFinancialReports from "./component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports";
-import BuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/BuyPlan";
 import BuyPlanEasyToStartModal from "./component/Utils/EasyToStartModal";
 import WorkSpace from "./component/Utils/workSpaceModal/workSpace";
-import KeyWords from "./component/Dashboard/KeyWords/KeyWords";
-import MyList from "./component/Dashboard/KeyWords/MyList/MyList";
-import ContentpProduction from "./component/Dashboard/ContentProduction/ContentpProduction";
-import TabMenu from "./component/Dashboard/DashboaedComponents/tabMenu/TabMenu";
-import MylistContentProduction from "./component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx"
-import EasyStart from "./component/Dashboard/DashboaedComponents/EasyStart/EasyStart";
-import AleartMessageBuyPlan from "./component/Dashboard/DashboaedComponents/BuyPlan/AleartMessageBuyPlan";
-import WorkSpaceReport from "./component/Dashboard/DashboaedComponents/workSpace/workSpaceReport";
 import Page404 from "./component/Utils/Error404/page404";
 import LandingPage from "./component/Utils/landingPage/landingPage";
-import PageCounter from "./component/Dashboard/pages/PageCounter/PageCounter";
 import PhoneNumberOperations from "./component/Utils/Modals/phoneNumber/PhoneNumberOperations";
-import Support from "./component/Dashboard/pages/Support&Tickets/Support";
-import SupportMessage from "./component/Dashboard/DashboaedComponents/support/index";
-import TitleCopywriter from "./pages/titleCopywriter";
-import ReportSupport from "./component/Dashboard/pages/Support&Tickets/SatusSupport";
 import PopUp from "./component/Utils/PopUp/PopUp";
 import errorIco_svg from './assets/img/popUp/errorIco.svg'
 import AuthButton from "./component/Auth/authButton/AuthButton";
-import TitleCopyWriterBulk from "./pages/titleCopyWriterBulk/TitleCopyWriterBulk";
-import WorkSpaceManagement from "./pages/workSpace management/WorkSpaceManagement"
 import { DashboardRote } from "./Route";
 import {RoundPriceToUp} from './component/Utils/FORMAT/price'
 export default function App() {
@@ -50,27 +31,6 @@ export default function App() {
   
   const location = useLocation();
   const background = location.state && location.state.background;
-
-  const tabContent = [
-    {
-      title: " جستجوی کلمه جدید",
-      content: <KeyWords />,
-    },
-    {
-      title: "لیست‌های من",
-      content: <MyList />,
-    },
-  ];
-  const tabContent2 = [
-    {
-      title: "جستجوی ایده جدید",
-      content: <ContentpProduction />,
-    },
-    {
-      title: "لیست‌های من",
-      content: <MylistContentProduction />,
-    },
-  ];
 
   
   return (
@@ -147,7 +107,7 @@ export default function App() {
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
-        {/* <LoadingPage /> */}
+      <LoadingPage /> 
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>

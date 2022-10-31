@@ -15,19 +15,23 @@ import SubmitForm from "../../component/Utils/Submit";
 import TextArea from "../../component/shared/TeaxtArea/TextArea";
 import { useEffect } from "react";
 import LinesComponent from "../../component/shared/RotateLines/LinesComponent";
+import { handleLowOffLimitCount, resetLimitState } from "../../component/Redux/Action/workSpace";
+import { useDispatch } from "react-redux";
 
 export default function TitleCopyWriterBulk() {
   const [keyWordValue, setKeyWordValue] = useState("");
   const [title, setTitle] = useState(false);
 
   const [handleCopyAllIssue, setHandleCopyAllIssue] = useState("");
-
+  const dispatch=useDispatch();
   useEffect(() => {});
   let listOfKeyWords = [];
 
   const createTitleButton = () => {
     setTitle(true);
     // if (keyWordValue.length > 0) setinputLastValue(keyWordValue);
+    dispatch(handleLowOffLimitCount("TITLE_BUILDER_BATCH", 1));
+    dispatch(resetLimitState());
     return (listOfKeyWords = keyWordValue.split(/\r?\n/));
   };
   // list of value that we write in textArea
@@ -79,7 +83,7 @@ export default function TitleCopyWriterBulk() {
 
   return (
     <>
-      <PageTitle title={"ابزار عنوان‌نویس انبوه"} />
+      <PageTitle title={"ابزار عنوان‌نویس انبوه"} badgeApi={"titleCopyWriterBulk"} hasLimit={true}/>
       <div className="mx-9 mt-9 mb-7">
         <TextArea
           textLabelInput={"1. درج کلمات کلیدی (در هر خط فقط یک کلمه وارد کنید)"}
