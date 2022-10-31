@@ -5,7 +5,7 @@ import { defaultCustomModalStyle, modalParentSelector } from '../../../../variab
 import { afterOpenOrCloseAnyModal } from '../../../../variables/modal';
 
 
-import './keyword.css';
+import './competitors.css';
 import pishkhan_svg from "../../../../assets/img/dashboard/nav_right/pishkhan.svg";
 import startEasyStartArrow_svg from '../../../../assets/img/dashboard/EasyStartPage/startEasyStartArrow.svg'
 
@@ -47,7 +47,7 @@ ChartJS.register(
 );
 
 
-export default function Keyword({ onClickHandler }) {
+export default function Competitors() {
 
   const [ShowAddKeywordModal, SetShowAddKeywordModal] = useState(false);
   const [ShowAddTagModal, SetShowAddTagModal] = useState(false);
@@ -131,175 +131,161 @@ export default function Keyword({ onClickHandler }) {
     <>
       <div className="keyword">
         <div className="header">
-          <div className="header__title">جدول کلمات کلیدی</div>
+          <div className="header__title"></div>
           <div className="header__action">
-            <img src={pishkhan_svg} className="" />
             <button class="header__btn btn-style w-50 flex justify-between">
               <span>+</span>
-              <div onClick={() => closeAddTagDialog(true)}> افزودن صفحه جدید </div>
+              <div onClick={() => closeAddTagDialog(true)}> افزودن رقیب</div>
             </button>
           </div>
         </div>
 
         <div className="keyword__content">
 
-          <div className="keyword__table">
-            <Table
-              columnItem={RANK_TRACKING_KEYWORD_TABLE}
-              rowsItem={b}
-              rowKey={rowKey}
-            />
-          </div>
+          <div className="item">
+            <img src={pishkhan_svg} className="item__action" />
 
+            <div className="item__content">
+              <div className="item__title">رقیب شماره 1</div>
+              <table>
+                <tr>
+                  <td rowspan="4">www.digikala.com</td>
+                  <td rowspan="4">کلمه کلیدی</td>
+                  <td></td>
+                  <td>آدرس ورک اسپیس</td>
+                  <td>www.digikala.ir</td>
+                  <td rowspan="4" className="max-w-[200px]">
+                    <Line options={options} data={data} />
+                  </td>
+                  <td rowspan="4" className="max-w-[25px]">اکشن</td>
+                </tr>
+                <tr>
+                  <td>رتبه فعلی</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>میزان تغییر</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>میانگین 7 روز </td>
+                  <td></td>
+                  <td></td>
+                </tr>
 
-          <div className="keyword__actions">
-
-            <div className="filter">
-              <div className="filter__title">
-                <img src={pishkhan_svg} />
-                <span>فیلتر بر اساس</span>
-              </div>
-
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-
-
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-
-
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-
-
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-
-
-            </div>
-
-            <div className="filter">
-              <div className="filter__title">
-                <img src={pishkhan_svg} />
-                <span>مقایسه بر اساس</span>
-              </div>
-
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-
-
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-
-
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-
-
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-
-
+              </table>
             </div>
 
           </div>
-
-
-          <div className="keyword__chart-section">
-            <div className="chart__header">
-              <div>
-                <ComboBox
-                  placeholder={"فیلتر زمانی"}
-                  radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
-                />
-              </div>
-              <div className="chart__actions">
-                <img src={pishkhan_svg} className="chart__action" />
-                <img src={pishkhan_svg} className="chart__action" />
-                <img src={pishkhan_svg} className="chart__action chart__action--save" />
-
-              </div>
-            </div>
-            <div className="chart__content">
-
-              <div className="chart__filters">
-
-                <div className="filter">
-                  <div className="filter__content">
-                    <div className="filter__color filter__color--green"></div>
-                    <div className="filter__title">1 ماه قبل</div>
-                  </div>
-                  <div className="filter__action">#</div>
-                </div>
-
-                <div className="filter">
-                  <div className="filter__content">
-                    <div className="filter__color filter__color--blue"></div>
-                    <div className="filter__title">1 ماه قبل</div>
-                  </div>
-                  <div className="filter__action">#</div>
-                </div>
-
-                <div className="filter">
-                  <div className="filter__content">
-                    <div className="filter__color filter__color--red"></div>
-                    <div className="filter__title">1 ماه قبل</div>
-                  </div>
-                  <div className="filter__action">#</div>
-                </div>
-
-              </div>
-
-
-              <div className="chart__chart">
-                <Line options={options} data={data} />
-              </div>
-            </div>
-          </div>
-
-
         </div>
+
+
+        <div className="keyword__actions">
+
+          <div className="filter">
+            <div className="filter__title">
+              <img src={pishkhan_svg} />
+              <span>مقایسه بر اساس</span>
+            </div>
+
+            <div>
+              <ComboBox
+                placeholder={"فیلتر زمانی"}
+                radioTextItems={RANK_TRACKING_FILTERS_DATE}
+                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+              />
+            </div>
+
+
+            <div>
+              <ComboBox
+                placeholder={"فیلتر زمانی"}
+                radioTextItems={RANK_TRACKING_FILTERS_DATE}
+                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+              />
+            </div>
+
+
+            <div>
+              <ComboBox
+                placeholder={"فیلتر زمانی"}
+                radioTextItems={RANK_TRACKING_FILTERS_DATE}
+                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+              />
+            </div>
+
+
+            <div>
+              <ComboBox
+                placeholder={"فیلتر زمانی"}
+                radioTextItems={RANK_TRACKING_FILTERS_DATE}
+                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+              />
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
+        <div className="keyword__chart-section">
+          <div className="chart__header">
+            <div>
+              <ComboBox
+                placeholder={"فیلتر زمانی"}
+                radioTextItems={RANK_TRACKING_FILTERS_DATE}
+                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+              />
+            </div>
+            <div className="chart__actions">
+              <img src={pishkhan_svg} className="chart__action" />
+              <img src={pishkhan_svg} className="chart__action" />
+              <img src={pishkhan_svg} className="chart__action chart__action--save" />
+
+            </div>
+          </div>
+          <div className="chart__content">
+
+            <div className="chart__filters">
+
+              <div className="filter">
+                <div className="filter__content">
+                  <div className="filter__color filter__color--green"></div>
+                  <div className="filter__title">1 ماه قبل</div>
+                </div>
+                <div className="filter__action">#</div>
+              </div>
+
+              <div className="filter">
+                <div className="filter__content">
+                  <div className="filter__color filter__color--blue"></div>
+                  <div className="filter__title">1 ماه قبل</div>
+                </div>
+                <div className="filter__action">#</div>
+              </div>
+
+              <div className="filter">
+                <div className="filter__content">
+                  <div className="filter__color filter__color--red"></div>
+                  <div className="filter__title">1 ماه قبل</div>
+                </div>
+                <div className="filter__action">#</div>
+              </div>
+
+            </div>
+
+
+            <div className="chart__chart">
+              <Line options={options} data={data} />
+            </div>
+          </div>
+        </div>
+
+
       </div>
 
 
