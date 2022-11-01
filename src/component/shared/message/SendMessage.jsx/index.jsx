@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { ImageContainer } from '../../../../assets/img/IMG'
 import AuthButton from '../../../Auth/authButton/AuthButton'
 import { EditorCustomizedToolbarOption } from '../../../Dashboard/pages/EditUserProfile/components/Editor/Editor'
 
 
-export default function Index() {
+export default function Index({setValueEditor,setFileArray}) {
 
     const [files, setFiles] = useState([]);
 
@@ -22,11 +23,13 @@ export default function Index() {
           );
         },
       });
-
+      useEffect(()=>{
+        setFileArray(files)
+      },[files])
       console.log(files)
     return (
         <div className='w-full mt-6'>
-            <EditorCustomizedToolbarOption />
+            <EditorCustomizedToolbarOption setValueEditor={setValueEditor}/>
             <div className='flex items-center h-12 -mt-5 w-full border border-lightGray rounded-lg'>
                 <img src={ImageContainer.infoBlue} alt="information" className=' mx-3' />
                 <p className=' py-2 text-sm '>

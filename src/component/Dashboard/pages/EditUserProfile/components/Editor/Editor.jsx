@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import { Component } from "react";
 import { useState } from "react";
 class ColorPic extends Component {
@@ -43,15 +43,15 @@ class ColorPic extends Component {
   }
 }
 
-export const EditorCustomizedToolbarOption = () => {
-  const [text, setText] = useState(
-    () => EditorState.createEmpty(),);
-  
+export const EditorCustomizedToolbarOption = ({setValueEditor}) => {
+  const [text, setText] = useState(() => EditorState.createEmpty());
+useEffect(()=>{
+  setValueEditor(text.getCurrentContent().getPlainText())
+})
+  // text.getCurrentContent().getPlainText()
 
-console.log('editorState', text)
   return (
     <Editor
-   
       editorState={text}
       onEditorStateChange={setText}
       toolbarClassName="toolbarClassName border-0 bg-[#FCFCFB] p-2 right relative "

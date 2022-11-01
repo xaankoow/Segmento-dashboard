@@ -4,7 +4,7 @@ import { afterOpenOrCloseAnyModal } from "../../../variables/modal";
 import { modalParentSelector } from "../../../variables/style";
 import AuthButton from "../../Auth/authButton/AuthButton";
 
-const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan, tryFreePlanClick, targetTag, createFooterTag }) => {
+const PopUp = ({ type, title, text,secoundText, buttonText, image, clickHandler, tryFreePlan, tryFreePlanClick, targetTag, createFooterTag }) => {
 
   const customStyles = {
     content: {
@@ -55,6 +55,7 @@ const PopUp = ({ type, title, text, buttonText, image, clickHandler, tryFreePlan
         <div className="popUpContent mt-3">
           <h3 className="text-xl font-bold">{title}</h3>
           <span className="text-sm px-4">{text}</span>
+          <span className="text-[12px] mt-2 text-[#7D7D7D] ">{secoundText}</span>
           {createFooterTag != undefined ? (createFooterTag) :
             tryFreePlan != undefined & tryFreePlan ? (
               <div className="flex justify-between items-center w-full px-3">
