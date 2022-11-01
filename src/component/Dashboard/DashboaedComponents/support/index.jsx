@@ -11,11 +11,11 @@ import { getSupportChatData } from '../../../service/ticket'
 export default function Index() {
 
   const loadingState = useSelector((state) => state.loadingState);
+  const {userData} = useSelector((state) => state.userState);
 
   const [chatData, setChateData] = useState("")
 
   useEffect(() => {
-
     if (chatData == "") {
       initChat()
       console.log(chatData)
@@ -25,6 +25,7 @@ export default function Index() {
   const dispatch = useDispatch();
 
   const initChat = async () => {
+    const ticketUuid=window.location.hash.substring(window.location.hash.lastIndexOf('/') + 1);
     //handle show loadin
     {
       loadingState.ProcessingDelay.push("getSupportChatData");
@@ -33,7 +34,7 @@ export default function Index() {
     }
     try {
 
-      const { data } = await getSupportChatData("858d80e1-3dfb-4ca4-b187-221a5b2afa7d");
+      const { data } = await getSupportChatData(ticketUuid);
       if (data.code == 200 & data.status == true) {
         console.log(data)
         setChateData(data.data); //5
@@ -59,10 +60,10 @@ export default function Index() {
       {chatData != "" ? (
         <>
           <CloseSection showCloseBaner={chatData.ticket.status==0?true:false}/>
-          <HeaderCardInfo ticketId={chatData.ticket.ticket_id } updateDate={chatData.ticket.updated_at} chatStatus={chatData.ticket.status}/>
+          <HeaderCardInfo ticketId={chatData.ticket.ticket_id } updateDate={chatData.ticket.updated_at} chatStatus={chatData.ticket.status} subjectTitle={chatData.ticket.subject}/>
           {
             chatData.messages.map(chatDetail => (
-              <Message text={chatDetail.message} personeName={chatDetail.user.name} date={chatDetail.updated_at} />
+              <Message type={userData.user.uuid!=chatDetail.user.uuid&&"admin"} chatData={chatDetail}/>
             ))
           }
         </>
