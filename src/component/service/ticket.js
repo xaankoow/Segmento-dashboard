@@ -19,3 +19,12 @@ export const getSupportChatData = chatUuid => {
     }
     return http.get(`${config.xaankooApi}/api/v1/ticket/${chatUuid}`, headerRegisterUser);
 }
+
+export const ticketTableData = () => {
+    //7
+    const headerRegisterUser = {
+        'Content-Type': 'multipart/form-data',
+        "workspace":"text/plain"
+    }
+    return http.get(`${config.xaankooApi}/api/v1/ticket?type=&value=`, headerRegisterUser);
+}
