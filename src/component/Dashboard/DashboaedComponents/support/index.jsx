@@ -6,7 +6,8 @@ import SendMessage from '../../../shared/message/SendMessage.jsx/index'
 import PageTitle from '../pageTitle/pageTitle'
 import AuthButton from '../../../Auth/authButton/AuthButton'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSupportChatData } from '../../../service/ticket'
+import { getSupportChatData, sendNewMessageTicketServise } from '../../../service/ticket'
+import { showToast } from '../../../Utils/toastifyPromise'
 
 export default function Index() {
 
@@ -14,6 +15,10 @@ export default function Index() {
   const {userData} = useSelector((state) => state.userState);
 
   const [chatData, setChateData] = useState("")
+  
+  const [textEditor, setTextEditor] = useState("")
+  const [fileEditor, setFileEditor] = useState([])
+  
 
   useEffect(() => {
     if (chatData == "") {
@@ -24,8 +29,8 @@ export default function Index() {
 
   const dispatch = useDispatch();
 
+  const ticketUuid=window.location.hash.substring(window.location.hash.lastIndexOf('/') + 1);
   const initChat = async () => {
-    const ticketUuid=window.location.hash.substring(window.location.hash.lastIndexOf('/') + 1);
     //handle show loadin
     {
       loadingState.ProcessingDelay.push("getSupportChatData");
@@ -54,6 +59,30 @@ export default function Index() {
     }
   };
 
+  const AddNewMessageAction = async() => {
+      // debugger
+      let formdata = new FormData();
+      formdata.append("message", textEditor);
+      formdata.append("files[]", fileEditor);
+      formdata.append("uuid", ticketUuid);
+      try {
+        const { data } = await sendNewMessageTicketServise(formdata);
+        debugger
+        if (data.code==200 & data.status==true) {
+          // setChateData(...chatData.ticket,...chatData.messages+data.data)
+          
+          showToast("پیام شما به ما رسید","success")
+        }else{
+          showToast("خطا در ارسال پیام","error")
+        }
+        
+      } catch (e) {
+        showToast("خطا در ارسال پیام","error")
+        
+      }
+  };
+
+  const sendMessageData=(ticketUuid,textEditor,fileEditor)
   return (
     <div className=' px-7'>
       <PageTitle title={"پشتیبانی و تیکت‌ها "} />
@@ -63,7 +92,7 @@ export default function Index() {
           <HeaderCardInfo ticketId={chatData.ticket.ticket_id } updateDate={chatData.ticket.updated_at} chatStatus={chatData.ticket.status} subjectTitle={chatData.ticket.subject}/>
           {
             chatData.messages.map(chatDetail => (
-              <Message type={userData.user.uuid!=chatDetail.user.uuid&&"admin"} chatData={chatDetail}/>
+              <Message chatData={chatDetail}/>
             ))
           }
         </>
@@ -95,10 +124,12 @@ export default function Index() {
           </div>
         </div>
         <div className=' px-10 '>
-          <SendMessage />
+          <SendMessage setValueEditor={setTextEditor} setFileArray={setFileEditor}/>
         </div>
       </div>
-      <AuthButton textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
+      <AuthButton reduxHandleClick={AddNewMessageAction}  textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
     </div>
   )
 }
+
+// AddNewMessageAction(ticketUuid,textEditor,fileEditor)
