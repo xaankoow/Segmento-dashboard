@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
 import {
@@ -8,10 +8,11 @@ import {
   titleOfReportSupportTable,
 } from "../../../../variables/support";
 import AuthButton from "../../../Auth/authButton/AuthButton";
-import { getSupportChatData } from "../../../service/ticket";
+import { getSupportChatData, ticketTableData } from "../../../service/ticket";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import GuideBox from "../../../shared/GuideBox/GuideBox";
 import Table from "../../../shared/table/Table";
+import { FindStatusTicket, FindTicketPartText, TicketStatusColor } from "../../../Utils/supportAndMessage/supportData";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import { FilterDataSupport } from "./changeData";
 
@@ -21,15 +22,35 @@ export default function ReportSupport() {
   // api state to get tickets
   const [tickets, setTickets] = useState([]);
 
+  const loadingState = useSelector((state) => state.loadingState);
+
+  const dispatch = useDispatch();
+
   const handleTickets = async () => {
+
+    //handle show loadin
+    {
+      loadingState.ProcessingDelay.push("ticketTableData");
+      loadingState.canRequest = false;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    }
     try {
-      const { data } = await getSupportChatData();
+      const { data } = await ticketTableData();
       if ((data.code == 200) & (data.status == true)) {
         console.log(data.data);
         setTickets(data.data);
       }
     } catch (error) {
-      
+
+    }
+    //handle hide loading
+    {
+      var removeProcessingItem = loadingState.ProcessingDelay.filter(
+        (item) => item != "ticketTableData"
+      );
+      loadingState.ProcessingDelay = removeProcessingItem;
+      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
   };
   useEffect(() => {
@@ -38,18 +59,18 @@ export default function ReportSupport() {
 
   const arrayOfTickets = tickets.map((item, index) => {
     return {
-      id: index+1,
+      id: index + 1,
       ticket_id: item.ticket_id,
-      title: "نمونه نوشته برای عنوان",
-      categories: "امور مالی",
-      updated_at: ("("+item.updated_at.slice(0,5)+")  "+item.updated_at.slice(8,18)),
+      title: item.subject,
+      categories: FindTicketPartText(item.part),
+      updated_at: ("(" + item.updated_at.slice(0, 5) + ")  " + item.updated_at.slice(8, 18)),
       status: (
-        <div className={`${item.status ==1 ?"bg-[#10CCAE]":"bg-[#D9D9D9]"} w-[85px] h-7 text-white rounded-3xl flex justify-center items-center mx-auto`}>
-          {item.status}{" "}
+        <div className={` bg-${TicketStatusColor(item.status)} w-[85px] h-7 text-white rounded-3xl flex justify-center items-center mx-auto`}>
+          {FindStatusTicket(item.status)}{" "}
         </div>
       ),
       operation: (
-        <Link to={"NewTicket"}>
+        <Link to={`ticket/${item.uuid}`}>
           {" "}
           <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
             <img src={ImageContainer.visibility} alt="" />
@@ -58,7 +79,7 @@ export default function ReportSupport() {
       ),
     };
   });
- 
+
 
   const rowKey = [
     "row.id ",
