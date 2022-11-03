@@ -32,7 +32,7 @@ export default function HeaderCardInfo({ ticketId, updateDate, chatStatus , subj
             <div className='flex mr-5 py-3'>
                 <div className='h-full flex justify-center items-center'>
                     <div className=''>
-                        <div onClick={() => navigate(-1)}>
+                        <div onClick={() => navigate("/dashboard/ReportSupport")}>
                             <AuthButton classes={"btn-secondary"} textButton={<img src={ArrowBack} className="p-1" />} />
                         </div>
                     </div>

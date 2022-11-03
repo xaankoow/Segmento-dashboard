@@ -21,19 +21,13 @@ export default function ReportSupport() {
   const { uuid } = useSelector((state) => state.ticketState);
   // api state to get tickets
   const [tickets, setTickets] = useState([]);
+  const [ticketsFiltered, setTicketsFiltered] = useState([]);
 
   const loadingState = useSelector((state) => state.loadingState);
 
   const dispatch = useDispatch();
 
   const handleTickets = async () => {
-
-    //handle show loadin
-    // {
-    //   loadingState.ProcessingDelay.push("ticketTableData");
-    //   loadingState.canRequest = false;
-    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    // }
     try {
       const { data } = await ticketTableData();
       if ((data.code == 200) & (data.status == true)) {
@@ -43,25 +37,15 @@ export default function ReportSupport() {
     } catch (error) {
 
     }
-    //handle hide loading
-    // {
-    //   var removeProcessingItem = loadingState.ProcessingDelay.filter(
-    //     (item) => item != "ticketTableData"
-    //   );
-    //   loadingState.ProcessingDelay = removeProcessingItem;
-    //   loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    // }
   };
+
   useEffect(() => {
-    
     if (tickets.length <= 0) {
-      console.log("start ")
       handleTickets();
     }
   });
 
-  const arrayOfTickets = tickets.map((item, index) => {
+  const arrayOfTickets = (ticketsFiltered.length>0?ticketsFiltered:tickets).map((item, index) => {
     return {
       id: index + 1,
       ticket_id: item.ticket_id,
@@ -94,6 +78,7 @@ export default function ReportSupport() {
     "row.status",
     "row.operation",
   ];
+
   return (
     <>
       <PageTitle title={"پشتیبانی و تیکت ها (تیکت جدید) "} />
