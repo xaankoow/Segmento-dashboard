@@ -1,3 +1,5 @@
+import { ticketCategories } from "../../../variables/support";
+
 export const FindTicketPartText=(partIndex)=>{
     var part;
 
@@ -24,6 +26,17 @@ export const FindTicketPartText=(partIndex)=>{
         default:
             break;
     }
+    return part;
+}
+
+export const FindTicketParCode=(partText)=>{
+    var part="";
+
+    ticketCategories.forEach(element => {
+        if(element.partName==partText){
+            part= element.partCod;
+        }
+    });
     return part;
 }
 

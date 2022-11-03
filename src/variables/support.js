@@ -1,12 +1,13 @@
-import  {ImageContainer}  from "../assets/img/IMG/index";
+import { ImageContainer } from "../assets/img/IMG/index";
 export const ticketCategories = [
-  "امور اداری",
-  "امور مالی",
-  "امور فنی",
-  "سوالات پیش از خرید",
-  "همکاری",
-  "پیشنهادات و انتقاد",
+  { partName: "امور اداری", partCod: 1 },
+  { partName: "همکاری", partCod: 2 },
+  { partName: "امور مالی", partCod: 3 },
+  { partName: "امور فنی", partCod: 6 },
+  { partName: "سوالات پیش از خرید", partCod: 7 },
+  { partName: "پیشنهادات و انتقاد", partCod: 8 },
 ];
+
 export const imgCategories = [
   ImageContainer.omorEdari,
   ImageContainer.omorMali,
@@ -16,12 +17,12 @@ export const imgCategories = [
   ImageContainer.idea
 ]
 
-  
+
 
 export const helpText = [
-"نمونه متن برای نوشتن نکات مهم برای تیکت"  ,
-"نمونه متن برای نوشتن نکات مهم برای تیکت"  ,
-"نمونه متن برای نوشتن نکات مهم برای تیکت"  ,
+  "نمونه متن برای نوشتن نکات مهم برای تیکت",
+  "نمونه متن برای نوشتن نکات مهم برای تیکت",
+  "نمونه متن برای نوشتن نکات مهم برای تیکت",
 ];
 export const titleOfReportSupportTable = [
   { title: "ردیف", class: "px-8" },
@@ -32,4 +33,25 @@ export const titleOfReportSupportTable = [
   { title: "وضعیت", class: "text-center " },
   { title: "عملیات", class: "flex justify-center" },
 ];
-export const filterBoxDatas=["بدون فیلتر","شناسه تیکت","عنوان","دسته بندی","دپارتمان","آخرین بروز رسانی","وضعیت"]
+export const filterBoxDatas = [
+  {filterName:"بدون فیلتر",apiKey:"none"},
+  {filterName:"شناسه تیکت",apiKey:"ticket_id"},
+  {filterName:"عنوان",apiKey:"title"},
+  {filterName:"دسته بندی",apiKey:"categories"},
+  {filterName:"آخرین بروز رسانی",apiKey:"updated_at"},
+  {filterName:"وضعیت",apiKey:"status"},
+  {filterName:"",apiKey:""},
+  "شناسه تیکت",//
+  "عنوان",//
+  "دسته بندی",//
+  "دپارتمان",
+  "آخرین بروز رسانی",
+  "وضعیت"
+]
+
+// "row.ticket_id",
+// "row.title",
+// "row.categories",
+// "row.updated_at",
+// "row.status",
+// "row.operation",
