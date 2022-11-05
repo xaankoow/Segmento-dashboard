@@ -22,6 +22,8 @@ import popupError  from '../popUp/errorIco.svg';
 import plus from '../../img/modal/workSpace/body/add.svg'
 import darkBlueCopy from "../dashboard/usableImage/content_copy.svg"
 import tickPopUp from "../popUp/tickk.svg"
+// ../../../../assets/img/dashboard/financialReports/calendar/file_download.svg
+import calendarIco from "../dashboard/financialReports/calendar/calendarIco.svg"
 
 export const ImageContainer={
   infoBlue,
@@ -48,6 +50,9 @@ export const ImageContainer={
   pishkhan,
   tickPopUp,
   // btn ico
-  plus
+  plus,
+
+  // date picker
+  calendarIco
 
 }
