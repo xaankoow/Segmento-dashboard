@@ -1,4 +1,5 @@
 import { ImageContainer } from "../assets/img/IMG/index";
+
 export const ticketCategories = [
   { partName: "امور اداری", partCod: 1 },
   { partName: "همکاری", partCod: 2 },
@@ -6,6 +7,12 @@ export const ticketCategories = [
   { partName: "امور فنی", partCod: 6 },
   { partName: "سوالات پیش از خرید", partCod: 7 },
   { partName: "پیشنهادات و انتقاد", partCod: 8 },
+];
+
+export const ticketStatus = [
+  { partName: "بسته", partCod: 0 },
+  { partName: "در انظار پاسخ", partCod: 1 },
+  { partName: "پاسخ داده شده", partCod: 2 }
 ];
 
 export const imgCategories = [
@@ -40,13 +47,15 @@ export const filterBoxDatas = [
   {filterName:"دسته بندی",apiKey:"categories"},
   {filterName:"آخرین بروز رسانی",apiKey:"updated_at"},
   {filterName:"وضعیت",apiKey:"status"},
-  {filterName:"",apiKey:""},
-  "شناسه تیکت",//
-  "عنوان",//
-  "دسته بندی",//
-  "دپارتمان",
-  "آخرین بروز رسانی",
-  "وضعیت"
+  // "شناسه تیکت",
+  // "عنوان",
+  // "دسته بندی",
+  // "دپارتمان",
+  // "آخرین بروز رسانی",
+  // "وضعیت"
+]
+export const partItemFilterBox = [
+  {filterName:"بدون فیلتر",apiKey:"none"},
 ]
 
 // "row.ticket_id",
