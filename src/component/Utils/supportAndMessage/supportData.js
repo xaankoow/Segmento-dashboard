@@ -1,4 +1,4 @@
-import { ticketCategories } from "../../../variables/support";
+import { ticketCategories, ticketStatus } from "../../../variables/support";
 
 export const FindTicketPartText=(partIndex)=>{
     var part;
@@ -43,19 +43,35 @@ export const FindTicketParCode=(partText)=>{
 export const FindStatusTicket=(statusCode)=>{
     var statusPosition;
 
-    switch (statusCode) {
-        case 0:
-            statusPosition="بسته"
-            case 1:
-            statusPosition="در انظار پاسخ"
-            break;
-            case 2:
-            statusPosition="پاسخ داده شده"
-            break;
+    ticketStatus.forEach(item=>{
+        if (item.partCod == statusCode) {
+            statusPosition= item.partName
+        }
+    })
+    // switch (statusCode) {
+    //     case 0:
+    //         statusPosition="بسته"
+    //         case 1:
+    //         statusPosition="در انظار پاسخ"
+    //         break;
+    //         case 2:
+    //         statusPosition="پاسخ داده شده"
+    //         break;
     
-        default:
-            break;
-    }
+    //     default:
+    //         break;
+    // }
+    return statusPosition;
+}
+
+export const FindStatusTicketCod=(statusText)=>{
+    var statusPosition;
+
+    ticketStatus.forEach(item=>{
+        if (statusText==item.partName) {
+            statusPosition= item.partCod
+        }
+    })
 
     return statusPosition;
 }
