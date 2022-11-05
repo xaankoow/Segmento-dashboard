@@ -3,7 +3,7 @@ import HappyReactionImg from '../../../../assets/img/dashboard/support/messageBo
 import badReactionImg from '../../../../assets/img/dashboard/support/messageBox/footer/mood_bad.svg'
 import { useState } from 'react'
 
-export default function MessageFooter({ type, attachment }) {
+export default function MessageFooter({ type, attachment , messageUuid , messageRate}) {
 
   const [moodSelected, setMoodSelected] = useState()
   
@@ -15,8 +15,8 @@ export default function MessageFooter({ type, attachment }) {
             <Fragment>
               <span className=' text-xs text-title'>آیا از پاسخ کارشناس راضی بودید؟</span>
               <div>
-                <img src={HappyReactionImg}  onClick={()=>setMoodSelected("happy")} alt="happy reaction" className={`h-5 w-5 inline-block mr-5  grayscale hover:contrast-150 hover:grayscale-0 cursor-pointer ${moodSelected=="happy"&&" grayscale-0"}`} />
-                <img src={badReactionImg}  onClick={()=>setMoodSelected("bad")} alt=" bad reaction" className={`h-5 w-5 inline-block mr-5 grayscale hover:contrast-150 hover:grayscale-0 cursor-pointer ${moodSelected=="bad"&&" grayscale-0"}`} />
+                <img src={HappyReactionImg}  onClick={()=>setMoodSelected("happy")} alt="happy reaction" className={`h-5 w-5 inline-block mr-5  grayscale hover:contrast-150 hover:grayscale-0 cursor-pointer ${messageRate==1&&" grayscale-0"}`} />
+                <img src={badReactionImg}  onClick={()=>setMoodSelected("bad")} alt=" bad reaction" className={`h-5 w-5 inline-block mr-5 grayscale hover:contrast-150 hover:grayscale-0 cursor-pointer ${messageRate==2&&" grayscale-0"}`} />
               </div>
             </Fragment>
           ) : (

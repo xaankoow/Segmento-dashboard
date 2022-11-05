@@ -4,13 +4,13 @@ import MessageBody from './MessageBody'
 import MessageFooter from './MessageFooter'
 import MessageHeader from './MessageHeader'
 
-export default function index({ type ,text ,personeName,date}) {
+export default function index({ chatData,type}) {
   return (
     <div className='m-auto mt-5 rounded-lg overflow-hidden border border-sectionDisable box-content max-w-5xl'>
 
-      <MessageHeader type={type} personeName={personeName} date={date}/>
-      <MessageBody text={text}/>
-      <MessageFooter type={type} />
+      <MessageHeader type={type} personeName={chatData.user.name} date={chatData.updated_at}/>
+      <MessageBody text={chatData.message}/>
+      <MessageFooter type={type} messageUuid={chatData.uuid} messageRate={chatData.rate}/>
     </div>
   )
 }

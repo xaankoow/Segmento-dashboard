@@ -15,13 +15,13 @@ export default function ChooseCategories({link,clickedItem,setClicked,setCategor
           return (
             <div
             id="CATEGORIES"
-              onClick={() => {setClicked(index);setCategoriValue(item)}}
-              className={`w-[260px] h-[189px] border border-sectionDisable  hover:grayscale-0 rounded-lg relative flex flex-col justify-center items-center hover:border-[#0AC7E2]  active:border-[#0AC7E2]  focus:border-primary ${
+              onClick={() => {setClicked(index);setCategoriValue(item.partCod)}}
+              className={` transition-all cursor-pointer w-[260px] h-[189px] border border-sectionDisable  hover:grayscale-0 rounded-lg relative flex flex-col justify-center items-center hover:border-[#0AC7E2]  active:border-[#0AC7E2]  focus:border-primary ${
                 clickedItem === index && "border-[#0AC7E2]"
               }`}
             >
-              <img src={imgCategories[index]} alt="" className={`w-[99px] h-[99px] mx-auto absolute top-4 hover:grayscale-0   ${ clickedItem === index ? "grayscale-0" :"grayscale"}`}/>
-              <span className="absolute mx-auto bottom-5">{item}</span>
+              <img src={imgCategories[index]} alt="" className={`w-[99px] h-[99px] mx-auto absolute top-4 hover:grayscale-0  transition-all ${ clickedItem === index ? "grayscale-0" :"grayscale"}`}/>
+              <span className="absolute mx-auto bottom-5">{item.partName}</span>
             </div>
           );
         })}

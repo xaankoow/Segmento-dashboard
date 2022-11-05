@@ -13,10 +13,11 @@ import { ImageContainer } from "../../../../assets/img/IMG";
 import { setTicketUUID } from "../../../Redux/Action/ticket";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import { FindTicketParCode, FindTicketPartText } from "../../../Utils/supportAndMessage/supportData";
 
 export default function NewTicket({ categories }) {
-  const [filterCategories, setFilterCategories] = useState(categories);
-  const [priority, setPriority] = useState(-1);
+  const [filterCategories, setFilterCategories] = useState(FindTicketPartText(categories));
+  const [priority, setPriority] = useState(1);
   const [editorValue, addEditorvalue] = useState("");
   const [showPopUpuuid, setShowPopup] = useState("");
   const [titleValue, setTitleValue] = useState("");
@@ -34,10 +35,10 @@ export default function NewTicket({ categories }) {
     }
     try {
       let formdata = new FormData();
-      formdata.append("subject", filterCategories);
-      formdata.append("part", 0);
+      formdata.append("subject",titleValue);
+      formdata.append("part", FindTicketParCode(filterCategories));
       formdata.append("priority", priority);
-      formdata.append("message", `${titleValue}\n${editorValue}`);
+      formdata.append("message", editorValue);
       formdata.append("files[]", files);
       const { data } = await setNewTicket(formdata);
       if ((data.code == 200) & (data.status == true)) {
@@ -71,7 +72,8 @@ export default function NewTicket({ categories }) {
     <>
       {showPopUpuuid !== "" && (
         <PopUp
-          clickHandler={() => navigate(`/ticket/${showPopUpuuid}`)}
+          // clickHandler={() => navigate(`ticket/${showPopUpuuid}`)}
+          clickHandler={() => navigate(`/dashboard/ReportSupport/ticket/${showPopUpuuid}`)}
           image={ImageContainer.tickPopUp}
           type={"sucsess"}
           buttonText={"باشه، فهمیدم!"}
@@ -114,7 +116,7 @@ export default function NewTicket({ categories }) {
             <div className="max-w-[243px]">
               <ComboBox
                 selectedItem={filterCategories}
-                radioTextItems={ticketCategories}
+                radioTextItems={ticketCategories.map(item=>{return item.partName})}
                 radioClickedHandler={(e) => setFilterCategories(e.target.value)}
               />
             </div>

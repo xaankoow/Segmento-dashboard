@@ -3,7 +3,7 @@ import AuthButton from '../../../Auth/authButton/AuthButton'
 import ArrowBack from '../../../../assets/img/dashboard/support/sectionMessage/arrow_back.svg'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function HeaderCardInfo({ ticketId, updateDate, chatStatus }) {
+export default function HeaderCardInfo({ ticketId, updateDate, chatStatus , subjectTitle}) {
 
     const navigate = useNavigate();
 
@@ -32,14 +32,14 @@ export default function HeaderCardInfo({ ticketId, updateDate, chatStatus }) {
             <div className='flex mr-5 py-3'>
                 <div className='h-full flex justify-center items-center'>
                     <div className=''>
-                        <div onClick={() => navigate(-1)}>
+                        <div onClick={() => navigate("/dashboard/ReportSupport")}>
                             <AuthButton classes={"btn-secondary"} textButton={<img src={ArrowBack} className="p-1" />} />
                         </div>
                     </div>
                 </div>
                 <div className='border border-silver mx-5'></div>
                 <div className='h-full flex flex-col justify-between py-1'>
-                    <p className=' text-sm text-title'>این متن برای نمونه نام عنوان است </p>
+                    <p className=' text-sm text-title'>{subjectTitle}</p>
                     <p className='text-silver text-s'>شناسه تیکت: {ticketId}</p>
                 </div>
             </div>
