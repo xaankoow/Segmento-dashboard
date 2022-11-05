@@ -46,7 +46,7 @@ export default function NewTicket({ categories }) {
         setShowPopup(data.data.ticket.uuid);
       }
     } catch (error) {
-      if (editorValue === "") {
+      if (editorValue === ""  || titleValue==="") {
         toast.error("فیلدها را با دقت پر کنید.");
       }
     }
