@@ -4,7 +4,7 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { useState } from "react";
 import { financialRadioTextItems } from "../../../../variables/financialReports";
-import file_download_svg from "../../../../assets/img/dashboard/financialReports/calendar/file_download.svg";
+import { ImageContainer } from "../../../../assets/img/IMG";
 
 export const FilterData = ({
   radioTarget,
@@ -64,7 +64,7 @@ export const FilterData = ({
               onClick={openCalendar}
             >
               <img
-                src={file_download_svg}
+                src={ImageContainer.calendarIco}
                 alt="file_download"
               />
               <span className="text-xs mr-3">{value}</span>
@@ -92,7 +92,7 @@ export const FilterData = ({
               onClick={openCalendar}
             >
               <img
-                src={file_download_svg}
+                src={ImageContainer.calendarIco}
                 alt="file_download"
               />
               <span className="text-xs mr-3">{value}</span>

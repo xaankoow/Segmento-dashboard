@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { DateObject } from "react-multi-date-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
@@ -12,20 +13,24 @@ import { getSupportChatData, ticketTableData } from "../../../service/ticket";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import GuideBox from "../../../shared/GuideBox/GuideBox";
 import Table from "../../../shared/table/Table";
+import { filterSupportData } from "../../../Utils/FilterData/filterSupportTableData";
 import { FindStatusTicket, FindTicketPartText, TicketStatusColor } from "../../../Utils/supportAndMessage/supportData";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import { FilterDataSupport } from "./changeData";
 
 export default function ReportSupport() {
+
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
-  const { uuid } = useSelector((state) => state.ticketState);
+  const [searchFilterValue, setSearchFilterValue] = useState("");
+
   // api state to get tickets
   const [tickets, setTickets] = useState([]);
   const [ticketsFiltered, setTicketsFiltered] = useState([]);
 
-  const loadingState = useSelector((state) => state.loadingState);
-
-  const dispatch = useDispatch();
+  const [datePickerValues, setDatePickerValues] = useState([
+    new DateObject().subtract(4, "days"),
+    new DateObject().add(0, "days"),
+  ]);
 
   const handleTickets = async () => {
     try {
@@ -33,6 +38,7 @@ export default function ReportSupport() {
       if ((data.code == 200) & (data.status == true)) {
         console.log(data.data);
         setTickets(data.data);
+        setTicketsFiltered(data.data)
       }
     } catch (error) {
 
@@ -45,7 +51,17 @@ export default function ReportSupport() {
     }
   });
 
-  const arrayOfTickets = (ticketsFiltered.length>0?ticketsFiltered:tickets).map((item, index) => {
+  const filterTableData=()=>{
+    setTicketsFiltered(
+      filterSupportData(
+        tickets,
+        searchFilterOption,
+        searchFilterValue
+      )
+      )
+  }
+
+  const arrayOfTickets = ticketsFiltered.map((item, index) => {
     return {
       id: index + 1,
       ticket_id: item.ticket_id,
@@ -67,7 +83,6 @@ export default function ReportSupport() {
       ),
     };
   });
-
 
   const rowKey = [
     "row.id ",
@@ -94,7 +109,8 @@ export default function ReportSupport() {
         <div className="min-w-[420px]">
           <ComboBox
             placeholder={"فیلد جستجو"}
-            radioTextItems={filterBoxDatas}
+            radioTextItems={filterBoxDatas.map(item=>{return item.filterName})}
+            
             radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}
           />
         </div>
@@ -103,10 +119,14 @@ export default function ReportSupport() {
           {searchFilterOption !== "بدون فیلتر" && (
             <span className="">مرتب سازی بر اساس</span>
           )}
-          <FilterDataSupport radioTarget={searchFilterOption} />
+          <FilterDataSupport 
+          radioTarget={searchFilterOption} 
+          datePickerValues={datePickerValues} 
+          FactorHandler={setSearchFilterValue}
+          setDatePickerValues={setDatePickerValues}/>
         </div>
         <div className=" inline-block">
-          <AuthButton textButton={"اعمال"} classes={"btn-secondary"} />
+          <AuthButton textButton={"اعمال"} classes={"btn-secondary"} handlerClick={filterTableData}/>
         </div>
       </div>
 
