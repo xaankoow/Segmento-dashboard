@@ -15,7 +15,10 @@ import SubmitForm from "../../component/Utils/Submit";
 import TextArea from "../../component/shared/TeaxtArea/TextArea";
 import { useEffect } from "react";
 import LinesComponent from "../../component/shared/RotateLines/LinesComponent";
-import { handleLowOffLimitCount, resetLimitState } from "../../component/Redux/Action/workSpace";
+import {
+  handleLowOffLimitCount,
+  resetLimitState,
+} from "../../component/Redux/Action/workSpace";
 import { useDispatch } from "react-redux";
 
 export default function TitleCopyWriterBulk() {
@@ -23,12 +26,12 @@ export default function TitleCopyWriterBulk() {
   const [title, setTitle] = useState(false);
 
   const [handleCopyAllIssue, setHandleCopyAllIssue] = useState("");
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {});
   let listOfKeyWords = [];
 
   const createTitleButton = () => {
-    setTitle(true);
+    setTitle(true)
     // if (keyWordValue.length > 0) setinputLastValue(keyWordValue);
     dispatch(handleLowOffLimitCount("TITLE_BUILDER_BATCH", 1));
     dispatch(resetLimitState());
@@ -81,9 +84,18 @@ export default function TitleCopyWriterBulk() {
     navigator.clipboard.writeText(myListOutput);
   };
 
+  const handleSelectCategory = (index) => {
+    setRadioCategories(index);
+    setTitle(false)
+  };
+
   return (
     <>
-      <PageTitle title={"ابزار عنوان‌نویس انبوه"} badgeApi={"titleCopyWriterBulk"} hasLimit={true}/>
+      <PageTitle
+        title={"ابزار عنوان‌نویس انبوه"}
+        badgeApi={"titleCopyWriterBulk"}
+        hasLimit={true}
+      />
       <div className="mx-9 mt-9 mb-7">
         <TextArea
           textLabelInput={"1. درج کلمات کلیدی (در هر خط فقط یک کلمه وارد کنید)"}
@@ -91,7 +103,9 @@ export default function TitleCopyWriterBulk() {
             "w-full !h-[222px] border border-sectionDisable !p-5 !rounded-lg overflow-y-auto leading-relaxed"
           }
           handleChange={setKeyWordValue}
-          handleChangeValue={() => setTitle(false)}
+          handleChangeValue={() =>
+            setTitle(false)
+          }
         />{" "}
       </div>
       <span className=" text-[10px] mx-11 ">2. انتخاب جنس موضوع</span>
@@ -101,7 +115,7 @@ export default function TitleCopyWriterBulk() {
             <div className="flex items-center " key={index}>
               <input
                 type="radio"
-                onClick={() => setRadioCategories(index)}
+                onClick={() => handleSelectCategory(index)}
                 name="categories"
               />
               <span className={radioCategoris === index ? "" : `text-silver `}>
@@ -113,7 +127,8 @@ export default function TitleCopyWriterBulk() {
       </div>
       <AuthButton
         textButton={"تولید عنوان"}
-        classes={"mx-auto"}
+        disabled={radioCategoris === -1 ? true : false}
+        classes={` mx-auto`}
         handlerClick={() => createTitleButton()}
       />
       <span className="text-[10px] mx-11 mt-7 mb-2">

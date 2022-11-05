@@ -79,9 +79,10 @@ export default function TitleCopywriter() {
   };
   const buttonHandler = () => {
     setTitle(true);
-    if (keyWordValue.length > 0) setinputLastValue(keyWordValue);
     dispatch(handleLowOffLimitCount("TITLE_BUILDER", 1));
     dispatch(resetLimitState());
+    if (keyWordValue.length > 0) setinputLastValue(keyWordValue);
+ 
   };
 
   return (
