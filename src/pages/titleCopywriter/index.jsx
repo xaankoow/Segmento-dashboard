@@ -12,12 +12,16 @@ import {
 import { ImageContainer } from "../../assets/img/IMG/index";
 import LinesComponent from "../../component/shared/RotateLines/LinesComponent";
 import SubmitForm from "../../component/Utils/Submit";
+import { useDispatch, useSelector } from "react-redux";
+import BadgeLimitKeyWords from "../../component/Utils/BadgeLimitKeyWords";
+import { handleLowOffLimitCount, resetLimitState } from "../../component/Redux/Action/workSpace";
 
 export default function TitleCopywriter() {
   const [keyWordValue, setKeyWordValue] = useState("");
   const [title, setTitle] = useState(false);
   const [inputLastValue, setinputLastValue] = useState("");
   const [handleCopyAllIssue, setHandleCopyAllIssue] = useState("");
+  const dispatch = useDispatch();
   // copy
   const copyIssue = (arrayData) => {
     var myListOutput = "";
@@ -75,26 +79,30 @@ export default function TitleCopywriter() {
   };
   const buttonHandler = () => {
     setTitle(true);
+    dispatch(handleLowOffLimitCount("TITLE_BUILDER", 1));
+    dispatch(resetLimitState());
     if (keyWordValue.length > 0) setinputLastValue(keyWordValue);
+ 
   };
-  
+
   return (
     <>
-      <PageTitle title={"‌ابزار عنوان‌نویس"} />
-      <SubmitForm submitFun={buttonHandler}  >
-      <div className="mx-9 mt-9 mb-7">
-        <AuthInput
-          textLabelInput={"درج کلمه کلیدی"}
-          classes={"w-full "}
-          handleChange={setKeyWordValue}
-          // handleChangeValue={() => setTitle(false)}
+      <PageTitle title={"‌ابزار عنوان‌نویس"} hasLimit={true} badgeApi={"titleCopyWriter"}/>
+     
+      <SubmitForm submitFun={buttonHandler}>
+        <div className="mx-9 mt-9 mb-7">
+          <AuthInput
+            textLabelInput={"درج کلمه کلیدی"}
+            classes={"w-full "}
+            handleChange={setKeyWordValue}
+            // handleChangeValue={() => setTitle(false)}
+          />
+        </div>
+        <AuthButton
+          textButton={"تولید عنوان"}
+          classes={"mx-auto"}
+          handlerClick={() => buttonHandler()}
         />
-      </div>
-      <AuthButton
-        textButton={"تولید عنوان"}
-        classes={"mx-auto"}
-        handlerClick={() => buttonHandler()}
-      />
       </SubmitForm>
       {title !== false && keyWordValue.length > 0 ? (
         <>

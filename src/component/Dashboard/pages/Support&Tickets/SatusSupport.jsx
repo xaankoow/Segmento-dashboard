@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { DateObject } from "react-multi-date-picker";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
 import {
@@ -7,80 +9,91 @@ import {
   titleOfReportSupportTable,
 } from "../../../../variables/support";
 import AuthButton from "../../../Auth/authButton/AuthButton";
+import { getSupportChatData, ticketTableData } from "../../../service/ticket";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import GuideBox from "../../../shared/GuideBox/GuideBox";
 import Table from "../../../shared/table/Table";
+import { filterSupportData } from "../../../Utils/FilterData/filterSupportTableData";
+import { FindStatusTicket, FindTicketPartText, TicketStatusColor } from "../../../Utils/supportAndMessage/supportData";
 import PageTitle from "../../DashboaedComponents/pageTitle/pageTitle";
 import { FilterDataSupport } from "./changeData";
 
 export default function ReportSupport() {
-  const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
 
-  const b = [
-    {
-      id: 1,
-      factorNumber: "SEG-5242",
-      title: "نمونه نوشته برای عنوان",
-      categories: "امور مالی",
-      date: "1401/2/2",
-      status: "پاسخ داده شد",
-      operation: (
-        <Link to={"NewTicket"}>
-        <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
-          <img src={ImageContainer.visibility} alt="" />
-        </div>
-        </Link>
-      ),
-    },
-    {
-      id: 1,
-      factorNumber: "SEG-5242",
-      title: "نمونه نوشته برای عنوان",
-      categories: "امور مالی",
-      date: "1401/2/2",
+  const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
+  const [searchFilterValue, setSearchFilterValue] = useState("");
+
+  // api state to get tickets
+  const [tickets, setTickets] = useState([]);
+  const [ticketsFiltered, setTicketsFiltered] = useState([]);
+
+  const [datePickerValues, setDatePickerValues] = useState([
+    new DateObject().subtract(4, "days"),
+    new DateObject().add(0, "days"),
+  ]);
+
+  const handleTickets = async () => {
+    try {
+      const { data } = await ticketTableData();
+      if ((data.code == 200) & (data.status == true)) {
+        console.log(data.data);
+        setTickets(data.data);
+        setTicketsFiltered(data.data)
+      }
+    } catch (error) {
+
+    }
+  };
+
+  useEffect(() => {
+    if (tickets.length <= 0) {
+      handleTickets();
+    }
+  });
+
+  const filterTableData=()=>{
+    setTicketsFiltered(
+      filterSupportData(
+        tickets,
+        searchFilterOption,
+        searchFilterValue
+      )
+      )
+  }
+
+  const arrayOfTickets = ticketsFiltered.map((item, index) => {
+    return {
+      id: index + 1,
+      ticket_id: item.ticket_id,
+      title: item.subject,
+      categories: FindTicketPartText(item.part),
+      updated_at: ("(" + item.updated_at.slice(0, 5) + ")  " + item.updated_at.slice(8, 18)),
       status: (
-        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center mx-auto">
-          پاسخ داده شد
+        <div className={` bg-${TicketStatusColor(item.status)} w-[85px] h-7 text-white rounded-3xl flex justify-center items-center mx-auto`}>
+          {FindStatusTicket(item.status)}{" "}
         </div>
       ),
       operation: (
-        <Link to={"NewTicket"}>
-        <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
-          <img src={ImageContainer.visibility} alt="" />
-        </div>
-        </Link>
-      ),
-    },
-    {
-      id: 1,
-      factorNumber: "SEG-5242",
-      title: "نمونه نوشته برای عنوان",
-      categories: "امور مالی",
-      date: "1401/2/2",
-      status: (
-        <div className="w-[85px] h-7 bg-[#10CCAE] text-white rounded-3xl flex justify-center items-center mx-auto">
-          در انتظار پاسخ
-        </div>
-      ),
-      operation: (
-        <Link to={"NewTicket"}>
+        <Link to={`ticket/${item.uuid}`}>
           {" "}
           <div className="w-16 h-10 rounded-lg btn-secondary flex justify-center items-center">
             <img src={ImageContainer.visibility} alt="" />
           </div>
         </Link>
       ),
-    },
-  ];
+    };
+  });
+
   const rowKey = [
-    "row.id",
-    "row.factorNumber",
+    "row.id ",
+    "row.ticket_id",
     "row.title",
     "row.categories",
-    "row.date",
+    "row.updated_at",
     "row.status",
     "row.operation",
   ];
+
   return (
     <>
       <PageTitle title={"پشتیبانی و تیکت ها (تیکت جدید) "} />
@@ -96,7 +109,8 @@ export default function ReportSupport() {
         <div className="min-w-[420px]">
           <ComboBox
             placeholder={"فیلد جستجو"}
-            radioTextItems={filterBoxDatas}
+            radioTextItems={filterBoxDatas.map(item=>{return item.filterName})}
+            
             radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}
           />
         </div>
@@ -105,16 +119,20 @@ export default function ReportSupport() {
           {searchFilterOption !== "بدون فیلتر" && (
             <span className="">مرتب سازی بر اساس</span>
           )}
-          <FilterDataSupport radioTarget={searchFilterOption} />
+          <FilterDataSupport 
+          radioTarget={searchFilterOption} 
+          datePickerValues={datePickerValues} 
+          FactorHandler={setSearchFilterValue}
+          setDatePickerValues={setDatePickerValues}/>
         </div>
         <div className=" inline-block">
-          <AuthButton textButton={"اعمال"} classes={"btn-secondary"} />
+          <AuthButton textButton={"اعمال"} classes={"btn-secondary"} handlerClick={filterTableData}/>
         </div>
       </div>
 
       <Table
         columnItem={titleOfReportSupportTable}
-        rowsItem={b}
+        rowsItem={arrayOfTickets}
         rowKey={rowKey}
         classname={"px-9"}
       />

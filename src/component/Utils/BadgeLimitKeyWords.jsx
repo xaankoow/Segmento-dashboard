@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allLimitDataFeature, limitDataFeature } from "../Redux/Action/workSpace";
-import { getPackageInfO } from "../service/packages";
-import { usetLimit } from "../service/userLimit";
 
 export default function BadgeLimitKeyWords({ numFont, api }) {
   const userState = useSelector((state) => state.userState);
   const { checkLimit } = useSelector((state) => state.workSpaceState);
-
 
   var moment = require("jalali-moment");
   var nowDate = new Date();
@@ -16,7 +11,6 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
   const dispatch = useDispatch();
   const { limitsDatas } = useSelector((state) => state.workSpaceState);
   const { allLimitsDatas } = useSelector((state) => state.workSpaceState);
- 
   var startDate =
     userState.userData.package != undefined &&
     new Date(moment(userState.userData.package.start).format("YYYY/M/D"));
@@ -27,8 +21,7 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
   var timeSecDays = Math.abs(expiryDate - startDate);
 
   var numberOfDaysLeft = Math.ceil(timeSecDaysLeft / (1000 * 60 * 60 * 24));
-  var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));  
-
+  var numberOfDays = Math.ceil(timeSecDays / (1000 * 60 * 60 * 24));
 
   const numStyle = `text-[#7D7D7D] text-[${
     numFont != undefined ? numFont : "14px"
@@ -79,6 +72,18 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
         allWords: allLimitsDatas.length != 0 && allLimitsDatas[1].count,
         rest: limitsDatas.length > 0 ? limitsDatas[1].count : "",
       };
+      break;
+    case "titleCopyWriter":
+      a = {
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[7].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[7].count : "",
+      };
+      break;
+      case "titleCopyWriterBulk":
+        a = {
+          allWords: allLimitsDatas.length != 0 && allLimitsDatas[15].count,
+          rest: limitsDatas.length > 0 ? limitsDatas[15].count : "",
+        };
 
       break;
     default:

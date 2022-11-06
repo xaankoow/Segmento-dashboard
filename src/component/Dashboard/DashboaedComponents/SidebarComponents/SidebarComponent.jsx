@@ -18,11 +18,17 @@ export default function SidebarComponent({
   setClicked1,
 }) {
   const [showToolTip, setShowToolTip] = useState(true);
+ 
+  const [activeIcon, setActiveIcon] = useState(localStorage.getItem("activeIcon") != null
+  ? Number(localStorage.getItem("activeIcon"))
+  : 0);
 
-  const [activeIcon, setActiveIcon] = useState(0);
   const { closeNav } = useSelector((state) => state.navMenuState);
   const dispatch = useDispatch();
-
+useEffect(() => {
+    localStorage.setItem("activeIcon",activeIcon);
+  
+  }, [activeIcon]);
   const [disableAdvertisement, setDisableAdvertisement] = useState(false);
 
   const activeIconHandler = (e) => {
@@ -91,8 +97,8 @@ export default function SidebarComponent({
       </div>
       {/* ):null} */}
 
-      <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh] min-w-[56px]">
-        <IconsRight setActive={activeIconHandler} />
+      <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
+        <IconsRight setActive={activeIconHandler} activeIcons={activeIcon}/>
         <div className="down">
           <div className="dropDownBox mb-5">
             <a href="https://segmento.ir/about/support/">

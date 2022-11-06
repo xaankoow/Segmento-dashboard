@@ -6,6 +6,7 @@
 .static_text_input .input-static{
     border: 0px !important;
     padding-left: 0px !important;
+   
 }
 .static_text_input p{
     display: flex;

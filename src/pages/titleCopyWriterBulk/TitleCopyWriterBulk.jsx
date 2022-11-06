@@ -15,19 +15,26 @@ import SubmitForm from "../../component/Utils/Submit";
 import TextArea from "../../component/shared/TeaxtArea/TextArea";
 import { useEffect } from "react";
 import LinesComponent from "../../component/shared/RotateLines/LinesComponent";
+import {
+  handleLowOffLimitCount,
+  resetLimitState,
+} from "../../component/Redux/Action/workSpace";
+import { useDispatch } from "react-redux";
 
 export default function TitleCopyWriterBulk() {
   const [keyWordValue, setKeyWordValue] = useState("");
   const [title, setTitle] = useState(false);
 
   const [handleCopyAllIssue, setHandleCopyAllIssue] = useState("");
-  
+  const dispatch = useDispatch();
   useEffect(() => {});
   let listOfKeyWords = [];
 
   const createTitleButton = () => {
-    setTitle(true);
+    setTitle(true)
     // if (keyWordValue.length > 0) setinputLastValue(keyWordValue);
+    dispatch(handleLowOffLimitCount("TITLE_BUILDER_BATCH", 1));
+    dispatch(resetLimitState());
     return (listOfKeyWords = keyWordValue.split(/\r?\n/));
   };
   // list of value that we write in textArea
@@ -77,9 +84,18 @@ export default function TitleCopyWriterBulk() {
     navigator.clipboard.writeText(myListOutput);
   };
 
+  const handleSelectCategory = (index) => {
+    setRadioCategories(index);
+    setTitle(false)
+  };
+
   return (
     <>
-      <PageTitle title={"ابزار عنوان‌نویس انبوه"} />
+      <PageTitle
+        title={"ابزار عنوان‌نویس انبوه"}
+        badgeApi={"titleCopyWriterBulk"}
+        hasLimit={true}
+      />
       <div className="mx-9 mt-9 mb-7">
         <TextArea
           textLabelInput={"1. درج کلمات کلیدی (در هر خط فقط یک کلمه وارد کنید)"}
@@ -87,7 +103,9 @@ export default function TitleCopyWriterBulk() {
             "w-full !h-[222px] border border-sectionDisable !p-5 !rounded-lg overflow-y-auto leading-relaxed"
           }
           handleChange={setKeyWordValue}
-          handleChangeValue={() => setTitle(false)}
+          handleChangeValue={() =>
+            setTitle(false)
+          }
         />{" "}
       </div>
       <span className=" text-[10px] mx-11 ">2. انتخاب جنس موضوع</span>
@@ -97,7 +115,7 @@ export default function TitleCopyWriterBulk() {
             <div className="flex items-center " key={index}>
               <input
                 type="radio"
-                onClick={() => setRadioCategories(index)}
+                onClick={() => handleSelectCategory(index)}
                 name="categories"
               />
               <span className={radioCategoris === index ? "" : `text-silver `}>
@@ -109,7 +127,8 @@ export default function TitleCopyWriterBulk() {
       </div>
       <AuthButton
         textButton={"تولید عنوان"}
-        classes={"mx-auto"}
+        disabled={radioCategoris === -1 ? true : false}
+        classes={` mx-auto`}
         handlerClick={() => createTitleButton()}
       />
       <span className="text-[10px] mx-11 mt-7 mb-2">
@@ -118,50 +137,57 @@ export default function TitleCopyWriterBulk() {
 
       {radioCategoris === 0 && title && keyWordValue.length !== 0 ? (
         filtered.map((keyword, index) => {
-        return  <LinesComponent
-            titleName={"موضوعات مقایسه‌ای"}
-            keyWordValue={keyword}
-            lineData={lineData}
-            isBulk={true}
-            bluskId={index}
-            title={title}
-            classname={{
-              height: "h-[352px]",
-              top: "-top-[324px]",
-              right: " right-[165px]",
-            }}
-          />;
+          return (
+            <LinesComponent
+              titleName={"موضوعات مقایسه‌ای"}
+              keyWordValue={keyword}
+              lineData={lineData}
+              isBulk={true}
+              bluskId={index}
+              title={title}
+              classname={{
+                height: "h-[352px]",
+                marginRight: "-mr-3",
+                marginTop: "",
+              }}
+            />
+          );
         })
-      ) :radioCategoris === 1 && title && keyWordValue.length !== 0 ? 
-      filtered.map((keyword, index) => {
-        return  <LinesComponent
-            titleName={"موضوعات سوالی"}
-            keyWordValue={keyword}
-            lineData={lineData2}
-            isBulk={true}
-            title={title}
-            classname={{
-              height: "h-[900px]",
-              top: "-top-[50px]",
-              right: " right-[147px]",
-            }}
-          />;
-        }) :radioCategoris === 2 && title && keyWordValue.length !== 0 ? 
+      ) : radioCategoris === 1 && title && keyWordValue.length !== 0 ? (
         filtered.map((keyword, index) => {
-          return  <LinesComponent
+          return (
+            <LinesComponent
+              titleName={"موضوعات سوالی"}
+              keyWordValue={keyword}
+              lineData={lineData2}
+              isBulk={true}
+              title={title}
+              classname={{
+                height: "h-[900px]",
+                marginRight: "-mr-3",
+                marginTop: "-mt-10",
+              }}
+            />
+          );
+        })
+      ) : radioCategoris === 2 && title && keyWordValue.length !== 0 ? (
+        filtered.map((keyword, index) => {
+          return (
+            <LinesComponent
               titleName={"موضوعات متفرقه"}
-               keyWordValue={keyword}
-               isBulk={true}
+              keyWordValue={keyword}
+              isBulk={true}
               lineData={lineData3}
               title={title}
               classname={{
                 height: "h-[594px]",
-                top: "-top-[203px]",
-                right: " right-[150px]",
+                marginRight: "-mr-3",
+                marginTop: "",
               }}
-            />;
-          }) :
-      (
+            />
+          );
+        })
+      ) : (
         <div className="h-[70%] flex flex-col items-center justify-center gap-3  border border-sectionDisable rounded-lg  mx-9">
           <img src={add_chart_svg} alt="imgNothingSearch" />
           <span className="text-[#E5E5E5]">
@@ -169,7 +195,7 @@ export default function TitleCopyWriterBulk() {
           </span>
         </div>
       )}
-    <div className="flex relative">
+      <div className="flex relative">
         <button
           className={`mx-9 btn-style mt-4 flex items-center gap-3 `}
           disabled={title === false && true}

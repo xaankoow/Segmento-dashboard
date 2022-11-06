@@ -8,7 +8,8 @@ import AuthButton from "../../../../../Auth/authButton/AuthButton";
 import PopUp from "../../../../../Utils/PopUp/PopUp";
 import close_svg from '../../../../../../assets/img/dashboard/nav_right/close.svg'
 import backup_svg from '../../../../../../assets/img/dashboard/userProfile/backup.svg'
-import tik_svg from '../../../../../../assets/img/popUp/tik.svg'
+import { ImageContainer } from "../../../../../../assets/img/IMG";
+
 
 export default function ChangeImageModal({
   close,
@@ -38,6 +39,8 @@ export default function ChangeImageModal({
     setImageChanged(true)
 
   };
+
+  
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["JPG", "PNG", "GIF"],
@@ -108,7 +111,7 @@ export default function ChangeImageModal({
         {imageChanged && (
           <PopUp
             clickHandler={() => close()}
-            image={tik_svg}
+            image={ImageContainer.tickPopUp}
             type={"sucsess"}
             buttonText={"باشه، فهمیدم!"}
             text={" تصویر پروفایل شما با موفقیت تغییر کرد!   "}

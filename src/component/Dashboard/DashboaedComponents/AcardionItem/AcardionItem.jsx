@@ -24,6 +24,8 @@ import googleSuggestion_svg from "../../../../assets/img/dashboard/nav_right/goo
 import { showToast } from "../../../Utils/toastifyPromise";
 import { ChackingAvailabilityTools } from "../../../Utils/CheckingAvailabilityTools";
 import { ImageContainer } from "../../../../assets/img/IMG";
+import { stringify } from "postcss";
+import { useEffect } from "react";
 
 export default function AcardionItem({ clicked, setClicked }) {
   const dispatch = useDispatch();
@@ -31,9 +33,10 @@ export default function AcardionItem({ clicked, setClicked }) {
   const location = useLocation();
 
   const user = useSelector((state) => state.userState);
-
+  // debugger
   const workSpaceState = useSelector((state) => state.workSpaceState);
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
+  // console.log(allWorkSpace);
   const data = [
     {
       title: "ورک‌اسپیس‌ها",
@@ -141,37 +144,42 @@ export default function AcardionItem({ clicked, setClicked }) {
           itemTitle: " تاپیک ترند",
           itemIcon: trandTypic_svg,
           itemLink: "",
-          section: ""
+          section: "",
         },
         {
           itemTitle: " ایده ساز",
           itemIcon: createIdea_svg,
           itemLink: "contentCreation",
-          section: ""
+          section: "",
         },
         {
           itemTitle: "کپی رایتر  ",
           itemIcon: copyWriter_svg,
-          itemLink: "",
-          section: ""
+          itemLink: "TitleCopywriter",
+          section: "",
         },
         {
           itemTitle: "کپی رایتر انبوه ",
           itemIcon: copyWriterAnboh_svg,
-          itemLink: "",
-          section: ""
+          itemLink: "TitleCopyWriterBulk",
+          section: "",
         },
         {
           itemTitle: "پیشنهاد ساز گوگل ",
           itemIcon: googleSuggestion_svg,
           itemLink: "",
-          section: ""
+          section: "",
         },
       ],
     },
   ];
   // const [clicked, setClicked] = React.useState(false);
-  const [ItemsClicked, setItemsClicked] = useState(-1);
+  const [ItemsClicked, setItemsClicked] = useState(
+    localStorage.getItem("acardeonItemClicked")
+      ? JSON.parse(localStorage.getItem("acardeonItemClicked"))
+      : -1
+  );
+
   const toggle = (index) => {
     if (clicked === index) {
       // if active close
@@ -179,9 +187,13 @@ export default function AcardionItem({ clicked, setClicked }) {
     }
     setClicked(index);
   };
+  // debugger
 
   const { limitsDatas } = useSelector((state) => state.workSpaceState);
-
+  const setTitleHandler = (acardionItem) => {
+    setItemsClicked(acardionItem);
+    localStorage.setItem("acardeonItemClicked", JSON.stringify(acardionItem));
+  };
   return (
     <>
       {data.map((item, index) => {
@@ -225,70 +237,83 @@ export default function AcardionItem({ clicked, setClicked }) {
                 <img
                   src={arrow_back_ios_new_svg}
                   alt=""
-                  className={`w-3 h-4 ${clicked === index && "-rotate-90"} transition-transform`}
+                  className={`w-3 h-4 ${
+                    clicked === index && "-rotate-90"
+                  } transition-transform`}
                 />
               </div>
             </div>
             {clicked === index ? (
               <div className="mr-5 mt-0">
                 {item.acardionItems.map((acardionItem, indexx) => {
-                  return (
-
-                    acardionItem.itemLink == " " ? (
-                      <div className={"w-auto"}>
-                        <div
-                          onClick={() => setItemsClicked(acardionItem.itemTitle)}
-                          key={indexx}
-                          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${clicked === index && ItemsClicked == acardionItem.itemTitle && "active"}`}
-                        >
-                          <img src={acardionItem.itemIcon} alt="icon" />
-                          <span className={"w-auto hover:text-blue"}>{acardionItem.itemTitle}</span>
-                        </div>
+                  return acardionItem.itemLink == " " ? (
+                    <div className={"w-auto"}>
+                      <div
+                        onClick={() => setTitleHandler(acardionItem.itemTitle)}
+                        key={indexx}
+                        className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
+                          clicked === index &&
+                          ItemsClicked == acardionItem.itemTitle &&
+                          "active"
+                        }`}
+                      >
+                        <img src={acardionItem.itemIcon} alt="icon" />
+                        <span className={"w-auto hover:text-blue"}>
+                          {acardionItem.itemTitle}
+                        </span>
                       </div>
-
-                    ) : acardionItem.itemLink != "" && (
+                    </div>
+                  ) : (
+                    acardionItem.itemLink != "" && (
                       // <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
                       <Link to={acardionItem.itemLink} className={"w-auto"}>
                         <div
-                          onClick={() => setItemsClicked(acardionItem.itemTitle)}
+                          onClick={() =>
+                            setTitleHandler(acardionItem.itemTitle)
+                          }
                           key={indexx}
-                          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${clicked === index && ItemsClicked == acardionItem.itemTitle && "active"}`}
+                          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
+                            clicked === index &&
+                            ItemsClicked == acardionItem.itemTitle &&
+                            "active"
+                          }`}
                         >
                           <img src={acardionItem.itemIcon} alt="icon" />
-                          <span className={"w-auto hover:text-blue"}>{acardionItem.itemTitle}</span>
+                          <span className={"w-auto hover:text-blue"}>
+                            {acardionItem.itemTitle}
+                          </span>
                         </div>
                       </Link>
                     )
-
-
                   );
                 })}
                 {item.title == "ورک‌اسپیس‌ها" && (
                   <div
                     key={index}
-                    
                     className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
                   >
-                    <img
-                      src={add_circle_svg}
-                      alt="icon"
-                    />
+                    <img src={add_circle_svg} alt="icon" />
                     <Link
-                     
-                      to={user.userData.package != undefined ?`setWorkSpace`: location}
-                       onClick={()=>user.userData.package == undefined && showToast("شما پلن فعالی ندارید", "error")}
+                      to={
+                        user.userData.package != undefined
+                          ? `setWorkSpace`
+                          : location
+                      }
+                      onClick={() =>
+                        user.userData.package == undefined &&
+                        showToast("شما پلن فعالی ندارید", "error")
+                      }
                       state={{ background: location }}
                       className={"w-auto"}
                     >
                       افزودن سایت
                     </Link>
-                   
                   </div>
                 )}
               </div>
             ) : null}
             {/* TODO */}
-                            {/* {item.title == "ورک‌اسپیس‌ها" && <div>  
+            {/* {item.title == "ورک‌اسپیس‌ها" && <div>  
 
                               adcnskb\ch
                             </div> } */}

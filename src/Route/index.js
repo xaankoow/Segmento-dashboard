@@ -57,7 +57,7 @@ export const DashboardRote=[
     {path:"PageCounter",component:<PageCounter />},
     {path:"ReportSupport",component:<ReportSupport />},
     {path:"ReportSupport/NewTicket",component:<Support />},
-    {path:"SupportMessage",component:<SupportMessage />},
+    {path:"ReportSupport/ticket/*",component:<SupportMessage />},
     {path:"TitleCopyWriterBulk",component:<TitleCopyWriterBulk />},
     {path:"TitleCopywriter",component:<TitleCopywriter />},
     {path:"GoogleIndexer",component:<GoogleIndexer />},

@@ -54,7 +54,7 @@ export default function StaticInputText({
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           disabled={disabled}
-          className={`${classes} input-static`}
+          className={`${classes} input-static `}
           value={value}
           dir="auto"
           style={{

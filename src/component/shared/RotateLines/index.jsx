@@ -4,7 +4,7 @@ import { createRenderPoint } from "./fun";
 
 export default function CreateRotateLine({ array, classname }) {
   return (
-    <div className="flex items-center mr-2">
+    <div className="flex items-center mr-4">
       {/* {array != undefined&typeof array=="object"? ( */}
       <div className={`w-3 h-3 bg-silver rounded-full absolute  z-10`}></div>
       <div className="polygone_line_style">
