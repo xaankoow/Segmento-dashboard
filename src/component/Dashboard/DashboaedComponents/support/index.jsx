@@ -83,6 +83,7 @@ export default function Index() {
   };
 
   const sendMessageData = (ticketUuid, textEditor, fileEditor)
+
   return (
     <div className=' px-7'>
       <PageTitle title={"پشتیبانی و تیکت‌ها "} />
@@ -92,7 +93,7 @@ export default function Index() {
           <HeaderCardInfo ticketId={chatData.ticket.ticket_id} updateDate={chatData.ticket.updated_at} chatStatus={chatData.ticket.status} subjectTitle={chatData.ticket.subject} />
           {
             chatData.messages.map(chatDetail => (
-              <Message chatData={chatDetail} />
+              <Message chatData={chatDetail} type={chatDetail.user.uuid==userData.user.uuid?"user":"admin"}/>
             ))
           }
           <div className='border border-gray rounded-lg pb-5 mt-9 max-w-3xl m-auto'>

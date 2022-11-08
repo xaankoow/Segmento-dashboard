@@ -37,3 +37,12 @@ export const sendNewMessageTicketServise = (messageData) => {
     }
     return http.post(`${config.xaankooApi}/api/v1/ticket/add-message`,messageData, headerRegisterUser);
 }
+
+export const messageRateServise = (messageRate) => {
+    //7
+    const headerRegisterUser = {
+        'Content-Type': 'multipart/form-data',
+        "workspace":"text/plain"
+    }
+    return http.post(`${config.xaankooApi}/api/v1/ticket/rate-message`,messageRate, headerRegisterUser);
+}
