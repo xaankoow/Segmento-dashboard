@@ -24,13 +24,12 @@ export const imgCategories = [
   ImageContainer.idea
 ]
 
-
-
 export const helpText = [
   "نمونه متن برای نوشتن نکات مهم برای تیکت",
   "نمونه متن برای نوشتن نکات مهم برای تیکت",
   "نمونه متن برای نوشتن نکات مهم برای تیکت",
 ];
+
 export const titleOfReportSupportTable = [
   { title: "ردیف", class: "px-8" },
   { title: "شناسه تیکت", class: "px-8" },
@@ -64,3 +63,4 @@ export const partItemFilterBox = [
 // "row.updated_at",
 // "row.status",
 // "row.operation",
+// export const filterBoxDatas = ["بدون فیلتر", "شناسه تیکت", "عنوان", "دسته بندی", "دپارتمان", "آخرین بروز رسانی", "وضعیت"]

@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a41f2c-2f9e-4fec-8efb-b41413fabe06" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/component/Dashboard/RankTracking/RankTracking.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/Dashboard/RankTracking/competitors/Competitors.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/Dashboard/RankTracking/competitors/competitors.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/Dashboard/RankTracking/keyword/Keyword.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/Dashboard/RankTracking/keyword/keyword.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/Dashboard/RankTracking/rankTracking.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/Dashboard/RankTracking/report/Report.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/Dashboard/RankTracking/report/report.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/variables/rankTrackingFilters.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/variables/rankTrackingKeywordTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Route/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Route/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/AcardionItem/AcardionItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/AcardionItem/AcardionItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/ItemSidebarHover.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/SidebarComponents/ItemSidebarHover.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/variables/support.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/variables/support.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +109,7 @@
       <workItem from="1659862492996" duration="595000" />
       <workItem from="1662407051779" duration="13434000" />
       <workItem from="1662492138917" duration="4000000" />
+      <workItem from="1667930227634" duration="670000" />
     </task>
     <servers />
   </component>
