@@ -49,7 +49,7 @@ export const FilterDataSupport = ({
         calendar={persian}
         locale={persian_fa}
         calendarPosition="bottom-right"
-        onChange={setDatePickerValues}
+        onChange={FactorHandler}
         format="DD MMMM YYYY - "
         maxDate={new DateObject()}
         render={(value, openCalendar) => (

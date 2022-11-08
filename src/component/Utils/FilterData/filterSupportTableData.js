@@ -17,7 +17,6 @@ export const filterSupportData = (allData, filterType, filterValue) => {
     //         }
     //     }
     // })
-    // debugger
     if (filterValue != "") {
 
         allData.forEach((element) => {
@@ -71,7 +70,7 @@ export const filterSupportData = (allData, filterType, filterValue) => {
 
 
 // filtering data time with between time
-export const filterDataWithBetweenTime = (data, time) => {
+const filterDataWithBetweenTime = (data, time) => {
     var filteredData = [];
 
     // if (firstTime != "" & secoundTime != "") {
@@ -86,9 +85,8 @@ export const filterDataWithBetweenTime = (data, time) => {
         data.forEach((element) => {
             let elDate = parseInt(
                 new DateObject(
-                    element.updated_at.substring(0, 10).replaceAll("-", "/")
+                    element.updated_at.substring(8, 18).replaceAll("-", "/")
                 )
-                    .convert(persian, persian_en)
                     .format("YYYYMMDD")
             );
             if ((elDate >= convertDateStart) & (elDate <= convertDateEnd)) {
