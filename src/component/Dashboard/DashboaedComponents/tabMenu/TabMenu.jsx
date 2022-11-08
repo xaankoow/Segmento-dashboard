@@ -15,7 +15,7 @@ export default function TabMenu({
   // to select tab and show underline of that
   const [activeTab, setActiveTab] = useState(0);
   const userState = useSelector((state) => state.userState);
-  console.log(amountOfData)
+  
   return (
     <div className="text-sm font-medium text-center text-gray-500 text-gray-400 border-gray-700 pt-3 bg-[#fff]">
       <div className="flex gap-6 items-center pr-4">

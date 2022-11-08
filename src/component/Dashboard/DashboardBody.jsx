@@ -11,17 +11,32 @@ import PopUp from "../Utils/PopUp/PopUp";
 // import PopUp from "../../../Utils/PopUp/PopUp";
 
 export default function DashboardBody() {
-
   const { checkVerifyPhoneNumber } = useSelector((state) => state.userState);
 
   const navigate = useNavigate();
 
-  const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState({ type: "", result: true }); //handle buy plan type
-   const [showWorkSpace, setShowWorkSpace] = useState(true); //handle close buy plan result
+  const [showModalBuyPlanResult, setShowModalBuyPlanResult] = useState({
+    type: "",
+    result: true,
+  }); //handle buy plan type
+  const [showWorkSpace, setShowWorkSpace] = useState(true); //handle close buy plan result
   // item sidebar hover active mode
- 
-  const[clicked,setActiveIconHandlerClicked]=useState(2);
-  const[clicked1,setClicked1]=useState(2);
+
+  const [clicked, setActiveIconHandlerClicked] = useState(
+    localStorage.getItem("ActiveIconHandlerClicked") != null
+      ? Number(localStorage.getItem("ActiveIconHandlerClicked"))
+      : 2
+  );
+
+  const [clicked1, setClicked1] = useState(
+    localStorage.getItem("sidebarItemClicked") != null
+      ? Number(localStorage.getItem("sidebarItemClicked"))
+      : 2
+  );
+  useEffect(() => {
+    localStorage.setItem("sidebarItemClicked", clicked1);
+    localStorage.setItem("ActiveIconHandlerClicked", clicked);
+  }, [clicked1, clicked]);
   //check buy plan result
   useEffect(() => {
     const status_buy_plan = localStorage.getItem("statusBuyPlna");
@@ -45,29 +60,42 @@ export default function DashboardBody() {
     }
   }, []);
 
-  const [showVerifyPhoneNumberModal, setShowVerifyPhoneNumberModal] = useState(false); //handle close buy plan result
+  const [showVerifyPhoneNumberModal, setShowVerifyPhoneNumberModal] =
+    useState(false); //handle close buy plan result
 
   return (
     <div id="DASHBOARD">
-      <div className="w-full h-16 bg-[#ffffff] shadow-3xl" >
-        <DashboardHeader  setActiveIconHandlerClicked={setActiveIconHandlerClicked} setClicked1={setClicked1} />
+      <div className="w-full h-16 bg-[#ffffff] shadow-3xl">
+        <DashboardHeader
+          setActiveIconHandlerClicked={setActiveIconHandlerClicked}
+          setClicked1={setClicked1}
+        />
       </div>
       <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
-        <div id="dashboardMap" className="bg-[#ffffff] overflow-y-scroll pb-24 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main">
+        <div
+          id="dashboardMap"
+          className="bg-[#ffffff] overflow-y-scroll pb-24 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main"
+        >
           <Outlet />
-       
         </div>
-       
-        <SidebarComponent  setActiveIconHandlerClicked={setActiveIconHandlerClicked} hoverIconClicked={clicked} clicked1={clicked1} setClicked1={setClicked1}  />
-        
+
+        <SidebarComponent
+          setActiveIconHandlerClicked={setActiveIconHandlerClicked}
+          hoverIconClicked={clicked}
+          clicked1={clicked1}
+          setClicked1={setClicked1}
+        />
       </div>
-      {!checkVerifyPhoneNumber&&setTimeout(() => {
-        setShowVerifyPhoneNumberModal(true)
-      }, 7000)}
-      {showVerifyPhoneNumberModal&&<PhoneNumberOperations />}
+      {!checkVerifyPhoneNumber &&
+        setTimeout(() => {
+          setShowVerifyPhoneNumberModal(true);
+        }, 7000)}
+      {showVerifyPhoneNumberModal && <PhoneNumberOperations />}
       {showModalBuyPlanResult.type != "" ? (
         <BuyPlanEasyToStartModal checkBuyPlan={showModalBuyPlanResult.result} />
-      ) : ("")}
+      ) : (
+        ""
+      )}
     </div>
   );
 }
