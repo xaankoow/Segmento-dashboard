@@ -20,7 +20,10 @@ import MylistContentProduction
     from "../component/Dashboard/ContentProduction/MyListContentProduction/MyListContentProduction.jsx"
 import GoogleIndexer from "../pages/GoogleIndexer";
 import WorkSpaceManagement from "../pages/workSpace management/WorkSpaceManagement";
-
+import RankTracking from "../component/Dashboard/RankTracking/RankTracking";
+import Keyword from "../component/Dashboard/RankTracking/keyword/Keyword";
+import Report from "../component/Dashboard/RankTracking/report/Report";
+import Competitors from "../component/Dashboard/RankTracking/competitors/Competitors";
 
 const tabContent = [
   {
@@ -43,6 +46,25 @@ const tabContent2 = [
   },
 ];
 
+const ranktrakingTabs = [
+  {
+    title: "نمای کلی",
+    content: <RankTracking />,
+  },
+  {
+    title: "کلمات کلیدی",
+    content: <Keyword />,
+  },
+  {
+    title: "رقبا",
+    content: <Competitors />,
+  },
+  {
+    title: "گزارش گیری",
+    content: <Report />,
+  },
+];
+
 export const DashboardRote=[
     {path:"userProfile",component:<EditUserProfile/>},
     {path:"planStatus",component:<PlanStatus />},
@@ -51,6 +73,7 @@ export const DashboardRote=[
     {path:"financialReports",component:<TableFinancialReports title={"گزارش‌های مالی"} />},
     {path:"workSpaceReport",component:<WorkSpaceReport />},
     {path:"WorkSpaceManagement",component:<WorkSpaceManagement />},
+    { path: "rank-tracking", component: <TabMenu tabsContent={ranktrakingTabs} title={"ابزار رتبه سنج (رنک ترکینگ Rank Tracking)"} amountOfData={"isContentProduction"} /> },
     {path:"keywordResearch",component:<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />},
     {path:"contentCreation",component:<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />},
     {path:"PageCounter",component:<PageCounter />},
