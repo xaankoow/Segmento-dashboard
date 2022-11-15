@@ -97,7 +97,7 @@ useEffect(() => {
       </div>
       {/* ):null} */}
 
-      <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh]">
+      <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh] min-w-[56px]">
         <IconsRight setActive={activeIconHandler} activeIcons={activeIcon}/>
         <div className="down">
           <div className="dropDownBox mb-5">

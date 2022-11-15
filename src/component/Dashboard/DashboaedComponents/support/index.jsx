@@ -14,18 +14,18 @@ export default function Index() {
   const loadingState = useSelector((state) => state.loadingState);
   const { userData } = useSelector((state) => state.userState);
 
-  const [chatData, setChateData] = useState("")
+  const [chatData, setChateData] = useState({messages:[],ticket:[]})
 
   const [textEditor, setTextEditor] = useState("")
   const [fileEditor, setFileEditor] = useState([])
 
-
   useEffect(() => {
-    if (chatData == "") {
+    if (chatData.messages.length == 0) {
       initChat()
       console.log(chatData)
     }
   }, [])
+
 
   const dispatch = useDispatch();
 
@@ -61,38 +61,62 @@ export default function Index() {
 
   const AddNewMessageAction = async () => {
     // debugger
-    let formdata = new FormData();
-    formdata.append("message", textEditor);
-    formdata.append("files[]", fileEditor);
-    formdata.append("uuid", ticketUuid);
-    try {
-      const { data } = await sendNewMessageTicketServise(formdata);
-      debugger
-      if (data.code == 200 & data.status == true) {
-        // setChateData(...chatData.ticket,...chatData.messages+data.data)
-
-        showToast("پیام شما به ما رسید", "success")
-      } else {
-        showToast("خطا در ارسال پیام", "error")
-      }
-
-    } catch (e) {
-      showToast("خطا در ارسال پیام", "error")
-
-    }
+        //handle show loadin
+        {
+          loadingState.ProcessingDelay.push("sendNewMessageTicketServise");
+          loadingState.canRequest = false;
+          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+        }
+        if (textEditor!="") {
+          
+          let formdata = new FormData();
+          formdata.append("message", textEditor);
+          formdata.append("files[]", fileEditor);
+          formdata.append("uuid", ticketUuid);
+          try {
+      
+            const { data } = await sendNewMessageTicketServise(formdata);
+      
+            if (data.code == 200 & data.status == true) {
+              debugger
+              const backupChatDate=chatData;
+              backupChatDate.messages.push(data.data)
+              setChateData(backupChatDate)
+              showToast("پیام شما به ما رسید", "success")
+            } else {
+              showToast("خطا در ارسال پیام", "error")
+            }
+      
+          } catch (e) {
+            showToast("خطا در ارسال پیام", "error")
+      
+          }
+        }else{
+          showToast("لطفا فیلد پیام را خالی نگذارید")
+        }
+        //handle hide loading
+        {
+          var removeProcessingItem = loadingState.ProcessingDelay.filter(
+            (item) => item != "sendNewMessageTicketServise"
+          );
+          loadingState.ProcessingDelay = removeProcessingItem;
+          loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+        }
   };
 
   const sendMessageData = (ticketUuid, textEditor, fileEditor)
+
   return (
     <div className=' px-7'>
       <PageTitle title={"پشتیبانی و تیکت‌ها "} />
-      {chatData != "" ? (
+      {chatData.messages.length != 0 ? (
         <>
           <CloseSection showCloseBaner={chatData.ticket.status == 0 ? true : false} />
           <HeaderCardInfo ticketId={chatData.ticket.ticket_id} updateDate={chatData.ticket.updated_at} chatStatus={chatData.ticket.status} subjectTitle={chatData.ticket.subject} />
           {
             chatData.messages.map(chatDetail => (
-              <Message chatData={chatDetail} />
+              <Message chatData={chatDetail} type={chatDetail.user.uuid==userData.user.uuid?"user":"admin"}/>
             ))
           }
           <div className='border border-gray rounded-lg pb-5 mt-9 max-w-3xl m-auto'>
@@ -123,9 +147,10 @@ export default function Index() {
               <SendMessage setValueEditor={setTextEditor} setFileArray={setFileEditor} />
             </div>
           </div>
-          <AuthButton reduxHandleClick={AddNewMessageAction} textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
+          <AuthButton handlerClick={AddNewMessageAction} textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
         </>
       ) : null}
+      {chatData.messages.length?"":""}
     </div>
   )
 }

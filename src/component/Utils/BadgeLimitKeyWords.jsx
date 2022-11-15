@@ -42,6 +42,12 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
         rest: limitsDatas.length > 0 ? limitsDatas[6].count : "",
       };
       break;
+    case "GOOGLE_INDEXER_LIMIT":
+      a = {
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[13].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[13].count : "",
+      };
+      break;
     //   data of workSpace
     case 1:
       a = {

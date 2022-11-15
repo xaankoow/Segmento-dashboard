@@ -1,0 +1,326 @@
+.tracker {
+    padding: 20px;
+}
+
+.tracker .tracker__wells {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 20px 0;
+}
+
+
+.tracker .tracker__wells .well {
+    border: 1px solid #D9D9D9;
+    border-radius: 9px;
+    overflow: hidden;
+    font-size: .9em;
+    width: 20%;
+    margin: 0 5px;
+}
+
+.tracker .tracker__wells .well .well__content {
+    padding: 10px;
+}
+
+.tracker .tracker__wells .well .well__content .well__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.tracker .tracker__wells .well .well__content .well__header .well__date {
+    background-color: #FCFCFB;
+    border-radius: 3px;
+    color: #7D7D7D;
+    padding: 2px 10px;
+    font-size: .8em;
+}
+
+.tracker .tracker__wells .well .well__content .well__more {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tracker .tracker__wells .well .well__content .well__more .well__btn {
+    padding: 8px 15px;
+    background: #FCFCFB;
+    border-radius: 9px;
+    color: #7D7D7D;
+    font-size: .9em;
+}
+
+.tracker .tracker__wells .well .well__footer {
+    background-color: #D9D9D9;
+    color: #fff;
+    font-size: .8em;
+    padding: 2px 0;
+    text-align: center;
+}
+
+.tracker .tracker__actions {
+    margin: 20px 0;
+}
+
+.tracker .tracker__actions .filter {
+    margin: 20px 0;
+}
+
+.tracker .tracker__actions .filter .filter__title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 145px;
+}
+
+.tracker .tracker__actions .filter .filter__title img {
+    margin: 0 0 0 5px;
+    background: #F2F5F7;
+    border-radius: 9px;
+    padding: 9px;
+    width: 35px;
+    height: 35px;
+}
+
+
+.tracker .tracker__actions .filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tracker .tracker__chart-section {
+    border: 1px solid #D9D9D9;
+    border-radius: 3px;
+    margin-top: 40px;
+}
+
+.tracker .tracker__chart-section .chart__header {
+    padding: 10px;
+    background: #FCFCFB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tracker .tracker__chart-section .chart__header .chart__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tracker .tracker__chart-section .chart__header .chart__actions .chart__action {
+    background-color: #F2F5F7;
+    border-radius: 9px;
+    padding: 10px;
+    width: 35px;
+    height: 35px;
+    margin: 0 10px 0 0;
+}
+
+.tracker .tracker__chart-section .chart__header .chart__actions .chart__action.chart__action--save {
+    border-radius: 9px;
+    padding: 9px;
+    width: 60px;
+    height: 35px;
+    margin: 0 20px 0 0;
+}
+
+.tracker .tracker__chart-section .chart__content {
+    padding: 10px;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__filters {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__filters .filter {
+    font-size: .8em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    width: 150px;
+    padding: 3px 2px;
+    margin: 0 0 0 15px;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__filters .filter .filter__content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__filters .filter .filter__color {
+    padding: 2px;
+    background-color: #7D7D7D;
+    border-radius: 30px;
+    position: absolute;
+    height: 100%;
+    width: 3px;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__filters .filter .filter__title {
+    margin: 0 7px;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--green {
+    background-color: #70D981;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--blue {
+    background-color: #283F79;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__filters .filter .filter__color.filter__color--red {
+    background-color: #C46F74;
+}
+
+.tracker .tracker__chart-section .chart__content .chart__chart {
+    padding: 25px 10px;
+}
+
+
+.tracker .tracker__report-section {
+    margin: 10px 0;
+}
+
+.tracker .tracker__report-section .report__title {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    text-align: right;
+}
+
+.tracker .tracker__report-section .report__filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.tracker .tracker__report-section .report__filter .filter__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tracker .tracker__report-section .report__filter .filter__content .filter__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tracker .tracker__report-section .report__filter .filter__content .filter__title img {
+    margin: 0 0 0 5px;
+    background: #F2F5F7;
+    border-radius: 9px;
+    padding: 9px;
+    width: 35px;
+    height: 35px;
+}
+
+.tracker .tracker__report-section .report__filter .filter__content .filter__title span {
+    margin-right: 10px;
+}
+
+.tracker .tracker__report-section .report__filter .filter__content .filter__items {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: .9em;
+}
+
+.tracker .tracker__report-section .report__filter .filter__content .filter__items .filter__item {
+    padding: 8px 20px;
+    border-radius: 9px;
+    background-color: #F2F5F7;
+    color: #488CDA;
+    margin-right: 15px;
+}
+
+.tracker .tracker__report-section .report__filter .filter__content .filter__items .filter__item.filter__item--active {
+    background: #0B4B94;
+    color: #fff;
+}
+
+.tracker .tracker__report-section .report__filter .filter__action {
+    padding: 8px 20px;
+    border-radius: 9px;
+    background-color: #F2F5F7;
+    color: #488CDA;
+    width: 60px;
+    height: 35px;
+}
+
+.tracker .tracker__report-section .report__charts {
+    margin: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.tracker .tracker__report-section .report__charts .chart {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__title {
+    margin-bottom: 10px;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points .point{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: .8em;
+    width: 40%;
+    margin: 5px;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points .point .point__color{
+    width: 23px;
+    height: 23px;
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points .point .point__color--red{
+    background-color: #F64E60;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points .point .point__color--purple{
+    background-color: #8950FC;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points .point .point__color--blue{
+    background: #3699FF;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points .point .point__color--green{
+    background: #0BB783;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points .point .point__color--yellow{
+    background: #FFCE47;
+}
+
+.tracker .tracker__report-section .report__charts .chart .chart__points .point .point__title{
+    margin-right: 5px;
+}

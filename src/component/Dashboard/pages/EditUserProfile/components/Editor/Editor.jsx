@@ -47,9 +47,18 @@ export const EditorCustomizedToolbarOption = ({setValueEditor}) => {
   const [text, setText] = useState(() => EditorState.createEmpty());
 useEffect(()=>{
   setValueEditor(text.getCurrentContent().getPlainText())
+  
 })
+
+// useEffect(() => {
+  // const editorState = EditorState.push(text, ContentState.createFromText(''));
+  // setText({ editorState });
+// }, [clearLength])
+
   // text.getCurrentContent().getPlainText()
 
+
+  
   return (
     <Editor
       editorState={text}
