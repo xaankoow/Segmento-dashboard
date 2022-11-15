@@ -25,8 +25,14 @@ export default function ManualSection() {
     },
   });
 
+  // width: 100%;
+  // height: 100%;
+  // background-color: #D9D9D966;
+  // top: 0px;
+
   return (
-    <div className={`${defaultBoxStyleIndexer}`}>
+    <div className={`${defaultBoxStyleIndexer} relative`}>
+      <div className='w-full h-full float-right top-0 bg-sectionDisable opacity-40 absolute bg- z-40'></div>
       <div className='flex justify-between items-center'>
         <div className={parentHorizontalLineInBeforTextStyleIndexer}>
           <HorizontalLineInBeforText text={"لیست لینک ها ( هرخط یک لینک )"} />
