@@ -73,7 +73,7 @@ export default function ComboBox({
       {open ? (
         <div
           className={
-            "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff] h-[150px] overflow-y-scroll"
+            "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff]  pb-2 max-h-36 overflow-y-scroll"
           }
         >
           {radioTextItems &&
