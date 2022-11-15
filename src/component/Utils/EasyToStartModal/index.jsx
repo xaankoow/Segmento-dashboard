@@ -14,7 +14,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   const [rederingWithDelay, setRederingWithDelay] = useState(false);
 
 
-  const [stepModal, setStepModal] = useState(3);
+  const [stepModal, setStepModal] = useState(1);
   const [plan, setPlan] = useState({ uuid: "", type: "", planIndex: 0 });
 
   const [free, setFree] = useState(false);
@@ -93,7 +93,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
               contentLabel="Example Modal"
               onRequestClose={()=>navigate(-1)}
             >
-              <div className='w-[907px] h-[87vh] overflow-scroll max-h-[712px]'>
+              <div className='w-[907px]  overflow-scroll max-h-[712px]'>
                 {checkErr != "" ? (
                   <div className='h-[685px]'>
                     {
