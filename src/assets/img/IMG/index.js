@@ -3,29 +3,38 @@ import visibility from '../dashboard/table/visibility.svg';
 import preUserProf from '../dashboard/userProfile/profileImage.png';
 import closeModalIco from '../modal/buyPlanReport/head/close.svg';
 import userAvatar from '../dashboard//userProfile/profileImage.png';
-import hamkari  from '../dashboard/support/hamkari.svg';
-import idea  from '../dashboard/support/idea.svg';
-import omorEdari  from '../dashboard/support/omorEdari.svg';
-import omorFani  from '../dashboard/support/omorFani.svg';
-import omorMali  from '../dashboard/support/omorMali.svg';
-import soalatPishKharid  from '../dashboard/support/soalatPishKharid.svg';
-import copyIcon  from '../dashboard/table/content_copy.svg';
-import copyIconWhite  from '../dashboard/table/content_copy_white.svg';
-import popUpWarning  from '../popUp/errorIco.svg';//import errorIco_svg from './assets/img/popUp/errorIco.svg'
-import pishkhan  from '../dashboard/workSpace/footer/button_ico.svg';///img/dashboard/workSpace/footer/button_ico.svg
-import download  from '../dashboard/usableImage/download.svg';
-import garbage  from '../dashboard/usableImage/delete.svg';
-import blueVisible  from '../dashboard/usableImage/visibility.svg';
-import workSpace  from '../dashboard/nav_right/workspaces.svg';
-import popupError  from '../popUp/errorIco.svg';
+import hamkari from '../dashboard/support/hamkari.svg';
+import idea from '../dashboard/support/idea.svg';
+import omorEdari from '../dashboard/support/omorEdari.svg';
+import omorFani from '../dashboard/support/omorFani.svg';
+import omorMali from '../dashboard/support/omorMali.svg';
+import soalatPishKharid from '../dashboard/support/soalatPishKharid.svg';
+import copyIcon from '../dashboard/table/content_copy.svg';
+import copyIconWhite from '../dashboard/table/content_copy_white.svg';
+import popUpWarning from '../popUp/errorIco.svg';//import errorIco_svg from './assets/img/popUp/errorIco.svg'
+import pishkhan from '../dashboard/workSpace/footer/button_ico.svg';///img/dashboard/workSpace/footer/button_ico.svg
+import download from '../dashboard/usableImage/download.svg';
+import garbage from '../dashboard/usableImage/delete.svg';
+import blueVisible from '../dashboard/usableImage/visibility.svg';
+import workSpace from '../dashboard/nav_right/workspaces.svg';
+import popupError from '../popUp/errorIco.svg';
 // import add_svg from "../../../assets/img/modal/workSpace/body/add.svg";
 import plus from '../../img/modal/workSpace/body/add.svg'
 import darkBlueCopy from "../dashboard/usableImage/content_copy.svg"
 import tickPopUp from "../popUp/tickk.svg"
 // ../../../../assets/img/dashboard/financialReports/calendar/file_download.svg
 import calendarIco from "../dashboard/financialReports/calendar/calendarIco.svg"
+import sendLinkAdress from '../dashboard/indexer/sendLinkAdress.svg'
+import indexerWorkSpaceListIco from '../dashboard/indexer/indexerWorkSpaceListIco.svg'
+import greenTick from '../dashboard/indexer/greenTick.svg'
+import updateList from '../dashboard/indexer/updateList.svg'
+import blueArrowBtn from '../bottom/blueArrow.svg'
+import settingBtn from '../bottom/settings.svg'
+import addLinkBtn from '../bottom/addLink.svg'
+import deleteBtn from '../bottom/bin.svg'
 
-export const ImageContainer={
+
+export const ImageContainer = {
   infoBlue,
   visibility,
   preUserProf,
@@ -49,10 +58,21 @@ export const ImageContainer={
   popupError,
   pishkhan,
   tickPopUp,
+
   // btn ico
   plus,
+  blueArrowBtn,
+  settingBtn,
+  addLinkBtn,
+  deleteBtn,
 
   // date picker
-  calendarIco
+  calendarIco,
+
+  //indexer section
+  sendLinkAdress,
+  indexerWorkSpaceListIco,
+  greenTick,
+  updateList
 
 }
