@@ -22,7 +22,7 @@ export default function AuthButton({
   return (
     <button
       variant="contained"
-      className={`${classes != undefined&&classes.includes("btn-secondary") == true ? classes : " btn-style " + classes}`}
+      className={`${classes != undefined&&classes.includes("btn-secondary")|classes.includes("btn-delete_style") == true ? classes : " btn-style " + classes}`}
       disabled={disabled != undefined ? disabled ? true : !canRequest : !canRequest}
       style={style}
       type={submitType != undefined ? "submit" : "button"}

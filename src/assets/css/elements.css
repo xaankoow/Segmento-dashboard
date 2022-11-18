@@ -17,6 +17,20 @@
   /* transition: background 0.08s ease-in-out; */
   transition: background 0.5s ease-in-out;
 }
+.btn-delete_style {
+  background: #F3524226 !important;
+  font-size: 14px !important;
+  color: #F35242B2;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
+  /* transition: background 0.08s ease-in-out; */
+  transition: background 0.5s ease-in-out;
+}
 
 .table-border{
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
