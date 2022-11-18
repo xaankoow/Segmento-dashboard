@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { ImageContainer } from '../../../assets/img/IMG'
 import AuthButton from '../../../component/Auth/authButton/AuthButton'
 import TextArea from '../../../component/shared/TeaxtArea/TextArea'
 import HorizontalLineInBeforText from '../../../component/shared/Text/HorizontalLineInBeforText'
 import { defaultBoxStyleIndexer, parentHorizontalLineInBeforTextStyleIndexer } from '../../../variables/indexer'
 
-export default function ManualSection() {
+export default function ManualSection({ disableSection }) {
 
   const [textArea, setTextArea] = useState("")
 
@@ -25,14 +26,9 @@ export default function ManualSection() {
     },
   });
 
-  // width: 100%;
-  // height: 100%;
-  // background-color: #D9D9D966;
-  // top: 0px;
-
   return (
     <div className={`${defaultBoxStyleIndexer} relative`}>
-      <div className='w-full h-full float-right top-0 bg-sectionDisable opacity-40 absolute bg- z-40'></div>
+      {disableSection ? <div className='w-full h-full float-right top-0 bg-sectionDisable opacity-40 absolute bg- z-40'></div> : null}
       <div className='flex justify-between items-center'>
         <div className={parentHorizontalLineInBeforTextStyleIndexer}>
           <HorizontalLineInBeforText text={"لیست لینک ها ( هرخط یک لینک )"} />
@@ -50,7 +46,6 @@ export default function ManualSection() {
         <div className={parentHorizontalLineInBeforTextStyleIndexer}>
           <HorizontalLineInBeforText text={"آپلود فایل لینک ها"} />
         </div>
-
         <div className='flex w-full mt-2 items-center'>
           <div className='flex flex-grow items-center border border-sectionDisable rounded-[3px] justify-between px-3 h-11'>
             <span className='text-title text-sm'>پیوست فایل</span>
@@ -58,16 +53,16 @@ export default function ManualSection() {
           </div>
           <div
             {...getRootProps({ className: "dropzone" })}
-          // className="border rounded-lg border-dashed border-primary min-w-[358px] bg-secondary flex flex-col justify-center items-center py-4 gap-4"
           >
             <AuthButton classes={"btn-secondary mr-5"} textButton={"انتخاب فایل"} />
-            {/* <input {...getInputProps()} className="btn-secondary mr-5" /> */}
           </div>
         </div>
-
-
       </div>
-
+      <div className=' text-left w-full mt-7'>
+        <div className=' inline-block'>
+            <AuthButton textButton={<><span className='text-orgWhite'>ارسال لینک</span><img src={ImageContainer.sendLinkAdress} alt="arrow" className=' mr-3'/></>} disabled={disableSection}/>
+        </div>
+      </div>
     </div>
   )
 }
