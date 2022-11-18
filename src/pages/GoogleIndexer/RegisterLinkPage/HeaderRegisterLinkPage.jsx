@@ -20,6 +20,7 @@ export default function HeaderRegisterLinkPage() {
                         <ComboBox
                             selectedItem={workSpaceComboSelected}
                             radioTextItems={allWorkSpace.map(item => { return item.website })}
+                            placeholder="ورک اسپیس را انتخاب کنید"
                         // radioClickedHandler={(e) => setFilterCategories(e.target.value)}
                         />
 
