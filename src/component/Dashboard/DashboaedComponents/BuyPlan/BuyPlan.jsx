@@ -32,31 +32,33 @@ export default function BuyPlan({ title }) {
   }
 
   return (
-    <div className='plans_body_container buy_plan_section '>
+    <>
       <PageTitle title={title} />
-      <div className='main_buy_plan_section overflow-visible max-w-7xl w-11/12 '>
-        <div className='section_title'>
-          <div>
-            <p>رایگان شروع کنید؛ قدرتمند ادامه دهید</p>
-            <a href="https://segmento.ir/pricing/">
-              <button className="btn-secondary mt-2 mb-3 m-auto">توضیحات بیشتر</button>
+      <div className='plans_body_container buy_plan_section '>
+        <div className='main_buy_plan_section overflow-visible max-w-7xl w-11/12 '>
+          <div className='section_title'>
+            <div>
+              <p>رایگان شروع کنید؛ قدرتمند ادامه دهید</p>
+              <a href="https://segmento.ir/pricing/">
+                <button className="btn-secondary mt-2 mb-3 m-auto">توضیحات بیشتر</button>
+              </a>
+            </div>
+          </div>
+          <CardPlans plan={plan} setPlan={setPlan} />
+          <HandleParagraphInfoPlan typePlan={plan.type} indexPlan={plan.planIndex} />
+          <AuthButton classes={"m-auto mt-4"} handlerClick={setShowReportModal} setOnclickValue={true} disabled={plan.uuid != "" ? false : true} onClick={() => setShowReportModal(true)} textButton={<Fragment>فعالسازی اشتراک<span className='forward-ico'></span></Fragment>}></AuthButton>
+          <div className='footer_message '>
+            <p>آیا صاحب کسب‌و‌کار هستید و به امکانات بیشتری نیاز دارید؟</p>
+            <a href="https://segmento.ir/about/support/">
+              <AuthButton classes={"btn-secondary my-7"} textButton={"بله هستم"} />
             </a>
           </div>
         </div>
-        <CardPlans plan={plan} setPlan={setPlan} />
-        <HandleParagraphInfoPlan typePlan={plan.type} indexPlan={plan.planIndex} />
-        <AuthButton classes={"m-auto mt-4"} handlerClick={setShowReportModal} setOnclickValue={true} disabled={plan.uuid != "" ? false : true} onClick={() => setShowReportModal(true)} textButton={<Fragment>فعالسازی اشتراک<span className='forward-ico'></span></Fragment>}></AuthButton>
-        <div className='footer_message '>
-          <p>آیا صاحب کسب‌و‌کار هستید و به امکانات بیشتری نیاز دارید؟</p>
-          <a href="https://segmento.ir/about/support/">
-            <AuthButton classes={"btn-secondary my-7"} textButton={"بله هستم"} />
-          </a>
+        <div className='report_buy_plan w-[500px]'>
+          {showReportModal && <ReportBuyPlanSection handleClose={handleCloseReportModal} packageUuid={plan.uuid} />}
         </div>
+        <SetTitleTabBrowser nameSection={"خرید اشتراک"} />
       </div>
-      <div className='report_buy_plan w-[500px]'>
-        {showReportModal && <ReportBuyPlanSection handleClose={handleCloseReportModal} packageUuid={plan.uuid} />}
-      </div>
-      <SetTitleTabBrowser nameSection={"خرید اشتراک"} />
-    </div>
+    </>
   )
 }

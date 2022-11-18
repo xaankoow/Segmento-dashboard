@@ -71,16 +71,16 @@ export default function DashboardBody() {
 
   return (
     <div id="DASHBOARD">
-      <div className="w-full h-16 bg-[#ffffff] shadow-3xl">
+      <div id="main-header_layOut" className="w-full h-16 bg-[#ffffff] shadow-3xl">
         <DashboardHeader
           setActiveIconHandlerClicked={setActiveIconHandlerClicked}
           setClicked1={setClicked1}
         />
       </div>
-      <div className="flex flex-row-reverse relative top-1 w-full h-screen body">
+      <div id="main-body_container_layOut" className="flex flex-row-reverse relative w-full h-screen body">
         <div
           id="dashboardMap"
-          className="bg-[#ffffff] overflow-y-scroll pb-24 relative h-full shadow-3xl mt-1 mx-2 rounded-md z-[1] flex-grow main"
+          className="bg-[#ffffff] pb-5 overflow-y-scroll relative h-full shadow-3xl mx-2 rounded-md z-[1] flex-grow main"
         >
           <Outlet />
         </div>

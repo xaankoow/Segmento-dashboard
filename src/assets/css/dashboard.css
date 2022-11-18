@@ -50,9 +50,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	position: absolute;
+	/* position: absolute; */
 	/* bottom: 31px; */
-	bottom: 15px;
+	/* bottom: 15px; */
+	margin-bottom: 5px;
 }
 
 /* tooltip  */

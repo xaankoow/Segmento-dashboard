@@ -207,7 +207,7 @@ export default function PlanStatus() {
   };
 
   return (
-    <div className="">
+    <>
       <PageTitle title={" وضعیت اشتراک"} />
       <div className="mx-auto w-full mt-9">
         <div className=" flex flex-col h-100vh w-100vh rounded mx-4 my-4 bg-[#fff]">
@@ -470,6 +470,6 @@ export default function PlanStatus() {
       </div>
 
       <SetTitleTabBrowser nameSection={"وضعیت اشتراک"} />
-    </div>
+    </>
   );
 }

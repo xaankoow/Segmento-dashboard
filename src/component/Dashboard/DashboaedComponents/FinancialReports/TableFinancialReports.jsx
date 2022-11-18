@@ -116,7 +116,7 @@ export default function TableFinancialReports({ title }) {
   const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
   return (
-    <div>
+    <>
       <PageTitle title={title} />
       <div className=" w-full px-10 m-auto">
         <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
@@ -300,6 +300,6 @@ export default function TableFinancialReports({ title }) {
         </div>
       </div>
       <SetTitleTabBrowser nameSection={"گزارش های مالی"} />
-    </div>
+    </>
   );
 }

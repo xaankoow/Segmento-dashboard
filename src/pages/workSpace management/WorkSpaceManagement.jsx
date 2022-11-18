@@ -59,7 +59,7 @@ export default function WorkSpaceManagement() {
           title={"توجه !"}
         />
       )}
-      <div>
+      <>
         <PageTitle title={"مدیریت ورک اسپیس ها"} />
         <div className="border rounded-lg border-sectionDisable py-4 px-7 mx-9 mt-7">
           <span className="text-lg">
@@ -101,7 +101,7 @@ export default function WorkSpaceManagement() {
           rowKey={rowKey}
           classname={"px-9"}
         />
-      </div>
+      </>
     </>
   );
 }

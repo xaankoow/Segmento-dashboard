@@ -53,7 +53,7 @@ useEffect(() => {
   return (
     <>
       <div
-        className="list_hover mt-1 pt-5 h-[93vh]  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between min-w-[256px]"
+        className="list_hover pt-5 h-full  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between min-w-[256px]"
         style={{ width: closeNav ? "256px" : "0px" }}
       >
         {activeIcon == 0 ? (
@@ -97,7 +97,7 @@ useEffect(() => {
       </div>
       {/* ):null} */}
 
-      <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between mt-1 w-14 shadow-3xl h-[93vh] min-h-[85vh] min-w-[56px]">
+      <div className="nav_right relative flex flex-col right-0 bg-[#fcfcfb] items-center justify-between w-14 shadow-3xl h-full min-w-[56px]">
         <IconsRight setActive={activeIconHandler} activeIcons={activeIcon}/>
         <div className="down">
           <div className="dropDownBox mb-5">
@@ -143,7 +143,7 @@ useEffect(() => {
           <div className="line mb-3"></div>
           {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
           <a href={"https://xaankoo.com/"}>
-            <div className="xaankoo_logo w-11 h-9 mb-4"></div>
+            <div className="xaankoo_logo w-11 h-9"></div>
           </a>
         </div>
       </div>

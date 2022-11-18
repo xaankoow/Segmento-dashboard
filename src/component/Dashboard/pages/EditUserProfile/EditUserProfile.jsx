@@ -330,7 +330,7 @@ export default function EditUserProfile() {
           title={" گذرواژه جدید ذخیره شد."}
         />
       )}
-      <div className="">
+      <>
         <PageTitle title={"حساب کاربری"} />
         {/* <AuthButton textButton={"test api"} handlerClick={pastSelexboxData()}/> */}
         <div className="w-full flex flex-col justify-center items-center">
@@ -541,7 +541,7 @@ export default function EditUserProfile() {
             )}
           </div>
         </div>
-      </div>
+      </>
       <SetTitleTabBrowser nameSection={"حساب کاربری"} />
       {forceUpdates ? "" : ""}
     </>

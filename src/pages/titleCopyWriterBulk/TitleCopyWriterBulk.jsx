@@ -112,7 +112,7 @@ export default function TitleCopyWriterBulk() {
       <div className="border border-sectionDisable rounded-lg mx-9 mb-4 flex justify-around h-[67px] items-center ">
         {categoriesQuestion.map((item, index) => {
           return (
-            <div className="flex items-center " key={index}>
+            <div className="flex items-center z-0" key={index}>
               <input
                 type="radio"
                 onClick={() => handleSelectCategory(index)}
