@@ -8,6 +8,7 @@ import { store } from "./component/Redux/Store";
 import 'react-toastify/dist/ReactToastify.css';
 import "./assets/css/style.css";
 import "./assets/css/iranyekan-font.css"
+import 'react-loading-skeleton/dist/skeleton.css'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>

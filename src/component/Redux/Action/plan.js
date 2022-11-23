@@ -23,13 +23,13 @@ export const getAllPlanData = () => {
 
             try {
 
-                if (!loadingState.ProcessingDelay.includes("getAllPlan")) {
+                // if (!loadingState.ProcessingDelay.includes("getAllPlan")) {
                     //handle show loadin
-                    {
-                        loadingState.ProcessingDelay.push("getAllPlan");
-                        loadingState.canRequest = false;
-                        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-                    }
+                    // {
+                    //     loadingState.ProcessingDelay.push("getAllPlan");
+                    //     loadingState.canRequest = false;
+                    //     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                    // }
                     const workSpaces = await getAllPlan()
 
                     if (workSpaces.data.status == true && workSpaces.data.code == 200) {
@@ -39,14 +39,14 @@ export const getAllPlanData = () => {
 
                     }
                     //handle hide loading
-                    {
-                        const loadingState2 = { ...getState().loadingState }
-                        var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
-                        loadingState2.ProcessingDelay = removeProcessingItem;
-                        loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
-                        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
-                    }
-                }
+                    // {
+                    //     const loadingState2 = { ...getState().loadingState }
+                    //     var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
+                    //     loadingState2.ProcessingDelay = removeProcessingItem;
+                    //     loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
+                    //     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
+                    // }
+                // }
             } catch (error) {
                 error.response.data.errors.forEach(element => {
                     toastMessage += element + " / ";
@@ -61,13 +61,13 @@ export const getAllPlanData = () => {
                     progress: undefined,
                 });
                 //handle hide loading
-                {
-                    const loadingState2 = { ...getState().loadingState }
-                    var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
-                    loadingState2.ProcessingDelay = removeProcessingItem;
-                    loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
-                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
-                }
+                // {
+                //     const loadingState2 = { ...getState().loadingState }
+                //     var removeProcessingItem = loadingState2.ProcessingDelay.filter(item => item != "getAllPlan");
+                //     loadingState2.ProcessingDelay = removeProcessingItem;
+                //     loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
+                //     await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 })
+                // }
             }
         }
 

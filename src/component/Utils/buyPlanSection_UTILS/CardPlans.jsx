@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthInput from '../../Auth/authInput/AuthInput';
 import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../Redux/Action/plan';
@@ -91,167 +92,179 @@ export default function CardPlans({ plan, setPlan }) {
 
   return (
     <div className='plan_cards_container'>
-      <div className='bronze plan_card'>
-        <span className='title'>برنزی</span>
-        <hr />
-        <div className='plan'>
-          {allPackageData.map((item, index) => {
-            // 
-            if (item.type_text == "برنزی") {
-              return (
-                <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "bronze", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
-                  <div>
-                    <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
-                    <p>{item.title}</p>
-                  </div>
-                  <span className='off_price'>{item.default_discount_text}</span>
-                </div>
-              )
-            }
-          })}
-        </div>
-        {allPackageData.length > 1 &&
-          <DiscountTagValue
-            tagStatusName={"bronze"}
-            price={packageBronzePrice!=0?packageBronzePrice:allPackageData[2]}
-            planSelected={plan}
-          />
-        }
-        <div className='input_apply_token_container'>
-          <AuthInput
-            textLabelInput=" کد تخفیف  "
-            width={"100%"}
-            typeInput="text"
-            direction={"rtl"}
-            handleArrowPlan={handleShowArrowDiscount}
-            targePlanArrow={"bronze"}
-            // disable={discount != "" ? true : false}
-            errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
-          />
-          <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}></button>
-        </div>
-      </div>
-      <div className='silver plan_card mx-1'>
-        <span className='title'>نقره ای</span>
-        <hr />
-        <div className='plan'>
-          {allPackageData.map((item, index) => {
-            // 
-            if (item.type_text == "نقره ای") {
-              if (item.title != "14 روز رایگان") {
-                return (
-                  <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "silver", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
-                    <div>
-                      <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
-                      <p>{item.title}</p>
+      {allPackageData.length > 0 ?
+        <>
+          <div className='bronze plan_card'>
+            <span className='title'>برنزی</span>
+            <hr />
+            <div className='plan'>
+              {allPackageData.map((item, index) => {
+                // 
+                if (item.type_text == "برنزی") {
+                  return (
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "bronze", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
+                      <div>
+                        <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
+                        <p>{item.title}</p>
+                      </div>
+                      <span className='off_price'>{item.default_discount_text}</span>
                     </div>
-                    <span className='off_price'>{item.default_discount_text}</span>
-                  </div>)
-              }
+                  )
+                }
+              })}
+            </div>
+            {allPackageData.length > 1 &&
+              <DiscountTagValue
+                tagStatusName={"bronze"}
+                price={packageBronzePrice != 0 ? packageBronzePrice : allPackageData[2]}
+                planSelected={plan}
+              />
             }
-          })}
-        </div>
-        {allPackageData.length > 1 &&
-          <DiscountTagValue
-            tagStatusName={"silver"}
-            price={packageSilverPrice!=0?packageSilverPrice:allPackageData[6]}
-            planSelected={plan}
-            // defaultDiscount={allPackageData[6].}
-          />
-        }
-        <div className='input_apply_token_container'>
-          <AuthInput
-            textLabelInput=" کد تخفیف  "
-            width={"100%"}
-            typeInput="text"
-            direction={"rtl"}
-            handleArrowPlan={handleShowArrowDiscount}
-            targePlanArrow={"silver"}
-            // disable={discount != "" ? true : false}
-            errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
-          />
-          <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}></button>
-        </div>
-      </div>
-      <div className='gold plan_card ml-1'>
-        <span className='title'>طلایی</span>
-        <hr />
-        <div className='plan'>
-          {allPackageData.map((item, index) => {
-
-            if (item.type_text == "طلایی") {
-              return (
-                <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "gold", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
-                  <div>
-                    <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
-                    <p>{item.title}</p>
-                  </div>
-                  <span className='off_price'>{item.default_discount_text}</span>
-                </div>)
+            <div className='input_apply_token_container'>
+              <AuthInput
+                textLabelInput=" کد تخفیف  "
+                width={"100%"}
+                typeInput="text"
+                direction={"rtl"}
+                handleArrowPlan={handleShowArrowDiscount}
+                targePlanArrow={"bronze"}
+                // disable={discount != "" ? true : false}
+                errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
+              />
+              <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}></button>
+            </div>
+          </div>
+          <div className='silver plan_card mx-1'>
+            <span className='title'>نقره ای</span>
+            <hr />
+            <div className='plan'>
+              {allPackageData.map((item, index) => {
+                // 
+                if (item.type_text == "نقره ای") {
+                  if (item.title != "14 روز رایگان") {
+                    return (
+                      <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "silver", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
+                        <div>
+                          <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
+                          <p>{item.title}</p>
+                        </div>
+                        <span className='off_price'>{item.default_discount_text}</span>
+                      </div>)
+                  }
+                }
+              })}
+            </div>
+            {allPackageData.length > 1 &&
+              <DiscountTagValue
+                tagStatusName={"silver"}
+                price={packageSilverPrice != 0 ? packageSilverPrice : allPackageData[6]}
+                planSelected={plan}
+              // defaultDiscount={allPackageData[6].}
+              />
             }
-          })}
-        </div>
-        {allPackageData.length > 1 &&
-          <DiscountTagValue
-            tagStatusName={"gold"}
-            price={packageGoldPrice!=0?packageGoldPrice:allPackageData[10]}
-            planSelected={plan}
-          />
-        }
-        <div className='input_apply_token_container'>
-          <AuthInput
-            textLabelInput=" کد تخفیف  "
-            width={"100%"}
-            typeInput="text"
-            direction={"rtl"}
-            handleArrowPlan={handleShowArrowDiscount}
-            targePlanArrow={"gold"}
-            // disable={discount != "" ? true : false}
-            errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
-          />
-          <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}></button>
-        </div>
-      </div>
-      <div className='diamond plan_card'>
+            <div className='input_apply_token_container'>
+              <AuthInput
+                textLabelInput=" کد تخفیف  "
+                width={"100%"}
+                typeInput="text"
+                direction={"rtl"}
+                handleArrowPlan={handleShowArrowDiscount}
+                targePlanArrow={"silver"}
+                // disable={discount != "" ? true : false}
+                errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
+              />
+              <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}></button>
+            </div>
+          </div>
+          <div className='gold plan_card ml-1'>
+            <span className='title'>طلایی</span>
+            <hr />
+            <div className='plan'>
+              {allPackageData.map((item, index) => {
 
-        <span className='title'>الماسی</span>
-        <hr />
-        <div className='plan'>
-          {allPackageData.map((item, index) => {
-
-            if (item.type_text == "الماسی") {
-              return (
-                <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "diamond", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
-                  <div>
-                    <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
-                    <p>{item.title}</p>
-                  </div>
-                  <span className='off_price'>{item.default_discount_text}</span>
-                </div>)
+                if (item.type_text == "طلایی") {
+                  return (
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "gold", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
+                      <div>
+                        <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
+                        <p>{item.title}</p>
+                      </div>
+                      <span className='off_price'>{item.default_discount_text}</span>
+                    </div>)
+                }
+              })}
+            </div>
+            {allPackageData.length > 1 &&
+              <DiscountTagValue
+                tagStatusName={"gold"}
+                price={packageGoldPrice != 0 ? packageGoldPrice : allPackageData[10]}
+                planSelected={plan}
+              />
             }
-          })}
-        </div>
-        {allPackageData.length > 1 &&
-          <DiscountTagValue
-            tagStatusName={"diamond"}
-            price={packageDiamondPrice!=0?packageDiamondPrice:allPackageData[14]}
-            planSelected={plan}
-          />
-        }
-        <div className='input_apply_token_container'>
-          <AuthInput
-            textLabelInput=" کد تخفیف  "
-            width={"100%"}
-            typeInput="text"
-            direction={"rtl"}
-            handleArrowPlan={handleShowArrowDiscount}
-            targePlanArrow={"diamond"}
-            // disable={discount != "" ? true : false}
-            errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
-          />
-          <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}></button>
-        </div>
-      </div>
+            <div className='input_apply_token_container'>
+              <AuthInput
+                textLabelInput=" کد تخفیف  "
+                width={"100%"}
+                typeInput="text"
+                direction={"rtl"}
+                handleArrowPlan={handleShowArrowDiscount}
+                targePlanArrow={"gold"}
+                // disable={discount != "" ? true : false}
+                errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
+              />
+              <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}></button>
+            </div>
+          </div>
+          <div className='diamond plan_card'>
+
+            <span className='title'>الماسی</span>
+            <hr />
+            <div className='plan'>
+              {allPackageData.map((item, index) => {
+
+                if (item.type_text == "الماسی") {
+                  return (
+                    <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "diamond", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
+                      <div>
+                        <input type="radio" name="radio" id="" checked={plan.uuid == item.uuid ? true : false} />
+                        <p>{item.title}</p>
+                      </div>
+                      <span className='off_price'>{item.default_discount_text}</span>
+                    </div>)
+                }
+              })}
+            </div>
+            {allPackageData.length > 1 &&
+              <DiscountTagValue
+                tagStatusName={"diamond"}
+                price={packageDiamondPrice != 0 ? packageDiamondPrice : allPackageData[14]}
+                planSelected={plan}
+              />
+            }
+            <div className='input_apply_token_container'>
+              <AuthInput
+                textLabelInput=" کد تخفیف  "
+                width={"100%"}
+                typeInput="text"
+                direction={"rtl"}
+                handleArrowPlan={handleShowArrowDiscount}
+                targePlanArrow={"diamond"}
+                // disable={discount != "" ? true : false}
+                errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
+              />
+              <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}></button>
+            </div>
+          </div>
+        </>
+        : (
+          <>
+              <Skeleton width={"230px"} height={"400px"}/>
+              <Skeleton width={"230px"} height={"400px"}/>
+              <Skeleton width={"230px"} height={"400px"}/>
+              <Skeleton width={"230px"} height={"400px"}/>
+          </>
+        )}
+
     </div>
   )
 }

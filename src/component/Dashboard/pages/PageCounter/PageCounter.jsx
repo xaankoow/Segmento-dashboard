@@ -21,7 +21,7 @@ export default function PageCounter() {
           <span className="text-primaryV1">
             {" "}
             پس از طی فرایند به داده های تمیز و ساده دسترسی دارید که قابل استفاده و مطمئن هستند .
-</span>
+          </span>
         </div>
         <div className="flex justify-between items-center mt-16 ">
 
