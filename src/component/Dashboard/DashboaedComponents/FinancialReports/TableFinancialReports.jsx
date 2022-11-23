@@ -12,6 +12,7 @@ import { FilterData } from "./changeDataSearch";
 import { DateObject } from "react-multi-date-picker";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import file_download_svg from "../../../../assets/img/dashboard/financialReports/file_download.svg";
+import Skeleton from "react-loading-skeleton";
 
 export default function TableFinancialReports({ title }) {
   const [targetSortFilter, setTargetSortFilter] = useState("تاریخ خرید");
@@ -183,7 +184,7 @@ export default function TableFinancialReports({ title }) {
               <div className="overflow-scroll h-[94%] text-xs font-normal">
                 {/* {financialDataTableFiltered.length > 0 && */}
 
-                {financialDataTableFiltered.length != 0 &&
+                {financialDataTableFiltered.length != 0 ?
                   financialDataTableFiltered.map((item, index) => (
                     <div
                       className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
@@ -194,10 +195,10 @@ export default function TableFinancialReports({ title }) {
                       <p className=" w-24 text-center">
                         <span
                           className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px] ${item.payment_status_text == "پرداخت ناموفق"
-                              ? " bg-[#F35242]"
-                              : item.payment_status_text == "پرداخت نشده"
-                                ? "bg-yellow"
-                                : "bg-[#10CCAE]"
+                            ? " bg-[#F35242]"
+                            : item.payment_status_text == "پرداخت نشده"
+                              ? "bg-yellow"
+                              : "bg-[#10CCAE]"
                             }`}
                         >
                           {item.payment_status_text}
@@ -248,7 +249,124 @@ export default function TableFinancialReports({ title }) {
                       {/* ردیف */}
                       <p className=" w-8 text-center">{index + 1}</p>
                     </div>
-                  ))}
+                  )) :
+                  <div> {/* skeleton style */}
+                    <div
+                      className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
+                    >
+                      {/* عملیات */}
+                      <p className=" w-28 text-center">                 
+                      <Skeleton/>
+                      
+                      </p>
+                      {/* وضعیت */}
+                      <p className=" w-24 text-center">
+                        <span
+                          className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px]`}
+                        >
+                          <Skeleton/>
+                        </span>
+                      </p>
+                      {/* مبلغ */}
+                      {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
+                      <p className=" w-[72px] text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* انقضا */}
+                      <p className=" w-16 text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* خرید */}
+                      <p className=" w-[68px] text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* نوع اشتراک */}
+                      <p className=" w-36 text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* شماره فاکتور */}
+                      <p className=" w-20 text-center"><Skeleton/></p>
+                      {/* ردیف */}
+                      <p className=" w-8 text-center"><Skeleton/></p>
+                    </div>
+                    <div
+                      className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
+                    >
+                      {/* عملیات */}
+                      <p className=" w-28 text-center">                 
+                      <Skeleton/>
+                      
+                      </p>
+                      {/* وضعیت */}
+                      <p className=" w-24 text-center">
+                        <span
+                          className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px]`}
+                        >
+                          <Skeleton/>
+                        </span>
+                      </p>
+                      {/* مبلغ */}
+                      {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
+                      <p className=" w-[72px] text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* انقضا */}
+                      <p className=" w-16 text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* خرید */}
+                      <p className=" w-[68px] text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* نوع اشتراک */}
+                      <p className=" w-36 text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* شماره فاکتور */}
+                      <p className=" w-20 text-center"><Skeleton/></p>
+                      {/* ردیف */}
+                      <p className=" w-8 text-center"><Skeleton/></p>
+                    </div>
+                    <div
+                      className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
+                    >
+                      {/* عملیات */}
+                      <p className=" w-28 text-center">                 
+                      <Skeleton/>
+                      
+                      </p>
+                      {/* وضعیت */}
+                      <p className=" w-24 text-center">
+                        <span
+                          className={`inline-block w-20 py-2 text-center text-[#FFFFFF] rounded-[20px]`}
+                        >
+                          <Skeleton/>
+                        </span>
+                      </p>
+                      {/* مبلغ */}
+                      {/* <p className=" w-11 text-center">{item.sub_total.toString().substring(0, item.sub_total.toString().length - 3)}</p> */}
+                      <p className=" w-[72px] text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* انقضا */}
+                      <p className=" w-16 text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* خرید */}
+                      <p className=" w-[68px] text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* نوع اشتراک */}
+                      <p className=" w-36 text-center">
+                      <Skeleton/>
+                      </p>
+                      {/* شماره فاکتور */}
+                      <p className=" w-20 text-center"><Skeleton/></p>
+                      {/* ردیف */}
+                      <p className=" w-8 text-center"><Skeleton/></p>
+                    </div>
+                  </div>
+                }
               </div>
             </div>
           </div>

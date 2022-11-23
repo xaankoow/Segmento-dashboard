@@ -32,12 +32,12 @@ export default function Index() {
 
   const ticketUuid = window.location.hash.substring(window.location.hash.lastIndexOf('/') + 1);
   const initChat = async () => {
-    //handle show loadin
-    {
-      loadingState.ProcessingDelay.push("getSupportChatData");
-      loadingState.canRequest = false;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    }
+    // //handle show loadin
+    // {
+    //   loadingState.ProcessingDelay.push("getSupportChatData");
+    //   loadingState.canRequest = false;
+    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    // }
     try {
 
       const { data } = await getSupportChatData(ticketUuid);
@@ -49,15 +49,15 @@ export default function Index() {
       // setShowPopUpLimit(true);
       console.log(error)
     }
-    //handle hide loading
-    {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(
-        (item) => item != "getSupportChatData"
-      );
-      loadingState.ProcessingDelay = removeProcessingItem;
-      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    }
+    // //handle hide loading
+    // {
+    //   var removeProcessingItem = loadingState.ProcessingDelay.filter(
+    //     (item) => item != "getSupportChatData"
+    //   );
+    //   loadingState.ProcessingDelay = removeProcessingItem;
+    //   loadingState.canRequest = removeProcessingItem > 0 ? false : true;
+    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
+    // }
   };
 
   const AddNewMessageAction = async () => {
