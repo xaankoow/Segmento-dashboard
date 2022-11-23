@@ -8,6 +8,7 @@ import AuthButton from '../../../Auth/authButton/AuthButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSupportChatData, sendNewMessageTicketServise } from '../../../service/ticket'
 import { showToast } from '../../../Utils/toastifyPromise'
+import Skeleton from 'react-loading-skeleton'
 
 export default function Index() {
 
@@ -150,7 +151,36 @@ export default function Index() {
             </div>
             <AuthButton handlerClick={AddNewMessageAction} textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
           </>
-        ) : null}
+        ) :
+          <div className='m-auto mt-5 rounded-lg overflow-hidden border border-sectionDisable box-content max-w-5xl'> {/* skeleton style */}
+            {/* header */}
+            <div className={` bg-white flex items-center justify-between px-4 h-14`}>
+              <div className='h-10 flex items-center'>
+                <Skeleton circle width={"32px"} height={"32px"} />
+                <div className='flex items-center flex-col justify-between mr-5'>
+                  <Skeleton width={"100px"} />
+                </div>
+              </div>
+              <div className='text-title text-s'>
+                <Skeleton width={"50px"} />
+              </div>
+            </div>
+            {/* body (content) */}
+            <div className=' px-7 py-4 '>
+              <p className=' text-sm text-primaryV1'>
+                <Skeleton count={4} />
+              </p>
+            </div>
+            {/* footer */}
+            <div className=' border-t border-silver h-12 mx-4'>
+              <div className={`float-right h-full`}>
+                <div className='flex justify-between items-center ml-5 h-full'>
+                  <Skeleton width={50} className=' mr-3' />
+                  <Skeleton width={50} className=' mr-8' />
+                </div>
+              </div>
+            </div>
+          </div>}
         {chatData.messages.length ? "" : ""}
       </div>
     </>
