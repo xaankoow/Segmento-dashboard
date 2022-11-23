@@ -18,6 +18,7 @@ import notif_svg from "../../../assets/img/dashboard/header/notif.svg";
 import message_svg from "../../../assets/img/dashboard/header/message.svg";
 import settingicon_svg from "../../../assets/img/dashboard/header/settingicon.svg";
 import profileImage_png from "../../../assets/img/dashboard/userProfile/profileImage.png";
+import Skeleton from "react-loading-skeleton";
 
 const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
   const dispatch = useDispatch();
@@ -110,16 +111,16 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
       init()
       // }, 1000);
       // setTimeout(() => {
-        // }, 2000);
-      }
-    }, []);
-    const init = async() => {
-
-     await dispatch(coreUser());
-     dispatch(getAllWorkSpace());
-     dispatch(ChackBusinessCustomer())
-     dispatch(allLimitDataFeature())
+      // }, 2000);
     }
+  }, []);
+  const init = async () => {
+
+    await dispatch(coreUser());
+    dispatch(getAllWorkSpace());
+    dispatch(ChackBusinessCustomer())
+    dispatch(allLimitDataFeature())
+  }
 
   const location = useLocation();
   return (
@@ -139,73 +140,92 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
       </div>
       <div className="flex items-center gap-9">
         <div className="header_animation userProfBox rounded transition-[shadow] hover:shadow-[0px 8px 16px rgba(0, 0, 0, 0.14)] border-b-0 w-64">
-          <div className="flex gap-3 items-center cursor-pointer ">
-            <img
-              src={
-                userState.userData.user != undefined
-                  ? userState.userData.user.img != ""
+
+          {/* {false ? */}
+          {userState.userData.user != undefined ?
+            <div className="flex gap-3 items-center cursor-pointer ">
+              <img
+                src={
+                  userState.userData.user.img != ""
                     ? userState.userData.user.img
                     : profileImage_png
-                  : profileImage_png
-              }
-              className="rounded w-10 h-10"
-              alt="userImage"
-            />
-            <div className=" h-11 relative w-full">
-              <span className="text-sm absolute top-0 right-0">
-                {user_name}
-              </span>
-              {userState.userData.package != undefined ? (
+                }
+                className="rounded w-10 h-10"
+                alt="userImage"
+              />
+              <div className=" h-11 relative w-full">
+                <span className="text-sm absolute top-0 right-0">
+                  {user_name}
+                </span>
+                {userState.userData.package != undefined ? (
+                  <div className="flex items-center justify-start mt-1 ">
+                    <div className=" absolute bottom-0 right-0 w-4">
+                      <Doughnut
+                        data={doughnutChartData}
+                        height={30}
+                        width={18}
+                        // height={25}
+                        // width={15}
+
+                        options={{
+                          maintainAspectRatio: false,
+                          plugins: {
+                            tooltip: {
+                              enabled: false,
+                            },
+                          },
+                        }}
+                      />
+                    </div>
+                    <span className="text-xs absolute bottom-0 right-6 w-max">
+                      {userState.userData.package.title == "پکیج پایه" | userState.userData.package.title == "14 روز رایگان" ? userState.userData.package.title : userState.userData.package.title + " " + userState.userData.package.type_text}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-start mt-1 ">
+                    <div className=" absolute bottom-0 right-0">
+                      <Doughnut
+                        data={doughnutChartData}
+                        height={30}
+                        width={18}
+                        // height={25}
+                        // width={15}
+
+                        options={{
+                          maintainAspectRatio: false,
+                          plugins: {
+                            tooltip: {
+                              enabled: false,
+                            },
+                          },
+                        }}
+                      />
+                    </div>
+                    <span className="text-xs absolute bottom-0 right-6 w-max">
+                      بدون پکیج
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+            :
+            <div className="flex gap-3 items-center cursor-pointer ">
+              <Skeleton width={40} height={40} />
+              <div className=" h-11 relative w-full">
+                <span className="text-sm absolute top-0 right-0">
+                  <Skeleton width={80} />
+                </span>
                 <div className="flex items-center justify-start mt-1 ">
                   <div className=" absolute bottom-0 right-0 w-4">
-                    <Doughnut
-                      data={doughnutChartData}
-                      height={30}
-                      width={18}
-                      // height={25}
-                      // width={15}
-
-                      options={{
-                        maintainAspectRatio: false,
-                        plugins: {
-                          tooltip: {
-                            enabled: false,
-                          },
-                        },
-                      }}
-                    />
+                    <Skeleton circle width={20} height={20} />
                   </div>
                   <span className="text-xs absolute bottom-0 right-6 w-max">
-                    {userState.userData.package.title == "پکیج پایه" | userState.userData.package.title == "14 روز رایگان" ? userState.userData.package.title : userState.userData.package.title + " " + userState.userData.package.type_text}
+                    <Skeleton width={40} />
                   </span>
                 </div>
-              ) : (
-                <div className="flex items-center justify-start mt-1 ">
-                  <div className=" absolute bottom-0 right-0">
-                    <Doughnut
-                      data={doughnutChartData}
-                      height={30}
-                      width={18}
-                      // height={25}
-                      // width={15}
-
-                      options={{
-                        maintainAspectRatio: false,
-                        plugins: {
-                          tooltip: {
-                            enabled: false,
-                          },
-                        },
-                      }}
-                    />
-                  </div>
-                  <span className="text-xs absolute bottom-0 right-6 w-max">
-                    بدون پکیج
-                  </span>
-                </div>
-              )}
+              </div>
             </div>
-          </div>
+            }
           <div className="header_animation cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo">
             <div className="border-b border-lightGray w-52 " />
             <div
