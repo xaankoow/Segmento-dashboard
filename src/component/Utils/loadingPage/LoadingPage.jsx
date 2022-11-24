@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import './style.css'
 
 export default function LoadingPage() {
-  const { ProcessingDelay, canRequest } = useSelector(state => state.loadingState)
+  const { ProcessingDelay,ImportantProcessingDelay, canRequest } = useSelector(state => state.loadingState)
   const customStyles = {
     content: {
       top: '43vh',
@@ -19,7 +19,7 @@ export default function LoadingPage() {
   };
   return (
     <Fragment>
-      {ProcessingDelay.length > 0 && canRequest == false ? (
+      {ImportantProcessingDelay.length > 0 && canRequest == false ? (
       // {true ? (
         <div id='Loadin-Page'>
           <Modal

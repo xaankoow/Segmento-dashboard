@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getSupportChatData, sendNewMessageTicketServise } from '../../../service/ticket'
 import { showToast } from '../../../Utils/toastifyPromise'
 import Skeleton from 'react-loading-skeleton'
+import { useNavigate } from 'react-router'
+import { ImageContainer } from '../../../../assets/img/IMG'
 
 export default function Index() {
 
@@ -19,6 +21,8 @@ export default function Index() {
 
   const [textEditor, setTextEditor] = useState("")
   const [fileEditor, setFileEditor] = useState([])
+
+  const navigate=useNavigate()
 
   useEffect(() => {
     if (chatData.messages.length == 0) {
@@ -152,35 +156,74 @@ export default function Index() {
             <AuthButton handlerClick={AddNewMessageAction} textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
           </>
         ) :
-          <div className='m-auto mt-5 rounded-lg overflow-hidden border border-sectionDisable box-content max-w-5xl'> {/* skeleton style */}
-            {/* header */}
-            <div className={` bg-white flex items-center justify-between px-4 h-14`}>
-              <div className='h-10 flex items-center'>
-                <Skeleton circle width={"32px"} height={"32px"} />
-                <div className='flex items-center flex-col justify-between mr-5'>
-                  <Skeleton width={"100px"} />
+          <> {/* skeleton style */}
+
+          {/* header message info */}
+            <div className='flex justify-between rounded-lg border border-sectionDisable box-content my-7 m-auto h-20 max-w-5xl'>
+              <div className='flex mr-5 py-3'>
+                <div className='h-full flex justify-center items-center'>
+                  <div className=''>
+                    <div onClick={() => navigate("/dashboard/ReportSupport")}>
+                      <AuthButton classes={"btn-secondary"} textButton={<img src={ImageContainer.blueArrowBtn} className="p-1 rotate-180" />} />
+                    </div>
+                  </div>
+                </div>
+                <div className='border border-silver mx-5'></div>
+                <div className='h-full flex flex-col justify-between py-1'>
+                  <p className=' text-sm text-title'><Skeleton/></p>
+                  <p className='text-silver text-s'>شناسه تیکت: <Skeleton width={30}/></p>
                 </div>
               </div>
-              <div className='text-title text-s'>
-                <Skeleton width={"50px"} />
-              </div>
-            </div>
-            {/* body (content) */}
-            <div className=' px-7 py-4 '>
-              <p className=' text-sm text-primaryV1'>
-                <Skeleton count={4} />
-              </p>
-            </div>
-            {/* footer */}
-            <div className=' border-t border-silver h-12 mx-4'>
-              <div className={`float-right h-full`}>
-                <div className='flex justify-between items-center ml-5 h-full'>
-                  <Skeleton width={50} className=' mr-3' />
-                  <Skeleton width={50} className=' mr-8' />
+
+              <div className='h-full flex justify-around flex-col ml-5 py-3 '>
+                <div className='text-s text-title flex justify-between'>
+                  <span className=' w-28  text-left'>تاریخ آخرین بروزرسانی:</span>
+                  <div className=' w-28'>
+
+                    <span className='text-s text-title mr-4 text-right'><Skeleton width={90}/></span>
+                  </div>
+                </div>
+                <div className='text-s text-title flex justify-between'>
+                  <span className='w-28 text-left'> وضعیت: </span>
+                  <div className='w-28'>
+                    <span className={`rounded-2xl text-s text-[#fff] py-1 px-2 mr-4 text-right`}><Skeleton width={70}/></span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>}
+
+
+
+            <div className='m-auto mt-5 rounded-lg overflow-hidden border border-sectionDisable box-content max-w-5xl'> 
+              {/* header */}
+              <div className={` bg-white flex items-center justify-between px-4 h-14`}>
+                <div className='h-10 flex items-center'>
+                  <Skeleton circle width={"32px"} height={"32px"} />
+                  <div className='flex items-center flex-col justify-between mr-5'>
+                    <Skeleton width={"100px"} />
+                  </div>
+                </div>
+                <div className='text-title text-s'>
+                  <Skeleton width={"50px"} />
+                </div>
+              </div>
+              {/* body (content) */}
+              <div className=' px-7 py-4 '>
+                <p className=' text-sm text-primaryV1'>
+                  <Skeleton count={4} />
+                </p>
+              </div>
+              {/* footer */}
+              <div className=' border-t border-silver h-12 mx-4'>
+                <div className={`float-right h-full`}>
+                  <div className='flex justify-between items-center ml-5 h-full'>
+                    <Skeleton width={50} className=' mr-3' />
+                    <Skeleton width={50} className=' mr-8' />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>}
         {chatData.messages.length ? "" : ""}
       </div>
     </>
