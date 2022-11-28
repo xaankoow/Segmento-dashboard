@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import Modal from 'react-modal'
 import { useSelector } from "react-redux";
+import AnimationSegmentoLogo from '../../shared/AnimationSegmentoLogo';
 import './style.css'
 
 export default function LoadingPage() {
@@ -28,17 +29,7 @@ export default function LoadingPage() {
             style={customStyles}
             contentLabel="Example Modal"
           >
-            <div className='flex justify-center items-center rounded-2xl bg-white w-52 h-52 animate-pulse'>
-              <div id="loading-container-segmento-logo">
-                <div className="segmento_logo_1"></div>
-                <div className="segmento_logo_2"></div>
-                <div className="segmento_logo_3"></div>
-                <div className="segmento_logo_4"></div>
-                <div className="segmento_logo_5"></div>
-                <div className="segmento_logo_6"></div>
-                <div className="segmento_logo_7"></div>
-              </div>
-            </div>
+            <AnimationSegmentoLogo parentClass={"w-52 h-52 p-8"} animation={true}/>
           </Modal>
         </div>
       ) : null}
