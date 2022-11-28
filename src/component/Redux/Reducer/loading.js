@@ -1,11 +1,14 @@
 export const loadingReducer = (state =
     {
         showLoading: false,
-        ProcessingDelay: [],
+        ImportantProcessingDelay:[], //locked screen,button and show segmento logi 
+        ProcessingDelay: [], // locked button (using for the skeleton style)
         canRequest: true
     }, action) => {
     switch (action.type) {
         case "SHOW_LOADING":
+            return { ...action.payload }
+        case "SET_IMPORTANT_PROCESSING_DELAY":
             return { ...action.payload }
         case "SET_PROCESSING_DELAY":
             return { ...action.payload }

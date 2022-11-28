@@ -18,9 +18,9 @@ import PopUp from "./component/Utils/PopUp/PopUp";
 import errorIco_svg from './assets/img/popUp/errorIco.svg'
 import AuthButton from "./component/Auth/authButton/AuthButton";
 import { DashboardRote } from "./Route";
-import {RoundPriceToUp} from './component/Utils/FORMAT/price'
+import { RoundPriceToUp } from './component/Utils/FORMAT/price'
 export default function App() {
-  
+
   const { forceUpdate } = useSelector((state) => state.userState);
   const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
   const navigate = useNavigate();
@@ -28,11 +28,11 @@ export default function App() {
   useEffect(() => {
     resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
   }, [resultSetWorkSpace.reportStatus])
-  
+
   const location = useLocation();
   const background = location.state && location.state.background;
 
-  
+
   return (
     <Fragment>
       <div className="app">
@@ -49,7 +49,7 @@ export default function App() {
               (<>
                 <Routes location={background || location}>
                   <Route path="*" element={<DashboardBody />}>
-                    {DashboardRote.map(item=>(
+                    {DashboardRote.map(item => (
                       <Route path={item.path} element={item.component} />
                     ))}
                   </Route>
@@ -107,7 +107,7 @@ export default function App() {
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
-      <LoadingPage /> 
+        {/* <LoadingPage /> */}
         <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>

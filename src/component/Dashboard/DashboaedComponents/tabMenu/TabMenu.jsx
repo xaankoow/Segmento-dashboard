@@ -19,15 +19,8 @@ export default function TabMenu({
 
   return (
     <>
-      <PageTitle title={"‌ایندکسر گوگل"} badgeApi={"amountOfData"} hasLimit />
+      <PageTitle title={title} badgeApi={amountOfData} hasLimit />
       <div className="text-sm font-medium text-center text-gray-400 border-gray-700 pt-3 bg-[#fff]">
-        {/* <div className="flex gap-6 items-center pr-4">
-        <div className="w-[20px] h-[2px] bg-[#001F43] rotate-90 rounded absolute -right-[9px]" />
-        <span className="text-lg">{title}</span>
-        <div className="h-6">
-          {userState.userData.package && <BadgeLimitKeyWords api={amountOfData} />}
-        </div>
-      </div> */}
         <Tab.Group>
           <div className="flex  flex-col  items-right mt-3 ">
             <Tab.List className="mx-3 flex  items-center mb-1">

@@ -225,6 +225,7 @@ const KeyWords = ({ onClickHandler }) => {
               }
               iskeyWord={true}
               searchBoxValue={searchBoxValue}
+              loading={loadingState.ProcessingDelay.includes("keywordService")}
             />
             <div className="flex flex-col items-center w-[334px] mr-7">
               <KeyWordsSearch
