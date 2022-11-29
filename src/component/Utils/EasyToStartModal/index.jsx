@@ -81,6 +81,26 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
     },
   };
 
+  function ModalOptions(step,free) {
+    let stepOne="680px";
+    let stepTwo="731px";
+    let stepTwo_free="432px";
+    let stepThree="542px";
+    let stepFour="587px";
+    let stepFive="554px";
+    let stepSix="674px";
+    let modalSizes=["680px","731px","542px","587px","554px","674px"] 
+    let modalStepTwoFree="432px"
+    // return{
+    //   calculateHeightSize:(step,mood)=>{
+        if (free==true&step==2) {
+          return modalStepTwoFree
+        }else{
+          return  modalSizes[step-1]
+        }
+    //   }
+    // }
+  }
   return (
     <Fragment>
       {rederingWithDelay ?
@@ -96,7 +116,8 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
               onRequestClose={()=>navigate(-1)}
               // className={" w-3/4"}
             >
-              <div className='w-full h-[80vh]  overflow-scroll max-h-[712px]'>
+              {/* <div className='w-full  overflow-scroll max-h-[712px]'> */}
+              <div className={`w-full  overflow-scroll h-[80vh] max-h-[${ModalOptions(stepModal,free)}]`}>
                 {checkErr != "" ? (
                   <div className='h-[685px]'>
                     {
@@ -104,13 +125,13 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
                     }
                   </div>
                 ) : (
-                  <Fragment>
+                  <>
                     <Head handleClose={handleClose} stepModal={stepModal} free={free} />
                     <div className={`${stepModal == 1 ? "px-6" : stepModal > 2 ? "px-2" : stepModal == 2 ? " px-4" : ""}`}>
                       <BodyContent setStepModal={setStepModal} setApplyWebAdress={setApplyWebAdress} setPackageUuid={setPackageUuid} stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree} lockNextStep={lockNextStep} setLockNextStep={setLockNextStep} />
                       <FooterBtn applyWebAdress={applyWebAdress} stepModal={stepModal} free={free} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose} lockNextStep={lockNextStep} packageUuid={plan.uuid} />
                     </div>
-                  </Fragment>
+                  </>
                 )}
               </div>
             </Modal>
