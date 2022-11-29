@@ -50,10 +50,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
     }
   }, [])
 
-
-
   useEffect(() => {
-    // const find_buy_type = localStorage.getItem("buyType")
     if (checkBuyPlan == true) {
       if (checkErr != "") {
         setCheckErr(true)
@@ -82,24 +79,13 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   };
 
   function ModalOptions(step,free) {
-    let stepOne="680px";
-    let stepTwo="731px";
-    let stepTwo_free="432px";
-    let stepThree="542px";
-    let stepFour="587px";
-    let stepFive="554px";
-    let stepSix="674px";
-    let modalSizes=["680px","731px","542px","587px","554px","674px"] 
-    let modalStepTwoFree="432px"
-    // return{
-    //   calculateHeightSize:(step,mood)=>{
+    let modalSizes=["680px","432px","542px","587px","554px","674px"] 
+    let modalStepTwoFree="731px"
         if (free==true&step==2) {
           return modalStepTwoFree
         }else{
           return  modalSizes[step-1]
         }
-    //   }
-    // }
   }
   return (
     <Fragment>
@@ -108,15 +94,12 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
           <div className='buy_plan_modal'>
             <Modal
               // closeTimeoutMS={2000}
-
               isOpen={true}
               parentSelector={() => document.querySelector(modalParentSelector)}
               style={customStyles}
               contentLabel="Example Modal"
               onRequestClose={()=>navigate(-1)}
-              // className={" w-3/4"}
             >
-              {/* <div className='w-full  overflow-scroll max-h-[712px]'> */}
               <div className={`w-full  overflow-scroll h-[80vh] max-h-[${ModalOptions(stepModal,free)}]`}>
                 {checkErr != "" ? (
                   <div className='h-[685px]'>

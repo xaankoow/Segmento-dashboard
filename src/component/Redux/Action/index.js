@@ -31,13 +31,13 @@ export const coreUser = () => {
     }
 
     try {
-      if (!loadingState.ProcessingDelay.includes("coreUserData")) {
+      if (!loadingState.ImportantProcessingDelay.includes("coreUserData")) {
         //handle show loadin
         {
-          loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(
+          loadingState.ImportantProcessingDelay = loadingState.ImportantProcessingDelay.filter(
             (item) => item != "editProfile"
           );
-          loadingState.ProcessingDelay.push("coreUserData");
+          loadingState.ImportantProcessingDelay.push("coreUserData");
           loadingState.canRequest = false;
           await dispatch({
             type: "SET_PROCESSING_DELAY",
@@ -59,10 +59,10 @@ export const coreUser = () => {
         //handle hide loading
         {
           const loadingState1 = { ...getState().loadingState };
-          var removeProcessingItem = loadingState1.ProcessingDelay.filter(
+          var removeProcessingItem = loadingState1.ImportantProcessingDelay.filter(
             (item) => item != "coreUserData"
           );
-          loadingState1.ProcessingDelay = removeProcessingItem;
+          loadingState1.ImportantProcessingDelay = removeProcessingItem;
           loadingState1.canRequest =
             removeProcessingItem.length > 0 ? false : true;
           await dispatch({
@@ -87,10 +87,10 @@ export const coreUser = () => {
       //handle hide loading
       {
         const loadingState2 = { ...getState().loadingState };
-        var removeProcessingItem = loadingState2.ProcessingDelay.filter(
+        var removeProcessingItem = loadingState2.ImportantProcessingDelay.filter(
           (item) => item != "coreUserData"
         );
-        loadingState2.ProcessingDelay = removeProcessingItem;
+        loadingState2.ImportantProcessingDelay = removeProcessingItem;
         loadingState2.canRequest =
           removeProcessingItem.length > 0 ? false : true;
         await dispatch({
@@ -99,7 +99,6 @@ export const coreUser = () => {
         });
       }
     }
-
     await dispatch({ type: "CORE_USER", payload: state });
   };
 };
