@@ -75,7 +75,9 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       backgrounColor: "red",
-      'z-index': '100'
+      'z-index': '100',
+      width:"70%",
+      'max-width':"1000px"
     },
   };
 
@@ -92,8 +94,9 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
               style={customStyles}
               contentLabel="Example Modal"
               onRequestClose={()=>navigate(-1)}
+              // className={" w-3/4"}
             >
-              <div className='w-[907px]  overflow-scroll max-h-[712px]'>
+              <div className='w-full h-[80vh]  overflow-scroll max-h-[712px]'>
                 {checkErr != "" ? (
                   <div className='h-[685px]'>
                     {
