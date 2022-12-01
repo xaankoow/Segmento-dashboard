@@ -5,23 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthButton from '../../../Auth/authButton/AuthButton';
 import ReportBuyPlanSection from '../../../Utils/Modals/ReportBuyPlanSection';
 import SetTitleTabBrowser from '../../../Utils/SetTitleTabBrowser';
-// import DiscountTagValue from '../../../Utils/buyPlanSection_UTILS/DiscountTagValue';
 import HandleParagraphInfoPlan from '../../../Utils/buyPlanSection_UTILS/proposalPlanParagraph/HandleParagraphInfoPlan';
 import PageTitle from '../pageTitle/pageTitle';
 import CardPlans from '../../../Utils/buyPlanSection_UTILS/CardPlans';
-// import CardPlans from '../../../Utils/buyPlanSection_UTILS/CardPlans';
 
 export default function BuyPlan({ title }) {
-
-  const { discount, discountStatus, allPackageData } = useSelector(state => state.planState);
-
-
-  const { canRequest } = useSelector((state) => state.loadingState);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllPlanData())
-  }, [])
 
   const [showReportModal, setShowReportModal] = useState(false);
 

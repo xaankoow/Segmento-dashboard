@@ -8,7 +8,7 @@ import { showInputErrorToast, showPromisToast, showToast } from "../../Utils/toa
 
 
 
-export const getAllPlanData = () => {
+export const getAllPlanData = (axiosController) => {
     return async (dispatch, getState) => {
 
         const state = { ...getState().planState }
@@ -30,7 +30,7 @@ export const getAllPlanData = () => {
                         loadingState.canRequest = false;
                         await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
                     }
-                    const workSpaces = await getAllPlan()
+                    const workSpaces = await getAllPlan({ axiosController: axiosController })
 
                     if (workSpaces.data.status == true && workSpaces.data.code == 200) {
                         state.allPackageData = workSpaces.data.data;
@@ -48,18 +48,19 @@ export const getAllPlanData = () => {
                     }
                 }
             } catch (error) {
-                error.response.data.errors.forEach(element => {
-                    toastMessage += element + " / ";
-                });
-                toast.warn(toastMessage, {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                // debugger
+                // error.response.data.errors.forEach(element => {
+                //     toastMessage += element + " / ";
+                // });
+                // toast.warn(toastMessage, {
+                //     position: "top-right",
+                //     autoClose: 2000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                // });
                 // handle hide loading
                 {
                     const loadingState2 = { ...getState().loadingState }
@@ -79,7 +80,7 @@ export const setWebAdress = (adress) => {
     return async (dispatch, getState) => {
         const state = { ...getState().planState }
         debugger
-        const ds=adress.replace("https://", "");
+        const ds = adress.replace("https://", "");
         state.webAdress = ds;
         await dispatch({ type: "MODAL_PLAN_WEB_ADRESS", payload: state })
     }
@@ -248,45 +249,45 @@ export const tryFreePlan = () => {
         if (packageUuid) {
             if (!loadingState.ProcessingDelay.includes("tryFreePlan")) {
 
-            
 
-            //handle show loadin
-            {
-                loadingState.ProcessingDelay.push("tryFreePlan");
-                loadingState.canRequest = false;
-                await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-            }
 
-            var packageInfo = {
-                "type": "package",
-                "uuid": packageUuid
-            }
+                //handle show loadin
+                {
+                    loadingState.ProcessingDelay.push("tryFreePlan");
+                    loadingState.canRequest = false;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                }
 
-            let toastMessage = "";
-            try {
-                const { data } = await buyPlna(packageInfo);
+                var packageInfo = {
+                    "type": "package",
+                    "uuid": packageUuid
+                }
 
-                if (data.code == 201) {
-                    state.checkUseTryFree = true;
-                    dispatch(coreUser())
-                    // userState.userData = data.data;
-                    showToast("پلن 14 روزه رایگان برایه شما فعال شد", "success");
-                    // await dispatch({ type: "CORE_USER", payload: userState })
-                } else {
+                let toastMessage = "";
+                try {
+                    const { data } = await buyPlna(packageInfo);
+
+                    if (data.code == 201) {
+                        state.checkUseTryFree = true;
+                        dispatch(coreUser())
+                        // userState.userData = data.data;
+                        showToast("پلن 14 روزه رایگان برایه شما فعال شد", "success");
+                        // await dispatch({ type: "CORE_USER", payload: userState })
+                    } else {
+                        state.checkUseTryFree = false;
+                        data.errors.forEach(element => {
+                            toastMessage += element + " / ";;
+                        });
+                        showToast(toastMessage, "error");
+                    }
+                } catch (error) {
                     state.checkUseTryFree = false;
-                    data.errors.forEach(element => {
-                        toastMessage += element + " / ";;
+                    error.response.data.errors.forEach(element => {
+                        toastMessage += element + " / ";
                     });
                     showToast(toastMessage, "error");
                 }
-            } catch (error) {
-                state.checkUseTryFree = false;
-                error.response.data.errors.forEach(element => {
-                    toastMessage += element + " / ";
-                });
-                showToast(toastMessage, "error");
             }
-        }
         } else {
             state.checkUseTryFree = false;
             showInputErrorToast();
@@ -344,7 +345,7 @@ export const applyDiscountAction = (discountCode, planType) => {
                     state.discountStatus.planType = planType;
                     state.discountStatus.discountType = data.data.unit == 1 ? "percentage" : "cash";
                     state.forceUpdate += 1;
-                    InputError("discount", "کدتخفیف درست است","#10CCAE",true)
+                    InputError("discount", "کدتخفیف درست است", "#10CCAE", true)
                 } else {
                     showToast(data.data.msg, "error");
                     InputError("discount", data.data.msg)

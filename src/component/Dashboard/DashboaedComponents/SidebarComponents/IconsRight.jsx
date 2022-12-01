@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ToolTip from "../../../Utils/ToolTip";
 import pishkhan_svg from "../../../../assets/img/dashboard/nav_right/pishkhan.svg";
 import analyze_svg from "../../../../assets/img/dashboard/nav_right/analyze.svg";
+import { allLimitDataFeature, ChackBusinessCustomer } from "../../../Redux/Action/workSpace";
 
 export default function IconsRight({ setActive, activeIcons }) {
   const [activeIcon, setActiveIcon] = useState(
@@ -14,6 +15,11 @@ export default function IconsRight({ setActive, activeIcons }) {
   const [showToolTip, setShowToolTip] = useState(true);
 
   const userState = useSelector((state) => state.userState);
+
+  const dispatch=useDispatch();
+
+  // dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
+  // dispatch(allLimitDataFeature())  
 
   // TODO:EDITE TITLE IMG
   const navBarRightSection = [
@@ -30,6 +36,11 @@ export default function IconsRight({ setActive, activeIcons }) {
   var normalClass =
     "nav_right_box flex items-center justify-center relative z-0";
 
+
+  const initSeoUtilsSection = () => {
+    dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
+    dispatch(allLimitDataFeature())
+  }
   return (
     <div className="top relative">
       {navBarRightSection.map((items, index) => (
@@ -40,7 +51,9 @@ export default function IconsRight({ setActive, activeIcons }) {
           onClick={(e) => {
             setActiveIcon(index);
             setActive(e);
+
           }}
+          onMouseDown={() => items.title == " ابزار سئو" ? initSeoUtilsSection() : ""}
         >
           <Link to={items.link}>
             <img
