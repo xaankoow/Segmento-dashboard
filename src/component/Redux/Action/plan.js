@@ -246,7 +246,9 @@ export const tryFreePlan = () => {
 
         const packageUuid = state.allPackageData[1].uuid; //انتخاب شناسه پکیج رایگان
         if (packageUuid) {
+            if (!loadingState.ProcessingDelay.includes("tryFreePlan")) {
 
+            
 
             //handle show loadin
             {
@@ -284,6 +286,7 @@ export const tryFreePlan = () => {
                 });
                 showToast(toastMessage, "error");
             }
+        }
         } else {
             state.checkUseTryFree = false;
             showInputErrorToast();

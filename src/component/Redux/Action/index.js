@@ -35,7 +35,7 @@ export const coreUser = () => {
         //handle show loadin
         {
           loadingState.ImportantProcessingDelay = loadingState.ImportantProcessingDelay.filter(
-            (item) => item != "editProfile"
+            (item) => item != "coreUserData"
           );
           loadingState.ImportantProcessingDelay.push("coreUserData");
           loadingState.canRequest = false;
