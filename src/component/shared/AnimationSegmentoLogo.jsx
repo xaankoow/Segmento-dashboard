@@ -4,7 +4,7 @@ export default function AnimationSegmentoLogo({parentClass,lineContainerClass,an
     return (
         <div>
             <div  className={`flex justify-center items-center rounded-2xl bg-white w-52 h-52 ${animation&&"animate-pulse"}  ${parentClass?parentClass:"w-52 h-52"} ${animationWithHover&&" hover:animate-pulse"}`}>
-                <div id="loading-container-segmento-logo" className={`${lineContainerClass}  ${animation&&"animation"}`} onMouseEnter={(e)=>e.currentTarget.classList.add("animation")} onMouseLeave={(e)=>e.currentTarget.classList.remove("animation")}>
+                <div id="loading-container-segmento-logo" className={`${lineContainerClass}  ${animation&&"animation"}`} onMouseEnter={(e)=>animationWithHover?e.currentTarget.classList.add("animation_hover"):""} onMouseLeave={(e)=>animationWithHover?e.currentTarget.classList.remove("animation_hover"):""}>
                     <div className="segmento_logo_1"></div>
                     <div className="segmento_logo_2"></div>
                     <div className="segmento_logo_3"></div>

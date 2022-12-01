@@ -64,7 +64,7 @@ export default function Index() {
                     </div>
                     <div className='flex items-center'>
                         <div className=' inline-block'>
-                            <AuthButton classes={"btn-delete_style inline-block"} textButton={<><img src={ImageContainer.deleteBtn} alt="bin" className=' ml-3' /><span className='text-deleteBtn opacity-70'>حذف</span></>} />
+                            <AuthButton classes={"btn-delete inline-block"} textButton={<><img src={ImageContainer.deleteBtn} alt="bin" className=' ml-3' /><span className='text-deleteBtn opacity-70'>حذف</span></>} />
 
                         </div>
                         <div className=' inline-block mr-5'>

@@ -153,7 +153,7 @@ export default function Index() {
                 <SendMessage setValueEditor={setTextEditor} setFileArray={setFileEditor} />
               </div>
             </div>
-            <AuthButton handlerClick={AddNewMessageAction} textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
+            <AuthButton handlerClick={AddNewMessageAction} keyLoading={"sendNewMessageTicketServise"} textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
           </>
         ) :
           <> {/* skeleton style */}
