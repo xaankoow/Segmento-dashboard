@@ -45,7 +45,7 @@
     background-color: #0AC7E2;
 }
 
-#loading-container-segmento-logo.animation .segmento_logo_4{
+#loading-container-segmento-logo.animation .segmento_logo_4,#loading-container-segmento-logo.animation_hover .segmento_logo_4{
     animation: move_slide_down_logo 1s ease 0s infinite alternate;
 }
 
@@ -66,7 +66,7 @@
     top: 28.5%;
     background-color: #0AC7E2;
 }
-#loading-container-segmento-logo.animation .segmento_logo_6{
+#loading-container-segmento-logo.animation .segmento_logo_6,#loading-container-segmento-logo.animation_hover .segmento_logo_6{
     animation: move_slide_top_logo 1s ease 1s infinite alternate;
 }
 #loading-container-segmento-logo .segmento_logo_7{
@@ -78,7 +78,7 @@
     bottom:28.5%;
     background-color: #0AC7E2;
 }
-#loading-container-segmento-logo.animation .segmento_logo_7{
+#loading-container-segmento-logo.animation .segmento_logo_7,#loading-container-segmento-logo.animation_hover .segmento_logo_7{
     animation: move_slide_middle_logo 1s ease 500ms infinite alternate;
 }
 @keyframes move_slide_down_logo {

@@ -25,7 +25,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
 
   const { forceUpdate } = useSelector(state => state.planState);
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -73,19 +73,19 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
       transform: 'translate(-50%, -50%)',
       backgrounColor: "red",
       'z-index': '100',
-      width:"70%",
-      'max-width':"1000px"
+      width: "70%",
+      'max-width': "1000px"
     },
   };
 
-  function ModalOptions(step,free) {
-    let modalSizes=["680px","432px","542px","587px","554px","674px"] 
-    let modalStepTwoFree="731px"
-        if (free==true&step==2) {
-          return modalStepTwoFree
-        }else{
-          return  modalSizes[step-1]
-        }
+  function ModalOptions(step, free) {
+    let modalSizes = ["680px", "432px", "542px", "587px", "554px", "674px"]
+    let modalStepTwoFree = "731px"
+    if (free == true & step == 2) {
+      return modalStepTwoFree
+    } else {
+      return modalSizes[step - 1]
+    }
   }
   return (
     <Fragment>
@@ -98,9 +98,9 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
               parentSelector={() => document.querySelector(modalParentSelector)}
               style={customStyles}
               contentLabel="Example Modal"
-              onRequestClose={()=>navigate(-1)}
+              onRequestClose={() => navigate(-1)}
             >
-              <div className={`w-full  overflow-scroll h-[80vh] max-h-[${ModalOptions(stepModal,free)}]`}>
+              <div className={`w-full  overflow-scroll h-[80vh] max-h-[${ModalOptions(stepModal, free)}]`}>
                 {checkErr != "" ? (
                   <div className='h-[685px]'>
                     {
