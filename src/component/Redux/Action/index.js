@@ -72,10 +72,10 @@ export const coreUser = () => {
         }
       }
     } catch (error) {
-      error.response.data.errors.forEach((element) => {
+      error?.response?.data?.errors.forEach((element) => {
         toastMessage += element + " / ";
       });
-      toast.warn(toastMessage, {
+      toastMessage != "" &&toast.warn(toastMessage, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,

@@ -49,18 +49,20 @@ export const getAllPlanData = (axiosController) => {
                 }
             } catch (error) {
                 // debugger
-                // error.response.data.errors.forEach(element => {
-                //     toastMessage += element + " / ";
-                // });
-                // toast.warn(toastMessage, {
-                //     position: "top-right",
-                //     autoClose: 2000,
-                //     hideProgressBar: false,
-                //     closeOnClick: true,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                //     progress: undefined,
-                // });
+                
+                error?.response?.data?.errors.forEach(element => {
+                    toastMessage += element + " / ";
+                });
+                toastMessage != "" && toast.warn(toastMessage, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+
                 // handle hide loading
                 {
                     const loadingState2 = { ...getState().loadingState }
