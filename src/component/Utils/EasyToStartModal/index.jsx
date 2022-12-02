@@ -79,7 +79,8 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
   };
 
   function ModalOptions(step, free) {
-    let modalSizes = ["680px", "432px", "542px", "587px", "554px", "674px"]
+    // let modalSizes = ["750px", "432px", "542px", "587px", "554px", "674px"]
+    let modalSizes = ["750px", "432px", "542px", "587px", "554px", "674px"]
     let modalStepTwoFree = "731px"
     if (free == true & step == 2) {
       return modalStepTwoFree

@@ -49,7 +49,7 @@ export const getAllPlanData = (axiosController) => {
                 }
             } catch (error) {
                 // debugger
-                
+
                 error?.response?.data?.errors.forEach(element => {
                     toastMessage += element + " / ";
                 });
@@ -380,7 +380,7 @@ export const applyDiscountAction = (discountCode, planType) => {
 
 export const modalSetWorkSpace = () => {
     return async (dispatch, getState) => {
-        //  
+
         const state = { ...getState().planState }
         const loadingState = { ...getState().loadingState }
 
@@ -391,19 +391,8 @@ export const modalSetWorkSpace = () => {
         const site2 = state.site2;
         const commercialPage1 = state.commercialPage1;
         const commercialPage2 = state.commercialPage1;
-        // const packageUuid=state.packageUuid;
-        // const discount=state.discount;
-
-        // if (packageUuid) {
-        // let toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
 
 
-        //handle show loadin
-        {
-            loadingState.ProcessingDelay.push("creatWorkSpace");
-            loadingState.canRequest = false;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
-        }
 
 
         var modalWorkSpace = {
@@ -431,32 +420,30 @@ export const modalSetWorkSpace = () => {
 
         let toastMessage = "";
         try {
+            if (!loadingState.ImportantProcessingDelay.includes("creatWorkSpace")) {
+                //handle show loadin
+                {
+                    loadingState.ProcessingDelay.push("creatWorkSpace");
+                    loadingState.canRequest = false;
+                    await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+                }
 
-            const { data } = await creatWorkSpace(modalWorkSpace);
+                const { data } = await creatWorkSpace(modalWorkSpace);
 
-            if (data.code == 200 && data.status == true) {
-                localStorage.setItem("modalWorkSpace", data.status);
-                state.forceUpdate += 1;
-                showToast(data.data.msg, "success");
-                // toast.update(toastPromise, { render: data.data.msg, type: "success", isLoading: false, autoClose: 3000 })
-            } else {
-                // data.errors.forEach(element => {
-                //     toastMessage += element + " / ";
-                // });
-                showToast(data.data.msg, "error");
-                // toast.update(toastPromise, { render: data.data.msg, type: "error", isLoading: false, autoClose: 3000 })
+                if (data.code == 200 && data.status == true) {
+                    localStorage.setItem("modalWorkSpace", data.status);
+                    state.forceUpdate += 1;
+                    showToast(data.data.msg, "success");
+                } else {
+                    showToast(data.data.msg, "error");
+                }
             }
         } catch (error) {
-            error.response.data.errors.forEach(element => {
+            error?.response?.data?.errors.forEach(element => {
                 toastMessage += element + " / ";
             });
             showToast(toastMessage, "error");
-            // toast.update(toastPromise, { render: toastMessage, type: "error", isLoading: false, autoClose: 3000 })
         }
-        // } else {
-        //     showInputErrorToast();
-        // }
-
         //handle hide loading
         {
             var removeProcessingItem = loadingState.ProcessingDelay.filter(item => item != "creatWorkSpace");
