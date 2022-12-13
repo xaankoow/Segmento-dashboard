@@ -29,7 +29,7 @@ export default function NewTicket({ categories }) {
   const handleSetNewTicket = async () => {
     // handle show loadin
     {
-      loadingState.ProcessingDelay.push("keywordService");
+      loadingState.ProcessingDelay.push("setNewTicket");
       loadingState.canRequest = false;
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
@@ -52,7 +52,7 @@ export default function NewTicket({ categories }) {
     }
     {
       var removeProcessingItem = loadingState.ProcessingDelay.filter(
-        (item) => item != "keywordService"
+        (item) => item != "setNewTicket"
       );
       loadingState.ProcessingDelay = removeProcessingItem;
       loadingState.canRequest = removeProcessingItem > 0 ? false : true;
@@ -162,12 +162,18 @@ export default function NewTicket({ categories }) {
             />
           </div>
           <div className="w-2/3 mx-auto flex  justify-center">
-            <button
+            <AuthButton 
+            handlerClick={handleSetNewTicket}
+            classes="mt-5"
+            textButton={"ارسال تیکت"}
+            keyLoading="setNewTicket"
+            />
+            {/* <button
               onClick={handleSetNewTicket}
               className={"btn-style h-10 w-[111px] mt-5"}
             >
-              ارسال تیکت
-            </button>
+              
+            </button> */}
           </div>
         </div>
       </div>

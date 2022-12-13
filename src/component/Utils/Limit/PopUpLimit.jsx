@@ -9,9 +9,9 @@ import ContentText from './ContentText';
 import FooterBtn from './FooterBtn';
 import { FindLimitTools } from '../FindLimitTools';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
-export default function PopUpLimit({ section, handleClose }) {
+export default function PopUpLimit({ section, handleClose , navigateClose}) {
 
     const workSpaceState = useSelector((state) => state.workSpaceState);
 
@@ -33,6 +33,8 @@ export default function PopUpLimit({ section, handleClose }) {
         }
         // initTypeLimit()
     }, [workSpaceState.limitsDatas])
+
+    const navigate=useNavigate();
 
     useEffect(() => {
         initTypeLimit()
@@ -89,7 +91,7 @@ export default function PopUpLimit({ section, handleClose }) {
                             }}
                         >
                             <div className='w-full flex justify-end items-center px-3'>
-                                <div className='flex justify-center items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' onClick={() => handleClose != undefined ? handleClose(false) : setShow(false)}>
+                                <div className='flex justify-center items-center p-1 rounded-[3px] cursor-pointer hover:bg-[#F352421A]' onClick={() =>navigateClose?navigate(-1): handleClose != undefined ? handleClose(false) : setShow(false)}>
                                     <div className='close_modal_ico' ></div>
                                 </div>
                             </div>

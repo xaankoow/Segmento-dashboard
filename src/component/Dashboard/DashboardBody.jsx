@@ -57,7 +57,6 @@ export default function DashboardBody() {
             setShowModalBuyPlanResult({ type: "modal", result: false });
           }
         } else {
-          debugger
           localStorage.removeItem("buyType")
           navigate("/dashboard/buyPlan/buyInfo");
         }

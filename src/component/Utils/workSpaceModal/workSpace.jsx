@@ -87,7 +87,7 @@ export default function WorkSpace() {
   return (
     <Fragment>
       {FindLimitTools("workSpace", workSpaceState).limit == 0 ?
-        <PopUpLimit section={"workSpace"} />
+        <PopUpLimit section={"workSpace"} navigateClose/>
         : (
           <Modal
             isOpen={true}

@@ -81,7 +81,6 @@ export const getAllPlanData = (axiosController) => {
 export const setWebAdress = (adress) => {
     return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        debugger
         const ds = adress.replace("https://", "");
         state.webAdress = ds;
         await dispatch({ type: "MODAL_PLAN_WEB_ADRESS", payload: state })

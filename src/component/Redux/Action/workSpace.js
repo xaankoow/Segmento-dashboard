@@ -32,19 +32,13 @@ export const ChackBusinessCustomer = () => {
           });
         }
 
-        const { data } = await getAllFinancialReportsData();
-        if (data.status == true && data.code == 200) {
-          const state = { ...getState().workSpaceState };
-
-          const findSuccessReport = data.data.findIndex(state => state.order_status_text == "فعال شده")
-
-          state.businessCustomer = {
-            current: userState.userData.package.type_text != "پکیج پایه" ? true : false,
-            last: findSuccessReport != -1 ? true : false
-          }
-          await dispatch({ type: "CHECK_BUSSINESS", payload: state });
-
+        const state = { ...getState().workSpaceState };
+        state.businessCustomer = {
+          current: userState.userData.package.type_text != "پکیج پایه" ? true : false,
+          last: userState.userData.user_has_success_purchase
+          // last: findSuccessReport != -1 ? true : false
         }
+        await dispatch({ type: "CHECK_BUSSINESS", payload: state });
 
         //handle hide loading
         {
@@ -666,13 +660,13 @@ export const resetWorkSpaceState = () => {
 // };
 
 //all limit
-export const allLimitDataFeature = () => {
+export const allLimitDataFeature = ({ axiosController }) => {
   return async (dispatch, getState) => {
     const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState }
 
     let package_uuid = "";
-
+    // debugger
     if (userState.userData.package != undefined) {
       package_uuid = userState.userData.package.uuid;
 
@@ -686,8 +680,8 @@ export const allLimitDataFeature = () => {
         }
 
         try {
-          const infoPackage = await getPackageInfO(package_uuid);
-          const limitPackage = await usetLimit();
+          const infoPackage = await getPackageInfO({ package_uuid });
+          const limitPackage = await usetLimit({ axiosController });
           if (limitPackage.data.code == 200 && limitPackage.data.status == true && infoPackage.data.code == 200 && infoPackage.data.status == true) {
             const state = { ...getState().workSpaceState };
             state.limitsDatas = limitPackage.data.data;

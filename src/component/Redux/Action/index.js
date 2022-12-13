@@ -16,6 +16,7 @@ import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showToast } from "../../Utils/toastifyPromise";
+import { removeLoadingItem } from "./loading";
 import { ChackBusinessCustomer } from "./workSpace";
 
 // get all user data in api
@@ -23,13 +24,14 @@ export const coreUser = () => {
   return async (dispatch, getState) => {
     const state = { ...getState().userState };
     const loadingState = { ...getState().loadingState };
+    const workSpaceState = { ...getState().workSpaceState };
     let toastMessage = "";
 
     const token = localStorage.getItem("token");
     if (token !== "undefined" && token != null && token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
-
+    
     try {
       if (!loadingState.ImportantProcessingDelay.includes("coreUserData")) {
         //handle show loadin
@@ -45,12 +47,19 @@ export const coreUser = () => {
           });
         }
 
+        
+        
         const { data, status } = await coreUserData();
         if (status == 200 && data.status == true) {
           if (data.data.user != undefined) {
             state.userData = data.data;
-            state.checkVerifyPhoneNumber =
-              data.data.user.mobile == null ? false : true;
+            state.checkVerifyPhoneNumber = data.data.user.mobile == null ? false : true;
+            workSpaceState.businessCustomer = {
+              current: data.data.package.type_text != "پکیج پایه" ? true : false,
+              last: data.data.user_has_success_purchase
+              // last: findSuccessReport != -1 ? true : false
+            }
+            await dispatch({ type: "CHECK_BUSSINESS", payload: workSpaceState });
             // await dispatch(ChackBusinessCustomer())
           } else {
             // localStorage.removeItem("token");
@@ -61,58 +70,59 @@ export const coreUser = () => {
           const loadingState1 = { ...getState().loadingState };
           var removeProcessingItem = loadingState1.ImportantProcessingDelay.filter(
             (item) => item != "coreUserData"
-          );
-          loadingState1.ImportantProcessingDelay = removeProcessingItem;
-          loadingState1.canRequest =
+            );
+            loadingState1.ImportantProcessingDelay = removeProcessingItem;
+            loadingState1.canRequest =
             removeProcessingItem.length > 0 ? false : true;
-          await dispatch({
-            type: "SET_PROCESSING_DELAY",
-            payload: loadingState1,
-          });
+            await dispatch({
+              type: "SET_PROCESSING_DELAY",
+              payload: loadingState1,
+            });
+          }
         }
-      }
-    } catch (error) {
-      error?.response?.data?.errors.forEach((element) => {
-        toastMessage += element + " / ";
-      });
-      toastMessage != "" &&toast.warn(toastMessage, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      //handle hide loading
-      {
-        const loadingState2 = { ...getState().loadingState };
-        var removeProcessingItem = loadingState2.ImportantProcessingDelay.filter(
-          (item) => item != "coreUserData"
-        );
-        loadingState2.ImportantProcessingDelay = removeProcessingItem;
-        loadingState2.canRequest =
-          removeProcessingItem.length > 0 ? false : true;
-        await dispatch({
-          type: "SET_PROCESSING_DELAY",
-          payload: loadingState2,
+      } catch (error) {
+        error?.response?.data?.errors.forEach((element) => {
+          toastMessage += element + " / ";
         });
-      }
-    }
-    await dispatch({ type: "CORE_USER", payload: state });
-  };
-};
+        toastMessage != "" && toast.warn(toastMessage, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
 
-// set user data
-export const setPropCoreUser = (prop, value) => {
-  return async (dispatch, getState) => {
+        //handle hide loading
+        {
+          const loadingState2 = { ...getState().loadingState };
+          var removeProcessingItem = loadingState2.ImportantProcessingDelay.filter(
+            (item) => item != "coreUserData"
+            );
+            loadingState2.ImportantProcessingDelay = removeProcessingItem;
+            loadingState2.canRequest =
+            removeProcessingItem.length > 0 ? false : true;
+            await dispatch({
+              type: "SET_PROCESSING_DELAY",
+              payload: loadingState2,
+            });
+          }
+        }
+        await dispatch({ type: "CORE_USER", payload: state });
+      };
+    };
+    
+    // set user data
+    export const setPropCoreUser = (prop, value) => {
+      return async (dispatch, getState) => {
     const state = { ...getState().userState };
     switch (prop) {
       case "mobile":
         state.userData.user.mobile = value;
         break;
-
-      default:
+        
+        default:
         break;
     }
     await dispatch({ type: "CORE_USER", payload: state });
@@ -803,8 +813,8 @@ export const changePasswordAction = () => {
           });
         }
 
-        const code =internal_auth4+ internal_auth3 +internal_auth2 +internal_auth1;
-             
+        const code = internal_auth4 + internal_auth3 + internal_auth2 + internal_auth1;
+
         let formdata = new FormData();
         formdata.append("email", internal_email);
         formdata.append("password", internal_password);

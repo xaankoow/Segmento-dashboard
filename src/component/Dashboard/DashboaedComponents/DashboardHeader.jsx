@@ -121,7 +121,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
 
     await dispatch(coreUser());
     // dispatch(getAllWorkSpace());
-    // dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
+    dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
     // dispatch(allLimitDataFeature())
   }
 

@@ -15,11 +15,12 @@ axiosRetry(axios, {
     retries: 10, // number of retries
     retryDelay: (retryCount) => {
         console.log(`retry attempt: ${retryCount}`);
-        return retryCount * 5000; // time interval between retries
+        return retryCount + 2000; // time interval between retries
     },
     retryCondition: (error) => {
+        // console.log('error :>> ', error);
         // if retry condition is not specified, by default idempotent requests are retried
-        return error.response.status === 404|error.code === "ERR_NETWORK";
+        return error.code === "ERR_NETWORK"|error.code === "ECONNABORTED";
     },
 });
 

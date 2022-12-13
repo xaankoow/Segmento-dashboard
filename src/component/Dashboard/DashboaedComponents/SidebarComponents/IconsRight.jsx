@@ -37,10 +37,10 @@ export default function IconsRight({ setActive, activeIcons }) {
     "nav_right_box flex items-center justify-center relative z-0";
 
 
-  const initSeoUtilsSection = () => {
-    dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
-    dispatch(allLimitDataFeature())
-  }
+  // const initSeoUtilsSection = () => {
+  //   // dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
+  //   dispatch(allLimitDataFeature())
+  // }
   return (
     <div className="top relative">
       {navBarRightSection.map((items, index) => (
@@ -53,7 +53,7 @@ export default function IconsRight({ setActive, activeIcons }) {
             setActive(e);
 
           }}
-          onMouseDown={() => items.title == " ابزار سئو" ? initSeoUtilsSection() : ""}
+          // onMouseDown={() => items.title == " ابزار سئو" ? initSeoUtilsSection() : ""}
         >
           <Link to={items.link}>
             <img

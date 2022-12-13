@@ -1,5 +1,6 @@
-import { sendNewMessageTicketServise } from "../../service/ticket";
+import { InitTicketsDataService, sendNewMessageTicketServise, ticketTableData } from "../../service/ticket";
 import { showToast } from "../../Utils/toastifyPromise";
+import { addLoadingItem, removeLoadingItem } from "./loading";
 
 export const setTicketUUID = (show) => {
   return async (dispatch, getState) => {
@@ -62,5 +63,28 @@ export const AddNewMessageAction = (messageUuid, message, files) => {
     }
     let state = { ...getState().ticketState };
     await dispatch({ type: "SET_UUID", payload: state });
+  };
+};
+export const InitTicketsData = ({ axiosController }) => {
+  return async (dispatch, getState) => {
+
+    const state = { ...getState().ticketState };
+
+    const loadingState = { ...getState().loadingState };
+
+    try {
+      if (!loadingState.ProcessingDelay.includes("ticketTableData")) {
+        dispatch(addLoadingItem("ticketTableData"))
+        const { data } = await InitTicketsDataService({axiosController});
+        if ((data.code == 200) & (data.status == true)) {
+          state.allTicketsData=data.data;
+        }
+      }
+
+    } catch (e) {
+      // showToast("خطا در ارسال پیام", "error")
+    }
+    dispatch(removeLoadingItem("ticketTableData"))
+    await dispatch({ type: "GET_ALL_TICKETS_DATA", payload: state });
   };
 };
