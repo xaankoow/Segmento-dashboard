@@ -1,0 +1,24 @@
+.top-page-info {
+    background: #FCFCFB;
+}
+.top-page-info ul {
+    /* Remove default bullets */
+   list-style: none; 
+}
+.top-page-info ul li {
+    position: relative;
+    font-size: 0.8em;
+    margin-bottom: 15px;
+    text-indent: 15px;
+}
+.top-page-info ul li::before {
+    content: "\2022";
+    color: #0A65CD;
+    font-size: 2em;
+    font-weight: bold; 
+    display: inline-block; 
+    width: 1em;
+    position: absolute;
+    top: -8px; 
+    margin-right: -30px;
+  }

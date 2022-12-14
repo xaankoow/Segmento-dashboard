@@ -7,6 +7,7 @@ import ComboBox from '../../../component/shared/comboBox/ComboBox'
 import Table from '../../../component/shared/table/Table'
 import { filterIndexerTabelItem, titleOfIndexerTable } from '../../../variables/indexer'
 import InfoWorkSpaceCard from '../WorkSpacesInfoPage/workSpaceCard'
+import InfoPage from '../../../component/shared/InfoPage'
 
 export default function Index() {
 
@@ -14,6 +15,12 @@ export default function Index() {
 
     return (
         <div>
+            <InfoPage title="برای ابزار ایندکسر گوگل  لطفا به نکات زیر توجه کنید: ">
+                <li>نمونه متن برای نوشتن نکات مهم برای ابزار ایندکسر گوگل</li>
+                <li>نمونه متن برای نوشتن نکات مهم برای ابزار ایندکسر گوگل</li>
+
+            </InfoPage>
+
             <div className=' flex justify-end mt-5'>
                 <AuthButton textButton={<><img src={ImageContainer.addLinkBtn} alt="setting" className=' ml-3' />افزودن لینک</>} />
                 <AuthButton textButton={<><img src={ImageContainer.settingBtn} alt="setting" className=' ml-3' />تنظیمات ایندکسر خودکار</>} classes="btn-secondary mr-5" />
