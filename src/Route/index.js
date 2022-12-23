@@ -73,7 +73,7 @@ export const DashboardRote=[
     {path:"financialReports",component:<TableFinancialReports title={"گزارش‌های مالی"} />},
     {path:"workSpaceReport",component:<WorkSpaceReport />},
     {path:"WorkSpaceManagement",component:<WorkSpaceManagement />},
-    {path:"rank-tracking", component: <TabMenu tabsContent={ranktrakingTabs} title={"ابزار رتبه سنج (رنک ترکینگ Rank Tracking)"} amountOfData={"isContentProduction"} /> },
+    {path:"rank-tracking", component: <TabMenu tabsContent={ranktrakingTabs} title={"ابزار رتبه سنج (رنک ترکینگ Rank Tracking)"}/> },
     {path:"keywordResearch",component:<TabMenu tabsContent={tabContent} title={"تحقیق کلمات کلیدی"} amountOfData={"isKeyword"} />},
     {path:"contentCreation",component:<TabMenu tabsContent={tabContent2} title={"ایده تولید محتوا"} amountOfData={"isContentProduction"} />},
     {path:"PageCounter",component:<PageCounter />},

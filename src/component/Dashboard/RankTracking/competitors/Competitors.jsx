@@ -31,6 +31,7 @@ import {
 import { RANK_TRACKING_KEYWORD_TABLE } from "../../../../variables/rankTrackingKeywordTable";
 import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
+import AuthButton from "../../../Auth/authButton/AuthButton";
 
 
 
@@ -49,7 +50,7 @@ ChartJS.register(
 
 export default function Competitors() {
   
-  const [ShowAddcompetitorsModal, SetShowAddCompetitorsModal] = useState(true);
+  const [ShowAddcompetitorsModal, SetShowAddCompetitorsModal] = useState(false);
   const [ShowAddTagModal, SetShowAddTagModal] = useState(false);
 
 
@@ -140,7 +141,8 @@ export default function Competitors() {
 
           <div className="item">
             <div className="item__action">
-              <img src={pishkhan_svg} />
+              {/* <img src={pishkhan_svg} /> */}
+              <AuthButton textButton={<img src={ImageContainer.lineChartIco} alt={"line chart"}/>} classes="w-10 h-10 p-0"/>
             </div>
 
             <div className="item__content">
@@ -200,7 +202,7 @@ export default function Competitors() {
             <div className="item__content">
               <div className="item__title">رقیب شماره 2</div>
               <div className="item__palceholder">
-                <img src={pishkhan_svg} alt="" />
+                <img src={ImageContainer.plusGray} alt="gray plus" className=" w-9 h-9 cursor-pointer"/>
                 <div className="item__message">
                   هنوز وبسایت رقیب ثبت نشده است.
                 </div>
