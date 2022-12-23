@@ -33,6 +33,12 @@ import settingBtn from '../bottom/settings.svg'
 import addLinkBtn from '../bottom/addLink.svg'
 import deleteBtn from '../bottom/bin.svg'
 
+import infoUtils from '../ico/infoUtils.svg'
+import directionOfTheGreenValue from '../ico/directionـofـtheـgreenـvalue.svg'
+import directionOfTheRedValue from '../ico/directionـofـtheـgreenـvalue.svg'
+import moveDownArrow from '../ico/move_down_arrow.svg'
+import lineChartIco from '../ico/line_chart_ico.svg'
+import plusGray from '../ico/plus_gray.svg'
 
 export const ImageContainer = {
   infoBlue,
@@ -73,6 +79,13 @@ export const ImageContainer = {
   sendLinkAdress,
   indexerWorkSpaceListIco,
   greenTick,
-  updateList
+  updateList,
 
+  //
+  infoUtils,
+  directionOfTheGreenValue,
+  directionOfTheRedValue,
+  moveDownArrow,
+  lineChartIco,
+  plusGray
 }

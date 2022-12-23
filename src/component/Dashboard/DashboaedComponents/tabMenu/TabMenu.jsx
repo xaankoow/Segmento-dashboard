@@ -19,7 +19,7 @@ export default function TabMenu({
 
   return (
     <>
-      <PageTitle title={title} badgeApi={amountOfData} hasLimit />
+      <PageTitle title={title} badgeApi={amountOfData} hasLimit={amountOfData?true:false} />
       <div className="text-sm font-medium text-center text-gray-400 border-gray-700 pt-3 bg-[#fff]">
         <Tab.Group>
           <div className="flex  flex-col  items-right mt-3 ">
