@@ -42,11 +42,11 @@ export default function AuthInput({
 
   return (
     <>
-      <div className={`input-wrapper ${wrapperClass}`}>
+      <div className={`auth-input input-wrapper ${wrapperClass}`}>
         <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
         <input
-        placeholder={placeholder}
-        id={inputId!=undefined?inputId:""}
+          placeholder={placeholder}
+          id={inputId != undefined ? inputId : ""}
           type={typeInput}
           required
           maxLength={maxlength}
@@ -57,27 +57,27 @@ export default function AuthInput({
           className={`${classes}  ${disable == true && " bg-[#D9D9D9] text-[#FCFCFB]"}`}
           value={value}
           dir="auto"
-          readOnly={readOnly!=undefined&&true}
+          readOnly={readOnly != undefined && true}
           style={{
             direction,
             width: `${width}`,
             pointerEvents: disable && "none",
             borderBottom: disable ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
           }}
-          onClick={(e)=>selectWithOnClick&&e.currentTarget.select()}
-          onKeyUp={(e)=>{
-            reduxHandleChange != undefined & selectWithOnClick !=undefined&& dispatch(reduxHandleChange(e.target.value))
+          onClick={(e) => selectWithOnClick && e.currentTarget.select()}
+          onKeyUp={(e) => {
+            reduxHandleChange != undefined & selectWithOnClick != undefined && dispatch(reduxHandleChange(e.target.value))
           }}
           onChange={(e) => {
-            checkStrongPass!=undefined&&CheckFormat("password",e.target.value,errorTextId)
+            checkStrongPass != undefined && CheckFormat("password", e.target.value, errorTextId)
             handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow);
             handleChange != undefined && handleChange(e.target.value)
             handleChangeValue != undefined && handleChangeValue()
             workSpaceTypeState != undefined & reduxHandleChange != undefined ?
               dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) :
-              reduxHandleChange != undefined & selectWithOnClick ==undefined && dispatch(reduxHandleChange(e.target.value))
+              reduxHandleChange != undefined & selectWithOnClick == undefined && dispatch(reduxHandleChange(e.target.value))
           }}
-          
+
         />
 
         <label className={disable ? "text-[#fff]" : ""} for="user">{textLabelInput}</label>
