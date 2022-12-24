@@ -19,11 +19,14 @@ import message_svg from "../../../assets/img/dashboard/header/message.svg";
 import settingicon_svg from "../../../assets/img/dashboard/header/settingicon.svg";
 import profileImage_png from "../../../assets/img/dashboard/userProfile/profileImage.png";
 import Skeleton from "react-loading-skeleton";
+import AnimationSegmentoLogo from "../../shared/AnimationSegmentoLogo";
 
 const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
   const dispatch = useDispatch();
   const userToken = localStorage.getItem("token");
   const userState = useSelector((state) => state.userState);
+
+  const { ProcessingDelay,ImportantProcessingDelay, canRequest } = useSelector(state => state.loadingState)
 
   var user_name = "";
   if (userState.userData.user) {
@@ -117,9 +120,9 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
   const init = async () => {
 
     await dispatch(coreUser());
-    dispatch(getAllWorkSpace());
-    dispatch(ChackBusinessCustomer())
-    dispatch(allLimitDataFeature())
+    // dispatch(getAllWorkSpace());
+    dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
+    // dispatch(allLimitDataFeature())
   }
 
   const location = useLocation();
@@ -133,7 +136,8 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
         <a href="https://segmento.ir/">
           <div className="flex items-center gap-3 hover:cursor-pointer">
             {/* <div className='Iconimage w-7 h-8'></div> */}
-            <img src={segmento_logofa_svg} className="w-7 h-8" alt="" />
+            <AnimationSegmentoLogo parentClass={"w-7 h-7 "} animation={ProcessingDelay.length>0|ImportantProcessingDelay.length>0?true:false} animationWithHover/>
+            {/* <img src={segmento_logofa_svg} className="w-7 h-8" alt="" /> */}
             <span className="">سگمنتو segmento</span>
           </div>
         </a>

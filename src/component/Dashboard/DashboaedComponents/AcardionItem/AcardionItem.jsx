@@ -205,7 +205,6 @@ export default function AcardionItem({ clicked, setClicked }) {
   };
   // debugger
 
-  const { limitsDatas } = useSelector((state) => state.workSpaceState);
   const setTitleHandler = (acardionItem) => {
     setItemsClicked(acardionItem);
     localStorage.setItem("acardeonItemClicked", JSON.stringify(acardionItem));

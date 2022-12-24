@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react'
+import { CircularProgress } from 'react-cssfx-loading';
 import Skeleton from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
+import { ImageContainer } from '../../../assets/img/IMG';
 import AuthInput from '../../Auth/authInput/AuthInput';
 import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../Redux/Action/plan';
 import DiscountTagValue from './DiscountTagValue';
 
 export default function CardPlans({ plan, setPlan }) {
 
-  const { discount, discountStatus, allPackageData } = useSelector(state => state.planState);
+  const { allPackageData } = useSelector(state => state.planState);
 
   const { canRequest } = useSelector((state) => state.loadingState);
 
   const dispatch = useDispatch();
 
+  const axiosController = new AbortController();
+
   useEffect(() => {
-    dispatch(getAllPlanData());
+    dispatch(getAllPlanData(axiosController));
   }, [])
+
+  useEffect(() => {
+    return () => {
+      axiosController.abort();
+    }
+  }, [])
+
 
   const [discountInputGold, setDiscountInputGold] = useState("");
   const [discountInputBronze, setDiscountInputBronze] = useState("");
@@ -128,10 +139,11 @@ export default function CardPlans({ plan, setPlan }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"bronze"}
-                // disable={discount != "" ? true : false}
                 errorTextId={lastSelectedDiscountInput == "bronze" ? "discount" : ""}
               />
-              <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}></button>
+              <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}>
+                {canRequest ? <img src={ImageContainer.blueArrowBtn} className=" w-4 h-4" /> : <CircularProgress className=" absolute w-full" color="#0A65CD" width="20px" height="20px" duration="3s" />}
+              </button>
             </div>
           </div>
           <div className='silver plan_card mx-1'>
@@ -159,7 +171,6 @@ export default function CardPlans({ plan, setPlan }) {
                 tagStatusName={"silver"}
                 price={packageSilverPrice != 0 ? packageSilverPrice : allPackageData[6]}
                 planSelected={plan}
-              // defaultDiscount={allPackageData[6].}
               />
             }
             <div className='input_apply_token_container'>
@@ -170,10 +181,11 @@ export default function CardPlans({ plan, setPlan }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"silver"}
-                // disable={discount != "" ? true : false}
                 errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
               />
-              <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}></button>
+              <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}>
+                {canRequest ? <img src={ImageContainer.blueArrowBtn} className=" w-4 h-4" /> : <CircularProgress className=" absolute w-full" color="#0A65CD" width="20px" height="20px" duration="3s" />}
+              </button>
             </div>
           </div>
           <div className='gold plan_card ml-1'>
@@ -209,19 +221,18 @@ export default function CardPlans({ plan, setPlan }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"gold"}
-                // disable={discount != "" ? true : false}
                 errorTextId={lastSelectedDiscountInput == "gold" ? "discount" : ""}
               />
-              <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}></button>
+              <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}>
+                {canRequest ? <img src={ImageContainer.blueArrowBtn} className=" w-4 h-4" /> : <CircularProgress className=" absolute w-full" color="#0A65CD" width="20px" height="20px" duration="3s" />}
+              </button>
             </div>
           </div>
           <div className='diamond plan_card'>
-
             <span className='title'>الماسی</span>
             <hr />
             <div className='plan'>
               {allPackageData.map((item, index) => {
-
                 if (item.type_text == "الماسی") {
                   return (
                     <div className='container_row' onClick={() => { setPlan({ uuid: item.uuid, type: "diamond", planIndex: index }); dispatch(setPackageUuid(item.uuid)) }}>
@@ -249,19 +260,20 @@ export default function CardPlans({ plan, setPlan }) {
                 direction={"rtl"}
                 handleArrowPlan={handleShowArrowDiscount}
                 targePlanArrow={"diamond"}
-                // disable={discount != "" ? true : false}
                 errorTextId={lastSelectedDiscountInput == "diamond" ? "discount" : ""}
               />
-              <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" ? "inline-block" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}></button>
+              <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}>
+                {canRequest ? <img src={ImageContainer.blueArrowBtn} className=" w-4 h-4" /> : <CircularProgress className=" absolute w-full" color="#0A65CD" width="20px" height="20px" duration="3s" />}
+              </button>
             </div>
           </div>
         </>
         : (
           <>
-              <Skeleton width={"230px"} height={"400px"}/>
-              <Skeleton width={"230px"} height={"400px"}/>
-              <Skeleton width={"230px"} height={"400px"}/>
-              <Skeleton width={"230px"} height={"400px"}/>
+            <Skeleton width={"230px"} height={"400px"} />
+            <Skeleton width={"230px"} height={"400px"} />
+            <Skeleton width={"230px"} height={"400px"} />
+            <Skeleton width={"230px"} height={"400px"} />
           </>
         )}
 

@@ -17,7 +17,6 @@ import { useLocation } from "react-router";
 import PopUpLimit from "../../Utils/Limit/PopUpLimit";
 
 const KeyWords = ({ onClickHandler }) => {
-  const toolsLimit = useSelector((state) => state.workSpaceState.limitsDatas);
   const { canRequest } = useSelector((state) => state.loadingState);
   // searchBox Value
   const [searchBoxValue, setSearchBoxValue] = useState("");

@@ -21,6 +21,7 @@ import { paragraphText } from "./headParagraphText";
 import moveBackIco_svg from "../../../../assets/img/modal/footer/moveBack.svg"
 import { afterOpenOrCloseAnyModal } from "../../../../variables/modal";
 import { ImageContainer } from "../../../../assets/img/IMG";
+import { addLoadingItem, removeLoadingItem } from "../../../Redux/Action/loading";
 // import moveBackIco from "./src/assets/img/modal/footer/moveBack"
 
 export default function PhoneNumberOperations({ registerPhone, editePhone }) {
@@ -67,13 +68,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
     if (phoneNumberValue.length != 9) {
       InputError("phoneNumberOperationsErrText", "لطفا یک شماره تلفن معتبر وارد کنید");
     } else {
-
-      // handle show loadin
-      {
-        loadingState.ProcessingDelay.push("changephoneNumberService");
-        loadingState.canRequest = false;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-      }
+      dispatch(addLoadingItem("changePhoneNumber"))
       try {
         let formdata = new FormData();
         formdata.append("mobile", "09" + phoneNumberValue);
@@ -90,24 +85,13 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
         }
       } catch (error) {
       }
-      {
-        var removeProcessingItem = loadingState.ProcessingDelay.filter(
-          (item) => item != "changephoneNumberService"
-        );
-        loadingState.ProcessingDelay = removeProcessingItem;
-        loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-      }
+      dispatch(removeLoadingItem("changePhoneNumber"))
+
     }
   };
 
   const verifyPhoneUserNumber = async () => {
-    // handle show loadin
-    {
-      loadingState.ProcessingDelay.push("verifyPhoneNumber");
-      loadingState.canRequest = false;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    }
+    dispatch(addLoadingItem("verifyPhoneNumber"))
     try {
       let formdata = new FormData();
       formdata.append("code", auth4 + auth3 + auth2 + auth1);
@@ -125,14 +109,8 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
       }
     } catch (error) {
     }
-    {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(
-        (item) => item != "verifyPhoneNumber"
-      );
-      loadingState.ProcessingDelay = removeProcessingItem;
-      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    }
+    dispatch(removeLoadingItem("verifyPhoneNumber"))
+
   };
 
   useEffect(() => {
@@ -228,16 +206,16 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
               onRequestClose={() => operationType != "verify" && navigate(-1)}
               contentLabel="Example Modal"
             >
-              <div className="report_buy_plan w-[530px] rounded-lg transition-all">
+              <div>
                 <PageTitle
                   closeIco={operationType != "verify" && true}
-                  // title={registerPhone ? "تایید شماره همراه" : "تغییر شماره همراه"}
                   title={
                     userData.user != undefined && userData.user.mobile == null
                       ? "تایید شماره همراه"
                       : "تغییر شماره همراه"
                   }
                 />
+              <div className="report_buy_plan w-[530px] rounded-lg transition-all">
                 <body className=" bg-[#fff]  pt-2 px-2 pb-5">
                   <div className=" mt-5">{paragraphText(modalStep, operationType)}</div>
                   <div className=" w-96 mx-auto mt-20">
@@ -264,6 +242,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                         textButton={"دریافت کد تایید"}
                         handlerClick={setNewPhoneNumber}
                         classes="m-auto"
+                        keyLoading="changePhoneNumber"
                       />
                     ) : (
                       <div className="flex justify-between items-center">
@@ -273,6 +252,7 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                         <AuthButton
                           textButton={"تایید کد"}
                           handlerClick={verifyPhoneUserNumber}
+                          keyLoading={"verifyPhoneNumber"}
                         />
                         <div className=" w-1/3">
                           <Timer minutes={minutes} seconds={seconds} />
@@ -300,6 +280,8 @@ export default function PhoneNumberOperations({ registerPhone, editePhone }) {
                   </div>
                 </body>
               </div>
+              </div>
+
               {showToolTip && <ToolTip />}
             </Modal>
           )}

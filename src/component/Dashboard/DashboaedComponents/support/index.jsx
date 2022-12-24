@@ -31,37 +31,23 @@ export default function Index() {
     }
   }, [])
 
+  const axiosController=new AbortController()
 
   const dispatch = useDispatch();
 
   const ticketUuid = window.location.hash.substring(window.location.hash.lastIndexOf('/') + 1);
   const initChat = async () => {
-    // //handle show loadin
-    // {
-    //   loadingState.ProcessingDelay.push("getSupportChatData");
-    //   loadingState.canRequest = false;
-    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    // }
-    try {
 
-      const { data } = await getSupportChatData(ticketUuid);
+    try {
+      const { data } = await getSupportChatData({ticketUuid,axiosController});
       if (data.code == 200 & data.status == true) {
         console.log(data)
         setChateData(data.data); //5
       }
     } catch (error) {
       // setShowPopUpLimit(true);
-      console.log(error)
+      // console.log(error)
     }
-    // //handle hide loading
-    // {
-    //   var removeProcessingItem = loadingState.ProcessingDelay.filter(
-    //     (item) => item != "getSupportChatData"
-    //   );
-    //   loadingState.ProcessingDelay = removeProcessingItem;
-    //   loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-    //   await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    // }
   };
 
   const AddNewMessageAction = async () => {
@@ -83,7 +69,6 @@ export default function Index() {
         const { data } = await sendNewMessageTicketServise(formdata);
 
         if (data.code == 200 & data.status == true) {
-          debugger
           const backupChatDate = chatData;
           backupChatDate.messages.push(data.data)
           setChateData(backupChatDate)
@@ -110,8 +95,12 @@ export default function Index() {
     }
   };
 
-  const sendMessageData = (ticketUuid, textEditor, fileEditor)
-
+  useEffect(() => {
+    return () => {
+      axiosController.abort();
+    }
+  }, [])
+  
   return (
     <>
       <PageTitle title={"پشتیبانی و تیکت‌ها "} />
@@ -153,7 +142,7 @@ export default function Index() {
                 <SendMessage setValueEditor={setTextEditor} setFileArray={setFileEditor} />
               </div>
             </div>
-            <AuthButton handlerClick={AddNewMessageAction} textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
+            <AuthButton handlerClick={AddNewMessageAction} keyLoading={"sendNewMessageTicketServise"} textButton={"ارسال پاسخ"} classes="m-auto mt-7" />
           </>
         ) :
           <> {/* skeleton style */}

@@ -225,8 +225,11 @@
 }
 
  .plans_body_container .plan_card .apply_token_ico {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    background-image: url(../img/modal/body/arrow_apply_token.svg);
+    /* background-image: url(../img/modal/body/arrow_apply_token.svg); */
     box-sizing: border-box;
     background-repeat: no-repeat;
     background-size: cover;
