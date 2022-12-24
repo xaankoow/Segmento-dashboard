@@ -22,6 +22,7 @@
     "jalali-moment": "^3.3.11",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.3.1",
+    "react-data-table-component": "^7.5.3",
     "react-dom": "^18.1.0",
     "react-draft-wysiwyg": "^1.15.0",
     "react-dropzone": "^14.2.2",
@@ -35,7 +36,7 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.3",
-    "react-toastify": "^9.0.0",
+    "react-toastify": "^8.0.0",
     "react-tooltip": "^4.2.21",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
@@ -72,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "gh-pages": "^4.0.0"
   }
 }
