@@ -29,6 +29,7 @@ import indexerWorkSpaceListIco from '../dashboard/indexer/indexerWorkSpaceListIc
 import greenTick from '../dashboard/indexer/greenTick.svg'
 import updateList from '../dashboard/indexer/updateList.svg'
 import blueArrowBtn from '../bottom/blueArrow.svg'
+import whiteArrowBtn from '../bottom/whiteArrow.svg'
 import settingBtn from '../bottom/settings.svg'
 import addLinkBtn from '../bottom/addLink.svg'
 import deleteBtn from '../bottom/bin.svg'
@@ -73,6 +74,7 @@ export const ImageContainer = {
   sendLinkAdress,
   indexerWorkSpaceListIco,
   greenTick,
-  updateList
+  updateList,
+  whiteArrowBtn
 
 }
