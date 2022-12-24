@@ -5,7 +5,7 @@
   width: 100%;
 }
 
-label {
+.auth-input label {
   color: #7D7D7D;
   font-size: 12px;
   text-transform: uppercase;
@@ -41,7 +41,7 @@ label {
   cursor: pointer;
 }
 
-input {
+.auth-input input {
   color: #555;
   outline: none;
   border: 1.5px solid rgba(211, 213, 226, 1);
@@ -50,7 +50,7 @@ input {
   position: relative;
 }
 
-textarea{
+.auth-input textarea{
   /* font-size: 13px; */
   color: #555;
   outline: none;
@@ -78,14 +78,14 @@ textarea{
   background-color: white;
 }
 
-input:invalid+label {
+.auth-input input:invalid+label {
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
   -o-transform: translateY(0);
   -ms-transform: translateY(0);
   transform: translateY(0);
 }
-textarea:invalid+label {
+.auth-input textarea:invalid+label {
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
   -o-transform: translateY(0);
@@ -130,7 +130,7 @@ textarea:invalid+label {
   box-sizing: border-box;
 }
 
-input:invalid+label {
+.auth-input input:invalid+label {
   font-size: 12px;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -149,15 +149,15 @@ textarea:invalid+label {
 }
 
 
-input:focus {
+.auth-input input:focus {
   border-bottom: 2px solid #0a65cd;
 }
 
-textarea:focus {
+.auth-input textarea:focus {
   border-bottom: 2px solid #0a65cd;
 }
 
-input:focus+label {
+.auth-input input:focus+label {
   font-size: 12px;
   color: #001F43;
   -webkit-transform: translateY(-35px);
@@ -167,7 +167,7 @@ input:focus+label {
   transform: translateY(-35px);
 }
 
-textarea:focus+label {
+.auth-input textarea:focus+label {
   font-size: 12px;
   color: #001F43;
   -webkit-transform: translateY(-35px);
@@ -177,7 +177,7 @@ textarea:focus+label {
   transform: translateY(-35px);
 }
 
-input:disabled+label {
+.auth-input input:disabled+label {
   font-size: 12px;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -185,7 +185,7 @@ input:disabled+label {
   -ms-transform: translateY(0);
   transform: translateY(0);
 }
-textarea:disabled+label {
+.auth-input textarea:disabled+label {
   font-size: 12px;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
