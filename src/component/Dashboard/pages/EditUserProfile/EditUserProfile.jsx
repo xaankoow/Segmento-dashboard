@@ -34,6 +34,7 @@ import { ClearInputs } from "../../../Utils/ClearInputs/ClearInputs";
 import { CheckFormat } from "../../../Utils/Auth/CheckFormtValue";
 import { Link, useLocation } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
+import { addLoadingItem, removeLoadingItem } from "../../../Redux/Action/loading";
 
 export default function EditUserProfile() {
   const { canRequest } = useSelector((state) => state.loadingState);
@@ -107,7 +108,6 @@ export default function EditUserProfile() {
   const selexboxData = async () => {
     try {
       const { data, status } = await getSelectBoxData();
-      // setcontent(data.data); //5
       setSelectDtas(data.data);
     } catch (error) {
     }
@@ -117,12 +117,8 @@ export default function EditUserProfile() {
 
   const handleSetNewProfile = async () => {
     var toastMessage = "";
-    //handle show loadin
-    {
-      loadingState.ProcessingDelay.push("editProfile");
-      loadingState.canRequest = false;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    }
+
+    dispatch(addLoadingItem("editProfile"))
 
     let family = "";
     try {
@@ -133,9 +129,7 @@ export default function EditUserProfile() {
         family = user_name;
       }
 
-      // const [file] = acceptedFiles;
       const imgData = userState.image[0] != "" ? userState.image[0] : "";
-      // const imgData1 = imgData != "" ? URL.revokeObjectURL(imgData) : "";
 
       formdata.append("name", family);
       formdata.append("bio", "من یک برنامه نویس هستم");
@@ -176,7 +170,6 @@ export default function EditUserProfile() {
             ? pastData.dating_method
             : 1
       );
-      // const { data, status } = await keywordService(searchBoxValue);
       const { data } = await editProfile(formdata);
       if ((data.code == 200) & (data.status == true)) {
         dispatch(coreUser());
@@ -193,15 +186,7 @@ export default function EditUserProfile() {
       // toast.error("اطلاعات شما ذخیره نشد !");
     }
 
-    //handle hide loading
-    {
-      var removeProcessingItem = loadingState.ProcessingDelay.filter(
-        (item) => item != "editProfile"
-      );
-      loadingState.ProcessingDelay = removeProcessingItem;
-      loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-    }
+    dispatch(removeLoadingItem("editProfile"))
   };
 
 
@@ -218,9 +203,8 @@ export default function EditUserProfile() {
       var uuidUser = userState.userData.user.uuid;
 
       try {
-        // const { data, status } = await getPastDatas(uuidUser); // ---------
-        const { data, status } = await getPastDatas(uuidUser); // --------- ایمپورت اشتباه
-        setPastData(data.data); //5
+        const { data } = await getPastDatas(uuidUser);
+        setPastData(data.data);
       } catch (error) {
       }
     }
@@ -233,7 +217,6 @@ export default function EditUserProfile() {
   });
 
   const handleUpdatePassword = async () => {
-
     if (
       CheckFormat("password", newPass, "errEditUserProfilePassword") &&
       CheckFormat(
@@ -242,22 +225,13 @@ export default function EditUserProfile() {
         "errEditUserProfilePasswordConfirm"
       )
     ) {
-      //handle show loadin
-      {
-        loadingState.ProcessingDelay.push("editPassword");
-        loadingState.canRequest = false;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-      }
-
+      dispatch(addLoadingItem("editPassword"))
       try {
         let formdata = new FormData();
         formdata.append("last_pass", currentPass);
         formdata.append("password", newPass);
         formdata.append("password_confirmation", confrimPass);
-        // const { data, status } = await keywordService(searchBoxValue);
         const { data, status } = await editPassword(formdata);
-        // setcontent(data.data); //5
-
         if (data.errors.length != 0) {
           toast.error(data.errors[0]);
         } else {
@@ -268,20 +242,10 @@ export default function EditUserProfile() {
       } catch (error) {
         toast.error("لطفا فیلد ها را با دقت پر کنید");
       }
-
-      //handle hide loading
-      {
-        var removeProcessingItem = loadingState.ProcessingDelay.filter(
-          (item) => item != "editPassword"
-        );
-        loadingState.ProcessingDelay = removeProcessingItem;
-        loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
-      }
+      dispatch(removeLoadingItem("editPassword"))
     }
   };
 
-  const userToken = localStorage.getItem("token");
   if (userState.userData.user) {
     user_name = userState.userData.user.name
       ? userState.userData.user.name
@@ -464,6 +428,7 @@ export default function EditUserProfile() {
                         handlerClick={handleSetNewProfile}
                         setOnclickValue={userState.image[0]}
                         textButton={"ذخیره تغییرات"}
+                        keyLoading={"editProfile"}
                       />
                     </div>
                     {/* <div className="border-b border-lightGray w-full m-auto mt-7" /> */}
@@ -529,13 +494,11 @@ export default function EditUserProfile() {
                     reduxHandleClick={RegisterUserAction}
                   />
                 </TextButton.Provider> */}
-                  <button
-                    disabled={!canRequest}
-                    className="btn-style"
-                    onClick={() => handleUpdatePassword()}
-                  >
-                    تغییر گذرواژه
-                  </button>
+                  <AuthButton
+                    handlerClick={handleUpdatePassword}
+                    keyLoading="editPassword"
+                    textButton="تغییر گذرواژه"
+                  />
                 </div>
               </div>
             )}

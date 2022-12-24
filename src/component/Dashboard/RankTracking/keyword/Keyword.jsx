@@ -31,6 +31,7 @@ import {
 import { RANK_TRACKING_KEYWORD_TABLE } from "../../../../variables/rankTrackingKeywordTable";
 import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
+import AuthButton from "../../../Auth/authButton/AuthButton";
 
 
 
@@ -91,7 +92,7 @@ export default function Keyword({ onClickHandler }) {
 
   const b = [
     {
-      chart: <img src={pishkhan_svg} />,
+      chart: <img src={ImageContainer.lineChartIco} />,
       id: 1,
       keyword: "SEG-5242",
       currentRank: "نمونه نوشته برای عنوان",
@@ -133,11 +134,12 @@ export default function Keyword({ onClickHandler }) {
         <div className="header">
           <div className="header__title">جدول کلمات کلیدی</div>
           <div className="header__action">
-            <img src={pishkhan_svg} className="" />
+            <AuthButton handlerClick={closeAddTagDialog} setOnclickValue={true} textButton={<><img src={ImageContainer.plus} className=" w-3 h-3 ml-4" />افزودن کلمه کلیدی </>}/>
+            {/* <img src={pishkhan_svg} className="" />
             <button class="header__btn btn-style w-50 flex justify-between">
               <span>+</span>
               <div onClick={() => closeAddTagDialog(true)}> افزودن صفحه جدید </div>
-            </button>
+            </button> */}
           </div>
         </div>
 

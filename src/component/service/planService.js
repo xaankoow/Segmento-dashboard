@@ -9,9 +9,10 @@ export const applyDiscount = discountToken => {
     return http.post(`${config.xaankooApi}/api/v1/discount/check`,discountToken, headerRegisterUser);
 }
 
-export const getAllPlan = () => {
+export const getAllPlan = ({axiosController}) => {
     const headerRegisterUser = {
-        "Accept": "application/json"
+        "Accept": "application/json",
+        signal: axiosController!=undefined&&axiosController.signal
     }
     return http.get(`${config.xaankooApi}/api/v1/package `,headerRegisterUser);
 }

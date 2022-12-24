@@ -25,7 +25,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
 
   const { forceUpdate } = useSelector(state => state.planState);
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -50,10 +50,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
     }
   }, [])
 
-
-
   useEffect(() => {
-    // const find_buy_type = localStorage.getItem("buyType")
     if (checkBuyPlan == true) {
       if (checkErr != "") {
         setCheckErr(true)
@@ -75,10 +72,22 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       backgrounColor: "red",
-      'z-index': '100'
+      'z-index': '100',
+      width: "70%",
+      'max-width': "1000px"
     },
   };
 
+  function ModalOptions(step, free) {
+    // let modalSizes = ["750px", "432px", "542px", "587px", "554px", "674px"]
+    let modalSizes = ["750px", "432px", "542px", "587px", "554px", "674px"]
+    let modalStepTwoFree = "731px"
+    if (free == true & step == 2) {
+      return modalStepTwoFree
+    } else {
+      return modalSizes[step - 1]
+    }
+  }
   return (
     <Fragment>
       {rederingWithDelay ?
@@ -86,14 +95,13 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
           <div className='buy_plan_modal'>
             <Modal
               // closeTimeoutMS={2000}
-
               isOpen={true}
               parentSelector={() => document.querySelector(modalParentSelector)}
               style={customStyles}
               contentLabel="Example Modal"
-              onRequestClose={()=>navigate(-1)}
+              onRequestClose={() => navigate(-1)}
             >
-              <div className='w-[907px]  overflow-scroll max-h-[712px]'>
+              <div className={`w-full  overflow-scroll h-[80vh] max-h-[${ModalOptions(stepModal, free)}]`}>
                 {checkErr != "" ? (
                   <div className='h-[685px]'>
                     {
@@ -101,13 +109,13 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
                     }
                   </div>
                 ) : (
-                  <Fragment>
+                  <>
                     <Head handleClose={handleClose} stepModal={stepModal} free={free} />
                     <div className={`${stepModal == 1 ? "px-6" : stepModal > 2 ? "px-2" : stepModal == 2 ? " px-4" : ""}`}>
                       <BodyContent setStepModal={setStepModal} setApplyWebAdress={setApplyWebAdress} setPackageUuid={setPackageUuid} stepModal={stepModal} setPlan={setPlan} plan={plan} free={free} setFree={setFree} lockNextStep={lockNextStep} setLockNextStep={setLockNextStep} />
                       <FooterBtn applyWebAdress={applyWebAdress} stepModal={stepModal} free={free} setFree={setFree} setStepModal={setStepModal} handleClose={handleClose} lockNextStep={lockNextStep} packageUuid={plan.uuid} />
                     </div>
-                  </Fragment>
+                  </>
                 )}
               </div>
             </Modal>

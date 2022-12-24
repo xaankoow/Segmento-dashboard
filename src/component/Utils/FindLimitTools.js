@@ -1,7 +1,5 @@
 export const FindLimitTools = (section, workSpaceState) => {
 
-    // const { limitsDatas } = useSelector((state) => state.workSpaceState);
-    // const { allLimitsDatas } = useSelector((state) => state.workSpaceState);
 
     const limitInfo = {
         all: 0,

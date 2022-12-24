@@ -57,7 +57,6 @@ export default function DashboardBody() {
             setShowModalBuyPlanResult({ type: "modal", result: false });
           }
         } else {
-          debugger
           localStorage.removeItem("buyType")
           navigate("/dashboard/buyPlan/buyInfo");
         }
@@ -96,7 +95,7 @@ export default function DashboardBody() {
         setTimeout(() => {
           setShowVerifyPhoneNumberModal(true);
         }, 7000)}
-      {/* {showVerifyPhoneNumberModal && <PhoneNumberOperations />} */}
+      {showVerifyPhoneNumberModal && <PhoneNumberOperations />}
       {showModalBuyPlanResult.type != "" ? (
         <BuyPlanEasyToStartModal checkBuyPlan={showModalBuyPlanResult.result} />
       ) : (

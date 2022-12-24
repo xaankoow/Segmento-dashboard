@@ -1,6 +1,7 @@
 /* DEFAULT BTN STYLE*/
 .btn-style * {
   font-size: 14px !important;
+  color: white;
 }
 
 .btn-style {
@@ -14,10 +15,54 @@
   align-items: center;
   justify-content: center;
   padding: 9px 20px;
+  height: 40px;
   /* transition: background 0.08s ease-in-out; */
   transition: background 0.5s ease-in-out;
 }
-.btn-delete_style {
+.btn-style:disabled { 
+  color: rgba(255, 255, 255, 1) !important;
+  background-color: rgba(211, 213, 226, 1) !important;
+  cursor: default !important;
+}
+
+.btn-style:disabled:hover {
+  background-color: rgba(211, 213, 226, 1) !important;
+}
+.btn-style:disabled:active {
+  background-color: rgba(211, 213, 226, 1) !important;
+}
+
+
+
+
+/* .changing_padding_down{
+  animation: changingPaddingSizeToDown 1s ease-out alternate;
+}
+
+@keyframes changingPaddingSizeToDown {
+    from{padding: 9px 20px ;}
+    to{padding: 9px 0px ;}
+}
+.changing_padding_up{
+  animation: changingPaddingSizeToUp 1s ease-out alternate;
+}
+
+@keyframes changingPaddingSizeToUp {
+  from{padding: 9px 0px ;}
+  to{padding: 9px 20px ;}
+} */
+
+
+
+
+
+
+
+
+.btn-delete *{
+  color: #F35242B2;
+}
+.btn-delete {
   background: #F3524226 !important;
   font-size: 14px !important;
   color: #F35242B2;
@@ -46,7 +91,9 @@
   background-color: #009fb9 !important;
   color: white;
 }
-
+.btn-style:active * {
+  color: white;
+}
 .input_defult_style {}
 
 /* .input_verify_email_cod_container .input-wrapper input{
@@ -88,6 +135,10 @@ margin: 0px 20px;
 
 
 
+.btn-secondary *{
+  color: #488CDA;
+}
+
 .btn-secondary {
   background-color: #F2F5F7;
   font-size: 14px !important;
@@ -108,12 +159,24 @@ margin: 0px 20px;
   color: white;
 }
 
+.btn-secondary:hover * {
+  color: white;
+}
+
 .btn-secondary:hover img{
   filter: brightness(0) invert(1);
 }
 
 .btn-secondary:active {
   background-color: #0B4B94;
+  color: white;
+}
+
+.btn-secondary:active *{
+  color: white;
+}
+
+.btn-secondary:active *{
   color: white;
 }
 

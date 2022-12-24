@@ -4,7 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 import PageTitle from "../pageTitle/pageTitle";
 import { usetLimit } from "../../../service/userLimit";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import { Link } from "react-router-dom";
 import { getPackageInfO } from "../../../service/packages";
@@ -12,14 +12,21 @@ import { setFormatNumber } from "../../../Utils/FORMAT/number";
 import date_range_svg from "../../../../assets/img/dashboard/planStatus/date_range.svg";
 import boxDiscount_svg from "../../../../assets/img/dashboard/planStatus/boxDiscount.svg";
 import balloonBoxDiscount_svg from "../../../../assets/img/dashboard/planStatus/balloonBoxDiscount.svg";
+import { allLimitDataFeature } from "../../../Redux/Action/workSpace";
+import { addLoadingItem, removeLoadingItem } from "../../../Redux/Action/loading";
 
 export default function PlanStatus() {
   var moment = require("jalali-moment");
 
-  const [datas, setDatas] = useState([]);
+  // const [allLimitsDatas, setDatas] = useState([]);
   const [allWords, setAllWords] = useState([]);
   const userState = useSelector((state) => state.userState);
+  const { allLimitsDatas } = useSelector((state) => state.workSpaceState);
+  const loadingState = useSelector((state) => state.loadingState);
 
+  const dispatch = useDispatch();
+
+  const axiosController = new AbortController();
   var nowDate = new Date();
   // user type
   const type = userState.userData.package != undefined ? userState.userData.package.type_text : "بدون پکیج";
@@ -64,29 +71,42 @@ export default function PlanStatus() {
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const content = datas.length > 0 && datas[20].count;
-  const keyword = datas.length > 0 && datas[6].count;
+  const content = allLimitsDatas.length > 0 && allLimitsDatas[20].count;
+  const keyword = allLimitsDatas.length > 0 && allLimitsDatas[6].count;
 
   useEffect(() => {
-    const pastSelexboxData = async () => {
-      try {
-        const { data, status } = await usetLimit();
-        setDatas(data.data);
-      } catch (error) { }
-    };
-    if (datas.length == 0) pastSelexboxData();
+    // console.log("plan status")
+    dispatch(allLimitDataFeature({ axiosController }))
+    // const pastSelexboxData = async () => {
+    //   try {
+    //     const { data, status } = await usetLimit();
+    //     setDatas(data.data);
+    //   } catch (error) { }
+    // };
+    // if (allLimitsDatas.length == 0) pastSelexboxData();
   }, []);
 
   useEffect(() => {
+    dispatch(allLimitDataFeature({ axiosController }))
+
     const setPackagesInformation = async () => {
       let package_uuid = "";
 
       if (userState.userData.package != undefined) {
         package_uuid = userState.userData.package.uuid;
         try {
-          const { data, status } = await getPackageInfO(package_uuid);
-          setAllWords(data.data.features);
+          if (!loadingState.ProcessingDelay.includes("getPackageInfO")) {
+            dispatch(addLoadingItem("getPackageInfO"))
+            const { data } = await getPackageInfO({ package_uuid, axiosController });
+            if (data.code == 200 & data.status == true) {
+              setAllWords(data.data.features);
+            }
+
+
+          }
+
         } catch (error) { }
+        dispatch(removeLoadingItem("getPackageInfO"))
       }
     };
 
@@ -116,17 +136,15 @@ export default function PlanStatus() {
     ],
   };
 
-
-
   const miniChartSetting2 = {
     datasets: [
       {
         label: "# of Votes",
         data: [
-          datas.length > 0 ?
+          allLimitsDatas.length > 0 ?
             allWords.length != 0 &&
-            allWords[20].count - datas[20].count : 1,
-          datas.length > 0 ? datas[20].count : 0,
+            allWords[20].count - allLimitsDatas[20].count : 1,
+          allLimitsDatas.length > 0 ? allLimitsDatas[20].count : 0,
         ],
         cutout: 36,
         backgroundColor:
@@ -178,10 +196,10 @@ export default function PlanStatus() {
       {
         label: "# of Votes",
         data: [
-          datas.length > 0 ?
+          allLimitsDatas.length > 0 ?
             allWords.length != 0 &&
-            allWords[6].count - datas[6].count : 1,
-          datas.length > 0 && datas[6].count,
+            allWords[6].count - allLimitsDatas[6].count : 1,
+          allLimitsDatas.length > 0 && allLimitsDatas[6].count,
         ],
         cutout: 36,
         backgroundColor:
@@ -206,6 +224,12 @@ export default function PlanStatus() {
     ],
   };
 
+  useEffect(() => {
+    return () => {
+      axiosController.abort()
+    }
+  }, [])
+
   return (
     <>
       <PageTitle title={" وضعیت اشتراک"} />
@@ -223,16 +247,16 @@ export default function PlanStatus() {
               <div className="flex flex-row">
                 <span
                   className={`w-1 h-5 mt-5 mr-5 absolute rounded ${type.includes("طلایی")
-                      ? " bg-yellow "
-                      : type.includes("نقره ای")
-                        ? " bg-secondary "
-                        : type.includes("برنزی")
-                          ? " bg-[#E99991] "
-                          : type.includes("الماسی")
-                            ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center "
-                            : type.includes("14 روز رایگان")
-                              ? " bg-secondary "
-                              : "  "
+                    ? " bg-yellow "
+                    : type.includes("نقره ای")
+                      ? " bg-secondary "
+                      : type.includes("برنزی")
+                        ? " bg-[#E99991] "
+                        : type.includes("الماسی")
+                          ? " bg-diamond rounded-3xl py-1 px-2 text-white text-center "
+                          : type.includes("14 روز رایگان")
+                            ? " bg-secondary "
+                            : "  "
                     }`}
                 ></span>
                 <span className="absolute mt-4 mr-10 ">
@@ -388,14 +412,14 @@ export default function PlanStatus() {
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0
+                      {allLimitsDatas.length > 0
                         ? allWords.length != 0 &&
-                        setFormatNumber(allWords[6].count - datas[6].count)
+                        setFormatNumber(allWords[6].count - allLimitsDatas[6].count)
                         : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0 ? setFormatNumber(datas[6].count) : "0"}
+                      {allLimitsDatas.length > 0 ? setFormatNumber(allLimitsDatas[6].count) : "0"}
                     </span>
                   </div>
                 </div>
@@ -403,7 +427,7 @@ export default function PlanStatus() {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuetwo"></span>{" "}
-                    {datas.length > 0 ? setFormatNumber(datas[6].count) : "0"}{" "}
+                    {allLimitsDatas.length > 0 ? setFormatNumber(allLimitsDatas[6].count) : "0"}{" "}
                     <br />
                     کلمه باقی مانده
                   </div>
@@ -435,15 +459,15 @@ export default function PlanStatus() {
                     </span>
                     <span className="mr-3">کلمات مصرف شده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0
+                      {allLimitsDatas.length > 0
                         ? allWords.length != 0 &&
-                        setFormatNumber(allWords[20].count - datas[20].count)
+                        setFormatNumber(allWords[20].count - allLimitsDatas[20].count)
                         : "0"}
                     </span>
                     <span className="mr-3">کلمات باقی مانده</span>
                     <span id="border" className="mr-3">
-                      {datas.length > 0
-                        ? setFormatNumber(datas[20].count)
+                      {allLimitsDatas.length > 0
+                        ? setFormatNumber(allLimitsDatas[20].count)
                         : "0"}
                     </span>
                   </div>
@@ -452,7 +476,7 @@ export default function PlanStatus() {
                 <div className="w-24 h-24 float-left relative mx-auto">
                   <div className="w-full h-10 absolute top-1/2 left-0 mt-[-20px] text-[8px] leading-5 text-center">
                     <span id="valuethree"></span>{" "}
-                    {datas.length > 0 ? setFormatNumber(datas[20].count) : "0"}{" "}
+                    {allLimitsDatas.length > 0 ? setFormatNumber(allLimitsDatas[20].count) : "0"}{" "}
                     <br />
                     کلمه باقی مانده
                   </div>

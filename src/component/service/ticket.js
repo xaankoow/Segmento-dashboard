@@ -11,20 +11,22 @@ export const setNewTicket = datas => {
     return http.post(`${config.xaankooApi}/api/v1/ticket`,datas, headerRegisterUser);
 }
 
-export const getSupportChatData = chatUuid => {
+export const getSupportChatData = ({ticketUuid,axiosController}) => {
     //7
     const headerRegisterUser = {
         'Content-Type': 'multipart/form-data',
-        "workspace":"text/plain"
+        "workspace":"text/plain",
+        signal: axiosController!=undefined&&axiosController.signal
     }
-    return http.get(`${config.xaankooApi}/api/v1/ticket/${chatUuid}`, headerRegisterUser);
+    return http.get(`${config.xaankooApi}/api/v1/ticket/${ticketUuid}`, headerRegisterUser);
 }
 
-export const ticketTableData = () => {
+export const InitTicketsDataService = ({axiosController}) => {
     //7
     const headerRegisterUser = {
         'Content-Type': 'multipart/form-data',
-        "workspace":"text/plain"
+        "workspace":"text/plain",
+        signal: axiosController!=undefined&&axiosController.signal
     }
     return http.get(`${config.xaankooApi}/api/v1/ticket?type=&value=`, headerRegisterUser);
 }

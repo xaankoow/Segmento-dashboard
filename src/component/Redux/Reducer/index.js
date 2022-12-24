@@ -5,6 +5,7 @@ import { workSpaceReducer } from "./workSpace";
 import { loadingReducer } from "./loading";
 import { navMenu } from "./navMenu";
 import { tiketReducer } from "./tiket";
+import { rankTrakingReducer } from "./rankTraking";
 // import plan from './plan'
 
 
@@ -14,6 +15,7 @@ export const reducers = combineReducers({
     workSpaceState: workSpaceReducer,
     loadingState: loadingReducer,
     navMenuState: navMenu,
-    ticketState:tiketReducer
+    ticketState:tiketReducer,
+    rankTrakingState:rankTrakingReducer
     // user:userReducer
 })
