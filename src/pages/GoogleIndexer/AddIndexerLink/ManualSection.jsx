@@ -27,7 +27,7 @@ export default function ManualSection({ disableSection }) {
   });
 
   return (
-    <div className={`${defaultBoxStyleIndexer} relative`}>
+    <div >
       {disableSection ? <div className='w-full h-full float-right top-0 bg-sectionDisable opacity-40 absolute bg- z-40'></div> : null}
       <div className='flex justify-between items-center'>
         <div className={parentHorizontalLineInBeforTextStyleIndexer}>
@@ -54,13 +54,18 @@ export default function ManualSection({ disableSection }) {
           <div
             {...getRootProps({ className: "dropzone" })}
           >
-            <AuthButton classes={"btn-secondary mr-5"} textButton={"انتخاب فایل"} />
+            <button type="button" className="text-[#488CDA] bg-[#F2F5F7] mr-3 rounded-lg focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium text-sm px-5 py-3 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-0 mb-0">
+              انتخاب فایل
+            </button>
           </div>
         </div>
       </div>
       <div className=' text-left w-full mt-7'>
         <div className=' inline-block'>
-            <AuthButton textButton={<><span className='text-orgWhite'>ارسال لینک</span><img src={ImageContainer.sendLinkAdress} alt="arrow" className=' mr-3'/></>} disabled={disableSection}/>
+          <button type="button" className="text-[#fff] bg-[#0A65CD]  hover:bg-[#0A65CD]/90  rounded-lg focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium text-sm px-5 py-3 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2">
+            ارسال درخواست
+            <img className='mr-2' src={ImageContainer.sendLinkAdress} />
+          </button>
         </div>
       </div>
     </div>
