@@ -25,6 +25,7 @@ import ToolTip from "../../Utils/ToolTip";
 // import MiniChartCard from "./card/miniChartCard/MiniCartCardController";
 import MinichartController from "./card/miniChartCard/MiniChartCardController";
 import TitleLastUpdateInfo from "./TitleLastUpdateInfo";
+import BigChartController from "./card/bigChart/BigChartController";
 
 
 
@@ -169,233 +170,6 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
         <div className="tracker__wells">
 
         <MinichartController/>
-
-
-
-
-          {/* <div className="well well--active relative">
-            <div className=" absolute left-1 top-1">
-              <img 
-              src={ImageContainer.infoUtils}
-               alt="section info"
-                className=" w-3 h-3"
-                data-tip="به ازای هر بروزرسانی ورک اسپیس، 
-                میانگین رتبه کل کلمات کلیدی موجود 
-                آن در صفحه اول گوگل محاسبه می‌شود."
-              data-type="light"
-              data-place="top"
-              data-class="sizeClass"
-              onMouseEnter={() => setShowToolTip(true)}
-              onMouseLeave={() => {
-                setShowToolTip(false);
-                setTimeout(() => setShowToolTip(true), 0);
-              }}
-                />
-            </div>
-            <div className="well__content">
-              <div className="well__header">
-                <div className="well__title">میانگین کل کلمات</div>
-                <div className="well__date">روزانه</div>
-              </div>
-              <div className="well__chart">
-              <Line options={options} data={data}/>
-              </div>
-              <div className="well__more">
-                <div className="well__btn">
-                  5 رتبه
-                  <i className=""></i>
-                </div>
-
-                <div className="well__btn">
-                  26%
-                </div>
-              </div>
-            </div>
-            <div className="well__footer">
-              www.example.ir
-            </div>
-          </div> */}
-
-          {/* <div className="well well--active relative">
-          <div className=" absolute left-1 top-1">
-              <img 
-              src={ImageContainer.infoUtils}
-               alt="section info"
-                className=" w-3 h-3"
-                data-tip="به ازای هر بروزرسانی ورک اسپیس، 
-                میانگین رتبه کل کلمات کلیدی موجود 
-                آن در صفحه اول گوگل محاسبه می‌شود."
-              data-type="light"
-              data-place="top"
-              data-class="sizeClass"
-              onMouseEnter={() => setShowToolTip(true)}
-              onMouseLeave={() => {
-                setShowToolTip(false);
-                setTimeout(() => setShowToolTip(true), 0);
-              }}
-                />
-            </div>
-            <div className="well__content">
-              <div className="well__header">
-                <div className="well__title">توزیع رتبه کلمات کلیدی</div>
-              </div>
-              <div className="well__chart">
-                <Line options={options} data={data}/>
-              </div>
-              <div className="well__more">
-                <div className="well__btn">
-                  5 رتبه
-                  <i className=""></i>
-                </div>
-
-                <div className="well__btn">
-                  26%
-                </div>
-              </div>
-            </div>
-            <div className="well__footer">
-              www.example.ir
-            </div>
-          </div> */}
-
-          {/* <div className="well well--active relative">
-          <div className=" absolute left-1 top-1">
-              <img 
-              src={ImageContainer.infoUtils}
-               alt="section info"
-                className=" w-3 h-3"
-                data-tip="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
-                آن را با دوره قبل مقایسه کرده و تعداد پیشرفت و افت 
-                و تعداد کلمات ایستا ( بدون تغییر رتبه ) را نمایش می‌‌دهد"
-              data-type="light"
-              data-place="top"
-              data-class="sizeClass"
-              onMouseEnter={() => setShowToolTip(true)}
-              onMouseLeave={() => {
-                setShowToolTip(false);
-                setTimeout(() => setShowToolTip(true), 0);
-              }}
-                />
-            </div>
-            <div className="well__content">
-              <div className="well__header">
-                <div className="well__title">نمودار پیشرفت و افت کلمات</div>
-                <div className="well__date">روزانه</div>
-              </div>
-              <div className="well__chart">
-                <Line
-                  options={options}
-                  data={data}
-                />
-              </div>
-              <div className="well__more">
-                <div className="well__btn">
-                  5 رتبه
-                  <i className=""></i>
-                </div>
-
-                <div className="well__btn">
-                  26%
-                </div>
-              </div>
-            </div>
-            <div className="well__footer">
-              www.example.ir
-            </div>
-          </div>
-
-          <div className="well well--active relative">
-          <div className=" absolute left-1 top-1">
-              <img 
-              src={ImageContainer.infoUtils}
-               alt="section info"
-                className=" w-3 h-3"
-                data-tip="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
-                آن را با دوره قبل مقایسه کرده و تعداد پیشرفت را نمایش می‌‌دهد"
-              data-type="light"
-              data-place="top"
-              data-class="sizeClass"
-              onMouseEnter={() => setShowToolTip(true)}
-              onMouseLeave={() => {
-                setShowToolTip(false);
-                setTimeout(() => setShowToolTip(true), 0);
-              }}
-                />
-            </div>
-            <div className="well__content">
-              <div className="well__header">
-                <div className="well__title">کلمات رشد کرده</div>
-                <div className="well__date">روزانه</div>
-              </div>
-              <div className="well__chart">
-                <Line
-                  options={options}
-                  data={data}
-                />
-              </div>
-              <div className="well__more">
-                <div className="well__btn">
-                  5 رتبه
-                  <i className=""></i>
-                </div>
-
-                <div className="well__btn">
-                  26%
-                </div>
-              </div>
-            </div>
-            <div className="well__footer">
-              www.example.ir
-            </div>
-          </div>
-
-          <div className="well well--active relative">
-          <div className=" absolute left-1 top-1">
-              <img 
-              src={ImageContainer.infoUtils}
-               alt="section info"
-                className=" w-3 h-3"
-                data-tip="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
-                آن را با دوره قبل مقایسه کرده و تعداد افت را نمایش می‌‌دهد"
-              data-type="light"
-              data-place="top"
-              data-class="sizeClass"
-              onMouseEnter={() => setShowToolTip(true)}
-              onMouseLeave={() => {
-                setShowToolTip(false);
-                setTimeout(() => setShowToolTip(true), 0);
-              }}
-                />
-            </div>
-            <div className="well__content">
-              <div className="well__header">
-                <div className="well__title">کلمات افت کرده</div>
-                <div className="well__date">روزانه</div>
-              </div>
-              <div className="well__chart">
-                <Line
-                  options={options}
-                  data={data}
-                />
-              </div>
-              <div className="well__more">
-                <div className="well__btn">
-                  5 رتبه
-                  <i className=""></i>
-                </div>
-
-                <div className="well__btn">
-                  26%
-                </div>
-              </div>
-            </div>
-            <div className="well__footer">
-              www.example.ir
-            </div>
-          </div> */}
-
-
-
         </div>
 
 
@@ -411,7 +185,7 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
 
 
 
-        <div className="tracker__actions">
+        {/* <div className="tracker__actions">
 
           <div className="filter">
             <div className="filter__title">
@@ -501,7 +275,7 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
 
           </div>
 
-        </div>
+        </div> */}
 
         <div className="tracker__chart-section">
           <div className="chart__header">
@@ -552,7 +326,8 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
 
             <div className="chart__chart">
 
-              <Line options={options} data={data} />
+              {/* <Line options={options} data={data} /> */}
+              <BigChartController/>
               
             </div>
           </div>

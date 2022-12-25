@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ImageContainer } from "../../../../../assets/img/IMG";
 import {
   rankTrackingChartColor,
   rankTrackingChartId,
 } from "../../../../../variables/rankTracking";
+import { setDataForRankTrackingBigChar } from "../../../../Redux/Action/rankTraking";
 import MiniChartCardView from "./MiniChartCardView";
 import { chartInformationTooltip } from "./miniChartFun";
 // import MiniChartCardView from './MiniChartCardView';
@@ -14,6 +15,7 @@ export default function MinichartController({
 }) {
   const rankTrakingState = useSelector((state) => state.rankTrakingState);
 
+  const dispatch = useDispatch();
   // footer chart box
   const [footerInformationChart, setFooterInformationChart] = useState({
     rightTitle: "",
@@ -54,6 +56,7 @@ export default function MinichartController({
       datasets: [
         {
           fill: "end",
+          //TODO: change label text
           label: "Dataset 2",
           data,
           borderColor: chartColor
@@ -179,7 +182,7 @@ export default function MinichartController({
         break;
 
       case rankTrackingChartId.AvgGrownWords:
-        var keyWorkLength=0;
+        var keyWorkLength = 0;
         for (let i = 1; i < getObjKeys.length - 1; i++) {
           let avg = 0;
 
@@ -188,7 +191,7 @@ export default function MinichartController({
             workSpaceData[getObjKeys[i - 1]].forEach((lastPeriod) => {
               if (lastPeriod.keyword_uuid == element.keyword_uuid) {
                 if (lastPeriod.position < element.position) {
-                  avg+=element.position-lastPeriod.position;
+                  avg += element.position - lastPeriod.position;
                   keyWorkLength++;
                 }
               }
@@ -202,43 +205,51 @@ export default function MinichartController({
         }
         setFooterInformationChart({
           rightTitle: "میانگین رشد رتبه",
-          rightBoxText:getAvgPositionKeyWords[getAvgPositionKeyWords.length-1]!=0?getAvgPositionKeyWords[getAvgPositionKeyWords.length-1]/keyWorkLength:0,
+          rightBoxText:
+            getAvgPositionKeyWords[getAvgPositionKeyWords.length - 1] != 0
+              ? getAvgPositionKeyWords[getAvgPositionKeyWords.length - 1] /
+                keyWorkLength
+              : 0,
           leftTitle: "تعداد رشد کلمات",
-          leftBoxText:keyWorkLength,
+          leftBoxText: keyWorkLength,
         });
         break;
-   
-        case rankTrackingChartId.AvgTheWordsAreLost:
-          var keyWorkLength=0;
-          for (let i = 1; i < getObjKeys.length - 1; i++) {
-            let avg = 0;
-  
-            // selected date and foreach in arr
-            workSpaceData[getObjKeys[i]].forEach((element) => {
-              workSpaceData[getObjKeys[i - 1]].forEach((lastPeriod) => {
-                if (lastPeriod.keyword_uuid == element.keyword_uuid) {
-                  if (lastPeriod.position > element.position) {
-                    avg+=lastPeriod.position - element.position;
-                    keyWorkLength++;
-                  }
+
+      case rankTrackingChartId.AvgTheWordsAreLost:
+        var keyWorkLength = 0;
+        for (let i = 1; i < getObjKeys.length - 1; i++) {
+          let avg = 0;
+
+          // selected date and foreach in arr
+          workSpaceData[getObjKeys[i]].forEach((element) => {
+            workSpaceData[getObjKeys[i - 1]].forEach((lastPeriod) => {
+              if (lastPeriod.keyword_uuid == element.keyword_uuid) {
+                if (lastPeriod.position > element.position) {
+                  avg += lastPeriod.position - element.position;
+                  keyWorkLength++;
                 }
-              });
+              }
             });
-  
-            chartCL = "red";
-            chartLabel.push("");
-            // geting avg period
-            getAvgPositionKeyWords.push(avg);
-          }
-          setFooterInformationChart({
-            rightTitle: "میانگین افت رتبه",
-            rightBoxText:getAvgPositionKeyWords[getAvgPositionKeyWords.length-1]!=0?getAvgPositionKeyWords[getAvgPositionKeyWords.length-1]/keyWorkLength:0,
-            leftTitle: "تعداد افت کلمات",
-            leftBoxText:keyWorkLength,
           });
-          break;
-   
-        default:
+
+          chartCL = "red";
+          chartLabel.push("");
+          // geting avg period
+          getAvgPositionKeyWords.push(avg);
+        }
+        setFooterInformationChart({
+          rightTitle: "میانگین افت رتبه",
+          rightBoxText:
+            getAvgPositionKeyWords[getAvgPositionKeyWords.length - 1] != 0
+              ? getAvgPositionKeyWords[getAvgPositionKeyWords.length - 1] /
+                keyWorkLength
+              : 0,
+          leftTitle: "تعداد افت کلمات",
+          leftBoxText: keyWorkLength,
+        });
+        break;
+
+      default:
         break;
     }
 
@@ -326,6 +337,13 @@ export default function MinichartController({
     return titleText;
   };
 
+  const funAddingDataFromBigChart = () => {
+    dispatch(
+      setDataForRankTrackingBigChar({
+        chartData: chartData,
+      })
+    );
+  };
   console.log("chartData :>> ", chartData);
   console.log("data :>> ", data);
 
@@ -339,6 +357,7 @@ export default function MinichartController({
       footerRightBoxContentText={footerInformationChart.rightBoxText}
       footerLeftBoxTitle={footerInformationChart.leftTitle}
       footerLeftBoxContentText={footerInformationChart.leftBoxText}
+      addingDataFromBigChart={funAddingDataFromBigChart}
     />
   );
 }
