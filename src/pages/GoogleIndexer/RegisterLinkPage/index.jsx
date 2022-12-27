@@ -4,28 +4,20 @@ import AutoSection from '../AddIndexerLink/AutoSection'
 import ManualSection from '../AddIndexerLink/ManualSection'
 import HeaderRegisterLinkPage from './HeaderRegisterLinkPage'
 
+import InfoPage from '../../../component/shared/InfoPage'
+
+
 export default function Index() {
   const [selectedSection, setSelectedSection] = useState("manual")
   return (
     <div>
+      <InfoPage title="برای ابزار ایندکسر گوگل  لطفا به نکات زیر توجه کنید: ">
+        <li>نمونه متن برای نوشتن نکات مهم برای ابزار ایندکسر گوگل</li>
+        <li>نمونه متن برای نوشتن نکات مهم برای ابزار ایندکسر گوگل</li>
+      </InfoPage>
       <HeaderRegisterLinkPage />
-      <div className=' mt-7'>
-        <div className=' inline-block'>
-          <div className='flex items-center pr-6 cursor-pointer' onClick={() => setSelectedSection("manual")}>
-            <input type="radio" name="sectionSelecting" id="" checked={selectedSection == "manual" ? true : false} />
-            <span>ایندکسر دستی</span>
-          </div>
-        </div>
+      <div className='mt-7'>
         <ManualSection disableSection={selectedSection != "manual" ? true : false} />
-      </div>
-      <div className=' mt-7'>
-        <div className='inline-block'>
-          <div className='flex items-center pr-6 cursor-pointer' onClick={() => setSelectedSection("auto")}>
-            <input type="radio" name="sectionSelecting" id="" checked={selectedSection == "auto" ? true : false} />
-            <span>ایندکسر خودکار</span>
-          </div>
-        </div>
-        <AutoSection disableSection={selectedSection != "auto" ? true : false} />
       </div>
     </div>
   )

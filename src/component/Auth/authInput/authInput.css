@@ -5,6 +5,207 @@
   width: 100%;
 }
 
+.auth-input label {
+  color: #7D7D7D;
+  font-size: 12px;
+  text-transform: uppercase;
+  position: absolute;
+  z-index: 0 !important;
+  right: 8px;
+  top: 14px;
+  padding: 0 2px;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 100ms ease;
+  -moz-transition: -moz-transform 100ms ease;
+  -o-transition: -o-transform 100ms ease;
+  -ms-transition: -ms-transform 100ms ease;
+  transition: transform 100ms ease;
+  -webkit-transform: translateY(-35px);
+  -moz-transform: translateY(-35px);
+  -o-transform: translateY(-35px);
+  -ms-transform: translateY(-35px);
+  transform: translateY(-35px);
+}
+
+.imageInputIcon {
+  position: absolute;
+  left: 15px;
+  top: 17px;
+  cursor: pointer;
+}
+
+.imageInputIcon2 {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+
+.auth-input input {
+  color: #555;
+  outline: none;
+  border: 1.5px solid rgba(211, 213, 226, 1);
+  background-color: white;
+  border-radius: 3px;
+  position: relative;
+}
+
+.auth-input textarea{
+  /* font-size: 13px; */
+  color: #555;
+  outline: none;
+  border: 1.5px solid rgba(211, 213, 226, 1);
+  /* padding: 0px 10px; */
+  /* height: px; */
+  background-color: white;
+  border-radius: 3px;
+  position: relative;
+}
+
+
+.verify_email_cod {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.forgot_password_input {
+  width: 310px;
+  height: 45px;
+  font-size: 14px;
+  padding: 0px 6px;
+  background-color: white;
+}
+
+.auth-input input:invalid+label {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+.auth-input textarea:invalid+label {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.imageInputIcon {
+  position: absolute;
+  left: 15px;
+  top: 17px;
+  cursor: pointer;
+}
+
+.imageInputIcon2 {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+
+.input-wrapper input {
+  font-size: 13px;
+  color: #555;
+  outline: none;
+  border: 1px solid #d3d5e2;
+  padding: 0px 10px;
+  height: 45px;
+  border-radius: 3px;
+  position: relative;
+  box-sizing: border-box;
+}
+.input-wrapper textarea {
+  font-size: 13px;
+  color: #555;
+  outline: none;
+  border: 1px solid #d3d5e2;
+  padding: 0px 10px;
+  height: 45px;
+  border-radius: 3px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.auth-input input:invalid+label {
+  font-size: 12px;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+textarea:invalid+label {
+  font-size: 12px;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+
+.auth-input input:focus {
+  border-bottom: 2px solid #0a65cd;
+}
+
+.auth-input textarea:focus {
+  border-bottom: 2px solid #0a65cd;
+}
+
+.auth-input input:focus+label {
+  font-size: 12px;
+  color: #001F43;
+  -webkit-transform: translateY(-35px);
+  -moz-transform: translateY(-35px);
+  -o-transform: translateY(-35px);
+  -ms-transform: translateY(-35px);
+  transform: translateY(-35px);
+}
+
+.auth-input textarea:focus+label {
+  font-size: 12px;
+  color: #001F43;
+  -webkit-transform: translateY(-35px);
+  -moz-transform: translateY(-35px);
+  -o-transform: translateY(-35px);
+  -ms-transform: translateY(-35px);
+  transform: translateY(-35px);
+}
+
+.auth-input input:disabled+label {
+  font-size: 12px;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+.auth-input textarea:disabled+label {
+  font-size: 12px;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+.notCheckValue {
+  border-bottom: 3px solid #0f7b0f !important;
+  font-size: 20px;
+  text-align: center;
+}
+
+.input-wrapper {
+  position: relative;
+  line-height: 14px;
+  display: inline-block;
+  width: 100%;
+}
+
 label {
   color: #7D7D7D;
   font-size: 12px;

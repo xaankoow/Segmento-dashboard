@@ -1,0 +1,28 @@
+.grid-info .border-right {
+    margin-right: -5px;
+    margin-left: 10px;
+}
+
+.grid-info .item {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.grid-info .item .text-xs.py-4 {
+    width: 100%;
+}
+
+.grid-info .flex.justify-around:last-child {
+    border-top: 1px solid #D9D9D9
+}
+
+.grid-info .border-right:after {
+    background: #0A65CD;
+    position: absolute;
+    content: '';
+    width: 3px;
+    height: 25px;
+    right: -5px;
+    top: 25%;
+}
