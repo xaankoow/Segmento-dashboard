@@ -1,5 +1,6 @@
 {
-  "homepage": "https://segmento.ir/dashboard",
+  "_homepage": "https://segmento.ir/dashboard",
+  "homepage": "https://xaankoow.github.io/segmentor-react",
   "name": "xaankoo_segmento",
   "version": "0.20220804.0",
   "private": true,
@@ -49,12 +50,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "set BROWSER=none & react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject"
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -75,17 +76,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "gh-pages": "^4.0.0"
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "craco.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xaankoow/segmentor-react.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xaankoow/segmentor-react/issues"
   }
 }
