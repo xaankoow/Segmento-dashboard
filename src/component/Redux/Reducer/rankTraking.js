@@ -2,7 +2,7 @@ export const rankTrakingReducer = (
   state = {
     workSpacePeriodData: [],
     chart: { type: "", data: [] },
-    bigChartData: [],
+    bigChartData: [], //[{labels:[],label:"",data:[]}]
   },
   action
 ) => {

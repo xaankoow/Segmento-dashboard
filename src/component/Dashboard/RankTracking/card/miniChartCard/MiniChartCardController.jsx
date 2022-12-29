@@ -344,8 +344,8 @@ export default function MinichartController({
       })
     );
   };
-  console.log("chartData :>> ", chartData);
-  console.log("data :>> ", data);
+  // console.log("chartData :>> ", chartData);
+  // console.log("data :>> ", data);
 
   return (
     <MiniChartCardView

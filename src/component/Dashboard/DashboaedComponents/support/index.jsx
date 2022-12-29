@@ -60,9 +60,12 @@ export default function Index() {
     }
     if (textEditor != "") {
 
+      debugger
       let formdata = new FormData();
       formdata.append("message", textEditor);
-      formdata.append("files[]", fileEditor);
+      // formdata.append("files[]", fileEditor[0]);
+      formdata.append("files[]", URL.createObjectURL(fileEditor[0]));
+      
       formdata.append("uuid", ticketUuid);
       try {
 
@@ -100,7 +103,7 @@ export default function Index() {
       axiosController.abort();
     }
   }, [])
-  
+  console.log('chatData :>> ', chatData);
   return (
     <>
       <PageTitle title={"پشتیبانی و تیکت‌ها "} />
@@ -111,7 +114,7 @@ export default function Index() {
             <HeaderCardInfo ticketId={chatData.ticket.ticket_id} updateDate={chatData.ticket.updated_at} chatStatus={chatData.ticket.status} subjectTitle={chatData.ticket.subject} />
             {
               chatData.messages.map(chatDetail => (
-                <Message chatData={chatDetail} type={chatDetail.user.uuid == userData.user.uuid ? "user" : "admin"} />
+                <Message chatData={chatDetail} type={chatDetail.user.uuid == userData?.user?.uuid ? "user" : "admin"} />
               ))
             }
             <div className='border border-gray rounded-lg pb-5 mt-9 max-w-3xl m-auto'>

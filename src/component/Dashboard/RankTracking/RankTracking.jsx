@@ -163,13 +163,19 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
     console.log(e);
   }
 
+  const chartKeys=["AvgRankTotalWords","GrownWords","TheWordsAreLost","AvgGrownWords","AvgTheWordsAreLost","AvgTheWordsAreLost","AvgTheWordsAreLost"]
+
   return (
     <>
     <TitleLastUpdateInfo/>
       <div className="tracker">
         <div className="tracker__wells">
+          {chartKeys.map(item=>(
+            <>
+        <MinichartController chartId={item}/>
+            </>
 
-        <MinichartController/>
+          ))}
         </div>
 
 

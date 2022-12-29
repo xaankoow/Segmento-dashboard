@@ -58,7 +58,38 @@ export const setDataForRankTrackingBigChar = ({ chartData }) => {
   return async (dispatch, getState) => {
     const state = { ...getState().rankTrakingState };
     // debugger
-    state.bigChartData.push(chartData);
+    // state.bigChartData.push(chartData);
+    // debugger
+    state.bigChartData=[{
+      labels:chartData.labels,
+      label:chartData.datasets[0].label,
+      data:chartData.datasets[0].data
+    }];
+    const labels=chartData.labels;
+    const label=chartData.datasets[0].label
+    const  data=chartData.datasets[0].data
+
+    const generateColor=()=>{
+      return Math.floor(Math.random()*255);
+    }
+
+    state.bigChartData=[{
+      labels,
+      datasets: [
+        {
+          fill: "end",
+          label: label,
+          data: data,
+          borderColor: `rgb(${generateColor()+","+generateColor()+","+generateColor()})`,
+          backgroundColor: "rgba(255, 255, 255, 0)",
+          pointRadius: 3,
+          pointHitRadius: 3,
+        },
+      ],
+    },];
+
+
+    
 
     await dispatch({ type: "SET_DATA_FROM_BIG_CHART", payload: state });
   };
