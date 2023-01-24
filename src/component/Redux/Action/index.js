@@ -17,7 +17,7 @@ import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showToast } from "../../Utils/toastifyPromise";
 import { removeLoadingItem } from "./loading";
-import { ChackBusinessCustomer } from "./workSpace";
+import { allLimitDataFeature, ChackBusinessCustomer } from "./workSpace";
 
 // get all user data in api
 export const coreUser = () => {
@@ -59,6 +59,7 @@ export const coreUser = () => {
               last: data.data.user_has_success_purchase
               // last: findSuccessReport != -1 ? true : false
             }
+            // dispatch(allLimitDataFeature())
             await dispatch({ type: "CHECK_BUSSINESS", payload: workSpaceState });
             // await dispatch(ChackBusinessCustomer())
           } else {

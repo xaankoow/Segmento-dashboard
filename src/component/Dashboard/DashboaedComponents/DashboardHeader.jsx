@@ -120,9 +120,9 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
   const init = async () => {
 
     await dispatch(coreUser());
-    // dispatch(getAllWorkSpace());
-    dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
-    // dispatch(allLimitDataFeature())
+    dispatch(getAllWorkSpace());
+    // dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
+    dispatch(allLimitDataFeature({axiosController:null}))
   }
 
   const location = useLocation();

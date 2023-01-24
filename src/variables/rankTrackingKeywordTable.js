@@ -8,6 +8,6 @@ export const RANK_TRACKING_KEYWORD_TABLE = [
   { title: "میانگین 7 روز" },
   { title: "برچسب" },
   { title: "تاریخ افزودن" },
-  { title: "رتبه رقیب" },
-  { title: "عملیات" },
+  // { title: "رتبه رقیب" },
+  // { title: "عملیات" },
 ];

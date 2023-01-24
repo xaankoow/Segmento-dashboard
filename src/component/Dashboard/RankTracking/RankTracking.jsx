@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import './rankTracking.css';
+import "./rankTracking.css";
 import pishkhan_svg from "../../../assets/img/dashboard/nav_right/pishkhan.svg";
 import {
   Chart as ChartJS,
@@ -11,11 +11,10 @@ import {
   Tooltip,
   Filler,
   Legend,
-} from 'chart.js';
-import { Line  } from 'react-chartjs-2';
-import {
-  RANK_TRACKING_FILTERS_DATE,
-} from "../../../variables/rankTrackingFilters";
+  registerables
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { RANK_TRACKING_FILTERS_DATE } from "../../../variables/rankTrackingFilters";
 import ComboBox from "../../shared/comboBox/ComboBox";
 import { initWorkSpacePeriodData } from "../../Redux/Action/rankTraking";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,27 +25,28 @@ import ToolTip from "../../Utils/ToolTip";
 import MinichartController from "./card/miniChartCard/MiniChartCardController";
 import TitleLastUpdateInfo from "./TitleLastUpdateInfo";
 import BigChartController from "./card/bigChart/BigChartController";
+import AuthButton from "../../Auth/authButton/AuthButton";
+import SelectingChartBtn from "./card/SelectingChartBtn";
 
-
-
+// Chart.register(...registerables)
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
+
   PointElement,
   LineElement,
   Title,
   Tooltip,
   Filler,
-  Legend
+  Legend,
+  ...registerables
 );
 
-
 export default function RankTracking({ onClickHandler }) {
-
   const rankTrakingState = useSelector((state) => state.rankTrakingState);
 
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   const axiosController = new AbortController();
 
@@ -54,20 +54,19 @@ export default function RankTracking({ onClickHandler }) {
   const [showToolTip, setShowToolTip] = useState(true);
 
   const options = {
-      scales: {
-        yAxis: {
-          min: 1,
-          max: 10,
-          
-        }    
+    scales: {
+      yAxis: {
+        min: 1,
+        max: 10,
       },
+    },
     // scales: {
-    
+
     //       xAxes: [{
     //           ticks: {
     //               beginAtZero:false,
     //               min: 0,
-    //               max: 100    
+    //               max: 100
     //           }
     //         }]
     //      },
@@ -78,118 +77,107 @@ export default function RankTracking({ onClickHandler }) {
       },
       legend: {
         display: false,
-        position: 'top',
+        position: "top",
       },
       title: {
         display: false,
-        text: '',
-      }
+        text: "",
+      },
     },
   };
 
-// 
+  //
   // options: {
-    // responsive: true,
-    // legend: {
-        // position: 'bottom',
-    // },
-    // hover: {
-        // mode: 'label'
-    // },
-    // scales: {
-        // xAxes: [{
-                // display: true,
-                // scaleLabel: {
-                    // display: true,
-                    // labelString: 'Month'
-                // }
-            // }],
-        // yAxes: [{
-                // display: true,
-                // ticks: {
-                    // beginAtZero: true,
-                    // steps: 10,
-                    // stepValue: 5,
-                    // max: 100
-                // }
-            // }]
-    // },
-    // title: {
-        // display: true,
-        // text: 'Chart.js Line Chart - Legend'
-    // }
-// }
-// 
+  // responsive: true,
+  // legend: {
+  // position: 'bottom',
+  // },
+  // hover: {
+  // mode: 'label'
+  // },
+  // scales: {
+  // xAxes: [{
+  // display: true,
+  // scaleLabel: {
+  // display: true,
+  // labelString: 'Month'
+  // }
+  // }],
+  // yAxes: [{
+  // display: true,
+  // ticks: {
+  // beginAtZero: true,
+  // steps: 10,
+  // stepValue: 5,
+  // max: 100
+  // }
+  // }]
+  // },
+  // title: {
+  // display: true,
+  // text: 'Chart.js Line Chart - Legend'
+  // }
+  // }
+  //
 
-const [labels,setLabels]=useState([])
-const [positionKeyWork,setPositionKeyWork]=useState([])
-// const [labels,setLabels]=useState([])
-// const [labels,setLabels]=useState([])
-
-
-
+  const [labels, setLabels] = useState([]);
+  const [positionKeyWork, setPositionKeyWork] = useState([]);
+  // const [labels,setLabels]=useState([])
+  // const [labels,setLabels]=useState([])
 
   const data = {
     labels,
     datasets: [
       {
         fill: "end",
-        
-        label: 'Dataset 2',
-        // data: [96, 54, 45, 34, 45, 4, 67, 76, 65],  
-        data: positionKeyWork,  
-        // data: [1,4,5,7,3,1,4], 
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+
+        label: "Dataset 2",
+        // data: [96, 54, 45, 34, 45, 4, 67, 76, 65],
+        data: positionKeyWork,
+        // data: [1,4,5,7,3,1,4],
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
         pointRadius: 3,
-                    pointHitRadius: 1,
-        
+        pointHitRadius: 1,
       },
-    ]
+    ],
   };
 
-
   useEffect(() => {
-    dispatch(initWorkSpacePeriodData({axiosController}))
-  }, [])
+    dispatch(initWorkSpacePeriodData({ axiosController }));
+  }, []);
 
   useEffect(() => {
     return () => {
-      axiosController.abort()
-    }
-  }, [])
-  
+      axiosController.abort();
+    };
+  }, []);
+
   const setDateFilterOption = (e) => {
     console.log(e);
-  }
+  };
 
-  const chartKeys=["AvgRankTotalWords","GrownWords","TheWordsAreLost","AvgGrownWords","AvgTheWordsAreLost","AvgTheWordsAreLost","AvgTheWordsAreLost"]
+  const chartKeys = [
+    "AvgRankTotalWords",
+    "GrownWords",
+    "TheWordsAreLost",
+    "AvgGrownWords",
+    "AvgTheWordsAreLost",
+    "AvgTheWordsAreLost",
+    "AvgTheWordsAreLost",
+  ];
 
   return (
     <>
-    <TitleLastUpdateInfo/>
+      <TitleLastUpdateInfo />
       <div className="tracker">
         <div className="tracker__wells">
-          {chartKeys.map(item=>(
+          {chartKeys.map((item) => (
             <>
-        <MinichartController chartId={item}/>
+              <MinichartController chartId={item} />
             </>
-
           ))}
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         {/* <div className="tracker__actions">
 
@@ -293,16 +281,18 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
               />
             </div>
             <div className="chart__actions">
-              <img src={pishkhan_svg} className="chart__action" />
-              <img src={pishkhan_svg} className="chart__action" />
-              <img src={pishkhan_svg} className="chart__action chart__action--save" />
-
+              {/* <AuthButton textButton={<img src={ImageContainer.lineChartIco} className=""/>}/> */}
+              <SelectingChartBtn chartIco="Line"/>
+              <SelectingChartBtn chartIco="Bar"/>
+              {/* <img src={ImageContainer.barChartIco} className="chart__action" /> */}
+              {/* <img
+                src={pishkhan_svg}
+                className="chart__action chart__action--save"
+              /> */}
             </div>
           </div>
           <div className="chart__content">
-
             <div className="chart__filters">
-
               <div className="filter">
                 <div className="filter__content">
                   <div className="filter__color filter__color--green"></div>
@@ -326,65 +316,41 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
                 </div>
                 <div className="filter__action">#</div>
               </div>
-
             </div>
 
-
             <div className="chart__chart">
-
-              {/* <Line options={options} data={data} /> */}
-              <BigChartController/>
               
+              {/* <Line options={options} data={data} /> */}
+              <BigChartController data={rankTrakingState.bigChartData} />
             </div>
           </div>
         </div>
 
         <div className="tracker__report-section">
-          <div className="report__title">
-            آمار و گزارش های نسبی
-          </div>
+          <div className="report__title">آمار و گزارش های نسبی</div>
           <div className="report__filter">
-
             <div className="filter__content">
-
               <div className="filter__title">
                 <img src={pishkhan_svg} />
                 <span>فیلتر براساس</span>
               </div>
 
               <div className="filter__items">
-                <div className="filter__item filter__item--active ">
-                  1 هفته
-                </div>
-                <div className="filter__item">
-                  2 هفته
-                </div>
-                <div className="filter__item">
-                  4 هفته
-                </div>
-                <div className="filter__item">
-                  8 هفته
-                </div>
-                <div className="filter__item">
-                  12 هفته
-                </div>
+                <div className="filter__item filter__item--active ">1 هفته</div>
+                <div className="filter__item">2 هفته</div>
+                <div className="filter__item">4 هفته</div>
+                <div className="filter__item">8 هفته</div>
+                <div className="filter__item">12 هفته</div>
               </div>
-
             </div>
 
             <img src={pishkhan_svg} className="filter__action" />
-
           </div>
-
-
 
           <div className="report__charts">
-
             <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
-              <div className="chart__chart">
-                [chart]
-              </div>
+              <div className="chart__chart">[chart]</div>
               <div className="chart__points">
                 <div className="point">
                   <div className="point__color point__color--red"></div>
@@ -407,16 +373,11 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
                   <div className="point__title">نمونه نوشته</div>
                 </div>
               </div>
-
             </div>
-
-
 
             <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
-              <div className="chart__chart">
-                [chart]
-              </div>
+              <div className="chart__chart">[chart]</div>
               <div className="chart__points">
                 <div className="point">
                   <div className="point__color point__color--red"></div>
@@ -439,16 +400,11 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
                   <div className="point__title">نمونه نوشته</div>
                 </div>
               </div>
-
             </div>
-
-
 
             <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
-              <div className="chart__chart">
-                [chart]
-              </div>
+              <div className="chart__chart">[chart]</div>
               <div className="chart__points">
                 <div className="point">
                   <div className="point__color point__color--red"></div>
@@ -471,16 +427,11 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
                   <div className="point__title">نمونه نوشته</div>
                 </div>
               </div>
-
             </div>
-
-
 
             <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
-              <div className="chart__chart">
-                [chart]
-              </div>
+              <div className="chart__chart">[chart]</div>
               <div className="chart__points">
                 <div className="point">
                   <div className="point__color point__color--red"></div>
@@ -503,12 +454,8 @@ const [positionKeyWork,setPositionKeyWork]=useState([])
                   <div className="point__title">نمونه نوشته</div>
                 </div>
               </div>
-
             </div>
-
-
           </div>
-
         </div>
       </div>
       {showToolTip && <ToolTip />}

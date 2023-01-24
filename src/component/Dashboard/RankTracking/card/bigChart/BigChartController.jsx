@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { generateColor } from "../../../../Utils/color";
 import BigChartView from "./BigChartView";
 
-export default function BigChartController() {
-  const { bigChartData } = useSelector((state) => state.rankTrakingState);
+export default function BigChartController({ data, chartType="Line" }) {
+  const { bigChartData ,rankTrakingForceUpdate} = useSelector((state) => state.rankTrakingState);
 
-  const labels = [];
+  const labels = ["","","","","","",""];
   const [chartData, setChartData] = useState([
     {
       labels,
@@ -13,10 +14,10 @@ export default function BigChartController() {
         {
           fill: "end",
           label: "Dataset 2",
-          data: [],
+          data: [0,0,0,0,0,0,0],
           borderColor: "rgb(53, 162, 235)",
           // borderColor: ChartColor.chart,
-          backgroundColor: "rgba(53, 162, 235, 0.5)",
+          backgroundColor: "rgba(255, 255, 255, 0)",
           pointRadius: 0,
           pointHitRadius: 1,
           // backgroundColor: [ChartColor.background],
@@ -26,11 +27,55 @@ export default function BigChartController() {
     },
   ]);
 
+
+
+
   useEffect(() => {
-    if (bigChartData.length!=0&&chartData!=bigChartData) {
-      setChartData(bigChartData)
+    if (bigChartData.length != 0 && chartData != bigChartData) {
+      setChartData(bigChartData);
     }
-  }, [bigChartData.length])
+  }, [bigChartData.length]);
+
+  //[{labels:[],label:"",data:[]}]
+
+  // state.bigChartDataInkeyWordsSection={
+  // label:label,
+  // labels:labels,
+  // data:chartData.map(item=>(item))
+  // }
+
+  useEffect(() => {
+    let labels=data?.lebels;
+    // debugger
+    if(data.data!=undefined){
+      setChartData({
+        labels,
+        datasets: [
+          data.data.map(item=>
+            chartType=="Line"?({
+              fill: "end",
+              label: item.label,
+              data: item.data,
+              backgroundColor: "rgba(255, 255, 255, 0)",
+              borderColor: `rgb(${
+                generateColor() + "," + generateColor() + "," + generateColor()
+              })`,
+              pointRadius: 3,
+              pointHitRadius: 3,
+            }):({
+              fill: "end",
+              label: item.label,
+              data: item.data,
+              backgroundColor: `rgb(${
+                generateColor() + "," + generateColor() + "," + generateColor()
+              })`,
+            })
+            ,
+          )
+        ],
+      },)
+    }
+  }, [data])
   
 
   const options = {
@@ -71,44 +116,43 @@ export default function BigChartController() {
   //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
   // }
 
-
   // debugger;
-  const data =
-    bigChartData.length != 0
-      ? bigChartData.map((item) => {
-          return item;
-        })
-      : {
-          labels,
-          datasets: [
-            {
-              fill: "end",
-              label: "Dataset 2",
-              data: [],
-              borderColor: "rgb(53, 162, 235)",
-              // borderColor: ChartColor.chart,
-              backgroundColor: "rgba(53, 162, 235, 0.5)",
-              pointRadius: 0,
-              pointHitRadius: 1,
-              // backgroundColor: [ChartColor.background],
-              // ChartColor:[backgroundChartColor]
-            },
-          ],
+  // const data =
+  //   bigChartData.length != 0
+  //     ? bigChartData.map((item) => {
+  //         return item;
+  //       })
+  //     : {
+  //         labels,
+  //         datasets: [
+  //           {
+  //             fill: "end",
+  //             label: "Dataset 2",
+  //             data: [],
+  //             borderColor: "rgb(53, 162, 235)",
+  //             // borderColor: ChartColor.chart,
+  //             backgroundColor: "rgba(53, 162, 235, 0.5)",
+  //             pointRadius: 0,
+  //             pointHitRadius: 1,
+  //             // backgroundColor: [ChartColor.background],
+  //             // ChartColor:[backgroundChartColor]
+  //           },
+  //         ],
 
-          // labels:["",""],
-          // datasets:
-          //   {
-          //     fill: "end",
-          //     label: "Dataset 2",
-          //     data: [1,10],
-          //     borderColor: 'rgb(53, 162, 235)',
-          //     backgroundColor: "rgba(53, 162, 235, 0)",
-          //     pointRadius: 3,
-          //     pointHitRadius: 1,
-          //     // backgroundColor: [ChartColor.background],
-          //     // ChartColor:[backgroundChartColor]
-          //   },
-        };
+  //         // labels:["",""],
+  //         // datasets:
+  //         //   {
+  //         //     fill: "end",
+  //         //     label: "Dataset 2",
+  //         //     data: [1,10],
+  //         //     borderColor: 'rgb(53, 162, 235)',
+  //         //     backgroundColor: "rgba(53, 162, 235, 0)",
+  //         //     pointRadius: 3,
+  //         //     pointHitRadius: 1,
+  //         //     // backgroundColor: [ChartColor.background],
+  //         //     // ChartColor:[backgroundChartColor]
+  //         //   },
+  //       };
 
   const data1 = {
     // labels,
@@ -169,8 +213,21 @@ export default function BigChartController() {
     // ],
   };
 
-  console.log('chartData :>> ', chartData);
-  console.log('bigChartData :>> ', bigChartData);
+  console.log("chartData :>> ", chartData);
+  console.log("bigChartData :>> ", bigChartData);
 
-  return <BigChartView data={bigChartData.length!=0?bigChartData[0]:chartData[0]} options={options} />;
+// debugger
+
+
+  return (
+    <>
+    <BigChartView
+    // data={ data}
+    data={chartData[0]}
+    options={options}
+    chartType={chartType}
+    />
+    {rankTrakingForceUpdate}
+    </>
+  );
 }

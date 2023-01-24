@@ -60,7 +60,7 @@ export default function Index() {
     }
     if (textEditor != "") {
 
-      debugger
+      // debugger
       let formdata = new FormData();
       formdata.append("message", textEditor);
       // formdata.append("files[]", fileEditor[0]);

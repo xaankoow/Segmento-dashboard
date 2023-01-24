@@ -14,7 +14,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   const checkUuid = async () => {
-    debugger
+    // debugger
 
     const getAndSplitHash = window.location.hash.split("?")   //?filter=a  a0ed15bb-3ba6-433a-ae2b-47249f60cf55
     const uuidResulte = getAndSplitHash[1].substring(5, 41)

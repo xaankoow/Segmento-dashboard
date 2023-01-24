@@ -33,6 +33,10 @@ export default function App() {
   const background = location.state && location.state.background;
 
 
+  var label=[]
+  // console.log(label.includes("abc"))
+  console.log(label.findIndex(el=>el.uuid=="abc2"))
+
   return (
     <Fragment>
       <div className="app">

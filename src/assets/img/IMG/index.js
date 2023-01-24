@@ -39,6 +39,7 @@ import directionOfTheGreenValue from '../ico/directionـofـtheـgreenـvalue.sv
 import directionOfTheRedValue from '../ico/directionـofـtheـgreenـvalue.svg'
 import moveDownArrow from '../ico/move_down_arrow.svg'
 import lineChartIco from '../ico/line_chart_ico.svg'
+import barChartIco from '../ico/bar_chart_ico.svg'
 import plusGray from '../ico/plus_gray.svg'
 
 export const ImageContainer = {
@@ -89,5 +90,6 @@ export const ImageContainer = {
   directionOfTheRedValue,
   moveDownArrow,
   lineChartIco,
-  plusGray
+  plusGray,
+  barChartIco
 }

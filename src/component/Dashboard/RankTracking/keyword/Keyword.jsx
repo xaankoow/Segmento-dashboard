@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 import { defaultCustomModalStyle, modalParentSelector } from '../../../../variables/style';
 import { afterOpenOrCloseAnyModal } from '../../../../variables/modal';
 
+import persian from "react-date-object/calendars/persian";
+import persian_en from "react-date-object/locales/persian_en";
 
 import './keyword.css';
 import pishkhan_svg from "../../../../assets/img/dashboard/nav_right/pishkhan.svg";
@@ -32,6 +34,10 @@ import { RANK_TRACKING_KEYWORD_TABLE } from "../../../../variables/rankTrackingK
 import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
 import AuthButton from "../../../Auth/authButton/AuthButton";
+import { useDispatch, useSelector } from "react-redux";
+import { initKeyWordsData, keyWordsPeriodData, selectingOrRemovingKeyWordsSelected } from "../../../Redux/Action/rankTraking";
+import { DateObject } from "react-multi-date-picker";
+import BigChartController from "../card/bigChart/BigChartController";
 
 
 
@@ -52,6 +58,41 @@ export default function Keyword({ onClickHandler }) {
 
   const [ShowAddKeywordModal, SetShowAddKeywordModal] = useState(false);
   const [ShowAddTagModal, SetShowAddTagModal] = useState(false);
+
+  // const [tabelData, setTabelData] = useState([]);
+
+
+
+
+  const {keyWordsData,bigChartDataInkeyWordsSection,keyWordsSelected} = useSelector((state) => state.rankTrakingState);
+
+  const dispatch=useDispatch();
+
+  const axiosController = new AbortController();
+  const axiosControllerFromGetingKeyWordsPeriod = new AbortController();
+
+
+  useEffect(() => {
+    dispatch(initKeyWordsData({axiosController}))
+    return () => {
+      axiosController.abort();
+    }
+  }, [])
+
+  useEffect(() => {
+    // debugger
+    // axiosControllerFromGetingKeyWordsPeriod.abort();
+    if (keyWordsSelected.length!=0) {
+      dispatch(keyWordsPeriodData({axiosController:axiosControllerFromGetingKeyWordsPeriod}))
+    }
+  }, [keyWordsSelected.length])
+  
+
+
+  
+
+  
+  
 
 
   const options = {
@@ -101,23 +142,23 @@ export default function Keyword({ onClickHandler }) {
       avg7Days: "پاسخ داده شد",
       tag: "برچسب",
       importDate: "امور مالی",
-      competitorRank: "امور مالی",
-      operation: "امور مالی",
+      // competitorRank: "امور مالی",
+      // operation: "امور مالی",
     },
   ];
 
   const rowKey = [
     "row.chart",
     "row.id",
-    "row.keyword",
-    "row.currentRank",
-    "row.growthNumber",
-    "row.lastUpdate",
-    "row.avg7Days",
-    "row.tag",
-    "row.importDate",
-    "row.competitorRank",
-    "row.operation",
+    "row.key",
+    "row.latest_rank",
+    "row.diff_rank",
+    "row.updated_at",
+    "row.average_rank",
+    "row.tags[0]?.name?.fa",
+    "row.created_at",
+    // "row.competitorRank",
+    // "row.operation",
   ];
 
   const closeDialog = (state) => {
@@ -127,6 +168,26 @@ export default function Keyword({ onClickHandler }) {
   const closeAddTagDialog = (state) => {
     SetShowAddTagModal(state);
   };
+
+  const checkIncludsKeyWord=(keyUuid)=>{
+    return keyWordsSelected.includes(keyUuid)
+  }
+
+  const tabelData = keyWordsData.map((item, index) => {
+    const includesKey=checkIncludsKeyWord(item.uuid)
+    return {
+      chart:<div className={` ${includesKey&&"logoLighting"} `}><img src={ImageContainer.lineChartIco} onClick={()=>dispatch(selectingOrRemovingKeyWordsSelected({keyUuid:item.uuid}))} className={" cursor-pointer hover:logoLighting"}/></div>,
+      id: <span className={includesKey?"text-primary":"text-primaryV2"}>{index + 1}</span>,
+      key:<span className={includesKey?"text-primary":"text-primaryV2"}>{item.key}</span>,
+      latest_rank:<span className={includesKey?"text-primary":"text-primaryV2"}>{item.latest_rank}</span>,
+      diff_rank:<span className={includesKey?"text-primary":"text-primaryV2"}>{item.diff_rank}</span>,
+      updated_at: <span className={includesKey?"text-primary":"text-primaryV2"}>{new DateObject(item.updated_at).convert(persian, persian_en).format("YYYY/MM/DD")}</span>,
+      average_rank:<span className={includesKey?"text-primary":"text-primaryV2"}>{item.average_rank}</span>,
+      tags:<span className={includesKey?"text-primary":"text-primaryV2"}>{item.tags.length!=0?item.tags[0]?.name?.fa:""}</span>,
+      created_at:<span className={includesKey?"text-primary":"text-primaryV2"}>{new DateObject(item.created_at).convert(persian, persian_en).format("YYYY/MM/DD")}</span>
+    };
+  });
+
 
   return (
     <>
@@ -148,13 +209,13 @@ export default function Keyword({ onClickHandler }) {
           <div className="keyword__table">
             <Table
               columnItem={RANK_TRACKING_KEYWORD_TABLE}
-              rowsItem={b}
+              rowsItem={tabelData}
               rowKey={rowKey}
             />
           </div>
 
 
-          <div className="keyword__actions">
+          {/* <div className="keyword__actions">
 
             <div className="filter">
               <div className="filter__title">
@@ -244,7 +305,7 @@ export default function Keyword({ onClickHandler }) {
 
             </div>
 
-          </div>
+          </div> */}
 
 
           <div className="keyword__chart-section">
@@ -295,7 +356,8 @@ export default function Keyword({ onClickHandler }) {
 
 
               <div className="chart__chart">
-                <Line options={options} data={data} />
+                <BigChartController data={bigChartDataInkeyWordsSection}/>
+                {/* <Line options={options} data={data} /> */}
               </div>
             </div>
           </div>

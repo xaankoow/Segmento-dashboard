@@ -662,11 +662,11 @@ export const resetWorkSpaceState = () => {
 //all limit
 export const allLimitDataFeature = ({ axiosController }) => {
   return async (dispatch, getState) => {
+    // debugger
     const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState }
 
     let package_uuid = "";
-    // debugger
     if (userState.userData.package != undefined) {
       package_uuid = userState.userData.package.uuid;
 

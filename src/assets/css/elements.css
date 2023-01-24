@@ -87,6 +87,8 @@
   /* cursor: pointer; */
 }
 
+
+
 .btn-style:active {
   background-color: #009fb9 !important;
   color: white;
@@ -222,3 +224,13 @@ select {
 input[type=checkbox]{
   accent-color:#0A65CD !important ;
 } */
+
+
+/* change logo color after the hover */
+.logoLighting{
+  filter: saturate(20);
+}
+
+.removingImageColorInThisTag:hover img{
+  filter: brightness(0) invert(1) !important;
+}
