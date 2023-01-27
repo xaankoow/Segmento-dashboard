@@ -9,6 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./assets/css/style.css";
 import "./assets/css/iranyekan-font.css"
 import 'react-loading-skeleton/dist/skeleton.css'
+
+import 'swiper/swiper.min.css'
+import 'swiper/modules/pagination/pagination.min.css'
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>

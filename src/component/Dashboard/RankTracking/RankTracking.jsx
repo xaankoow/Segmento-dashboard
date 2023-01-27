@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import "./rankTracking.css";
 import pishkhan_svg from "../../../assets/img/dashboard/nav_right/pishkhan.svg";
 import {
@@ -11,7 +11,7 @@ import {
   Tooltip,
   Filler,
   Legend,
-  registerables
+  registerables,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { RANK_TRACKING_FILTERS_DATE } from "../../../variables/rankTrackingFilters";
@@ -27,6 +27,8 @@ import TitleLastUpdateInfo from "./TitleLastUpdateInfo";
 import BigChartController from "./card/bigChart/BigChartController";
 import AuthButton from "../../Auth/authButton/AuthButton";
 import SelectingChartBtn from "./card/SelectingChartBtn";
+// import Swiper from "swiper";
+import { Swiper, SwiperSlide , Navigation} from "swiper/react";
 
 // Chart.register(...registerables)
 
@@ -163,21 +165,55 @@ export default function RankTracking({ onClickHandler }) {
     "ProgressAndDeclineGraphOfWords",
     "TheWordsAreLost",
     "AvgGrownWords",
-    // "AvgTheWordsAreLost",
-    // "AvgTheWordsAreLost",
-    // "AvgTheWordsAreLost",
+    "AvgTheWordsAreLost",
+    "AvgTheWordsAreLost",
+    "AvgTheWordsAreLost",
   ];
+
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const sliderRef = useRef(null);
+
+  const handlePrev = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slidePrev();
+  }, []);
+
+  const handleNext = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slideNext();
+  }, []);
 
   return (
     <>
       <TitleLastUpdateInfo />
       <div className="tracker">
         <div className="tracker__wells">
-          {chartKeys.map((item) => (
-            <>
-              <MinichartController chartId={item} />
-            </>
-          ))}
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={6}
+            ref={sliderRef}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onBeforeInit={(swiper) => {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+            }}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}>
+            {chartKeys.map((item) => (
+              <>
+                <SwiperSlide>
+                  <MinichartController chartId={item} />
+                </SwiperSlide>
+
+              </>
+            ))}
+          </Swiper>
+            <div className="prev-arrow absolute right-0 top-[45%] cursor-pointer z-20" onClick={handlePrev} >{"<"}</div>
+            <div className="next-arrow absolute left-0 top-[45%] cursor-pointer z-20" onClick={handleNext} > {">"} </div>
         </div>
 
         {/* <div className="tracker__actions">
@@ -283,8 +319,8 @@ export default function RankTracking({ onClickHandler }) {
             </div>
             <div className="chart__actions">
               {/* <AuthButton textButton={<img src={ImageContainer.lineChartIco} className=""/>}/> */}
-              <SelectingChartBtn chartIco="Line"/>
-              <SelectingChartBtn chartIco="Bar"/>
+              <SelectingChartBtn chartIco="Line" />
+              <SelectingChartBtn chartIco="Bar" />
               {/* <img src={ImageContainer.barChartIco} className="chart__action" /> */}
               {/* <img
                 src={pishkhan_svg}
@@ -320,7 +356,6 @@ export default function RankTracking({ onClickHandler }) {
             </div>
 
             <div className="chart__chart">
-              
               {/* <Line options={options} data={data} /> */}
               <BigChartController data={rankTrakingState.bigChartData} />
             </div>

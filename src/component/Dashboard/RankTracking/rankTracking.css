@@ -3,6 +3,7 @@
 }
 
 .tracker .tracker__wells {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items:stretch;
@@ -16,7 +17,7 @@
     border-radius: 9px;
     overflow: hidden;
     font-size: .9em;
-    width: 20%;
+    /* width: 20%; */
     margin: 0 5px;
 }
 
