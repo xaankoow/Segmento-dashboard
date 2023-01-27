@@ -15,8 +15,8 @@ export const rankTrakingReducer = (
     case "INIT_WORK_SPACE_PERIOD_DATA":
       return { ...action.payload };
       case "SET_DATA_FROM_BIG_CHART":
-      const payload=action.payload.rankTrakingForceUpdate++;
-      return { ...payload };
+      // const payload=action.payload.rankTrakingForceUpdate++;
+      return { ...action.payload };
     case "INIT_KEY_WORDS_DATA":
       return { ...action.payload };
       case "GET_KEY_WORDS_PERIOD_DATA":

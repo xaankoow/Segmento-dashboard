@@ -29,6 +29,7 @@ ChartJS.register(
 export default function MiniChartCardView({
   options,
   data,
+  chartType,
   toolTipText = "toolTipText",
   title = "title",
   footerRightBoxTitle = "right title",
@@ -38,6 +39,18 @@ export default function MiniChartCardView({
   addingDataFromBigChart
 }) {
   const [showToolTip, setShowToolTip] = useState(true);
+
+  const ChartSelecting = () => {
+    switch (chartType) {
+      case "Line":
+        return <Line data={data} options={options.line} height="200px" />;
+      case "Bar":
+        return <Bar data={data} options={options.bar} height={"200px"}/>;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="well well--active border  border-border relative hover:shadow-[0px_4px_8px_0px_rgb(0,0,0,0.14)] hover:border-orgWhite transition-all">
       <div className=" absolute left-1 top-1">
@@ -61,11 +74,13 @@ export default function MiniChartCardView({
           <div className="m-auto text-sm text-title">{title}</div>
           {/* <div className="well__date">روزانه</div> */}
         </div>
-        <div className="well__chart">
-          <Line options={options} data={data} height="200px" />
+        <div className="well__chart mt-1">
+        {ChartSelecting()}
+          {/* <Line options={options} data={data} height="200px" /> */}
           {/* <Bar /> */}
         </div>
-        <div className="well__more mb-3">
+        {footerRightBoxTitle!=null?(
+           <div className="well__more mb-3">
           <div className="">
             <span className=" text-s text-gray">{footerRightBoxTitle}</span>
             <div className=" w-20 h-8 flex flex-row justify-around rounded-lg items-center bg-lightBlue">
@@ -93,6 +108,8 @@ export default function MiniChartCardView({
             </div>
           </div>
         </div>
+        ):null}
+       
       </div>
       <div className="w-full py-1 bg-sectionDisable absolute bottom-0 cursor-pointer" onClick={()=>addingDataFromBigChart()}>
       {/* <AuthButton textButton={<img

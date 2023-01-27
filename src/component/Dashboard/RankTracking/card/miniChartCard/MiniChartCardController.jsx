@@ -13,6 +13,9 @@ import { chartInformationTooltip } from "./miniChartFun";
 export default function MinichartController({
   chartId = "AvgTheWordsAreLost", //AvgRankTotalWords میانگین رتبه کل کلمات
 }) {
+  // var chartType="Line";
+  const [chartType, setChartType] = useState("Line");
+
   const rankTrakingState = useSelector((state) => state.rankTrakingState);
 
   const dispatch = useDispatch();
@@ -50,28 +53,51 @@ export default function MinichartController({
   });
   // const [backgroundChartColor, setBackgroundChartColor] = useState("rgba(16, 204, 174, .4)");
 
-  const DrowChart = ({ data, labels, chartColor }) => {
-    setChartData({
-      labels,
-      datasets: [
-        {
-          fill: "end",
-          //TODO: change label text
-          label: "Dataset 2",
-          data,
-          borderColor: chartColor
-            ? rankTrackingChartColor[chartColor]?.chart
-            : ChartColor.chart,
-          pointRadius: 0,
-          pointHitRadius: 1,
-          backgroundColor: [
-            chartColor
-              ? rankTrackingChartColor[chartColor]?.background
-              : ChartColor.background,
-          ],
-        },
-      ],
-    });
+  const DrowChart = ({ data, labels, chartColor, type }) => {
+    console.log("chartType :>> ", chartType);
+    console.log("Type :>> ", type);
+
+    if (type == "Line") {
+      setChartData({
+        labels,
+        datasets: [
+          {
+            fill: "end",
+            //TODO: change label text
+            label: "Dataset 2",
+            data,
+            borderColor: chartColor
+              ? rankTrackingChartColor[chartColor]?.chart
+              : ChartColor.chart,
+            pointRadius: 0,
+            pointHitRadius: 1,
+            backgroundColor: [
+              chartColor
+                ? rankTrackingChartColor[chartColor]?.background
+                : ChartColor.background,
+            ],
+          },
+        ],
+      });
+    } else if (type == "Bar") {
+      setChartData({
+        labels,
+        datasets: [
+          {
+            label: "افت",
+            // data: data[1],
+            data: data[1].map((item) => {return -Math.abs(item)}),
+
+            backgroundColor: "#F35242",
+          },
+          {
+            label: "رشد",
+            data: data[0],
+            backgroundColor: "#10CCAE",
+          },
+        ],
+      });
+    }
     // return null;
   };
 
@@ -103,7 +129,7 @@ export default function MinichartController({
 
     const chartLabel = [];
     var chartCL;
-
+    var type = "Line"; //chart type
     let getAvgPositionKeyWords = [];
     switch (chartId) {
       case "AvgRankTotalWords":
@@ -120,6 +146,55 @@ export default function MinichartController({
             avg / workSpaceData[getObjKeys[i]].length
           );
         }
+        break;
+
+      case rankTrackingChartId.ProgressAndDeclineGraphOfWords:
+        var growthList = [];
+        var dropList = [];
+
+        for (let i = 1; i < getObjKeys.length - 1; i++) {
+          let growth = 0;
+          let drop = 0;
+
+          let checkProcess=false;
+          // selected date and foreach in arr
+          workSpaceData[getObjKeys[i]].forEach((element) => {
+            workSpaceData[getObjKeys[i - 1]].forEach((lastPeriod) => {
+              if (lastPeriod.keyword_uuid == element.keyword_uuid) {
+                if (lastPeriod.position > element.position) {
+                  drop++;
+                  checkProcess=true
+                  // chartLabel.push(getObjKeys);
+                } else if (lastPeriod.position < element.position) {
+                  checkProcess=true
+
+                  growth++;
+                  
+                }
+              }
+            });
+          });
+          checkProcess==true&&chartLabel.push(getObjKeys[i]);
+
+          chartCL = "red";
+          // geting avg period
+          growthList.push(growth);
+          dropList.push(drop);
+        }
+        getAvgPositionKeyWords.push(growthList);
+        getAvgPositionKeyWords.push(dropList);
+
+        // chartType="Bar";
+        setChartType("Bar");
+        type = "Bar";
+
+        setFooterInformationChart({
+          rightTitle: null,
+          rightBoxText: null,
+          leftTitle: null,
+          leftBoxText: null,
+        });
+
         break;
 
       case rankTrackingChartId.GrownWords: //GrownWords chart id
@@ -259,37 +334,67 @@ export default function MinichartController({
       data: getAvgPositionKeyWords,
       labels: chartLabel.length != 0 ? chartLabel : getObjKeys,
       chartColor: chartCL,
+      type: type,
     });
     setPositionKeyWork(getAvgPositionKeyWords);
   }
 
   const options = {
-    scales: {
-      yAxis: {
-        min: 1,
-        max: 10,
-        ticks: {
-          display: false,
+    line: {
+      scales: {
+        yAxis: {
+          min: 0,
+          max: 10,
+          ticks: {
+            display: false,
+          },
+        },
+        xAxis: {
+          ticks: {
+            display: false,
+          },
         },
       },
-      xAxis: {
-        ticks: {
+      responsive: true,
+      plugins: {
+        labels: {
           display: false,
+        },
+        legend: {
+          display: false,
+          position: "top",
+        },
+        title: {
+          display: false,
+          text: "",
         },
       },
     },
-    responsive: true,
-    plugins: {
-      labels: {
-        display: false,
+    bar: {
+      plugins: {
+        title: {
+          display: false,
+          text: "Chart.js Bar Chart - Stacked",
+        },
+        legend: {
+          display: false,
+          position: "top",
+        },
       },
-      legend: {
-        display: false,
-        position: "top",
-      },
-      title: {
-        display: false,
-        text: "",
+      responsive: true,
+      scales: {
+        yAxis: {
+          stacked: true,
+          ticks: {
+            display: false,
+          },
+        },
+        xAxis: {
+          stacked: true,
+          ticks: {
+            display: false,
+          },
+        },
       },
     },
   };
@@ -301,13 +406,11 @@ export default function MinichartController({
         fill: "end",
         label: "Dataset 2",
         data: positionKeyWork,
-        // borderColor: 'rgb(53, 162, 235)',
         borderColor: ChartColor.chart,
         backgroundColor: "rgba(53, 162, 235, 0.5)",
         pointRadius: 0,
         pointHitRadius: 1,
         backgroundColor: [ChartColor.background],
-        // ChartColor:[backgroundChartColor]
       },
     ],
   };
@@ -330,6 +433,8 @@ export default function MinichartController({
         break;
       case rankTrackingChartId.AvgTheWordsAreLost:
         titleText = "میانگین افت کلمات";
+      case rankTrackingChartId.ProgressAndDeclineGraphOfWords:
+        titleText = "نمودار پیشرفت و افت کلمات";
         break;
       default:
         break;
@@ -341,16 +446,18 @@ export default function MinichartController({
     dispatch(
       setDataForRankTrackingBigChar({
         chartData: chartData,
+        chartType:chartType
       })
     );
   };
-  // console.log("chartData :>> ", chartData);
+  console.log("chartData :>> ", chartData);
   // console.log("data :>> ", data);
 
   return (
     <MiniChartCardView
       options={options}
       data={chartData}
+      chartType={chartType}
       toolTipText={chartInformationTooltip({ chartId })}
       title={chartTitle()}
       footerRightBoxTitle={footerInformationChart.rightTitle}

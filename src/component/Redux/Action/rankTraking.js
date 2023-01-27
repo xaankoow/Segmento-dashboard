@@ -60,7 +60,7 @@ export const initWorkSpacePeriodData = ({ axiosController }) => {
   };
 };
 
-export const setDataForRankTrackingBigChar = ({ chartData }) => {
+export const setDataForRankTrackingBigChar = ({ chartData , chartType="Line"}) => {
   return async (dispatch, getState) => {
     const state = { ...getState().rankTrakingState };
     // debugger
@@ -81,26 +81,43 @@ export const setDataForRankTrackingBigChar = ({ chartData }) => {
       return Math.floor(Math.random() * 255);
     };
 
-    state.bigChartData = [
-      {
-        labels,
-        datasets: [
+    // state.bigChartData =()=>{
+      if (chartType=="Line") {
+        state.bigChartData ={data:
+          [
           {
-            fill: "end",
-            label: label,
-            data: data,
-            borderColor: `rgb(${
-              generateColor() + "," + generateColor() + "," + generateColor()
-            })`,
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            pointRadius: 3,
-            pointHitRadius: 3,
+            labels,
+            datasets: [
+              {
+                fill: "end",
+                label: label,
+                data: data,
+                borderColor: `rgb(${
+                  generateColor() + "," + generateColor() + "," + generateColor()
+                })`,
+                backgroundColor: "rgba(255, 255, 255, 0)",
+                pointRadius: 3,
+                pointHitRadius: 3,
+              },
+            ],
           },
         ],
-      },
-    ];
+        type:"Line"
+      }
+        
+      }else if(chartType="Bar"){
+        state.bigChartData={data:[chartData],
+        type:"Bar"
+      };
+      }
+    // } 
 
-    state=state.rankTrakingForceUpdate++;
+    
+      
+    
+      
+
+    state.rankTrakingForceUpdate=state.rankTrakingForceUpdate+1;
 
     await dispatch({ type: "SET_DATA_FROM_BIG_CHART", payload: state });
   };

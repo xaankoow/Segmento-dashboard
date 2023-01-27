@@ -7,34 +7,37 @@ export default function BigChartController({ data, chartType="Line" }) {
   const { bigChartData ,rankTrakingForceUpdate} = useSelector((state) => state.rankTrakingState);
 
   const labels = ["","","","","","",""];
-  const [chartData, setChartData] = useState([
-    {
-      labels,
-      datasets: [
-        {
-          fill: "end",
-          label: "Dataset 2",
-          data: [0,0,0,0,0,0,0],
-          borderColor: "rgb(53, 162, 235)",
-          // borderColor: ChartColor.chart,
-          backgroundColor: "rgba(255, 255, 255, 0)",
-          pointRadius: 0,
-          pointHitRadius: 1,
-          // backgroundColor: [ChartColor.background],
-          // ChartColor:[backgroundChartColor]
-        },
-      ],
-    },
-  ]);
+  const [chartData, setChartData] = useState({
+    data:[
+      {
+        labels,
+        datasets: [
+          {
+            fill: "end",
+            label: "Dataset 2",
+            data: [0,0,0,0,0,0,0],
+            borderColor: "rgb(53, 162, 235)",
+            // borderColor: ChartColor.chart,
+            backgroundColor: "rgba(255, 255, 255, 0)",
+            pointRadius: 0,
+            pointHitRadius: 1,
+            // backgroundColor: [ChartColor.background],
+            // ChartColor:[backgroundChartColor]
+          },
+        ],
+      },
+    ],
+    type:"Line"
+  });
 
 
 
 
   useEffect(() => {
-    if (bigChartData.length != 0 && chartData != bigChartData) {
+    if (bigChartData.length != 0) {
       setChartData(bigChartData);
     }
-  }, [bigChartData.length]);
+  }, [rankTrakingForceUpdate]);
 
   //[{labels:[],label:"",data:[]}]
 
@@ -44,70 +47,129 @@ export default function BigChartController({ data, chartType="Line" }) {
   // data:chartData.map(item=>(item))
   // }
 
-  useEffect(() => {
-    let labels=data?.lebels;
-    // debugger
-    if(data.data!=undefined){
-      setChartData({
-        labels,
-        datasets: [
-          data.data.map(item=>
-            chartType=="Line"?({
-              fill: "end",
-              label: item.label,
-              data: item.data,
-              backgroundColor: "rgba(255, 255, 255, 0)",
-              borderColor: `rgb(${
-                generateColor() + "," + generateColor() + "," + generateColor()
-              })`,
-              pointRadius: 3,
-              pointHitRadius: 3,
-            }):({
-              fill: "end",
-              label: item.label,
-              data: item.data,
-              backgroundColor: `rgb(${
-                generateColor() + "," + generateColor() + "," + generateColor()
-              })`,
-            })
-            ,
-          )
-        ],
-      },)
-    }
-  }, [data])
+  // useEffect(() => {
+  //   let labels=data?.lebels;
+  //   // debugger
+  //   if(data.data!=undefined){
+  //     setChartData({
+  //       labels,
+  //       datasets: [
+  //         data.data.map(item=>
+  //           chartType=="Line"?({
+  //             fill: "end",
+  //             label: item.label,
+  //             data: item.data,
+  //             backgroundColor: "rgba(255, 255, 255, 0)",
+  //             borderColor: `rgb(${
+  //               generateColor() + "," + generateColor() + "," + generateColor()
+  //             })`,
+  //             pointRadius: 3,
+  //             pointHitRadius: 3,
+  //           }):({
+  //             fill: "end",
+  //             label: item.label,
+  //             data: item.data,
+  //             backgroundColor: `rgb(${
+  //               generateColor() + "," + generateColor() + "," + generateColor()
+  //             })`,
+  //           })
+  //           ,
+  //         )
+  //       ],
+  //     },)
+  //   }
+  // }, [data])
   
-
   const options = {
-    scales: {
-      yAxis: {
-        min: 1,
-        max: 10,
-        ticks: {
-          display: false,
+    line: {
+      scales: {
+        yAxis: {
+          min: 0,
+          max: 10,
+          ticks: {
+            display: true,
+          },
+        },
+        xAxis: {
+          ticks: {
+            display: false,
+          },
         },
       },
-      xAxis: {
-        ticks: {
+      responsive: true,
+      plugins: {
+        labels: {
           display: false,
+        },
+        legend: {
+          display: false,
+          position: "top",
+        },
+        title: {
+          display: false,
+          text: "",
         },
       },
     },
-    responsive: true,
-    plugins: {
-      labels: {
-        display: false,
+    bar: {
+      plugins: {
+        title: {
+          display: false,
+          text: "Chart.js Bar Chart - Stacked",
+        },
+        legend: {
+          display: false,
+          position: "top",
+        },
       },
-      legend: {
-        display: false,
-        position: "top",
-      },
-      title: {
-        display: false,
-        text: "",
+      responsive: true,
+      scales: {
+        yAxis: {
+          stacked: true,
+          ticks: {
+            display: true,
+          },
+        },
+        xAxis: {
+          stacked: true,
+          ticks: {
+            display: true,
+          },
+        },
       },
     },
   };
+
+  // const options = {
+  //   scales: {
+  //     yAxis: {
+  //       min: 0,
+  //       max: 10,
+  //       ticks: {
+  //         display: true,
+  //       },
+  //     },
+  //     xAxis: {
+  //       ticks: {
+  //         display: false,
+  //       },
+  //     },
+  //   },
+  //   responsive: true,
+  //   plugins: {
+  //     labels: {
+  //       display: false,
+  //     },
+  //     legend: {
+  //       display: false,
+  //       position: "top",
+  //     },
+  //     title: {
+  //       display: false,
+  //       text: "",
+  //     },
+  //   },
+  // };
 
   // {
   //   label: 'Dataset 1',
@@ -223,11 +285,10 @@ export default function BigChartController({ data, chartType="Line" }) {
     <>
     <BigChartView
     // data={ data}
-    data={chartData[0]}
+    data={chartData.data[0]}
     options={options}
-    chartType={chartType}
+    chartType={chartData.type}
     />
-    {rankTrakingForceUpdate}
     </>
   );
 }

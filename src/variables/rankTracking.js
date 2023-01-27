@@ -3,7 +3,8 @@ export const rankTrackingChartId={
     GrownWords:"GrownWords", //کلمات رشد کرده
     TheWordsAreLost:"TheWordsAreLost", // کلمات افت کرده    
     AvgGrownWords :"AvgGrownWords", // میانگین رشد کلمات  
-    AvgTheWordsAreLost:"AvgTheWordsAreLost" // میانگین افت کلمات
+    AvgTheWordsAreLost:"AvgTheWordsAreLost", // میانگین افت کلمات
+    ProgressAndDeclineGraphOfWords:"ProgressAndDeclineGraphOfWords" // میانگین افت کلمات
 }
 
 export const rankTrackingChartColor={

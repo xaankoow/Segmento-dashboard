@@ -160,11 +160,12 @@ export default function RankTracking({ onClickHandler }) {
   const chartKeys = [
     "AvgRankTotalWords",
     "GrownWords",
+    "ProgressAndDeclineGraphOfWords",
     "TheWordsAreLost",
     "AvgGrownWords",
-    "AvgTheWordsAreLost",
-    "AvgTheWordsAreLost",
-    "AvgTheWordsAreLost",
+    // "AvgTheWordsAreLost",
+    // "AvgTheWordsAreLost",
+    // "AvgTheWordsAreLost",
   ];
 
   return (
