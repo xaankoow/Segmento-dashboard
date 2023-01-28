@@ -67,11 +67,11 @@ export default function AcardionItem({ clicked, setClicked }) {
           itemIcon: pageTejari_svg,
           itemLink: "",
         },
-        {
-          itemTitle: "ایندکسر گوگل",
-          itemIcon: googleIndex_svg,
-          itemLink: "GoogleIndexer",
-        },
+        // {
+        //   itemTitle: "ایندکسر گوگل",
+        //   itemIcon: googleIndex_svg,
+        //   itemLink: "GoogleIndexer",
+        // },
         {
           itemTitle: "آنالیز گوگل",
           itemIcon: pageSeo_svg,
@@ -180,12 +180,12 @@ export default function AcardionItem({ clicked, setClicked }) {
       titleIcon: copyWriter_svg,
       itemLink: "",
       acardionItems: [
-        {
-          itemTitle: "ابزار رتبه سنج",
-          itemIcon: copyWriterAnboh_svg,
-          itemLink: "rank-tracking",
-          section: ""
-        },
+        // {
+        //   itemTitle: "ابزار رتبه سنج",
+        //   itemIcon: copyWriterAnboh_svg,
+        //   itemLink: "rank-tracking",
+        //   section: ""
+        // },
       ],
     },
   ];
