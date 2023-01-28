@@ -81,7 +81,7 @@ useEffect(() => {
               }`}
             >
               <img src={dashboardPishKhan_svg} alt="icon" />
-              <Link to={"/dashboard/PageCounter"}>{closeNav && "پیشخان"}</Link>
+              <Link to={"/dashboard/PageCounter"}>{closeNav && "پیشخوان"}</Link>
             </div>
             <div className="border-b border-lightGray w-11/12 m-auto" />
             <AcardionItem

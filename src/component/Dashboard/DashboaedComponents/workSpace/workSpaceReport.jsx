@@ -194,7 +194,7 @@ export default function WorkSpaceReport() {
 
 
                     <div>
-                        <Link to={"/dashboard/PageCounter"} className="btn-style mt-7 inline-block"><img className=' ml-3 inline-block' src={ImageContainer.pishkhan} />پیشخان</Link>
+                        <Link to={"/dashboard/PageCounter"} className="btn-style mt-7 inline-block"><img className=' ml-3 inline-block' src={ImageContainer.pishkhan} />پیشخوان</Link>
                     </div>
                 </div>
             </div>
