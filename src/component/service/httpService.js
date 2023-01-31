@@ -14,7 +14,7 @@ if (token !== "undefined" && token != null && token) {
 axiosRetry(axios, {
     retries: 10, // number of retries
     retryDelay: (retryCount) => {
-        console.log(`retry attempt: ${retryCount}`);
+        // console.log(`retry attempt: ${retryCount}`);
         return retryCount + 2000; // time interval between retries
     },
     retryCondition: (error) => {

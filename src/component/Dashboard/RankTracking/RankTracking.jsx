@@ -156,7 +156,7 @@ export default function RankTracking({ onClickHandler }) {
   }, []);
 
   const setDateFilterOption = (e) => {
-    console.log(e);
+    // console.log(e);
   };
 
   const chartKeys = [
@@ -201,8 +201,9 @@ export default function RankTracking({ onClickHandler }) {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;
             }}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}>
+            // onSlideChange={() => console.log("slide change")}
+            // onSwiper={(swiper) => console.log(swiper)}
+            >
             {chartKeys.map((item) => (
               <>
                 <SwiperSlide>

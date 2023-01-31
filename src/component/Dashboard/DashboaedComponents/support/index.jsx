@@ -27,7 +27,7 @@ export default function Index() {
   useEffect(() => {
     if (chatData.messages.length == 0) {
       initChat()
-      console.log(chatData)
+      // console.log(chatData)
     }
   }, [])
 
@@ -41,7 +41,7 @@ export default function Index() {
     try {
       const { data } = await getSupportChatData({ticketUuid,axiosController});
       if (data.code == 200 & data.status == true) {
-        console.log(data)
+        // console.log(data)
         setChateData(data.data); //5
       }
     } catch (error) {

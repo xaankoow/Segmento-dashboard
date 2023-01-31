@@ -26,7 +26,7 @@ export default function Index({ setValueEditor, setFileArray }) {
   useEffect(() => {
     setFileArray(files)
   }, [files])
-  console.log(files)
+  // console.log(files)
   return (
     <div className='w-full mt-6'>
       <EditorCustomizedToolbarOption setValueEditor={setValueEditor} />

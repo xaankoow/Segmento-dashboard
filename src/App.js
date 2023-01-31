@@ -35,7 +35,7 @@ export default function App() {
 
   var label=[]
   // console.log(label.includes("abc"))
-  console.log(label.findIndex(el=>el.uuid=="abc2"))
+  // console.log(label.findIndex(el=>el.uuid=="abc2"))
 
   return (
     <Fragment>

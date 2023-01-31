@@ -17,12 +17,14 @@ export const loadingReducer = (state =
         case "RESET_ALL_STATE":
             return {
                 showLoading: false,
+                ImportantProcessingDelay:[],
                 ProcessingDelay: [],
                 canRequest: true
             }
         case "RESET_LOADING_STATE":
             return {
                 showLoading: false,
+                ImportantProcessingDelay:[],
                 ProcessingDelay: [],
                 canRequest: true
             }

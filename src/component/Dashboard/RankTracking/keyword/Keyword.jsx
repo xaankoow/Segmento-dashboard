@@ -128,7 +128,7 @@ export default function Keyword({ onClickHandler }) {
 
 
   const setDateFilterOption = (e) => {
-    console.log(e);
+    // console.log(e);
   }
 
   const b = [

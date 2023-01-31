@@ -32,11 +32,11 @@ export default function MessageFooter({ type, attachment , messageUuid , message
           const { data } = await messageRateServise(formdata);
           if (data.code == 200 & data.status == true) {
             setMoodSelected(data.data.rate)
-            console.log('data', data)
+            // console.log('data', data)
 
           }
         } catch (error) {
-          console.log(error)
+          // console.log(error)
         }
         //handle hide loading
         {

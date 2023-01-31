@@ -275,8 +275,8 @@ export default function BigChartController({ data, chartType="Line" }) {
     // ],
   };
 
-  console.log("chartData :>> ", chartData);
-  console.log("bigChartData :>> ", bigChartData);
+  // console.log("chartData :>> ", chartData);
+  // console.log("bigChartData :>> ", bigChartData);
 
 // debugger
 

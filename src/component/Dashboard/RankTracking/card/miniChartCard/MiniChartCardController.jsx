@@ -54,8 +54,8 @@ export default function MinichartController({
   // const [backgroundChartColor, setBackgroundChartColor] = useState("rgba(16, 204, 174, .4)");
 
   const DrowChart = ({ data, labels, chartColor, type }) => {
-    console.log("chartType :>> ", chartType);
-    console.log("Type :>> ", type);
+    // console.log("chartType :>> ", chartType);
+    // console.log("Type :>> ", type);
 
     if (type == "Line") {
       setChartData({
@@ -450,7 +450,7 @@ export default function MinichartController({
       })
     );
   };
-  console.log("chartData :>> ", chartData);
+  // console.log("chartData :>> ", chartData);
   // console.log("data :>> ", data);
 
   return (

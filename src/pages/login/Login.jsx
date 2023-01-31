@@ -36,7 +36,7 @@ export default function Login() {
               <div className="flex gap-5">
                 {/* <input type="" /> */}
                 {/* <TextButton.Provider value={"ورود"}> */}
-                  <AuthButton classes={"btn-style"} textButton={"ورود"} reduxHandleClick={loginUserAction}/>
+                  <AuthButton classes={"btn-style"} textButton={"ورود"} reduxHandleClick={loginUserAction} keyLoading="loginUser"/>
                 {/* </TextButton.Provider> */}
                 {/* <input type="submit" value={"submit btn"} className="btn-style"/> */}
                 <button className=" bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">

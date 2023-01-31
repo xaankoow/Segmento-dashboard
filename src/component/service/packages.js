@@ -10,6 +10,6 @@ export const getPackageInfO = ({package_uuid,axiosController}) => {
         "Accept":"application/json",
         signal: axiosController!=undefined&&axiosController.signal
     }
-   console.log('package_uuid :>> ', package_uuid);
+//    console.log('package_uuid :>> ', package_uuid);
     return http.get(`${config.xaankooApi}/api/v1/package/${package_uuid}`,headerRegisterUser);
 }
