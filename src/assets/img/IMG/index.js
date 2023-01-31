@@ -36,7 +36,7 @@ import deleteBtn from '../bottom/bin.svg'
 
 import infoUtils from '../ico/infoUtils.svg'
 import directionOfTheGreenValue from '../ico/directionـofـtheـgreenـvalue.svg'
-import directionOfTheRedValue from '../ico/directionـofـtheـgreenـvalue.svg'
+import directionOfTheRedValue from '../ico/directionـofـtheـredـvalue.svg'
 import moveDownArrow from '../ico/move_down_arrow.svg'
 import lineChartIco from '../ico/line_chart_ico.svg'
 import barChartIco from '../ico/bar_chart_ico.svg'

@@ -1,4 +1,10 @@
-import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import "./rankTracking.css";
 import pishkhan_svg from "../../../assets/img/dashboard/nav_right/pishkhan.svg";
 import {
@@ -13,7 +19,7 @@ import {
   Legend,
   registerables,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Doughnut, Line } from "react-chartjs-2";
 import { RANK_TRACKING_FILTERS_DATE } from "../../../variables/rankTrackingFilters";
 import ComboBox from "../../shared/comboBox/ComboBox";
 import { initWorkSpacePeriodData } from "../../Redux/Action/rankTraking";
@@ -28,7 +34,7 @@ import BigChartController from "./card/bigChart/BigChartController";
 import AuthButton from "../../Auth/authButton/AuthButton";
 import SelectingChartBtn from "./card/SelectingChartBtn";
 // import Swiper from "swiper";
-import { Swiper, SwiperSlide , Navigation} from "swiper/react";
+import { Swiper, SwiperSlide, Navigation } from "swiper/react";
 
 // Chart.register(...registerables)
 
@@ -145,6 +151,23 @@ export default function RankTracking({ onClickHandler }) {
     ],
   };
 
+  // #F35242 red
+  // #0071ff blue
+  // #FFDC5D yellow
+
+  const data1 = {
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [30, 50, 20],
+        cutout: 50,
+        backgroundColor: ["#0071ff", "#F35242", "#FFDC5D"],
+        borderWidth: 0,
+        borderRadius: 7,
+      },
+    ],
+  };
+
   useEffect(() => {
     dispatch(initWorkSpacePeriodData({ axiosController }));
   }, []);
@@ -161,13 +184,12 @@ export default function RankTracking({ onClickHandler }) {
 
   const chartKeys = [
     "AvgRankTotalWords",
+    "KeywordRankDistribution",
     "GrownWords",
     "ProgressAndDeclineGraphOfWords",
     "TheWordsAreLost",
     "AvgGrownWords",
-    "AvgTheWordsAreLost",
-    "AvgTheWordsAreLost",
-    "AvgTheWordsAreLost",
+    "AvgTheWordsAreLost"
   ];
 
   const prevRef = useRef(null);
@@ -203,18 +225,26 @@ export default function RankTracking({ onClickHandler }) {
             }}
             // onSlideChange={() => console.log("slide change")}
             // onSwiper={(swiper) => console.log(swiper)}
-            >
+          >
             {chartKeys.map((item) => (
               <>
                 <SwiperSlide>
                   <MinichartController chartId={item} />
                 </SwiperSlide>
-
               </>
             ))}
           </Swiper>
-            <div className="prev-arrow absolute right-0 top-[45%] cursor-pointer z-20" onClick={handlePrev} >{"<"}</div>
-            <div className="next-arrow absolute left-0 top-[45%] cursor-pointer z-20" onClick={handleNext} > {">"} </div>
+          <div
+            className="prev-arrow absolute right-0 top-[45%] cursor-pointer z-20"
+            onClick={handlePrev}>
+            {"<"}
+          </div>
+          <div
+            className="next-arrow absolute left-0 top-[45%] cursor-pointer z-20"
+            onClick={handleNext}>
+            {" "}
+            {">"}{" "}
+          </div>
         </div>
 
         {/* <div className="tracker__actions">
@@ -387,7 +417,15 @@ export default function RankTracking({ onClickHandler }) {
           <div className="report__charts">
             <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
-              <div className="chart__chart">[chart]</div>
+              <div className="chart__chart">
+              <MinichartController chartId={"AvgRankTotalWords"} />
+                {/* <Doughnut
+                  data={data1}
+                  height={143}
+                  width={143}
+                  options={{ maintainAspectRatio: false }}
+                /> */}
+              </div>
               <div className="chart__points">
                 <div className="point">
                   <div className="point__color point__color--red"></div>
@@ -414,7 +452,14 @@ export default function RankTracking({ onClickHandler }) {
 
             <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
-              <div className="chart__chart">[chart]</div>
+              <div className="chart__chart">
+                <Doughnut
+                  data={data1}
+                  height={143}
+                  width={143}
+                  options={{ maintainAspectRatio: false }}
+                />
+              </div>
               <div className="chart__points">
                 <div className="point">
                   <div className="point__color point__color--red"></div>
@@ -441,7 +486,14 @@ export default function RankTracking({ onClickHandler }) {
 
             <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
-              <div className="chart__chart">[chart]</div>
+              <div className="chart__chart">
+                <Doughnut
+                  data={data1}
+                  height={143}
+                  width={143}
+                  options={{ maintainAspectRatio: false }}
+                />
+              </div>
               <div className="chart__points">
                 <div className="point">
                   <div className="point__color point__color--red"></div>
@@ -468,7 +520,14 @@ export default function RankTracking({ onClickHandler }) {
 
             <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
-              <div className="chart__chart">[chart]</div>
+              <div className="chart__chart">
+                <Doughnut
+                  data={data1}
+                  height={143}
+                  width={143}
+                  options={{ maintainAspectRatio: false }}
+                />
+              </div>
               <div className="chart__points">
                 <div className="point">
                   <div className="point__color point__color--red"></div>

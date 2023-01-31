@@ -39,20 +39,46 @@ export default function MiniChartCardView({
   addingDataFromBigChart
 }) {
   const [showToolTip, setShowToolTip] = useState(true);
+  // const [decreaseIncreaseArrow, setDecreaseIncreaseArrow] = useState({
+  //   src:"",
+  //   class:""
+  // });
 
+  
   const ChartSelecting = () => {
     switch (chartType) {
       case "Line":
         return <Line data={data} options={options.line} height="200px" />;
       case "Bar":
         return <Bar data={data} options={options.bar} height={"200px"}/>;
+        case "NumericRange":
+          
+        break;
       default:
         break;
     }
   };
 
+  const decreaseIncreaseArrow=(firstValue,secondValue)=>{
+    if(firstValue>secondValue){
+      return(
+        {
+          src:ImageContainer.directionOfTheGreenValue,
+          class:"rotate-180"
+        }
+        )
+    }else {
+      return(
+        {
+          src:ImageContainer.directionOfTheRedValue,
+          class:"rotate-180"
+        }
+      )
+    }
+  }
+
   return (
-    <div className="well well--active border  border-border relative hover:shadow-[0px_4px_8px_0px_rgb(0,0,0,0.14)] hover:border-orgWhite transition-all">
+    <div className="well well--active border h-full  border-border relative hover:shadow-[0px_4px_8px_0px_rgb(0,0,0,0.14)] hover:border-orgWhite transition-all">
       <div className=" absolute left-1 top-1">
         <img
           src={ImageContainer.infoUtils}
@@ -69,13 +95,54 @@ export default function MiniChartCardView({
           }}
         />
       </div>
-      <div className="well__content">
-        <div className="well__header">
-          <div className="m-auto text-sm text-title">{title}</div>
+      
+       {/* {chartType!="NumericRange"? ChartSelecting():(
+
+       )}  */}
+      
+      <div className="well__content h-full">
+        <div className="well__header h-[10%]">
+          <div className="m-auto text-sm text-title ">{title}</div>
           {/* <div className="well__date">روزانه</div> */}
         </div>
-        <div className="well__chart mt-1">
-        {ChartSelecting()}
+        <div className="well__chart mt-1 h-[80%]">
+        {chartType!="NumericRange"? ChartSelecting():(
+        
+          <div className="flex justify-center flex-col w-full relative px-1 h-full">
+            <div className="flex text-s h-[20%] items-center">
+              <div className=" w-[25%] text-gray">دوره قبل</div>
+              <div className=" w-[10%]"></div>
+              <div className="w-[25%] text-gray">دوره فعلی</div>
+              <div className="w-[40%]"></div>
+            </div>
+            <hr className=" border-sectionDisable mt-1 mb-2"/>
+            <div className="flex text-s h-[20%] items-center">
+              <div className="w-[25%] text-title">{data.lastPeriod[0]}</div>
+              <div className=" w-[10%] "><img src={decreaseIncreaseArrow(data.lastPeriod[0],data.beforePeriod[0]).src} alt="green tick" className={`mx-auto ${decreaseIncreaseArrow(data.lastPeriod[0],data.beforePeriod[0]).class}`} /></div>
+              <div className=" w-[25%] text-title">{data.beforePeriod[0]}</div>
+              <div className="w-[40%] text-gray">{"1 - 3 #"}</div>
+            </div>
+            <hr className=" border-sectionDisable mt-1 mb-2"/>
+            <div className="flex text-s h-[20%] items-center">
+              <div className="w-[25%] text-title">{data.lastPeriod[1]}</div>
+              <div className=" w-[10%] "><img src={decreaseIncreaseArrow(data.lastPeriod[1],data.beforePeriod[1]).src} alt="green tick" className={`mx-auto ${decreaseIncreaseArrow(data.lastPeriod[1],data.beforePeriod[1]).class}`} /></div>
+
+              {/* <div className=" w-[10%] "><img src={ImageContainer.directionOfTheRedValue} alt="green tick" className=" mx-auto" /></div> */}
+              <div className=" w-[25%] text-title">{data.beforePeriod[1]}</div>
+              <div className="w-[40%] text-gray">{"4 - 7 #"}</div>
+            </div>
+            <hr className=" border-sectionDisable mt-1 mb-2"/>
+            <div className="flex text-s h-[20%] items-center">
+              <div className="w-[25%] text-title">{data.lastPeriod[2]}</div>
+              <div className=" w-[10%] "><img src={decreaseIncreaseArrow(data.lastPeriod[2],data.beforePeriod[2]).src} alt="green tick" className={`mx-auto ${decreaseIncreaseArrow(data.lastPeriod[2],data.beforePeriod[2]).class}`} /></div>
+
+              {/* <div className=" w-[10%] "><img src={ImageContainer.directionOfTheRedValue} alt="green tick" className=" mx-auto" /></div> */}
+              <div className=" w-[25%] text-title">{data.beforePeriod[2]}</div>
+              <div className="w-[40%] text-gray">{"8 - 10 #"}</div>
+            </div>
+          </div>
+        )} 
+        {/* {ChartSelecting()} */}
           {/* <Line options={options} data={data} height="200px" /> */}
           {/* <Bar /> */}
         </div>

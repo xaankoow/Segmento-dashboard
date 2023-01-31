@@ -1,5 +1,6 @@
 export const rankTrackingChartId={
     AvgRankTotalWords:"AvgRankTotalWords", // میانگین رتبه کل کلمات
+    KeywordRankDistribution:"KeywordRankDistribution", // توزیع رتبه کلمات کلیدی
     GrownWords:"GrownWords", //کلمات رشد کرده
     TheWordsAreLost:"TheWordsAreLost", // کلمات افت کرده    
     AvgGrownWords :"AvgGrownWords", // میانگین رشد کلمات  

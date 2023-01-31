@@ -86,7 +86,9 @@ export default function MinichartController({
           {
             label: "افت",
             // data: data[1],
-            data: data[1].map((item) => {return -Math.abs(item)}),
+            data: data[1].map((item) => {
+              return -Math.abs(item);
+            }),
 
             backgroundColor: "#F35242",
           },
@@ -97,6 +99,11 @@ export default function MinichartController({
           },
         ],
       });
+    } else if(type=="NumericRange"){
+      setChartData({
+        lastPeriod:data[0],
+        beforePeriod:data[1]
+      })
     }
     // return null;
   };
@@ -131,6 +138,7 @@ export default function MinichartController({
     var chartCL;
     var type = "Line"; //chart type
     let getAvgPositionKeyWords = [];
+    let NumericRangePositionKeyWords=[[0,0,0],[0,0,0]];
     switch (chartId) {
       case "AvgRankTotalWords":
         for (let i = 0; i < getObjKeys.length; i++) {
@@ -148,6 +156,51 @@ export default function MinichartController({
         }
         break;
 
+      case rankTrackingChartId.KeywordRankDistribution:
+        var lastPeriod=[0,0,0]; // 1,3  4,7  8,10
+        var beforePeriod=[0,0,0]; // 1,3  4,7  8,10
+        // var Between1And3=0;
+        // var Between4And7=0;
+        // var Between8And10=0;
+
+        workSpaceData[getObjKeys[getObjKeys.length-1]].forEach((element) => {
+          var position=element.position;
+          if (position>=1&position<=3) {
+            lastPeriod[0]++;
+          }else if (position>=4&position<=7){
+            lastPeriod[1]++;
+          } else if(position>=8){
+            lastPeriod[2]++;
+          }
+        });
+
+        workSpaceData[getObjKeys[getObjKeys.length-2]].forEach((element) => {
+          var position=element.position;
+          if (position>=1&position<=3) {
+            beforePeriod[0]++;
+          }else if (position>=4&position<=7){
+            beforePeriod[1]++;
+          } else if(position>=8){
+            beforePeriod[2]++;
+          }
+        });
+
+
+        getAvgPositionKeyWords.push(lastPeriod);
+        getAvgPositionKeyWords.push(beforePeriod);
+
+        setChartType("NumericRange");
+        type="NumericRange";
+
+        setFooterInformationChart({
+          rightTitle: null,
+          rightBoxText: null,
+          leftTitle: null,
+          leftBoxText: null,
+        });
+
+        break;
+
       case rankTrackingChartId.ProgressAndDeclineGraphOfWords:
         var growthList = [];
         var dropList = [];
@@ -156,25 +209,24 @@ export default function MinichartController({
           let growth = 0;
           let drop = 0;
 
-          let checkProcess=false;
+          let checkProcess = false;
           // selected date and foreach in arr
           workSpaceData[getObjKeys[i]].forEach((element) => {
             workSpaceData[getObjKeys[i - 1]].forEach((lastPeriod) => {
               if (lastPeriod.keyword_uuid == element.keyword_uuid) {
                 if (lastPeriod.position > element.position) {
                   drop++;
-                  checkProcess=true
+                  checkProcess = true;
                   // chartLabel.push(getObjKeys);
                 } else if (lastPeriod.position < element.position) {
-                  checkProcess=true
+                  checkProcess = true;
 
                   growth++;
-                  
                 }
               }
             });
           });
-          checkProcess==true&&chartLabel.push(getObjKeys[i]);
+          checkProcess == true && chartLabel.push(getObjKeys[i]);
 
           chartCL = "red";
           // geting avg period
@@ -435,6 +487,8 @@ export default function MinichartController({
         titleText = "میانگین افت کلمات";
       case rankTrackingChartId.ProgressAndDeclineGraphOfWords:
         titleText = "نمودار پیشرفت و افت کلمات";
+        case rankTrackingChartId.KeywordRankDistribution:
+          titleText = "توزیع رتبه کلمات کلیدی";
         break;
       default:
         break;
@@ -446,7 +500,7 @@ export default function MinichartController({
     dispatch(
       setDataForRankTrackingBigChar({
         chartData: chartData,
-        chartType:chartType
+        chartType: chartType,
       })
     );
   };
