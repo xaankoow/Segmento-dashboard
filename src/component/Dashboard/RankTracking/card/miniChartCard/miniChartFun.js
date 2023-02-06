@@ -42,7 +42,7 @@ export const drawChart=({chartId,workSpaceData,objKey,labels})=>{
 
 
 
-export const chartInformationTooltip=({chartId})=>{
+export const chartInformationTooltip=({chartId,chartType})=>{
     var tooltipText="";
     
     switch (chartId) {
@@ -60,6 +60,13 @@ export const chartInformationTooltip=({chartId})=>{
           break;
           case rankTrackingChartId.AvgTheWordsAreLost:
             tooltipText="به ازای هر بروزرسانی ورک اسپیس، میانگین میزان افت کلمات کلیدی موجود آن در صفحه اول گوگل محاسبه می‌شود."
+         break;
+         case rankTrackingChartId.KeywordRankDistribution:
+            if(chartType=="Doughnut"){
+                tooltipText="بیانگر میزان فراوانی هر بازه نسبت به کل فراوانی کلمات کلیدی صفحه اول گوگل می‌باشد"
+            }else{
+                tooltipText="به ازای هر بروزرسانی ورک اسپیس، میانگین میزان افت کلمات کلیدی موجود آن در صفحه اول گوگل محاسبه می‌شود."
+            }
          break;
         default:
             break;

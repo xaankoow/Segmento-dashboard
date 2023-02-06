@@ -5,7 +5,9 @@ export const rankTrackingChartId={
     TheWordsAreLost:"TheWordsAreLost", // کلمات افت کرده    
     AvgGrownWords :"AvgGrownWords", // میانگین رشد کلمات  
     AvgTheWordsAreLost:"AvgTheWordsAreLost", // میانگین افت کلمات
-    ProgressAndDeclineGraphOfWords:"ProgressAndDeclineGraphOfWords" // میانگین افت کلمات
+    ProgressAndDeclineGraphOfWords:"ProgressAndDeclineGraphOfWords", // میانگین افت کلمات
+    AvgGrownAndLostWords:"AvgGrownAndLostWords" // میانگین افت کلمات
+
 }
 
 export const rankTrackingChartColor={

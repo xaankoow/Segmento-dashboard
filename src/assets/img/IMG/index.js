@@ -41,6 +41,9 @@ import moveDownArrow from '../ico/move_down_arrow.svg'
 import lineChartIco from '../ico/line_chart_ico.svg'
 import barChartIco from '../ico/bar_chart_ico.svg'
 import plusGray from '../ico/plus_gray.svg'
+import chartScrollArrow from '../ico/chartScrollArrow.svg'
+import filter from '../ico/filter.svg'
+
 
 export const ImageContainer = {
   infoBlue,
@@ -91,5 +94,7 @@ export const ImageContainer = {
   moveDownArrow,
   lineChartIco,
   plusGray,
-  barChartIco
+  barChartIco,
+  chartScrollArrow,
+  filter
 }

@@ -22,7 +22,7 @@ import {
 import { Doughnut, Line } from "react-chartjs-2";
 import { RANK_TRACKING_FILTERS_DATE } from "../../../variables/rankTrackingFilters";
 import ComboBox from "../../shared/comboBox/ComboBox";
-import { initWorkSpacePeriodData } from "../../Redux/Action/rankTraking";
+import { initWorkSpacePeriodData, searchChartIdAndSetInBigChartData } from "../../Redux/Action/rankTraking";
 import { useDispatch, useSelector } from "react-redux";
 import { ImageContainer } from "../../../assets/img/IMG";
 import ToolTip from "../../Utils/ToolTip";
@@ -35,6 +35,7 @@ import AuthButton from "../../Auth/authButton/AuthButton";
 import SelectingChartBtn from "./card/SelectingChartBtn";
 // import Swiper from "swiper";
 import { Swiper, SwiperSlide, Navigation } from "swiper/react";
+import { rankTrackingChartId } from "../../../variables/rankTracking";
 
 // Chart.register(...registerables)
 
@@ -60,6 +61,9 @@ export default function RankTracking({ onClickHandler }) {
 
   //tooltip handler
   const [showToolTip, setShowToolTip] = useState(true);
+
+  const [periodDate, setPeriodDate] = useState(["0000/00/00"]);
+
 
   const options = {
     scales: {
@@ -189,7 +193,7 @@ export default function RankTracking({ onClickHandler }) {
     "ProgressAndDeclineGraphOfWords",
     "TheWordsAreLost",
     "AvgGrownWords",
-    "AvgTheWordsAreLost"
+    "AvgTheWordsAreLost",
   ];
 
   const prevRef = useRef(null);
@@ -229,13 +233,26 @@ export default function RankTracking({ onClickHandler }) {
             {chartKeys.map((item) => (
               <>
                 <SwiperSlide>
-                  <MinichartController chartId={item} />
+                  <MinichartController chartId={item} setPeriodDate={setPeriodDate}/>
                 </SwiperSlide>
               </>
             ))}
           </Swiper>
-          <div
+          <img
+            src={ImageContainer.chartScrollArrow}
+            onClick={handlePrev}
+            className="prev-arrow absolute -right-2 top-[45%] cursor-pointer z-20"
+            alt="arrow scroller"
+          />
+          <img
+            src={ImageContainer.chartScrollArrow}
+            onClick={handleNext}
+            className="prev-arrow absolute -left-2 top-[45%] cursor-pointer z-20 rotate-180"
+            alt="arrow scroller"
+          />
+          {/* <div
             className="prev-arrow absolute right-0 top-[45%] cursor-pointer z-20"
+            
             onClick={handlePrev}>
             {"<"}
           </div>
@@ -244,7 +261,7 @@ export default function RankTracking({ onClickHandler }) {
             onClick={handleNext}>
             {" "}
             {">"}{" "}
-          </div>
+          </div> */}
         </div>
 
         {/* <div className="tracker__actions">
@@ -345,7 +362,7 @@ export default function RankTracking({ onClickHandler }) {
               <ComboBox
                 placeholder={"فیلتر زمانی"}
                 radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+                radioClickedHandler={(e) =>dispatch(searchChartIdAndSetInBigChartData({textId: e.target.value}))}
               />
             </div>
             <div className="chart__actions">
@@ -360,7 +377,7 @@ export default function RankTracking({ onClickHandler }) {
             </div>
           </div>
           <div className="chart__content">
-            <div className="chart__filters">
+            {/* <div className="chart__filters">
               <div className="filter">
                 <div className="filter__content">
                   <div className="filter__color filter__color--green"></div>
@@ -384,7 +401,7 @@ export default function RankTracking({ onClickHandler }) {
                 </div>
                 <div className="filter__action">#</div>
               </div>
-            </div>
+            </div> */}
 
             <div className="chart__chart">
               {/* <Line options={options} data={data} /> */}
@@ -396,7 +413,7 @@ export default function RankTracking({ onClickHandler }) {
         <div className="tracker__report-section">
           <div className="report__title">آمار و گزارش های نسبی</div>
           <div className="report__filter">
-            <div className="filter__content">
+            {/* <div className="filter__content">
               <div className="filter__title">
                 <img src={pishkhan_svg} />
                 <span>فیلتر براساس</span>
@@ -411,20 +428,35 @@ export default function RankTracking({ onClickHandler }) {
               </div>
             </div>
 
-            <img src={pishkhan_svg} className="filter__action" />
+            <img src={pishkhan_svg} className="filter__action" /> */}
+            <div className=" w-10 h-10 bg-secondary rounded-xl flex justify-center items-center">
+              <img
+                src={ImageContainer.filter}
+                className="w-4 h-4"
+                alt="filter"
+              />
+            </div>
+            <span className=" text-sm text-title mr-2 ml-9">نمایش آمار:</span>
+            <div className=" w-52">
+              <ComboBox
+                placeholder={"فیلتر زمانی"}
+                radioTextItems={periodDate.map(item=> item.replaceAll("-","/"))}
+                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+              />
+            </div>
           </div>
 
           <div className="report__charts">
-            <div className="chart">
+            {/* <MinichartController chartId={rankTrackingChartId.KeywordRankDistribution} chartType="Doughnut"/> */}
+            {/* <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
               <div className="chart__chart">
-              <MinichartController chartId={"AvgRankTotalWords"} />
-                {/* <Doughnut
+                <Doughnut
                   data={data1}
                   height={143}
                   width={143}
                   options={{ maintainAspectRatio: false }}
-                /> */}
+                />
               </div>
               <div className="chart__points">
                 <div className="point">
@@ -448,9 +480,31 @@ export default function RankTracking({ onClickHandler }) {
                   <div className="point__title">نمونه نوشته</div>
                 </div>
               </div>
+            </div> */}
+            <div className="tracker__wells w-full justify-around">
+              <MinichartController
+                chartId={"KeywordRankDistribution"}
+                chartType="Doughnut"
+              />
+              <MinichartController
+                chartId={rankTrackingChartId.GrownWords}
+                chartType="Doughnut"
+              />
+              <MinichartController
+                chartId={rankTrackingChartId.TheWordsAreLost}
+                chartType="Doughnut"
+              />
+              <MinichartController
+                chartId={rankTrackingChartId.ProgressAndDeclineGraphOfWords}
+                chartType="Doughnut"
+              />
+              <MinichartController
+                chartId={rankTrackingChartId.AvgGrownAndLostWords}
+                chartType="Doughnut"
+              />
             </div>
 
-            <div className="chart">
+            {/* <div className="chart">
               <div className="chart__title">نسبت کل کلمات</div>
               <div className="chart__chart">
                 <Doughnut
@@ -550,7 +604,7 @@ export default function RankTracking({ onClickHandler }) {
                   <div className="point__title">نمونه نوشته</div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

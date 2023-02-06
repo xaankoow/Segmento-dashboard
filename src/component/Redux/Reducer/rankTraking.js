@@ -2,6 +2,7 @@ export const rankTrakingReducer = (
   state = {
     workSpacePeriodData: [],
     chart: { type: "", data: [] },
+    charts:[{id:"",type:"",data:[]}],
     bigChartData: [], //[{labels:[],label:"",data:[]}]
     bigChartDataInkeyWordsSection: {}, //[{labels:[],label:"",data:[]}]
     keyWordsData: [],
@@ -23,7 +24,9 @@ export const rankTrakingReducer = (
         return { ...action.payload };
         case "TOOGLE_SELECTING_KEY_WOURDS_TABEL":
           return { ...action.payload };
-        
+          case "SET_CHARTS_DATA_IN_STATE":
+            return { ...action.payload };
+          
     case "RESET_ALL_STATE":
       return {
         workSpacePeriodData: [],

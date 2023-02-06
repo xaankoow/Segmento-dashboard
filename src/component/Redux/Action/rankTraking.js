@@ -1,5 +1,7 @@
 import { Label, LensBlurRounded } from "@mui/icons-material";
 import { toast } from "react-toastify";
+import { rankTrackingChartId } from "../../../variables/rankTracking";
+import { RANK_TRACKING_FILTERS_DATE } from "../../../variables/rankTrackingFilters";
 import {
   initKeyWordsDataService,
   initWorkSpacePeriodDataService,
@@ -60,7 +62,10 @@ export const initWorkSpacePeriodData = ({ axiosController }) => {
   };
 };
 
-export const setDataForRankTrackingBigChar = ({ chartData , chartType="Line"}) => {
+export const setDataForRankTrackingBigChar = ({
+  chartData,
+  chartType = "Line",
+}) => {
   return async (dispatch, getState) => {
     const state = { ...getState().rankTrakingState };
     // debugger
@@ -82,9 +87,9 @@ export const setDataForRankTrackingBigChar = ({ chartData , chartType="Line"}) =
     };
 
     // state.bigChartData =()=>{
-      if (chartType=="Line") {
-        state.bigChartData ={data:
-          [
+    if (chartType == "Line") {
+      state.bigChartData = {
+        data: [
           {
             labels,
             datasets: [
@@ -93,7 +98,11 @@ export const setDataForRankTrackingBigChar = ({ chartData , chartType="Line"}) =
                 label: label,
                 data: data,
                 borderColor: `rgb(${
-                  generateColor() + "," + generateColor() + "," + generateColor()
+                  generateColor() +
+                  "," +
+                  generateColor() +
+                  "," +
+                  generateColor()
                 })`,
                 backgroundColor: "rgba(255, 255, 255, 0)",
                 pointRadius: 3,
@@ -102,22 +111,14 @@ export const setDataForRankTrackingBigChar = ({ chartData , chartType="Line"}) =
             ],
           },
         ],
-        type:"Line"
-      }
-        
-      }else if(chartType="Bar"){
-        state.bigChartData={data:[chartData],
-        type:"Bar"
+        type: "Line",
       };
-      }
-    // } 
+    } else if ((chartType = "Bar")) {
+      state.bigChartData = { data: [chartData], type: "Bar" };
+    }
+    // }
 
-    
-      
-    
-      
-
-    state.rankTrakingForceUpdate=state.rankTrakingForceUpdate+1;
+    state.rankTrakingForceUpdate = state.rankTrakingForceUpdate + 1;
 
     await dispatch({ type: "SET_DATA_FROM_BIG_CHART", payload: state });
   };
@@ -228,7 +229,7 @@ export const keyWordsPeriodData = ({ axiosController }) => {
     try {
       //   debugger
 
-      debugger
+      debugger;
       if (!loadingState.ProcessingDelay.includes("keyWordsPeriodDataService")) {
         dispatch(addLoadingItem("keyWordsPeriodDataService"));
         const { data } = await keyWordsPeriodDataService({
@@ -332,5 +333,108 @@ export const selectingOrRemovingKeyWordsSelected = ({ keyUuid }) => {
       type: "TOOGLE_SELECTING_KEY_WOURDS_TABEL",
       payload: state,
     });
+  };
+};
+
+export const setRankTrackingChartsDataAction = ({ id, type, data }) => {
+  return async (dispatch, getState) => {
+    const state = { ...getState().rankTrakingState };
+    // const loadingState = { ...getState().loadingState };
+    // const workSpaceState = { ...getState().workSpaceState };
+
+    var chartList = state.charts;
+    // if (keyWords.includes(keyUuid)) {
+    //   state.keyWordsSelected = keyWords.filter((item) => item != keyUuid);
+    // } else {
+    //   keyWords.push(keyUuid);
+    // }
+    // charts
+    // var a=[]
+    let checkChartExist = chartList.findIndex((item) => item.type == type);
+    if (checkChartExist == -1) {
+      chartList.push({
+        id,
+        type,
+        data,
+      });
+    }
+    await dispatch({
+      type: "SET_CHARTS_DATA_IN_STATE",
+      payload: state,
+    });
+  };
+};
+
+export const searchChartIdAndSetInBigChartData = ({ textId }) => {
+  return async (dispatch, getState) => {
+    const state = { ...getState().rankTrakingState };
+    // const loadingState = { ...getState().loadingState };
+    // const workSpaceState = { ...getState().workSpaceState };
+
+    var chartId = "";
+    var chartType = "";
+
+    switch (textId) {
+      case RANK_TRACKING_FILTERS_DATE[0]:
+        chartId = rankTrackingChartId.AvgRankTotalWords;
+        chartType = "line";
+        break;
+      case RANK_TRACKING_FILTERS_DATE[1]:
+        chartId = rankTrackingChartId.GrownWords;
+        break;
+      case RANK_TRACKING_FILTERS_DATE[2]:
+        chartId = rankTrackingChartId.ProgressAndDeclineGraphOfWords;
+        break;
+      case RANK_TRACKING_FILTERS_DATE[3]:
+        chartId = rankTrackingChartId.TheWordsAreLost;
+        break;
+      case RANK_TRACKING_FILTERS_DATE[4]:
+        chartId = rankTrackingChartId.AvgGrownWords;
+        break;
+      case RANK_TRACKING_FILTERS_DATE[5]:
+        chartId = rankTrackingChartId.AvgTheWordsAreLost;
+        break;
+
+      default:
+        break;
+    }
+    state.charts.forEach((element) => {
+      // debugger
+      if (element.id == chartId) {
+        dispatch(
+          setDataForRankTrackingBigChar({
+            chartData: element.data,
+            chartType: element.type,
+          })
+        );
+        return;
+      }
+    });
+    // break;
+    // export const RANK_TRACKING_FILTERS_DATE = [
+    //   "میانگین رتبه کل کلمات",
+    //   "کلمات رشد کرده",
+    //   "توزیع رتبه کلمات کلیدی",
+    //   "کلمات افت کرده",
+    //   "میانگین رشد کلمات",
+    //   "میانگین افت کلمات"
+    //   ];
+
+    // var chartList = state.charts;
+
+    // var a = [];
+    // var findItem;
+    // let checkChartExist = chartList.findIndex((item) => item.type == type);
+    // if (checkChartExist == -1) {
+    //   chartList.push({
+    //     id,
+    //     type,
+    //     data,
+    //   });
+    // }
+    // await dispatch({
+    //   type: "SET_CHARTS_DATA_IN_STATE",
+    //   payload: state,
+    // });
   };
 };

@@ -5,7 +5,7 @@
 .tracker .tracker__wells {
     position: relative;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items:stretch;
     border-bottom: 1px solid #ccc;
     padding: 0 0 20px 0;
@@ -201,7 +201,7 @@
 
 .tracker .tracker__report-section .report__filter {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin: 15px 0;
 }

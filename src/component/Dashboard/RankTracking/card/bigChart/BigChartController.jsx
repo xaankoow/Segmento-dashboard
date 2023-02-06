@@ -4,7 +4,9 @@ import { generateColor } from "../../../../Utils/color";
 import BigChartView from "./BigChartView";
 
 export default function BigChartController({ data, chartType="Line" }) {
-  const { bigChartData ,rankTrakingForceUpdate} = useSelector((state) => state.rankTrakingState);
+
+  const { bigChartData ,rankTrakingForceUpdate,} = useSelector((state) => state.rankTrakingState);
+
 
   const labels = ["","","","","","",""];
   const [chartData, setChartData] = useState({
