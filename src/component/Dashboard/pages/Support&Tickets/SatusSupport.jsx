@@ -20,7 +20,7 @@ import { FilterDataSupport } from "./changeData";
 
 export default function ReportSupport() {
 
-  // debugger
+  // 
   const { allTicketsData } = useSelector(state => state.ticketState);
 
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");

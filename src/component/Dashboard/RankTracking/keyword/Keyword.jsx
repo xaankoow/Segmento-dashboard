@@ -80,7 +80,7 @@ export default function Keyword({ onClickHandler }) {
   }, [])
 
   useEffect(() => {
-    // debugger
+    // 
     // axiosControllerFromGetingKeyWordsPeriod.abort();
     if (keyWordsSelected.length!=0) {
       dispatch(keyWordsPeriodData({axiosController:axiosControllerFromGetingKeyWordsPeriod}))

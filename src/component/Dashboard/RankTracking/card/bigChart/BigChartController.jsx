@@ -51,7 +51,7 @@ export default function BigChartController({ data, chartType="Line" }) {
 
   // useEffect(() => {
   //   let labels=data?.lebels;
-  //   // debugger
+  //   // 
   //   if(data.data!=undefined){
   //     setChartData({
   //       labels,
@@ -180,7 +180,7 @@ export default function BigChartController({ data, chartType="Line" }) {
   //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
   // }
 
-  // debugger;
+  // ;
   // const data =
   //   bigChartData.length != 0
   //     ? bigChartData.map((item) => {
@@ -280,7 +280,7 @@ export default function BigChartController({ data, chartType="Line" }) {
   // console.log("chartData :>> ", chartData);
   // console.log("bigChartData :>> ", bigChartData);
 
-// debugger
+// 
 
 
   return (

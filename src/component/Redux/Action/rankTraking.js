@@ -19,7 +19,7 @@ export const initWorkSpacePeriodData = ({ axiosController }) => {
     let toastMessage = "";
 
     try {
-      //   debugger
+      //   
 
       if (
         !loadingState.ProcessingDelay.includes("initWorkSpacePeriodDataService")
@@ -42,7 +42,7 @@ export const initWorkSpacePeriodData = ({ axiosController }) => {
         dispatch(removeLoadingItem("initWorkSpacePeriodDataService"));
       }
     } catch (error) {
-      // debugger
+      // 
 
       error?.response?.data?.errors.forEach((element) => {
         toastMessage += element + " / ";
@@ -68,9 +68,10 @@ export const setDataForRankTrackingBigChar = ({
 }) => {
   return async (dispatch, getState) => {
     const state = { ...getState().rankTrakingState };
-    // debugger
+    // 
     // state.bigChartData.push(chartData);
-    // debugger
+    // 
+    
     state.bigChartData = [
       {
         labels: chartData.labels,
@@ -129,9 +130,9 @@ export const setDataForRankTrackingBigCharInKeyWordsSection = ({
 }) => {
   return async (dispatch, getState) => {
     const state = { ...getState().rankTrakingState };
-    // debugger
+    // 
     // state.bigChartData.push(chartData);
-    // debugger
+    // 
     // state.bigChartData=[{
     //   labels:chartData.labels,
     //   label:chartData.datasets[0].label,
@@ -177,7 +178,7 @@ export const initKeyWordsData = ({ axiosController }) => {
     let toastMessage = "";
 
     try {
-      //   debugger
+      //   
 
       if (!loadingState.ProcessingDelay.includes("initKeyWordsDataService")) {
         dispatch(addLoadingItem("initKeyWordsDataService"));
@@ -198,7 +199,7 @@ export const initKeyWordsData = ({ axiosController }) => {
         dispatch(removeLoadingItem("initKeyWordsDataService"));
       }
     } catch (error) {
-      // debugger
+      // 
 
       error?.response?.data?.errors.forEach((element) => {
         toastMessage += element + " / ";
@@ -227,9 +228,9 @@ export const keyWordsPeriodData = ({ axiosController }) => {
     let toastMessage = "";
 
     try {
-      //   debugger
+      //   
 
-      debugger;
+      ;
       if (!loadingState.ProcessingDelay.includes("keyWordsPeriodDataService")) {
         dispatch(addLoadingItem("keyWordsPeriodDataService"));
         const { data } = await keyWordsPeriodDataService({
@@ -250,7 +251,7 @@ export const keyWordsPeriodData = ({ axiosController }) => {
           let chartData = [];
           let label = [];
 
-          debugger;
+          ;
           for (let i = 1; i < labels.length - 1; i++) {
             // selected date and foreach in arr
             apiData[labels[i]].forEach((element) => {
@@ -296,7 +297,7 @@ export const keyWordsPeriodData = ({ axiosController }) => {
         dispatch(removeLoadingItem("keyWordsPeriodDataService"));
       }
     } catch (error) {
-      // debugger
+      // 
 
       error?.response?.data?.errors.forEach((element) => {
         toastMessage += element + " / ";
@@ -350,7 +351,8 @@ export const setRankTrackingChartsDataAction = ({ id, type, data }) => {
     // }
     // charts
     // var a=[]
-    let checkChartExist = chartList.findIndex((item) => item.type == type);
+    
+    let checkChartExist = chartList.findIndex((item) => item.id == id);
     if (checkChartExist == -1) {
       chartList.push({
         id,
@@ -381,6 +383,7 @@ export const searchChartIdAndSetInBigChartData = ({ textId }) => {
         break;
       case RANK_TRACKING_FILTERS_DATE[1]:
         chartId = rankTrackingChartId.GrownWords;
+        chartType = "line";
         break;
       case RANK_TRACKING_FILTERS_DATE[2]:
         chartId = rankTrackingChartId.ProgressAndDeclineGraphOfWords;
@@ -398,8 +401,10 @@ export const searchChartIdAndSetInBigChartData = ({ textId }) => {
       default:
         break;
     }
+    console.log("chartType :>> ", textId);
     state.charts.forEach((element) => {
-      // debugger
+      
+      // 
       if (element.id == chartId) {
         dispatch(
           setDataForRankTrackingBigChar({

@@ -48,7 +48,7 @@ export const getAllPlanData = (axiosController) => {
                     }
                 }
             } catch (error) {
-                // debugger
+                // 
 
                 error?.response?.data?.errors.forEach(element => {
                     toastMessage += element + " / ";

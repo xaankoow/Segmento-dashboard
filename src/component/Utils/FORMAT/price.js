@@ -32,7 +32,7 @@ export const setDiscountPrice = (price, discountValue, isCash) => {
 
 export const RoundPriceToUp = (price) => {
     var roundPrice = price;
-    // debugger
+    // 
     // console.log(price)
     if (!Number.isInteger(price)) {
         var getLatestNumbers = parseInt(price.toString().substring(price.toString().length, price.toString().length - 3));

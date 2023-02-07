@@ -15,7 +15,7 @@ export const drawChart=({chartId,workSpaceData,objKey,labels})=>{
     //       },
     //     ]}
 
-    // // debugger
+    // // 
     // switch (chartId) {
     //     case "AvgRankTotalWords":
     //         let getAvgPositionKeyWords=[]

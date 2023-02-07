@@ -33,7 +33,7 @@ export default function AcardionItem({ clicked, setClicked }) {
   const location = useLocation();
 
   const user = useSelector((state) => state.userState);
-  // debugger
+  // 
   const workSpaceState = useSelector((state) => state.workSpaceState);
   const { allWorkSpace } = useSelector((state) => state.workSpaceState);
   // console.log(allWorkSpace);
@@ -203,7 +203,7 @@ export default function AcardionItem({ clicked, setClicked }) {
     }
     setClicked(index);
   };
-  // debugger
+  // 
 
   const setTitleHandler = (acardionItem) => {
     setItemsClicked(acardionItem);

@@ -51,7 +51,7 @@ export default function Index() {
   };
 
   const AddNewMessageAction = async () => {
-    // debugger
+    // 
     //handle show loadin
     {
       loadingState.ProcessingDelay.push("sendNewMessageTicketServise");
@@ -60,7 +60,7 @@ export default function Index() {
     }
     if (textEditor != "") {
 
-      // debugger
+      // 
       let formdata = new FormData();
       formdata.append("message", textEditor);
       // formdata.append("files[]", fileEditor[0]);

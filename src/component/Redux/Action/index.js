@@ -303,7 +303,7 @@ export const RegisterUserAction = () => {
             // await dispatch({ type: "SEND_CODE_EMAIL", payload: state})
             // showPromisToast(send_code_email(),"sendCod")
             // return Promise.resolve()
-            // debugger
+            // 
           } else {
             data.errors.forEach((element) => {
               toastMessage += element + " / ";
@@ -896,10 +896,10 @@ export const findUserAction = () => {
     if (token != "undefined" && token != null) {
       try {
         const dd = await findUser(token);
-        // debugger
+        // 
 
         // if (status == 200 && data.status == true) {
-        //     debugger
+        //     
         //     console.log("find user")
         //     // toast.update(toastPromise, { render: "وارد حساب کاربری شدید", type: "success", isLoading: false, autoClose: 3000 })
         // } else {

@@ -60,22 +60,17 @@ export default function MinichartController({
   });
   // const [backgroundChartColor, setBackgroundChartColor] = useState("rgba(16, 204, 174, .4)");
 
-
-
   // adding chart data in redux
-  const setChartDataInRedux=({innerChartId,innerChartData,type})=>{
+  const setChartDataInRedux = ({ innerChartId, innerChartData, type }) => {
     // dispatch(setRankTrackingChartsDataAction({id:innerChartId,data:innerChartData,type}))
-  }
+  };
 
-
-
-
-  const DrowChart = ({ data, labels, chartColor, type }) => {
+  const DrowChart = async({ data, labels, chartColor, type }) => {
     // console.log("handleChartType :>> ", handleChartType);
     // console.log("Type :>> ", type);
-
+    let innerChartData;
     if (type == "Line") {
-      setChartData({
+      innerChartData={
         labels,
         datasets: [
           {
@@ -95,9 +90,54 @@ export default function MinichartController({
             ],
           },
         ],
-      });
+      }
+
+     dispatch(setRankTrackingChartsDataAction({id:chartId,type:type,data:innerChartData}));
+      setChartData(innerChartData)
+
+      // setChartData({
+      //   labels,
+      //   datasets: [
+      //     {
+      //       fill: "end",
+      //       //TODO: change label text
+      //       label: "Dataset 2",
+      //       data,
+      //       borderColor: chartColor
+      //         ? rankTrackingChartColor[chartColor]?.chart
+      //         : ChartColor.chart,
+      //       pointRadius: 0,
+      //       pointHitRadius: 1,
+      //       backgroundColor: [
+      //         chartColor
+      //           ? rankTrackingChartColor[chartColor]?.background
+      //           : ChartColor.background,
+      //       ],
+      //     },
+      //   ],
+      // });
     } else if (type == "Bar") {
-      setChartData({
+      // setChartData({
+      //   labels,
+      //   datasets: [
+      //     {
+      //       label: "افت",
+      //       // data: data[1],
+      //       data: data[1].map((item) => {
+      //         return -Math.abs(item);
+      //       }),
+
+      //       backgroundColor: "#F35242",
+      //     },
+      //     {
+      //       label: "رشد",
+      //       data: data[0],
+      //       backgroundColor: "#10CCAE",
+      //     },
+      //   ],
+      // });
+
+      innerChartData={
         labels,
         datasets: [
           {
@@ -115,7 +155,10 @@ export default function MinichartController({
             backgroundColor: "#10CCAE",
           },
         ],
-      });
+      }
+      dispatch(setRankTrackingChartsDataAction({id:chartId,type:type,data:innerChartData}));
+      setChartData(innerChartData)
+
     } else if (type == "NumericRange") {
       setChartData({
         lastPeriod: data[0],
@@ -138,27 +181,33 @@ export default function MinichartController({
         ],
       });
     }
-    dispatch(setRankTrackingChartsDataAction({id:chartId,data:{
-      labels,
-      datasets: [
-        {
-          fill: "end",
-          //TODO: change label text
-          label: "Dataset 2",
-          data,
-          borderColor: chartColor
-            ? rankTrackingChartColor[chartColor]?.chart
-            : ChartColor.chart,
-          pointRadius: 0,
-          pointHitRadius: 1,
-          backgroundColor: [
-            chartColor
-              ? rankTrackingChartColor[chartColor]?.background
-              : ChartColor.background,
-          ],
-        },
-      ],
-    },type:type}))
+    // dispatch(
+    //   setRankTrackingChartsDataAction({
+    //     id: chartId,
+    //     data: {
+    //       labels,
+    //       datasets: [
+    //         {
+    //           fill: "end",
+    //           //TODO: change label text
+    //           label: "Dataset 2",
+    //           data,
+    //           borderColor: chartColor
+    //             ? rankTrackingChartColor[chartColor]?.chart
+    //             : ChartColor.chart,
+    //           pointRadius: 0,
+    //           pointHitRadius: 1,
+    //           backgroundColor: [
+    //             chartColor
+    //               ? rankTrackingChartColor[chartColor]?.background
+    //               : ChartColor.background,
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //     type: type,
+    //   })
+    // );
 
     // return null;
   };
@@ -213,7 +262,11 @@ export default function MinichartController({
             avg / workSpaceData[getObjKeys[i]].length
           );
         }
-        setChartDataInRedux({innerChartId:chartId,innerChartData:getAvgPositionKeyWords,type:type});
+        // setChartDataInRedux({
+        //   innerChartId: chartId,
+        //   innerChartData: getAvgPositionKeyWords,
+        //   type: type,
+        // });
         break;
 
       case rankTrackingChartId.KeywordRankDistribution:
@@ -354,6 +407,12 @@ export default function MinichartController({
               leftText: "تعداد افت",
             },
           ]);
+        } else {
+          // setChartDataInRedux({
+          //   innerChartId: chartId,
+          //   innerChartData: getAvgPositionKeyWords,
+          //   type: type,
+          // });
         }
 
         // handleChartType="Bar";
@@ -377,7 +436,7 @@ export default function MinichartController({
           // selected date and foreach in arr
           workSpaceData[getObjKeys[i]].forEach((element) => {
             workSpaceData[getObjKeys[i - 1]].forEach((lastPeriod) => {
-              // debugger
+              // 
               if (lastPeriod.keyword_uuid == element.keyword_uuid) {
                 if (lastPeriod.position < element.position) {
                   avg++;
@@ -636,7 +695,7 @@ export default function MinichartController({
         break;
     }
 
-    // debugger
+    // 
     setLabels(getObjKeys);
     DrowChart({
       data: getAvgPositionKeyWords,
@@ -784,9 +843,8 @@ export default function MinichartController({
 
   useEffect(() => {
     // dispatch(setRankTrackingChartsDataAction({id:chartId,data:chartData,handleChartType}))
+  }, []);
 
-  }, [])
-  
   return (
     <MiniChartCardView
       options={options}
