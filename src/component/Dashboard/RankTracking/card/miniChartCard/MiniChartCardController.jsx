@@ -447,7 +447,7 @@ export default function MinichartController({
             // avg+=element.position
           });
 
-          chartLabel.push("");
+          chartLabel.push(getObjKeys[i]);
           // geting avg period
           countPositionList.push(countPosition);
           getAvgPositionKeyWords.push(avg);
@@ -514,7 +514,7 @@ export default function MinichartController({
           });
 
           chartCL = "red";
-          chartLabel.push("");
+          chartLabel.push(getObjKeys[i]);
 
           countPositionList.push(countPosition);
 
@@ -581,7 +581,7 @@ export default function MinichartController({
           });
 
           // chartCL = "red";
-          chartLabel.push("");
+          chartLabel.push(getObjKeys[i]);
           // geting avg period
           getAvgPositionKeyWords.push(avg);
         }
@@ -615,7 +615,7 @@ export default function MinichartController({
           });
 
           chartCL = "red";
-          chartLabel.push("");
+          chartLabel.push(getObjKeys[i]);
           // geting avg period
           getAvgPositionKeyWords.push(avg);
         }
@@ -654,7 +654,7 @@ export default function MinichartController({
           });
 
           // chartCL = "red";
-          chartLabel.push("");
+          chartLabel.push(getObjKeys[i]);
           // geting avg period
           getAvgPositionKeyWords.push([
             grownWordsLength != 0 ? grownAvg / grownWordsLength : 0,

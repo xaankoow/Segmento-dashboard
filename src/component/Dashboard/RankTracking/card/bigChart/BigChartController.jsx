@@ -100,15 +100,15 @@ export default function BigChartController({ data, chartType="Line" }) {
           ticks: {
             // reverse: true,
 
-            display: false,
+            display: true,
           },
-          reverse: true,
+          // reverse: true,
         },
       },
       responsive: true,
       plugins: {
         labels: {
-          display: false,
+          display: true,
         },
         legend: {
           display: false,
