@@ -22,7 +22,10 @@ import {
 import { Doughnut, Line } from "react-chartjs-2";
 import { RANK_TRACKING_FILTERS_DATE } from "../../../variables/rankTrackingFilters";
 import ComboBox from "../../shared/comboBox/ComboBox";
-import { initWorkSpacePeriodData, searchChartIdAndSetInBigChartData } from "../../Redux/Action/rankTraking";
+import {
+  initWorkSpacePeriodData,
+  searchChartIdAndSetInBigChartData,
+} from "../../Redux/Action/rankTraking";
 import { useDispatch, useSelector } from "react-redux";
 import { ImageContainer } from "../../../assets/img/IMG";
 import ToolTip from "../../Utils/ToolTip";
@@ -36,6 +39,7 @@ import SelectingChartBtn from "./card/SelectingChartBtn";
 // import Swiper from "swiper";
 import { Swiper, SwiperSlide, Navigation } from "swiper/react";
 import { rankTrackingChartId } from "../../../variables/rankTracking";
+import Skeleton from "react-loading-skeleton";
 
 // Chart.register(...registerables)
 
@@ -63,7 +67,6 @@ export default function RankTracking({ onClickHandler }) {
   const [showToolTip, setShowToolTip] = useState(true);
 
   const [periodDate, setPeriodDate] = useState(["0000/00/00"]);
-
 
   const options = {
     scales: {
@@ -233,7 +236,14 @@ export default function RankTracking({ onClickHandler }) {
             {chartKeys.map((item) => (
               <>
                 <SwiperSlide>
-                  <MinichartController chartId={item} setPeriodDate={setPeriodDate}/>
+                  {rankTrakingState.workSpacePeriodData.length == 0 ? (
+                    <Skeleton width={148} height={200} />
+                  ) : (
+                    <MinichartController
+                      chartId={item}
+                      setPeriodDate={setPeriodDate}
+                    />
+                  )}
                 </SwiperSlide>
               </>
             ))}
@@ -362,7 +372,13 @@ export default function RankTracking({ onClickHandler }) {
               <ComboBox
                 placeholder={"فیلتر زمانی"}
                 radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                radioClickedHandler={(e) =>dispatch(searchChartIdAndSetInBigChartData({textId: e.target.value}))}
+                radioClickedHandler={(e) =>
+                  dispatch(
+                    searchChartIdAndSetInBigChartData({
+                      textId: e.target.value,
+                    })
+                  )
+                }
               />
             </div>
             <div className="chart__actions">
@@ -440,7 +456,9 @@ export default function RankTracking({ onClickHandler }) {
             <div className=" w-52">
               <ComboBox
                 placeholder={"فیلتر زمانی"}
-                radioTextItems={periodDate.reverse().map(item=> item.replaceAll("-","/"))}
+                radioTextItems={periodDate
+                  .reverse()
+                  .map((item) => item.replaceAll("-", "/"))}
                 radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
               />
             </div>
@@ -482,26 +500,38 @@ export default function RankTracking({ onClickHandler }) {
               </div>
             </div> */}
             <div className="tracker__wells w-full justify-around">
-              <MinichartController
-                chartId={"KeywordRankDistribution"}
-                chartType="Doughnut"
-              />
-              <MinichartController
-                chartId={rankTrackingChartId.GrownWords}
-                chartType="Doughnut"
-              />
-              <MinichartController
-                chartId={rankTrackingChartId.TheWordsAreLost}
-                chartType="Doughnut"
-              />
-              <MinichartController
-                chartId={rankTrackingChartId.ProgressAndDeclineGraphOfWords}
-                chartType="Doughnut"
-              />
-              <MinichartController
-                chartId={rankTrackingChartId.AvgGrownAndLostWords}
-                chartType="Doughnut"
-              />
+              {rankTrakingState.workSpacePeriodData.length == 0 ? (
+<>
+                <Skeleton width={200} height={320}/>
+                <Skeleton width={200} height={320}/>
+                <Skeleton width={200} height={320}/>
+                <Skeleton width={200} height={320}/>
+                <Skeleton width={200} height={320}/>
+                </>
+              ) : (
+                <>
+                  <MinichartController
+                    chartId={"KeywordRankDistribution"}
+                    chartType="Doughnut"
+                  />
+                  <MinichartController
+                    chartId={rankTrackingChartId.GrownWords}
+                    chartType="Doughnut"
+                  />
+                  <MinichartController
+                    chartId={rankTrackingChartId.TheWordsAreLost}
+                    chartType="Doughnut"
+                  />
+                  <MinichartController
+                    chartId={rankTrackingChartId.ProgressAndDeclineGraphOfWords}
+                    chartType="Doughnut"
+                  />
+                  <MinichartController
+                    chartId={rankTrackingChartId.AvgGrownAndLostWords}
+                    chartType="Doughnut"
+                  />
+                </>
+              )}
             </div>
 
             {/* <div className="chart">

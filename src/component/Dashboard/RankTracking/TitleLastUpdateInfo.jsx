@@ -3,6 +3,7 @@ import { DateObject } from 'react-multi-date-picker';
 import { useSelector } from 'react-redux';
 import persian from "react-date-object/calendars/persian";
 import persian_en from "react-date-object/locales/persian_en";
+import Skeleton from 'react-loading-skeleton';
 
 export default function TitleLastUpdateInfo() {
   const {workSpacePeriodData} = useSelector((state) => state.rankTrakingState);
@@ -15,11 +16,11 @@ export default function TitleLastUpdateInfo() {
     <div className='relative w-52 leading-6'>
         <p className='flex justify-center w-full mb-1'>
             <span className=' w-1/2 text-left text-gray text-sm'>آخرین بروزرسانی:</span>
-            <span className=' w-1/2  text-gray text-sm'>{workSpacePeriodData.length!=0?getLastDate():""}</span>
+            <span className=' w-1/2  text-gray text-sm'>{workSpacePeriodData.length!=0?getLastDate():<Skeleton width={100} />}</span>
         </p>
         <p className='flex justify-center w-full'>
             <span className=' w-1/2 text-left  text-gray text-sm'>دوره بروزرسانی:</span>
-            <span className=' w-1/2  text-gray text-sm'>هر 48 ساعت</span>
+            <span className=' w-1/2  text-gray text-sm'>{workSpacePeriodData.length!=0?"هر 48 ساعت":<Skeleton width={90} />}</span>
         </p>
     </div>
     </div>

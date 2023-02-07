@@ -290,7 +290,7 @@ export default function MiniChartCardView({
           />
         </div>
       ) : (
-        <div className=" mt-7 mb-14">
+        <div className=" mt-7 mb-10">
           <div className="flex justify-around w-52">
             <div className="flex justify-around items-center">
               <div className={`w-6 h-6 rounded ${footerDoughnutText[0].rightColor}`}></div>
