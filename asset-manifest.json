@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/segmentor-react/static/css/main.5667e908.chunk.css",
-    "main.js": "/segmentor-react/static/js/main.21c7eab8.chunk.js",
-    "main.js.map": "/segmentor-react/static/js/main.21c7eab8.chunk.js.map",
+    "main.css": "/segmentor-react/static/css/main.c6cc197f.chunk.css",
+    "main.js": "/segmentor-react/static/js/main.45c0d778.chunk.js",
+    "main.js.map": "/segmentor-react/static/js/main.45c0d778.chunk.js.map",
     "runtime-main.js": "/segmentor-react/static/js/runtime-main.adf6cd0f.js",
     "runtime-main.js.map": "/segmentor-react/static/js/runtime-main.adf6cd0f.js.map",
     "static/css/2.59ea9794.chunk.css": "/segmentor-react/static/css/2.59ea9794.chunk.css",
-    "static/js/2.dba7572e.chunk.js": "/segmentor-react/static/js/2.dba7572e.chunk.js",
-    "static/js/2.dba7572e.chunk.js.map": "/segmentor-react/static/js/2.dba7572e.chunk.js.map",
+    "static/js/2.e50df9e0.chunk.js": "/segmentor-react/static/js/2.e50df9e0.chunk.js",
+    "static/js/2.e50df9e0.chunk.js.map": "/segmentor-react/static/js/2.e50df9e0.chunk.js.map",
     "index.html": "/segmentor-react/index.html",
     "static/css/2.59ea9794.chunk.css.map": "/segmentor-react/static/css/2.59ea9794.chunk.css.map",
-    "static/css/main.5667e908.chunk.css.map": "/segmentor-react/static/css/main.5667e908.chunk.css.map",
-    "static/js/2.dba7572e.chunk.js.LICENSE.txt": "/segmentor-react/static/js/2.dba7572e.chunk.js.LICENSE.txt",
+    "static/css/main.c6cc197f.chunk.css.map": "/segmentor-react/static/css/main.c6cc197f.chunk.css.map",
+    "static/js/2.e50df9e0.chunk.js.LICENSE.txt": "/segmentor-react/static/js/2.e50df9e0.chunk.js.LICENSE.txt",
     "static/media/Group 2.a032fcd0.svg": "/segmentor-react/static/media/Group 2.a032fcd0.svg",
     "static/media/iranyekan-font.css": "/segmentor-react/static/media/IRANYekanMedium.87d172af.ttf",
     "static/media/add.e91e6772.svg": "/segmentor-react/static/media/add.e91e6772.svg",
@@ -41,6 +41,7 @@
     "static/media/button_ico.f927cf28.svg": "/segmentor-react/static/media/button_ico.f927cf28.svg",
     "static/media/cached.1c5a0f1b.svg": "/segmentor-react/static/media/cached.1c5a0f1b.svg",
     "static/media/calendarIco.504fa128.svg": "/segmentor-react/static/media/calendarIco.504fa128.svg",
+    "static/media/chartScrollArrow.071a1fec.svg": "/segmentor-react/static/media/chartScrollArrow.071a1fec.svg",
     "static/media/close.22f45335.svg": "/segmentor-react/static/media/close.22f45335.svg",
     "static/media/close.e53e7fae.svg": "/segmentor-react/static/media/close.e53e7fae.svg",
     "static/media/contactUs.37ee8202.svg": "/segmentor-react/static/media/contactUs.37ee8202.svg",
@@ -53,6 +54,7 @@
     "static/media/delete.6bc2cb8c.svg": "/segmentor-react/static/media/delete.6bc2cb8c.svg",
     "static/media/delete.d3d04bbc.svg": "/segmentor-react/static/media/delete.d3d04bbc.svg",
     "static/media/directionـofـtheـgreenـvalue.cfb116bb.svg": "/segmentor-react/static/media/directionـofـtheـgreenـvalue.cfb116bb.svg",
+    "static/media/directionـofـtheـredـvalue.38804172.svg": "/segmentor-react/static/media/directionـofـtheـredـvalue.38804172.svg",
     "static/media/down.e11b1f01.svg": "/segmentor-react/static/media/down.e11b1f01.svg",
     "static/media/download.35c05098.svg": "/segmentor-react/static/media/download.35c05098.svg",
     "static/media/easystart.9de36d0e.svg": "/segmentor-react/static/media/easystart.9de36d0e.svg",
@@ -60,6 +62,7 @@
     "static/media/error_ico.5a532db1.svg": "/segmentor-react/static/media/error_ico.5a532db1.svg",
     "static/media/fi-rr-life-ring.4310ba33.svg": "/segmentor-react/static/media/fi-rr-life-ring.4310ba33.svg",
     "static/media/file_download.c3bc9d09.svg": "/segmentor-react/static/media/file_download.c3bc9d09.svg",
+    "static/media/filter.0fbf772c.svg": "/segmentor-react/static/media/filter.0fbf772c.svg",
     "static/media/googleIndex.10695474.svg": "/segmentor-react/static/media/googleIndex.10695474.svg",
     "static/media/googleSuggestion.374211c3.svg": "/segmentor-react/static/media/googleSuggestion.374211c3.svg",
     "static/media/greenTick.4e36e25c.svg": "/segmentor-react/static/media/greenTick.4e36e25c.svg",
@@ -127,8 +130,8 @@
   "entrypoints": [
     "static/js/runtime-main.adf6cd0f.js",
     "static/css/2.59ea9794.chunk.css",
-    "static/js/2.dba7572e.chunk.js",
-    "static/css/main.5667e908.chunk.css",
-    "static/js/main.21c7eab8.chunk.js"
+    "static/js/2.e50df9e0.chunk.js",
+    "static/css/main.c6cc197f.chunk.css",
+    "static/js/main.45c0d778.chunk.js"
   ]
 }
