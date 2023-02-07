@@ -440,7 +440,7 @@ export default function RankTracking({ onClickHandler }) {
             <div className=" w-52">
               <ComboBox
                 placeholder={"فیلتر زمانی"}
-                radioTextItems={periodDate.map(item=> item.replaceAll("-","/"))}
+                radioTextItems={periodDate.reverse().map(item=> item.replaceAll("-","/"))}
                 radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
               />
             </div>

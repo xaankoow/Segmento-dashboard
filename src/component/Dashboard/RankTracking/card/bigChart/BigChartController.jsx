@@ -88,14 +88,21 @@ export default function BigChartController({ data, chartType="Line" }) {
         yAxis: {
           min: 0,
           max: 10,
+          reverse: true,
           ticks: {
+            // reverse: true,
+
             display: true,
           },
+
         },
         xAxis: {
           ticks: {
+            // reverse: true,
+
             display: false,
           },
+          reverse: true,
         },
       },
       responsive: true,

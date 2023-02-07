@@ -713,6 +713,7 @@ export default function MinichartController({
         yAxis: {
           min: 0,
           max: 10,
+          reverse: true,
           ticks: {
             display: false,
           },
