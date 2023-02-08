@@ -38,8 +38,8 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
 
     case "isKeyword":
       a = {
-        allWords: allLimitsDatas.length != 0 && allLimitsDatas[6].count,
-        rest: limitsDatas.length > 0 ? limitsDatas[6].count : "",
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[4].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[4].count : "",
       };
       break;
     case "GOOGLE_INDEXER_LIMIT":

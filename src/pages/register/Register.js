@@ -74,9 +74,10 @@ export default function Register() {
                       reduxHandleClick={RegisterUserAction}
                     />
                   </TextButton.Provider>
-                  <button className="bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">
+        <Link to={`/dashboard/accountOperations/login`} className='btn-style'>ورود</Link>
+                  {/* <button className="bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">
                     <span className="text-white">	ورود با گوگل</span> <GoogleIcon className="google w-6 h-6" />
-                  </button>
+                  </button> */}
                 </div>
                 <Link to={"/dashboard/accountOperations/login"}>
                   <div>

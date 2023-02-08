@@ -75,15 +75,15 @@ export const DashboardRote = [
   },
   { path: "workSpaceReport", component: <WorkSpaceReport /> },
   { path: "WorkSpaceManagement", component: <WorkSpaceManagement /> },
-  {
-    path: "rank-tracking",
-    component: (
-      <TabMenu
-        tabsContent={ranktrakingTabs}
-        title={"ابزار رتبه سنج (رنک ترکینگ Rank Tracking)"}
-      />
-    ),
-  },
+  // {
+  //   path: "rank-tracking",
+  //   component: (
+  //     <TabMenu
+  //       tabsContent={ranktrakingTabs}
+  //       title={"ابزار رتبه سنج (رنک ترکینگ Rank Tracking)"}
+  //     />
+  //   ),
+  // },
   {
     path: "keywordResearch",
     component: (

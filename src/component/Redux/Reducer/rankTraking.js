@@ -29,11 +29,31 @@ export const rankTrakingReducer = (
           
     case "RESET_ALL_STATE":
       return {
+        // workSpacePeriodData: [],
+
         workSpacePeriodData: [],
+        chart: { type: "", data: [] },
+        charts:[{id:"",type:"",data:[]}],
+        bigChartData: [], //[{labels:[],label:"",data:[]}]
+        bigChartDataInkeyWordsSection: {}, //[{labels:[],label:"",data:[]}]
+        keyWordsData: [],
+        keyWordsSelectedPeriosData:[],
+        keyWordsSelected:[],
+        rankTrakingForceUpdate:1
       };
     case "RESET_PLAN_STATE":
       return {
+        // workSpacePeriodData: [],
+
         workSpacePeriodData: [],
+        chart: { type: "", data: [] },
+        charts:[{id:"",type:"",data:[]}],
+        bigChartData: [], //[{labels:[],label:"",data:[]}]
+        bigChartDataInkeyWordsSection: {}, //[{labels:[],label:"",data:[]}]
+        keyWordsData: [],
+        keyWordsSelectedPeriosData:[],
+        keyWordsSelected:[],
+        rankTrakingForceUpdate:1
       };
 
     // case "RESET_STATE":

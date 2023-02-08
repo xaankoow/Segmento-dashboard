@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Link } from 'react-router-dom'
 import { changeRegisterCompleteCheck, coreUser, findUserAction } from '../../../Redux/Action'
 import getCookie from '../../../Utils/findUser'
+import GoogleIcon from "@mui/icons-material/Google";
 
 export default function Nav({ path }) {
 
@@ -66,7 +67,11 @@ export default function Nav({ path }) {
         </div>
       </div>
       <div>
-        <Link to={`/dashboard/accountOperations/${path}`} className='btn-style'>{path == "login" ? "ورود" : "ثبت نام"}</Link>
+        {/* <Link to={`/dashboard/accountOperations/${path}`} className='btn-style'>{path == "login" ? "ورود" : "ثبت نام"}</Link> */}
+        <button className="bg-[#D3D5E2] text-white rounded-lg flex gap-2 items-center py-2 px-3">
+                    <span className="text-white">	ورود با گوگل</span> <GoogleIcon className="google w-6 h-6" />
+                  </button>
+
       </div>
       {forceUpdate > 0 ? "" : ""}
     </div>

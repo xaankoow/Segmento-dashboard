@@ -73,10 +73,11 @@ export const userReducer = (
         auth4: "",
         forgotPasswordStep: 0,
         checkRegisterComplete: false,
+        checkVerifyPhoneNumber: true,
         checkVerifyRegister: false,
         handleResendCode: true,
         forceUpdate: 0,
-        userData: {}
+        userData: {},
       };
     case "RESET_USER_STATE":
       return {
@@ -91,10 +92,11 @@ export const userReducer = (
         auth4: "",
         forgotPasswordStep: 0,
         checkRegisterComplete: false,
+        checkVerifyPhoneNumber: true,
         checkVerifyRegister: false,
         handleResendCode: true,
         forceUpdate: 0,
-        userData: {}
+        userData: {},
       };
 
     default:

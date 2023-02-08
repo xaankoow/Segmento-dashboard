@@ -101,7 +101,8 @@ useEffect(() => {
         <IconsRight setActive={activeIconHandler} activeIcons={activeIcon}/>
         <div className="down">
           <div className="dropDownBox mb-5">
-            <a href="https://segmento.ir/about/support/">
+            <Link to={"/dashboard/ReportSupport/NewTicket"}>
+            {/* <a href="https://segmento.ir/about/support/"> */}
             {/* <Link to="ReportSupport"> */}
               <div
                 className="support w-8 h-8"
@@ -115,7 +116,8 @@ useEffect(() => {
                 }}
               ></div>
             {/* </Link> */}
-              </a>
+              {/* </a> */}
+              </Link>
             {/* <div className="support_dropDown dropDownBox1 flex text-center">
               <span> پشتیبانی و تیکت </span>
             </div> */}
