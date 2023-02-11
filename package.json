@@ -1,6 +1,6 @@
 {
   "homepage": "https://segmento.ir/dashboard",
-  "ـhomepage": "https://xaankoow.github.io/segmentor-react",
+  "_homepage": "https://xaankoow.github.io/segmentor-react",
   "name": "xaankoo_segmento",
   "version": "0.20220804.0",
   "private": true,

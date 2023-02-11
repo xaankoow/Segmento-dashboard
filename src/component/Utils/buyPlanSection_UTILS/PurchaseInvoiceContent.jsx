@@ -22,7 +22,7 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
         // if (packageSelected.price-funDisValue.value > packageSelected.price-RoundPriceToUp(packageSelected.default_discount)) {
           packageSelected.default_discount_percent = funDisValue.type == "cash" ? setFormatPrice(funDisValue.value) : discountStatus.value;
           packageSelected.default_discount = funDisValue.value;
-          packageSelected.default_discount_price = funDisValue.value;
+          packageSelected.default_discount_price =packageSelected.price- funDisValue.value;
         }
       }
     }
