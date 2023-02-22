@@ -27,9 +27,11 @@ export default function BuyPlan({ title }) {
           <div className='section_title'>
             <div>
               <p>رایگان شروع کنید؛ قدرتمند ادامه دهید</p>
+                <button className="btn-secondary mt-2 mb-3 m-auto">
               <a href="https://segmento.ir/pricing/">
-                <button className="btn-secondary mt-2 mb-3 m-auto">توضیحات بیشتر</button>
+              توضیحات بیشتر
               </a>
+                </button>
             </div>
           </div>
           <CardPlans plan={plan} setPlan={setPlan} />

@@ -139,7 +139,7 @@ export const setPlanChosen = plan => {
 export const setPackageUuid = uuid => {
     return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        debugger
+        // debugger
         state.packageUuid = uuid;
         await dispatch({ type: "MODAL_PLAN_PACKAGE_UUID", payload: state })
     }

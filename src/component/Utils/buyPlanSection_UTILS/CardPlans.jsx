@@ -10,6 +10,7 @@ import DiscountTagValue from './DiscountTagValue';
 export default function CardPlans({ plan, setPlan }) {
 
   const { allPackageData } = useSelector(state => state.planState);
+  // console.log('allPackageData card plan:', allPackageData)
 
   const { canRequest } = useSelector((state) => state.loadingState);
 

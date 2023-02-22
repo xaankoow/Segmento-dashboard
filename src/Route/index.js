@@ -80,7 +80,7 @@ export const DashboardRote = [
     component: (
       <TabMenu
         tabsContent={ranktrakingTabs}
-        title={"ابزار رتبه سنج (رنک ترکینگ Rank Tracking)"}
+        title={"ابزار رتبه سنج"}
       />
     ),
   },

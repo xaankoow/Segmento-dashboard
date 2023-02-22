@@ -89,6 +89,24 @@ export default function TitleCopyWriterBulk() {
     setTitle(false)
   };
 
+  const handleLimitParagraph=()=>{
+    let paragraph = "Hello Freecodecamp student's , free , freecodecamp , free learning";
+    let word = /\n/; 
+    let result = paragraph.match(word);
+    
+    console.log(result);
+    var resultCount=0;
+    
+    if(Array.isArray(result)){
+    for(var i=0;i<result.length;i++){
+       resultCount++;
+    }
+    console.log("result count = "+resultCount);
+    }
+  }
+  handleLimitParagraph();  
+  var d= document.getElementById("idsa").text().length;
+  console.log('d', d)
   return (
     <>
       <PageTitle
@@ -97,6 +115,7 @@ export default function TitleCopyWriterBulk() {
         hasLimit={true}
       />
       <div className="mx-9 mt-9 mb-7">
+        <div className="text-sm text-left pl-4">90</div>
         <TextArea
           textLabelInput={"1. درج کلمات کلیدی (در هر خط فقط یک کلمه وارد کنید)"}
           classes={
