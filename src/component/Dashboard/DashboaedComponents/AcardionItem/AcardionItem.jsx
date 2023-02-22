@@ -26,6 +26,7 @@ import { ChackingAvailabilityTools } from "../../../Utils/CheckingAvailabilityTo
 import { ImageContainer } from "../../../../assets/img/IMG";
 import { stringify } from "postcss";
 import { useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
 
 export default function AcardionItem({ clicked, setClicked }) {
   const dispatch = useDispatch();
@@ -35,7 +36,11 @@ export default function AcardionItem({ clicked, setClicked }) {
   const user = useSelector((state) => state.userState);
   // 
   const workSpaceState = useSelector((state) => state.workSpaceState);
-  const { allWorkSpace } = useSelector((state) => state.workSpaceState);
+  const { allWorkSpace ,allLimitsDatas} = useSelector((state) => state.workSpaceState);
+
+  const { ProcessingDelay } = useSelector(state => state.loadingState)
+
+
   // console.log(allWorkSpace);
   const data = [
     {
@@ -175,19 +180,19 @@ export default function AcardionItem({ clicked, setClicked }) {
 
 
 
-    // {
-    //   title: "سئو تکنیکال",
-    //   titleIcon: copyWriter_svg,
-    //   itemLink: "",
-    //   acardionItems: [
-    //     {
-    //       itemTitle: "ابزار رتبه سنج",
-    //       itemIcon: copyWriterAnboh_svg,
-    //       itemLink: "rank-tracking",
-    //       section: ""
-    //     },
-    //   ],
-    // },
+    {
+      title: "سئو تکنیکال",
+      titleIcon: copyWriter_svg,
+      itemLink: "",
+      acardionItems: [
+        {
+          itemTitle: "ابزار رتبه سنج",
+          itemIcon: copyWriterAnboh_svg,
+          itemLink: "rank-tracking",
+          section: ""
+        },
+      ],
+    },
   ];
   // const [clicked, setClicked] = React.useState(false);
   const [ItemsClicked, setItemsClicked] = useState(
@@ -219,6 +224,7 @@ export default function AcardionItem({ clicked, setClicked }) {
                 key={index}
                 className="flex items-center gap-3 text-[#002145] mt-4 mb-3  mr-5 text-sm  w-full"
               >
+      {/* {ProcessingDelay.includes("userLimit")?(""):null} */}
                 <img
                   src={item.titleIcon}
                   alt="icon"
@@ -260,73 +266,90 @@ export default function AcardionItem({ clicked, setClicked }) {
             </div>
             {clicked === index ? (
               <div className="mr-5 mt-0">
-                {item.acardionItems.map((acardionItem, indexx) => {
-                  return acardionItem.itemLink == " " ? (
-                    <div className={"w-auto"}>
-                      <div
-                        onClick={() => setTitleHandler(acardionItem.itemTitle)}
-                        key={indexx}
-                        className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
-                          clicked === index &&
-                          ItemsClicked == acardionItem.itemTitle &&
-                          "active"
-                        }`}
-                      >
-                        <img src={acardionItem.itemIcon} alt="icon" />
-                        <span className={"w-auto hover:text-blue"}>
-                          {acardionItem.itemTitle}
-                        </span>
-                      </div>
-                    </div>
-                  ) : (
-                    acardionItem.itemLink != "" && (
-                      // <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
-                      <Link to={acardionItem.itemLink} className={"w-auto"}>
-                        <div
-                          onClick={() =>
-                            setTitleHandler(acardionItem.itemTitle)
-                          }
-                          key={indexx}
-                          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
-                            clicked === index &&
-                            ItemsClicked == acardionItem.itemTitle &&
-                            "active"
-                          }`}
-                        >
-                          <img src={acardionItem.itemIcon} alt="icon" />
-                          <span className={"w-auto hover:text-blue"}>
-                            {acardionItem.itemTitle}
-                          </span>
-                        </div>
-                      </Link>
-                    )
-                  );
-                })}
-                {item.title == "ورک‌اسپیس‌ها" && (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
-                  >
-                    <img src={add_circle_svg} alt="icon" />
-                    <Link
-                      to={
-                        user.userData.package != undefined
-                          ? `setWorkSpace`
-                          : location
-                      }
-                      onClick={() =>
-                        user.userData.package == undefined &&
-                        showToast("شما پلن فعالی ندارید", "error")
-                      }
-                      state={{ background: location }}
-                      className={"w-auto"}
-                    >
-                      افزودن سایت
-                    </Link>
-                  </div>
-                )}
+      {allLimitsDatas.length==0?(
+        <>
+        <Skeleton width={150}/>
+        <Skeleton width={150}/>
+        </>
+      ):(
+<>
+
+{item.acardionItems.map((acardionItem, indexx) => {
+  return acardionItem.itemLink == " " ? (
+    <div className={"w-auto"}>
+      <div
+        onClick={() => setTitleHandler(acardionItem.itemTitle)}
+        key={indexx}
+        className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
+          clicked === index &&
+          ItemsClicked == acardionItem.itemTitle &&
+          "active"
+        }`}
+      >
+        <img src={acardionItem.itemIcon} alt="icon" />
+        <span className={"w-auto hover:text-blue"}>
+          {acardionItem.itemTitle}
+        </span>
+      </div>
+    </div>
+  ) : (
+    acardionItem.itemLink != "" && (
+      // <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
+      <Link to={acardionItem.itemLink} className={"w-auto"}>
+        <div
+          onClick={() =>
+            setTitleHandler(acardionItem.itemTitle)
+          }
+          key={indexx}
+          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
+            clicked === index &&
+            ItemsClicked == acardionItem.itemTitle &&
+            "active"
+          }`}
+        >
+          <img src={acardionItem.itemIcon} alt="icon" />
+          <span className={"w-auto hover:text-blue"}>
+            {acardionItem.itemTitle}
+          </span>
+        </div>
+      </Link>
+    )
+  );
+})}
+{item.title == "ورک‌اسپیس‌ها" && (
+  <div
+    key={index}
+    className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
+  >
+    <img src={add_circle_svg} alt="icon" />
+    <Link
+      to={
+        user.userData.package != undefined
+          ? `setWorkSpace`
+          : location
+      }
+      onClick={() =>
+        user.userData.package == undefined &&
+        showToast("شما پلن فعالی ندارید", "error")
+      }
+      state={{ background: location }}
+      className={"w-auto"}
+    >
+      افزودن سایت
+    </Link>
+  </div>
+)}
+</>
+      )}
+
+
               </div>
             ) : null}
+
+
+
+
+
             {/* TODO */}
             {/* {item.title == "ورک‌اسپیس‌ها" && <div>  
 

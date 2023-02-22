@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { getAllFinancialReportsData } from "../../service/financialReportsService";
 import { getPackageInfO } from "../../service/packages";
-import { usetLimit } from "../../service/userLimit";
+import { userLimit } from "../../service/userLimit";
 import {
   creatWorkSpace,
   getAllWorkspace,
@@ -649,7 +649,7 @@ export const resetWorkSpaceState = () => {
 //     const state = { ...getState().workSpaceState };
 
 //     try {
-//       const { data } = await usetLimit();
+//       const { data } = await userLimit();
 //       if (data.code == 200 && data.status == true) {
 //         state.limitsDatas = data.data;
 //       } else {
@@ -670,18 +670,18 @@ export const allLimitDataFeature = ({ axiosController }) => {
     if (userState.userData.package != undefined) {
       package_uuid = userState.userData.package.uuid;
 
-      if (!loadingState.ProcessingDelay.includes("usetLimit")) {
+      if (!loadingState.ProcessingDelay.includes("userLimit")) {
         //handle show loadin
         {
           // loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
-          loadingState.ProcessingDelay.push("usetLimit");
+          loadingState.ProcessingDelay.push("userLimit");
           loadingState.canRequest = false;
           await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
         }
 
         try {
           const infoPackage = await getPackageInfO({ package_uuid });
-          const limitPackage = await usetLimit({ axiosController });
+          const limitPackage = await userLimit({ axiosController });
           if (limitPackage.data.code == 200 && limitPackage.data.status == true && infoPackage.data.code == 200 && infoPackage.data.status == true) {
             const state = { ...getState().workSpaceState };
             state.limitsDatas = limitPackage.data.data;
@@ -691,7 +691,7 @@ export const allLimitDataFeature = ({ axiosController }) => {
           //handle hide loading
           {
             const loadingState1 = { ...getState().loadingState }
-            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "usetLimit");
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "userLimit");
             loadingState1.ProcessingDelay = removeProcessingItem;
             loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
             await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
@@ -700,7 +700,7 @@ export const allLimitDataFeature = ({ axiosController }) => {
           //handle hide loading
           {
             const loadingState1 = { ...getState().loadingState }
-            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "usetLimit");
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "userLimit");
             loadingState1.ProcessingDelay = removeProcessingItem;
             loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
             await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })

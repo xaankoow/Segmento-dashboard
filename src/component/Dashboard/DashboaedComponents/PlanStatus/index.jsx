@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import PageTitle from "../pageTitle/pageTitle";
-import { usetLimit } from "../../../service/userLimit";
+import { userLimit } from "../../../service/userLimit";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
@@ -88,7 +88,7 @@ export default function PlanStatus() {
     dispatch(allLimitDataFeature({ axiosController }));
     // const pastSelexboxData = async () => {
     //   try {
-    //     const { data, status } = await usetLimit();
+    //     const { data, status } = await userLimit();
     //     setDatas(data.data);
     //   } catch (error) { }
     // };
