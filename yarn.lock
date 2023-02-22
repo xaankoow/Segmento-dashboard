@@ -10679,12 +10679,12 @@
   dependencies:
     "clsx" "^1.1.1"
 
-"react-tooltip@^4.2.21":
-  "integrity" "sha512-zSLprMymBDowknr0KVDiJ05IjZn9mQhhg4PRsqln0OZtURAJ1snt1xi5daZfagsh6vfsziZrc9pErPTDY1ACig=="
-  "resolved" "https://registry.npmjs.org/react-tooltip/-/react-tooltip-4.2.21.tgz"
-  "version" "4.2.21"
+"react-tooltip@^4.5.1":
+  "integrity" "sha512-Zo+CSFUGXar1uV+bgXFFDe7VeS2iByeIp5rTgTcc2HqtuOS5D76QapejNNfx320MCY91TlhTQat36KGFTqgcvw=="
+  "resolved" "https://registry.npmjs.org/react-tooltip/-/react-tooltip-4.5.1.tgz"
+  "version" "4.5.1"
   dependencies:
-    "prop-types" "^15.7.2"
+    "prop-types" "^15.8.1"
     "uuid" "^7.0.3"
 
 "react-transition-group@^4.4.5":

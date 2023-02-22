@@ -23,7 +23,7 @@ export const setDiscountPrice = (price, discountValue, isCash) => {
         computingDiscountPrice.type = " تومان ";
 
     } else {
-        computingDiscountPrice.value = RoundPriceToUp(price - (price - price * `.${discountValue}`));
+        computingDiscountPrice.value = RoundPriceToUp(price - (price * `.${discountValue}`));
         computingDiscountPrice.type = " درصد ";
     }
     return computingDiscountPrice;

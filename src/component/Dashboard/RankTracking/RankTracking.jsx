@@ -638,7 +638,7 @@ export default function RankTracking({ onClickHandler }) {
           </div>
         </div>
       </div>
-      {showToolTip && <ToolTip />}
+      {/* {showToolTip && <ToolTip />} */}
     </>
   );
 }

@@ -16,13 +16,14 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
       // default_discount_percent
       if (discountStatus.value != 0) {
         let funDisValue = setDiscountPrice(packageSelected.price, discountStatus.value, discountStatus.discountType == "cash" ? true : false);
-        var a=packageSelected.price-packageSelected.default_discount
-        var b=packageSelected.price-funDisValue.value
+        var a=packageSelected.default_discount_price
+        var b= funDisValue.value
+        debugger
         if (b < a) {
         // if (packageSelected.price-funDisValue.value > packageSelected.price-RoundPriceToUp(packageSelected.default_discount)) {
           packageSelected.default_discount_percent = funDisValue.type == "cash" ? setFormatPrice(funDisValue.value) : discountStatus.value;
-          packageSelected.default_discount = funDisValue.value;
-          packageSelected.default_discount_price =packageSelected.price- funDisValue.value;
+          packageSelected.default_discount = packageSelected.price- funDisValue.value;
+          packageSelected.default_discount_price =funDisValue.value;
         }
       }
     }
