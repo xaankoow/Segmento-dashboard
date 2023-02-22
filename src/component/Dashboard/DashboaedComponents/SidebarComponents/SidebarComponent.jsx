@@ -53,8 +53,7 @@ useEffect(() => {
   return (
     <>
       <div
-        className="list_hover pt-5 h-full  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between min-w-[256px] overflow-hidden"
-        style={{ width: closeNav ? "256px" : "0px" }}
+        className={`list_hover pt-5 h-full  bg-[#fcfcfb]  shadow-3xl rounded-tl-lg rounded-bl-lg flex flex-col justify-between overflow-hidden ${closeNav?"min-w-[256px] w-64":"w-0"}`}
       >
         {activeIcon == 0 ? (
           <div>
