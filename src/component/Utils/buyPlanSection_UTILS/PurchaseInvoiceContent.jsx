@@ -7,7 +7,8 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
   const { forceUpdate, allPackageData, discountStatus } = useSelector(state => state.planState);
 
   var packageSelected = "";
-  allPackageData.forEach(element => {
+  var dss=allPackageData;
+  dss.map(element => {
     if (element.uuid == packageUuid) {
       packageSelected = element;
       if (packageSelected.default_discount_percent == 0) {
@@ -18,7 +19,7 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
         let funDisValue = setDiscountPrice(packageSelected.price, discountStatus.value, discountStatus.discountType == "cash" ? true : false);
         var a=packageSelected.default_discount_price
         var b= funDisValue.value
-        debugger
+        // debugger
         if (b < a) {
         // if (packageSelected.price-funDisValue.value > packageSelected.price-RoundPriceToUp(packageSelected.default_discount)) {
           packageSelected.default_discount_percent = funDisValue.type == "cash" ? setFormatPrice(funDisValue.value) : discountStatus.value;
@@ -28,6 +29,8 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
       }
     }
   });
+
+  
 
   return (
     <div className='report'>
