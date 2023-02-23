@@ -20,6 +20,7 @@ import {
   resetLimitState,
 } from "../../component/Redux/Action/workSpace";
 import { useDispatch } from "react-redux";
+import { getLineLength } from "../../component/Utils/textOparation";
 
 export default function TitleCopyWriterBulk() {
   const [keyWordValue, setKeyWordValue] = useState("");
@@ -89,24 +90,20 @@ export default function TitleCopyWriterBulk() {
     setTitle(false)
   };
 
-  const handleLimitParagraph=()=>{
-    let paragraph = "Hello Freecodecamp student's , free , freecodecamp , free learning";
-    let word = /\n/; 
-    let result = paragraph.match(word);
-    
-    console.log(result);
-    var resultCount=0;
-    
-    if(Array.isArray(result)){
-    for(var i=0;i<result.length;i++){
-       resultCount++;
+  const handleLimitParagraph=(areaText)=>{
+    var filteredTextLine=areaText;
+    let getMyTextLineLength= getLineLength(areaText)
+    debugger
+    if(getMyTextLineLength> 90){
+      filteredTextLine="";
+     var myKeyWordLine=areaText.split(/\r\n|\r|\n/)
+     for (let i = 0; i < 90; i++) {
+      filteredTextLine+=myKeyWordLine[i]+"\n"
+     }
     }
-    console.log("result count = "+resultCount);
-    }
+    setKeyWordValue(filteredTextLine)
   }
-  handleLimitParagraph();  
-  var d= document.getElementById("idsa").text().length;
-  console.log('d', d)
+
   return (
     <>
       <PageTitle
@@ -115,16 +112,17 @@ export default function TitleCopyWriterBulk() {
         hasLimit={true}
       />
       <div className="mx-9 mt-9 mb-7">
-        <div className="text-sm text-left pl-4">90</div>
+        <div className="text-sm text-left pl-4">{Math.max(0,90-getLineLength(keyWordValue))}</div>
         <TextArea
           textLabelInput={"1. درج کلمات کلیدی (در هر خط فقط یک کلمه وارد کنید)"}
           classes={
             "w-full !h-[222px] border border-sectionDisable !p-5 !rounded-lg overflow-y-auto leading-relaxed"
           }
-          handleChange={setKeyWordValue}
+          handleChange={(e)=>90-getLineLength(keyWordValue)>=0|getLineLength(keyWordValue)>getLineLength(e)?handleLimitParagraph(e):getLineLength(e)}
           handleChangeValue={() =>
             setTitle(false)
           }
+          value={keyWordValue}
         />{" "}
       </div>
       <span className=" text-[10px] mx-11 ">2. انتخاب جنس موضوع</span>

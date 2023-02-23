@@ -64,6 +64,7 @@ export default function TextArea({
         id={inputId!=undefined?inputId:"idsa"}
            required
           maxLength={maxlength}
+          
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           ref={ref}
