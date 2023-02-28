@@ -36,7 +36,7 @@ export default function Login() {
               <div className="flex gap-5">
                 {/* <input type="" /> */}
                 {/* <TextButton.Provider value={"ورود"}> */}
-                  <AuthButton classes={"btn-style"} textButton={"ورود"} reduxHandleClick={loginUserAction} keyLoading="loginUser"/>
+                  <AuthButton classes={"btn-style"} textButton={"ورود"} reduxHandleClick={loginUserAction} keyLoading="loginUser" submitType/>
                 {/* </TextButton.Provider> */}
                 {/* <input type="submit" value={"submit btn"} className="btn-style"/> */}
         <Link to={`/dashboard/accountOperations/register`} className='btn-style'>ثبت نام</Link>

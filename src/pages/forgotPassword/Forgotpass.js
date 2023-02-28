@@ -19,20 +19,26 @@ export default function Forgetpass() {
 
   const [showToolTip, setShowToolTip] = useState(true);
 
+    // timer
+    var minutesTimerValue = 1;
+    var secondsTimerValue = 59;
+
   useEffect(() => {
     if (handleResendCode == false) {
       let myInterval = setTimeout(() => {
         if (seconds > 0) {
           setSeconds(seconds - 1);
         }
-        if (seconds === 0) {
-          if (minutes === 0) {
+        if (seconds == 0) {
+          if (minutes == 0) {
             clearInterval(myInterval);
             setMinutes(1);
             setSeconds(59);
           } else {
-            minutesTimerValue = minutesTimerValue - 1;
-            secondsTimerValue = 59;
+            // minutesTimerValue = minutesTimerValue - 1;
+            // secondsTimerValue = 59;
+            setMinutes(minutesTimerValue - 1);
+            setSeconds(59);
           }
         }
       }, 1000);
@@ -47,9 +53,7 @@ export default function Forgetpass() {
     }
   }
 
-  // timer
-  var minutesTimerValue = 1;
-  var secondsTimerValue = 59;
+
 
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(59);
@@ -67,6 +71,7 @@ export default function Forgetpass() {
                 برای بازیابی گذرواژه، نیاز به یک کد دارید که براتون ایمیل میشه.
               </span>
             </div>
+              <SubmitForm submitFun={sendForgotPasswordEmailCodeAction} dispatchOption>
             <div className="items-center flex justify-between mt-10 mb-5">
               <div className="w-50"
                 data-tip='کد را با این ایمیل دریافت می‌کنید'
@@ -77,7 +82,6 @@ export default function Forgetpass() {
                   setShowToolTip(false);
                   setTimeout(() => setShowToolTip(true), 0);
                 }}>
-                <SubmitForm submitFun={sendForgotPasswordEmailCodeAction} dispatchOption>
                   <AuthInput
                     textLabelInput="ایمیل"
                     classes={`forgot_password_input`}
@@ -85,24 +89,27 @@ export default function Forgetpass() {
                     disabled={forgotPasswordStep == 2 ? true : false}
                     errorTextId="errRejesterFormatEmail"
                   />
-                </SubmitForm>
               </div>
               <div className="flex items-center">
                 {handleResendCode == true ? clearTimerValue() :
+                <div className=" ml-1">
                   <Timer
                     minutes={minutes}
                     seconds={seconds}
                   />
+                </div>
                 }
                 <TextButton.Provider value={"دریافت کد"}>
                   <AuthButton
                     classes={forgotPasswordStep > 0 ? "btn_complete" : ""}
                     reduxHandleClick={sendForgotPasswordEmailCodeAction}
                     disabled={handleResendCode == true ? forgotPasswordStep == 2 ? true : false : true}
+                    submitType
                   />
                 </TextButton.Provider>
               </div>
             </div>
+                </SubmitForm>
             <SubmitForm submitFun={checkVerifyEmailForgotPasswordAction} dispatchOption formClass={"flex items-center justify-between mt-5 relative"}>
               <div className="flex items-center gap-5 flex-col">
                 <span className={forgotPasswordStep > 0 ? forgotPasswordStep == 2 ? "lockStyle" : "" : "lockStyle"}>کد فعال سازی</span>

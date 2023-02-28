@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ImageContainer } from '../../../assets/img/IMG';
 import AuthInput from '../../Auth/authInput/AuthInput';
 import { applyDiscountAction, getAllPlanData, setPackageUuid } from '../../Redux/Action/plan';
+import SubmitForm from '../Submit';
 import DiscountTagValue from './DiscountTagValue';
 
 export default function CardPlans({ plan, setPlan }) {
@@ -133,6 +134,7 @@ export default function CardPlans({ plan, setPlan }) {
               />
             }
             <div className='input_apply_token_container'>
+            <SubmitForm submitFun={applyDiscountAction(discountInputBronze, "bronze")} dispatchOption>
               <AuthInput
                 textLabelInput=" کد تخفیف  "
                 width={"100%"}
@@ -145,6 +147,7 @@ export default function CardPlans({ plan, setPlan }) {
               <button disabled={!canRequest} className={`apply_token_ico ${discountInputBronze != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputBronze, "bronze"))}>
                 {canRequest ? <img src={ImageContainer.blueArrowBtn} className=" w-4 h-4" /> : <CircularProgress className=" absolute w-full" color="#0A65CD" width="20px" height="20px" duration="3s" />}
               </button>
+              </SubmitForm>
             </div>
           </div>
           <div className='silver plan_card mx-1'>
@@ -175,6 +178,7 @@ export default function CardPlans({ plan, setPlan }) {
               />
             }
             <div className='input_apply_token_container'>
+              <SubmitForm submitFun={applyDiscountAction(discountInputSilver, "silver")} dispatchOption>
               <AuthInput
                 textLabelInput=" کد تخفیف  "
                 width={"100%"}
@@ -184,9 +188,10 @@ export default function CardPlans({ plan, setPlan }) {
                 targePlanArrow={"silver"}
                 errorTextId={lastSelectedDiscountInput == "silver" ? "discount" : ""}
               />
-              <button disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}>
+              <button type='submit' disabled={!canRequest} className={`apply_token_ico ${discountInputSilver != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputSilver, "silver"))}>
                 {canRequest ? <img src={ImageContainer.blueArrowBtn} className=" w-4 h-4" /> : <CircularProgress className=" absolute w-full" color="#0A65CD" width="20px" height="20px" duration="3s" />}
               </button>
+              </SubmitForm>
             </div>
           </div>
           <div className='gold plan_card ml-1'>
@@ -215,6 +220,8 @@ export default function CardPlans({ plan, setPlan }) {
               />
             }
             <div className='input_apply_token_container'>
+            <SubmitForm submitFun={applyDiscountAction(discountInputGold, "gold")} dispatchOption>
+
               <AuthInput
                 textLabelInput=" کد تخفیف  "
                 width={"100%"}
@@ -227,6 +234,7 @@ export default function CardPlans({ plan, setPlan }) {
               <button disabled={!canRequest} className={`apply_token_ico ${discountInputGold != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputGold, "gold"))}>
                 {canRequest ? <img src={ImageContainer.blueArrowBtn} className=" w-4 h-4" /> : <CircularProgress className=" absolute w-full" color="#0A65CD" width="20px" height="20px" duration="3s" />}
               </button>
+              </SubmitForm>
             </div>
           </div>
           <div className='diamond plan_card'>
@@ -254,6 +262,7 @@ export default function CardPlans({ plan, setPlan }) {
               />
             }
             <div className='input_apply_token_container'>
+            <SubmitForm submitFun={applyDiscountAction(discountInputDiamond, "diamond")} dispatchOption>
               <AuthInput
                 textLabelInput=" کد تخفیف  "
                 width={"100%"}
@@ -266,6 +275,7 @@ export default function CardPlans({ plan, setPlan }) {
               <button disabled={!canRequest} className={`apply_token_ico ${discountInputDiamond != "" ? "flex" : "hidden"}`} onClick={() => dispatch(applyDiscountAction(discountInputDiamond, "diamond"))}>
                 {canRequest ? <img src={ImageContainer.blueArrowBtn} className=" w-4 h-4" /> : <CircularProgress className=" absolute w-full" color="#0A65CD" width="20px" height="20px" duration="3s" />}
               </button>
+              </SubmitForm>
             </div>
           </div>
         </>

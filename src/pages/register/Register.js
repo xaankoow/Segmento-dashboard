@@ -72,6 +72,7 @@ export default function Register() {
                     <AuthButton
                       classes={"btn-style"}
                       reduxHandleClick={RegisterUserAction}
+                      submitType
                     />
                   </TextButton.Provider>
         <Link to={`/dashboard/accountOperations/login`} className='btn-style'>ورود</Link>

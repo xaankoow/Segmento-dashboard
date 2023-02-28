@@ -703,6 +703,8 @@ export const sendForgotPasswordEmailCodeAction = () => {
       if (CheckFormat("email", state.email, "errRejesterFormatEmail")) {
         if (!state.handleResendCode == false) {
           //handle show loadin
+      if (!loadingState.ProcessingDelay.includes("verifyEmailChangePassword")) {
+      
           {
             loadingState.ProcessingDelay.push("verifyEmailChangePassword");
             loadingState.canRequest = false;
@@ -749,6 +751,7 @@ export const sendForgotPasswordEmailCodeAction = () => {
               showToast(toastMessage, "error");
             }
           }
+        }
         } else {
           showInputErrorToast("کد قبلا ارسال شده");
         }
