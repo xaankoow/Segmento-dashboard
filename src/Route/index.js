@@ -23,7 +23,7 @@ import RankTracking from "../component/Dashboard/RankTracking/RankTracking";
 import Keyword from "../component/Dashboard/RankTracking/keyword/Keyword";
 import Report from "../component/Dashboard/RankTracking/report/Report";
 import Competitors from "../component/Dashboard/RankTracking/competitors/Competitors";
-import baghShahiRank, { Home } from "../pages/baghShahiRanck/pages/Home/index.jsx"
+import { Home } from "../pages/baghShahiRanck/pages/Home/index.jsx"
 
 
 const tabContent = [
@@ -38,7 +38,7 @@ const tabContent = [
 ];
 const tabContent2 = [
   {
-    title: "جستجو",
+    title: "ایجاد",
     content: <ContentpProduction />,
   },
   {

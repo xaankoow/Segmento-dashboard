@@ -73,13 +73,19 @@ export default function ComboBox({
       {open ? (
         <div
           className={
-            "flex flex-col w-full border border-t-0 pr-3 rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff]  pb-2 max-h-36 overflow-y-scroll"
+            "flex flex-col w-full border border-t-0  rounded z-20 top-[45px] border-[#0000000a] absolute bg-[#ffffff]  pb-2 max-h-36 overflow-y-scroll"
           }
         >
           {radioTextItems &&
             radioTextItems.map((item, key) => {
               return (
-                <div className="flex gap-2 mt-3 items-center">
+                
+                <div className="flex gap-2 mt-1 items-center cursor-pointer pr-3 py-1 hover:bg-lightBlue"
+                onClick={(e) => {
+                  setRadioText(item);
+                  radioClickedHandler(e);
+                }}
+                >
                   <input
                     type="radio"
                     className="w-4 h-4"
