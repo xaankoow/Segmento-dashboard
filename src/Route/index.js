@@ -23,6 +23,8 @@ import RankTracking from "../component/Dashboard/RankTracking/RankTracking";
 import Keyword from "../component/Dashboard/RankTracking/keyword/Keyword";
 import Report from "../component/Dashboard/RankTracking/report/Report";
 import Competitors from "../component/Dashboard/RankTracking/competitors/Competitors";
+import baghShahiRank, { Home } from "../pages/baghShahiRanck/pages/Home/index.jsx"
+
 
 const tabContent = [
   {
@@ -78,10 +80,11 @@ export const DashboardRote = [
   {
     path: "rank-tracking",
     component: (
-      <TabMenu
-        tabsContent={ranktrakingTabs}
-        title={"ابزار رتبه سنج"}
-      />
+      // <TabMenu
+      //   tabsContent={baghShahiRank}
+      //   title={"ابزار رتبه سنج"}
+      // />
+      <Home/>
     ),
   },
   {

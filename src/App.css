@@ -1,0 +1,92 @@
+.navBar .active::after {
+    background: #0a65cd;
+    width: 28px;
+    height: 2px;
+    content: "";
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
+    display: inline-block;
+    position: absolute;
+    bottom: -10px;
+    left: calc((100% - 28px) / 2);
+    border-radius: 10px;
+  }
+  .navBar .active {
+    position: relative;
+    color: #0a65cd !important;
+  }
+  
+  .customCard__tag {
+    background-color: #f2f5f7;
+    border-radius: 9px;
+    width: 72px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .customCard.active {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14);
+    border-color: transparent;
+  }
+  .customCard {
+    position: relative;
+    background: #ffffff;
+    width: 200px;
+    height: 168px;
+    border-radius: 9px;
+    padding-top: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #d9d9d9;
+  }
+  .customCard--long {
+    position: relative;
+    background: #ffffff;
+    width: 200px;
+    height: 348px;
+    border-radius: 9px;
+    padding-top: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #d9d9d9;
+  }
+  
+  .progressBar__single > div {
+    top: -17px;
+    position: absolute;
+    right: 0;
+  }
+  .progressBar__single {
+    height: 25% !important;
+    top: 75% !important;
+  }
+  .h--25 div:nth-child(2) .progressBar__single > div > span {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+  }
+  .h--25 div:nth-child(2) .progressBar__single > div {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    left: 0;
+    right: unset;
+  }
+  
+  /* utils */
+  .reversed {
+    transform: rotateX(180deg);
+    transform-origin: center center;
+  }
+  .h--25 {
+    height: 25px !important;
+  }
+  .bg--blue {
+    background: #0a65cd;
+  }
+  .border--white {
+    border-color: white !important;
+  }
+  .borderBT--red {
+    border-bottom-color: #f35242 !important;
+    border-top-color: #f35242 !important;
+  }
