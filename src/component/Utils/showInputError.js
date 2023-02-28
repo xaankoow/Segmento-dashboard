@@ -12,7 +12,7 @@ export const InputError = (element, text, textErrorColor, timerStop) => {
     if (!timerStop) {
         setTimeout(() => {
             if (insideInput != null) {
-                insideInput.style.borderBottom = `1px solid ${textErrorColor != undefined ? textErrorColor : "#d3d5e2"}`;
+                insideInput.style.borderBottom = `1px solid #d3d5e2`;
             }
             textError.style.display = "none";
             textError.innerHTML = "";

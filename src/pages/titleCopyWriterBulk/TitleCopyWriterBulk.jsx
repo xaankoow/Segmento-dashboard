@@ -93,11 +93,11 @@ export default function TitleCopyWriterBulk() {
   const handleLimitParagraph=(areaText)=>{
     var filteredTextLine=areaText;
     let getMyTextLineLength= getLineLength(areaText)
-    debugger
-    if(getMyTextLineLength> 90){
+    
+    if(getMyTextLineLength> 100){
       filteredTextLine="";
      var myKeyWordLine=areaText.split(/\r\n|\r|\n/)
-     for (let i = 0; i < 90; i++) {
+     for (let i = 0; i < 100; i++) {
       filteredTextLine+=myKeyWordLine[i]+"\n"
      }
     }
@@ -112,13 +112,13 @@ export default function TitleCopyWriterBulk() {
         hasLimit={true}
       />
       <div className="mx-9 mt-9 mb-7">
-        <div className="text-sm text-left pl-4">{Math.max(0,90-getLineLength(keyWordValue))}</div>
+        <div className="text-sm text-left pl-4">{Math.max(0,100-getLineLength(keyWordValue))}</div>
         <TextArea
           textLabelInput={"1. درج کلمات کلیدی (در هر خط فقط یک کلمه وارد کنید)"}
           classes={
             "w-full !h-[222px] border border-sectionDisable !p-5 !rounded-lg overflow-y-auto leading-relaxed"
           }
-          handleChange={(e)=>90-getLineLength(keyWordValue)>=0|getLineLength(keyWordValue)>getLineLength(e)?handleLimitParagraph(e):getLineLength(e)}
+          handleChange={(e)=>100-getLineLength(keyWordValue)>=0|getLineLength(keyWordValue)>getLineLength(e)?handleLimitParagraph(e):getLineLength(e)}
           handleChangeValue={() =>
             setTitle(false)
           }

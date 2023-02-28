@@ -139,7 +139,7 @@ export const setPlanChosen = plan => {
 export const setPackageUuid = uuid => {
     return async (dispatch, getState) => {
         const state = { ...getState().planState }
-        // debugger
+        // 
         state.packageUuid = uuid;
         await dispatch({ type: "MODAL_PLAN_PACKAGE_UUID", payload: state })
     }
@@ -350,7 +350,7 @@ export const applyDiscountAction = (discountCode, planType) => {
                     InputError("discount", "کدتخفیف درست است", "#10CCAE", true)
                 } else {
                     showToast(data.data.msg, "error");
-                    InputError("discount", data.data.msg)
+                    InputError("discount", data.data.msg,"#F35242",false)
                 }
             } catch (error) {
                 error.response.data.errors.forEach(element => {

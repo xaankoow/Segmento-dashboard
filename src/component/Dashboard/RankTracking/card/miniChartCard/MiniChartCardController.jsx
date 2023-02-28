@@ -384,7 +384,7 @@ export default function MinichartController({
         getAvgPositionKeyWords.push(growthList);
         getAvgPositionKeyWords.push(dropList);
 
-        console.log("lastGrowWordPosition :>> ", getAvgPositionKeyWords);
+        // console.log("lastGrowWordPosition :>> ", getAvgPositionKeyWords);
         type = chartType ? chartType : "Bar";
 
         if (type == "Doughnut") {
@@ -533,7 +533,7 @@ export default function MinichartController({
             countPositionList[countPositionList.length - 1]
           );
           getAvgPositionKeyWords[0].push(lastGrowWordPosition);
-          console.log("getAvgPositionKeyWords", getAvgPositionKeyWords);
+          // console.log("getAvgPositionKeyWords", getAvgPositionKeyWords);
           setFooterDoughnutText([
             {
               rightColor: "bg-red",

@@ -103,7 +103,7 @@ export default function Index() {
       axiosController.abort();
     }
   }, [])
-  console.log('chatData :>> ', chatData);
+  // console.log('chatData :>> ', chatData);
   return (
     <>
       <PageTitle title={"پشتیبانی و تیکت‌ها "} />

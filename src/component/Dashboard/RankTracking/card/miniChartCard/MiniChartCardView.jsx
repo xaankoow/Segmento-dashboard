@@ -66,7 +66,7 @@ export default function MiniChartCardView({
     }
   };
 
-  console.log("chartType :>> ", chartType);
+  // console.log("chartType :>> ", chartType);
   const decreaseIncreaseArrow = (firstValue, secondValue) => {
     if (firstValue > secondValue) {
       return {

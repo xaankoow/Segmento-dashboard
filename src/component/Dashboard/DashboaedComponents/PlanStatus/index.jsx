@@ -27,7 +27,7 @@ export default function PlanStatus() {
   const { allLimitsDatas,limitsDatas } = useSelector((state) => state.workSpaceState);
   const loadingState = useSelector((state) => state.loadingState);
 
-  console.log('allLimitsDatas :>> ', allLimitsDatas[4]);
+  // console.log('allLimitsDatas :>> ', allLimitsDatas[4]);
   const dispatch = useDispatch();
 
   const axiosController = new AbortController();

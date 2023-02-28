@@ -401,7 +401,7 @@ export const searchChartIdAndSetInBigChartData = ({ textId }) => {
       default:
         break;
     }
-    console.log("chartType :>> ", textId);
+    // console.log("chartType :>> ", textId);
     state.charts.forEach((element) => {
       
       // 

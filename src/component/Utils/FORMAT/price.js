@@ -35,7 +35,7 @@ export const RoundPriceToUp = (price) => {
     // 
     // console.log(price)
     if (!Number.isInteger(price)) {
-        var getLatestNumbers = parseInt(price.toString().substring(price.toString().length, price.toString().length - 3));
+        var getLatestNumbers = parseInt(price?.toString()?.substring(price.toString().length, price.toString().length - 3));
         if (getLatestNumbers > 0) {
             // roundPrice = 1 + parseInt(price.toString().substring(0, price.toString().length - 3)) + "000";
             roundPrice = 1 + parseInt(price.toString().substring(0, price.toString().length - 3)) ;
