@@ -110,7 +110,7 @@ export default function ReportSupport() {
             placeholder={"فیلد جستجو"}
             radioTextItems={filterBoxDatas.map(item => { return item.filterName })}
 
-            radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}
+            radioClickedHandler={(e) => setSearchFilterOption(e)}
           />
         </div>
 

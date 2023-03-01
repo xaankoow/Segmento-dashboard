@@ -117,7 +117,7 @@ export default function NewTicket({ categories }) {
               <ComboBox
                 selectedItem={filterCategories}
                 radioTextItems={ticketCategories.map(item=>{return item.partName})}
-                radioClickedHandler={(e) => setFilterCategories(e.target.value)}
+                radioClickedHandler={(e) => setFilterCategories(e)}
               />
             </div>
             <div className="flex items-center gap-3 ">

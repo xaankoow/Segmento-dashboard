@@ -375,7 +375,7 @@ export default function RankTracking({ onClickHandler }) {
                 radioClickedHandler={(e) =>
                   dispatch(
                     searchChartIdAndSetInBigChartData({
-                      textId: e.target.value,
+                      textId: e,
                     })
                   )
                 }
@@ -459,7 +459,7 @@ export default function RankTracking({ onClickHandler }) {
                 radioTextItems={periodDate
                   .reverse()
                   .map((item) => item.replaceAll("-", "/"))}
-                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+                radioClickedHandler={(e) => setDateFilterOption(e)}
               />
             </div>
           </div>

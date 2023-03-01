@@ -81,7 +81,7 @@ export default function WorkSpaceManagement() {
             <ComboBox
               placeholder={"لطفا یک گزینه را انتخاب کنید"}
               radioTextItems={filterBoxDatasItems}
-              radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}
+              radioClickedHandler={(e) => setSearchFilterOption(e)}
             />
           </div>
 

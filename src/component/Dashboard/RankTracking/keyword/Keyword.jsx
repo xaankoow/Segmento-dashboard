@@ -314,7 +314,7 @@ export default function Keyword({ onClickHandler }) {
                 <ComboBox
                   placeholder={"فیلتر زمانی"}
                   radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                  radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+                  radioClickedHandler={(e) => setDateFilterOption(e)}
                 />
               </div>
               <div className="chart__actions">
