@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { helpText } from "../../../../variables/support";
+import { helpText, imgCategories } from "../../../../variables/support";
 import AuthInput from "../../../Auth/authInput/AuthInput";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import { ticketCategories } from "../../../../variables/support";
@@ -120,6 +120,7 @@ export default function NewTicket({ categories }) {
                 selectedItem={filterCategories}
                 radioTextItems={ticketCategories.map(item=>{return item.partName})}
                 radioClickedHandler={(e) => setFilterCategories(e.target.value)}
+                icons={imgCategories}
               />
             </div>
             <div className="flex items-center gap-3 ">

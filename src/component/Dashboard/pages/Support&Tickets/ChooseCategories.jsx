@@ -15,7 +15,7 @@ export default function ChooseCategories({link,clickedItem,setClicked,setCategor
           return (
             <div
             id="CATEGORIES"
-              onClick={() => {setClicked(index);setCategoriValue(item.partCod)}}
+              onClick={() => {setClicked(index);setCategoriValue(item.partCod);link(2)}}
               className={` transition-all cursor-pointer w-[260px] h-[189px] border border-sectionDisable  hover:grayscale-0 rounded-lg relative flex flex-col justify-center items-center hover:border-[#0AC7E2]  active:border-[#0AC7E2]  focus:border-primary ${
                 clickedItem === index && "border-[#0AC7E2]"
               }`}
@@ -26,7 +26,7 @@ export default function ChooseCategories({link,clickedItem,setClicked,setCategor
           );
         })}
       </div>
-      <div className="flex mt-20 justify-center mx-9">
+      {/* <div className="flex mt-20 justify-center mx-9">
         <button
           className="btn-style"
           disabled={clickedItem == -1 ? true : false}
@@ -34,7 +34,7 @@ export default function ChooseCategories({link,clickedItem,setClicked,setCategor
         >
           <img src="" alt="" /> ادامه فرایند
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
