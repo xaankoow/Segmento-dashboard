@@ -11,6 +11,7 @@ import { showToast } from '../../../Utils/toastifyPromise'
 import Skeleton from 'react-loading-skeleton'
 import { useNavigate } from 'react-router'
 import { ImageContainer } from '../../../../assets/img/IMG'
+import PopUp from '../../../Utils/PopUp/PopUp'
 
 export default function Index() {
 
@@ -21,6 +22,9 @@ export default function Index() {
 
   const [textEditor, setTextEditor] = useState("")
   const [fileEditor, setFileEditor] = useState([])
+
+  const [showPopup, setShowPopup] = useState("");
+
 
   const navigate=useNavigate()
 
@@ -73,7 +77,8 @@ export default function Index() {
           const backupChatDate = chatData;
           backupChatDate.messages.push(data.data)
           setChateData(backupChatDate)
-          showToast("پیام شما به ما رسید", "success")
+          setShowPopup(true);
+          // showToast("پیام شما به ما رسید", "success")
         } else {
           showToast("خطا در ارسال پیام", "error")
         }
@@ -122,7 +127,7 @@ export default function Index() {
                   <h5 className='text-title text-sm mt-2'>برای ارسال پاسخ به این تیکت، از فرم زیر استفاده کنید.</h5>
                 </header>
                 <div className=' px-7 mt-7'>
-                  <span className='text-gray text-sm'>لطفا به نکات زیر توجه کنید: </span>
+                  <span className='text-gray text-sm font-bold'>لطفا به نکات زیر توجه کنید: </span>
                   <ul className=' mt-2'>
                     <li>
                       <div className=' w-2 h-2 bg-shortText rounded-full inline-block'></div>
@@ -214,6 +219,21 @@ export default function Index() {
               </div>
             </div>
           </>}
+
+          {showPopup?(
+             <PopUp
+             // clickHandler={() => navigate(`ticket/${showPopUpuuid}`)}
+             clickHandler={() => setShowPopup(false)}
+             image={ImageContainer.tickPopUp}
+             type={"sucsess"}
+             buttonText={"باشه، فهمیدم!"}
+             text={"تیکت شما با موفقیت برای پشتیبان سگمنتو ارسال شد!"}
+             secoundText={
+               "کارشناسان ما در کوتاه ترین زمان ممکن پاسخ شما رو خواهند داد."
+             }
+             title={"موفقیت آمیز"}
+           />
+          ):null}
         {chatData.messages.length ? "" : ""}
       </div>
     </>
