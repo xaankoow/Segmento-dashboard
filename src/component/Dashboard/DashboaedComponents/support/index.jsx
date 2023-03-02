@@ -60,11 +60,9 @@ export default function Index() {
     }
     if (textEditor != "") {
 
-      // 
       let formdata = new FormData();
       formdata.append("message", textEditor);
-      // formdata.append("files[]", fileEditor[0]);
-      formdata.append("files[]", URL.createObjectURL(fileEditor[0]));
+      formdata.append("files[]", fileEditor[0]);
       
       formdata.append("uuid", ticketUuid);
       try {

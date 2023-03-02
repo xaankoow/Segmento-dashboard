@@ -34,6 +34,8 @@ export default function NewTicket({ categories }) {
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
     try {
+      debugger
+      let testFile=files
       let formdata = new FormData();
       formdata.append("subject",titleValue);
       formdata.append("part", FindTicketParCode(filterCategories));

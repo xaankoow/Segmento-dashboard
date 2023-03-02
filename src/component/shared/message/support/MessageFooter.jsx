@@ -72,8 +72,8 @@ export default function MessageFooter({ type, attachment , messageUuid , message
             </Fragment>
           ) : (
             <Fragment>
-              {/* <span className=' mr-3 text-s text-silver'>پیوست فایل (1)</span>
-              <span className=' mr-8 text-s text-silver'>پیوست فایل (2)</span> */}
+              <span className=' mr-3 text-s text-silver'>{attachment&&attachment?.length!=0?`پیوست فایل (${attachment?.length})`:""}</span>
+              {/* <span className=' mr-8 text-s text-silver'>پیوست فایل (2)</span> */}
             </Fragment>
           )}
         </div>
