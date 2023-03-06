@@ -231,6 +231,11 @@ input[type=checkbox]{
   filter: saturate(20);
 }
 
-.removingImageColorInThisTag:hover img{
+.removingImageColorInThisTagWithHover:hover img{
   filter: brightness(0) invert(1) !important;
+}
+
+.removingImageColorInThisTag img{
+  filter: brightness(0) invert(1) !important;
+
 }

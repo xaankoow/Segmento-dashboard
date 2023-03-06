@@ -11,6 +11,9 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
+import SelectingChartBtn from "../../../../component/Dashboard/RankTracking/card/SelectingChartBtn";
+import ComboBox from "../../../../component/shared/comboBox/ComboBox";
+import { RANK_TRACKING_FILTERS_DATE } from "../../../../variables/rankTrackingFilters";
 import mainChartSelectOptions from "../../configs/mainChartSelectOptions";
 import mainChartTypes from "../../configs/mainChartTypes";
 // import { sampleChartData } from "../../configs/sampleChartData";
@@ -29,7 +32,7 @@ const MainChart = ({
   setMainChart,
   mainChart,
 }) => {
-  const [chartType, setChartType] = useState(0);
+  const [chartType, setChartType] = useState("Bar");
 
   const lineChartData = useCallback(() => {
     console.log({ mainChart });
@@ -64,7 +67,7 @@ const MainChart = ({
   }, [mainChart]);
 
   return (
-    <div className="border rounded mt-8 pb-6 mb-6">
+    <div className="border border-border rounded mt-8 pb-6 mb-6">
       <div className="flex items-center justify-between bg-[#FCFCFB] p-2">
         <ReactSelect
           classNamePrefix="custom-select"
@@ -77,16 +80,26 @@ const MainChart = ({
           )}
           onChange={(e) => setMainChart(e.value)}
         />
+        {/* <ComboBox
+          placeholder={"فیلتر زمانی"}
+          radioTextItems={RANK_TRACKING_FILTERS_DATE}
+          radioClickedHandler={(e) => setMainChart(e.target.value)}
+        /> */}
         <div className="flex items-center">
-          <button
+          {/* <button
             onClick={() => setChartType(1)}
             className={`ml-3 w-10 h-10 flex items-center justify-center rounded-md ${
               chartType === 1 ? "bg-[#0B4B94]" : "bg-[#F2F5F7]"
             }`}
-          >
-            <ChartBar color={`${chartType === 1 ? "white" : ""}`} />
-          </button>
-          <button
+          > */}
+          {/* <ChartBar color={`${chartType === 1 ? "white" : ""}`} /> */}
+          <SelectingChartBtn
+            chartIco="Bar"
+            chartSelected={chartType}
+            getChartSelected={setChartType}
+          />
+          {/* </button> */}
+          {/* <button
             disabled={
               mainChart === mainChartTypes.distributionCurrentAndPrevWords
             }
@@ -94,21 +107,25 @@ const MainChart = ({
             className={`w-10 h-10 flex items-center justify-center rounded-md ${
               chartType === 0 ? "bg-[#0B4B94]" : "bg-[#F2F5F7]"
             }`}
-          >
-            <ChartLine color={`${chartType === 0 ? "white" : ""}`} />
-          </button>
+          > */}
+          {/* <ChartLine color={`${chartType === 0 ? "white" : ""}`} /> */}
+          <SelectingChartBtn
+            chartIco="Line"
+            chartSelected={chartType}
+            getChartSelected={setChartType}
+          />
+          {/* </button> */}
         </div>
       </div>
 
       <div className="mt-32">
-        {chartType === 0 ? (
+        {chartType === "Line" ? (
           <ResponsiveContainer width="100%" height={242}>
             <LineChart
               width={730}
               height={250}
               data={lineChartData()}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
               <XAxis dataKey="name" />
               <YAxis tickMargin={40} />
@@ -160,8 +177,7 @@ const MainChart = ({
           <ResponsiveContainer width="100%" height={242}>
             <BarChart
               data={lineChartData()}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
               <XAxis dataKey="name" />
               <YAxis tickMargin={40} />

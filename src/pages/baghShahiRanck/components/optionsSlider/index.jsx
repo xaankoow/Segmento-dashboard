@@ -21,6 +21,8 @@ import {
 } from "../../configs/sampleChartData";
 // import "swiper/css";
 import mainChartTypes from "../../configs/mainChartTypes";
+import { ImageContainer } from "../../../../assets/img/IMG";
+import { useState } from "react";
 
 const OptionsSlider = ({
   averageAllWordsMemo,
@@ -34,6 +36,8 @@ const OptionsSlider = ({
   setMainChart,
   mainChart,
 }) => {
+  const [showToolTip, setShowToolTip] = useState(true);
+
   return (
     <div className="mt-8 relative">
       <Swiper
@@ -43,26 +47,43 @@ const OptionsSlider = ({
         // onSwiper={(swiper) => console.log(swiper)}
         dir="rtl"
         navigation
-        modules={[Navigation]}
-      >
+        modules={[Navigation]}>
         <SwiperSlide>
           <div
             onClick={() => setMainChart(mainChartTypes.allWordsCount)}
             className={`customCard transition-shadow ${
               mainChart === mainChartTypes.allWordsCount ? "active" : ""
-            }`}
-          >
+            }`}>
             {/* <Tooltip anchorId="my-element" variant="dark" /> */}
-            <button
+            {/* <button
               id="my-element"
               data-tooltip-content="به ازای هر بروزرسانی ورک اسپیس، 
             میانگین رتبه کل کلمات کلیدی موجود 
             آن در صفحه اول گوگل محاسبه می‌شود."
-              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
-            >
+              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]">
               <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-            </button>
-            <div className="text-center mb-2">میانگین رتبه کل کلمات</div>
+            </button> */}
+            <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="به ازای هر بروزرسانی ورک اسپیس، 
+          میانگین رتبه کل کلمات کلیدی موجود 
+          آن در صفحه اول گوگل محاسبه می‌شود."
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+                // onMouseEnter={() => setShowToolTip(true)}
+                // onMouseLeave={() => {
+                //   setShowToolTip(false);
+                //   setTimeout(() => setShowToolTip(true), 0);
+                // }}
+              />
+            </div>
+            <div className="text-center mb-2 text-sm">
+              میانگین رتبه کل کلمات
+            </div>
             <ResponsiveContainer width="100%" height={51.54}>
               <AreaChart
                 data={averageAllWordsMemo}
@@ -71,8 +92,7 @@ const OptionsSlider = ({
                   left: 0,
                   top: 2,
                   bottom: 2,
-                }}
-              >
+                }}>
                 <defs>
                   <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                     <stop
@@ -118,13 +138,14 @@ const OptionsSlider = ({
               </AreaChart>
             </ResponsiveContainer>
             <div className="mt-2 text-neutral-500 flex justify-between text-center text-sm px-2">
-              <div>
+              <div className="flex items-center flex-col">
                 <div className="text-xs mb-1">میانگین رتبه قبل</div>
                 <div className="customCard__tag">
                   <span>
-                    {averageAllWordsMemo[
-                      averageAllWordsMemo.length - 2
-                    ].positionAverage}{" "}
+                    {
+                      averageAllWordsMemo[averageAllWordsMemo.length - 2]
+                        .positionAverage
+                    }{" "}
                     رتبه
                   </span>
                   <div className="flex flex-col justify-evenly h-full">
@@ -139,13 +160,14 @@ const OptionsSlider = ({
                   </div>
                 </div>
               </div>
-              <div>
-                <div className="text-xs mb-1">میانگین رتبه فعلی</div>
+              <div className="flex items-center flex-col">
+                <div className="text-s mb-1">میانگین رتبه فعلی</div>
                 <div className="customCard__tag">
                   <span>
-                    {averageAllWordsMemo[
-                      averageAllWordsMemo.length - 1
-                    ].positionAverage}{" "}
+                    {
+                      averageAllWordsMemo[averageAllWordsMemo.length - 1]
+                        .positionAverage
+                    }{" "}
                     رتبه
                   </span>
                   <div className="flex flex-col justify-evenly h-full">
@@ -161,20 +183,30 @@ const OptionsSlider = ({
                 </div>
               </div>
             </div>
-            <div
+            {/* <div
               className={`cursor-pointer absolute flex justify-center items-center bottom-0 right-0 left-0 ${
                 mainChart === mainChartTypes.allWordsCount
                   ? "bg--blue"
                   : "bg-neutral-300"
-              } hover:bg-blue-400 h-[17px]`}
-            >
+              } hover:bg-blue-400 h-[17px]`}>
               <i
                 className={`arrow down ${
                   mainChart === mainChartTypes.allWordsCount
                     ? "border--white"
                     : ""
-                }`}
-              ></i>
+                }`}></i>
+            </div> */}
+            <div
+              className={`w-full py-1 absolute bottom-0 cursor-pointer ${
+                mainChart === mainChartTypes.allWordsCount
+                  ? "bg-primary removingImageColorInThisTag"
+                  : "bg-sectionDisable"
+              }`}>
+              <img
+                src={ImageContainer.moveDownArrow}
+                alt="arrow bottom"
+                className="m-auto "
+              />
             </div>
           </div>
         </SwiperSlide>
@@ -187,25 +219,41 @@ const OptionsSlider = ({
               mainChart === mainChartTypes.distributionCurrentAndPrevWords
                 ? "active"
                 : ""
-            }`}
-          >
+            }`}>
             {/* <Tooltip anchorId="my-element2" variant="dark" /> */}
-            <button
+            {/* <button
               id="my-element2"
               data-tooltip-content="به ازای هر بروزرسانی ورک اسپیس، 
             میانگین رتبه کل کلمات کلیدی موجود 
             آن در صفحه اول گوگل محاسبه می‌شود."
-              className="absolute top-1 left-1 rounded-full  border  flex items-center justify-center text-[.56rem]"
-            >
+              className="absolute top-1 left-1 rounded-full  border  flex items-center justify-center text-[.56rem]">
               <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-            </button>
-            <div className="text-center mb-2">توزیع رتبه کلمات</div>
+            </button> */}
+            <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="به ازای هر بروزرسانی ورک اسپیس، 
+                میانگین رتبه کل کلمات کلیدی موجود 
+                آن در صفحه اول گوگل محاسبه می‌شود."
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}
+              />
+            </div>
+            <div className="text-center mb-2 text-sm">توزیع رتبه کلمات</div>
             <div className="px-1">
-              <div className="text-neutral-500 text-[8px] flex items-center border-b pb-1 px-3">
+              <div className="text-neutral-500 text-[8px] flex items-center border-border border-b pb-1 px-3">
                 <div className="w-[50px]">دوره قبل</div>
                 <div className="w-[50px]">دوره فعلی</div>
               </div>
-              <div className="text-sm text-center flex items-center justify-between border-b pb-1 py-2">
+              <div className="text-sm text-center flex items-center justify-between border-border border-b pb-1 py-2">
                 <div className="flex items-center">
                   <div className="w-[50px] ">
                     <span className="ml-2">
@@ -248,7 +296,7 @@ const OptionsSlider = ({
                   <div className="mr-1">#</div>
                 </div>
               </div>
-              <div className="text-sm text-center flex items-center justify-between border-b pb-1 py-2">
+              <div className="text-sm text-center flex items-center justify-between border-border border-b pb-1 py-2">
                 <div className="flex items-center">
                   <div className="w-[50px]">
                     <span className="ml-2">
@@ -291,7 +339,7 @@ const OptionsSlider = ({
                   <div className="mr-1">#</div>
                 </div>
               </div>
-              <div className="text-sm text-center flex items-center justify-between border-b pb-1 py-2">
+              <div className="text-sm text-center flex items-center justify-between pb-1 py-2">
                 <div className="flex items-center">
                   <div className="w-[50px] ">
                     <span className="ml-2">
@@ -335,20 +383,30 @@ const OptionsSlider = ({
                 </div>
               </div>
             </div>
-            <div
+            {/* <div
               className={`cursor-pointer absolute flex justify-center items-center bottom-0 right-0 left-0 ${
                 mainChart === mainChartTypes.distributionCurrentAndPrevWords
                   ? "bg--blue"
                   : "bg-neutral-300"
-              } hover:bg-blue-400 h-[17px]`}
-            >
+              } hover:bg-blue-400 h-[17px]`}>
               <i
                 className={`arrow down ${
                   mainChart === mainChartTypes.distributionCurrentAndPrevWords
                     ? "border--white"
                     : ""
-                }`}
-              ></i>{" "}
+                }`}></i>{" "}
+            </div> */}
+            <div
+              className={`w-full py-1 absolute bottom-0 cursor-pointer ${
+                mainChart === mainChartTypes.distributionCurrentAndPrevWords
+                  ? "bg-primary removingImageColorInThisTag"
+                  : "bg-sectionDisable"
+              }`}>
+              <img
+                src={ImageContainer.moveDownArrow}
+                alt="arrow bottom"
+                className="m-auto "
+              />
             </div>
           </div>
         </SwiperSlide>
@@ -358,18 +416,35 @@ const OptionsSlider = ({
             onClick={() => setMainChart(mainChartTypes.incAndDecWords)}
             className={`customCard transition-shadow ${
               mainChart === mainChartTypes.incAndDecWords ? "active" : ""
-            }`}
-          >
+            }`}>
             {/* <Tooltip anchorId="my-element4" variant="dark" /> */}
-            <button
+            {/* <button
               id="my-element4"
               data-tooltip-content="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
             آن را با دوره قبل مقایسه کرده و تعداد پیشرفت را نمایش می‌‌دهد"
-              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
-            >
+              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]">
               <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-            </button>
-            <div className="text-center mb-2">نمودار پیشرفت و افت کلمات</div>
+            </button> */}
+            <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
+                آن را با دوره قبل مقایسه کرده و تعداد پیشرفت را نمایش می‌‌دهد"
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}
+              />
+            </div>
+            <div className="text-center mb-2 text-sm">
+              نمودار پیشرفت و افت کلمات
+            </div>
             <div className="w-11/12 mx-auto mb-2 pb-2 border-b">
               <MultiProgress
                 className="h--25"
@@ -417,8 +492,7 @@ const OptionsSlider = ({
                       style={{
                         fontWeight: element.isBold ? 900 : 300,
                       }}
-                      className="progressBar__single"
-                    >
+                      className="progressBar__single">
                       {children}
                       <div className="text-xs">
                         <span className="ml-3">{element?.actual}</span>
@@ -429,8 +503,7 @@ const OptionsSlider = ({
                               : element.color === sampleChartColors.success
                               ? "triangle-up"
                               : "dot"
-                          }`}
-                        ></i>
+                          }`}></i>
                       </div>
                     </div>
                   );
@@ -446,8 +519,7 @@ const OptionsSlider = ({
                     left: 0,
                     top: 0,
                     bottom: 0,
-                  }}
-                >
+                  }}>
                   <ReferenceLine y={0} stroke="#D9D9D9" />
                   <Bar
                     isAnimationActive={false}
@@ -460,15 +532,13 @@ const OptionsSlider = ({
               <ResponsiveContainer
                 width="100%"
                 height={30}
-                className="reversed"
-              >
+                className="reversed">
                 <BarChart
                   data={decreaseFromPrevWordsCountMemo.arr}
                   margin={{
                     right: 0,
                     left: 0,
-                  }}
-                >
+                  }}>
                   <Bar
                     isAnimationActive={false}
                     dataKey="uv"
@@ -479,20 +549,30 @@ const OptionsSlider = ({
               </ResponsiveContainer>
             </div>
             <div className="mt-2 text-neutral-500 flex justify-between text-center text-sm px-2"></div>
-            <div
+            {/* <div
               className={`cursor-pointer absolute flex justify-center items-center bottom-0 right-0 left-0 ${
                 mainChart === mainChartTypes.incAndDecWords
                   ? "bg--blue"
                   : "bg-neutral-300"
-              } hover:bg-blue-400 h-[17px]`}
-            >
+              } hover:bg-blue-400 h-[17px]`}>
               <i
                 className={`arrow down ${
                   mainChart === mainChartTypes.incAndDecWords
                     ? "border--white"
                     : ""
-                }`}
-              ></i>{" "}
+                }`}></i>{" "}
+            </div> */}
+            <div
+              className={`w-full py-1 absolute bottom-0 cursor-pointer ${
+                mainChart === mainChartTypes.incAndDecWords
+                  ? "bg-primary removingImageColorInThisTag"
+                  : "bg-sectionDisable"
+              }`}>
+              <img
+                src={ImageContainer.moveDownArrow}
+                alt="arrow bottom"
+                className="m-auto "
+              />
             </div>
           </div>
         </SwiperSlide>
@@ -505,18 +585,33 @@ const OptionsSlider = ({
               mainChart === mainChartTypes.increaseFromPrevWordsCount
                 ? "active"
                 : ""
-            }`}
-          >
+            }`}>
             {/* <Tooltip anchorId="my-element412" variant="dark" /> */}
-            <button
+            {/* <button
               id="my-element412"
               data-tooltip-content="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
             آن را با دوره قبل مقایسه کرده و تعداد پیشرفت را نمایش می‌‌دهد"
-              className="absolute top-1 left-1 rounded-full  flex items-center justify-center text-[.56rem]"
-            >
+              className="absolute top-1 left-1 rounded-full  flex items-center justify-center text-[.56rem]">
               <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-            </button>
-            <div className="text-center mb-2">کلمات رشد کرده</div>
+            </button> */}
+            <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
+                آن را با دوره قبل مقایسه کرده و تعداد پیشرفت را نمایش می‌‌دهد"
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}
+              />
+            </div>
+            <div className="text-center mb-2 text-sm">کلمات رشد کرده</div>
             <ResponsiveContainer width="100%" height={51.54}>
               <AreaChart
                 data={increaseFromPrevWordsCountMemo.arr}
@@ -525,8 +620,7 @@ const OptionsSlider = ({
                   left: 0,
                   top: 2,
                   bottom: 2,
-                }}
-              >
+                }}>
                 <defs>
                   <linearGradient id="colorUv28" x1="0" y1="0" x2="0" y2="1">
                     <stop
@@ -566,20 +660,30 @@ const OptionsSlider = ({
                 </div>
               </div>
             </div>
-            <div
+            {/* <div
               className={`cursor-pointer absolute flex justify-center items-center bottom-0 right-0 left-0 ${
                 mainChart === mainChartTypes.increaseFromPrevWordsCount
                   ? "bg--blue"
                   : "bg-neutral-300"
-              } hover:bg-blue-400 h-[17px]`}
-            >
+              } hover:bg-blue-400 h-[17px]`}>
               <i
                 className={`arrow down ${
                   mainChart === mainChartTypes.increaseFromPrevWordsCount
                     ? "border--white"
                     : ""
-                }`}
-              ></i>
+                }`}></i>
+            </div> */}
+            <div
+              className={`w-full py-1 absolute bottom-0 cursor-pointer ${
+                mainChart === mainChartTypes.increaseFromPrevWordsCount
+                  ? "bg-primary removingImageColorInThisTag"
+                  : "bg-sectionDisable"
+              }`}>
+              <img
+                src={ImageContainer.moveDownArrow}
+                alt="arrow bottom"
+                className="m-auto "
+              />
             </div>
           </div>
         </SwiperSlide>
@@ -592,18 +696,33 @@ const OptionsSlider = ({
               mainChart === mainChartTypes.decreaseFromPrevWordsCount
                 ? "active"
                 : ""
-            }`}
-          >
+            }`}>
             {/* <Tooltip anchorId="my-element5" variant="dark" /> */}
-            <button
+            {/* <button
               id="my-element5"
               data-tooltip-content="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
             آن را با دوره قبل مقایسه کرده و تعداد افت را نمایش می‌‌دهد"
-              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
-            >
+              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]">
               <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-            </button>
-            <div className="text-center mb-2">کلمات افت کرده</div>
+            </button> */}
+            <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="این نمودار به ازای هر دوره جایگاه کلمات کلیدی 
+                آن را با دوره قبل مقایسه کرده و تعداد افت را نمایش می‌‌دهد"
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}
+              />
+            </div>
+            <div className="text-center mb-2 text-sm">کلمات افت کرده</div>
             <ResponsiveContainer width="100%" height={51.54}>
               <AreaChart
                 data={decreaseFromPrevWordsCountMemo.arr}
@@ -612,8 +731,7 @@ const OptionsSlider = ({
                   left: 0,
                   top: 2,
                   bottom: 2,
-                }}
-              >
+                }}>
                 <defs>
                   <linearGradient id="colorUv178" x1="0" y1="0" x2="0" y2="1">
                     <stop
@@ -645,8 +763,7 @@ const OptionsSlider = ({
                 <div className="text-xs mb-1">کل کلمات</div>
                 <div
                   className="customCard__tag"
-                  style={{ justifyContent: "center" }}
-                >
+                  style={{ justifyContent: "center" }}>
                   <span>{allWordsCountMemo}</span>
                   <div className="flex flex-col justify-evenly h-full"></div>
                 </div>
@@ -655,27 +772,36 @@ const OptionsSlider = ({
                 <div className="text-xs mb-1">تعداد افت کلمات</div>
                 <div
                   className="customCard__tag"
-                  style={{ justifyContent: "center" }}
-                >
+                  style={{ justifyContent: "center" }}>
                   <span>{decreaseFromPrevWordsCountMemo.total}</span>
                   <div className="flex flex-col justify-evenly h-full"></div>
                 </div>
               </div>
             </div>
-            <div
+            {/* <div
               className={`cursor-pointer absolute flex justify-center items-center bottom-0 right-0 left-0 ${
                 mainChart === mainChartTypes.decreaseFromPrevWordsCount
                   ? "bg--blue"
                   : "bg-neutral-300"
-              } hover:bg-blue-400 h-[17px]`}
-            >
+              } hover:bg-blue-400 h-[17px]`}>
               <i
                 className={`arrow down ${
                   mainChart === mainChartTypes.decreaseFromPrevWordsCount
                     ? "border--white"
                     : ""
-                }`}
-              ></i>
+                }`}></i>
+            </div> */}
+            <div
+              className={`w-full py-1 absolute bottom-0 cursor-pointer ${
+                mainChart === mainChartTypes.decreaseFromPrevWordsCount
+                  ? "bg-primary removingImageColorInThisTag"
+                  : "bg-sectionDisable"
+              }`}>
+              <img
+                src={ImageContainer.moveDownArrow}
+                alt="arrow bottom"
+                className="m-auto "
+              />
             </div>
           </div>
         </SwiperSlide>
@@ -688,19 +814,35 @@ const OptionsSlider = ({
               mainChart === mainChartTypes.increaseFromPrevWordsAvg
                 ? "active"
                 : ""
-            }`}
-          >
+            }`}>
             {/* <Tooltip anchorId="my-element6" variant="dark" /> */}
-            <button
+            {/* <button
               id="my-element6"
               data-tooltip-content="به ازای هر بروزرسانی ورک اسپیس، 
             میانگین میزان پیشرفت کلمات کلیدی موجود 
             آن در صفحه اول گوگل محاسبه می‌شود."
-              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
-            >
+              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]">
               <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-            </button>
-            <div className="text-center mb-2">میانگین رشد کلمات</div>
+            </button> */}
+            <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="به ازای هر بروزرسانی ورک اسپیس، 
+                میانگین میزان پیشرفت کلمات کلیدی موجود 
+                آن در صفحه اول گوگل محاسبه می‌شود."
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}
+              />
+            </div>
+            <div className="text-center mb-2 text-sm">میانگین رشد کلمات</div>
             <ResponsiveContainer width="100%" height={51.54}>
               <AreaChart
                 data={increaseFromPrevWordsAvgMemo.arr}
@@ -709,8 +851,7 @@ const OptionsSlider = ({
                   left: 0,
                   bottom: 2,
                   top: 2,
-                }}
-              >
+                }}>
                 <defs>
                   <linearGradient id="colorUv21" x1="0" y1="0" x2="0" y2="1">
                     <stop
@@ -741,9 +882,7 @@ const OptionsSlider = ({
               <div>
                 <div className="text-xs mb-1">میانگین رشد رتبه</div>
                 <div className="customCard__tag">
-                  <span>
-                    {increaseFromPrevWordsAvgMemo.totalAvg} رتبه
-                  </span>
+                  <span>{increaseFromPrevWordsAvgMemo.totalAvg} رتبه</span>
                   <div className="flex flex-col justify-evenly h-full">
                     {/* <i className="triangle-up borderBT--red"></i> */}
                     <i className="triangle-up"></i>
@@ -757,20 +896,30 @@ const OptionsSlider = ({
                 </div>
               </div>
             </div>
-            <div
+            {/* <div
               className={`cursor-pointer absolute flex justify-center items-center bottom-0 right-0 left-0 ${
                 mainChart === mainChartTypes.increaseFromPrevWordsAvg
                   ? "bg--blue"
                   : "bg-neutral-300"
-              } hover:bg-blue-400 h-[17px]`}
-            >
+              } hover:bg-blue-400 h-[17px]`}>
               <i
                 className={`arrow down ${
                   mainChart === mainChartTypes.increaseFromPrevWordsAvg
                     ? "border--white"
                     : ""
-                }`}
-              ></i>
+                }`}></i>
+            </div> */}
+            <div
+              className={`w-full py-1 absolute bottom-0 cursor-pointer ${
+                mainChart === mainChartTypes.increaseFromPrevWordsAvg
+                  ? "bg-primary removingImageColorInThisTag"
+                  : "bg-sectionDisable"
+              }`}>
+              <img
+                src={ImageContainer.moveDownArrow}
+                alt="arrow bottom"
+                className="m-auto "
+              />
             </div>
           </div>
         </SwiperSlide>
@@ -783,19 +932,35 @@ const OptionsSlider = ({
               mainChart === mainChartTypes.decreaseFromPrevWordsAvg
                 ? "active"
                 : ""
-            }`}
-          >
+            }`}>
             {/* <Tooltip anchorId="my-element7" variant="dark" /> */}
-            <button
+            {/* <button
               id="my-element7"
               data-tooltip-content="به ازای هر بروزرسانی ورک اسپیس، 
             میانگین میزان افت کلمات کلیدی موجود 
             آن در صفحه اول گوگل محاسبه می‌شود."
-              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
-            >
+              className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]">
               <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-            </button>
-            <div className="text-center mb-2">میانگین افت کلمات</div>
+            </button> */}
+            <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="به ازای هر بروزرسانی ورک اسپیس، 
+                میانگین میزان افت کلمات کلیدی موجود 
+                آن در صفحه اول گوگل محاسبه می‌شود."
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+                onMouseEnter={() => setShowToolTip(true)}
+                onMouseLeave={() => {
+                  setShowToolTip(false);
+                  setTimeout(() => setShowToolTip(true), 0);
+                }}
+              />
+            </div>
+            <div className="text-center mb-2 text-sm">میانگین افت کلمات</div>
             <ResponsiveContainer width="100%" height={51.54}>
               <AreaChart
                 data={decreaseFromPrevWordsAvgMemo.arr}
@@ -804,8 +969,7 @@ const OptionsSlider = ({
                   left: 0,
                   top: 2,
                   bottom: 2,
-                }}
-              >
+                }}>
                 <defs>
                   <linearGradient id="colorUv54" x1="0" y1="0" x2="0" y2="1">
                     <stop
@@ -836,9 +1000,7 @@ const OptionsSlider = ({
               <div>
                 <div className="text-xs mb-1">میانگین افت رتبه</div>
                 <div className="customCard__tag">
-                  <span>
-                    {decreaseFromPrevWordsAvgMemo.totalAvg} رتبه
-                  </span>
+                  <span>{decreaseFromPrevWordsAvgMemo.totalAvg} رتبه</span>
                   <div className="flex flex-col justify-evenly h-full">
                     <i className="triangle-down borderBT--red"></i>
                   </div>
@@ -851,20 +1013,30 @@ const OptionsSlider = ({
                 </div>
               </div>
             </div>
-            <div
+            {/* <div
               className={`cursor-pointer absolute flex justify-center items-center bottom-0 right-0 left-0 ${
                 mainChart === mainChartTypes.decreaseFromPrevWordsAvg
                   ? "bg--blue"
                   : "bg-neutral-300"
-              } hover:bg-blue-400 h-[17px]`}
-            >
+              } hover:bg-blue-400 h-[17px]`}>
               <i
                 className={`arrow down ${
                   mainChart === mainChartTypes.decreaseFromPrevWordsAvg
                     ? "border--white"
                     : ""
-                }`}
-              ></i>
+                }`}></i>
+            </div> */}
+            <div
+              className={`w-full py-1 absolute bottom-0 cursor-pointer ${
+                mainChart === mainChartTypes.decreaseFromPrevWordsAvg
+                  ? "bg-primary removingImageColorInThisTag"
+                  : "bg-sectionDisable"
+              }`}>
+              <img
+                src={ImageContainer.moveDownArrow}
+                alt="arrow bottom"
+                className="m-auto "
+              />
             </div>
           </div>
         </SwiperSlide>
