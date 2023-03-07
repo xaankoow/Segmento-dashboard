@@ -112,7 +112,7 @@ export default function App() {
           </Routes>
         )}
         <LoadingPage />
-        <ToastContainer rtl />
+        {/* <ToastContainer rtl /> */}
         {forceUpdate ? "" : ""}
       </div>
     </Fragment>
