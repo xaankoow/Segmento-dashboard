@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import OptionsSlider from "../../components/optionsSlider";
 
-import FilterImage from "../../assets/images/filter.svg";
-import CompareImage from "../../assets/images/compare.svg";
+// import FilterImage from "../../assets/images/filter.svg";
+// import CompareImage from "../../assets/images/compare.svg";
 import MainChart from "../../components/mainChart";
 import FooterCharts from "../../components/footerCharts";
 import ReactSelect from "react-select";
@@ -18,10 +18,17 @@ import {
 } from "../../chartDataCalulator";
 
 import mainChartTypes from "../../configs/mainChartTypes";
+import PageTitle from "../../../../component/Dashboard/DashboaedComponents/pageTitle/pageTitle";
+import TitleLastUpdateInfo from "../../../../component/Dashboard/RankTracking/TitleLastUpdateInfo";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { initWorkSpacePeriodData } from "../../../../component/Redux/Action/rankTraking";
  
 export const Home = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [mainChart, setMainChart] = useState(mainChartTypes.allWordsCount);
+
+  const dispatch=useDispatch();
 
   const averageAllWordsMemo = useMemo(
     () => averageAllWords(APISample.data),
@@ -52,11 +59,24 @@ export const Home = () => {
     [APISample]
   );
 
+
+  const axiosController = new AbortController();
+  useEffect(() => {
+    dispatch(initWorkSpacePeriodData({ axiosController }));
+    return () => {
+      axiosController.abort();
+    };
+  }, []);
+
   return (
     <div className="container pt-4">
       <header className="flex justify-between">
         <div>
-          <h1 className="text-xl">ابزار رتبه سنج</h1>
+          {/* <h1 className="text-xl">ابزار رتبه سنج</h1> */}
+
+         <PageTitle title={"ابزار رتبه سنج"} />
+          
+
           <nav className="flex items-center mt-5 navBar">
             <button
               onClick={() => setCurrentTab(0)}
@@ -86,7 +106,8 @@ export const Home = () => {
             </button>
           </nav>
         </div>
-        <div className="text-neutral-500 text-center">
+        <TitleLastUpdateInfo />
+        {/* <div className="text-neutral-500 text-center">
           <div>
             <span>آخرین بروزرسانی: </span>
             <span>
@@ -101,11 +122,13 @@ export const Home = () => {
             <span>دوره بروزرسانی: </span>
             <span className="text-sm">هر 48 ساعت</span>
           </div>
-        </div>
+        </div> */}
       </header>
 
       {currentTab === 0 && (
         <>
+
+        <div className="px-7">
           <OptionsSlider
             averageAllWordsMemo={averageAllWordsMemo}
             distributionCurrentAndPrevWordsMemo={
@@ -121,7 +144,7 @@ export const Home = () => {
           />
 
           {/* filters */}
-          <div className="border-t mt-3 pt-5">
+          {/* <div className="border-t mt-3 pt-5">
             <div className="flex items-center justify-between pl-8">
               <div className="flex items-center min-w-[137px]">
                 <div className="bg-neutral-100 rounded-md w-10 h-10 flex items-center justify-center ml-3">
@@ -210,7 +233,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           <MainChart
             averageAllWordsMemo={averageAllWordsMemo}
@@ -227,6 +250,8 @@ export const Home = () => {
           />
 
           <FooterCharts />
+        </div>
+
         </>
       )}
     </div>

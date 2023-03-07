@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { helpText } from "../../../../variables/support";
+import { helpText, imgCategories } from "../../../../variables/support";
 import AuthInput from "../../../Auth/authInput/AuthInput";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import { ticketCategories } from "../../../../variables/support";
@@ -34,6 +34,8 @@ export default function NewTicket({ categories }) {
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
     try {
+      debugger
+      let testFile=files
       let formdata = new FormData();
       formdata.append("subject",titleValue);
       formdata.append("part", FindTicketParCode(filterCategories));
@@ -90,18 +92,35 @@ export default function NewTicket({ categories }) {
             برای ارسال تیکت به کارشناسان امور پشتیبانی سگمنتو، فرم زیر را کامل
             کنید.
           </span>
-          <div className="flex gap-3 flex-col justify-start mt-7">
-            <span className="text-silver font-bold">
+          <div className="flex gap-3 flex-col justify-start">
+            {/* <span className="text-silver font-bold">
               لطفا به نکات زیر توجه کنید:{" "}
-            </span>
-            {helpText.map((item) => {
+            </span> */}
+            {/* {helpText.map((item) => {
               return (
                 <div className="flex gap-3 items-center">
                   <span className="w-2 h-2 rounded-full bg-primary "></span>
                   <span className="text-silver">{item}</span>
                 </div>
               );
-            })}
+            })} */}
+            <div className=' px-7 mt-7'>
+                  <span className='text-gray text-sm font-bold'>لطفا به نکات زیر توجه کنید: </span>
+                  <ul className=' mt-2'>
+                    <li>
+                      <div className=' w-2 h-2 bg-shortText rounded-full inline-block'></div>
+                      <span className='text-gray text-sm mr-3'>حداکثر تا ۱۲ ساعت پس از ارسال تیکت،پاسخ آن برای شما ارسال خواهد شد.</span>
+                    </li>
+                    <li>
+                      <div className=' w-2 h-2 bg-shortText rounded-full inline-block'></div>
+                      <span className='text-gray text-sm mr-3'>برخی تیکت‌هانیازمند بررسی تخصصی هستند و ممکن است این پروسه زمان‌بر باشد.</span>
+                    </li>
+                    <li>
+                      <div className=' w-2 h-2 bg-shortText rounded-full inline-block'></div>
+                      <span className='text-gray text-sm mr-3'>پاسخ به هر تیکت در بخش تیکت‌ها در داشبورد قرار خواهد گرفت.</span>
+                    </li>
+                  </ul>
+                </div>
           </div>
         </div>
         <div className="w-full flex  flex-col justify-center mt-7">

@@ -311,14 +311,7 @@ export default function MiniChartCardView({
 
             </div>
           </div>
-          {/* <div className="">
-            <div className=" "></div>
-            <div className="">نمونه نوشته</div>
-          </div>
-          <div className="">
-            <div className=" "></div>
-            <div className="">نمونه نوشته</div>
-          </div> */}
+
         </div>
       )}
 

@@ -1,4 +1,4 @@
-import FilterImage from "../../assets/images/filter.svg";
+// import FilterImage from "../../assets/images/filter.svg";
 import React, { useMemo, useState } from "react";
 import ReactSelect from "react-select";
 // import { Tooltip } from "react-tooltip";
@@ -25,11 +25,15 @@ import {
   sortPositionWord,
 } from "../../chartDataCalulator";
 import EmptyChart from "../SHARED/emptyChart";
-import HelpImg from "../../assets/images/help.svg";
+// import HelpImg from "../../assets/images/help.svg";
 import EmptyPieChart from "../SHARED/emptyPieChart";
 import EmptyPieChart2 from "../SHARED/emptyPieChart2";
+import { ImageContainer } from "../../../../assets/img/IMG";
 
 const FooterCharts = () => {
+
+  // const [showToolTip, setShowToolTip] = useState(true);
+
   const optionsMemoPlus = useMemo(
     () =>
       Object.keys(APISample.data)
@@ -73,13 +77,13 @@ const FooterCharts = () => {
 
   return (
     <div>
-      <div className="border-b pb-3 mb-3">
+      <div className="border-b border-border pb-3 mb-3">
         <h2>آمار و گزارش‌های نسبی</h2>
       </div>
       <div className="flex items-center">
         <div className="flex items-center">
           <div className="bg-neutral-100 rounded-md w-10 h-10 flex items-center justify-center ml-3">
-            <img src={FilterImage} width="15" alt="filter" />
+            {/* <img src={FilterImage} width="15" alt="filter" /> */}
           </div>
           <div>نمایش آمار: </div>
         </div>
@@ -98,14 +102,26 @@ const FooterCharts = () => {
       <div className="my-6 flex items-center justify-between">
         <div className="customCard--long relative">
           {/* <Tooltip anchorId="footer-element6" variant="dark" /> */}
-          <button
+          {/* <button
             id="footer-element6"
             data-tooltip-content="بیانگر میزان فراوانی هر بازه نسبت به کل فراوانی 
             کلمات کلیدی صفحه اول گوگل می‌باشد"
             className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
           >
             <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-          </button>
+          </button> */}
+                      <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="بیانگر میزان فراوانی هر بازه نسبت به کل فراوانی 
+                کلمات کلیدی صفحه اول گوگل می‌باشد"
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+              />
+            </div>
           <div className="text-center mb-2">نسبت کل کلمات</div>
           {!sortPositionWord(APISample.data[period]) ? (
             <EmptyPieChart title="کل کلمات" />
@@ -155,7 +171,7 @@ const FooterCharts = () => {
                           x="29"
                           y="93.99999999999999"
                           fill="#002145"
-                          className="recharts-text recharts-label"
+                          className="recharts-text recharts-label  text-xs"
                           textAnchor="middle"
                         >
                           <tspan x="50%" dy="-5%">
@@ -165,7 +181,7 @@ const FooterCharts = () => {
                             x="50%"
                             dy="12%"
                             fontWeight="bold"
-                            className="text-2xl"
+                            className="text-xl"
                           >
                             {APISample.data[period].length}
                           </tspan>
@@ -184,14 +200,26 @@ const FooterCharts = () => {
         </div>
         <div className="customCard--long relative">
           {/* <Tooltip anchorId="footer-element2" variant="dark" /> */}
-          <button
+          {/* <button
             id="footer-element2"
             data-tooltip-content="بیانگر میزان فراوانی رشد جایگاه کلمات کلیدی هر بازه نسبت 
             به کل فراوانی رشد کلمات صفحه اول گوگل می‌باشد"
             className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
           >
             <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-          </button>
+          </button> */}
+                      <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="بیانگر میزان فراوانی رشد جایگاه کلمات کلیدی هر بازه نسبت 
+                به کل فراوانی رشد کلمات صفحه اول گوگل می‌باشد"
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+              />
+            </div>
           <div className="text-center mb-2">نسبت رشد به کل</div>
 
           {!distributionCurrentAndPrevWordsIncrease(
@@ -249,7 +277,7 @@ const FooterCharts = () => {
                           x="29"
                           y="93.99999999999999"
                           fill="#002145"
-                          className="recharts-text recharts-label"
+                          className="recharts-text recharts-label  text-xs"
                           textAnchor="middle"
                         >
                           <tspan x="50%" dy="-5%">
@@ -259,7 +287,7 @@ const FooterCharts = () => {
                             x="50%"
                             dy="12%"
                             fontWeight="bold"
-                            className="text-2xl"
+                            className="text-xl"
                           >
                             {
                               distributionCurrentAndPrevWordsIncrease(
@@ -283,14 +311,26 @@ const FooterCharts = () => {
         </div>
         <div className="customCard--long relative">
           {/* <Tooltip anchorId="footer-element3" variant="dark" /> */}
-          <button
+          {/* <button
             id="footer-element3"
             data-tooltip-content="بیانگر میزان فراوانی افت جایگاه کلمات کلیدی هر بازه نسبت 
             به کل فراوانی افت کلمات صفحه اول گوگل می‌باشد"
             className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
           >
             <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-          </button>
+          </button> */}
+                      <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="بیانگر میزان فراوانی افت جایگاه کلمات کلیدی هر بازه نسبت 
+                به کل فراوانی افت کلمات صفحه اول گوگل می‌باشد"
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+              />
+            </div>
           <div className="text-center mb-2">نسبت افت به کل</div>
           {!distributionCurrentAndPrevWordsDecrease(
             APISample.data,
@@ -347,7 +387,7 @@ const FooterCharts = () => {
                           x="29"
                           y="93.99999999999999"
                           fill="#002145"
-                          className="recharts-text recharts-label"
+                          className="recharts-text recharts-label  text-xs"
                           textAnchor="middle"
                         >
                           <tspan x="50%" dy="-5%">
@@ -357,7 +397,7 @@ const FooterCharts = () => {
                             x="50%"
                             dy="12%"
                             fontWeight="bold"
-                            className="text-2xl"
+                            className="text-xl"
                           >
                             {
                               distributionCurrentAndPrevWordsDecrease(
@@ -381,13 +421,24 @@ const FooterCharts = () => {
         </div>
         <div className="customCard--long relative">
           {/* <Tooltip anchorId="footer-element4" variant="dark" /> */}
-          <button
+          {/* <button
             id="footer-element4"
             data-tooltip-content="بیانگر میزان فراوانی رشد و افت جایگاه کل کلمات کلیدی به کل تغییرات می‌باشد."
             className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
           >
             <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-          </button>
+          </button> */}
+                      <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="بیانگر میزان فراوانی رشد و افت جایگاه کل کلمات کلیدی به کل تغییرات می‌باشد."
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+              />
+            </div>
           <div className="text-center mb-2">نمودار تعداد رشد و افت</div>
           {!distributionCurrentAndPrevWordsIncrease(
             APISample.data,
@@ -458,7 +509,7 @@ const FooterCharts = () => {
                           x="29"
                           y="93.99999999999999"
                           fill="#002145"
-                          className="recharts-text recharts-label"
+                          className="recharts-text recharts-label  text-xs"
                           textAnchor="middle"
                         >
                           <tspan x="50%" dy="-5%">
@@ -468,7 +519,7 @@ const FooterCharts = () => {
                             x="50%"
                             dy="12%"
                             fontWeight="bold"
-                            className="text-2xl"
+                            className="text-xl"
                           >
                             {distributionCurrentAndPrevWordsIncrease(
                               APISample.data,
@@ -494,13 +545,24 @@ const FooterCharts = () => {
         </div>
         <div className="customCard--long relative">
           {/* <Tooltip anchorId="footer-element5" variant="dark" /> */}
-          <button
+          {/* <button
             id="footer-element5"
             data-tooltip-content="مقایسه گر میانگین رشد و افت جایگاه کل کلمات کلیدی می‌باشد."
             className="absolute top-1 left-1 rounded-full flex items-center justify-center text-[.56rem]"
           >
             <img src={HelpImg} className="w-4 h-4" width="100%" alt="" />
-          </button>
+          </button> */}
+                      <div className=" absolute left-1 top-1">
+              <img
+                src={ImageContainer.infoUtils}
+                alt="section info"
+                className=" w-3 h-3"
+                data-tip="مقایسه گر میانگین رشد و افت جایگاه کل کلمات کلیدی می‌باشد."
+                data-type="light"
+                data-place="top"
+                data-class="sizeClass"
+              />
+            </div>
           <div className="text-center mb-2">نمودار میانگین رشد و افت</div>
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
@@ -573,7 +635,7 @@ const FooterCharts = () => {
                         x="29"
                         y="93.99999999999999"
                         fill="#002145"
-                        className="recharts-text recharts-label"
+                        className="recharts-text recharts-label  text-xs"
                         textAnchor="middle"
                       >
                         <tspan x="50%" dy="-5%">
@@ -583,7 +645,7 @@ const FooterCharts = () => {
                           x="50%"
                           dy="12%"
                           fontWeight="bold"
-                          className="text-2xl"
+                          className="text-xl"
                         >
                           {
                             sortPositionIncreaseAvgWord(

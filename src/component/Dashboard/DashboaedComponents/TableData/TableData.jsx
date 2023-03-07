@@ -45,7 +45,7 @@ export default function Table({
 
     for (let i = 0; i < array.length; i++) {
       let currentWord = array[i].slice(searchBox).trim();
-      let firstChar = currentWord[0].toLowerCase();
+      let firstChar = currentWord[0]?.toLowerCase()||"";
       let innerArr = [];
       if (resultObj[firstChar] === undefined) {
         innerArr.push(currentWord);

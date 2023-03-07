@@ -16,7 +16,7 @@ import { CheckFormat } from "../../Utils/Auth/CheckFormtValue";
 import { handleNextInput } from "../../Utils/focusNextInput";
 import { InputError } from "../../Utils/showInputError";
 import { showInputErrorToast, showToast } from "../../Utils/toastifyPromise";
-import { removeLoadingItem } from "./loading";
+import { addLoadingItem, removeLoadingItem } from "./loading";
 import { allLimitDataFeature, ChackBusinessCustomer } from "./workSpace";
 
 // get all user data in api
@@ -31,14 +31,15 @@ export const coreUser = () => {
     if (token !== "undefined" && token != null && token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
-    
+
     try {
       if (!loadingState.ImportantProcessingDelay.includes("coreUserData")) {
         //handle show loadin
         {
-          loadingState.ImportantProcessingDelay = loadingState.ImportantProcessingDelay.filter(
-            (item) => item != "coreUserData"
-          );
+          loadingState.ImportantProcessingDelay =
+            loadingState.ImportantProcessingDelay.filter(
+              (item) => item != "coreUserData"
+            );
           loadingState.ImportantProcessingDelay.push("coreUserData");
           loadingState.canRequest = false;
           await dispatch({
@@ -47,20 +48,23 @@ export const coreUser = () => {
           });
         }
 
-        
-        
         const { data, status } = await coreUserData();
         if (status == 200 && data.status == true) {
           if (data.data.user != undefined) {
             state.userData = data.data;
-            state.checkVerifyPhoneNumber = data.data.user.mobile == null ? false : true;
+            state.checkVerifyPhoneNumber =
+              data.data.user.mobile == null ? false : true;
             workSpaceState.businessCustomer = {
-              current: data.data.package.type_text != "پکیج پایه" ? true : false,
-              last: data.data.user_has_success_purchase
+              current:
+                data.data.package.type_text != "پکیج پایه" ? true : false,
+              last: data.data.user_has_success_purchase,
               // last: findSuccessReport != -1 ? true : false
-            }
+            };
             // dispatch(allLimitDataFeature())
-            await dispatch({ type: "CHECK_BUSSINESS", payload: workSpaceState });
+            await dispatch({
+              type: "CHECK_BUSSINESS",
+              payload: workSpaceState,
+            });
             // await dispatch(ChackBusinessCustomer())
           } else {
             // localStorage.removeItem("token");
@@ -69,23 +73,25 @@ export const coreUser = () => {
         //handle hide loading
         {
           const loadingState1 = { ...getState().loadingState };
-          var removeProcessingItem = loadingState1.ImportantProcessingDelay.filter(
-            (item) => item != "coreUserData"
+          var removeProcessingItem =
+            loadingState1.ImportantProcessingDelay.filter(
+              (item) => item != "coreUserData"
             );
-            loadingState1.ImportantProcessingDelay = removeProcessingItem;
-            loadingState1.canRequest =
+          loadingState1.ImportantProcessingDelay = removeProcessingItem;
+          loadingState1.canRequest =
             removeProcessingItem.length > 0 ? false : true;
-            await dispatch({
-              type: "SET_PROCESSING_DELAY",
-              payload: loadingState1,
-            });
-          }
+          await dispatch({
+            type: "SET_PROCESSING_DELAY",
+            payload: loadingState1,
+          });
         }
-      } catch (error) {
-        error?.response?.data?.errors.forEach((element) => {
-          toastMessage += element + " / ";
-        });
-        toastMessage != "" && toast.warn(toastMessage, {
+      }
+    } catch (error) {
+      error?.response?.data?.errors.forEach((element) => {
+        toastMessage += element + " / ";
+      });
+      toastMessage != "" &&
+        toast.warn(toastMessage, {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -95,35 +101,36 @@ export const coreUser = () => {
           progress: undefined,
         });
 
-        //handle hide loading
-        {
-          const loadingState2 = { ...getState().loadingState };
-          var removeProcessingItem = loadingState2.ImportantProcessingDelay.filter(
+      //handle hide loading
+      {
+        const loadingState2 = { ...getState().loadingState };
+        var removeProcessingItem =
+          loadingState2.ImportantProcessingDelay.filter(
             (item) => item != "coreUserData"
-            );
-            loadingState2.ImportantProcessingDelay = removeProcessingItem;
-            loadingState2.canRequest =
-            removeProcessingItem.length > 0 ? false : true;
-            await dispatch({
-              type: "SET_PROCESSING_DELAY",
-              payload: loadingState2,
-            });
-          }
-        }
-        await dispatch({ type: "CORE_USER", payload: state });
-      };
-    };
-    
-    // set user data
-    export const setPropCoreUser = (prop, value) => {
-      return async (dispatch, getState) => {
+          );
+        loadingState2.ImportantProcessingDelay = removeProcessingItem;
+        loadingState2.canRequest =
+          removeProcessingItem.length > 0 ? false : true;
+        await dispatch({
+          type: "SET_PROCESSING_DELAY",
+          payload: loadingState2,
+        });
+      }
+    }
+    await dispatch({ type: "CORE_USER", payload: state });
+  };
+};
+
+// set user data
+export const setPropCoreUser = (prop, value) => {
+  return async (dispatch, getState) => {
     const state = { ...getState().userState };
     switch (prop) {
       case "mobile":
         state.userData.user.mobile = value;
         break;
-        
-        default:
+
+      default:
         break;
     }
     await dispatch({ type: "CORE_USER", payload: state });
@@ -303,7 +310,7 @@ export const RegisterUserAction = () => {
             // await dispatch({ type: "SEND_CODE_EMAIL", payload: state})
             // showPromisToast(send_code_email(),"sendCod")
             // return Promise.resolve()
-            // 
+            //
           } else {
             data.errors.forEach((element) => {
               toastMessage += element + " / ";
@@ -387,42 +394,30 @@ export const loginUserAction = () => {
             state.forceUpdate += 1;
           } else if (data.code === 205) {
             //handle show loadin
-            {
-              loadingState.ProcessingDelay.push("verifyEmail");
-              loadingState.canRequest = false;
-              await dispatch({
-                type: "SET_PROCESSING_DELAY",
-                payload: loadingState,
-              });
-            }
-            state.checkRegisterComplete = true;
-            let formdata1 = new FormData();
-            formdata1.append("email", state.email);
-            formdata1.append("password", state.password);
-            const { data, status } = await verifyEmail(formdata1);
-            if (status == 200 && data.status == true) {
+            // if (
+            //   !loadingState.ProcessingDelay.includes(
+            //     "verifyEmail"
+            //   )
+            // ) {
+              // dispatch(addLoadingItem("verifyEmail"));
               state.checkRegisterComplete = true;
-              showToast("کد به ایمیل شما ارسال شد", "success");
-              await dispatch({ type: "SEND_CODE_EMAIL", payload: state });
-            } else {
-              data.errors.forEach((element) => {
-                toastMessage += element + " / ";
-              });
-              showToast(toastMessage, "error");
-            }
-
-            //handle hide loading
-            {
-              var removeProcessingItem = loadingState.ProcessingDelay.filter(
-                (item) => item != "verifyEmail"
-              );
-              loadingState.ProcessingDelay = removeProcessingItem;
-              loadingState.canRequest = removeProcessingItem > 0 ? false : true;
-              await dispatch({
-                type: "SET_PROCESSING_DELAY",
-                payload: loadingState,
-              });
-            }
+              // let formdata1 = new FormData();
+              // formdata1.append("email", state.email);
+              // formdata1.append("password", state.password);
+              // const { data, status } = await verifyEmail(formdata1);
+              // if (status == 200 && data.status == true) {
+              //   state.checkRegisterComplete = true;
+              //   showToast("کد به ایمیل شما ارسال شد", "success");
+              //   await dispatch({ type: "SEND_CODE_EMAIL", payload: state });
+              // } else {
+              //   data.errors.forEach((element) => {
+              //     toastMessage += element + " / ";
+              //   });
+              //   showToast(toastMessage, "error");
+              // }
+              //handle hide loading
+              dispatch(removeLoadingItem("verifyEmail"));
+            // }
           }
           if (!data.status && data.code != 205) {
             data.errors.forEach((element) => {
@@ -703,55 +698,58 @@ export const sendForgotPasswordEmailCodeAction = () => {
       if (CheckFormat("email", state.email, "errRejesterFormatEmail")) {
         if (!state.handleResendCode == false) {
           //handle show loadin
-      if (!loadingState.ProcessingDelay.includes("verifyEmailChangePassword")) {
-      
-          {
-            loadingState.ProcessingDelay.push("verifyEmailChangePassword");
-            loadingState.canRequest = false;
-            await dispatch({
-              type: "SET_PROCESSING_DELAY",
-              payload: loadingState,
-            });
-          }
-
-          var toastMessage = "";
-          try {
-            let formdata = new FormData();
-            formdata.append("email", stateEmail);
-            const { data, status } = await verifyEmailChangePassword(formdata);
-            if (status == 200 && data.status == true) {
-              state.forgotPasswordStep = 1;
-              state.handleResendCode = false;
-              setTimeout(() => {
-                let state = { ...getState().userState };
-                state.handleResendCode = true;
-                dispatch({ type: "DISABLE_TIMER", payload: state });
-              }, 120000);
-              showToast("کد به ایمیل شما ارسال شد", "success");
+          if (
+            !loadingState.ProcessingDelay.includes("verifyEmailChangePassword")
+          ) {
+            {
+              loadingState.ProcessingDelay.push("verifyEmailChangePassword");
+              loadingState.canRequest = false;
               await dispatch({
-                type: "SEND_CODE_EMAIL_FORGOTPASSWORD",
-                payload: state,
+                type: "SET_PROCESSING_DELAY",
+                payload: loadingState,
               });
-            } else {
-              data.errors.forEach((element) => {
-                toastMessage += element;
-              });
-              showToast(toastMessage, "error");
             }
-          } catch (error) {
-            if (error.response.data.code == 404) {
-              InputError(
-                "errRejesterFormatEmail",
-                "کاربری با این ایمیل وجود ندارد."
+
+            var toastMessage = "";
+            try {
+              let formdata = new FormData();
+              formdata.append("email", stateEmail);
+              const { data, status } = await verifyEmailChangePassword(
+                formdata
               );
-            } else {
-              error.response.data.errors.forEach((element) => {
-                toastMessage += element + ".";
-              });
-              showToast(toastMessage, "error");
+              if (status == 200 && data.status == true) {
+                state.forgotPasswordStep = 1;
+                state.handleResendCode = false;
+                setTimeout(() => {
+                  let state = { ...getState().userState };
+                  state.handleResendCode = true;
+                  dispatch({ type: "DISABLE_TIMER", payload: state });
+                }, 120000);
+                showToast("کد به ایمیل شما ارسال شد", "success");
+                await dispatch({
+                  type: "SEND_CODE_EMAIL_FORGOTPASSWORD",
+                  payload: state,
+                });
+              } else {
+                data.errors.forEach((element) => {
+                  toastMessage += element;
+                });
+                showToast(toastMessage, "error");
+              }
+            } catch (error) {
+              if (error.response.data.code == 404) {
+                InputError(
+                  "errRejesterFormatEmail",
+                  "کاربری با این ایمیل وجود ندارد."
+                );
+              } else {
+                error.response.data.errors.forEach((element) => {
+                  toastMessage += element + ".";
+                });
+                showToast(toastMessage, "error");
+              }
             }
           }
-        }
         } else {
           showInputErrorToast("کد قبلا ارسال شده");
         }
@@ -817,7 +815,8 @@ export const changePasswordAction = () => {
           });
         }
 
-        const code = internal_auth4 + internal_auth3 + internal_auth2 + internal_auth1;
+        const code =
+          internal_auth4 + internal_auth3 + internal_auth2 + internal_auth1;
 
         let formdata = new FormData();
         formdata.append("email", internal_email);
@@ -899,10 +898,10 @@ export const findUserAction = () => {
     if (token != "undefined" && token != null) {
       try {
         const dd = await findUser(token);
-        // 
+        //
 
         // if (status == 200 && data.status == true) {
-        //     
+        //
         //     console.log("find user")
         //     // toast.update(toastPromise, { render: "وارد حساب کاربری شدید", type: "success", isLoading: false, autoClose: 3000 })
         // } else {

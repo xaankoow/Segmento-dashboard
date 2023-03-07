@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import arrow_down_ios_new_svg from '../../../assets/img/dashboard/searchBox/arrow_down_ios_new.svg';
 import arrow_up_ios_new_svg from '../../../assets/img/dashboard/searchBox/arrow_up_ios_new.svg';
+import { ImageContainer } from "../../../assets/img/IMG";
 
 export default function ComboBox({
   radioTextItems,
@@ -9,6 +10,7 @@ export default function ComboBox({
   radioClickedHandler,
   selectedItem,
   placeholder,
+  icons
 }) {
   const [radioText, setRadioText] = useState("");
   const ref = useRef();
@@ -101,6 +103,7 @@ export default function ComboBox({
                     checked={item==radioText?true:false}
                     // ref={radioRef}
                   />
+                  {icons?<img src={icons[key]} alt={item} className="w-4 h-4"/>:null}
                   <span>{item} </span>
                 </div>
               );

@@ -111,8 +111,8 @@ export default function App() {
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
-        {/* <LoadingPage /> */}
-        <ToastContainer rtl />
+        <LoadingPage />
+        {/* <ToastContainer rtl /> */}
         {forceUpdate ? "" : ""}
       </div>
     </Fragment>
