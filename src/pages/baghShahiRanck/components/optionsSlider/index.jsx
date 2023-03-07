@@ -11,7 +11,7 @@ import {
 import { Navigation } from "swiper";
 import MultiProgress from "react-multi-progress";
 
-import HelpImg from "../../assets/images/help.svg";
+// import HelpImg from "../../assets/images/help.svg";
 
 // import "swiper/css/navigation"; // baghChange
 import {

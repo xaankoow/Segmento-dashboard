@@ -1,4 +1,4 @@
-import FilterImage from "../../assets/images/filter.svg";
+// import FilterImage from "../../assets/images/filter.svg";
 import React, { useMemo, useState } from "react";
 import ReactSelect from "react-select";
 // import { Tooltip } from "react-tooltip";
@@ -25,7 +25,7 @@ import {
   sortPositionWord,
 } from "../../chartDataCalulator";
 import EmptyChart from "../SHARED/emptyChart";
-import HelpImg from "../../assets/images/help.svg";
+// import HelpImg from "../../assets/images/help.svg";
 import EmptyPieChart from "../SHARED/emptyPieChart";
 import EmptyPieChart2 from "../SHARED/emptyPieChart2";
 import { ImageContainer } from "../../../../assets/img/IMG";
@@ -83,7 +83,7 @@ const FooterCharts = () => {
       <div className="flex items-center">
         <div className="flex items-center">
           <div className="bg-neutral-100 rounded-md w-10 h-10 flex items-center justify-center ml-3">
-            <img src={FilterImage} width="15" alt="filter" />
+            {/* <img src={FilterImage} width="15" alt="filter" /> */}
           </div>
           <div>نمایش آمار: </div>
         </div>
