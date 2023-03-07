@@ -47,23 +47,23 @@ export default function Nav({ path }) {
       <div className='flex justify-around items-center' id="NAV">
         <div className="flex justify-center items-center pl-5 active ">
           <span className='logo_nav option_segmento_logo' />
-          <a href={"https://segmento.ir/features/"} >امکانات</a>
+          <a target={"_blank"} href={"https://segmento.ir/features/"} >امکانات</a>
         </div>
         <div className="flex justify-center items-center pl-5 active">
           <span className='logo_nav course_video_logo' />
-          <a href={"https://segmento.ir/knowledge/ "} >ویدئو آموزشی</a>
+          <a target={"_blank"} href={"https://segmento.ir/knowledge/ "} >ویدئو آموزشی</a>
         </div>
         <div className="flex justify-center items-center pl-5 active">
           <span className='logo_nav diamond_price_logo' />
-          <a href={"https://segmento.ir/pricing/"} >قیمت گذاری</a>
+          <a target={"_blank"} href={"https://segmento.ir/pricing/"} >قیمت گذاری</a>
         </div>
         <div className="flex justify-center items-center pl-5 active" >
           <span className='logo_nav cookie_communicate_logo' />
-          <a href={"https://segmento.ir/about/business/ "} >همکاری با آژانس ها</a>
+          <a target={"_blank"} href={"https://segmento.ir/about/business/ "} >همکاری با آژانس ها</a>
         </div>
         <div className="flex justify-center items-center pl-5 active" >
           <span className='logo_nav handshake_logo' />
-          <a href={"https://segmento.ir/about/affiliate/"} >همکاری در فروش</a>
+          <a target={"_blank"} href={"https://segmento.ir/about/affiliate/"} >همکاری در فروش</a>
         </div>
       </div>
       <div>
