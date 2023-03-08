@@ -42,7 +42,7 @@ export default function PurchaseInvoiceContent({ packageUuid }) {
   }, [])
   
 
-  console.log('allPackageData next:', packageSelected)
+  // console.log('allPackageData next:', packageSelected)
 
   return (
     <div className='report'>

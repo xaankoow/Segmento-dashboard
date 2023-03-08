@@ -5,7 +5,7 @@ import MessageFooter from './MessageFooter'
 import MessageHeader from './MessageHeader'
 
 export default function index({ chatData,type}) {
-  console.log('chatData', chatData)
+  // console.log('chatData', chatData)
 
   return (
     <div className='m-auto mt-5 rounded-lg overflow-hidden border border-sectionDisable box-content max-w-5xl'>

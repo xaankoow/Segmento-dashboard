@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { keywordService } from "../../service/keyWordsService";
-import AlphabetKeyWord from "../DashboaedComponents/AlphabetKeyWord/AlphabetKeyWord";
-import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
-import Table from "../DashboaedComponents/TableData/TableData";
-import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
-import { keywordsStoreService } from "../../service/keywordStoreService";
-import PopUp from "../../Utils/PopUp/PopUp";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router";
+import bookmark_svg from "../../../assets/img/dashboard/keyWord/bookmark.svg";
+import playlist_add_svg from "../../../assets/img/popUp/playlist_add.svg";
 import {
   handleLowOffLimitCount,
   resetLimitState,
 } from "../../Redux/Action/workSpace";
-import bookmark_svg from "../../../assets/img/dashboard/keyWord/bookmark.svg";
-import playlist_add_svg from "../../../assets/img/popUp/playlist_add.svg";
-import { useLocation } from "react-router";
+import { keywordService } from "../../service/keyWordsService";
+import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUpLimit from "../../Utils/Limit/PopUpLimit";
+import PopUp from "../../Utils/PopUp/PopUp";
+import AlphabetKeyWord from "../DashboaedComponents/AlphabetKeyWord/AlphabetKeyWord";
+import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
+import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
+import Table from "../DashboaedComponents/TableData/TableData";
 
 const KeyWords = ({ onClickHandler }) => {
   const { canRequest } = useSelector((state) => state.loadingState);
@@ -111,14 +111,22 @@ const KeyWords = ({ onClickHandler }) => {
     }
   };
   var tableDataFiltered = [];
-
+  var tableDataCount = 0;
   Object.keys(keyWords).map((item, index) => {
     if (keyWords[item] != null) {
-      for (let i = 0; i < keyWords[item].length - 1; i++) {
+      // console.log(keyWords[item])
+      // console.log(item, keyWords[item]);
+      for (let i = 0; i < keyWords[item].length; i++) {
+        // if (keyWords[item][i].includes(searchBoxValue)) {
+        // tableDataFiltered.push(keyWords[item][i]);
+        // lengthTable++
         tableDataFiltered.push(keyWords[item][i]);
+        tableDataCount++;
+        // }
       }
     }
     if (index == Object.keys(keyWords).length - 1) {
+      // console.log("tableDataCount", tableDataCount);
       initKeyWordsDataTable(tableDataFiltered);
     }
   });
@@ -176,7 +184,7 @@ const KeyWords = ({ onClickHandler }) => {
 
   //check dom
 
-  console.log("dataTable", dataTable);
+  // console.log("dataTable", dataTable);
   return (
     <>
       {SavePopup && (

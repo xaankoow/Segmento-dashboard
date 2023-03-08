@@ -43,6 +43,7 @@ import barChartIco from '../ico/bar_chart_ico.svg'
 import plusGray from '../ico/plus_gray.svg'
 import chartScrollArrow from '../ico/chartScrollArrow.svg'
 import filter from '../ico/filter.svg'
+import bluePlus from '../bottom/bluePlus.svg'
 
 
 export const ImageContainer = {
@@ -72,6 +73,7 @@ export const ImageContainer = {
 
   // btn ico
   plus,
+  bluePlus,
   blueArrowBtn,
   settingBtn,
   addLinkBtn,
