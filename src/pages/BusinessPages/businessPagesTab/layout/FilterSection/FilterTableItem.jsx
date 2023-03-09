@@ -13,9 +13,15 @@ import FilterData from "./FilterData";
 import MultiProgress from "react-multi-progress";
 import { sampleChartColors } from "../../../../baghShahiRanck/configs/sampleChartData";
 import PopUp from "../../../../../component/Utils/PopUp/PopUp";
+import SetKeyWordsModal from '../../../addKeyWordModal'
 
 export default function Index() {
+
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
+
+  const [addingKeyWordModal, setAddingKeyWordModal] = useState({key:[],showModal:false});
+
+
 
   const [deleteItem, setDeleteItem] = useState({data:[],showPopUp:false});
   const [datePickerValues, setDatePickerValues] = useState([
@@ -59,6 +65,8 @@ export default function Index() {
               className="p-1"
             />
           }
+          handlerClick={setAddingKeyWordModal}
+          setOnclickValue={{key:[item],showModal:true}}
           classes="btn-secondary m-auto"
         />
       ),
@@ -216,8 +224,8 @@ export default function Index() {
           </div>
         }
       />:null}
-
-
+      {addingKeyWordModal.showModal?<SetKeyWordsModal showModal={setAddingKeyWordModal}/>:null}
+      
       {/* </div> */}
     </div>
   );
