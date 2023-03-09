@@ -17,7 +17,7 @@ import PopUp from "../../../../../component/Utils/PopUp/PopUp";
 export default function Index() {
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
 
-  const [deleteItem, setDeleteItem] = useState({data:[],showPopUp:true});
+  const [deleteItem, setDeleteItem] = useState({data:[],showPopUp:false});
   const [datePickerValues, setDatePickerValues] = useState([
     new DateObject().subtract(4, "days"),
     new DateObject().add(0, "days"),
