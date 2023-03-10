@@ -44,6 +44,8 @@ import plusGray from '../ico/plus_gray.svg'
 import chartScrollArrow from '../ico/chartScrollArrow.svg'
 import filter from '../ico/filter.svg'
 import bluePlus from '../bottom/bluePlus.svg'
+import savingNewList from '../bottom/savingNewList.svg'
+
 
 
 export const ImageContainer = {
@@ -78,6 +80,7 @@ export const ImageContainer = {
   settingBtn,
   addLinkBtn,
   deleteBtn,
+  savingNewList,
 
   // date picker
   calendarIco,
