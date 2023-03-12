@@ -143,7 +143,7 @@ useEffect(() => {
 
           <div className="line mb-3"></div>
           {/* <img src="./img/dashboard/nav_right/xaankoo-logo.svg" className='xaankoo_logo' alt="" /> */}
-          <a href={"https://xaankoo.com/"}>
+          <a target={"_blank"} href={"https://xaankoo.com/"}>
             <div className="xaankoo_logo w-11 h-9"></div>
           </a>
         </div>
