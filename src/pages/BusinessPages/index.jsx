@@ -6,12 +6,12 @@ import StatisticsAndReportsTab from "./StatisticsAndReportsTab/StatisticsAndRepo
 export default function BusinessPages() {
   const tabContent = [
     {
-      title: "صفحات تجاری",
-      content: <BusinessPagesTab />,
-    },
-    {
       title: "آمار و گزارش",
       content: <StatisticsAndReportsTab />,
+    },
+    {
+      title: "صفحات تجاری",
+      content: <BusinessPagesTab />,
     },
   ];
   
