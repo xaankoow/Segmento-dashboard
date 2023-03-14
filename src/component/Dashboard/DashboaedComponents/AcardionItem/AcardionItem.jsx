@@ -210,11 +210,14 @@ export default function AcardionItem({ clicked, setClicked }) {
   };
 
   useEffect(() => {
-    let existWebAdress=["https",".ir"].some(item=>ItemsClicked.includes(item));
+    if(ItemsClicked!=-1){
+      let existWebAdress=["https",".ir"].some(item=>ItemsClicked.includes(item));
+      if(existWebAdress&&workSpaceState.webAdress!=ItemsClicked){
+        dispatch(setWebAdress(ItemsClicked))
+      }
 
-    if(existWebAdress&&workSpaceState.webAdress!=ItemsClicked){
-      dispatch(setWebAdress(ItemsClicked))
     }
+
   }, [ItemsClicked])
   
   // 

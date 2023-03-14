@@ -20,7 +20,6 @@ export default function Index() {
             <BigChartController />
           </div>
         </div>
-        <p className=" pb-7 text-red text-sm">نمایش نمودار فقط براساس 7 دوره صورت میگیرد و نمایش داده میشود . تمامی نمودار ها و چارت ها بازه های زمانی انها تا 7 دوره قبل میباشد</p>
       </div>
     </div>
   );

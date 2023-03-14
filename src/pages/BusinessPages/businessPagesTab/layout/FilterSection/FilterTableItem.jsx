@@ -7,6 +7,7 @@ import ComboBox from "../../../../../component/shared/comboBox/ComboBox";
 import Table from "../../../../../component/shared/table/Table";
 import {
   BUSINESS_PAGE_FILTER_TABEL_BUSINESS_TAB,
+  BUSINESS_PAGE_TABEL_HEADER_ITEM_BUSINESS_TAB,
   BUSINESS_PAGE_TABEL_HEADER_ITEM_REPORTS_TAB,
 } from "../../../../../variables/businessPages";
 import FilterData from "./FilterData";
@@ -189,7 +190,7 @@ export default function Index() {
       </header>
 
       <Table
-        columnItem={BUSINESS_PAGE_TABEL_HEADER_ITEM_REPORTS_TAB}
+        columnItem={BUSINESS_PAGE_TABEL_HEADER_ITEM_BUSINESS_TAB}
         rowsItem={arrayOfTickets}
         rowKey={rowKey}
       />

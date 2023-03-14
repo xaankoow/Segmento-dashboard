@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DateObject } from 'react-multi-date-picker';
 import MultiProgress from 'react-multi-progress';
 import { ImageContainer } from '../../../../assets/img/IMG';
@@ -8,7 +8,7 @@ import { BUSINESS_PAGE_FILTER_TABEL_BUSINESS_TAB } from '../../../../variables/b
 import { sampleChartColors } from '../../../baghShahiRanck/configs/sampleChartData';
 import FilterData from '../../businessPagesTab/layout/FilterSection/FilterData';
 
-export default function Index() {
+export default function Index({setFilteredTableData}) {
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
 
   const [addingKeyWordModal, setAddingKeyWordModal] = useState({key:[],showModal:false});
@@ -45,24 +45,13 @@ export default function Index() {
           </div>
         </p>
       ),
-      ticket_id: index + 1,
-      title: "https://segmento.ir/google-indexer",
-      categories: (
-        <AuthButton
-          textButton={
-            <img
-              src={ImageContainer.bluePlus}
-              alt="blue plus"
-              className="p-1"
-            />
-          }
-          handlerClick={setAddingKeyWordModal}
-          setOnclickValue={{key:[item],showModal:true}}
-          classes="btn-secondary m-auto"
-        />
-      ),
-      updated_at: "2",
-      status: "1401/02/20",
+      ticket_id: "1401/02/20",
+      title: "کلمه کلیدی",
+      categories: 2,
+      updated_at: 23,
+      status: 67,
+      moreInfo: 90,
+      statusPage: 99,      
       operation: (
         <MultiProgress
           transitionTime={1.2}
@@ -121,26 +110,14 @@ export default function Index() {
           }}
         />
       ),
-      moreInfo: (
-        <AuthButton
-          textButton={<img src={ImageContainer.blueArrowBtn} />}
-          classes="btn-secondary"
-        />
-      ),
+
     };
   });
 
-  const rowKey = [
-    "row.id ",
-    "row.ticket_id",
-    "row.title",
-    "row.categories",
-    "row.updated_at",
-    "row.status",
-    "row.operation",
-    "row.moreInfo",
-  ];
-
+  useEffect(() => {
+    setFilteredTableData(arrayOfTickets);
+  }, [])
+  
   return (
     <header className="flex items-center justify-between h-10 w-full ">
     <div className=" w-96">
