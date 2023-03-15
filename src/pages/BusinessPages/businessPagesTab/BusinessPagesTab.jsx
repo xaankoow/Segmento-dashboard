@@ -4,7 +4,7 @@ import AddingPage from "./layout/AddingPage";
 import FilterTableItem from './layout/FilterSection/FilterTableItem'
 export default function BusinessPagesTab() {
   return (
-    <div>
+    <div className="px-7">
       <div className="mt-7">
         <Title />
       </div>

@@ -98,3 +98,9 @@
   opacity: 1 !important;
   max-width: 300px;
 }
+
+
+
+.rtl-grid{
+  direction: rtl;
+}

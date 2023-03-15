@@ -16,14 +16,12 @@ export default function BusinessPages() {
   ];
   
   return (
-    <div>
-      <div className=" px-7">
+
         <TabMenu
           tabsContent={tabContent}
           title={"صفحات تجاری"}
           // amountOfData={"isKeyword"}
         />
-      </div>
-    </div>
+
   );
 }
