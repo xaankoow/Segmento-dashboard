@@ -138,7 +138,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
             {/* <div className='Iconimage w-7 h-8'></div> */}
             <AnimationSegmentoLogo parentClass={"w-7 h-7 "} animation={ProcessingDelay?.length>0|ImportantProcessingDelay.length>0?true:false} animationWithHover/>
             {/* <img src={segmento_logofa_svg} className="w-7 h-8" alt="" /> */}
-            <span className="">سگمنتو segmento</span>
+            <span className="">سگمنتو</span>
           </div>
         </a>
       </div>
