@@ -1,3 +1,6 @@
 export const getLineLength=(text)=>{
-   return text.split(/\r\n|\r|\n/).length
+   if(text.trim() == "") {
+      return 0;
+   }
+   return text.split(/\r\n|\r|\n/).length;
 }
