@@ -17,7 +17,7 @@ export default function StatisticsAndReportsTab() {
         <AllInformation />
       </div>
 
-      <div className="px-7">
+      <div className="px-7 mt-7">
         <TechnicalAnalysis />
       </div>
       <div className=" py-5">
