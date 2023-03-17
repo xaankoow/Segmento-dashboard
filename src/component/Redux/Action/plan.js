@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { coreUser } from ".";
+import { convertPalanType } from "../../../variables/buyPlan";
 import { applyDiscount, buyPlna, getAllPlan, getPlanDetails } from "../../service/planService";
 import { creatWorkSpace } from "../../service/workSpaceService";
 import { handleNextInput } from "../../Utils/focusNextInput";
@@ -186,21 +187,22 @@ export const buyPlan = (buyType) => {
 
         const packageUuid = state.packageUuid;
         const discount = state.discount;
-
+        const typeAccess=state.discountStatus.planType;
+        
         if (packageUuid) {
-
-
             //handle show loadin
             {
                 loadingState.ProcessingDelay.push("buyPlna");
                 loadingState.canRequest = false;
                 await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
             }
+            
+            const checkDiscount=state.allPackageData.some(item=>item.uuid==packageUuid&&typeAccess==convertPalanType.getPlanName(item.type_text))
 
             var packageInfo = {
                 "type": "package",
                 "uuid": packageUuid,
-                "discount_code": discount
+                "discount_code":checkDiscount?discount:""
             }
 
             let toastMessage = "";
