@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
 import AuthInput from "../../component/Auth/authInput/AuthInput";
 import PageTitle from "../../component/Dashboard/DashboaedComponents/pageTitle/pageTitle";
@@ -12,9 +12,8 @@ import {
 import { ImageContainer } from "../../assets/img/IMG/index";
 import LinesComponent from "../../component/shared/RotateLines/LinesComponent";
 import SubmitForm from "../../component/Utils/Submit";
-import { useDispatch, useSelector } from "react-redux";
-import BadgeLimitKeyWords from "../../component/Utils/BadgeLimitKeyWords";
-import { handleLowOffLimitCount, resetLimitState } from "../../component/Redux/Action/workSpace";
+import { useDispatch } from "react-redux";
+import { titleCopyWriterAction } from "../../component/Redux/Action/titleCopyWriter";
 
 export default function TitleCopywriter() {
   const [keyWordValue, setKeyWordValue] = useState("");
@@ -22,7 +21,7 @@ export default function TitleCopywriter() {
   const [inputLastValue, setinputLastValue] = useState("");
   const [handleCopyAllIssue, setHandleCopyAllIssue] = useState("");
   const dispatch = useDispatch();
-  // copy
+
   const copyIssue = (arrayData) => {
     var myListOutput = "";
     const checkTitleValue = title && keyWordValue.length > 0 && keyWordValue;
@@ -51,6 +50,7 @@ export default function TitleCopywriter() {
   listAllItem.push(...lineData);
   listAllItem.push(...lineData2);
   listAllItem.push(...lineData3);
+
   const copyAll = (arrayData) => {
     var myListOutput = "";
     const checkTitleValue = title && keyWordValue.length > 0 && keyWordValue;
@@ -77,25 +77,27 @@ export default function TitleCopywriter() {
     }, 500);
     navigator.clipboard.writeText(myListOutput);
   };
-  const buttonHandler = () => {
+
+  const buttonHandler = async () => {
     setTitle(true);
-    dispatch(handleLowOffLimitCount("TITLE_BUILDER", 1));
-    dispatch(resetLimitState());
-    if (keyWordValue.length > 0) setinputLastValue(keyWordValue);
- 
+    if (keyWordValue.length > 0) {
+      const checkedLimit=await dispatch(titleCopyWriterAction(keyWordValue));
+      if (checkedLimit) {
+        setinputLastValue(keyWordValue)
+      }
+    } else {
+    }
   };
 
   return (
     <>
       <PageTitle title={"‌ابزار عنوان‌نویس"} hasLimit={true} badgeApi={"titleCopyWriter"}/>
-     
       <SubmitForm submitFun={buttonHandler}>
         <div className="mx-9 mt-9 mb-7">
           <AuthInput
             textLabelInput={"درج کلمه کلیدی"}
             classes={"w-full "}
             handleChange={setKeyWordValue}
-            // handleChangeValue={() => setTitle(false)}
           />
         </div>
         <AuthButton
