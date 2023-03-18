@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import AuthButton from "../../component/Auth/authButton/AuthButton";
-import AuthInput from "../../component/Auth/authInput/AuthInput";
 import PageTitle from "../../component/Dashboard/DashboaedComponents/pageTitle/pageTitle";
-import RotateLine from "../../component/shared/rotateLine";
 import add_chart_svg from "../../assets/img/dashboard/table/add_chart.svg";
 import {
   categoriesQuestion,
@@ -11,39 +9,34 @@ import {
   lineData3,
 } from "../../variables/copyWritingFeature";
 import { ImageContainer } from "../../assets/img/IMG";
-import SubmitForm from "../../component/Utils/Submit";
 import TextArea from "../../component/shared/TeaxtArea/TextArea";
 import { useEffect } from "react";
 import LinesComponent from "../../component/shared/RotateLines/LinesComponent";
-import {
-  handleLowOffLimitCount,
-  resetLimitState,
-} from "../../component/Redux/Action/workSpace";
 import { useDispatch } from "react-redux";
 import { getLineLength } from "../../component/Utils/textOparation";
+import { titleCopyWriterAction } from "../../component/Redux/Action/titleCopyWriter";
 
 export default function TitleCopyWriterBulk() {
   const [keyWordValue, setKeyWordValue] = useState("");
   const [title, setTitle] = useState(false);
+  const [copyWriterBulkLineData, setCopyWriterBulkLineData] = useState([]);
+  
 
   const [handleCopyAllIssue, setHandleCopyAllIssue] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {});
-  let listOfKeyWords = [];
-
-  const createTitleButton = () => {
+  
+  const createTitleButton = async() => {
+    let listOfKeyWords = [];
+    let innerLineData=[]
     setTitle(true)
-    // if (keyWordValue.length > 0) setinputLastValue(keyWordValue);
-    dispatch(handleLowOffLimitCount("TITLE_BUILDER_BATCH", 1));
-    dispatch(resetLimitState());
-    return (listOfKeyWords = keyWordValue.split(/\r?\n/));
+    listOfKeyWords = keyWordValue.split(/\r?\n/);
+    let checkedLimit=await dispatch(titleCopyWriterAction(listOfKeyWords));
+    if (checkedLimit) {
+      innerLineData=listOfKeyWords.filter((el)=> el != "")
+    }
+    setCopyWriterBulkLineData(innerLineData)
   };
-  // list of value that we write in textArea
-  listOfKeyWords = keyWordValue.split(/\r?\n/);
-  var filtered = listOfKeyWords.filter(function (el) {
-    return el != "";
-  });
-  //
 
   const [radioCategoris, setRadioCategories] = useState(-1);
   const listAllItem = [];
@@ -64,7 +57,7 @@ export default function TitleCopyWriterBulk() {
   const copyAll = (arrayData) => {
     var myListOutput = "";
     const checkTitleValue = title && keyWordValue.length > 0 && keyWordValue;
-    filtered.map((item) => {
+    copyWriterBulkLineData.map((item) => {
       for (var i = 0; i < arrayData.length; i++) {
         //check if list is NOT the last in the array, if last don't output a line break
         if (i != arrayData.length - 1) {
@@ -153,7 +146,7 @@ export default function TitleCopyWriterBulk() {
       </span>
 
       {radioCategoris === 0 && title && keyWordValue.length !== 0 ? (
-        filtered.map((keyword, index) => {
+        copyWriterBulkLineData.map((keyword, index) => {
           return (
             <LinesComponent
               titleName={"موضوعات مقایسه‌ای"}
@@ -171,7 +164,7 @@ export default function TitleCopyWriterBulk() {
           );
         })
       ) : radioCategoris === 1 && title && keyWordValue.length !== 0 ? (
-        filtered.map((keyword, index) => {
+        copyWriterBulkLineData.map((keyword, index) => {
           return (
             <LinesComponent
               titleName={"موضوعات سوالی"}
@@ -188,7 +181,7 @@ export default function TitleCopyWriterBulk() {
           );
         })
       ) : radioCategoris === 2 && title && keyWordValue.length !== 0 ? (
-        filtered.map((keyword, index) => {
+        copyWriterBulkLineData.map((keyword, index) => {
           return (
             <LinesComponent
               titleName={"موضوعات متفرقه"}

@@ -5,7 +5,7 @@ import { handleLowOffLimitCount } from "./workSpace";
 export const titleCopyWriterAction = (keys) => {
   return async (dispatch, getState) => {
     dispatch(addLoadingItem("titleCopyWriterService"));
-    const isArray = typeof keys === Array;
+    const isArray = typeof keys=="object";
     try {
       const serviceData = {
         key: keys,
