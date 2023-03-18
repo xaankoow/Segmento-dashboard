@@ -37,7 +37,7 @@ const OptionsSlider = ({
   mainChart,
 }) => {
   const [showToolTip, setShowToolTip] = useState(true);
-
+console.log(averageAllWordsMemo)
   return (
     <div className="mt-8 relative">
       <Swiper

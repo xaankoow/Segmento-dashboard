@@ -1,4 +1,5 @@
 export const averageAllWords = (data, count = 7) => {
+  // debugger
   const values = Object.values(data).slice(-count);
 
   return values.map((item, indx) => {
@@ -15,13 +16,14 @@ export const distributionCurrentAndPrevWords = (data, count = 2) => {
   const values = Object.values(data).slice(-count);
   // debugger;
 
+  debugger
   const arr = values.map((words) => {
     const counterCurrnet = {
       "1-3": 0,
       "4-7": 0,
       "8-10": 0,
     };
-
+    
     words.forEach((word) => {
       if (word.position <= 3) counterCurrnet["1-3"]++;
       else if (word.position <= 7) counterCurrnet["4-7"]++;
@@ -45,7 +47,6 @@ export const distributionCurrentAndPrevWords = (data, count = 2) => {
   // });
 
   const x = arr[arr.length - 1];
-
   const mainChart = Object.keys(x).map((item, indx) => {
     return {
       uv: Object.values(x)[indx],
@@ -99,7 +100,7 @@ export const decreaseFromPrevWordsAvg = (data, count = 7) => {
   const totalAvg = Number(
     (arr.reduce((acc, item) => acc + item.uv, 0) / arr.length).toFixed(2)
   );
-  console.log({ totalAvg, arr });
+  // console.log({ totalAvg, arr });
 
   return { arr, total: allCounter, totalAvg };
 };
@@ -133,12 +134,12 @@ export const increaseFromPrevWordsAvg = (data, count = 7) => {
     // .filter((item) => item !== null)
     // .filter(Boolean)
     .filter((item) => item?.uv >= 0);
-  console.log(arr);
+  // console.log(arr);
 
   const totalAvg = Number(
     (arr.reduce((acc, item) => acc + item.uv, 0) / arr.length).toFixed(2)
   );
-  console.log({ totalAvg, arr }, "ooooooooooooo");
+  // console.log({ totalAvg, arr }, "ooooooooooooo");
 
   return { arr, total: allCounter, totalAvg };
 };
@@ -198,7 +199,7 @@ export const increaseFromPrevWordsCount = (data, count = 7) => {
       return { uv: counter, name: keys[indx] };
     })
     .filter(Boolean);
-  console.log({ arr, total: allCounter, everyThing }, "wwwwww");
+  // console.log({ arr, total: allCounter, everyThing }, "wwwwww");
 
   return { arr, total: allCounter, everyThing };
 };
@@ -246,7 +247,7 @@ export const sortPositionIncreaseWord = (data, pastData) => {
     };
   });
 
-  console.log("uuuuuu", arr, total);
+  // console.log("uuuuuu", arr, total);
 
   return { arr, total };
 };
@@ -267,7 +268,7 @@ export const distributionCurrentAndPrevWordsIncrease = (data, count = 2) => {
         counterCurrnet["4-7"].push(word.keyword_uuid);
       else if (word.position <= 10)
         counterCurrnet["8-10"].push(word.keyword_uuid);
-      console.log({ counterCurrnet });
+      // console.log({ counterCurrnet });
     });
 
     return counterCurrnet;
@@ -292,7 +293,7 @@ export const distributionCurrentAndPrevWordsIncrease = (data, count = 2) => {
     const exist = arr[arr.length - 2]["8-10"].find((x) => x === item);
     if (!exist) counterCurrnet["8-10"]++;
   });
-  console.log("pppppp", counterCurrnet);
+  // console.log("pppppp", counterCurrnet);
 
   const xx = Object.keys(counterCurrnet).map((item, indx) => ({
     name: item,
@@ -300,7 +301,7 @@ export const distributionCurrentAndPrevWordsIncrease = (data, count = 2) => {
   }));
 
   const total = xx.reduce((acc, item) => acc + item.value, 0);
-  console.log(total, "oi");
+  // console.log(total, "oi");
 
   // values[0].forEach((word) => {
   //   if (word.position <= 3) counterPrev["1-3"]++;
@@ -346,12 +347,12 @@ export const distributionCurrentAndPrevWordsDecrease = (data, count = 2) => {
         counterCurrnet["4-7"].push(word.keyword_uuid);
       else if (word.position <= 10)
         counterCurrnet["8-10"].push(word.keyword_uuid);
-      console.log({ counterCurrnet });
+      // console.log({ counterCurrnet });
     });
 
     return counterCurrnet;
   });
-  console.log("yyyyyyy", arr);
+  // console.log("yyyyyyy", arr);
 
   const counterCurrnet = {
     "1-3": 0,
@@ -371,7 +372,7 @@ export const distributionCurrentAndPrevWordsDecrease = (data, count = 2) => {
     const exist = arr[arr.length - 1]["8-10"].find((x) => x === item);
     if (!exist) counterCurrnet["8-10"]++;
   });
-  console.log("pppppp", counterCurrnet);
+  // console.log("pppppp", counterCurrnet);
 
   const xx = Object.keys(counterCurrnet).map((item, indx) => ({
     name: item,
@@ -379,7 +380,7 @@ export const distributionCurrentAndPrevWordsDecrease = (data, count = 2) => {
   }));
 
   const total = xx.reduce((acc, item) => acc + item.value, 0);
-  console.log(total, "oi");
+  // console.log(total, "oi");
 
   // values[0].forEach((word) => {
   //   if (word.position <= 3) counterPrev["1-3"]++;
@@ -434,6 +435,6 @@ export const sortPositionIncreaseAvgWord = (data, pastData) => {
       value: Number((increase / total).toFixed(2)),
     };
   });
-  console.log(increase, total, "tttttt", (increase / total).toFixed(2) || 0);
+  // console.log(increase, total, "tttttt", (increase / total).toFixed(2) || 0);
   return { avg: Number((increase / total).toFixed(2)) || 0, increase, total };
 };
