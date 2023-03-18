@@ -225,7 +225,7 @@ export default function Competitors() {
               <ComboBox
                 placeholder={"فیلتر زمانی"}
                 radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+                radioClickedHandler={(e) => setDateFilterOption(e)}
               />
             </div>
 
@@ -234,7 +234,7 @@ export default function Competitors() {
               <ComboBox
                 placeholder={"فیلتر زمانی"}
                 radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+                radioClickedHandler={(e) => setDateFilterOption(e)}
               />
             </div>
 
@@ -243,7 +243,7 @@ export default function Competitors() {
               <ComboBox
                 placeholder={"فیلتر زمانی"}
                 radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+                radioClickedHandler={(e) => setDateFilterOption(e)}
               />
             </div>
 
@@ -252,7 +252,7 @@ export default function Competitors() {
               <ComboBox
                 placeholder={"فیلتر زمانی"}
                 radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+                radioClickedHandler={(e) => setDateFilterOption(e)}
               />
             </div>
 
@@ -266,7 +266,7 @@ export default function Competitors() {
               <ComboBox
                 placeholder={"فیلتر زمانی"}
                 radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                radioClickedHandler={(e) => setDateFilterOption(e.target.value)}
+                radioClickedHandler={(e) => setDateFilterOption(e)}
               />
             </div>
             <div className="chart__actions">

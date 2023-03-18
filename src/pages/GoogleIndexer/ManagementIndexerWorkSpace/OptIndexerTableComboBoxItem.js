@@ -46,7 +46,7 @@ export const OptIndexerTableComboBoxItem = ({
       return <ComboBox 
       placeholder={"لطفا دسته بندی خود را انتخاب کنید:"} 
       radioTextItems={ticketCategories.map(item => { return item.partName })} 
-      radioClickedHandler={(e) => FactorHandler(e.target.value)}/>;
+      radioClickedHandler={(e) => FactorHandler(e)}/>;
     case "نوع ایندکسر":
       return <DatePicker
         range
@@ -76,13 +76,13 @@ export const OptIndexerTableComboBoxItem = ({
       return <ComboBox 
       placeholder={"لطفا وضعیت خود را انتخاب کنید:"} 
       radioTextItems={ticketStatus.map(item => { return item.partName })} 
-      radioClickedHandler={(e) => FactorHandler(e.target.value)}
+      radioClickedHandler={(e) => FactorHandler(e)}
       />;
     case "وضعیت":
       return <ComboBox 
       placeholder={"لطفا وضعیت خود را انتخاب کنید:"} 
       radioTextItems={indexerLinkStatus.map(item => { return item.partName })} 
-      radioClickedHandler={(e) => FactorHandler(e.target.value)}
+      radioClickedHandler={(e) => FactorHandler(e)}
       />;
     default:
       break;

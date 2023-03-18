@@ -17,7 +17,7 @@ export default function BigChartController({ data, chartType="Line" }) {
           {
             fill: "end",
             label: "Dataset 2",
-            data: [0,0,0,0,0,0,0],
+            data: [0,8,6,7,1,2,10],
             borderColor: "rgb(53, 162, 235)",
             // borderColor: ChartColor.chart,
             backgroundColor: "rgba(255, 255, 255, 0)",

@@ -16,7 +16,7 @@ export default function Page404() {
 
 
   return (
-    <div id='page-404' className=' bg-red-600'>
+    <div id='page-404' className=' bg-red-600 py-28 px-20'>
     </div >
   )
 }

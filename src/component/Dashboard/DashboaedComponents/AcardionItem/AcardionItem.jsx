@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { setShowWorkSpaceModal } from "../../../Redux/Action/workSpace";
+import { setShowWorkSpaceModal, setWebAdress } from "../../../Redux/Action/workSpace";
 import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
 import arrow_back_ios_new_svg from "../../../../assets/img/dashboard/nav_right/arrow_back_ios_new.svg";
 import add_circle_svg from "../../../../assets/img/dashboard/nav_right/add_circle.svg";
@@ -70,7 +70,7 @@ export default function AcardionItem({ clicked, setClicked }) {
         {
           itemTitle: "صفحات تجاری ",
           itemIcon: pageTejari_svg,
-          itemLink: "",
+          itemLink: "BusinessPages",
         },
         // {
         //   itemTitle: "ایندکسر گوگل",
@@ -208,6 +208,18 @@ export default function AcardionItem({ clicked, setClicked }) {
     }
     setClicked(index);
   };
+
+  useEffect(() => {
+    if(ItemsClicked!=-1){
+      let existWebAdress=["https",".ir"].some(item=>ItemsClicked.includes(item));
+      if(existWebAdress&&workSpaceState.webAdress!=ItemsClicked){
+        dispatch(setWebAdress(ItemsClicked))
+      }
+
+    }
+
+  }, [ItemsClicked])
+  
   // 
 
   const setTitleHandler = (acardionItem) => {
@@ -282,7 +294,7 @@ export default function AcardionItem({ clicked, setClicked }) {
         key={indexx}
         className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
           clicked === index &&
-          ItemsClicked == acardionItem.itemTitle &&
+          ItemsClicked == acardionItem.itemTitle|acardionItem.itemTitle==workSpaceState.webAdress&&
           "active"
         }`}
       >
@@ -306,7 +318,7 @@ export default function AcardionItem({ clicked, setClicked }) {
             ItemsClicked == acardionItem.itemTitle &&
             "active"
           }`}
-        >
+        > 
           <img src={acardionItem.itemIcon} alt="icon" />
           <span className={"w-auto hover:text-blue"}>
             {acardionItem.itemTitle}

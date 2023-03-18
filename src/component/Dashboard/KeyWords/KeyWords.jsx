@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { keywordService } from "../../service/keyWordsService";
-import AlphabetKeyWord from "../DashboaedComponents/AlphabetKeyWord/AlphabetKeyWord";
-import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
-import Table from "../DashboaedComponents/TableData/TableData";
-import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
-import { keywordsStoreService } from "../../service/keywordStoreService";
-import PopUp from "../../Utils/PopUp/PopUp";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router";
+import bookmark_svg from "../../../assets/img/dashboard/keyWord/bookmark.svg";
+import playlist_add_svg from "../../../assets/img/popUp/playlist_add.svg";
 import {
   handleLowOffLimitCount,
   resetLimitState,
 } from "../../Redux/Action/workSpace";
-import bookmark_svg from "../../../assets/img/dashboard/keyWord/bookmark.svg";
-import playlist_add_svg from "../../../assets/img/popUp/playlist_add.svg";
-import { useLocation } from "react-router";
+import { keywordService } from "../../service/keyWordsService";
+import { keywordsStoreService } from "../../service/keywordStoreService";
 import PopUpLimit from "../../Utils/Limit/PopUpLimit";
+import PopUp from "../../Utils/PopUp/PopUp";
+import AlphabetKeyWord from "../DashboaedComponents/AlphabetKeyWord/AlphabetKeyWord";
+import KeyWordsSearch from "../DashboaedComponents/KeyWordsSearch/KeyWordsSearch";
+import SearchBox from "../DashboaedComponents/SearchBox/SearchBox";
+import Table from "../DashboaedComponents/TableData/TableData";
 
 const KeyWords = ({ onClickHandler }) => {
   const { canRequest } = useSelector((state) => state.loadingState);
@@ -52,14 +52,13 @@ const KeyWords = ({ onClickHandler }) => {
         type: "",
         characters: true,
       };
-    
 
       const { data, status } = await keywordService(dd);
+      // debugger
       setKeyWords(data.data.result); //5
       setId(data.data.id);
       dispatch(handleLowOffLimitCount("GOOGLE_TITLE_BUILDER", 1));
       dispatch(resetLimitState());
-
     } catch (error) {
       setShowPopUpLimit(true);
     }
@@ -86,8 +85,7 @@ const KeyWords = ({ onClickHandler }) => {
       const { data, status } = await keywordsStoreService(id);
 
       showSavePopup(true);
-    } catch (error) {
-    }
+    } catch (error) {}
     //handle hide loading
     {
       var removeProcessingItem = loadingState.ProcessingDelay.filter(
@@ -105,17 +103,31 @@ const KeyWords = ({ onClickHandler }) => {
   //2
   //filter from searchBox  in table
 
+  const [dataTable, setDataTable] = useState([]);
+
+  const initKeyWordsDataTable = (data) => {
+    if (data.length != dataTable.length) {
+      setDataTable(data);
+    }
+  };
   var tableDataFiltered = [];
-  var lengthTable = 0;
-  Object.keys(keyWords).map((item) => {
+  var tableDataCount = 0;
+  Object.keys(keyWords).map((item, index) => {
     if (keyWords[item] != null) {
-      for (let i = 0; i < keyWords[item].length - 1; i++) {
-        if (keyWords[item][i].includes(searchBoxValue)) {
-          tableDataFiltered.push(keyWords[item][i]);
-          lengthTable++
-        }
-        // return
+      // console.log(keyWords[item])
+      // console.log(item, keyWords[item]);
+      for (let i = 0; i < keyWords[item].length; i++) {
+        // if (keyWords[item][i].includes(searchBoxValue)) {
+        // tableDataFiltered.push(keyWords[item][i]);
+        // lengthTable++
+        tableDataFiltered.push(keyWords[item][i]);
+        tableDataCount++;
+        // }
       }
+    }
+    if (index == Object.keys(keyWords).length - 1) {
+      // console.log("tableDataCount", tableDataCount);
+      initKeyWordsDataTable(tableDataFiltered);
     }
   });
 
@@ -124,7 +136,6 @@ const KeyWords = ({ onClickHandler }) => {
   const secoundSearchBoxChangeHandler = (e) => {
     setSecoundSearchBoxValue(e.target.value);
     setAlphabetHandler("");
-
   };
 
   //  filter from comboBox
@@ -135,27 +146,26 @@ const KeyWords = ({ onClickHandler }) => {
   const radioButtonHandler = (e) => {
     setRadioClickedHandler(e.target.value);
     setAlphabetHandler("");
-
   };
 
   if (radioClickedHandler === "1" && searchBoxValue) {
-    comboboxFiltered = tableDataFiltered.filter((item) => {
+    comboboxFiltered = dataTable.filter((item) => {
       return item.includes(searchBoxValue);
     });
   } else if (radioClickedHandler === "2" && secoundSearchBoxValue != "") {
-    comboboxFiltered = tableDataFiltered.filter((item) => {
+    comboboxFiltered = dataTable.filter((item) => {
       return item.includes(secoundSearchBoxValue);
     });
   } else if (radioClickedHandler === "3" && secoundSearchBoxValue != "") {
-    comboboxFiltered = tableDataFiltered.filter((item) => {
+    comboboxFiltered = dataTable.filter((item) => {
       return item == secoundSearchBoxValue;
     });
   } else if (radioClickedHandler === "4" && secoundSearchBoxValue != "") {
-    comboboxFiltered = tableDataFiltered.filter((item) => {
+    comboboxFiltered = dataTable.filter((item) => {
       return !item.includes(secoundSearchBoxValue);
     });
   } else {
-    comboboxFiltered = tableDataFiltered.filter((item) => {
+    comboboxFiltered = dataTable.filter((item) => {
       return item.includes(searchBoxValue);
     });
   }
@@ -173,9 +183,10 @@ const KeyWords = ({ onClickHandler }) => {
   const location = useLocation();
 
   //check dom
+
+  // console.log("dataTable", dataTable);
   return (
     <>
-   
       {SavePopup && (
         <PopUp
           clickHandler={() => showSavePopup(false)}
@@ -193,7 +204,6 @@ const KeyWords = ({ onClickHandler }) => {
           handlClick={() => {
             setSearchBoxHandleClick(true);
             handleSetKeyWords();
-
           }}
           resetRadioText={resetRadioText}
           setResetRadioText={setResetRadioText}
@@ -203,22 +213,24 @@ const KeyWords = ({ onClickHandler }) => {
 
         <div className="flex flex-col  w-[97%]">
           {!searchBoxValue || !searchBoxHandleClick ? (
-            <span className="text-right mt-4">هیچ  تحقیقی انجام نشده!</span>
+            <span className="text-right mt-4">هیچ تحقیقی انجام نشده!</span>
           ) : (
-            <span className="text-right mt-4">{lengthTable}کلمه کلیدی یافت شد.</span>
+            <span className="text-right mt-4">
+              {dataTable.length}کلمه کلیدی یافت شد.
+            </span>
           )}
           <div
             id="keyWordsLayOutId"
-            className="flex  justify-between w-full mt-5"
-          >
+            className="flex  justify-between w-full mt-5">
             <Table
-              data={
-                tableAlphabetFiltering
-                  ? tableAlphabetFiltering
-                  : comboboxFiltered
-                    ? comboboxFiltered
-                    : tableDataFiltered
-              }
+              // data={
+              //   tableAlphabetFiltering
+              //     ? tableAlphabetFiltering
+              //     : comboboxFiltered
+              //     ? comboboxFiltered
+              //     : dataTable
+              // }
+              data={dataTable}
               NothingSearch={
                 !searchBoxValue || !searchBoxHandleClick ? true : false
               }
@@ -259,8 +271,7 @@ const KeyWords = ({ onClickHandler }) => {
         disabled={canRequest ? (searchBoxHandleClick ? false : true) : true}
         onClick={(e) => {
           handleSetStoreKeyWords();
-        }}
-      >
+        }}>
         <img src={bookmark_svg} alt="" />
         ذخیره
       </button>

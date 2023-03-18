@@ -32,11 +32,6 @@ export default function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
 
-
-  var label=[]
-  // console.log(label.includes("abc"))
-  // console.log(label.findIndex(el=>el.uuid=="abc2"))
-
   return (
     <Fragment>
       <div className="app">
@@ -111,8 +106,8 @@ export default function App() {
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
         )}
-        <LoadingPage />
-        <ToastContainer rtl />
+        {/* <LoadingPage /> */}
+        {/* <ToastContainer rtl /> */}
         {forceUpdate ? "" : ""}
       </div>
     </Fragment>

@@ -14,6 +14,8 @@ export default function ComboBox({
 }) {
   const [radioText, setRadioText] = useState("");
   const ref = useRef();
+  const radioRef = useRef();
+
   const [inputClick, setInputClick] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -27,7 +29,7 @@ export default function ComboBox({
   }, [ref]);
   return (
     <div
-      className="flex flex-col items-center relative  w-full "
+      className="flex flex-col items-center relative "
       id="keyWordSearch"
       ref={ref}
     >
@@ -85,7 +87,8 @@ export default function ComboBox({
                 <div className="flex gap-2 mt-1 items-center cursor-pointer pr-3 py-1 hover:bg-lightBlue"
                 onClick={(e) => {
                   setRadioText(item);
-                  radioClickedHandler(e);
+                  radioClickedHandler(item);
+                  
                 }}
                 >
                   <input
@@ -94,9 +97,11 @@ export default function ComboBox({
                     name="radio"
                     onClick={(e) => {
                       setRadioText(item);
-                      radioClickedHandler(e);
+                      radioClickedHandler(item);
                     }}
                     value={item}
+                    checked={item==radioText?true:false}
+                    // ref={radioRef}
                   />
                   {icons?<img src={icons[key]} alt={item} className="w-4 h-4"/>:null}
                   <span>{item} </span>

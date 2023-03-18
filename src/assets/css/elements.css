@@ -226,6 +226,10 @@ input[type=checkbox]{
 } */
 
 
+.overflow-visible-force{
+  overflow: visible;
+}
+
 /* change logo color after the hover */
 .logoLighting{
   filter: saturate(20);

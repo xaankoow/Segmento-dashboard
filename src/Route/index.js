@@ -23,6 +23,7 @@ import RankTracking from "../component/Dashboard/RankTracking/RankTracking";
 import Keyword from "../component/Dashboard/RankTracking/keyword/Keyword";
 import Report from "../component/Dashboard/RankTracking/report/Report";
 import Competitors from "../component/Dashboard/RankTracking/competitors/Competitors";
+import BusinessPages from "../pages/BusinessPages";
 import { Home } from "../pages/baghShahiRanck/pages/Home/index.jsx"
 
 
@@ -113,12 +114,14 @@ export const DashboardRote = [
   { path: "ReportSupport/ticket/*", component: <SupportMessage /> },
   { path: "TitleCopyWriterBulk", component: <TitleCopyWriterBulk /> },
   { path: "TitleCopywriter", component: <TitleCopywriter /> },
+  { path: "BusinessPages", component: <BusinessPages /> },
+
   // { path: "GoogleIndexer", component: <GoogleIndexer /> },
   { path: "", component: <EasyStart /> },
   { path: "*", component: <Page404 /> },
 ];
 
-/*
+/*BusinessPages
 const ranktrakingTabs = [
   {
     title: "نمای کلی",

@@ -34,10 +34,11 @@ export const ChackBusinessCustomer = () => {
 
         const state = { ...getState().workSpaceState };
         state.businessCustomer = {
-          current: userState.userData.package.type_text != "پکیج پایه" ? true : false,
-          last: userState.userData.user_has_success_purchase
+          current:
+            userState.userData.package.type_text != "پکیج پایه" ? true : false,
+          last: userState.userData.user_has_success_purchase,
           // last: findSuccessReport != -1 ? true : false
-        }
+        };
         await dispatch({ type: "CHECK_BUSSINESS", payload: state });
 
         //handle hide loading
@@ -63,12 +64,13 @@ export const ChackBusinessCustomer = () => {
         );
         loadingState2.ProcessingDelay = removeProcessingItem;
         loadingState2.canRequest = removeProcessingItem > 0 ? false : true;
-        await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState2 });
+        await dispatch({
+          type: "SET_PROCESSING_DELAY",
+          payload: loadingState2,
+        });
       }
     }
-
-
-  }
+  };
 };
 
 export const setWebAdress = (adress) => {
@@ -88,7 +90,6 @@ export const setShowWorkSpaceModal = (value) => {
 };
 export const getAllWorkSpace = () => {
   return async (dispatch, getState) => {
-
     // var state = { ...getState().workSpaceState };
     const loadingState = { ...getState().loadingState };
 
@@ -112,6 +113,7 @@ export const getAllWorkSpace = () => {
         if (workSpaces.data.status == true && workSpaces.data.code == 200) {
           const state = { ...getState().workSpaceState };
           state.allWorkSpace = workSpaces.data.data;
+          state.webAdress = workSpaces.data.data[0].website || "";
           await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state });
         }
       }
@@ -139,7 +141,6 @@ export const getAllWorkSpace = () => {
       loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 });
     }
-
   };
 };
 
@@ -521,8 +522,8 @@ export const addWorkSpace = (step) => {
           competitors:
             step == 5
               ? element.competitorSite
-                .map((item) => "https://" + item)
-                .filter((value) => value != "https://")
+                  .map((item) => "https://" + item)
+                  .filter((value) => value != "https://")
               : [],
         });
       }
@@ -585,7 +586,6 @@ export const addWorkSpace = (step) => {
         // getAllWorkSpace();
         const workSpaces = await getAllWorkspace();
         if (workSpaces.data.status == true && workSpaces.data.code == 200) {
-
           state.allWorkSpace = workSpaces.data.data;
         }
         state.resultSetWorkSpace = { reportStatus: false, reportStep: step };
@@ -662,9 +662,9 @@ export const resetWorkSpaceState = () => {
 //all limit
 export const allLimitDataFeature = ({ axiosController }) => {
   return async (dispatch, getState) => {
-    // 
+    //
     const userState = { ...getState().userState };
-    const loadingState = { ...getState().loadingState }
+    const loadingState = { ...getState().loadingState };
 
     let package_uuid = "";
     if (userState.userData.package != undefined) {
@@ -676,37 +676,59 @@ export const allLimitDataFeature = ({ axiosController }) => {
           // loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
           loadingState.ProcessingDelay.push("userLimit");
           loadingState.canRequest = false;
-          await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState })
+          await dispatch({
+            type: "SET_PROCESSING_DELAY",
+            payload: loadingState,
+          });
         }
 
         try {
           const infoPackage = await getPackageInfO({ package_uuid });
           const limitPackage = await userLimit({ axiosController });
-          if (limitPackage.data.code == 200 && limitPackage.data.status == true && infoPackage.data.code == 200 && infoPackage.data.status == true) {
+          if (
+            limitPackage.data.code == 200 &&
+            limitPackage.data.status == true &&
+            infoPackage.data.code == 200 &&
+            infoPackage.data.status == true
+          ) {
             const state = { ...getState().workSpaceState };
             state.limitsDatas = limitPackage.data.data;
             state.allLimitsDatas = infoPackage.data.data.features;
-            await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state });
+            await dispatch({
+              type: "SET_WORK_SPACE_WEB_ADRESS",
+              payload: state,
+            });
           }
           //handle hide loading
           {
-            const loadingState1 = { ...getState().loadingState }
-            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "userLimit");
+            const loadingState1 = { ...getState().loadingState };
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(
+              (item) => item != "userLimit"
+            );
             loadingState1.ProcessingDelay = removeProcessingItem;
-            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+            loadingState1.canRequest =
+              removeProcessingItem.length > 0 ? false : true;
+            await dispatch({
+              type: "SET_PROCESSING_DELAY",
+              payload: loadingState1,
+            });
           }
         } catch (error) {
           //handle hide loading
           {
-            const loadingState1 = { ...getState().loadingState }
-            var removeProcessingItem = loadingState1.ProcessingDelay.filter(item => item != "userLimit");
+            const loadingState1 = { ...getState().loadingState };
+            var removeProcessingItem = loadingState1.ProcessingDelay.filter(
+              (item) => item != "userLimit"
+            );
             loadingState1.ProcessingDelay = removeProcessingItem;
-            loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
-            await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 })
+            loadingState1.canRequest =
+              removeProcessingItem.length > 0 ? false : true;
+            await dispatch({
+              type: "SET_PROCESSING_DELAY",
+              payload: loadingState1,
+            });
           }
         }
-
       }
     }
   };
@@ -715,10 +737,12 @@ export const allLimitDataFeature = ({ axiosController }) => {
 export const handleLowOffLimitCount = (section, numLowOff) => {
   return async (dispatch, getState) => {
     const state = { ...getState().workSpaceState };
-    const findFeatureIndex = state.limitsDatas.findIndex(state => state.feature_title == section)
+    const findFeatureIndex = state.limitsDatas.findIndex(
+      (state) => state.feature_title == section
+    );
     if (findFeatureIndex != -1) {
-      state.limitsDatas[findFeatureIndex].count -= numLowOff
+      state.limitsDatas[findFeatureIndex].count -= numLowOff;
     }
     await dispatch({ type: "LOW_OFF_FEATURE_COUNT", payload: state });
-  }
+  };
 };

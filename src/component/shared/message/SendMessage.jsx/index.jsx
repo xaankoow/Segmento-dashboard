@@ -36,13 +36,21 @@ export default function Index({ setValueEditor, setFileArray }) {
           امکان بارگزاری یک یا چند فایل همزمان را دارید.
         </p>
       </div>
-      <div className='flex w-full mt-2 items-center'>
-        <div className='flex flex-grow items-center border border-sectionDisable rounded-[3px] justify-between px-3 h-11'>
+      <div className='flex w-full mt-2 items-center justify-between'>
+        <div className='flex flex-grow items-center border border-sectionDisable rounded-[3px] justify-between px-3 h-11 cursor-pointer' 
+        >
+          <div
+          // className=' w-full flex justify-around items-center'
+          {...getRootProps({ className: "dropzone" })}
+          className='flex flex-grow items-center justify-between' 
+          >
+
           <span className='text-title text-sm'>پیوست فایل</span>
-          <span className='text-silver text-s'>{files.length != 0 ? `تعداد ${files.length} فایل انتخاب شده است.` : "فایلی انتخاب نشده است. "}</span>
+          <p className='text-silver inline-block text-s'>{files.length != 0 ? `تعداد ${files.length} فایل انتخاب شده است.` : "فایلی انتخاب نشده است. "}</p>
+          </div>
         </div>
         <div
-          {...getRootProps({ className: "dropzone" })}
+        {...getRootProps({ className: "dropzone" })}
         // className="border rounded-lg border-dashed border-primary min-w-[358px] bg-secondary flex flex-col justify-center items-center py-4 gap-4"
         >
           <AuthButton classes={"btn-secondary mr-5"} textButton={"انتخاب فایل"} />

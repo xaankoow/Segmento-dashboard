@@ -125,7 +125,7 @@ export default function TableFinancialReports({ title }) {
             <ComboBox
               placeholder={"فیلد جستجو"}
               radioTextItems={filterBoxDatas}
-              radioClickedHandler={(e) => setSearchFilterOption(e.target.value)}
+              radioClickedHandler={(e) => setSearchFilterOption(e)}
             />
           </div>
           <div className="flex items-center ">
@@ -135,7 +135,7 @@ export default function TableFinancialReports({ title }) {
 
             <FilterData
               radioTarget={searchFilterOption}
-              userTypeData={(e) => setUserType(e.target.value)}
+              userTypeData={(e) => setUserType(e)}
               FactorHandler={setFactorHandler}
               setDatePickerValues={setDatePickerValues}
               datePickerValues={datePickerValues}
