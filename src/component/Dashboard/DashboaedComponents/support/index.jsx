@@ -226,12 +226,11 @@ export default function Index() {
              clickHandler={() => setShowPopup(false)}
              image={ImageContainer.tickPopUp}
              type={"sucsess"}
-             buttonText={"باشه، فهمیدم!"}
-             text={"تیکت شما با موفقیت برای پشتیبان سگمنتو ارسال شد!"}
+             buttonText={"باشه، بزن بریم."}
+             text={"تیکت شما برای واحد پشتیبانی سگمنتو ارسال شد."}
              secoundText={
-               "کارشناسان ما در کوتاه ترین زمان ممکن پاسخ شما رو خواهند داد."
+               "کارشناسان ما در سریع‌ترین زمان ممکن به آن رسیدگی خواهند کرد."
              }
-             title={"موفقیت آمیز"}
            />
           ):null}
         {chatData.messages.length ? "" : ""}
