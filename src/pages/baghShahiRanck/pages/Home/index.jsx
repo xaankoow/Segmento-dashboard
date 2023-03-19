@@ -6,7 +6,7 @@ import OptionsSlider from "../../components/optionsSlider";
 import MainChart from "../../components/mainChart";
 import FooterCharts from "../../components/footerCharts";
 import ReactSelect from "react-select";
-import APISample from "../../configs/APIData";
+// import workSpacePeriodData from "../../configs/APIData";
 import {
   allWordsCount,
   averageAllWords,
@@ -21,43 +21,54 @@ import mainChartTypes from "../../configs/mainChartTypes";
 import PageTitle from "../../../../component/Dashboard/DashboaedComponents/pageTitle/pageTitle";
 import TitleLastUpdateInfo from "../../../../component/Dashboard/RankTracking/TitleLastUpdateInfo";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { initWorkSpacePeriodData } from "../../../../component/Redux/Action/rankTraking";
  
 export const Home = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [mainChart, setMainChart] = useState(mainChartTypes.allWordsCount);
 
+  const {workSpacePeriodData} = useSelector((state) => state.rankTrakingState);
+  // workSpacePeriodData
+
   const dispatch=useDispatch();
 
+  
   const averageAllWordsMemo = useMemo(
-    () => averageAllWords(APISample.data),
-    [APISample]
+    () => averageAllWords(workSpacePeriodData.data),
+    [workSpacePeriodData]
   );
   const distributionCurrentAndPrevWordsMemo = useMemo(
-    () => distributionCurrentAndPrevWords(APISample.data),
-    [APISample]
+    () => distributionCurrentAndPrevWords(workSpacePeriodData.data),
+    [workSpacePeriodData]
   );
   const increaseFromPrevWordsCountMemo = useMemo(
-    () => increaseFromPrevWordsCount(APISample.data),
-    [APISample]
+    () => increaseFromPrevWordsCount(workSpacePeriodData.data),
+    [workSpacePeriodData]
   );
   const decreaseFromPrevWordsCountMemo = useMemo(
-    () => decreaseFromPrevWordsCount(APISample.data),
-    [APISample]
+    () => decreaseFromPrevWordsCount(workSpacePeriodData.data),
+    [workSpacePeriodData]
   );
   const increaseFromPrevWordsAvgMemo = useMemo(
-    () => increaseFromPrevWordsAvg(APISample.data),
-    [APISample]
+    () => increaseFromPrevWordsAvg(workSpacePeriodData.data),
+    [workSpacePeriodData]
   );
   const decreaseFromPrevWordsAvgMemo = useMemo(
-    () => decreaseFromPrevWordsAvg(APISample.data),
-    [APISample]
+    () => decreaseFromPrevWordsAvg(workSpacePeriodData.data),
+    [workSpacePeriodData]
   );
   const allWordsCountMemo = useMemo(
-    () => allWordsCount(APISample.data),
-    [APISample]
+    () => allWordsCount(workSpacePeriodData.data),
+    [workSpacePeriodData]
   );
+  useEffect(() => {
+    
+    if (workSpacePeriodData.length!=0) {
+      
+    }
+  }, [workSpacePeriodData.length])
+  
 
 
   const axiosController = new AbortController();
@@ -112,8 +123,8 @@ export const Home = () => {
             <span>آخرین بروزرسانی: </span>
             <span>
               {
-                Object.keys(APISample.data)[
-                  Object.keys(APISample.data).length - 1
+                Object.keys(workSpacePeriodData.data)[
+                  Object.keys(workSpacePeriodData.data).length - 1
                 ]
               }
             </span>
