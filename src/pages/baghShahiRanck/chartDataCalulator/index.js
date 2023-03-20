@@ -16,7 +16,7 @@ export const distributionCurrentAndPrevWords = (data, count = 2) => {
   const values = Object.values(data).slice(-count);
   // debugger;
 
-  debugger
+  // debugger
   const arr = values.map((words) => {
     const counterCurrnet = {
       "1-3": 0,
@@ -86,7 +86,7 @@ export const decreaseFromPrevWordsAvg = (data, count = 7) => {
         counter =
           word.position -
           values?.[indx - 1].find((x) => x.keyword_uuid === word.keyword_uuid)
-            .position;
+            ?.position;
 
         // }
       });
@@ -124,7 +124,7 @@ export const increaseFromPrevWordsAvg = (data, count = 7) => {
 
         counter =
           values?.[indx - 1].find((x) => x.keyword_uuid === word.keyword_uuid)
-            .position - word.position;
+            ?.position - word.position;
       });
       return {
         uv: Number(((counter > 0 ? counter : 0) / item.length).toFixed(2)),
@@ -156,11 +156,11 @@ export const decreaseFromPrevWordsCount = (data, count = 7) => {
       let counter = 0;
 
       item.forEach((word) => {
-        if (typeof values?.[indx - 1] === "undefined") return undefined;
+        if (typeof values[indx - 1] === "undefined") return undefined;
         if (
           word.position >
-          values?.[indx - 1].find((x) => x.keyword_uuid === word.keyword_uuid)
-            .position
+          values[indx - 1].find((x) => x.keyword_uuid === word.keyword_uuid)
+            ?.position
         ) {
           counter++;
           allCounter++;
@@ -183,18 +183,18 @@ export const increaseFromPrevWordsCount = (data, count = 7) => {
     .map((item, indx) => {
       if (!indx) return null;
       let counter = 0;
-
       item.forEach((word) => {
-        everyThing++;
-        if (typeof values?.[indx - 1] === "undefined") return undefined;
-        if (
-          word.position <
-          values?.[indx - 1].find((x) => x.keyword_uuid === word.keyword_uuid)
-            .position
-        ) {
-          counter++;
-          allCounter++;
-        }
+          
+          everyThing++;
+          if (typeof values?.[indx - 1] === "undefined") return undefined;
+          if (
+            word?.position <
+            values?.[indx - 1].find((x) => x.keyword_uuid === word.keyword_uuid)?.position
+            ) {
+              counter++;
+              allCounter++;
+            }
+
       });
       return { uv: counter, name: keys[indx] };
     })
