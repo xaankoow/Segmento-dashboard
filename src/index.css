@@ -8,3 +8,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* FOR AN ERROR COVER ALL FRONT OF SITE, NEED FIND THE BUG LATER */
+body > iframe[style*='2147483647'] {
+  display: none;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../../Auth/authInput/AuthInput";
-import './textInput.css'
+import "./textInput.css";
 
 export default function StaticInputText({
   textLabelInput,
@@ -21,8 +21,7 @@ export default function StaticInputText({
   workSpaceTypeState,
   parentClass,
   handleChange,
-  errorTextId
-
+  errorTextId,
 }) {
   // check email to be correct
   const validateEmail = (email) => {
@@ -32,8 +31,7 @@ export default function StaticInputText({
   const [isSeePssword, setSeePassword] = useState(typeInput);
   const [valueInput, setInputValue] = useState("");
 
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   // to be just number when we type
   const pressNumberValue = (event) => {
@@ -41,11 +39,17 @@ export default function StaticInputText({
       event.preventDefault();
     }
   };
- 
+
   return (
     <div className={`flex static_text_input w-full ${parentClass}`}>
       <div className={`input-wrapper input-static ${wrapperClass}`}>
-      <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
+        <span
+          className={`error_down_input ${
+            errorTextId != undefined && errorTextId
+          }`}
+        >
+          اطلاعات نامعتبر
+        </span>
 
         <input
           type={isSeePssword}
@@ -63,13 +67,25 @@ export default function StaticInputText({
             pointerEvents: disabled && "none",
             borderBottom: chechvalue ? " 3px solid #cd0a0a" : "",
           }}
-          onChange={reduxHandleChange!=undefined?((e)=> {
-            // setInputValue(e.target.value);
-             workSpaceTypeState != undefined ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) : dispatch(reduxHandleChange(e.target.value)) 
-          }): handleChange ? (e)=>handleChange(e) :null}
+          onChange={
+            reduxHandleChange != undefined
+              ? (e) => {
+                  // setInputValue(e.target.value);
+                  workSpaceTypeState != undefined
+                    ? dispatch(
+                        reduxHandleChange(e.target.value, workSpaceTypeState)
+                      )
+                    : dispatch(reduxHandleChange(e.target.value));
+                }
+              : handleChange
+              ? (e) => handleChange(e)
+              : null
+          }
           placeholder={placeholder}
         />
-        <label className={disabled ? "lockStyle" : ""} for="user">{textLabelInput}</label>
+        <label className={disabled ? "lockStyle" : ""} htmlFor="user">
+          {textLabelInput}
+        </label>
         <span className="error_down_input">اطلاعات نامعتبر</span>
       </div>
       <p className="">{staticText}</p>

@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import ReactTooltip from 'react-tooltip';
+import React from "react";
+import ReactTooltip from "react-tooltip";
 
-export default function ToolTip({ showToolTip, text, position }) {
-    return (
-        <>
-                <ReactTooltip delayHide={500} effect="solid" />
-                    
-        </>
-    )
+export default function ToolTip({ ...props }) {
+  return (
+    <>
+      <ReactTooltip delayHide={500} effect="solid" {...props} />
+    </>
+  );
 }

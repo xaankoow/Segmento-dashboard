@@ -79,17 +79,23 @@ export default function BadgeLimitKeyWords({ numFont, api }) {
         rest: limitsDatas.length > 0 ? limitsDatas[1].count : "",
       };
       break;
+    case 6:
+      a = {
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[3].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[3].count : "",
+      };
+      break;
     case "titleCopyWriter":
       a = {
         allWords: allLimitsDatas.length != 0 && allLimitsDatas[7].count,
         rest: limitsDatas.length > 0 ? limitsDatas[7].count : "",
       };
       break;
-      case "titleCopyWriterBulk":
-        a = {
-          allWords: allLimitsDatas.length != 0 && allLimitsDatas[15].count,
-          rest: limitsDatas.length > 0 ? limitsDatas[15].count : "",
-        };
+    case "titleCopyWriterBulk":
+      a = {
+        allWords: allLimitsDatas.length != 0 && allLimitsDatas[15].count,
+        rest: limitsDatas.length > 0 ? limitsDatas[15].count : "",
+      };
 
       break;
     default:

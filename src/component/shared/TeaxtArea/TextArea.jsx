@@ -30,11 +30,9 @@ export default function TextArea({
   inputId,
   selectWithOnClick,
   placeholder,
-  handleChangeValue
-
-
+  handleChangeValue,
 }) {
-  // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)  
+  // check email to be correct (Transfer to => Utils/Auth/CheckFormatValue) thanks Ariri for the create this function => ariri aswered : your welcome :)
   // const validateEmail = (email) => {
   //   var re = /\S+@\S+\.\S+/;
   //   return re.test(email);
@@ -45,7 +43,7 @@ export default function TextArea({
   const [valueInput, setInputValue] = useState("");
 
   //redux options
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // to be just number when we type
   const pressNumberValue = (event) => {
@@ -56,49 +54,75 @@ export default function TextArea({
   return (
     <>
       <div className={`input-wrapper ${wrapperClass}`}>
-        <span className={`error_down_input ${errorTextId != undefined && errorTextId}`}>اطلاعات نامعتبر</span>
+        <span
+          className={`error_down_input ${
+            errorTextId != undefined && errorTextId
+          }`}
+        >
+          اطلاعات نامعتبر
+        </span>
         <textarea
-        cols={10}
-        rows={10}
-        placeholder={placeholder}
-        id={inputId!=undefined?inputId:"idsa"}
-           required
+          cols={10}
+          rows={10}
+          placeholder={placeholder}
+          id={inputId != undefined ? inputId : "idsa"}
+          required
           maxLength={maxlength}
-          
           onKeyPress={pressNumber && pressNumberValue}
           name={typeInput}
           ref={ref}
           disabled={disable}
-          className={`${classes}  ${disable == true && " bg-[#D9D9D9] text-[#FCFCFB]"}`}
+          className={`${classes}  ${
+            disable == true && " bg-[#D9D9D9] text-[#FCFCFB]"
+          }`}
           value={value}
           dir="auto"
-          readOnly={readOnly!=undefined&&true}
+          readOnly={readOnly != undefined && true}
           style={{
             direction,
             width: `${width}`,
             pointerEvents: disable && "none",
-            borderBottom: disable ? " 3px solid rgba(16, 204, 174, 1) !important" : chechvalue ? " 3px solid #cd0a0a" : "",
+            borderBottom: disable
+              ? " 3px solid rgba(16, 204, 174, 1) !important"
+              : chechvalue
+              ? " 3px solid #cd0a0a"
+              : "",
           }}
-          onClick={(e)=>selectWithOnClick&&e.currentTarget.select()}
-          onKeyUp={(e)=>{
-            reduxHandleChange != undefined & selectWithOnClick !=undefined&& dispatch(reduxHandleChange(e.target.value))
+          onClick={(e) => selectWithOnClick && e.currentTarget.select()}
+          onKeyUp={(e) => {
+            (reduxHandleChange != undefined) &
+              (selectWithOnClick != undefined) &&
+              dispatch(reduxHandleChange(e.target.value));
           }}
           onChange={(e) => {
-            checkStrongPass!=undefined&&CheckFormat("password",e.target.value,errorTextId)
-            handleArrowPlan != undefined && handleArrowPlan(e.target.value, targePlanArrow);
-            handleChange != undefined && handleChange(e.target.value)
-            handleChangeValue != undefined && handleChangeValue()
+            checkStrongPass != undefined &&
+              CheckFormat("password", e.target.value, errorTextId);
+            handleArrowPlan != undefined &&
+              handleArrowPlan(e.target.value, targePlanArrow);
+            handleChange != undefined && handleChange(e.target.value);
+            handleChangeValue != undefined && handleChangeValue();
             setInputValue(e.target.value);
-            workSpaceTypeState != undefined & reduxHandleChange != undefined ?
-              dispatch(reduxHandleChange(e.target.value, workSpaceTypeState)) :
-              reduxHandleChange != undefined & selectWithOnClick ==undefined && dispatch(reduxHandleChange(e.target.value))
+            (workSpaceTypeState != undefined) & (reduxHandleChange != undefined)
+              ? dispatch(reduxHandleChange(e.target.value, workSpaceTypeState))
+              : (reduxHandleChange != undefined) &
+                  (selectWithOnClick == undefined) &&
+                dispatch(reduxHandleChange(e.target.value));
           }}
-          
         />
 
-        <label className={disable ? "text-[#fff]" : "text-[10px]"} for="user">{textLabelInput}</label>
+        <label
+          className={disable ? "text-[#fff]" : "text-[10px]"}
+          htmlFor="user"
+        >
+          {textLabelInput}
+        </label>
         {/* TODO: CHANGE INFO TEXT WITH STIKY NOTE IN OFFICE */}
-        {infoStrongPass == true ? <span className={` info w-[200%] `}>با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه طولانی و مطمئن بسازید.</span> : null}
+        {infoStrongPass == true ? (
+          <span className={` info w-[200%] `}>
+            با ترکیب علائم (!@#) و اعداد (1-9) و حروف انگلیسی (A-z) گذرواژه
+            طولانی و مطمئن بسازید.
+          </span>
+        ) : null}
       </div>
     </>
   );

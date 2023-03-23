@@ -23,113 +23,105 @@ import TitleLastUpdateInfo from "../../../../component/Dashboard/RankTracking/Ti
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initWorkSpacePeriodData } from "../../../../component/Redux/Action/rankTraking";
- 
+import KeywordTab from "../keywordTab";
+
 export const Home = () => {
-
-  const {workSpacePeriodData:APISample} = useSelector((state) => state.rankTrakingState);
-
+  // const { workSpacePeriodData: APISample } = useSelector(
+  //   (state) => state.rankTrakingState
+  // );
 
   const [currentTab, setCurrentTab] = useState(0);
-  const [mainChart, setMainChart] = useState(mainChartTypes.allWordsCount);
+  // const [mainChart, setMainChart] = useState(mainChartTypes.allWordsCount);
 
   const [forceUpdate, setForceUpdate] = useState(0);
 
-  const dispatch=useDispatch();
+  // const dispatch = useDispatch();
 
-  var averageAllWordsMemo=[];
-  var distributionCurrentAndPrevWordsMemo=[];
-  var increaseFromPrevWordsCountMemo=[];
-  var decreaseFromPrevWordsCountMemo=[];
-  var increaseFromPrevWordsAvgMemo=[];
-  var decreaseFromPrevWordsAvgMemo=[];
-  var allWordsCountMemo=[];
+  // function InitData() {
+  //   averageAllWordsMemo =useMemo(
+  //     () => averageAllWords(APISample),
+  //     [APISample]
+  //   );
+  //   distributionCurrentAndPrevWordsMemo =useMemo(
+  //     () => distributionCurrentAndPrevWords(APISample),
+  //     [APISample]
+  //   );
+  //   increaseFromPrevWordsCountMemo =useMemo(
+  //     () => increaseFromPrevWordsCount(APISample),
+  //     [APISample]
+  //   );
+  //   decreaseFromPrevWordsCountMemo =useMemo(
+  //     () => decreaseFromPrevWordsCount(APISample),
+  //     [APISample]
+  //   );
+  //   increaseFromPrevWordsAvgMemo =useMemo(
+  //     () => increaseFromPrevWordsAvg(APISample),
+  //     [APISample]
+  //   );
+  //   decreaseFromPrevWordsAvgMemo =useMemo(
+  //     () => decreaseFromPrevWordsAvg(APISample),
+  //     [APISample]
+  //   );
+  //   allWordsCountMemo =useMemo(
+  //     () => allWordsCount(APISample),
+  //     [APISample]
+  //   );
+  // }
 
-  function InitData() {
-    averageAllWordsMemo =useMemo(
-      () => averageAllWords(APISample),
-      [APISample]
-    );
-    distributionCurrentAndPrevWordsMemo =useMemo(
-      () => distributionCurrentAndPrevWords(APISample),
-      [APISample]
-    );
-    increaseFromPrevWordsCountMemo =useMemo(
-      () => increaseFromPrevWordsCount(APISample),
-      [APISample]
-    );
-    decreaseFromPrevWordsCountMemo =useMemo(
-      () => decreaseFromPrevWordsCount(APISample),
-      [APISample]
-    );
-    increaseFromPrevWordsAvgMemo =useMemo(
-      () => increaseFromPrevWordsAvg(APISample),
-      [APISample]
-    );
-    decreaseFromPrevWordsAvgMemo =useMemo(
-      () => decreaseFromPrevWordsAvg(APISample),
-      [APISample]
-    );
-    allWordsCountMemo =useMemo(
-      () => allWordsCount(APISample),
-      [APISample]
-    );
-    setForceUpdate(forceUpdate++)
-  }
+  // useEffect(() => {
+  // InitData()
 
+  //   setForceUpdate(forceUpdate++);
+  // }, [APISample.length]);
+
+  // const axiosController = new AbortController();
   useEffect(() => {
-    InitData()
-    
-  }, [APISample.length])
-  
-
-
-  const axiosController = new AbortController();
-  useEffect(() => {
-    dispatch(initWorkSpacePeriodData({ axiosController }));
-    return () => {
-      axiosController.abort();
-    };
+    // dispatch(initWorkSpacePeriodData({ axiosController }));
+    // return () => {
+    //   axiosController.abort();
+    // };
   }, []);
 
-return APISample.length!=0&averageAllWordsMemo.length!=0?  (<div className="container pt-4">
-  <header className="flex justify-between">
-    <div>
-      {/* <h1 className="text-xl">ابزار رتبه سنج</h1> */}
+  // return (APISample.length != 0) & (averageAllWordsMemo.length != 0) ? (
+  return (
+    <div className="container pt-4">
+      <header className="flex justify-between">
+        <div>
+          {/* <h1 className="text-xl">ابزار رتبه سنج</h1> */}
 
-     <PageTitle title={"ابزار رتبه سنج"} />
-      
+          <PageTitle title={"ابزار رتبه سنج"} />
 
-      <nav className="flex items-center mt-5 navBar">
-        <button
-          onClick={() => setCurrentTab(0)}
-          className={`border-l transition px-7 -mr-3 py-1 border-[#D9D9D9] ${
-            currentTab === 0 ? "active" : ""
-          }`}
-        >
-          نمای کلی
-        </button>
-        <button
-          disabled
-          onClick={() => setCurrentTab(1)}
-          className={`border-l transition px-7 py-1 border-[#D9D9D9] ${
-            currentTab === 1 ? "active" : ""
-          }`}
-        >
-          کلمات کلیدی
-        </button>
-        <button
-          disabled
-          onClick={() => setCurrentTab(2)}
-          className={`px-7 py-1 transition ${
-            currentTab === 2 ? "active" : ""
-          }`}
-        >
-          رقبا
-        </button>
-      </nav>
-    </div>
-    <TitleLastUpdateInfo />
-    {/* <div className="text-neutral-500 text-center">
+          <nav className="flex items-center mt-5 navBar">
+            <button
+              onClick={() => setCurrentTab(0)}
+              className={`border-l transition px-7 -mr-3 py-1 border-[#D9D9D9] ${
+                currentTab === 0 ? "active" : ""
+              }`}
+            >
+              نمای کلی
+            </button>
+            <button
+              // disabled
+              onClick={() => setCurrentTab(1)}
+              className={`border-l transition px-7 py-1 border-[#D9D9D9] ${
+                currentTab === 1 ? "active" : ""
+              }`}
+            >
+              کلمات کلیدی
+            </button>
+            <button
+              disabled
+              onClick={() => setCurrentTab(2)}
+              className={`px-7 py-1 transition ${
+                currentTab === 2 ? "active" : ""
+              }`}
+            >
+              رقبا
+            </button>
+          </nav>
+        </div>
+        <TitleLastUpdateInfo />
+        {/* <div className="text-neutral-500 text-center">
       <div>
         <span>آخرین بروزرسانی: </span>
         <span>
@@ -145,28 +137,28 @@ return APISample.length!=0&averageAllWordsMemo.length!=0?  (<div className="cont
         <span className="text-sm">هر 48 ساعت</span>
       </div>
     </div> */}
-  </header>
+      </header>
 
-  {currentTab === 0 && (
-    <>
+      {currentTab === 0 && (
+        <>
+          <div className="px-7">
+            {/*===== NEW COMMENT =====*/}
+            {/* <OptionsSlider
+              averageAllWordsMemo={averageAllWordsMemo}
+              distributionCurrentAndPrevWordsMemo={
+                distributionCurrentAndPrevWordsMemo
+              }
+              increaseFromPrevWordsCountMemo={increaseFromPrevWordsCountMemo}
+              decreaseFromPrevWordsCountMemo={decreaseFromPrevWordsCountMemo}
+              increaseFromPrevWordsAvgMemo={increaseFromPrevWordsAvgMemo}
+              decreaseFromPrevWordsAvgMemo={decreaseFromPrevWordsAvgMemo}
+              allWordsCountMemo={allWordsCountMemo}
+              setMainChart={setMainChart}
+              mainChart={mainChart}
+            /> */}
 
-    <div className="px-7">
-      <OptionsSlider
-        averageAllWordsMemo={averageAllWordsMemo}
-        distributionCurrentAndPrevWordsMemo={
-          distributionCurrentAndPrevWordsMemo
-        }
-        increaseFromPrevWordsCountMemo={increaseFromPrevWordsCountMemo}
-        decreaseFromPrevWordsCountMemo={decreaseFromPrevWordsCountMemo}
-        increaseFromPrevWordsAvgMemo={increaseFromPrevWordsAvgMemo}
-        decreaseFromPrevWordsAvgMemo={decreaseFromPrevWordsAvgMemo}
-        allWordsCountMemo={allWordsCountMemo}
-        setMainChart={setMainChart}
-        mainChart={mainChart}
-      />
-
-      {/* filters */}
-      {/* <div className="border-t mt-3 pt-5">
+            {/* filters */}
+            {/* <div className="border-t mt-3 pt-5">
         <div className="flex items-center justify-between pl-8">
           <div className="flex items-center min-w-[137px]">
             <div className="bg-neutral-100 rounded-md w-10 h-10 flex items-center justify-center ml-3">
@@ -257,27 +249,33 @@ return APISample.length!=0&averageAllWordsMemo.length!=0?  (<div className="cont
         </div>
       </div> */}
 
-      <MainChart
-        averageAllWordsMemo={averageAllWordsMemo}
-        distributionCurrentAndPrevWordsMemo={
-          distributionCurrentAndPrevWordsMemo
-        }
-        increaseFromPrevWordsCountMemo={increaseFromPrevWordsCountMemo}
-        decreaseFromPrevWordsCountMemo={decreaseFromPrevWordsCountMemo}
-        increaseFromPrevWordsAvgMemo={increaseFromPrevWordsAvgMemo}
-        decreaseFromPrevWordsAvgMemo={decreaseFromPrevWordsAvgMemo}
-        allWordsCountMemo={allWordsCountMemo}
-        setMainChart={setMainChart}
-        mainChart={mainChart}
-      />
+            {/*===== NEW COMMENT =====*/}
+            {/* <MainChart
+              averageAllWordsMemo={averageAllWordsMemo}
+              distributionCurrentAndPrevWordsMemo={
+                distributionCurrentAndPrevWordsMemo
+              }
+              increaseFromPrevWordsCountMemo={increaseFromPrevWordsCountMemo}
+              decreaseFromPrevWordsCountMemo={decreaseFromPrevWordsCountMemo}
+              increaseFromPrevWordsAvgMemo={increaseFromPrevWordsAvgMemo}
+              decreaseFromPrevWordsAvgMemo={decreaseFromPrevWordsAvgMemo}
+              allWordsCountMemo={allWordsCountMemo}
+              setMainChart={setMainChart}
+              mainChart={mainChart}
+            /> */}
 
-      <FooterCharts />
+            {/*===== NEW COMMENT =====*/}
+            {/* <FooterCharts /> */}
+          </div>
+        </>
+      )}
+
+      {/* TAB TWO COMPONENT */}
+      {currentTab === 1 && <KeywordTab />}
+
+      {forceUpdate ? "" : ""}
     </div>
-
-    </>
-  )}
-  {forceUpdate?"":""}
-</div>):null
+  );
 };
 
 export default Home;

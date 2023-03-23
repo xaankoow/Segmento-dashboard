@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import arrow_down_ios_new_svg from '../../../assets/img/dashboard/searchBox/arrow_down_ios_new.svg';
-import arrow_up_ios_new_svg from '../../../assets/img/dashboard/searchBox/arrow_up_ios_new.svg';
+import arrow_down_ios_new_svg from "../../../assets/img/dashboard/searchBox/arrow_down_ios_new.svg";
+import arrow_up_ios_new_svg from "../../../assets/img/dashboard/searchBox/arrow_up_ios_new.svg";
 import { ImageContainer } from "../../../assets/img/IMG";
 
 export default function ComboBox({
@@ -10,7 +10,7 @@ export default function ComboBox({
   radioClickedHandler,
   selectedItem,
   placeholder,
-  icons
+  icons,
 }) {
   const [radioText, setRadioText] = useState("");
   const ref = useRef();
@@ -43,12 +43,13 @@ export default function ComboBox({
               }
               readOnly={true}
               placeholder={!radioText && placeholder}
-              value={radioText? radioText: selectedItem}
+              value={radioText ? radioText : selectedItem}
               onClick={() => {
                 setInputClick(true);
                 setOpen(!open);
               }}
               onBlur={() => setInputClick(!inputClick)}
+              defaultValue={checkedItem}
             />
           </div>
           <button
@@ -63,9 +64,7 @@ export default function ComboBox({
           >
             <img
               src={
-                open
-                  ? arrow_down_ios_new_svg
-                  : arrow_up_ios_new_svg
+                open ? arrow_up_ios_new_svg : arrow_down_ios_new_svg
                 // ? "../../../../img/dashboard/searchBox/arrow_down_ios_new.svg"
                 // : "../../../../img/dashboard/searchBox/arrow_up_ios_new.svg"
               }
@@ -83,13 +82,12 @@ export default function ComboBox({
           {radioTextItems &&
             radioTextItems.map((item, key) => {
               return (
-                
-                <div className="flex gap-2 mt-1 items-center cursor-pointer pr-3 py-1 hover:bg-lightBlue"
-                onClick={(e) => {
-                  setRadioText(item);
-                  radioClickedHandler(item);
-                  
-                }}
+                <div
+                  className="flex gap-2 mt-1 items-center cursor-pointer pr-3 py-1 hover:bg-lightBlue"
+                  onClick={(e) => {
+                    setRadioText(item);
+                    radioClickedHandler(item);
+                  }}
                 >
                   <input
                     type="radio"
@@ -100,10 +98,12 @@ export default function ComboBox({
                       radioClickedHandler(item);
                     }}
                     value={item}
-                    checked={item==radioText?true:false}
+                    checked={item == radioText ? true : false}
                     // ref={radioRef}
                   />
-                  {icons?<img src={icons[key]} alt={item} className="w-4 h-4"/>:null}
+                  {icons ? (
+                    <img src={icons[key]} alt={item} className="w-4 h-4" />
+                  ) : null}
                   <span>{item} </span>
                 </div>
               );

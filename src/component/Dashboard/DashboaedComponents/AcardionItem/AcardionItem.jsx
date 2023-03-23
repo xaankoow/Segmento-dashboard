@@ -2,7 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { setShowWorkSpaceModal, setWebAdress } from "../../../Redux/Action/workSpace";
+import {
+  setShowWorkSpaceModal,
+  setWebAdress,
+} from "../../../Redux/Action/workSpace";
 import ItemSidebarHover from "../SidebarComponents/ItemSidebarHover";
 import arrow_back_ios_new_svg from "../../../../assets/img/dashboard/nav_right/arrow_back_ios_new.svg";
 import add_circle_svg from "../../../../assets/img/dashboard/nav_right/add_circle.svg";
@@ -34,12 +37,13 @@ export default function AcardionItem({ clicked, setClicked }) {
   const location = useLocation();
 
   const user = useSelector((state) => state.userState);
-  // 
+  //
   const workSpaceState = useSelector((state) => state.workSpaceState);
-  const { allWorkSpace ,allLimitsDatas} = useSelector((state) => state.workSpaceState);
+  const { allWorkSpace, allLimitsDatas } = useSelector(
+    (state) => state.workSpaceState
+  );
 
-  const { ProcessingDelay } = useSelector(state => state.loadingState)
-
+  const { ProcessingDelay } = useSelector((state) => state.loadingState);
 
   // console.log(allWorkSpace);
   const data = [
@@ -178,8 +182,6 @@ export default function AcardionItem({ clicked, setClicked }) {
       ],
     },
 
-
-
     {
       title: "سئو تکنیکال",
       titleIcon: copyWriter_svg,
@@ -189,7 +191,7 @@ export default function AcardionItem({ clicked, setClicked }) {
           itemTitle: "ابزار رتبه سنج",
           itemIcon: copyWriterAnboh_svg,
           itemLink: "rank-tracking",
-          section: ""
+          section: "",
         },
       ],
     },
@@ -210,17 +212,17 @@ export default function AcardionItem({ clicked, setClicked }) {
   };
 
   useEffect(() => {
-    if(ItemsClicked!=-1){
-      let existWebAdress=["https",".ir"].some(item=>ItemsClicked.includes(item));
-      if(existWebAdress&&workSpaceState.webAdress!=ItemsClicked){
-        dispatch(setWebAdress(ItemsClicked))
+    if (ItemsClicked != -1) {
+      let existWebAdress = ["https", ".ir"].some((item) =>
+        ItemsClicked.includes(item)
+      );
+      if (existWebAdress && workSpaceState.webAdress != ItemsClicked) {
+        dispatch(setWebAdress(ItemsClicked));
       }
-
     }
+  }, [ItemsClicked]);
 
-  }, [ItemsClicked])
-  
-  // 
+  //
 
   const setTitleHandler = (acardionItem) => {
     setItemsClicked(acardionItem);
@@ -236,7 +238,7 @@ export default function AcardionItem({ clicked, setClicked }) {
                 key={index}
                 className="flex items-center gap-3 text-[#002145] mt-4 mb-3  mr-5 text-sm  w-full"
               >
-      {/* {ProcessingDelay.includes("userLimit")?(""):null} */}
+                {/* {ProcessingDelay.includes("userLimit")?(""):null} */}
                 <img
                   src={item.titleIcon}
                   alt="icon"
@@ -278,89 +280,87 @@ export default function AcardionItem({ clicked, setClicked }) {
             </div>
             {clicked === index ? (
               <div className="mr-5 mt-0">
-      {allLimitsDatas.length==0?(
-        <>
-        <Skeleton width={150}/>
-        <Skeleton width={150}/>
-        </>
-      ):(
-<>
-
-{item.acardionItems.map((acardionItem, indexx) => {
-  return acardionItem.itemLink == " " ? (
-    <div className={"w-auto"}>
-      <div
-        onClick={() => setTitleHandler(acardionItem.itemTitle)}
-        key={indexx}
-        className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
-          clicked === index &&
-          ItemsClicked == acardionItem.itemTitle|acardionItem.itemTitle==workSpaceState.webAdress&&
-          "active"
-        }`}
-      >
-        <img src={acardionItem.itemIcon} alt="icon" />
-        <span className={"w-auto hover:text-blue"}>
-          {acardionItem.itemTitle}
-        </span>
-      </div>
-    </div>
-  ) : (
-    acardionItem.itemLink != "" && (
-      // <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
-      <Link to={acardionItem.itemLink} className={"w-auto"}>
-        <div
-          onClick={() =>
-            setTitleHandler(acardionItem.itemTitle)
-          }
-          key={indexx}
-          className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
-            clicked === index &&
-            ItemsClicked == acardionItem.itemTitle &&
-            "active"
-          }`}
-        > 
-          <img src={acardionItem.itemIcon} alt="icon" />
-          <span className={"w-auto hover:text-blue"}>
-            {acardionItem.itemTitle}
-          </span>
-        </div>
-      </Link>
-    )
-  );
-})}
-{item.title == "ورک‌اسپیس‌ها" && (
-  <div
-    key={index}
-    className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
-  >
-    <img src={add_circle_svg} alt="icon" />
-    <Link
-      to={
-        user.userData.package != undefined
-          ? `setWorkSpace`
-          : location
-      }
-      onClick={() =>
-        user.userData.package == undefined &&
-        showToast("شما پلن فعالی ندارید", "error")
-      }
-      state={{ background: location }}
-      className={"w-auto"}
-    >
-      افزودن سایت
-    </Link>
-  </div>
-)}
-</>
-      )}
-
-
+                {/* {allLimitsDatas.length == 0 ? ( */}
+                {false ? (
+                  <>
+                    <Skeleton width={150} />
+                    <Skeleton width={150} />
+                  </>
+                ) : (
+                  <>
+                    {item.acardionItems.map((acardionItem, indexx) => {
+                      return acardionItem.itemLink == " " ? (
+                        <div className={"w-auto"}>
+                          <div
+                            onClick={() =>
+                              setTitleHandler(acardionItem.itemTitle)
+                            }
+                            key={indexx}
+                            className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
+                              clicked === index &&
+                              (ItemsClicked == acardionItem.itemTitle) |
+                                (acardionItem.itemTitle ==
+                                  workSpaceState.webAdress) &&
+                              "active"
+                            }`}
+                          >
+                            <img src={acardionItem.itemIcon} alt="icon" />
+                            <span className={"w-auto hover:text-blue"}>
+                              {acardionItem.itemTitle}
+                            </span>
+                          </div>
+                        </div>
+                      ) : (
+                        acardionItem.itemLink != "" && (
+                          // <Link to={ChackingAvailabilityTools({path:acardionItem.itemLink,section:acardionItem.section,userState:user,workSpaceState:workSpaceState})} className={"w-auto"}>
+                          <Link to={acardionItem.itemLink} className={"w-auto"}>
+                            <div
+                              onClick={() =>
+                                setTitleHandler(acardionItem.itemTitle)
+                              }
+                              key={indexx}
+                              className={`flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue  ${
+                                clicked === index &&
+                                ItemsClicked == acardionItem.itemTitle &&
+                                "active"
+                              }`}
+                            >
+                              <img src={acardionItem.itemIcon} alt="icon" />
+                              <span className={"w-auto hover:text-blue"}>
+                                {acardionItem.itemTitle}
+                              </span>
+                            </div>
+                          </Link>
+                        )
+                      );
+                    })}
+                    {item.title == "ورک‌اسپیس‌ها" && (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3 text-[#002145] mb-3 mr-5 text-sm hover:cursor-pointer hover:text-blue SidebarHoverBox "
+                      >
+                        <img src={add_circle_svg} alt="icon" />
+                        <Link
+                          to={
+                            user.userData.package != undefined
+                              ? `setWorkSpace`
+                              : location
+                          }
+                          onClick={() =>
+                            user.userData.package == undefined &&
+                            showToast("شما پلن فعالی ندارید", "error")
+                          }
+                          state={{ background: location }}
+                          className={"w-auto"}
+                        >
+                          افزودن سایت
+                        </Link>
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             ) : null}
-
-
-
-
 
             {/* TODO */}
             {/* {item.title == "ورک‌اسپیس‌ها" && <div>  

@@ -18,7 +18,7 @@ export default function InputGetWorkSpaceInfo({
   step,
   countInput,
   handleAddStateCountInput,
-  handleRemoveStateCountInput
+  handleRemoveStateCountInput,
 }) {
   const [addKeyCharMap, setAddKeyCharMap] = useState([1, 2]);
   const [addCommercialPageMap, setAddCommercialPageMap] = useState([1, 2]);
@@ -218,33 +218,31 @@ export default function InputGetWorkSpaceInfo({
   const handleRemoveInput = (type, index) => {
     switch (type) {
       case "addWebsitePageMap":
-        let webList = addWebsitePageMap
-        webList.splice(index, 1)
-        handleRemoveStateCountInput("websitePage")
-        setAddWebsitePageMap(webList)
+        let webList = addWebsitePageMap;
+        webList.splice(index, 1);
+        handleRemoveStateCountInput("websitePage");
+        setAddWebsitePageMap(webList);
         break;
 
       case "addCommercialPageMap":
-        let commercialList = addCommercialPageMap
-        commercialList.splice(index, 1)
-        handleRemoveStateCountInput("commercialPage")
-        setAddCommercialPageMap(commercialList)
+        let commercialList = addCommercialPageMap;
+        commercialList.splice(index, 1);
+        handleRemoveStateCountInput("commercialPage");
+        setAddCommercialPageMap(commercialList);
         break;
-        
-        case "addKeyCharMap":
-          let keyCharList = addKeyCharMap
-          keyCharList.splice(index, 1)
-          handleRemoveStateCountInput("keyChar")
-          setAddKeyCharMap(keyCharList)
-          break;
+
+      case "addKeyCharMap":
+        let keyCharList = addKeyCharMap;
+        keyCharList.splice(index, 1);
+        handleRemoveStateCountInput("keyChar");
+        setAddKeyCharMap(keyCharList);
+        break;
 
       default:
         break;
     }
-    setForceUpdate(!forceUpdate)
-
-  }
-
+    setForceUpdate(!forceUpdate);
+  };
 
   const handleSetStateCompetitorSite = (keyWordIndex, removeInput) => {
     var competitorSites = addCompetitorSite;
@@ -281,7 +279,6 @@ export default function InputGetWorkSpaceInfo({
               alt="EasyStartPage"
               className=" w-[328px]"
             /> */}
-
           </div>
           <StaticInputText
             typeInput={"text"}
@@ -295,32 +292,31 @@ export default function InputGetWorkSpaceInfo({
         </div>
       ) : step == 2 ? (
         <div id="workSpaceModalStep2">
-
           <div className=" max-h-[380px] overflow-y-scroll pt-5">
             {addKeyCharMap.map((item, index) => (
               <div className="flex items-center justify-between w-full mb-7">
-              <div className="container_input_step2 flex-grow">
-                <AuthInput
-                  textLabelInput="کلمات کلیدی"
-                  width={"100%"}
-                  typeInput="text"
-                  value={handleInputValue(item, "keyWords", "key")}
-                  reduxHandleChange={setKeyWords}
-                  workSpaceTypeState={`keyWord${item}`}
-                />
-                <img src={arrow_svg} className="arrpw" alt="" />
-                <StaticInputText
-                  typeInput={"text"}
-                  width={"100%"}
-                  textLabelInput={"صفحه هدف"}
-                  value={handleInputValue(item, "keyWords", "site")}
-                  reduxHandleChange={setKeyWords}
-                  workSpaceTypeState={`site${item}`}
-                  staticText={`https://${webAdress}/`}
-                  placeholder={"page " + (index + 1)}
-                />
-              </div>
-              <div className=" inline-block mr-2">
+                <div className="container_input_step2 flex-grow">
+                  <AuthInput
+                    textLabelInput="کلمات کلیدی"
+                    width={"100%"}
+                    typeInput="text"
+                    value={handleInputValue(item, "keyWords", "key")}
+                    reduxHandleChange={setKeyWords}
+                    workSpaceTypeState={`keyWord${item}`}
+                  />
+                  <img src={arrow_svg} className="arrpw" alt="" />
+                  <StaticInputText
+                    typeInput={"text"}
+                    width={"100%"}
+                    textLabelInput={"صفحه هدف"}
+                    value={handleInputValue(item, "keyWords", "site")}
+                    reduxHandleChange={setKeyWords}
+                    workSpaceTypeState={`site${item}`}
+                    staticText={`https://${webAdress}/`}
+                    placeholder={"page " + (index + 1)}
+                  />
+                </div>
+                <div className=" inline-block mr-2">
                   <div className="close_suport_container inline-flex">
                     <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
                       <div
@@ -343,8 +339,7 @@ export default function InputGetWorkSpaceInfo({
               handleAddStateCountInput("keyChar");
             }}
           >
-            <img src={add_svg} className="ml-4" />{" "}
-            کلمه کلیدی جدید{" "}
+            <img src={add_svg} className="ml-4" /> کلمه کلیدی جدید{" "}
           </button>
         </div>
       ) : step == 3 ? (
@@ -356,7 +351,6 @@ export default function InputGetWorkSpaceInfo({
               alt="EasyStartPage"
               className=" w-[228px]"
             /> */}
-
             </div>
             {addCommercialPageMap.map((item, index) => (
               <div className="flex items-center justify-between w-full mb-7">
@@ -404,7 +398,6 @@ export default function InputGetWorkSpaceInfo({
             {addWebsitePageMap.map((item, index) => (
               <div>
                 <div className="flex items-center justify-between w-full mb-7">
-
                   <StaticInputText
                     // parentClass={"mb-7"}
                     typeInput={"text"}
@@ -461,11 +454,7 @@ export default function InputGetWorkSpaceInfo({
                         workSpaceTypeState={`keyWord${itemKey}`}
                         readOnly
                       />
-                      <img
-                        src={arrow_svg}
-                        className="arrpw"
-                        alt=""
-                      />
+                      <img src={arrow_svg} className="arrpw" alt="" />
                       <div className=" w-full mb-5">
                         {addCompetitorSite[itemKey - 1].map(
                           (itemCompetitor, index) => {
@@ -483,7 +472,7 @@ export default function InputGetWorkSpaceInfo({
                                     workSpaceTypeState={`keyWord${itemKey},${itemCompetitor}`}
                                     value={
                                       handleCompetitorSiteValue(itemKey)[
-                                      itemCompetitor - 1
+                                        itemCompetitor - 1
                                       ]
                                     }
                                   />
@@ -507,7 +496,7 @@ export default function InputGetWorkSpaceInfo({
                             );
                           }
                         )}
-                        { }
+                        {}
                         {competitorSitesSumLenght < 5 && (
                           <button
                             className="btn-style my-4"
@@ -516,10 +505,7 @@ export default function InputGetWorkSpaceInfo({
                               handleAddStateCountInput("competitorSite");
                             }}
                           >
-                            <img
-                              src={add_svg}
-                              className="ml-4"
-                            />
+                            <img src={add_svg} className="ml-4" />
                             افزودن رقیب جدید
                           </button>
                         )}
@@ -531,6 +517,58 @@ export default function InputGetWorkSpaceInfo({
             </div>
           </div>
         </Fragment>
+      ) : step == 6 ? (
+        <div id="workSpaceModalStep6">
+          <div className=" max-h-[380px] overflow-y-scroll pt-5">
+            {addKeyCharMap.map((item, index) => (
+              <div className="flex items-center justify-between w-full mb-7">
+                <div className="container_input_step2 flex-grow">
+                  <AuthInput
+                    textLabelInput="کلمات کلیدی"
+                    width={"100%"}
+                    typeInput="text"
+                    value={handleInputValue(item, "keyWords", "key")}
+                    reduxHandleChange={setKeyWords}
+                    workSpaceTypeState={`keyWord${item}`}
+                  />
+                  <img src={arrow_svg} className="arrpw" alt="" />
+                  <StaticInputText
+                    typeInput={"text"}
+                    width={"100%"}
+                    textLabelInput={"سایت مرتبط"}
+                    value={handleInputValue(item, "keyWords", "site")}
+                    reduxHandleChange={setKeyWords}
+                    workSpaceTypeState={`site${item}`}
+                    staticText={`https://${webAdress}/`}
+                    placeholder={"page " + (index + 1)}
+                  />
+                </div>
+                <div className=" inline-block mr-2">
+                  <div className="close_suport_container inline-flex">
+                    <div className="flex justify-center items-center p-[6px] rounded-[5px] cursor-pointer hover:bg-[#F352421A]">
+                      <div
+                        className="box-content bg-no-repeat bg-cover cursor-pointer w-3 h-3 close_modal_ico"
+                        onClick={() =>
+                          handleRemoveInput("addKeyCharMap", index)
+                        }
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button
+            className="btn-style "
+            onClick={() => {
+              addKeyCharMap.length < 10 &&
+                setAddKeyCharMap([...addKeyCharMap, countInput]);
+              handleAddStateCountInput("keyChar");
+            }}
+          >
+            <img src={add_svg} className="ml-4" /> کلمه کلیدی جدید{" "}
+          </button>
+        </div>
       ) : null}
       {forceUpdate ? "" : ""}
     </>
