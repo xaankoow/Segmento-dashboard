@@ -111,3 +111,29 @@ export const deleteKeywordService = ({ axiosController, workspace, id }) => {
     headers: headerRegisterUser,
   });
 };
+
+export const addKeywordTagService = (workspace, data, axiosController) => {
+  const headerRegisterUser = {
+    "Content-Type": "multipart/form-data",
+    workspace,
+    signal: axiosController != undefined && axiosController.signal,
+  };
+  return http.post(`${config.xaankooApi}/api/v1/tag/addTagAndNote`, data, {
+    headers: headerRegisterUser,
+  });
+};
+
+export const searchKeywordTagService = (
+  workspace,
+  data = { tag: "", type: "keyword" },
+  axiosController
+) => {
+  const headerRegisterUser = {
+    "Content-Type": "multipart/form-data",
+    workspace,
+    signal: axiosController != undefined && axiosController.signal,
+  };
+  return http.post(`${config.xaankooApi}/api/v1/tag/searchWithTag`, data, {
+    headers: headerRegisterUser,
+  });
+};

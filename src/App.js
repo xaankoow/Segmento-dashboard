@@ -15,19 +15,19 @@ import Page404 from "./component/Utils/Error404/page404";
 import LandingPage from "./component/Utils/landingPage/landingPage";
 import PhoneNumberOperations from "./component/Utils/Modals/phoneNumber/PhoneNumberOperations";
 import PopUp from "./component/Utils/PopUp/PopUp";
-import errorIco_svg from './assets/img/popUp/errorIco.svg'
+import errorIco_svg from "./assets/img/popUp/errorIco.svg";
 import AuthButton from "./component/Auth/authButton/AuthButton";
 import { DashboardRote } from "./Route";
-import { RoundPriceToUp } from './component/Utils/FORMAT/price'
+import { RoundPriceToUp } from "./component/Utils/FORMAT/price";
 export default function App() {
-
   const { forceUpdate } = useSelector((state) => state.userState);
   const { resultSetWorkSpace } = useSelector((state) => state.workSpaceState);
   const navigate = useNavigate();
 
   useEffect(() => {
-    resultSetWorkSpace.reportStatus == true && navigate("/dashboard/workSpaceReport")
-  }, [resultSetWorkSpace.reportStatus])
+    resultSetWorkSpace.reportStatus == true &&
+      navigate("/dashboard/workSpaceReport");
+  }, [resultSetWorkSpace.reportStatus]);
 
   const location = useLocation();
   const background = location.state && location.state.background;
@@ -44,70 +44,112 @@ export default function App() {
               <Route path="ValidateEmail" element={<ValidateEmail />} />
               <Route path="*" element={<Login />} />
             </Route>
-            <Route path="*" element={
-              (<>
-                <Routes location={background || location}>
-                  <Route path="*" element={<DashboardBody />}>
-                    {DashboardRote.map(item => (
-                      <Route path={item.path} element={item.component} />
-                    ))}
-                  </Route>
-                </Routes>
-              </>)
-            }>
-            </Route>
+            <Route
+              path="*"
+              element={
+                <>
+                  <Routes location={background || location}>
+                    <Route path="*" element={<DashboardBody />}>
+                      {DashboardRote.map((item) => (
+                        <Route path={item.path} element={item.component} />
+                      ))}
+                    </Route>
+                  </Routes>
+                </>
+              }
+            ></Route>
           </Route>
           <Route path="/payment*" element={<LandingPage />} />
           <Route path={"*"} element={<Page404 />} />
         </Routes>
         {background != "" && (
           <Routes>
-            <Route exact path={`dashboard/buyPlanEasyToStartModal`} element={<BuyPlanEasyToStartModal />} />
-            <Route exact path={`dashboard/setWorkSpace`} element={<WorkSpace />} />
-            <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
+            <Route
+              exact
+              path={`dashboard/buyPlanEasyToStartModal`}
+              element={<BuyPlanEasyToStartModal />}
+            />
+            <Route
+              exact
+              path={`dashboard/setWorkSpace`}
+              element={<WorkSpace />}
+            />
+            <Route
+              path={`dashboard/phoneNumberOperations`}
+              element={<PhoneNumberOperations />}
+            />
 
             {/* availability tools popup */}
-            <Route exact path={`dashboard/checkLimit`} element={
-              <PopUp
-                image={errorIco_svg}
-                type={"warning"}
-                buttonText={"باشه"}
-                text={
-                  "کاربر گرامی منابع اشتراک فعلی شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید."
-                }
-                createFooterTag={(
-                  <div className="flex justify-between items-center w-full px-3">
-                    <span className="buttonText mt-5 third-btn" onClick={() => navigate(-1)}>باشه، فهمیدم!</span>
-                    <div>
-                      <AuthButton textButton={"خرید اشتراک"} setOnclickValue={1} />
+            <Route
+              exact
+              path={`dashboard/checkLimit`}
+              element={
+                <PopUp
+                  image={errorIco_svg}
+                  type={"warning"}
+                  buttonText={"باشه"}
+                  text={
+                    "کاربر گرامی منابع اشتراک فعلی شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید."
+                  }
+                  createFooterTag={
+                    <div className="flex justify-between items-center w-full px-3">
+                      <span
+                        className="buttonText mt-5 third-btn"
+                        onClick={() => navigate(-1)}
+                      >
+                        باشه، فهمیدم!
+                      </span>
+                      <div>
+                        <AuthButton
+                          textButton={"خرید اشتراک"}
+                          setOnclickValue={1}
+                        />
+                      </div>
                     </div>
-                  </div>
-                )}
-                title={"موفقیت آمیز"}
-              />} />
-            <Route exact path={`dashboard/checkedPackage`} element={
-              <PopUp
-                image={errorIco_svg}
-                type={"warning"}
-                buttonText={"باشه"}
-                text={
-                  "کاربر گرامی زمان اشتراک شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید. "
-                }
-                createFooterTag={(
-                  <div className="flex justify-between items-center w-full px-3">
-                    <span className="buttonText mt-5 third-btn" onClick={() => navigate(-1)}>باشه، فهمیدم!</span>
-                    <div>
-                      <AuthButton textButton={"خرید اشتراک"} setOnclickValue={1} />
+                  }
+                  title={"موفقیت آمیز"}
+                />
+              }
+            />
+            <Route
+              exact
+              path={`dashboard/checkedPackage`}
+              element={
+                <PopUp
+                  image={errorIco_svg}
+                  type={"warning"}
+                  buttonText={"باشه"}
+                  text={
+                    "کاربر گرامی زمان اشتراک شما به پایان رسیده، برای حفظ اطلاعات و تداوم دسترسی به امکانات سگمنتو اشتراک بخرید. "
+                  }
+                  createFooterTag={
+                    <div className="flex justify-between items-center w-full px-3">
+                      <span
+                        className="buttonText mt-5 third-btn"
+                        onClick={() => navigate(-1)}
+                      >
+                        باشه، فهمیدم!
+                      </span>
+                      <div>
+                        <AuthButton
+                          textButton={"خرید اشتراک"}
+                          setOnclickValue={1}
+                        />
+                      </div>
                     </div>
-                  </div>
-                )}
-                title={"موفقیت آمیز"}
-              />} />
-            <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
+                  }
+                  title={"موفقیت آمیز"}
+                />
+              }
+            />
+            <Route
+              path={`dashboard/phoneNumberOperations`}
+              element={<PhoneNumberOperations />}
+            />
           </Routes>
         )}
         {/* <LoadingPage /> */}
-        {/* <ToastContainer rtl /> */}
+        <ToastContainer rtl />
         {forceUpdate ? "" : ""}
       </div>
     </Fragment>

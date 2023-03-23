@@ -9,10 +9,18 @@ import BookmarkIcon from "../../../../../assets/img/ico/bookmark.svg";
 import CopyIcon from "../../../../../assets/img/ico/copy.svg";
 import DeleteIcon from "../../../../../assets/img/ico/delete.svg";
 import TagIcon from "../../../../../assets/img/ico/tag.svg";
+import { toast } from "react-toastify";
 
 const defaultRowClass = `px-6 py-4 text-xs font-normal text-center text-gray-500`;
 
-const KeywordTable = ({ data, selectToShow, handleDeleteRow }) => {
+const KeywordTable = ({
+  data,
+  selectToShow,
+  handleDeleteRow,
+  handleShowTagModal,
+  loading,
+  selected,
+}) => {
   const [tableHead, setTableHead] = useState([
     { title: "نمودار" },
     { title: "ردیف" },
@@ -50,10 +58,28 @@ const KeywordTable = ({ data, selectToShow, handleDeleteRow }) => {
     setTableHead((prev) => [...prev, ...needMergedata]);
   }
 
+  function handleCopyRow(row = {}) {
+    let strArr = [];
+    strArr.push(`کلمه کلیدی : ${row.key}`);
+    strArr.push(
+      `آخرین بروزرسانی : ${moment(row.extra_attributes.last_check_at).format(
+        "jYYYY/jM/jD HH:mm:ss"
+      )}`
+    );
+    if (!!row.competitors && !!row.competitors.length) {
+      strArr.push(`رقبا : ${row.key}`);
+
+      row.competitors.forEach((item) => strArr.push(item));
+    }
+    let str = strArr.join(" و ");
+    navigator.clipboard.writeText(str);
+    toast("با موفقیت کپی شد.", { icon: true, type: "success" });
+  }
+
   return (
     <div class="w-full flex justify-center mx-auto">
       <div class="flex flex-col w-full">
-        <div class="w-full min-h-[300px]">
+        <div class="w-full min-h-[220px">
           <div class=" rounded-lg keyword-table-container overflow-scroll relative">
             <table class="rounded p-0 m-0">
               <thead>
@@ -80,7 +106,8 @@ const KeywordTable = ({ data, selectToShow, handleDeleteRow }) => {
               </thead>
 
               <tbody class="bg-black">
-                {data &&
+                {!loading ? (
+                  data &&
                   !!data.length &&
                   data.map((row, index) => {
                     return (
@@ -105,7 +132,9 @@ const KeywordTable = ({ data, selectToShow, handleDeleteRow }) => {
                         </td>
 
                         {/* عدد افت و رشد	*/}
-                        <td className={defaultRowClass}>{""}</td>
+                        <td className={defaultRowClass}>
+                          <div style={{ minWidth: "100px" }} />
+                        </td>
 
                         {/* آخرین بروزرسانی	*/}
                         <td className={defaultRowClass}>
@@ -157,7 +186,8 @@ const KeywordTable = ({ data, selectToShow, handleDeleteRow }) => {
                             src={TagIcon}
                             alt="tag Icon"
                             height={15}
-                            className="cursor-pointer"
+                            className="cursor-pointer hover:scale-105"
+                            onClick={() => handleShowTagModal(row)}
                           />
 
                           <img
@@ -172,12 +202,26 @@ const KeywordTable = ({ data, selectToShow, handleDeleteRow }) => {
                             src={CopyIcon}
                             alt="copy Icon"
                             height={15}
-                            className="cursor-pointer"
+                            className="cursor-pointer hover:scale-105"
+                            onClick={() => handleCopyRow(row)}
                           />
                         </td>
                       </tr>
                     );
-                  })}
+                  })
+                ) : (
+                  <div className="w-full h-[250px] flex items-center justify-center">
+                    <h3
+                      style={{
+                        transform: "translateX(-31vw)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {" "}
+                      درحال بارگذاری ...
+                    </h3>
+                  </div>
+                )}
               </tbody>
             </table>
           </div>

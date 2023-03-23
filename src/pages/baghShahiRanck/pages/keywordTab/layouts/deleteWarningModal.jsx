@@ -25,15 +25,14 @@ const DeleteWarningModal = ({ show, onOk, onClose }) => {
           <span>
             کاربر گرامی
             <br />
-            آیا از حذف کلمه کلیدی خود مطمعا هستید؟
+            آیا از حذف کلمه کلیدی خود مطمئن هستید؟
           </span>
           <div className="action-area flex items-center justify-between px-3 mt-5">
             <AuthButton handlerClick={onClose} textButton={"انصراف"} />
-            <AuthButton
-              keyLoading=""
-              handlerClick={onOk}
-              textButton={"بله، حذف کن!"}
-            />
+
+            <button onClick={onOk} style={{ color: "#0A65CD" }}>
+              بله، حذف کن!
+            </button>
           </div>
         </div>
       </div>

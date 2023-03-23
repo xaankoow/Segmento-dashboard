@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { ImageContainer } from "../../../../assets/img/IMG";
 import AuthButton from "../../../../component/Auth/authButton/AuthButton";
 import {
@@ -11,8 +12,10 @@ import {
 import AddKeyWordModal from "./layouts/addNewModal";
 import KeywordChart from "./layouts/chart";
 import DeleteWarningModal from "./layouts/deleteWarningModal";
+import FilterChart from "./layouts/FilterChart";
 import FilterTabel from "./layouts/FilterTabel";
 import KeywordTable from "./layouts/Table";
+import TagModal from "./layouts/tagModal";
 
 const KeywordTab = () => {
   const [filteredTableData, setFilteredTableData] = useState([]);
@@ -21,6 +24,7 @@ const KeywordTab = () => {
   const [loading, setLoading] = useState(true);
   const [addLoading, setAddLoadgin] = useState(false);
   const [deleteWarning, setDeleteWarning] = useState({ show: false, data: {} });
+  const [tagModal, setTagModal] = useState({ show: false, data: {} });
 
   const workSpaceState = useSelector((state) => state.workSpaceState);
   const axiosController = new AbortController();
@@ -30,8 +34,8 @@ const KeywordTab = () => {
   }, []);
 
   async function fetchData() {
+    setLoading(true);
     const workspace = findUsedWorkspace();
-
     try {
       const data = await keyWordsDataService({ axiosController, workspace });
       console.log("DATA : ", data);
@@ -39,6 +43,8 @@ const KeywordTab = () => {
       setFilteredTableData(data.data.data);
     } catch (error) {
       console.log("Error code 1: ", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -91,12 +97,13 @@ const KeywordTab = () => {
   }
 
   async function selectToShow(id) {
-    console.log("SELECTED : ", id);
-    const workspace = findUsedWorkspace();
+    if (selected.some((x) => x.uuid === id)) return; //IF SELECTED BEFORE, DO NOTING
+    const workspace = findUsedWorkspace(); // FIND CURRENT WORKSPACE
     try {
       const data = await keyWordDataService({ axiosController, workspace, id });
       console.log("DATA : ", data);
       if (data.data.code !== 200) throw data.data;
+      setSelected((prev) => [...prev, data.data.data]); // ADD TO SELECTED, THEN SHOW ON CHART
     } catch (error) {
       console.log("Error code 1: ", error);
     }
@@ -116,15 +123,34 @@ const KeywordTab = () => {
         id: rowData.uuid,
       });
       console.log("RES IS : ", res);
-
+      await fetchData(); //FETCH NEW TABLE DATA
+      toast("کلمه کلیدی با موفقیت حذف شد.", { icon: true, type: "success" });
       //CLOSE MODAL
-      //SET LOADING TRUE AND FETCH DATA
+      setDeleteWarning({ show: false, data: {} });
     } catch (error) {
       console.log("ERRRO CODE 3 : ", error);
     } finally {
       setLoading(false);
     }
   }
+
+  function handleShowTagModal(rowData) {
+    console.log("HANDLE SHOW TAG MODAL");
+    setTagModal({ show: true, data: rowData });
+  }
+
+  function handleFinishTag() {
+    console.log("FINISH");
+    setTagModal({ show: false, data: {} });
+    fetchData();
+  }
+
+  function handleDeleteSelected(key) {
+    console.log("KEY : ", key);
+    setSelected((prev) => prev.filter((x) => x.key !== key));
+  }
+
+  console.log("SELECTED : ", selected);
 
   return (
     <>
@@ -150,6 +176,9 @@ const KeywordTab = () => {
             data={filteredTableData}
             selectToShow={selectToShow}
             handleDeleteRow={handleDeleteRow}
+            handleShowTagModal={handleShowTagModal}
+            loading={loading}
+            selected={selected}
           />
         </div>
 
@@ -158,10 +187,16 @@ const KeywordTab = () => {
         </div>
 
         <div className="mt-2 pb-7 px-3">
-          <FilterTabel setFilteredTableData={setFilteredTableData} />
+          <FilterChart setFilteredTableData={setFilteredTableData} />
         </div>
 
-        <div className="mt-2 pb-7 px-3">{/* <KeywordChart /> */}</div>
+        <div className="mt-2 pb-7 px-3">
+          <KeywordChart
+            selected={selected}
+            handleDeleteSelected={handleDeleteSelected}
+            filteredTableData={filteredTableData}
+          />
+        </div>
       </div>
 
       {/*======  MODALS  ======*/}
@@ -176,6 +211,13 @@ const KeywordTab = () => {
         show={deleteWarning.show}
         onOk={() => handleDeleteRow(deleteWarning.data)}
         onClose={() => setDeleteWarning({ show: false, data: {} })}
+      />
+
+      <TagModal
+        show={tagModal.show}
+        onClose={() => setTagModal({ show: false, data: {} })}
+        onFinish={() => handleFinishTag()}
+        state={tagModal}
       />
     </>
   );

@@ -155,3 +155,20 @@
   width: 100%;
   text-align: center;
 }
+
+.show-copy  {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 200ms;
+  pointer-events: none;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border: 1px solid 
+}
+.show-copy.show {
+  opacity: 1;
+}
