@@ -5,7 +5,7 @@ import CopyIcon from "../../../../../assets/img/ico/copy.svg";
 
 const defaultRowClass = `px-6 py-4 text-xs font-normal text-center text-gray-500`;
 
-const KeywordItem = ({ row }) => {
+const KeywordItem = ({ row, selectedRow = [] }) => {
   const [hovered, setHovered] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -26,7 +26,15 @@ const KeywordItem = ({ row }) => {
       }}
     >
       <div className="flex gap-2 relative">
-        <span>{row.key}</span>
+        <span
+          style={
+            selectedRow.some((item) => item === row.uuid)
+              ? { color: "blue" }
+              : {}
+          }
+        >
+          {row.key}
+        </span>
         <img
           src={CopyIcon}
           alt="copy"

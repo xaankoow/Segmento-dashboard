@@ -119,6 +119,15 @@
   background-image: url('./assets/img/ico/line_chart_ico-hover.svg');
   transform: scale(1.2);
 }
+.keyword-table-container .chart-icon.need-blue {
+  background-image: url('./assets/img/ico/line_chart_ico-hover.svg');
+  transform: scale(1.2);
+}
+
+.keyword-table-container .chart-icon:hover {
+  background-image: url('./assets/img/ico/line_chart_ico-hover.svg');
+  transform: scale(1.2);
+}
 
 .sticky-col {
   position: -webkit-sticky;
@@ -171,4 +180,22 @@
 }
 .show-copy.show {
   opacity: 1;
+}
+
+.keyword-multi-select {
+  border-left: 2px solid #D9D9D9;
+  border-radius: 3px;
+  outline: none;
+}
+.keyword-multi-select > div {
+  border: none !important;
+  box-shadow: none !important;
+}
+.keyword-multi-select svg {
+  color: gray;
+  scale: 1.2;
+}
+
+.main-body * {
+  font-family: BYekan !important;
 }

@@ -79,12 +79,12 @@ const KeywordTab = () => {
     for (var i = 1; i <= 10; i++) {
       let key = `keyWord${i}`;
       let item = workSpaceState[`${key}`];
-      console.log("ITEM : ", item);
-      if (!!item.key)
+      if (!!item.key) {
         data.push({
-          keyWord: workSpaceState[`${key}`]["key"],
-          site: workSpaceState[`${key}`]["site"],
+          keyWord: item["key"],
+          site: item["site"],
         });
+      }
     }
     return data;
   }
@@ -150,7 +150,16 @@ const KeywordTab = () => {
     setSelected((prev) => prev.filter((x) => x.key !== key));
   }
 
-  console.log("SELECTED : ", selected);
+  function handleSelectKeyword(key) {
+    console.log("KEYWORD SELECTED : ", key);
+    if (!key.length) {
+      // CLEAR ALL SELECTED AND CHART
+      setSelected([]);
+    }
+    key.forEach((item) => selectToShow(item.value));
+    console.log("SELECTED : ", selected);
+    // console.log("commingIds : ", commingIds);
+  }
 
   return (
     <>
@@ -183,11 +192,15 @@ const KeywordTab = () => {
         </div>
 
         <div className="mt-2 pb-4 px-3">
-          <FilterTabel setFilteredTableData={setFilteredTableData} />
+          <FilterTabel />
         </div>
 
         <div className="mt-2 pb-7 px-3">
-          <FilterChart setFilteredTableData={setFilteredTableData} />
+          <FilterChart
+            filteredTableData={filteredTableData}
+            handleSelectKeyword={handleSelectKeyword}
+            selected={selected}
+          />
         </div>
 
         <div className="mt-2 pb-7 px-3">
@@ -195,6 +208,8 @@ const KeywordTab = () => {
             selected={selected}
             handleDeleteSelected={handleDeleteSelected}
             filteredTableData={filteredTableData}
+            handleSelectKeyword={handleSelectKeyword}
+            handleRefreshChart={() => setSelected([])}
           />
         </div>
       </div>

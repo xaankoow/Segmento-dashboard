@@ -14,6 +14,9 @@ import SelectingChartBtn from "../../../../../component/Dashboard/RankTracking/c
 import { faker } from "@faker-js/faker";
 import ReactSelect from "react-select";
 
+//==== IMAGEs
+import RefreshIcon from "../../../../../assets/img/ico/restart.svg";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,20 +30,16 @@ var colorArray = [
   "#FF6633",
   "#FFB399",
   "#FF33FF",
-  "#FFFF99",
   "#00B3E6",
   "#E6B333",
   "#3366E6",
   "#999966",
-  "#99FF99",
   "#B34D4D",
   "#80B300",
   "#809900",
   "#E6B3B3",
   "#6680B3",
   "#66991A",
-  "#FF99E6",
-  "#CCFF1A",
   "#FF1A66",
   "#E6331A",
   "#33FFCC",
@@ -72,7 +71,6 @@ var colorArray = [
   "#E64D66",
   "#4DB380",
   "#FF4D4D",
-  "#99E6E6",
   "#6666FF",
 ];
 
@@ -80,6 +78,8 @@ const KeywordChart = ({
   selected,
   handleDeleteSelected,
   filteredTableData,
+  handleSelectKeyword,
+  handleRefreshChart,
 }) => {
   const [type, setType] = useState("Line");
   const [labels] = useState(["", "", "", "", "", "", ""]);
@@ -93,18 +93,31 @@ const KeywordChart = ({
       responsive: true,
       plugins: {
         legend: {
-          position: "top",
-          textDirection: "rtl",
-          title: {
-            text: "salam",
-          },
-          // onClick: (_, legendItem) => handleDeleteSelected(legendItem.text),
+          display: false,
         },
         title: {
           display: false,
         },
       },
       tension: 0.3,
+      scales: {
+        yAxis: {
+          reverse: true,
+          suggestedMin: 1,
+          suggestedMax: 10,
+          title: {
+            display: true,
+            text: "رتبه",
+            padding: 10,
+          },
+        },
+        xAxis: {
+          title: {
+            display: true,
+            text: "دوره",
+          },
+        },
+      },
     },
     bar: {
       plugins: {
@@ -114,7 +127,6 @@ const KeywordChart = ({
         },
         legend: {
           display: false,
-          position: "top",
         },
       },
       responsive: true,
@@ -124,6 +136,9 @@ const KeywordChart = ({
           ticks: {
             display: true,
           },
+          reverse: true,
+          suggestedMin: 1,
+          suggestedMax: 10,
         },
         xAxis: {
           stacked: true,
@@ -137,7 +152,10 @@ const KeywordChart = ({
 
   useEffect(() => {
     console.log("IM FIRE : ", selected);
-    if (!selected.length) return;
+    if (!selected.length) {
+      setData((prev) => ({ ...prev, datasets: [] }));
+      return;
+    }
     handlePrepareAndAttachToChart(selected);
   }, [selected]);
 
@@ -145,22 +163,12 @@ const KeywordChart = ({
     let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let data = {};
     data.label = selected[selected.length - 1].key;
-    data.data = labels.map(() => faker.datatype.number({ min: 5, max: 100 }));
+    data.data = labels.map(() => faker.datatype.number({ min: 1, max: 10 }));
     data.borderColor = randomColor;
     data.backgroundColor = randomColor;
 
     setData((prev) => ({ ...prev, datasets: [...prev.datasets, data] }));
   }
-
-  // DATA SET
-  // {
-  //   label: "Dataset 2",
-  //   data: [100, 80, 20, 93, 20, 50],
-  //   borderColor: "rgb(53, 162, 235)",
-  //   backgroundColor: "rgba(53, 162, 235, 0.5)",
-  // },
-
-  console.log("filteredTableData : ", filteredTableData);
 
   return (
     <div
@@ -184,11 +192,9 @@ const KeywordChart = ({
                 : []
             }
             isMulti
-            closeMenuOnSelect={false}
+            closeMenuOnSelect={true}
             hideSelectedOptions={false}
-            onChange={(val) => {
-              console.log("VAL : ", val);
-            }}
+            onChange={handleSelectKeyword}
             allowSelectAll={false}
             value={selected.map((item) => ({
               value: item.uuid,
@@ -216,6 +222,13 @@ const KeywordChart = ({
       </div>
 
       <div className="main-body">
+        <div className="w-full flex justify-end pl-2">
+          <button onClick={handleRefreshChart}>
+            <div className="flex justify-center items-center bg-secondary w-10 h-10 m-2 cursor-pointer hover:bg-activeButton transition-all rounded-lg removingImageColorInThisTagWithHover">
+              <img src={RefreshIcon} alt="" />
+            </div>
+          </button>
+        </div>
         <div className="flex justify-between p-3"></div>
 
         {type === "Line" ? (

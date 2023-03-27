@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { KEYWORD_TABEL_HEADER_ITEM_REPORTS_TAB } from "../../../../../variables/businessPages";
 import moment from "jalali-moment";
-import ToolTip from "../../../../../component/Utils/ToolTip";
+import React, { useEffect, useState } from "react";
 import KeywordItem from "./keywordItem";
 
 //==== IMAGEs
+import { toast } from "react-toastify";
 import BookmarkIcon from "../../../../../assets/img/ico/bookmark.svg";
 import CopyIcon from "../../../../../assets/img/ico/copy.svg";
 import DeleteIcon from "../../../../../assets/img/ico/delete.svg";
 import TagIcon from "../../../../../assets/img/ico/tag.svg";
-import { toast } from "react-toastify";
 
 const defaultRowClass = `px-6 py-4 text-xs font-normal text-center text-gray-500`;
 
@@ -21,16 +19,18 @@ const KeywordTable = ({
   loading,
   selected,
 }) => {
+  const [selectedRow, setSelectedRow] = useState([]);
+
   const [tableHead, setTableHead] = useState([
-    { title: "نمودار" },
-    { title: "ردیف" },
-    { title: "کلمه کلیدی" },
-    { title: "رتبه فعلی" },
-    { title: "عدد افت و رشد" },
-    { title: "آخرین بروزرسانی" },
-    { title: "میانگین 7 دوره" },
-    { title: "برچسب" },
-    { title: "تاریخ افزودن" },
+    { title: "نمودار", minWidth: 40 },
+    { title: "ردیف", minWidth: 40 },
+    { title: "کلمه کلیدی", minWidth: 100 },
+    { title: "رتبه فعلی", minWidth: 95 },
+    { title: "عدد افت و رشد", minWidth: 150 },
+    { title: "تاریخ افزودن", minWidth: 120 },
+    { title: "آخرین بروزرسانی", minWidth: 160 },
+    { title: "میانگین 7 دوره", minWidth: 155 },
+    { title: "برچسب", minWidth: 60 },
   ]);
 
   useEffect(() => {
@@ -39,19 +39,25 @@ const KeywordTable = ({
     }
   }, [data]);
 
+  useEffect(() => {
+    console.log("RE RUN");
+    let items = selected.map((item) => item.uuid);
+    setSelectedRow(items);
+  }, [selected]);
+
   function addCompetitorsToHead(data) {
     let max = 0;
     let needMergedata = [];
     data.forEach((item) => {
-      if (item.competitors.length > max) {
-        max = item.competitors.length;
+      if (item.extra_attributes.competitors.length > max) {
+        max = item.extra_attributes.competitors.length;
       }
     });
     console.log("max : ", max);
 
     while (max > 0) {
       console.log("MAX MAX : ", max);
-      needMergedata.push({ title: `سایت رقیب ${max}` });
+      needMergedata.push({ title: `سایت رقیب ${max}`, minWidth: 190 });
       max--;
     }
     needMergedata.reverse();
@@ -66,20 +72,25 @@ const KeywordTable = ({
         "jYYYY/jM/jD HH:mm:ss"
       )}`
     );
-    if (!!row.competitors && !!row.competitors.length) {
+    if (
+      !!row.extra_attributes.competitors &&
+      !!row.extra_attributes.competitors.length
+    ) {
       strArr.push(`رقبا : ${row.key}`);
 
-      row.competitors.forEach((item) => strArr.push(item));
+      row.extra_attributes.competitors.forEach((item) => strArr.push(item));
     }
     let str = strArr.join(" و ");
     navigator.clipboard.writeText(str);
     toast("با موفقیت کپی شد.", { icon: true, type: "success" });
   }
 
+  console.log("RE RUN2 : ", selectedRow);
+
   return (
     <div class="w-full flex justify-center mx-auto">
       <div class="flex flex-col w-full">
-        <div class="w-full min-h-[220px">
+        <div class="w-full min-h-[220px]">
           <div class=" rounded-lg keyword-table-container overflow-scroll relative">
             <table class="rounded p-0 m-0">
               <thead>
@@ -91,7 +102,9 @@ const KeywordTable = ({
                     !!tableHead.length &&
                     tableHead.map((item) => {
                       return (
-                        <th class={`px-4 py-3 text-sm font-normal`}>
+                        <th
+                          class={`px-4 py-3 text-sm font-normal min-w-[${item.minWidth}px]`}
+                        >
                           <span>{item.title}</span>
                         </th>
                       );
@@ -110,12 +123,23 @@ const KeywordTable = ({
                   data &&
                   !!data.length &&
                   data.map((row, index) => {
+                    console.log("RO : ", row);
                     return (
-                      <tr class="whitespace-nowrap w-fits">
+                      <tr
+                        class={`whitespace-nowrap w-fits ${
+                          selectedRow.some((item) => item === row.uuid)
+                            ? "text-[#2563eb]"
+                            : ""
+                        }`}
+                      >
                         {/* نمودار */}
                         <td className={defaultRowClass}>
                           <div
-                            className="chart-icon"
+                            className={`chart-icon  ${
+                              selectedRow.some((item) => item === row.uuid)
+                                ? "need-blue"
+                                : ""
+                            }`}
                             onClick={() => selectToShow(row.uuid)}
                           />
                         </td>
@@ -124,7 +148,7 @@ const KeywordTable = ({
                         <td className={defaultRowClass}>{index + 1}</td>
 
                         {/* کلمه کلیدی */}
-                        <KeywordItem row={row} />
+                        <KeywordItem row={row} selectedRow={selectedRow} />
 
                         {/* رتبه فعلی */}
                         <td className={defaultRowClass}>
@@ -134,6 +158,15 @@ const KeywordTable = ({
                         {/* عدد افت و رشد	*/}
                         <td className={defaultRowClass}>
                           <div style={{ minWidth: "100px" }} />
+                        </td>
+
+                        {/* تاریخ افزودن */}
+                        <td className={defaultRowClass}>
+                          {row.extra_attributes.create_at
+                            ? moment(row.extra_attributes.create_at).format(
+                                "jYYYY/jM/jD HH:mm:ss"
+                              )
+                            : "undefined"}
                         </td>
 
                         {/* آخرین بروزرسانی	*/}
@@ -149,12 +182,9 @@ const KeywordTable = ({
                         {/*برچسب  */}
                         <td className={defaultRowClass}>{""}</td>
 
-                        {/* تاریخ افزودن */}
-                        <td className={defaultRowClass}>{""}</td>
-
                         {/* رقبا */}
-                        {!!row.competitors.length
-                          ? row.competitors.map((item) => (
+                        {!!row.extra_attributes.competitors.length
+                          ? row.extra_attributes.competitors.map((item) => (
                               <td key={item} className={defaultRowClass}>
                                 <a
                                   href={`https://${item.url}`}

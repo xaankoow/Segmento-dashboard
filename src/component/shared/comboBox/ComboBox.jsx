@@ -104,7 +104,7 @@ export default function ComboBox({
                   {icons ? (
                     <img src={icons[key]} alt={item} className="w-4 h-4" />
                   ) : null}
-                  <span>{item} </span>
+                  <span>{item}</span>
                 </div>
               );
             })}

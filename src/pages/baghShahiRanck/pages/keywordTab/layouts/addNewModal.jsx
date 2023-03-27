@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import InputGetWorkSpaceInfo from "../../../../../component/Utils/workSpaceModal/inputValue";
 
@@ -19,6 +19,12 @@ const AddKeyWordModal = ({
   addLoading,
 }) => {
   // const navigate=useNavigate()
+  const [keyword, setKeyword] = useState(2);
+
+  function handleModifyState(type) {
+    if (type === "add") setKeyword((prev) => prev + 1);
+    else setKeyword((prev) => prev);
+  }
 
   return (
     <Modal
@@ -43,7 +49,14 @@ const AddKeyWordModal = ({
         {/* </div> */}
         <body className="px-5 bg-[#fff]">
           {/* <InputContainer/> */}
-          <InputGetWorkSpaceInfo countInput={10} step={6} />
+
+          <InputGetWorkSpaceInfo
+            step={6}
+            countInput={keyword}
+            handleAddStateCountInput={() => handleModifyState("add")}
+            handleRemoveStateCountInput={() => handleModifyState("remove")}
+          />
+
           <AuthButton
             textButton={
               <>

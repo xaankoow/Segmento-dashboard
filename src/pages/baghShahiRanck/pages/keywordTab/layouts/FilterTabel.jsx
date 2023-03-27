@@ -15,10 +15,10 @@ const FilterTabel = () => {
           textButton={<img src={ImageContainer.filter} alt="filter" />}
         />
 
-        <span className=" ml-2">فیلتر براساس</span>
+        <span className=" ml-2 min-w-[109px]">فیلتر براساس</span>
       </div>
 
-      <div className="opacity-70 pointer-events-none w-1/5">
+      <div className="opacity-70 pointer-events-none w-1/5 text-xs">
         <ComboBox
           placeholder={"فیلد جستجو"}
           radioTextItems={["48 ساعت"]}
@@ -26,7 +26,7 @@ const FilterTabel = () => {
         />
       </div>
 
-      <div className="opacity-70 pointer-events-none w-1/5">
+      <div className="opacity-70 pointer-events-none w-1/5 text-xs">
         <ComboBox
           placeholder={"فیلد جستجو"}
           radioTextItems={["تمام رتبه ها"]}
@@ -34,7 +34,7 @@ const FilterTabel = () => {
         />
       </div>
 
-      <div className="opacity-70 pointer-events-none w-1/5">
+      <div className="opacity-70 pointer-events-none w-1/5 text-xs">
         <ComboBox
           placeholder={"فیلد جستجو"}
           radioTextItems={["دسکتاپ"]}
@@ -42,7 +42,7 @@ const FilterTabel = () => {
         />
       </div>
 
-      <div className="opacity-70 pointer-events-none w-1/5">
+      <div className="opacity-70 pointer-events-none w-1/5 text-xs">
         <ComboBox
           placeholder={"فیلد جستجو"}
           radioTextItems={["23 شهریور 1401 - 23 مهر 1401"]}
