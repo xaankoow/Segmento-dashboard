@@ -101,7 +101,7 @@ export default function BuyPlanEasyToStartModal({ checkBuyPlan, handleClose }) {
               contentLabel="Example Modal"
               onRequestClose={() => navigate(-1)}
             >
-              <div className={`w-full  overflow-scroll h-[80vh] max-h-[${ModalOptions(stepModal, free)}]`}>
+              <div className={`w-full  overflow-scroll min-h-[80vh] max-h-[${ModalOptions(stepModal, free)}]`}>
                 {checkErr != "" ? (
                   <div className='h-[685px]'>
                     {
