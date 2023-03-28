@@ -26,53 +26,21 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-var colorArray = [
-  "#FF6633",
-  "#FFB399",
-  "#FF33FF",
-  "#00B3E6",
-  "#E6B333",
-  "#3366E6",
-  "#999966",
-  "#B34D4D",
-  "#80B300",
-  "#809900",
-  "#E6B3B3",
-  "#6680B3",
-  "#66991A",
-  "#FF1A66",
-  "#E6331A",
-  "#33FFCC",
-  "#66994D",
-  "#B366CC",
-  "#4D8000",
-  "#B33300",
-  "#CC80CC",
-  "#66664D",
-  "#991AFF",
-  "#E666FF",
-  "#4DB3FF",
-  "#1AB399",
-  "#E666B3",
-  "#33991A",
-  "#CC9999",
-  "#B3B31A",
-  "#00E680",
-  "#4D8066",
-  "#809980",
-  "#E6FF80",
-  "#1AFF33",
-  "#999933",
-  "#FF3380",
-  "#CCCC00",
-  "#66E64D",
-  "#4D80CC",
-  "#9900B3",
-  "#E64D66",
-  "#4DB380",
-  "#FF4D4D",
-  "#6666FF",
+
+const colorArray = [
+  "#f94144",
+  "#f3722c",
+  "#f8961e",
+  "#f9844a",
+  "#f9c74f",
+  "#90be6d",
+  "#43aa8b",
+  "#4d908e",
+  "#577590",
+  "#277da1",
 ];
+
+const labels = ["", "", "", "", "", "", ""];
 
 const KeywordChart = ({
   selected,
@@ -82,24 +50,18 @@ const KeywordChart = ({
   handleRefreshChart,
 }) => {
   const [type, setType] = useState("Line");
-  const [labels] = useState(["", "", "", "", "", "", ""]);
-  const [checkboxItem, setCheckboxItem] = useState([]);
   const [data, setData] = useState({
     labels,
     datasets: [],
   });
-  const [options, setOptions] = useState({
+  const [options] = useState({
     line: {
       responsive: true,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        title: {
-          display: false,
-        },
-      },
       tension: 0.3,
+      plugins: {
+        legend: { display: false },
+        title: { display: false },
+      },
       scales: {
         yAxis: {
           reverse: true,
@@ -120,30 +82,36 @@ const KeywordChart = ({
       },
     },
     bar: {
-      plugins: {
-        title: {
-          display: false,
-          text: "Chart.js Bar Chart - Stacked",
-        },
-        legend: {
-          display: false,
-        },
-      },
       responsive: true,
+      base: 10,
+
+      plugins: {
+        legend: { display: false },
+        title: { display: false },
+      },
       scales: {
         yAxis: {
-          stacked: true,
+          reverse: true,
+          stacked: false,
+          suggestedMin: 1,
+          suggestedMax: 10,
           ticks: {
             display: true,
           },
-          reverse: true,
-          suggestedMin: 1,
-          suggestedMax: 10,
+          title: {
+            display: true,
+            text: "رتبه",
+            padding: 10,
+          },
         },
         xAxis: {
-          stacked: true,
+          stacked: false,
           ticks: {
             display: true,
+          },
+          title: {
+            display: true,
+            text: "دوره",
           },
         },
       },
@@ -156,18 +124,23 @@ const KeywordChart = ({
       setData((prev) => ({ ...prev, datasets: [] }));
       return;
     }
-    handlePrepareAndAttachToChart(selected);
+    handlePrepareAndAttachOrDelete(selected);
   }, [selected]);
 
-  function handlePrepareAndAttachToChart(selected) {
-    let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
-    let data = {};
-    data.label = selected[selected.length - 1].key;
-    data.data = labels.map(() => faker.datatype.number({ min: 1, max: 10 }));
-    data.borderColor = randomColor;
-    data.backgroundColor = randomColor;
+  function handlePrepareAndAttachOrDelete(selected) {
+    let datasets = [];
+    selected.forEach((item) => {
+      let randomColor =
+        colorArray[Math.floor(Math.random() * colorArray.length)];
+      let data = {};
+      data.label = item.key;
+      data.data = labels.map(() => faker.datatype.number({ min: 1, max: 10 }));
+      data.borderColor = randomColor;
+      data.backgroundColor = randomColor;
+      datasets.push(data);
+    });
 
-    setData((prev) => ({ ...prev, datasets: [...prev.datasets, data] }));
+    setData((prev) => ({ ...prev, datasets }));
   }
 
   return (
@@ -234,7 +207,9 @@ const KeywordChart = ({
         {type === "Line" ? (
           <Line data={data} options={{ ...options.line }} />
         ) : (
-          <Bar data={data} options={options.bar} />
+          <div className="barChart-container">
+            <Bar data={data} options={options.bar} />
+          </div>
         )}
       </div>
     </div>

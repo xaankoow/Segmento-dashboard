@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function Table({ columnItem, rowsItem, rowKey,classname }) {
+export default function Table({ columnItem, rowsItem, rowKey, classname }) {
   // data pattern that we should pass
   //  const rowKey = [ "row.id", "row.name", "row.famil"]; => thats for key of object row + keyname
   return (
     <div class={`w-full flex justify-center mx-auto ${classname}`}>
       <div class="flex flex-col w-full">
         <div class="w-full">
-          <div class=" rounded-lg border border-[#D9D9D9]  h-[672px] overflow-scroll w-full">
+          <div class=" rounded-lg border border-[#D9D9D9] h-[672px] overflow-scroll w-full">
             <table class="w-full rounded p-0 m-0" id="">
               <tr
                 className="rounded"
@@ -19,7 +19,7 @@ export default function Table({ columnItem, rowsItem, rowKey,classname }) {
                       <th
                         class={`px-8 py-5 text-sm font-normal  ${item.class}`}
                       >
-                      <span> {item.title}</span> 
+                        <span> {item.title}</span>
                       </th>
                     );
                   })}

@@ -49,8 +49,8 @@ const KeywordTable = ({
     let max = 0;
     let needMergedata = [];
     data.forEach((item) => {
-      if (item.extra_attributes.competitors.length > max) {
-        max = item.extra_attributes.competitors.length;
+      if (item.competitors.length > max) {
+        max = item.competitors.length;
       }
     });
     console.log("max : ", max);
@@ -72,13 +72,10 @@ const KeywordTable = ({
         "jYYYY/jM/jD HH:mm:ss"
       )}`
     );
-    if (
-      !!row.extra_attributes.competitors &&
-      !!row.extra_attributes.competitors.length
-    ) {
+    if (!!row.competitors && !!row.competitors.length) {
       strArr.push(`رقبا : ${row.key}`);
 
-      row.extra_attributes.competitors.forEach((item) => strArr.push(item));
+      row.competitors.forEach((item) => strArr.push(item));
     }
     let str = strArr.join(" و ");
     navigator.clipboard.writeText(str);
@@ -90,8 +87,8 @@ const KeywordTable = ({
   return (
     <div class="w-full flex justify-center mx-auto">
       <div class="flex flex-col w-full">
-        <div class="w-full min-h-[220px]">
-          <div class=" rounded-lg keyword-table-container overflow-scroll relative">
+        <div class="w-full min-h-[220px] ">
+          <div class=" rounded-lg keyword-table-container overflow-scroll relative scroll-bar-table">
             <table class="rounded p-0 m-0">
               <thead>
                 <tr
@@ -161,18 +158,18 @@ const KeywordTable = ({
                         </td>
 
                         {/* تاریخ افزودن */}
-                        <td className={defaultRowClass}>
+                        <td className={defaultRowClass + " text-left"}>
                           {row.extra_attributes.create_at
                             ? moment(row.extra_attributes.create_at).format(
-                                "jYYYY/jM/jD HH:mm:ss"
+                                "HH:mm:ss jYYYY/jM/jD"
                               )
                             : "undefined"}
                         </td>
 
                         {/* آخرین بروزرسانی	*/}
-                        <td className={defaultRowClass}>
+                        <td className={defaultRowClass + " text-left"}>
                           {moment(row.extra_attributes.last_check_at).format(
-                            "jYYYY/jM/jD HH:mm:ss"
+                            "HH:mm:ss jYYYY/jM/jD"
                           )}
                         </td>
 
@@ -183,8 +180,8 @@ const KeywordTable = ({
                         <td className={defaultRowClass}>{""}</td>
 
                         {/* رقبا */}
-                        {!!row.extra_attributes.competitors.length
-                          ? row.extra_attributes.competitors.map((item) => (
+                        {!!row.competitors.length
+                          ? row.competitors.map((item) => (
                               <td key={item} className={defaultRowClass}>
                                 <a
                                   href={`https://${item.url}`}

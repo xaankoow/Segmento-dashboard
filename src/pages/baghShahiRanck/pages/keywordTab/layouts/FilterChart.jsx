@@ -25,7 +25,7 @@ const FilterChart = ({
         <span className=" ml-2">مقایسه براساس</span>
       </div>
 
-      <div className="w-1/5  text-xs">
+      <div className="w-[41%] text-xs">
         <ReactSelect
           options={
             data.length
@@ -53,14 +53,6 @@ const FilterChart = ({
           onFocus={() => setFocuse(true)}
           onBlur={() => setFocuse(false)}
           isClearable={false}
-        />
-      </div>
-
-      <div className="opacity-70 pointer-events-none w-1/5  text-xs">
-        <ComboBox
-          placeholder={"فیلد جستجو"}
-          radioTextItems={["48 ساعت قبل"]}
-          checkedItem={["48 ساعت قبل"]}
         />
       </div>
 

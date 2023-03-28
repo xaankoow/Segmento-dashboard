@@ -97,8 +97,12 @@ const KeywordTab = () => {
   }
 
   async function selectToShow(id) {
-    if (selected.some((x) => x.uuid === id)) return; //IF SELECTED BEFORE, DO NOTING
-    const workspace = findUsedWorkspace(); // FIND CURRENT WORKSPACE
+    //IF SELECTED BEFORE, NEED DELETE
+    if (selected.some((x) => x.uuid === id)) {
+      setSelected((prev) => prev.filter((x) => x.uuid !== id));
+      return;
+    }
+    const workspace = findUsedWorkspace(); //FIND CURRENT WORKSPACE
     try {
       const data = await keyWordDataService({ axiosController, workspace, id });
       console.log("DATA : ", data);
@@ -107,6 +111,28 @@ const KeywordTab = () => {
     } catch (error) {
       console.log("Error code 1: ", error);
     }
+  }
+
+  async function multyToShow(ids) {
+    console.log("IDS : ", ids);
+    if (!ids.length) return;
+    const workspace = findUsedWorkspace(); //FIND CURRENT WORKSPACE
+    let promises = ids.map(
+      (id) =>
+        new Promise((resolve, reject) => {
+          try {
+            let res = keyWordDataService({ axiosController, workspace, id });
+            resolve(res);
+          } catch (error) {
+            reject(error);
+          }
+        })
+    );
+    console.log("PROMISE : ", promises);
+    Promise.all(promises).then((values) => {
+      console.log("VALUES : ", values);
+      setSelected(values.map((item) => item.data.data));
+    });
   }
 
   async function handleDeleteRow(rowData, needWarning) {
@@ -156,9 +182,8 @@ const KeywordTab = () => {
       // CLEAR ALL SELECTED AND CHART
       setSelected([]);
     }
-    key.forEach((item) => selectToShow(item.value));
-    console.log("SELECTED : ", selected);
-    // console.log("commingIds : ", commingIds);
+    // key.forEach((item) => selectToShow(item.value));
+    multyToShow(key.map((id) => id.value));
   }
 
   return (

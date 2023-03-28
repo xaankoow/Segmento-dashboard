@@ -199,3 +199,20 @@
 .main-body * {
   font-family: BYekan !important;
 }
+
+.scroll-bar-table::-webkit-scrollbar {
+  height: 5px;
+} 
+
+.barChart-container{
+  position: relative;
+}
+.barChart-container::before{
+  content: '';
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 40px;
+  top: 0;
+  background-color: white;
+}
