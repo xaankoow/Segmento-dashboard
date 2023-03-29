@@ -12,7 +12,7 @@ export const titleCopyWriterAction = (keys) => {
         key2: "",
         used_by: "local",
         type: "",
-        characters: true,
+        characters: false,
       }; 
           const { data, status } = await keywordService(serviceData);
           if (status == 200 && data.status == true) {
