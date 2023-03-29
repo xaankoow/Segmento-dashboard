@@ -89,7 +89,7 @@ export default function ContentpProduction({ onClickHandler }) {
           type={"sucsess"}
           buttonText={"باشه"}
           text={"لیست " + " "  + " " + "بروزرسانی شد!"}
-          title={"موفقیت آمیز"}
+          title={"موفقیت‌آمیز"}
         /> */}
       {keyWordShowSaveModal && (
         <Fragment>
@@ -115,7 +115,7 @@ export default function ContentpProduction({ onClickHandler }) {
           type={"sucsess"}
           buttonText={"باشه"}
           text={"لیست " + " " + activeboxValue + " " + "بروزرسانی شد!"}
-          title={"موفقیت آمیز"}
+          title={"موفقیت‌آمیز"}
         />
       )}
       {SavePopup && (
@@ -127,7 +127,7 @@ export default function ContentpProduction({ onClickHandler }) {
           text={
             "کلمات کلیدی در لیست" + " " + SaveInputValue + " " + "ذخیره شد!"
           }
-          title={"موفقیت آمیز"}
+          title={"موفقیت‌آمیز"}
         />
       )}
       <div className="PopUpMap pt-3 flex flex-col justify-center items-center bg-[#ffffff]">

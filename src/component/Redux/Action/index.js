@@ -293,7 +293,7 @@ export const RegisterUserAction = () => {
             // history.push("/ValidateEmail")
             // let send_code_email = async () => {
             await dispatch({ type: "REGISTER_USER", payload: state });
-            const { data, status } = await verifyEmail(formdata);
+            // const { data, status } = await verifyEmail(formdata);
             if (status == 200 && data.status == true) {
               showToast("کد به ایمیل شما ارسال شد", "success");
               // toast.update(toastPromiseSendCode, { render: "کد به ایمیل شما ارسال شد", type: "success", isLoading: false, autoClose: 3000 })

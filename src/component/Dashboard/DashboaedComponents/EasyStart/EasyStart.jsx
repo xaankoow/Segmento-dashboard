@@ -39,7 +39,7 @@ const EasyStart = ({ startButtonClick }) => {
             <Link
               to={"/dashboard/buyPlanEasyToStartModal"}
               state={{ background: location }}
-              className="btn-style w-40 mb-5  bottom-0 flex justify-between"
+              className="btn-style mb-5 bottom-0 flex justify-between"
               onClick={()=>ReplaceClass({
                 elementClass:"easyToStartRocket",
                 oldClass:"easyToStartRocket_animation",
@@ -48,7 +48,7 @@ const EasyStart = ({ startButtonClick }) => {
               })}
             >
               {" "}
-              شروع کنیم{" "}
+              فعالسازی اشتراک رایگان{" "}
               <img
                 src={startEasyStartArrow_svg}
                 alt="EasyStartPage"

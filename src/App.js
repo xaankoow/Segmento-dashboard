@@ -83,7 +83,7 @@ export default function App() {
                     </div>
                   </div>
                 )}
-                title={"موفقیت آمیز"}
+                title={"موفقیت‌آمیز"}
               />} />
             <Route exact path={`dashboard/checkedPackage`} element={
               <PopUp
@@ -101,7 +101,7 @@ export default function App() {
                     </div>
                   </div>
                 )}
-                title={"موفقیت آمیز"}
+                title={"موفقیت‌آمیز"}
               />} />
             <Route path={`dashboard/phoneNumberOperations`} element={<PhoneNumberOperations />} />
           </Routes>
