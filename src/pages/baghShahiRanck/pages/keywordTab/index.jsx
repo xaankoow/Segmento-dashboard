@@ -18,9 +18,10 @@ import KeywordTable from "./layouts/Table";
 import TagModal from "./layouts/tagModal";
 
 const KeywordTab = () => {
-  const [filteredTableData, setFilteredTableData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [selectForComparison, setSelectForComparison] = useState(null);
   const [loading, setLoading] = useState(true);
   const [addLoading, setAddLoadgin] = useState(false);
   const [deleteWarning, setDeleteWarning] = useState({ show: false, data: {} });
@@ -33,6 +34,10 @@ const KeywordTab = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    handleRefreshChart();
+  }, [selected]);
+
   async function fetchData() {
     setLoading(true);
     const workspace = findUsedWorkspace();
@@ -40,7 +45,7 @@ const KeywordTab = () => {
       const data = await keyWordsDataService({ axiosController, workspace });
       console.log("DATA : ", data);
       if (data.data.code !== 200) throw data.data;
-      setFilteredTableData(data.data.data);
+      setTableData(data.data.data);
     } catch (error) {
       console.log("Error code 1: ", error);
     } finally {
@@ -96,43 +101,9 @@ const KeywordTab = () => {
       .uuid;
   }
 
-  async function selectToShow(id) {
-    //IF SELECTED BEFORE, NEED DELETE
-    if (selected.some((x) => x.uuid === id)) {
-      setSelected((prev) => prev.filter((x) => x.uuid !== id));
-      return;
-    }
-    const workspace = findUsedWorkspace(); //FIND CURRENT WORKSPACE
-    try {
-      const data = await keyWordDataService({ axiosController, workspace, id });
-      console.log("DATA : ", data);
-      if (data.data.code !== 200) throw data.data;
-      setSelected((prev) => [...prev, data.data.data]); // ADD TO SELECTED, THEN SHOW ON CHART
-    } catch (error) {
-      console.log("Error code 1: ", error);
-    }
-  }
-
-  async function multyToShow(ids) {
-    console.log("IDS : ", ids);
-    if (!ids.length) return;
-    const workspace = findUsedWorkspace(); //FIND CURRENT WORKSPACE
-    let promises = ids.map(
-      (id) =>
-        new Promise((resolve, reject) => {
-          try {
-            let res = keyWordDataService({ axiosController, workspace, id });
-            resolve(res);
-          } catch (error) {
-            reject(error);
-          }
-        })
-    );
-    console.log("PROMISE : ", promises);
-    Promise.all(promises).then((values) => {
-      console.log("VALUES : ", values);
-      setSelected(values.map((item) => item.data.data));
-    });
+  async function findSelectedById(id) {
+    const findedSelected = tableData.find((item) => item.uuid === id);
+    if (typeof findedSelected !== "undefined") setSelected(findedSelected);
   }
 
   async function handleDeleteRow(rowData, needWarning) {
@@ -178,12 +149,22 @@ const KeywordTab = () => {
 
   function handleSelectKeyword(key) {
     console.log("KEYWORD SELECTED : ", key);
-    if (!key.length) {
+    if (!key) {
       // CLEAR ALL SELECTED AND CHART
-      setSelected([]);
+      setSelected(null);
     }
-    // key.forEach((item) => selectToShow(item.value));
-    multyToShow(key.map((id) => id.value));
+    findSelectedById(key.value);
+  }
+
+  function handleRefreshChart() {
+    // setSelected(null);
+    setSelectForComparison(null);
+  }
+
+  function handleSelectForComparison(item) {
+    if (!selected) return; // IF HAVE NO SELECTED ITEM DO NOTING
+    if (selected.uuid === item.uuid) return; // IF WANT COMPARISON WHIT SELF DON NOGIN
+    setSelectForComparison(item);
   }
 
   return (
@@ -207,8 +188,8 @@ const KeywordTab = () => {
 
         <div className="py-5">
           <KeywordTable
-            data={filteredTableData}
-            selectToShow={selectToShow}
+            data={tableData}
+            setSelected={setSelected}
             handleDeleteRow={handleDeleteRow}
             handleShowTagModal={handleShowTagModal}
             loading={loading}
@@ -222,9 +203,10 @@ const KeywordTab = () => {
 
         <div className="mt-2 pb-7 px-3">
           <FilterChart
-            filteredTableData={filteredTableData}
-            handleSelectKeyword={handleSelectKeyword}
+            tableData={tableData}
+            handleSelectForComparison={handleSelectForComparison}
             selected={selected}
+            selectForComparison={selectForComparison}
           />
         </div>
 
@@ -232,9 +214,10 @@ const KeywordTab = () => {
           <KeywordChart
             selected={selected}
             handleDeleteSelected={handleDeleteSelected}
-            filteredTableData={filteredTableData}
+            tableData={tableData}
             handleSelectKeyword={handleSelectKeyword}
-            handleRefreshChart={() => setSelected([])}
+            handleRefreshChart={handleRefreshChart}
+            selectForComparison={selectForComparison}
           />
         </div>
       </div>

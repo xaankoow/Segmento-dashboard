@@ -45,9 +45,10 @@ const labels = ["", "", "", "", "", "", ""];
 const KeywordChart = ({
   selected,
   handleDeleteSelected,
-  filteredTableData,
+  tableData,
   handleSelectKeyword,
   handleRefreshChart,
+  selectForComparison,
 }) => {
   const [type, setType] = useState("Line");
   const [data, setData] = useState({
@@ -120,27 +121,58 @@ const KeywordChart = ({
 
   useEffect(() => {
     console.log("IM FIRE : ", selected);
-    if (!selected.length) {
+    if (!selected) {
       setData((prev) => ({ ...prev, datasets: [] }));
       return;
     }
-    handlePrepareAndAttachOrDelete(selected);
+    handlePrepareAndAttach(selected);
   }, [selected]);
 
-  function handlePrepareAndAttachOrDelete(selected) {
+  useEffect(() => {
+    console.log("SELECTEd FOR COMPARISON : ", selectForComparison);
+    if (!selectForComparison) {
+      // CLEAR CAHRT FROM COMPARISON
+      handleRemoveComparison();
+    }
+    handlePrepareAndCombine(selectForComparison);
+  }, [selectForComparison]);
+
+  function handlePrepareAndAttach(selected) {
     let datasets = [];
-    selected.forEach((item) => {
-      let randomColor =
-        colorArray[Math.floor(Math.random() * colorArray.length)];
-      let data = {};
-      data.label = item.key;
-      data.data = labels.map(() => faker.datatype.number({ min: 1, max: 10 }));
-      data.borderColor = randomColor;
-      data.backgroundColor = randomColor;
-      datasets.push(data);
-    });
+    let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+    let data = {};
+    data.label = selected.key;
+    data.data = labels.map(() => faker.datatype.number({ min: 1, max: 10 }));
+    data.borderColor = randomColor;
+    data.backgroundColor = randomColor;
+    datasets.push(data);
 
     setData((prev) => ({ ...prev, datasets }));
+  }
+
+  function handlePrepareAndCombine(selected) {
+    if (!selected) return;
+    //GET RANDOM COLOR FROM PALET
+    let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+    let data = {
+      label: selected.label,
+      data: labels.map(() => faker.datatype.number({ min: 1, max: 10 })),
+      borderColor: randomColor,
+      backgroundColor: randomColor,
+    };
+
+    setData((prev) => ({ ...prev, datasets: [...prev.datasets, data] }));
+  }
+
+  function handleRemoveComparison() {
+    console.log("datasets @ : ", data.datasets);
+    console.log("selected @ :", selected);
+    setData((prev) => ({
+      ...prev,
+      datasets: [
+        ...prev.datasets.filter((item) => item.label === selected.key),
+      ],
+    }));
   }
 
   return (
@@ -157,23 +189,28 @@ const KeywordChart = ({
         >
           <ReactSelect
             options={
-              filteredTableData.length
-                ? filteredTableData.map((item) => ({
+              tableData.length
+                ? tableData.map((item) => ({
                     value: item.uuid,
                     label: item.key,
                   }))
                 : []
             }
-            isMulti
-            closeMenuOnSelect={true}
+            isMulti={false}
+            closeMenuOnSelect={false}
             hideSelectedOptions={false}
             onChange={handleSelectKeyword}
             allowSelectAll={false}
-            value={selected.map((item) => ({
-              value: item.uuid,
-              label: item.key,
-            }))}
+            value={
+              selected
+                ? {
+                    value: selected.uuid,
+                    label: selected.key,
+                  }
+                : null
+            }
             isRtl={true}
+            isClearable={false}
             placeholder={"انتخاب کنید"}
           />
         </span>

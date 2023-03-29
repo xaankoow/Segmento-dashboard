@@ -13,14 +13,12 @@ const defaultRowClass = `px-6 py-4 text-xs font-normal text-center text-gray-500
 
 const KeywordTable = ({
   data,
-  selectToShow,
+  setSelected,
   handleDeleteRow,
   handleShowTagModal,
   loading,
   selected,
 }) => {
-  const [selectedRow, setSelectedRow] = useState([]);
-
   const [tableHead, setTableHead] = useState([
     { title: "نمودار", minWidth: 40 },
     { title: "ردیف", minWidth: 40 },
@@ -38,12 +36,6 @@ const KeywordTable = ({
       addCompetitorsToHead(data);
     }
   }, [data]);
-
-  useEffect(() => {
-    console.log("RE RUN");
-    let items = selected.map((item) => item.uuid);
-    setSelectedRow(items);
-  }, [selected]);
 
   function addCompetitorsToHead(data) {
     let max = 0;
@@ -81,8 +73,6 @@ const KeywordTable = ({
     navigator.clipboard.writeText(str);
     toast("با موفقیت کپی شد.", { icon: true, type: "success" });
   }
-
-  console.log("RE RUN2 : ", selectedRow);
 
   return (
     <div class="w-full flex justify-center mx-auto">
@@ -124,7 +114,7 @@ const KeywordTable = ({
                     return (
                       <tr
                         class={`whitespace-nowrap w-fits ${
-                          selectedRow.some((item) => item === row.uuid)
+                          !!selected && selected.uuid === row.uuid
                             ? "text-[#2563eb]"
                             : ""
                         }`}
@@ -133,11 +123,11 @@ const KeywordTable = ({
                         <td className={defaultRowClass}>
                           <div
                             className={`chart-icon  ${
-                              selectedRow.some((item) => item === row.uuid)
+                              !!selected && selected.uuid === row.uuid
                                 ? "need-blue"
                                 : ""
                             }`}
-                            onClick={() => selectToShow(row.uuid)}
+                            onClick={() => setSelected(row)}
                           />
                         </td>
 
@@ -145,7 +135,7 @@ const KeywordTable = ({
                         <td className={defaultRowClass}>{index + 1}</td>
 
                         {/* کلمه کلیدی */}
-                        <KeywordItem row={row} selectedRow={selectedRow} />
+                        <KeywordItem row={row} selected={selected} />
 
                         {/* رتبه فعلی */}
                         <td className={defaultRowClass}>

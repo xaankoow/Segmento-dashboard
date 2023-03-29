@@ -1,13 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 
-import Modal from 'react-modal';
-import { defaultCustomModalStyle, modalParentSelector } from '../../../../variables/style';
-import { afterOpenOrCloseAnyModal } from '../../../../variables/modal';
+import Modal from "react-modal";
+import {
+  defaultCustomModalStyle,
+  modalParentSelector,
+} from "../../../../variables/style";
+import { afterOpenOrCloseAnyModal } from "../../../../variables/modal";
 
-
-import './competitors.css';
+import "./competitors.css";
 import pishkhan_svg from "../../../../assets/img/dashboard/nav_right/pishkhan.svg";
-import startEasyStartArrow_svg from '../../../../assets/img/dashboard/EasyStartPage/startEasyStartArrow.svg'
+import startEasyStartArrow_svg from "../../../../assets/img/dashboard/EasyStartPage/startEasyStartArrow.svg";
 
 import {
   Chart as ChartJS,
@@ -19,8 +21,8 @@ import {
   Tooltip,
   Filler,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 import { RANK_TRACKING_FILTERS_DATE } from "../../../../variables/rankTrackingFilters";
 import ComboBox from "../../../shared/comboBox/ComboBox";
 import Table from "../../../shared/table/Table";
@@ -33,9 +35,6 @@ import { Link } from "react-router-dom";
 import { ImageContainer } from "../../../../assets/img/IMG";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 
-
-
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -47,12 +46,9 @@ ChartJS.register(
   Legend
 );
 
-
 export default function Competitors() {
-  
   const [ShowAddcompetitorsModal, SetShowAddCompetitorsModal] = useState(false);
   const [ShowAddTagModal, SetShowAddTagModal] = useState(false);
-
 
   const options = {
     responsive: true,
@@ -62,33 +58,40 @@ export default function Competitors() {
       },
       legend: {
         display: false,
-        position: 'top',
+        position: "top",
       },
       title: {
         display: false,
-        text: '',
+        text: "",
       },
     },
   };
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  const labels = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+  ];
 
   const data = {
     labels,
     datasets: [
       {
         fill: true,
-        label: 'Dataset 2',
+        label: "Dataset 2",
         data: [96, 54, 45, 34, 45, 4, 67, 76, 65],
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],
   };
 
-
   const setDateFilterOption = (e) => {
     // console.log(e);
-  }
+  };
 
   const b = [
     {
@@ -134,15 +137,20 @@ export default function Competitors() {
               <span>+</span>
               <div onClick={() => closeDialog(true)}> افزودن رقیب</div>
             </button>
+            z
           </div>
         </div>
 
         <div className="competitors__content">
-
           <div className="item">
             <div className="item__action">
               {/* <img src={pishkhan_svg} /> */}
-              <AuthButton textButton={<img src={ImageContainer.lineChartIco} alt={"line chart"}/>} classes="w-10 h-10 p-0"/>
+              <AuthButton
+                textButton={
+                  <img src={ImageContainer.lineChartIco} alt={"line chart"} />
+                }
+                classes="w-10 h-10 p-0"
+              />
             </div>
 
             <div className="item__content">
@@ -157,8 +165,12 @@ export default function Competitors() {
                   <td rowspan="4" className="max-w-[300px]">
                     <div className="chartCell">
                       <div className="chartHelp">
-                        <div className="chartHelp__item chartHelp__item--blue">آدرس ورک اسپیس</div>
-                        <div className="chartHelp__item chartHelp__item--red">digikala</div>
+                        <div className="chartHelp__item chartHelp__item--blue">
+                          آدرس ورک اسپیس
+                        </div>
+                        <div className="chartHelp__item chartHelp__item--red">
+                          digikala
+                        </div>
                       </div>
                       <div className="item__chart">
                         <Line options={options} data={data} />
@@ -187,12 +199,9 @@ export default function Competitors() {
                   <td></td>
                   <td></td>
                 </tr>
-
               </table>
             </div>
-
           </div>
-
 
           <div className="item item--empty">
             <div className="item__action">
@@ -202,19 +211,20 @@ export default function Competitors() {
             <div className="item__content">
               <div className="item__title">رقیب شماره 2</div>
               <div className="item__palceholder">
-                <img src={ImageContainer.plusGray} alt="gray plus" className=" w-9 h-9 cursor-pointer"/>
+                <img
+                  src={ImageContainer.plusGray}
+                  alt="gray plus"
+                  className=" w-9 h-9 cursor-pointer"
+                />
                 <div className="item__message">
                   هنوز وبسایت رقیب ثبت نشده است.
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
-
         <div className="competitors__actions">
-
           <div className="filter">
             <div className="filter__title">
               <img src={pishkhan_svg} />
@@ -229,6 +239,13 @@ export default function Competitors() {
               />
             </div>
 
+            <div>
+              <ComboBox
+                placeholder={"فیلتر زمانی"}
+                radioTextItems={RANK_TRACKING_FILTERS_DATE}
+                radioClickedHandler={(e) => setDateFilterOption(e)}
+              />
+            </div>
 
             <div>
               <ComboBox
@@ -238,7 +255,6 @@ export default function Competitors() {
               />
             </div>
 
-
             <div>
               <ComboBox
                 placeholder={"فیلتر زمانی"}
@@ -246,17 +262,6 @@ export default function Competitors() {
                 radioClickedHandler={(e) => setDateFilterOption(e)}
               />
             </div>
-
-
-            <div>
-              <ComboBox
-                placeholder={"فیلتر زمانی"}
-                radioTextItems={RANK_TRACKING_FILTERS_DATE}
-                radioClickedHandler={(e) => setDateFilterOption(e)}
-              />
-            </div>
-
-
           </div>
         </div>
 
@@ -272,14 +277,14 @@ export default function Competitors() {
             <div className="chart__actions">
               <img src={pishkhan_svg} className="chart__action" />
               <img src={pishkhan_svg} className="chart__action" />
-              <img src={pishkhan_svg} className="chart__action chart__action--save" />
-
+              <img
+                src={pishkhan_svg}
+                className="chart__action chart__action--save"
+              />
             </div>
           </div>
           <div className="chart__content">
-
             <div className="chart__filters">
-
               <div className="filter">
                 <div className="filter__content">
                   <div className="filter__color filter__color--green"></div>
@@ -303,19 +308,14 @@ export default function Competitors() {
                 </div>
                 <div className="filter__action">#</div>
               </div>
-
             </div>
-
 
             <div className="chart__chart">
               <Line options={options} data={data} />
             </div>
           </div>
         </div>
-
-
       </div>
-
 
       <Modal
         isOpen={ShowAddcompetitorsModal}
@@ -323,35 +323,33 @@ export default function Competitors() {
         style={defaultCustomModalStyle}
         onAfterOpen={() => afterOpenOrCloseAnyModal({ open: true })}
         onAfterClose={() => afterOpenOrCloseAnyModal({ open: false })}
-        contentLabel="competitorsModal Modal">
-        <div className='competitorsModal w-[600px] rounded shadow-[0px_4px_8px_0px_rgb(0,0,0)]'>
-          <header className='px-2.5 border-0 bg-[#FCFCFB] mb-2'>
+        contentLabel="competitorsModal Modal"
+      >
+        <div className="competitorsModal w-[600px] rounded shadow-[0px_4px_8px_0px_rgb(0,0,0)]">
+          <header className="px-2.5 border-0 bg-[#FCFCFB] mb-2">
             <div className="competitorsModal__header">
               <div className="competitorsModal__title">افزودن وبسایت رقیب</div>
-              <div className="competitorsModal__counter"> وبسایت رقیب باقی مانده: 10</div>
+              <div className="competitorsModal__counter">
+                {" "}
+                وبسایت رقیب باقی مانده: 10
+              </div>
             </div>
           </header>
-          <body className='border-0 pt-2 px-5 pb-5'>
+          <body className="border-0 pt-2 px-5 pb-5">
             <div className="rowbox">
-              <input type="text" className="rowbox__competitors" placeholder="کلمه کلیدی" />
+              <input
+                type="text"
+                className="rowbox__competitors"
+                placeholder="کلمه کلیدی"
+              />
               <img src={startEasyStartArrow_svg} />
 
               <div className="rowbox__collection">
-                <input type={'text'} className="rowbox__site" placeholder="سایت رقیب 1" />
-                <button class="action btn-secondary w-50 flex justify-between">
-                  <div className="action__icon">+</div>
-                  <div onClick={() => closeDialog(false)}> رقیب جدید</div>
-                </button>
-              </div>
-
-            </div>
-
-
-            <div className="rowbox">
-              <input type="text" className="rowbox__competitors" placeholder="کلمه کلیدی" />
-              <img src={startEasyStartArrow_svg} />
-              <div className="rowbox__collection">
-                <input type={'text'} className="rowbox__site" placeholder="سایت رقیب 2" />
+                <input
+                  type={"text"}
+                  className="rowbox__site"
+                  placeholder="سایت رقیب 1"
+                />
                 <button class="action btn-secondary w-50 flex justify-between">
                   <div className="action__icon">+</div>
                   <div onClick={() => closeDialog(false)}> رقیب جدید</div>
@@ -360,11 +358,39 @@ export default function Competitors() {
             </div>
 
             <div className="rowbox">
-              <input type="text" className="rowbox__competitors" placeholder="کلمه کلیدی" />
+              <input
+                type="text"
+                className="rowbox__competitors"
+                placeholder="کلمه کلیدی"
+              />
+              <img src={startEasyStartArrow_svg} />
+              <div className="rowbox__collection">
+                <input
+                  type={"text"}
+                  className="rowbox__site"
+                  placeholder="سایت رقیب 2"
+                />
+                <button class="action btn-secondary w-50 flex justify-between">
+                  <div className="action__icon">+</div>
+                  <div onClick={() => closeDialog(false)}> رقیب جدید</div>
+                </button>
+              </div>
+            </div>
+
+            <div className="rowbox">
+              <input
+                type="text"
+                className="rowbox__competitors"
+                placeholder="کلمه کلیدی"
+              />
               <img src={startEasyStartArrow_svg} />
 
               <div className="rowbox__collection">
-                <input type={'text'} className="rowbox__site" placeholder="سایت رقیب 3" />
+                <input
+                  type={"text"}
+                  className="rowbox__site"
+                  placeholder="سایت رقیب 3"
+                />
                 <button class="action btn-secondary w-50 flex justify-between">
                   <div className="action__icon">+</div>
                   <div onClick={() => closeDialog(false)}> رقیب جدید</div>
@@ -378,7 +404,6 @@ export default function Competitors() {
                 <div onClick={() => closeDialog(false)}>ذخیره وبسایت رقبا</div>
               </button>
             </div>
-
           </body>
         </div>
       </Modal>

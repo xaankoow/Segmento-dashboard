@@ -6,8 +6,9 @@ import ReactSelect from "react-select";
 
 const FilterChart = ({
   selected,
-  filteredTableData: data,
-  handleSelectKeyword,
+  tableData: data,
+  handleSelectForComparison,
+  selectForComparison,
 }) => {
   const [focuse, setFocuse] = useState(false);
 
@@ -29,21 +30,25 @@ const FilterChart = ({
         <ReactSelect
           options={
             data.length
-              ? data.map((item) => ({
-                  value: item.uuid,
-                  label: item.key,
-                }))
+              ? !!selected
+                ? data
+                    .filter((item) => item.uuid !== selected.uuid)
+                    .map((item) => ({
+                      value: item.uuid,
+                      label: item.key,
+                    }))
+                : data.map((item) => ({
+                    value: item.uuid,
+                    label: item.key,
+                  }))
               : []
           }
-          isMulti
-          closeMenuOnSelect={true}
+          isMulti={false}
+          closeMenuOnSelect={false}
           hideSelectedOptions={false}
-          onChange={handleSelectKeyword}
+          onChange={handleSelectForComparison}
           allowSelectAll={false}
-          value={selected.map((item) => ({
-            value: item.uuid,
-            label: item.key,
-          }))}
+          value={selectForComparison}
           isRtl={true}
           placeholder={"کلمه کلیدی دیگر"}
           style={{ border: "none" }}
@@ -53,6 +58,7 @@ const FilterChart = ({
           onFocus={() => setFocuse(true)}
           onBlur={() => setFocuse(false)}
           isClearable={false}
+          isDisabled={!selected}
         />
       </div>
 
