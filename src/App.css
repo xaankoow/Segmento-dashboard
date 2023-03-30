@@ -216,3 +216,19 @@
   top: 0;
   background-color: white;
 }
+
+.note-label {
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  background-color: #F2F5F7;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.note-label .close-button{
+  color: #F35242;
+  scale: 1.2;
+}

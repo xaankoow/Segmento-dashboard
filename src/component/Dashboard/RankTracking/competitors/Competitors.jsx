@@ -137,7 +137,6 @@ export default function Competitors() {
               <span>+</span>
               <div onClick={() => closeDialog(true)}> افزودن رقیب</div>
             </button>
-            z
           </div>
         </div>
 

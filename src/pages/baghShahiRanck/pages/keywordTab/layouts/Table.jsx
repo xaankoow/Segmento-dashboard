@@ -30,6 +30,7 @@ const KeywordTable = ({
     { title: "میانگین 7 دوره", minWidth: 155 },
     { title: "برچسب", minWidth: 60 },
   ]);
+  const [max, setMax] = useState([]);
 
   useEffect(() => {
     if (typeof data !== "undefined" && data.length) {
@@ -41,14 +42,13 @@ const KeywordTable = ({
     let max = 0;
     let needMergedata = [];
     data.forEach((item) => {
-      if (item.competitors.length > max) {
-        max = item.competitors.length;
+      if (item.extra_attributes.competitors.length > max) {
+        max = item.extra_attributes.competitors.length;
       }
     });
-    console.log("max : ", max);
+    setMax([...Array(max).keys()]);
 
     while (max > 0) {
-      console.log("MAX MAX : ", max);
       needMergedata.push({ title: `سایت رقیب ${max}`, minWidth: 190 });
       max--;
     }
@@ -64,10 +64,13 @@ const KeywordTable = ({
         "jYYYY/jM/jD HH:mm:ss"
       )}`
     );
-    if (!!row.competitors && !!row.competitors.length) {
+    if (
+      !!row.extra_attributes.competitors &&
+      !!row.extra_attributes.competitors.length
+    ) {
       strArr.push(`رقبا : ${row.key}`);
 
-      row.competitors.forEach((item) => strArr.push(item));
+      row.extra_attributes.competitors.forEach((item) => strArr.push(item));
     }
     let str = strArr.join(" و ");
     navigator.clipboard.writeText(str);
@@ -110,11 +113,11 @@ const KeywordTable = ({
                   data &&
                   !!data.length &&
                   data.map((row, index) => {
-                    console.log("RO : ", row);
                     return (
                       <tr
                         class={`whitespace-nowrap w-fits ${
-                          !!selected && selected.uuid === row.uuid
+                          !!selected.length &&
+                          selected.some((item) => item.uuid === row.uuid)
                             ? "text-[#2563eb]"
                             : ""
                         }`}
@@ -123,11 +126,14 @@ const KeywordTable = ({
                         <td className={defaultRowClass}>
                           <div
                             className={`chart-icon  ${
-                              !!selected && selected.uuid === row.uuid
+                              !!selected.length &&
+                              selected.some((item) => item.uuid === row.uuid)
                                 ? "need-blue"
                                 : ""
                             }`}
-                            onClick={() => setSelected(row)}
+                            onClick={() =>
+                              setSelected((prev) => [...prev, row])
+                            }
                           />
                         </td>
 
@@ -167,20 +173,31 @@ const KeywordTable = ({
                         <td className={defaultRowClass}>{""}</td>
 
                         {/*برچسب  */}
-                        <td className={defaultRowClass}>{""}</td>
+                        <td className={defaultRowClass}>
+                          {row.extra_attributes.note && (
+                            <div className="note-label">
+                              <span>{row.extra_attributes.note}</span>
+                              <span className="close-button">×</span>
+                            </div>
+                          )}
+                        </td>
 
                         {/* رقبا */}
-                        {!!row.competitors.length
-                          ? row.competitors.map((item) => (
+                        {!!row.extra_attributes.competitors.length
+                          ? max.map((item, i) => (
                               <td key={item} className={defaultRowClass}>
-                                <a
-                                  href={`https://${item.url}`}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  style={{ color: "blue" }}
-                                >
-                                  {item.url}
-                                </a>
+                                {!!row.extra_attributes.competitors[item] ? (
+                                  <a
+                                    href={`https://${row.extra_attributes.competitors[item].url}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{ color: "blue" }}
+                                  >
+                                    {row.extra_attributes.competitors[item].url}
+                                  </a>
+                                ) : (
+                                  <span>-</span>
+                                )}
                               </td>
                             ))
                           : null}

@@ -26,13 +26,16 @@ const FilterChart = ({
         <span className=" ml-2">مقایسه براساس</span>
       </div>
 
-      <div className="w-[41%] text-xs">
+      <div
+        className="w-1/5 text-xs"
+        style={!selected.length ? { background: "#f5f5f5" } : {}}
+      >
         <ReactSelect
           options={
             data.length
-              ? !!selected
+              ? !!selected.length
                 ? data
-                    .filter((item) => item.uuid !== selected.uuid)
+                    // .filter((item) => item.uuid !== selected.uuid)
                     .map((item) => ({
                       value: item.uuid,
                       label: item.key,
@@ -44,7 +47,7 @@ const FilterChart = ({
               : []
           }
           isMulti={false}
-          closeMenuOnSelect={false}
+          closeMenuOnSelect={true}
           hideSelectedOptions={false}
           onChange={handleSelectForComparison}
           allowSelectAll={false}
@@ -58,7 +61,15 @@ const FilterChart = ({
           onFocus={() => setFocuse(true)}
           onBlur={() => setFocuse(false)}
           isClearable={false}
-          isDisabled={!selected}
+          isDisabled={!selected.length}
+        />
+      </div>
+
+      <div className="opacity-70 pointer-events-none w-1/5  text-xs">
+        <ComboBox
+          placeholder={"فیلد جستجو"}
+          radioTextItems={["48 ساعت قبل"]}
+          checkedItem={["48 ساعت قبل"]}
         />
       </div>
 

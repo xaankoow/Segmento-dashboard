@@ -28,7 +28,9 @@ const KeywordItem = ({ row, selected }) => {
       <div className="flex gap-2 relative">
         <span
           style={
-            !!selected && selected.uuid === row.uuid ? { color: "blue" } : {}
+            !!selected.length && selected.some((item) => item.uuid === row.uuid)
+              ? { color: "blue" }
+              : {}
           }
         >
           {row.key}

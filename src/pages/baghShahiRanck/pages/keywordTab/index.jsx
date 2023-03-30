@@ -20,7 +20,7 @@ import TagModal from "./layouts/tagModal";
 const KeywordTab = () => {
   const [tableData, setTableData] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState([]);
   const [selectForComparison, setSelectForComparison] = useState(null);
   const [loading, setLoading] = useState(true);
   const [addLoading, setAddLoadgin] = useState(false);
@@ -35,7 +35,7 @@ const KeywordTab = () => {
   }, []);
 
   useEffect(() => {
-    handleRefreshChart();
+    setSelectForComparison(null);
   }, [selected]);
 
   async function fetchData() {
@@ -43,7 +43,6 @@ const KeywordTab = () => {
     const workspace = findUsedWorkspace();
     try {
       const data = await keyWordsDataService({ axiosController, workspace });
-      console.log("DATA : ", data);
       if (data.data.code !== 200) throw data.data;
       setTableData(data.data.data);
     } catch (error) {
@@ -103,7 +102,8 @@ const KeywordTab = () => {
 
   async function findSelectedById(id) {
     const findedSelected = tableData.find((item) => item.uuid === id);
-    if (typeof findedSelected !== "undefined") setSelected(findedSelected);
+    if (typeof findedSelected !== "undefined")
+      setSelected((prev) => [...prev, findedSelected]);
   }
 
   async function handleDeleteRow(rowData, needWarning) {
@@ -142,30 +142,30 @@ const KeywordTab = () => {
     fetchData();
   }
 
-  function handleDeleteSelected(key) {
-    console.log("KEY : ", key);
-    setSelected((prev) => prev.filter((x) => x.key !== key));
-  }
-
   function handleSelectKeyword(key) {
     console.log("KEYWORD SELECTED : ", key);
-    if (!key) {
-      // CLEAR ALL SELECTED AND CHART
-      setSelected(null);
-    }
-    findSelectedById(key.value);
+    // CLEAR ALL SELECTED AND CHART
+    setSelected([]);
+    key.forEach((item) => {
+      findSelectedById(item.value);
+    });
   }
 
   function handleRefreshChart() {
-    // setSelected(null);
+    setSelected([]);
     setSelectForComparison(null);
   }
 
   function handleSelectForComparison(item) {
-    if (!selected) return; // IF HAVE NO SELECTED ITEM DO NOTING
-    if (selected.uuid === item.uuid) return; // IF WANT COMPARISON WHIT SELF DON NOGIN
+    if (!selected.length) return; // IF HAVE NO SELECTED ITEM DO NOTING
+    if (selected.some((x) => x.uuid === item.uuid)) return; // IF WANT COMPARISON WHIT SELF DON NOGIN
+    if (!!selectForComparison && selectForComparison.uuid === item.uuid) return; // IF SELECT ONCE AGAIN DO NOTING
     setSelectForComparison(item);
   }
+
+  console.log("LOGS");
+  console.log(selected);
+  console.log(selectForComparison);
 
   return (
     <>
@@ -213,7 +213,6 @@ const KeywordTab = () => {
         <div className="mt-2 pb-7 px-3">
           <KeywordChart
             selected={selected}
-            handleDeleteSelected={handleDeleteSelected}
             tableData={tableData}
             handleSelectKeyword={handleSelectKeyword}
             handleRefreshChart={handleRefreshChart}

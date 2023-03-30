@@ -137,3 +137,21 @@ export const searchKeywordTagService = (
     headers: headerRegisterUser,
   });
 };
+
+export const getKeywordRankService = ({ id, workspace, axiosController }) => {
+  const headerRegisterUser = {
+    "Content-Type": "multipart/form-data",
+    workspace,
+    signal: axiosController != undefined && axiosController.signal,
+  };
+  return http.post(
+    `${config.xaankooApi}/api/v1/keyword/rank`,
+    {
+      uuid: id,
+      count: 10,
+    },
+    {
+      headers: headerRegisterUser,
+    }
+  );
+};

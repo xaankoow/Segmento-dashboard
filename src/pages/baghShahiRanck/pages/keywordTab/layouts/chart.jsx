@@ -16,6 +16,8 @@ import ReactSelect from "react-select";
 
 //==== IMAGEs
 import RefreshIcon from "../../../../../assets/img/ico/restart.svg";
+import { useSelector } from "react-redux";
+import { getKeywordRankService } from "../../../../../component/service/rankTracking";
 
 ChartJS.register(
   CategoryScale,
@@ -44,7 +46,6 @@ const labels = ["", "", "", "", "", "", ""];
 
 const KeywordChart = ({
   selected,
-  handleDeleteSelected,
   tableData,
   handleSelectKeyword,
   handleRefreshChart,
@@ -118,10 +119,10 @@ const KeywordChart = ({
       },
     },
   });
+  const workSpaceState = useSelector((state) => state.workSpaceState);
 
   useEffect(() => {
-    console.log("IM FIRE : ", selected);
-    if (!selected) {
+    if (!selected.length) {
       setData((prev) => ({ ...prev, datasets: [] }));
       return;
     }
@@ -137,15 +138,20 @@ const KeywordChart = ({
     handlePrepareAndCombine(selectForComparison);
   }, [selectForComparison]);
 
-  function handlePrepareAndAttach(selected) {
+  async function handlePrepareAndAttach(selected) {
     let datasets = [];
-    let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
-    let data = {};
-    data.label = selected.key;
-    data.data = labels.map(() => faker.datatype.number({ min: 1, max: 10 }));
-    data.borderColor = randomColor;
-    data.backgroundColor = randomColor;
-    datasets.push(data);
+    selected.forEach(async (item) => {
+      let randomColor =
+        colorArray[Math.floor(Math.random() * colorArray.length)];
+      console.log("ITEM IS : ", item);
+      await getDetail(item.uuid);
+      let data = {};
+      data.label = item.key;
+      data.data = labels.map(() => faker.datatype.number({ min: 1, max: 10 }));
+      data.borderColor = randomColor;
+      data.backgroundColor = randomColor;
+      datasets.push(data);
+    });
 
     setData((prev) => ({ ...prev, datasets }));
   }
@@ -175,6 +181,24 @@ const KeywordChart = ({
     }));
   }
 
+  async function getDetail(id) {
+    console.log("ID : ", id);
+    const workspace = findUsedWorkspace();
+    try {
+      const res = await getKeywordRankService({ id, workspace });
+      console.log("RES IS : ", res);
+    } catch (error) {
+      console.log("ERROR CODE 6 : ", error);
+    }
+  }
+
+  function findUsedWorkspace() {
+    let siteUrl = workSpaceState.webAdress;
+    if (typeof siteUrl === "undefined") return;
+    return workSpaceState.allWorkSpace.find((item) => item.website === siteUrl)
+      .uuid;
+  }
+
   return (
     <div
       className="keyword-chart-container"
@@ -196,19 +220,15 @@ const KeywordChart = ({
                   }))
                 : []
             }
-            isMulti={false}
+            isMulti={true}
             closeMenuOnSelect={false}
             hideSelectedOptions={false}
             onChange={handleSelectKeyword}
             allowSelectAll={false}
-            value={
-              selected
-                ? {
-                    value: selected.uuid,
-                    label: selected.key,
-                  }
-                : null
-            }
+            value={selected.map((item) => ({
+              value: item.uuid,
+              label: item.key,
+            }))}
             isRtl={true}
             isClearable={false}
             placeholder={"انتخاب کنید"}
