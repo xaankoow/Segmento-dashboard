@@ -77,6 +77,15 @@ const KeywordTable = ({
     toast("با موفقیت کپی شد.", { icon: true, type: "success" });
   }
 
+  function handleSelect(row) {
+    console.log("ROW : ", row);
+    console.log("SELECTED : ", selected);
+    let finded = selected.find((item) => item.uuid === row.uuid);
+    if (typeof finded === "undefined") {
+      setSelected((prev) => [...prev, row]);
+    }
+  }
+
   return (
     <div class="w-full flex justify-center mx-auto">
       <div class="flex flex-col w-full">
@@ -131,9 +140,7 @@ const KeywordTable = ({
                                 ? "need-blue"
                                 : ""
                             }`}
-                            onClick={() =>
-                              setSelected((prev) => [...prev, row])
-                            }
+                            onClick={() => handleSelect(row)}
                           />
                         </td>
 

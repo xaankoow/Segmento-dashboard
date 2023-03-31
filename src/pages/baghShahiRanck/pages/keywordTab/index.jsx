@@ -6,6 +6,7 @@ import AuthButton from "../../../../component/Auth/authButton/AuthButton";
 import {
   addKeywordService,
   deleteKeywordService,
+  getKeywordRankPeriodService,
   keyWordDataService,
   keyWordsDataService,
 } from "../../../../component/service/rankTracking";
@@ -26,6 +27,8 @@ const KeywordTab = () => {
   const [addLoading, setAddLoadgin] = useState(false);
   const [deleteWarning, setDeleteWarning] = useState({ show: false, data: {} });
   const [tagModal, setTagModal] = useState({ show: false, data: {} });
+  const [labels, setLabels] = useState(["", "", "", "", "", "", ""]);
+  const [allChartData, setAllChartData] = useState([]);
 
   const workSpaceState = useSelector((state) => state.workSpaceState);
   const axiosController = new AbortController();
@@ -49,7 +52,30 @@ const KeywordTab = () => {
       console.log("Error code 1: ", error);
     } finally {
       setLoading(false);
+
+      try {
+        const res = await getKeywordRankPeriodService({ workspace });
+        if (res.code !== 200) throw res;
+        return handlePrepareRawData(res.data);
+      } catch (error) {
+        console.log("ERROR CODE 8 : ", error);
+      }
     }
+  }
+
+  function handlePrepareRawData(data) {
+    //FIND AND SET TABLE HORIZENTAL LABEL
+    let keys = Object.keys(data);
+    let labels_ = keys.slice(-7);
+    let customLabels = labels_.map((item) =>
+      //REMOVE YEAR & REPLACE - WITH /
+      item.split("-").slice(1).join("/")
+    );
+    setLabels(customLabels);
+
+    //PREPARE AND SET ALL CHART DATA IN ARRAY
+    let allChart = labels_.map((item) => data[item]);
+    setAllChartData(allChart);
   }
 
   async function handleSaveKeyword() {
@@ -152,7 +178,7 @@ const KeywordTab = () => {
   }
 
   function handleRefreshChart() {
-    setSelected([]);
+    // setSelected([]);
     setSelectForComparison(null);
   }
 
@@ -162,10 +188,6 @@ const KeywordTab = () => {
     if (!!selectForComparison && selectForComparison.uuid === item.uuid) return; // IF SELECT ONCE AGAIN DO NOTING
     setSelectForComparison(item);
   }
-
-  console.log("LOGS");
-  console.log(selected);
-  console.log(selectForComparison);
 
   return (
     <>
@@ -212,11 +234,13 @@ const KeywordTab = () => {
 
         <div className="mt-2 pb-7 px-3">
           <KeywordChart
+            labels={labels}
             selected={selected}
             tableData={tableData}
             handleSelectKeyword={handleSelectKeyword}
             handleRefreshChart={handleRefreshChart}
             selectForComparison={selectForComparison}
+            allChartData={allChartData}
           />
         </div>
       </div>

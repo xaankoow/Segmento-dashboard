@@ -12,6 +12,25 @@ const FilterChart = ({
 }) => {
   const [focuse, setFocuse] = useState(false);
 
+  function priparedDataForSelect(data, selected) {
+    let lastsData = [];
+
+    if (data.length === selected.length) return [];
+
+    data.forEach((d) => {
+      selected.forEach((s) => {
+        console.log("ITEMS COME D S : ", d, s);
+        if (d.uuid !== s.uuid) {
+          console.log("passed : ", d.uuid, s.uuid);
+          lastsData.push(d);
+        }
+      });
+    });
+
+    console.log("LAST DATA : ", lastsData);
+    return lastsData;
+  }
+
   return (
     <header className="flex items-center justify-between h-10 w-full gap-1">
       <div className="flex items-center justify-center gap-1">
@@ -34,12 +53,10 @@ const FilterChart = ({
           options={
             data.length
               ? !!selected.length
-                ? data
-                    // .filter((item) => item.uuid !== selected.uuid)
-                    .map((item) => ({
-                      value: item.uuid,
-                      label: item.key,
-                    }))
+                ? priparedDataForSelect(data, selected).map((item) => ({
+                    value: item.uuid,
+                    label: item.key,
+                  }))
                 : data.map((item) => ({
                     value: item.uuid,
                     label: item.key,
@@ -62,6 +79,9 @@ const FilterChart = ({
           onBlur={() => setFocuse(false)}
           isClearable={false}
           isDisabled={!selected.length}
+          noOptionsMessage={() => (
+            <span className="opacity-40">بدون گزینه</span>
+          )}
         />
       </div>
 

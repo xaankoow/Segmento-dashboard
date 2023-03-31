@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,7 +17,10 @@ import ReactSelect from "react-select";
 //==== IMAGEs
 import RefreshIcon from "../../../../../assets/img/ico/restart.svg";
 import { useSelector } from "react-redux";
-import { getKeywordRankService } from "../../../../../component/service/rankTracking";
+import {
+  getKeywordRankPeriodService,
+  getKeywordRankService,
+} from "../../../../../component/service/rankTracking";
 
 ChartJS.register(
   CategoryScale,
@@ -42,15 +45,16 @@ const colorArray = [
   "#277da1",
 ];
 
-const labels = ["", "", "", "", "", "", ""];
-
 const KeywordChart = ({
+  labels,
   selected,
   tableData,
   handleSelectKeyword,
   handleRefreshChart,
   selectForComparison,
+  allChartData,
 }) => {
+  const comparisonRef = useRef(null);
   const [type, setType] = useState("Line");
   const [data, setData] = useState({
     labels,
@@ -119,7 +123,6 @@ const KeywordChart = ({
       },
     },
   });
-  const workSpaceState = useSelector((state) => state.workSpaceState);
 
   useEffect(() => {
     if (!selected.length) {
@@ -130,26 +133,32 @@ const KeywordChart = ({
   }, [selected]);
 
   useEffect(() => {
-    console.log("SELECTEd FOR COMPARISON : ", selectForComparison);
     if (!selectForComparison) {
       // CLEAR CAHRT FROM COMPARISON
-      handleRemoveComparison();
+      handleRemoveComparison(comparisonRef.current);
     }
+    comparisonRef.current = selectForComparison;
     handlePrepareAndCombine(selectForComparison);
   }, [selectForComparison]);
 
+  useEffect(() => {
+    setData((prev) => ({ ...prev, labels }));
+  }, [labels]);
+
   async function handlePrepareAndAttach(selected) {
+    //TODO: NEED JUST ADD OR REMOVE SELECTED
     let datasets = [];
     selected.forEach(async (item) => {
       let randomColor =
         colorArray[Math.floor(Math.random() * colorArray.length)];
-      console.log("ITEM IS : ", item);
-      await getDetail(item.uuid);
-      let data = {};
-      data.label = item.key;
-      data.data = labels.map(() => faker.datatype.number({ min: 1, max: 10 }));
-      data.borderColor = randomColor;
-      data.backgroundColor = randomColor;
+
+      let data = {
+        label: item.key,
+        data: findDataFromId(item.uuid),
+        borderColor: randomColor,
+        backgroundColor: randomColor,
+      };
+
       datasets.push(data);
     });
 
@@ -160,9 +169,10 @@ const KeywordChart = ({
     if (!selected) return;
     //GET RANDOM COLOR FROM PALET
     let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+    //
     let data = {
       label: selected.label,
-      data: labels.map(() => faker.datatype.number({ min: 1, max: 10 })),
+      data: findDataFromId(selected.value),
       borderColor: randomColor,
       backgroundColor: randomColor,
     };
@@ -170,33 +180,36 @@ const KeywordChart = ({
     setData((prev) => ({ ...prev, datasets: [...prev.datasets, data] }));
   }
 
-  function handleRemoveComparison() {
-    console.log("datasets @ : ", data.datasets);
-    console.log("selected @ :", selected);
+  function handleRemoveComparison(comparison) {
     setData((prev) => ({
       ...prev,
       datasets: [
-        ...prev.datasets.filter((item) => item.label === selected.key),
+        ...prev.datasets.filter((item) => item.label !== comparison.label),
       ],
     }));
+    comparisonRef.current = null;
   }
 
-  async function getDetail(id) {
-    console.log("ID : ", id);
-    const workspace = findUsedWorkspace();
-    try {
-      const res = await getKeywordRankService({ id, workspace });
-      console.log("RES IS : ", res);
-    } catch (error) {
-      console.log("ERROR CODE 6 : ", error);
-    }
-  }
+  function findDataFromId(id) {
+    if (!allChartData.length) return;
+    // let lastData = [];
+    // WHEN TRUE DATA COMMIGN FIND DATA CODE
+    // allChartData.forEach((item) => {
+    //   item.forEach((elm) => {
+    //     if (elm.keyword_uuid === id) {
+    //       lastData.push(elm.position);
+    //     }
+    //   });
+    // });
+    // return lastData;
 
-  function findUsedWorkspace() {
-    let siteUrl = workSpaceState.webAdress;
-    if (typeof siteUrl === "undefined") return;
-    return workSpaceState.allWorkSpace.find((item) => item.website === siteUrl)
-      .uuid;
+    // FAKE PICK DATA
+    let findFakeIndex = tableData.findIndex((x) => x.uuid === id);
+    let lastData = [];
+    allChartData.forEach((item) => {
+      lastData.push(item[findFakeIndex].position);
+    });
+    return lastData;
   }
 
   return (
@@ -232,6 +245,9 @@ const KeywordChart = ({
             isRtl={true}
             isClearable={false}
             placeholder={"انتخاب کنید"}
+            noOptionsMessage={() => (
+              <span className="opacity-40">بدون گزینه</span>
+            )}
           />
         </span>
 
