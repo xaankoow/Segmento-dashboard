@@ -72,7 +72,7 @@ const FilterChart = ({
           isRtl={true}
           placeholder={"کلمه کلیدی دیگر"}
           style={{ border: "none" }}
-          className={`border-2 w-full border-[#D9D9D9] border-b-[#7D7D7D] placeholder-[#D9D9D9] pr-2 h-11 border-l-0 rounded-l-none keyword-multi-select ${
+          className={`border-2 w-full border-[#D9D9D9] border-b-[#7d7d7dac] placeholder-[#D9D9D9] pr-2 h-11 border-l-0 rounded-l-none keyword-multi-select ${
             focuse ? "border-b-[#0A65CD]" : ""
           }`}
           onFocus={() => setFocuse(true)}
@@ -85,27 +85,30 @@ const FilterChart = ({
         />
       </div>
 
-      <div className="opacity-70 pointer-events-none w-1/5  text-xs">
+      <div className="opacity-70 bg-slate-300 pointer-events-none w-1/5  text-xs">
         <ComboBox
           placeholder={"فیلد جستجو"}
           radioTextItems={["48 ساعت قبل"]}
           checkedItem={["48 ساعت قبل"]}
+          disable
         />
       </div>
 
-      <div className="opacity-70 pointer-events-none w-1/5  text-xs">
+      <div className="opacity-70 bg-slate-300 pointer-events-none w-1/5  text-xs">
         <ComboBox
           placeholder={"فیلد جستجو"}
           radioTextItems={["رقیب شماره 1"]}
           checkedItem={["رقیب شماره 1"]}
+          disable
         />
       </div>
 
-      <div className="opacity-70 pointer-events-none w-1/5  text-xs">
+      <div className="opacity-70 bg-slate-300 pointer-events-none w-1/5  text-xs">
         <ComboBox
           placeholder={"فیلد جستجو"}
           radioTextItems={["دسکتاپ"]}
           checkedItem={["دسکتاپ"]}
+          disable
         />
       </div>
     </header>

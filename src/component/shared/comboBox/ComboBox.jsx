@@ -11,6 +11,7 @@ export default function ComboBox({
   selectedItem,
   placeholder,
   icons,
+  disable,
 }) {
   const [radioText, setRadioText] = useState("");
   const ref = useRef();
@@ -33,6 +34,9 @@ export default function ComboBox({
       id="keyWordSearch"
       ref={ref}
     >
+      {typeof disable !== "undefined" && disable && (
+        <div className="absolute w-full disabled-combo m-1 bg-[#3d3d471c] z-50 bottom-[-3px]" />
+      )}
       <div className=" w-full flex flex-col ">
         <div className="flex items-center relative ">
           <div className=" grow">

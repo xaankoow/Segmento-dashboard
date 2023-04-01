@@ -137,7 +137,7 @@
 
 .last-col {
   min-width: 140px;
-  left: 0px;
+  left: -2px;
 }
 
 /* WARNING MODAL */
@@ -231,4 +231,9 @@
 .note-label .close-button{
   color: #F35242;
   scale: 1.2;
+  cursor: pointer;
+}
+
+.disabled-combo {
+  height: calc(100% - 1px); 
 }

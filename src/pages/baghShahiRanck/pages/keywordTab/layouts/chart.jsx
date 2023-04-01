@@ -1,26 +1,20 @@
-import React, { useEffect, useState, useRef } from "react";
 import {
-  Chart as ChartJS,
   CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LineElement,
   LinearScale,
   PointElement,
-  LineElement,
   Title,
   Tooltip,
-  Legend,
 } from "chart.js";
+import React, { useEffect, useRef, useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
-import SelectingChartBtn from "../../../../../component/Dashboard/RankTracking/card/SelectingChartBtn";
-import { faker } from "@faker-js/faker";
 import ReactSelect from "react-select";
+import SelectingChartBtn from "../../../../../component/Dashboard/RankTracking/card/SelectingChartBtn";
 
 //==== IMAGEs
 import RefreshIcon from "../../../../../assets/img/ico/restart.svg";
-import { useSelector } from "react-redux";
-import {
-  getKeywordRankPeriodService,
-  getKeywordRankService,
-} from "../../../../../component/service/rankTracking";
 
 ChartJS.register(
   CategoryScale,
@@ -148,6 +142,7 @@ const KeywordChart = ({
   async function handlePrepareAndAttach(selected) {
     //TODO: NEED JUST ADD OR REMOVE SELECTED
     let datasets = [];
+
     selected.forEach(async (item) => {
       let randomColor =
         colorArray[Math.floor(Math.random() * colorArray.length)];
@@ -181,6 +176,11 @@ const KeywordChart = ({
   }
 
   function handleRemoveComparison(comparison) {
+    if (
+      !!selected.length &&
+      selected.some((item) => item.key === comparison.label)
+    )
+      return;
     setData((prev) => ({
       ...prev,
       datasets: [
@@ -233,8 +233,8 @@ const KeywordChart = ({
                   }))
                 : []
             }
-            isMulti={true}
-            closeMenuOnSelect={false}
+            isMulti={false}
+            closeMenuOnSelect={true}
             hideSelectedOptions={false}
             onChange={handleSelectKeyword}
             allowSelectAll={false}

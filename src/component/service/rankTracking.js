@@ -112,6 +112,22 @@ export const deleteKeywordService = ({ axiosController, workspace, id }) => {
   });
 };
 
+export const deleteNoteService = ({ axiosController, workspace, id }) => {
+  const headerRegisterUser = {
+    "Content-Type": "multipart/form-data",
+    workspace,
+    signal: axiosController != undefined && axiosController.signal,
+  };
+  const formData = new FormData();
+  formData.append("uuid", id);
+  formData.append("type", "keyword");
+  formData.append("note", "-");
+  formData.append("tags[]", "-");
+  return http.post(`${config.xaankooApi}/api/v1/tag/addTagAndNote`, formData, {
+    headers: headerRegisterUser,
+  });
+};
+
 export const addKeywordTagService = (workspace, data, axiosController) => {
   const headerRegisterUser = {
     "Content-Type": "multipart/form-data",

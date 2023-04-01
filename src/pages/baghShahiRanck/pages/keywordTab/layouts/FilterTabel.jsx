@@ -23,6 +23,7 @@ const FilterTabel = () => {
           placeholder={"فیلد جستجو"}
           radioTextItems={["48 ساعت"]}
           checkedItem={["48 ساعت"]}
+          disable
         />
       </div>
 
@@ -31,6 +32,7 @@ const FilterTabel = () => {
           placeholder={"فیلد جستجو"}
           radioTextItems={["تمام رتبه ها"]}
           checkedItem={["تمام رتبه ها"]}
+          disable
         />
       </div>
 
@@ -39,6 +41,7 @@ const FilterTabel = () => {
           placeholder={"فیلد جستجو"}
           radioTextItems={["دسکتاپ"]}
           checkedItem={["دسکتاپ"]}
+          disable
         />
       </div>
 
@@ -47,6 +50,7 @@ const FilterTabel = () => {
           placeholder={"فیلد جستجو"}
           radioTextItems={["23 شهریور 1401 - 23 مهر 1401"]}
           checkedItem={["23 شهریور 1401 - 23 مهر 1401"]}
+          disable
         />
       </div>
     </header>

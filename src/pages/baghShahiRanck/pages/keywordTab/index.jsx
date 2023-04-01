@@ -6,16 +6,16 @@ import AuthButton from "../../../../component/Auth/authButton/AuthButton";
 import {
   addKeywordService,
   deleteKeywordService,
+  deleteNoteService,
   getKeywordRankPeriodService,
-  keyWordDataService,
   keyWordsDataService,
 } from "../../../../component/service/rankTracking";
-import AddKeyWordModal from "./layouts/addNewModal";
-import KeywordChart from "./layouts/chart";
-import DeleteWarningModal from "./layouts/deleteWarningModal";
 import FilterChart from "./layouts/FilterChart";
 import FilterTabel from "./layouts/FilterTabel";
 import KeywordTable from "./layouts/Table";
+import AddKeyWordModal from "./layouts/addNewModal";
+import KeywordChart from "./layouts/chart";
+import DeleteWarningModal from "./layouts/deleteWarningModal";
 import TagModal from "./layouts/tagModal";
 
 const KeywordTab = () => {
@@ -25,7 +25,12 @@ const KeywordTab = () => {
   const [selectForComparison, setSelectForComparison] = useState(null);
   const [loading, setLoading] = useState(true);
   const [addLoading, setAddLoadgin] = useState(false);
-  const [deleteWarning, setDeleteWarning] = useState({ show: false, data: {} });
+  const [deleteWarning, setDeleteWarning] = useState({
+    show: false,
+    data: {},
+    deleteWord: "",
+    onOk: () => null,
+  });
   const [tagModal, setTagModal] = useState({ show: false, data: {} });
   const [labels, setLabels] = useState(["", "", "", "", "", "", ""]);
   const [allChartData, setAllChartData] = useState([]);
@@ -134,7 +139,12 @@ const KeywordTab = () => {
 
   async function handleDeleteRow(rowData, needWarning) {
     if (typeof needWarning !== "undefined" && !!needWarning) {
-      setDeleteWarning({ show: true, data: rowData });
+      setDeleteWarning({
+        show: true,
+        data: rowData,
+        deleteWord: "کلمه کلیدی",
+        onOk: () => handleDeleteRow(rowData),
+      });
       return;
     }
     const workspace = findUsedWorkspace();
@@ -149,7 +159,47 @@ const KeywordTab = () => {
       await fetchData(); //FETCH NEW TABLE DATA
       toast("کلمه کلیدی با موفقیت حذف شد.", { icon: true, type: "success" });
       //CLOSE MODAL
-      setDeleteWarning({ show: false, data: {} });
+      setDeleteWarning({
+        show: false,
+        data: {},
+        deleteWord: "",
+        onOk: () => null,
+      });
+    } catch (error) {
+      console.log("ERRRO CODE 3 : ", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleDeleteNote(rowData, needWarning) {
+    if (typeof needWarning !== "undefined" && !!needWarning) {
+      setDeleteWarning({
+        show: true,
+        data: rowData,
+        deleteWord: "این برچسب",
+        onOk: () => handleDeleteNote(rowData),
+      });
+      return;
+    }
+    const workspace = findUsedWorkspace();
+    setLoading(true);
+    try {
+      const res = await deleteNoteService({
+        axiosController,
+        workspace,
+        id: rowData.uuid,
+      });
+      console.log("RES IS : ", res);
+      await fetchData(); //FETCH NEW TABLE DATA
+      toast("برچسب با موفقیت حذف شد.", { icon: true, type: "success" });
+      //CLOSE MODAL
+      setDeleteWarning({
+        show: false,
+        data: {},
+        deleteWord: "",
+        onOk: () => null,
+      });
     } catch (error) {
       console.log("ERRRO CODE 3 : ", error);
     } finally {
@@ -170,6 +220,7 @@ const KeywordTab = () => {
 
   function handleSelectKeyword(key) {
     console.log("KEYWORD SELECTED : ", key);
+    if (!Array.isArray(key)) key = [key];
     // CLEAR ALL SELECTED AND CHART
     setSelected([]);
     key.forEach((item) => {
@@ -178,7 +229,7 @@ const KeywordTab = () => {
   }
 
   function handleRefreshChart() {
-    // setSelected([]);
+    setSelected([]);
     setSelectForComparison(null);
   }
 
@@ -216,6 +267,7 @@ const KeywordTab = () => {
             handleShowTagModal={handleShowTagModal}
             loading={loading}
             selected={selected}
+            handleDeleteNote={handleDeleteNote}
           />
         </div>
 
@@ -255,13 +307,21 @@ const KeywordTab = () => {
 
       <DeleteWarningModal
         show={deleteWarning.show}
-        onOk={() => handleDeleteRow(deleteWarning.data)}
-        onClose={() => setDeleteWarning({ show: false, data: {} })}
+        deleteWord={deleteWarning.deleteWord}
+        onOk={deleteWarning.onOk}
+        onClose={() =>
+          setDeleteWarning({
+            show: false,
+            data: {},
+            deleteWord: "",
+            onOk: () => null,
+          })
+        }
       />
 
       <TagModal
         show={tagModal.show}
-        onClose={() => setTagModal({ show: false, data: {} })}
+        onClose={() => setTagModal({ show: false, data: {}, deleteWord: "" })}
         onFinish={() => handleFinishTag()}
         state={tagModal}
       />

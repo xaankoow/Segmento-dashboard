@@ -18,6 +18,7 @@ const KeywordTable = ({
   handleShowTagModal,
   loading,
   selected,
+  handleDeleteNote,
 }) => {
   const [tableHead, setTableHead] = useState([
     { title: "نمودار", minWidth: 40 },
@@ -181,12 +182,18 @@ const KeywordTable = ({
 
                         {/*برچسب  */}
                         <td className={defaultRowClass}>
-                          {row.extra_attributes.note && (
-                            <div className="note-label">
-                              <span>{row.extra_attributes.note}</span>
-                              <span className="close-button">×</span>
-                            </div>
-                          )}
+                          {row.extra_attributes.note &&
+                            row.extra_attributes.note !== "-" && (
+                              <div className="note-label">
+                                <span>{row.extra_attributes.note}</span>
+                                <span
+                                  className="close-button"
+                                  onClick={() => handleDeleteNote(row, true)}
+                                >
+                                  ×
+                                </span>
+                              </div>
+                            )}
                         </td>
 
                         {/* رقبا */}
