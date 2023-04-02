@@ -69,9 +69,9 @@ const KeywordTable = ({
       !!row.extra_attributes.competitors &&
       !!row.extra_attributes.competitors.length
     ) {
-      strArr.push(`رقبا : ${row.key}`);
+      strArr.push(`رقبای ${row.key} : `);
 
-      row.extra_attributes.competitors.forEach((item) => strArr.push(item));
+      row.extra_attributes.competitors.forEach((item) => strArr.push(item.url));
     }
     let str = strArr.join(" و ");
     navigator.clipboard.writeText(str);

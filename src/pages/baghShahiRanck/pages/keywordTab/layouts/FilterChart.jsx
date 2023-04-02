@@ -19,15 +19,11 @@ const FilterChart = ({
 
     data.forEach((d) => {
       selected.forEach((s) => {
-        console.log("ITEMS COME D S : ", d, s);
         if (d.uuid !== s.uuid) {
-          console.log("passed : ", d.uuid, s.uuid);
           lastsData.push(d);
         }
       });
     });
-
-    console.log("LAST DATA : ", lastsData);
     return lastsData;
   }
 

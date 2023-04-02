@@ -15,6 +15,7 @@ import SelectingChartBtn from "../../../../../component/Dashboard/RankTracking/c
 
 //==== IMAGEs
 import RefreshIcon from "../../../../../assets/img/ico/restart.svg";
+import ChartSelectedBox from "./chartSelectedBox";
 
 ChartJS.register(
   CategoryScale,
@@ -42,11 +43,13 @@ const colorArray = [
 const KeywordChart = ({
   labels,
   selected,
+  setSelected,
   tableData,
   handleSelectKeyword,
   handleRefreshChart,
   selectForComparison,
   allChartData,
+  handleRemoveComparisonFromRoot,
 }) => {
   const comparisonRef = useRef(null);
   const [type, setType] = useState("Line");
@@ -148,6 +151,7 @@ const KeywordChart = ({
         colorArray[Math.floor(Math.random() * colorArray.length)];
 
       let data = {
+        id: item.uuid,
         label: item.key,
         data: findDataFromId(item.uuid),
         borderColor: randomColor,
@@ -212,6 +216,15 @@ const KeywordChart = ({
     return lastData;
   }
 
+  function handleRemoveFromDatasets(item) {
+    console.log("ITEMS: ", item);
+    if (selected.some((s) => s.uuid === item.id)) {
+      setSelected((prev) => prev.filter((s) => s.uuid !== item.id));
+      return;
+    }
+    if (!!selectForComparison) handleRemoveComparisonFromRoot();
+  }
+
   return (
     <div
       className="keyword-chart-container"
@@ -268,13 +281,24 @@ const KeywordChart = ({
       </div>
 
       <div className="main-body">
-        <div className="w-full flex justify-end pl-2">
-          <button onClick={handleRefreshChart}>
+        <div className="w-full flex justify-between px-2 items-center">
+          <div className="flex items-center gap-2 ">
+            {data.datasets.map((item) => (
+              <ChartSelectedBox
+                selected={item}
+                key={item.id}
+                onRemove={() => handleRemoveFromDatasets(item)}
+              />
+            ))}
+          </div>
+
+          <button onClick={handleRefreshChart} className="justify-self-end">
             <div className="flex justify-center items-center bg-secondary w-10 h-10 m-2 cursor-pointer hover:bg-activeButton transition-all rounded-lg removingImageColorInThisTagWithHover">
               <img src={RefreshIcon} alt="" />
             </div>
           </button>
         </div>
+
         <div className="flex justify-between p-3"></div>
 
         {type === "Line" ? (

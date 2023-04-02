@@ -237,3 +237,33 @@
 .disabled-combo {
   height: calc(100% - 1px); 
 }
+
+.chart-selected-box {
+  width: 177px;
+  height: 28px;
+  border: 1px solid #D9D9D9;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 2px 2px 8px
+}
+.chart-selected-box .left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.chart-selected-box .left span {
+  color: #002145;
+  font-size: 12px;
+  font-family: "IRANSans", serif !important;
+}
+.chart-selected-box .left .color-picked {
+  width: 6px;
+  height: 24px;
+  border-radius: 3px;
+}
+.chart-selected-box .clear-selected-box {
+  color: #F35242;
+  cursor: pointer;
+}

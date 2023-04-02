@@ -288,11 +288,13 @@ const KeywordTab = () => {
           <KeywordChart
             labels={labels}
             selected={selected}
+            setSelected={setSelected}
             tableData={tableData}
             handleSelectKeyword={handleSelectKeyword}
             handleRefreshChart={handleRefreshChart}
             selectForComparison={selectForComparison}
             allChartData={allChartData}
+            handleRemoveComparisonFromRoot={() => setSelectForComparison(null)}
           />
         </div>
       </div>
