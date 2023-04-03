@@ -42,10 +42,6 @@ const KeywordTab = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    setSelectForComparison(null);
-  }, [selected]);
-
   async function fetchData() {
     setLoading(true);
     const workspace = findUsedWorkspace();
@@ -53,6 +49,11 @@ const KeywordTab = () => {
       const data = await keyWordsDataService({ axiosController, workspace });
       if (data.data.code !== 200) throw data.data;
       setTableData(data.data.data);
+      // setTableData([
+      //   ...data.data.data,
+      //   { ...data.data.data[0], key: "استلار", uuid: "ping" },
+      //   { ...data.data.data[0], key: "بایننس", uuid: "binance" },
+      // ]);
     } catch (error) {
       console.log("Error code 1: ", error);
     } finally {
@@ -234,10 +235,10 @@ const KeywordTab = () => {
   }
 
   function handleSelectForComparison(item) {
-    if (!selected.length) return; // IF HAVE NO SELECTED ITEM DO NOTING
+    if (!selected.length || !tableData.length) return; // IF HAVE NO SELECTED ITEM & NO DATA DO NOTING
     if (selected.some((x) => x.uuid === item.uuid)) return; // IF WANT COMPARISON WHIT SELF DON NOGIN
-    if (!!selectForComparison && selectForComparison.uuid === item.uuid) return; // IF SELECT ONCE AGAIN DO NOTING
-    setSelectForComparison(item);
+    setSelected((prev) => [prev[0]]);
+    setSelectForComparison(item); // ADD COMPARISON DATA
   }
 
   return (

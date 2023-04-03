@@ -79,12 +79,12 @@ const KeywordTable = ({
   }
 
   function handleSelect(row) {
-    console.log("ROW : ", row);
-    console.log("SELECTED : ", selected);
     let finded = selected.find((item) => item.uuid === row.uuid);
     if (typeof finded === "undefined") {
       setSelected((prev) => [...prev, row]);
+      return;
     }
+    setSelected((prev) => prev.filter((x) => x.uuid !== finded.uuid));
   }
 
   return (

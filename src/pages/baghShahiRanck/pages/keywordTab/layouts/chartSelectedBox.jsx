@@ -1,8 +1,6 @@
 import React from "react";
 
 const ChartSelectedBox = ({ selected, onRemove }) => {
-  console.log("SELECTED IN :", selected);
-
   return (
     <div className="chart-selected-box">
       <div className="left">

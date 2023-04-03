@@ -13,17 +13,13 @@ const FilterChart = ({
   const [focuse, setFocuse] = useState(false);
 
   function priparedDataForSelect(data, selected) {
+    if (!data.length || data.length === 1 || !selected.length) return [];
     let lastsData = [];
-
-    if (data.length === selected.length) return [];
-
-    data.forEach((d) => {
-      selected.forEach((s) => {
-        if (d.uuid !== s.uuid) {
-          lastsData.push(d);
-        }
-      });
-    });
+    for (let i = 0; i < data.length; i++) {
+      let lopItem = data[i];
+      if (lopItem.uuid === selected[0].uuid) continue;
+      lastsData.push(lopItem);
+    }
     return lastsData;
   }
 
@@ -48,15 +44,10 @@ const FilterChart = ({
         <ReactSelect
           options={
             data.length
-              ? !!selected.length
-                ? priparedDataForSelect(data, selected).map((item) => ({
-                    value: item.uuid,
-                    label: item.key,
-                  }))
-                : data.map((item) => ({
-                    value: item.uuid,
-                    label: item.key,
-                  }))
+              ? priparedDataForSelect(data, selected).map((item) => ({
+                  value: item.uuid,
+                  label: item.key,
+                }))
               : []
           }
           isMulti={false}
