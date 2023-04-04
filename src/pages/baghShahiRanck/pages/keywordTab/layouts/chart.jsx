@@ -52,6 +52,8 @@ const KeywordChart = ({
   handleRemoveComparisonFromRoot,
 }) => {
   const comparisonRef = useRef(null);
+  const lineChartRefrence = useRef(null);
+  const barChartRefrenc = useRef(null);
   const [type, setType] = useState("Line");
   const [data, setData] = useState({
     labels,
@@ -120,19 +122,29 @@ const KeywordChart = ({
       },
     },
   });
-  const [reloader, setReloader] = useState(0);
+
+  function updataCharts() {
+    let line = lineChartRefrence.current;
+    let bar = barChartRefrenc.current;
+    setTimeout(() => {
+      console.log(
+        "%c_____ CHARTS UPDATES ______",
+        "font-size: 1.2rem; color: #26f326"
+      );
+
+      line?.update?.();
+      bar?.update?.();
+    }, 100);
+  }
 
   useEffect(() => {
     if (!selected.length) {
       setData((prev) => ({ ...prev, datasets: [] }));
-      setReloader((prev) => prev + 1);
-      setTimeout(() => {
-        setData((prev) => ({ ...prev, datasets: [] }));
-        setReloader((prev) => prev + 1);
-      }, 100);
+      updataCharts();
       return;
     }
     handlePrepareAndAttach(selected);
+    updataCharts();
   }, [selected]);
 
   useEffect(() => {
@@ -142,10 +154,12 @@ const KeywordChart = ({
     }
     comparisonRef.current = selectForComparison;
     handlePrepareAndCombine(selectForComparison);
+    updataCharts();
   }, [selectForComparison]);
 
   useEffect(() => {
     setData((prev) => ({ ...prev, labels }));
+    updataCharts();
   }, [labels]);
 
   async function handlePrepareAndAttach(selected) {
@@ -223,14 +237,12 @@ const KeywordChart = ({
   }
 
   function handleRemoveFromDatasets(item) {
-    console.log("ITEMS: ", item);
     if (selected.some((s) => s.uuid === item.id)) {
       setSelected((prev) => prev.filter((s) => s.uuid !== item.id));
-      setReloader((prev) => prev + 1);
-      return;
     }
     if (!!selectForComparison) handleRemoveComparisonFromRoot();
   }
+
   return (
     <div
       className="keyword-chart-container"
@@ -308,10 +320,14 @@ const KeywordChart = ({
         <div className="flex justify-between p-3"></div>
 
         {type === "Line" ? (
-          <Line data={data} options={{ ...options.line }} reloader={reloader} />
+          <Line
+            ref={lineChartRefrence}
+            data={data}
+            options={{ ...options.line }}
+          />
         ) : (
           <div className="barChart-container">
-            <Bar data={data} options={options.bar} reloader={reloader} />
+            <Bar ref={barChartRefrenc} data={data} options={options.bar} />
           </div>
         )}
       </div>

@@ -232,10 +232,6 @@ const KeywordTab = () => {
   function handleRefreshChart() {
     setSelected([]);
     setSelectForComparison(null);
-    setTimeout(() => {
-      setSelected([]);
-      setSelectForComparison(null);
-    }, 100);
   }
 
   function handleSelectForComparison(item) {
