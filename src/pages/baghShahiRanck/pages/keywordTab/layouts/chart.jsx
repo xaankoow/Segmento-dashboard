@@ -120,13 +120,16 @@ const KeywordChart = ({
       },
     },
   });
+  const [reloader, setReloader] = useState(0);
 
   useEffect(() => {
     if (!selected.length) {
       setData((prev) => ({ ...prev, datasets: [] }));
+      setReloader((prev) => prev + 1);
       return;
     }
     handlePrepareAndAttach(selected);
+    setReloader((prev) => prev + 1);
   }, [selected]);
 
   useEffect(() => {
@@ -220,11 +223,11 @@ const KeywordChart = ({
     console.log("ITEMS: ", item);
     if (selected.some((s) => s.uuid === item.id)) {
       setSelected((prev) => prev.filter((s) => s.uuid !== item.id));
+      setReloader((prev) => prev + 1);
       return;
     }
     if (!!selectForComparison) handleRemoveComparisonFromRoot();
   }
-
   return (
     <div
       className="keyword-chart-container"
@@ -301,11 +304,11 @@ const KeywordChart = ({
 
         <div className="flex justify-between p-3"></div>
 
-        {type === "Line" ? (
+        {reloader > -1 && type === "Line" ? (
           <Line data={data} options={{ ...options.line }} />
         ) : (
           <div className="barChart-container">
-            <Bar data={data} options={options.bar} />
+            <Bar data={data} options={options.bar} reloader={reloader} />
           </div>
         )}
       </div>

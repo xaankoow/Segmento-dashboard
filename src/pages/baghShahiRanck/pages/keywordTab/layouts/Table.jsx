@@ -90,7 +90,7 @@ const KeywordTable = ({
   return (
     <div class="w-full flex justify-center mx-auto">
       <div class="flex flex-col w-full">
-        <div class="w-full min-h-[220px] ">
+        <div class="w-full ">
           <div class=" rounded-lg keyword-table-container overflow-scroll relative scroll-bar-table">
             <table class="rounded p-0 m-0">
               <thead>
@@ -111,7 +111,7 @@ const KeywordTable = ({
                     })}
 
                   <th
-                    class={`px-4 py-3 text-sm font-normal last-col sticky-col`}
+                    class={`px-4 py-3 text-sm font-normal last-col sticky-col need-before`}
                   >
                     <span>عملیات</span>
                   </th>
@@ -199,7 +199,11 @@ const KeywordTable = ({
                         {/* رقبا */}
                         {!!row.extra_attributes.competitors.length
                           ? max.map((item, i) => (
-                              <td key={item} className={defaultRowClass}>
+                              <td
+                                key={item}
+                                className={defaultRowClass + "need-before"}
+                                style={{ border: "none !important" }}
+                              >
                                 {!!row.extra_attributes.competitors[item] ? (
                                   <a
                                     href={`https://${row.extra_attributes.competitors[item].url}`}

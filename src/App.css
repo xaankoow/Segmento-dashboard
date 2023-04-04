@@ -137,7 +137,18 @@
 
 .last-col {
   min-width: 140px;
-  left: -2px;
+  left: 0;
+}
+
+.need-before::after{
+  content:'';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: #d6d6d6;
+  left: -1px;
+  top: 0
+
 }
 
 /* WARNING MODAL */
@@ -239,7 +250,7 @@
 }
 
 .chart-selected-box {
-  width: 177px;
+  min-width: 177px;
   height: 28px;
   border: 1px solid #D9D9D9;
   border-radius: 3px;

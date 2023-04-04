@@ -260,7 +260,7 @@ const KeywordTab = () => {
           />
         </div>
 
-        <div className="py-5">
+        <div className="py-7">
           <KeywordTable
             data={tableData}
             setSelected={setSelected}
