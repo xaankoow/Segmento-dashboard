@@ -48,12 +48,12 @@ const KeywordTab = () => {
     try {
       const data = await keyWordsDataService({ axiosController, workspace });
       if (data.data.code !== 200) throw data.data;
-      setTableData(data.data.data);
-      // setTableData([
-      //   ...data.data.data,
-      //   { ...data.data.data[0], key: "استلار", uuid: "ping" },
-      //   { ...data.data.data[0], key: "بایننس", uuid: "binance" },
-      // ]);
+      // setTableData(data.data.data);
+      setTableData([
+        ...data.data.data,
+        { ...data.data.data[0], key: "استلار", uuid: "ping" },
+        { ...data.data.data[0], key: "بایننس", uuid: "binance" },
+      ]);
     } catch (error) {
       console.log("Error code 1: ", error);
     } finally {
@@ -232,6 +232,10 @@ const KeywordTab = () => {
   function handleRefreshChart() {
     setSelected([]);
     setSelectForComparison(null);
+    setTimeout(() => {
+      setSelected([]);
+      setSelectForComparison(null);
+    }, 100);
   }
 
   function handleSelectForComparison(item) {

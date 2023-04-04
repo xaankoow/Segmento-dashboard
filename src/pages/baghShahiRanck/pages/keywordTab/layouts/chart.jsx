@@ -126,10 +126,13 @@ const KeywordChart = ({
     if (!selected.length) {
       setData((prev) => ({ ...prev, datasets: [] }));
       setReloader((prev) => prev + 1);
+      setTimeout(() => {
+        setData((prev) => ({ ...prev, datasets: [] }));
+        setReloader((prev) => prev + 1);
+      }, 100);
       return;
     }
     handlePrepareAndAttach(selected);
-    setReloader((prev) => prev + 1);
   }, [selected]);
 
   useEffect(() => {
@@ -304,8 +307,8 @@ const KeywordChart = ({
 
         <div className="flex justify-between p-3"></div>
 
-        {reloader > -1 && type === "Line" ? (
-          <Line data={data} options={{ ...options.line }} />
+        {type === "Line" ? (
+          <Line data={data} options={{ ...options.line }} reloader={reloader} />
         ) : (
           <div className="barChart-container">
             <Bar data={data} options={options.bar} reloader={reloader} />
