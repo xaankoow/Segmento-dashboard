@@ -4,6 +4,9 @@ import ComboBox from "../../../../../component/shared/comboBox/ComboBox";
 import Compare from "../../../../../assets/img/ico/compare.svg";
 import ReactSelect from "react-select";
 
+//==== IMAGEs
+import downArrow from "../../../../../assets/img/dashboard/searchBox/arrow_down_ios_new.svg";
+
 const FilterChart = ({
   selected,
   tableData: data,
@@ -38,7 +41,7 @@ const FilterChart = ({
       </div>
 
       <div
-        className="w-1/5 text-xs"
+        className="w-1/5 text-xs react-select-container"
         style={!selected.length ? { background: "#f5f5f5" } : {}}
       >
         <ReactSelect
@@ -69,7 +72,8 @@ const FilterChart = ({
           noOptionsMessage={() => (
             <span className="opacity-40">بدون گزینه</span>
           )}
-        />
+        ></ReactSelect>
+        <img src={downArrow} alt="DownArrow" className="select-down-arrow" />
       </div>
 
       <div className="opacity-70 bg-slate-300 pointer-events-none w-1/5  text-xs">
