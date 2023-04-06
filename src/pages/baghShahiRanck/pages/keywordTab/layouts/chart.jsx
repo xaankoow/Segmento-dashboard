@@ -29,14 +29,13 @@ ChartJS.register(
 
 const colorArray = [
   "#f94144",
-  "#f3722c",
+  "#3e01a4",
   "#f8961e",
-  "#f9844a",
-  "#f9c74f",
+  "#8601b0",
   "#90be6d",
-  "#43aa8b",
+  "#d1ea2c",
   "#4d908e",
-  "#577590",
+  "#a7194b",
   "#277da1",
 ];
 
@@ -167,8 +166,7 @@ const KeywordChart = ({
     let datasets = [];
 
     selected.forEach(async (item) => {
-      let randomColor =
-        colorArray[Math.floor(Math.random() * colorArray.length)];
+      let randomColor = pickColor(item.uuid);
 
       let data = {
         id: item.uuid,
@@ -187,8 +185,8 @@ const KeywordChart = ({
   function handlePrepareAndCombine(selected) {
     if (!selected) return;
     //GET RANDOM COLOR FROM PALET
-    let randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
-    //
+    let randomColor = pickColor(selected.value);
+
     let data = {
       label: selected.label,
       data: findDataFromId(selected.value),
@@ -241,6 +239,17 @@ const KeywordChart = ({
       setSelected((prev) => prev.filter((s) => s.uuid !== item.id));
     }
     if (!!selectForComparison) handleRemoveComparisonFromRoot();
+  }
+
+  function pickColor(selecedId) {
+    //CHECK IF EXIST REUTN SELF COLOR
+    if (data.datasets.some((items) => items.id === selecedId))
+      return data.datasets.find((items) => items.id === selecedId).borderColor;
+    // FIRST LOOK AT PICKED COLORS AND FILTER IT FROM COLOR ARRAY => THEN PICK DEFFENT COLOR
+    let pickedColors = data.datasets.map((items) => items.borderColor);
+    let filtered = colorArray.filter((str) => pickedColors.indexOf(str) === -1);
+
+    return filtered[Math.floor(Math.random() * filtered.length)];
   }
 
   return (
