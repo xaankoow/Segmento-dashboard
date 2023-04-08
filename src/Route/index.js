@@ -78,16 +78,16 @@ export const DashboardRote = [
   },
   { path: "workSpaceReport", component: <WorkSpaceReport /> },
   { path: "WorkSpaceManagement", component: <WorkSpaceManagement /> },
-  {
-    path: "rank-tracking",
-    component: (
+  // {
+  //   path: "rank-tracking",
+  //   component: (
       // <TabMenu
       //   tabsContent={baghShahiRank}
       //   title={"ابزار رتبه سنج"}
       // />
-      <Home/>
-    ),
-  },
+  //     <Home/>
+  //   ),
+  // },
   {
     path: "keywordResearch",
     component: (
@@ -114,7 +114,7 @@ export const DashboardRote = [
   { path: "ReportSupport/ticket/*", component: <SupportMessage /> },
   { path: "TitleCopyWriterBulk", component: <TitleCopyWriterBulk /> },
   { path: "TitleCopywriter", component: <TitleCopywriter /> },
-  { path: "BusinessPages", component: <BusinessPages /> },
+  // { path: "BusinessPages", component: <BusinessPages /> },
 
   // { path: "GoogleIndexer", component: <GoogleIndexer /> },
   { path: "", component: <EasyStart /> },
