@@ -29,4 +29,4 @@ export const keyWordsPeriodDataService = ({keyUuids,period,axiosController}) => 
         signal: axiosController!=undefined&&axiosController.signal
     }
     return http.post(`${config.xaankooApi}/api/v1/report/keywordChartData`,{uuids:keyUuids,period}, headerRegisterUser);
-}
+}                                                                                       

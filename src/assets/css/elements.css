@@ -156,6 +156,22 @@ margin: 0px 20px;
   transition: background 0.5s ease-in-out;
 }
 
+.btn-secondary:disabled { 
+  color: rgba(255, 255, 255, 1) !important;
+  background-color: rgba(211, 213, 226, 1) !important;
+  cursor: default !important;
+}
+.btn-secondary:disabled img{ 
+  filter: brightness(0) invert(1);
+}
+
+.btn-secondary:disabled:hover {
+  background-color: rgba(211, 213, 226, 1) !important;
+}
+.btn-secondary:disabled:active {
+  background-color: rgba(211, 213, 226, 1) !important;
+}
+
 .btn-secondary:hover {
   background-color: #0A65CD;
   color: white;

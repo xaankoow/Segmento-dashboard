@@ -15,8 +15,11 @@ import MultiProgress from "react-multi-progress";
 import { sampleChartColors } from "../../../../baghShahiRanck/configs/sampleChartData";
 import PopUp from "../../../../../component/Utils/PopUp/PopUp";
 import SetKeyWordsModal from '../../../addKeyWordModal'
+import { useSelector } from "react-redux";
 
 export default function Index() {
+
+  const { pagesData } = useSelector(state => state.businessPagesState)
 
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
 
@@ -30,7 +33,7 @@ export default function Index() {
     new DateObject().add(0, "days"),
   ]);
 
-  const arrayOfTickets = [0, 1, 2, 3, 4, 5, 6, 7].map((item, index) => {
+  const arrayOfTickets = pagesData.map((item, index) => {
     return {
       id: (
         <p className=" w-11 text-center">
@@ -55,25 +58,26 @@ export default function Index() {
           </div>
         </p>
       ),
-      ticket_id: index + 1,
-      title: "https://segmento.ir/google-indexer",
-      categories: (
+      index: index + 1,
+      link: item.page.link,
+      addingKeyWord: (
         <AuthButton
           textButton={
             <img
               src={ImageContainer.bluePlus}
               alt="blue plus"
-              className="p-1"
+              // className="w-4 h-4"
             />
           }
+          disabled
           handlerClick={setAddingKeyWordModal}
           setOnclickValue={{key:[item],showModal:true}}
-          classes="btn-secondary m-auto"
+          classes="btn-secondary m-auto py-3 px-6"
         />
       ),
-      updated_at: "2",
-      status: "1401/02/20",
-      operation: (
+      position: item.keyword.position||"ثبت نشده",
+      updated_at: item.updated_at||"ثبت نشده",
+      pageStatus: (
         <MultiProgress
           transitionTime={1.2}
           height="10px"
@@ -81,7 +85,7 @@ export default function Index() {
           elements={[
             {
               // actual:65,
-              value: 35,
+              value: 100-item.insight[0]?.performance||0,
               color: "#D9D9D9",
               showPercentage: false,
               fontSize: 9,
@@ -91,7 +95,7 @@ export default function Index() {
             {
               actual: 65,
 
-              value: 65,
+              value: item.insight[0]?.performance||0,
               color: "#10CCAE",
               showPercentage: false,
               // textColor: "white",
@@ -142,12 +146,12 @@ export default function Index() {
 
   const rowKey = [
     "row.id ",
-    "row.ticket_id",
-    "row.title",
-    "row.categories",
+    "row.index",
+    "row.link",
+    "row.addingKeyWord",
+    "row.position",
     "row.updated_at",
-    "row.status",
-    "row.operation",
+    "row.pageStatus",
     "row.moreInfo",
   ];
 
