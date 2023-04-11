@@ -43,7 +43,7 @@ export default function PopUpLimit({ section, handleClose , navigateClose}) {
 
 
     const initTypeLimit = () => {
-        if (!checkBusiness.current) {
+        if (!checkBusiness.current && checkBusiness.current != null) {
             setShow(true);
             setTypeLimit("default")
         } else if (checkBusiness.last & checkBusiness.current & checkLimit == 0) {
