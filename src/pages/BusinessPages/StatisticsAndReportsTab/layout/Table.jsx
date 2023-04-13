@@ -5,14 +5,14 @@ import { BUSINESS_PAGE_TABEL_HEADER_ITEM_REPORTS_TAB } from "../../../../variabl
 export default function Index({ arrayOfTickets }) {
   const rowKey = [
     "row.id ",
-    "row.ticket_id",
-    "row.title",
-    "row.categories",
     "row.updated_at",
-    "row.status",
-    "row.statusPage",
-    "row.moreInfo",
-    "row.operation",
+    "row.title",
+    "row.position",
+    "row.performance",
+    "row.accessibility",
+    "row.best_practices",
+    "row.seo",
+    "row.pageStatus",
   ];
 
   return (

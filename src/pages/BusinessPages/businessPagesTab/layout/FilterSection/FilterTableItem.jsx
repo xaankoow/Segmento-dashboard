@@ -60,7 +60,7 @@ export default function Index() {
       ),
       index: index + 1,
       link: item.page.link,
-      addingKeyWord: (
+      addingKeyWord: item.keyword.title==="ثبت نشده"?(
         <AuthButton
           textButton={
             <img
@@ -74,7 +74,7 @@ export default function Index() {
           setOnclickValue={{key:[item],showModal:true}}
           classes="btn-secondary m-auto py-3 px-6"
         />
-      ),
+      ):item.keyword.title,
       position: item.keyword.position||"ثبت نشده",
       updated_at: item.updated_at||"ثبت نشده",
       pageStatus: (

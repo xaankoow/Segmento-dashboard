@@ -10,7 +10,7 @@ export default function StatisticsAndReportsTab() {
   const [filteredTableData, setFilteredTableData] = useState([]);
   return (
     <div>
-      <div className=" mt-5 px-9" >
+      {/* <div className=" mt-5 px-9" >
         <TitleButton />
       </div>
       <div className=" mt-4 px-9">
@@ -19,7 +19,7 @@ export default function StatisticsAndReportsTab() {
 
       <div className="px-7 mt-7">
         <TechnicalAnalysis />
-      </div>
+      </div> */}
       <div className=" py-5">
         <Table arrayOfTickets={filteredTableData} />
       </div>

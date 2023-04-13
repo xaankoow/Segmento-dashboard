@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { DateObject } from 'react-multi-date-picker';
 import MultiProgress from 'react-multi-progress';
+import { useSelector } from 'react-redux';
 import { ImageContainer } from '../../../../assets/img/IMG';
 import AuthButton from '../../../../component/Auth/authButton/AuthButton'
 import ComboBox from '../../../../component/shared/comboBox/ComboBox'
@@ -11,6 +12,8 @@ import FilterData from '../../businessPagesTab/layout/FilterSection/FilterData';
 export default function Index({setFilteredTableData}) {
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
 
+  const { pagesData } = useSelector(state => state.businessPagesState)
+
   const [addingKeyWordModal, setAddingKeyWordModal] = useState({key:[],showModal:false});
 
   const [deleteItem, setDeleteItem] = useState({data:[],showPopUp:false});
@@ -20,7 +23,7 @@ export default function Index({setFilteredTableData}) {
     new DateObject().add(0, "days"),
   ]);
 
-  const arrayOfTickets = [0, 1, 2, 3, 4, 5, 6, 7].map((item, index) => {
+  const arrayOfTickets = pagesData.map((item, index) => {
     return {
       id: (
         <p className=" w-11 text-center">
@@ -45,14 +48,30 @@ export default function Index({setFilteredTableData}) {
           </div>
         </p>
       ),
-      ticket_id: "1401/02/20",
-      title: "کلمه کلیدی",
+      // updated_at: 23,
+      updated_at: item.updated_at||"ثبت نشده",
+      title:  item.keyword.title==="ثبت نشده"?(
+        <AuthButton
+          textButton={
+            <img
+              src={ImageContainer.bluePlus}
+              alt="blue plus"
+              // className="w-4 h-4"
+            />
+          }
+          disabled
+          handlerClick={setAddingKeyWordModal}
+          setOnclickValue={{key:[item],showModal:true}}
+          classes="btn-secondary m-auto py-3 px-6"
+        />
+      ):item.keyword.title,
       categories: 2,
-      updated_at: 23,
-      status: 67,
-      moreInfo: 90,
-      statusPage: 99,      
-      operation: (
+      position: item.keyword.position||"ثبت نشده",
+      performance: item.insight[0]?.performance,
+      accessibility: item.insight[0]?.accessibility,
+      best_practices:  item.insight[0]?.best_practices,      
+      seo:  item.insight[0]?.seo,      
+      pageStatus: (
         <MultiProgress
           transitionTime={1.2}
           height="10px"
@@ -60,7 +79,7 @@ export default function Index({setFilteredTableData}) {
           elements={[
             {
               // actual:65,
-              value: 35,
+              value: 100-item.insight[0]?.performance||0,
               color: "#D9D9D9",
               showPercentage: false,
               fontSize: 9,
@@ -70,7 +89,7 @@ export default function Index({setFilteredTableData}) {
             {
               actual: 65,
 
-              value: 65,
+              value: item.insight[0]?.performance||0,
               color: "#10CCAE",
               showPercentage: false,
               // textColor: "white",
