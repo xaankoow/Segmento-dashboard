@@ -26,7 +26,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
   const userToken = localStorage.getItem("token");
   const userState = useSelector((state) => state.userState);
 
-  const { ProcessingDelay,ImportantProcessingDelay, canRequest } = useSelector(state => state.loadingState)
+  const { ProcessingDelay, ImportantProcessingDelay, canRequest } = useSelector(state => state.loadingState)
 
   var user_name = "";
   if (userState.userData.user) {
@@ -122,7 +122,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
     await dispatch(coreUser());
     dispatch(getAllWorkSpace());
     // dispatch(ChackBusinessCustomer()) //TODO: get this process in back end 
-    dispatch(allLimitDataFeature({axiosController:null}))
+    dispatch(allLimitDataFeature({ axiosController: null }))
   }
 
   const location = useLocation();
@@ -136,7 +136,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
         <a href="https://segmento.ir/">
           <div className="flex items-center gap-3 hover:cursor-pointer">
             {/* <div className='Iconimage w-7 h-8'></div> */}
-            <AnimationSegmentoLogo parentClass={"w-7 h-7 "} animation={ProcessingDelay?.length>0|ImportantProcessingDelay.length>0?true:false} animationWithHover/>
+            <AnimationSegmentoLogo parentClass={"w-7 h-7 "} animation={ProcessingDelay?.length > 0 | ImportantProcessingDelay.length > 0 ? true : false} animationWithHover />
             {/* <img src={segmento_logofa_svg} className="w-7 h-8" alt="" /> */}
             <span className="">سگمنتو</span>
           </div>
@@ -229,7 +229,7 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
                 </div>
               </div>
             </div>
-            }
+          }
           <div className="header_animation cursor-pointer absolute justify-center items-center pt-3 flex-col w-full rounded userHeaderProfInfo">
             <div className="border-b border-lightGray w-52 " />
             <div
@@ -298,18 +298,22 @@ const DashboardHeader = ({ setActiveIconHandlerClicked, setClicked1 }) => {
           </div>
         </div>
         <div className="flex items-center gap-3 ml-7">
-          <img src={notif_svg} alt="notif" className="cursor-pointer" />
-          <div className="flex items-center justify-center relative text-[#fff] text-small ">
+          <Link to={"ReportSupport"}>
+            <img src={notif_svg} alt="notif" className="cursor-pointer" />
+          </Link>
+          {/* <div className="flex items-center justify-center relative text-[#fff] text-small ">
             <span className="text-white left-3.5 -top-1 absolute text-center rounded-full bg-red notifNumber hidden">
               33
             </span>
             <img src={message_svg} alt="message" className="cursor-pointer" />
-          </div>
-          <img
-            src={settingicon_svg}
-            alt="settingicon"
-            className="cursor-pointer"
-          />
+          </div> */}
+          <Link to={"userProfile"}>
+            <img
+              src={settingicon_svg}
+              alt="settingicon"
+              className="cursor-pointer"
+            />
+          </Link>
         </div>
       </div>
     </div>
