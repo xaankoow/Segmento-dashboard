@@ -16,6 +16,7 @@ import { sampleChartColors } from "../../../../baghShahiRanck/configs/sampleChar
 import PopUp from "../../../../../component/Utils/PopUp/PopUp";
 import SetKeyWordsModal from '../../../addKeyWordModal'
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 export default function Index() {
 
@@ -24,6 +25,8 @@ export default function Index() {
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
 
   const [addingKeyWordModal, setAddingKeyWordModal] = useState({key:[],showModal:false});
+
+  const navigate=useNavigate()
 
 
 
@@ -139,6 +142,8 @@ export default function Index() {
         <AuthButton
           textButton={<img src={ImageContainer.blueArrowBtn} />}
           classes="btn-secondary"
+          handlerClick={navigate}
+          setOnclickValue={item.page.uuid}
         />
       ),
     };

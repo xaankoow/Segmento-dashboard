@@ -11,17 +11,23 @@ export default function TabMenu({
   title,
   numberRight,
   numberLeft,
-  amountOfData
+  amountOfData,
+  selectingIndexTab=0
 }) {
   // to select tab and show underline of that
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(selectingIndexTab);
   const userState = useSelector((state) => state.userState);
+
+  useEffect(() => {
+    setActiveTab(selectingIndexTab)
+  }, [selectingIndexTab])
+  
 
   return (
     <>
       <PageTitle title={title} badgeApi={amountOfData} hasLimit={amountOfData?true:false} />
       <div className="text-sm font-medium text-center text-gray-400 border-gray-700 pt-3 bg-[#fff]">
-        <Tab.Group>
+        <Tab.Group selectedIndex={selectingIndexTab}>
           <div className="flex  flex-col  items-right mt-3 ">
             <Tab.List className="mx-3 flex  items-center mb-1">
               {tabsContent.map((items, index) => {
@@ -32,7 +38,7 @@ export default function TabMenu({
                         key={index}
                         className={
                           activeTab === index
-                            ? `tab_${index} border-none outline-0 inline-block px-4 mt-4 mb-[10px] text-primary  rounded-t-lg  focus:text-primary text-blue-500  hover:text-primary `
+                            ? `tab_${index+1} border-none outline-0 inline-block px-4 mt-4 mb-[10px] text-primary  rounded-t-lg  focus:text-primary text-blue-500  hover:text-primary `
                             : "border-none outline-0 inline-block px-4 mt-4 mb-[10px] rounded-t-lg  focus:text-primary text-blue-500  hover:text-primary "
                         }
                         onClick={() => setActiveTab(index)}
