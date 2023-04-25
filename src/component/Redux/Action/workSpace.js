@@ -645,9 +645,9 @@ export const allLimitDataFeature = ({ axiosController }) => {
     const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState };
 
-    let package_uuid = "";
+    // let package_uuid = "";
     if (userState.userData.package != undefined) {
-      package_uuid = userState.userData.package.uuid;
+      // package_uuid = userState.userData.package.uuid;
 
       if (!loadingState.ProcessingDelay.includes("userLimit")) {
         //handle show loadin
@@ -661,17 +661,18 @@ export const allLimitDataFeature = ({ axiosController }) => {
         }
 
         try {
-          const infoPackage = await getPackageInfO({ package_uuid });
+          // debugger
+          // const infoPackage = await getPackageInfO({ package_uuid });
           const limitPackage = await userLimit({ axiosController });
           if (
             limitPackage.data.code == 200 &&
-            limitPackage.data.status == true &&
-            infoPackage.data.code == 200 &&
-            infoPackage.data.status == true
+            limitPackage.data.status == true 
+            // infoPackage.data.code == 200 &&
+            // infoPackage.data.status == true
           ) {
             const state = { ...getState().workSpaceState };
             state.limitsDatas = limitPackage.data.data;
-            state.allLimitsDatas = infoPackage.data.data.features;
+            state.allLimitsDatas = limitPackage.data.data;
             await dispatch({
               type: "SET_WORK_SPACE_WEB_ADRESS",
               payload: state,
