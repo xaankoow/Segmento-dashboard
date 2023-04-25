@@ -17,6 +17,7 @@ import PopUp from "../../../../../component/Utils/PopUp/PopUp";
 import SetKeyWordsModal from '../../../addKeyWordModal'
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { filterBusinessPagesData } from "../../../../../component/Utils/FilterData/filterBusinessPagesTableData";
 
 export default function Index() {
 
@@ -25,6 +26,10 @@ export default function Index() {
   const [searchFilterOption, setSearchFilterOption] = useState("بدون فیلتر");
 
   const [addingKeyWordModal, setAddingKeyWordModal] = useState({key:[],showModal:false});
+
+  const [searchFilterValue, setSearchFilterValue] = useState("");
+
+  const [TableDataFiltered, setTableDataFiltered] = useState([])
 
   const navigate=useNavigate()
 
@@ -44,7 +49,6 @@ export default function Index() {
             <input
               type={"checkbox"}
               className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
-              // className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
               onClick={(e) => {
                 if (e.target.checked) {
                   setDeleteItem({data:[...deleteItem.data, item],showPopUp:false});
@@ -54,8 +58,6 @@ export default function Index() {
                     showPopUp:false}
                   );
                 }
-                
-                // handleCheckingInput(e.target.checked, item);
               }}
             />
           </div>
@@ -160,6 +162,16 @@ export default function Index() {
     "row.moreInfo",
   ];
 
+  const filterTableData = () => {
+    setTableDataFiltered(
+      filterBusinessPagesData(
+        arrayOfTickets,
+        searchFilterOption,
+        searchFilterValue
+      )
+    )
+  }
+
   return (
     <div>
       <header className="flex items-center justify-between h-10 w-full mb-7 mt-10">
@@ -179,31 +191,21 @@ export default function Index() {
             <FilterData
               radioTarget={searchFilterOption}
               datePickerValues={datePickerValues}
+              FactorHandler={setSearchFilterValue}
               inputWidth="300px"
             />
           </div>
-
-          {/* <FilterData
-              userTypeData={(e) => setUserType(e)}
-              FactorHandler={setFactorHandler}
-              setDatePickerValues={setDatePickerValues}
-              datePickerValues={datePickerValues}
-              priceHandler={setPrice}
-              priceHandler1={setPrice2}
-            /> */}
         </div>
-
         <div className=" inline-block">
-          <AuthButton textButton={"اعمال"} />
+          <AuthButton textButton={"اعمال"} handlerClick={filterTableData}/>
         </div>
       </header>
 
       <Table
         columnItem={BUSINESS_PAGE_TABEL_HEADER_ITEM_BUSINESS_TAB}
-        rowsItem={arrayOfTickets}
+        rowsItem={TableDataFiltered.length!=0?TableDataFiltered:arrayOfTickets}
         rowKey={rowKey}
       />
-      {/* <div className=""> */}
       {deleteItem.data.length>0 ? (
         <AuthButton
           textButton={
@@ -235,8 +237,6 @@ export default function Index() {
         }
       />:null}
       {addingKeyWordModal.showModal?<SetKeyWordsModal showModal={setAddingKeyWordModal}/>:null}
-      
-      {/* </div> */}
     </div>
   );
 }
