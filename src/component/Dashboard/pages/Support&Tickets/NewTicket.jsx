@@ -34,7 +34,7 @@ export default function NewTicket({ categories }) {
       await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState });
     }
     try {
-      debugger
+      // debugger
       let testFile=files
       let formdata = new FormData();
       formdata.append("subject",titleValue);
@@ -108,11 +108,11 @@ export default function NewTicket({ categories }) {
                   <ul className=' mt-2'>
                     <li>
                       <div className=' w-2 h-2 bg-shortText rounded-full inline-block'></div>
-                      <span className='text-gray text-sm mr-3'>حداکثر تا ۱۲ ساعت پس از ارسال تیکت،پاسخ آن برای شما ارسال خواهد شد.</span>
+                      <span className='text-gray text-sm mr-3'>حداکثر تا ۱۲ ساعت پس از ارسال تیکت، پاسخ آن برای شما ارسال خواهد شد.</span>
                     </li>
                     <li>
                       <div className=' w-2 h-2 bg-shortText rounded-full inline-block'></div>
-                      <span className='text-gray text-sm mr-3'>برخی تیکت‌هانیازمند بررسی تخصصی هستند و ممکن است این پروسه زمان‌بر باشد.</span>
+                      <span className='text-gray text-sm mr-3'>برخی تیکت‌ها نیازمند بررسی تخصصی هستند و ممکن است این پروسه زمان‌بر باشد.</span>
                     </li>
                     <li>
                       <div className=' w-2 h-2 bg-shortText rounded-full inline-block'></div>

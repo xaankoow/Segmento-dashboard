@@ -45,6 +45,7 @@ export default function AuthButton({
       className={`${classes != undefined&&classes.includes("btn-secondary")|classes.includes("btn-delete") == true ? classes : " btn-style " + classes}`}
       // disabled={disabled != undefined ? disabled ? true : !canRequest : !canRequest}
       disabled={disabled? disabled :checkingkeyLoadingProcessLoading}
+
       style={style}
       type={submitType != undefined ? "submit" : "button"}
       onClick={handlerClick != undefined & handlerClick != "" & reduxHandleClick != undefined ? (

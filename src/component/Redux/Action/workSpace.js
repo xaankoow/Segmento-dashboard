@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import { getAllFinancialReportsData } from "../../service/financialReportsService";
 import { getPackageInfO } from "../../service/packages";
 import { userLimit } from "../../service/userLimit";
 import {
@@ -10,7 +9,6 @@ import {
 } from "../../service/workSpaceService";
 import {
   showInputErrorToast,
-  showPromisToast,
   showToast,
 } from "../../Utils/toastifyPromise";
 
@@ -19,7 +17,6 @@ export const ChackBusinessCustomer = () => {
     const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState };
 
-    let toastMessage = "";
     try {
       if (!loadingState.ProcessingDelay.includes("getAllFinancialReports")) {
         //handle show loadin
@@ -350,7 +347,6 @@ export const workSpaceWebsite = () => {
     const webAdress = state.webAdress;
     if (webAdress != "") {
       try {
-        // var toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
         //handle show loadin
         {
           loadingState.ProcessingDelay.push("website");
@@ -406,7 +402,6 @@ export const workSpaceKeyWords = () => {
     const webAdress = state.webAdress;
     if (webAdress != "") {
       try {
-        // var toastPromise = toast.loading("درحال ارسال درخواست شما به سرور")
         //handle show loadin
         {
           loadingState.ProcessingDelay.push("keywords");
@@ -643,22 +638,6 @@ export const resetWorkSpaceState = () => {
   };
 };
 
-// limit that rest
-// export const limitDataFeature = () => {
-//   return async (dispatch, getState) => {
-//     const state = { ...getState().workSpaceState };
-
-//     try {
-//       const { data } = await userLimit();
-//       if (data.code == 200 && data.status == true) {
-//         state.limitsDatas = data.data;
-//       } else {
-//       }
-//     } catch (error) {}
-//     await dispatch({ type: "SET_WORK_SPACE_WEB_ADRESS", payload: state });
-//   };
-// };
-
 //all limit
 export const allLimitDataFeature = ({ axiosController }) => {
   return async (dispatch, getState) => {
@@ -666,14 +645,13 @@ export const allLimitDataFeature = ({ axiosController }) => {
     const userState = { ...getState().userState };
     const loadingState = { ...getState().loadingState };
 
-    let package_uuid = "";
+    // let package_uuid = "";
     if (userState.userData.package != undefined) {
-      package_uuid = userState.userData.package.uuid;
+      // package_uuid = userState.userData.package.uuid;
 
       if (!loadingState.ProcessingDelay.includes("userLimit")) {
         //handle show loadin
         {
-          // loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(item => item != "editProfile");
           loadingState.ProcessingDelay.push("userLimit");
           loadingState.canRequest = false;
           await dispatch({
@@ -683,17 +661,18 @@ export const allLimitDataFeature = ({ axiosController }) => {
         }
 
         try {
-          const infoPackage = await getPackageInfO({ package_uuid });
+          // debugger
+          // const infoPackage = await getPackageInfO({ package_uuid });
           const limitPackage = await userLimit({ axiosController });
           if (
             limitPackage.data.code == 200 &&
-            limitPackage.data.status == true &&
-            infoPackage.data.code == 200 &&
-            infoPackage.data.status == true
+            limitPackage.data.status == true 
+            // infoPackage.data.code == 200 &&
+            // infoPackage.data.status == true
           ) {
             const state = { ...getState().workSpaceState };
             state.limitsDatas = limitPackage.data.data;
-            state.allLimitsDatas = infoPackage.data.data.features;
+            state.allLimitsDatas = limitPackage.data.data;
             await dispatch({
               type: "SET_WORK_SPACE_WEB_ADRESS",
               payload: state,
