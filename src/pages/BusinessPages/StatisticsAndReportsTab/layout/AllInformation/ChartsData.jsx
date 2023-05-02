@@ -45,19 +45,21 @@ export default function index({
 
     return (
       <div>
-        <div className="w-40">
-          <Doughnut
-            data={chartData}
-            options={{ maintainAspectRatio: false }}
-          />
+        <div className="w-40 relative">
+          <div className="flex justify-center items-center h-full w-full absolute text-4xl left-0 leading-5 text-center">
+            {chartData.datasets[0].data[0]}
+          </div>
+          <Doughnut data={chartData} options={{ maintainAspectRatio: false }} />
         </div>
         <p className="m-auto mt-7 text-title text-lg">{title}</p>
       </div>
     );
   };
   return (
-    <div className="flex justify-around flex-row-reverse items-center px-[20%]">
-      {[0,1,2,3].map(item=>{return creatingChartData(item)})}
+    <div className="flex justify-around flex-row-reverse items-center px-[20%] relative">
+      {[0, 1, 2, 3].map((item) => {
+        return creatingChartData(item);
+      })}
     </div>
   );
 }

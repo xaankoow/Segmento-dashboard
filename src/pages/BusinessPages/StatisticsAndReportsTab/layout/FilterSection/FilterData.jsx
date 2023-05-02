@@ -101,7 +101,7 @@ export default function index({
           width={inputWidth}
         />
       );
-      case BUSINESS_PAGE_FILTER_TABEL_REPORTS_TAB[9]:
+      case BUSINESS_PAGE_FILTER_TABEL_REPORTS_TAB[8]:
       return (
         <AuthInput
           placeholder={"عدد درصد وضعیت مورد نظر را وارد کنید:"}

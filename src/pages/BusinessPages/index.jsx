@@ -49,8 +49,6 @@ export default function BusinessPages({ selectingTab = "businessPages" }) {
     },
   ];
 
-  console.log('tabSelected', tabSelected)
-
   return (
     <TabMenu
       tabsContent={tabContent}

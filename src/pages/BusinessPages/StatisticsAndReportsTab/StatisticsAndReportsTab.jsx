@@ -30,7 +30,6 @@ export default function StatisticsAndReportsTab() {
     findPageInfo()
   }, [pagesData.length])
   
-  console.log('pageInfoData', pageInfoData)
   return (
     <div>
       <div className=" mt-5 px-9" >
@@ -39,19 +38,18 @@ export default function StatisticsAndReportsTab() {
       <div className=" mt-4 px-9">
         <AllInformation pageData={pageInfoData.page} insight={pageInfoData.insight?.length!=0?pageInfoData.insight:undefined}/>
       </div>
-
-      <div className="px-7 mt-7">
+      {/* <div className="px-7 mt-7">
         <TechnicalAnalysis />
-      </div>
-      <div className=" mt-7 py-7 px-3 border border-border rounded-lg shadow-[0px_4px_8px_0px_rgb(0,0,0,0.14)]">
+      </div> */}
+      <div className="">
         <FilterTabel setFilteredTableData={setFilteredTableData} />
       </div>
-      <div className=" py-5">
+      {/* <div className=" py-5 px-9">
         <Table arrayOfTickets={filteredTableData} />
-      </div>
-      <div className=" mt-7">
+      </div> */}
+      {/* <div className=" mt-7">
         <ChartKeyWordRank />
-      </div>
+      </div> */}
     </div>
   );
 }

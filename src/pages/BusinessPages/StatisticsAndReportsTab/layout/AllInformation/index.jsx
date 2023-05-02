@@ -5,18 +5,6 @@ import SpeedInformation from "./SpeedInformation";
 import ChartsData from "./ChartsData";
 import PagesLoading from "./PagesLoading";
 export default function index({ pageData, insight }) {
-  // console.log("pageData", pageData);
-  // console.log('insight', insight[0])
-  //   performance(pin):"0"
-  // accessibility(pin):"0"
-  // best_practices(pin):"0"
-  // seo(pin):"0"
-  // first_contentful_paint(pin):"1023"
-  // speed_index(pin):"1607"
-  // large_contentful_paint(pin):"1557"
-  // time_to_interactive(pin):"2436"
-  // total_blocking_time(pin):"7"
-  // cumulative_layout_shift(pin):"0.022625375186061"
   return (
     <div className="rounded-lg w-full border border-border overflow-hidden">
       <div className="text-title text-sm px-4 py-2  bg-white w-full text-right">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DateObject } from "react-multi-date-picker";
 import { ImageContainer } from "../../../../../assets/img/IMG";
 import AuthButton from "../../../../../component/Auth/authButton/AuthButton";
@@ -39,7 +39,7 @@ export default function Index() {
     new DateObject().add(0, "days"),
   ]);
 
-  const arrayOfTickets = pagesData.map((item, index) => {
+  const arrayOfTickets = TableDataFiltered.map((item, index) => {
     return {
       id: (
         <p className=" w-11 text-center">
@@ -159,10 +159,14 @@ export default function Index() {
     "row.moreInfo",
   ];
 
+  useEffect(() => {
+    setTableDataFiltered(pagesData)
+  }, [pagesData.length])
+  
   const filterTableData = () => {
     setTableDataFiltered(
       filterBusinessPagesData(
-        arrayOfTickets,
+        pagesData,
         searchFilterOption,
         searchFilterValue
       )
@@ -200,10 +204,10 @@ export default function Index() {
 
       <Table
         columnItem={BUSINESS_PAGE_TABEL_HEADER_ITEM_BUSINESS_TAB}
-        rowsItem={TableDataFiltered.length!=0?TableDataFiltered:arrayOfTickets}
+        rowsItem={arrayOfTickets}
         rowKey={rowKey}
       />
-      {deleteItem.data.length>0 ? (
+      {false ? (//deleteItem.data.length>0
         <AuthButton
           textButton={
             <>
@@ -217,7 +221,7 @@ export default function Index() {
           classes="btn-delete mr-auto mt-4"
         />
       ) : null}
-      {deleteItem.showPopUp==true?<PopUp
+      {false?<PopUp //deleteItem.showPopUp==true
         image={ImageContainer.popupError}
         type={"error"}
         title="توجه !"

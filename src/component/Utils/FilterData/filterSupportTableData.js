@@ -8,16 +8,6 @@ import persian_en from "react-date-object/locales/persian_en";
 export const filterSupportData = (allData, filterType, filterValue) => {
     var filteredData = [];
 
-    // console.log('allData :>> ', allData);
-    // filter target search box
-
-    // filterBoxDatas.forEach(item=>{
-    //     if (item.filterName==filterType) {
-    //         if (allData==filterValue) {
-
-    //         }
-    //     }
-    // })
     if (filterValue != "") {
 
         allData.forEach((element) => {
