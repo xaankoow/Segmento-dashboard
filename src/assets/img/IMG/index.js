@@ -53,6 +53,7 @@ import circleGray from "../ico/circleGray.png";
 import greeTriangle from "../ico/greeTriangle.png";
 import redTriangle from "../ico/redTriangle.png";
 import yellowSquare from "../ico/yellowSquare.png";
+import greenCircle from "../ico/greenCircle.png";
 
 export const ImageContainer = {
   infoBlue,
@@ -117,4 +118,5 @@ export const ImageContainer = {
   greeTriangle,
   redTriangle,
   yellowSquare,
+  greenCircle
 };

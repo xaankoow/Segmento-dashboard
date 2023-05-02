@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Skeleton from "react-loading-skeleton";
 import { DateObject } from "react-multi-date-picker";
 import { ImageContainer } from "../../../../../assets/img/IMG";
 import AuthButton from "../../../../../component/Auth/authButton/AuthButton";
@@ -8,7 +7,6 @@ import Table from "../../../../../component/shared/table/Table";
 import {
   BUSINESS_PAGE_FILTER_TABEL_BUSINESS_TAB,
   BUSINESS_PAGE_TABEL_HEADER_ITEM_BUSINESS_TAB,
-  BUSINESS_PAGE_TABEL_HEADER_ITEM_REPORTS_TAB,
 } from "../../../../../variables/businessPages";
 import FilterData from "./FilterData";
 import MultiProgress from "react-multi-progress";
@@ -71,7 +69,6 @@ export default function Index() {
             <img
               src={ImageContainer.bluePlus}
               alt="blue plus"
-              // className="w-4 h-4"
             />
           }
           disabled

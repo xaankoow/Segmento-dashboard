@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { DateObject } from 'react-multi-date-picker';
 import MultiProgress from 'react-multi-progress';
 import { useSelector } from 'react-redux';
-import { ImageContainer } from '../../../../assets/img/IMG';
-import AuthButton from '../../../../component/Auth/authButton/AuthButton'
-import ComboBox from '../../../../component/shared/comboBox/ComboBox'
-import { BUSINESS_PAGE_FILTER_TABEL_BUSINESS_TAB } from '../../../../variables/businessPages';
-import { sampleChartColors } from '../../../baghShahiRanck/configs/sampleChartData';
-import FilterData from '../../businessPagesTab/layout/FilterSection/FilterData';
+import { ImageContainer } from '../../../../../assets/img/IMG';
+import AuthButton from '../../../../../component/Auth/authButton/AuthButton'
+import ComboBox from '../../../../../component/shared/comboBox/ComboBox'
+import { BUSINESS_PAGE_FILTER_TABEL_REPORTS_TAB } from '../../../../../variables/businessPages';
+import { sampleChartColors } from '../../../../baghShahiRanck/configs/sampleChartData';
+import FilterData from './FilterData';
 
 export default function Index({setFilteredTableData}) {
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
@@ -23,7 +23,7 @@ export default function Index({setFilteredTableData}) {
     new DateObject().add(0, "days"),
   ]);
 
-  const arrayOfTickets = pagesData.map((item, index) => {
+  const arrayOfTickets = pagesData.map((item) => {
     return {
       id: (
         <p className=" w-11 text-center">
@@ -31,7 +31,6 @@ export default function Index({setFilteredTableData}) {
             <input
               type={"checkbox"}
               className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
-              // className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
               onClick={(e) => {
                 if (e.target.checked) {
                   setDeleteItem({data:[...deleteItem.data, item],showPopUp:false});
@@ -41,14 +40,11 @@ export default function Index({setFilteredTableData}) {
                     showPopUp:false}
                   );
                 }
-                
-                // handleCheckingInput(e.target.checked, item);
               }}
             />
           </div>
         </p>
       ),
-      // updated_at: 23,
       updated_at: item.updated_at||"ثبت نشده",
       title:  item.keyword.title==="ثبت نشده"?(
         <AuthButton
@@ -75,10 +71,8 @@ export default function Index({setFilteredTableData}) {
         <MultiProgress
           transitionTime={1.2}
           height="10px"
-          // className=" overflow-visible-force"
           elements={[
             {
-              // actual:65,
               value: 100-item.insight[0]?.performance||0,
               color: "#D9D9D9",
               showPercentage: false,
@@ -88,20 +82,14 @@ export default function Index({setFilteredTableData}) {
             },
             {
               actual: 65,
-
               value: item.insight[0]?.performance||0,
               color: "#10CCAE",
               showPercentage: false,
-              // textColor: "white",
               fontSize: 9,
               isBold: false,
-              // className: "my-custom-css-class",
             },
           ]}
           component={({ children, element, ...rest }) => {
-            // console.log(children, element, "iiiiiii");
-
-            // console.log({ xx }); progressBar__single
             return (
               <>
                 <div
@@ -142,7 +130,7 @@ export default function Index({setFilteredTableData}) {
     <div className=" w-96">
       <ComboBox
         placeholder={"فیلد جستجو"}
-        radioTextItems={BUSINESS_PAGE_FILTER_TABEL_BUSINESS_TAB}
+        radioTextItems={BUSINESS_PAGE_FILTER_TABEL_REPORTS_TAB}
         radioClickedHandler={(e) => setSearchFilterOption(e)}
       />
     </div>
@@ -158,17 +146,7 @@ export default function Index({setFilteredTableData}) {
           inputWidth="300px"
         />
       </div>
-
-      {/* <FilterData
-          userTypeData={(e) => setUserType(e)}
-          FactorHandler={setFactorHandler}
-          setDatePickerValues={setDatePickerValues}
-          datePickerValues={datePickerValues}
-          priceHandler={setPrice}
-          priceHandler1={setPrice2}
-        /> */}
     </div>
-
     <div className=" inline-block">
       <AuthButton textButton={"اعمال"} />
     </div>
