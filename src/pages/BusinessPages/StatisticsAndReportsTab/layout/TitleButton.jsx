@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import { ImageContainer } from '../../../../assets/img/IMG'
 import AuthButton from '../../../../component/Auth/authButton/AuthButton'
 import AddingBusinessPagesModal from '../../businessPagesTab/layout/AddingBusinessPagesModal'
@@ -12,9 +13,10 @@ export default function Index() {
     <div className='flex justify-between items-baseline'>
         <div onClick={()=>navigate(-1)} className=' inline-block cursor-pointer'>
             <img src={ImageContainer.blueArrowBtn} alt="arrow" className=' inline-block rotate-180 ml-4'/>
+            <Link to={"dashboard/businessPages"}></Link>
             <span className='text-shortText text-sm'>بازگشت</span>
         </div>
-        <AuthButton handlerClick={setShowAddBusindesPageModal} setOnclickValue={true} textButton={<><img src={ImageContainer.plus} alt="plus" className=' ml-4'/>افزودن صفحه</>} classes="inline-block"/>
+        <AuthButton handlerClick={setShowAddBusindesPageModal} disabled setOnclickValue={true} textButton={<><img src={ImageContainer.plus} alt="plus" className=' ml-4'/>افزودن صفحه</>} classes="inline-block"/>
         {showAddBusindesPageModal&&<AddingBusinessPagesModal showModal={setShowAddBusindesPageModal}/>}
    
     </div>

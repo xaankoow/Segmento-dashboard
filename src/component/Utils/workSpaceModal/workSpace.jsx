@@ -82,7 +82,6 @@ export default function WorkSpace() {
   const dispatch = useDispatch();
   useEffect(() => {
     let innerWebAdress = webAdress;
-    console.log("set web adress");
     dispatch(setWebAdress(""));
     return () => {
       dispatch(setWebAdress(innerWebAdress));

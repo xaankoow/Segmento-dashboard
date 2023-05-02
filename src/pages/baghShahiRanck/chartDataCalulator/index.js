@@ -28,7 +28,6 @@ export const distributionCurrentAndPrevWords = (data, count = 2) => {
       if (word.position <= 3) counterCurrnet["1-3"]++;
       else if (word.position <= 7) counterCurrnet["4-7"]++;
       else if (word.position <= 10) counterCurrnet["8-10"]++;
-      console.log({ counterCurrnet });
     });
 
     return counterCurrnet;
@@ -67,7 +66,6 @@ export const decreaseFromPrevWordsAvg = (data, count = 7) => {
 
   const arr = values
     .map((item, indx) => {
-      console.log(!indx, "hi");
       if (!indx) return null;
 
       let counter = 0;
@@ -273,7 +271,6 @@ export const distributionCurrentAndPrevWordsIncrease = (data, count = 2) => {
 
     return counterCurrnet;
   });
-  console.log("yyyyyyy", arr);
 
   const counterCurrnet = {
     "1-3": 0,

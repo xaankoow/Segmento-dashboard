@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Skeleton from "react-loading-skeleton";
+import React, { useEffect, useState } from "react";
 import { DateObject } from "react-multi-date-picker";
 import { ImageContainer } from "../../../../../assets/img/IMG";
 import AuthButton from "../../../../../component/Auth/authButton/AuthButton";
@@ -8,7 +7,6 @@ import Table from "../../../../../component/shared/table/Table";
 import {
   BUSINESS_PAGE_FILTER_TABEL_BUSINESS_TAB,
   BUSINESS_PAGE_TABEL_HEADER_ITEM_BUSINESS_TAB,
-  BUSINESS_PAGE_TABEL_HEADER_ITEM_REPORTS_TAB,
 } from "../../../../../variables/businessPages";
 import FilterData from "./FilterData";
 import MultiProgress from "react-multi-progress";
@@ -16,6 +14,8 @@ import { sampleChartColors } from "../../../../baghShahiRanck/configs/sampleChar
 import PopUp from "../../../../../component/Utils/PopUp/PopUp";
 import SetKeyWordsModal from '../../../addKeyWordModal'
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { filterBusinessPagesData } from "../../../../../component/Utils/FilterData/filterBusinessPagesTableData";
 
 export default function Index() {
 
@@ -25,6 +25,12 @@ export default function Index() {
 
   const [addingKeyWordModal, setAddingKeyWordModal] = useState({key:[],showModal:false});
 
+  const [searchFilterValue, setSearchFilterValue] = useState("");
+
+  const [TableDataFiltered, setTableDataFiltered] = useState([])
+
+  const navigate=useNavigate()
+
 
 
   const [deleteItem, setDeleteItem] = useState({data:[],showPopUp:false});
@@ -33,7 +39,7 @@ export default function Index() {
     new DateObject().add(0, "days"),
   ]);
 
-  const arrayOfTickets = pagesData.map((item, index) => {
+  const arrayOfTickets = TableDataFiltered.map((item, index) => {
     return {
       id: (
         <p className=" w-11 text-center">
@@ -41,7 +47,6 @@ export default function Index() {
             <input
               type={"checkbox"}
               className="checkbox rounded border border-[#D9D9D9] bg-[#0A65CD] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
-              // className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
               onClick={(e) => {
                 if (e.target.checked) {
                   setDeleteItem({data:[...deleteItem.data, item],showPopUp:false});
@@ -51,8 +56,6 @@ export default function Index() {
                     showPopUp:false}
                   );
                 }
-                
-                // handleCheckingInput(e.target.checked, item);
               }}
             />
           </div>
@@ -66,7 +69,6 @@ export default function Index() {
             <img
               src={ImageContainer.bluePlus}
               alt="blue plus"
-              // className="w-4 h-4"
             />
           }
           disabled
@@ -139,6 +141,8 @@ export default function Index() {
         <AuthButton
           textButton={<img src={ImageContainer.blueArrowBtn} />}
           classes="btn-secondary"
+          handlerClick={navigate}
+          setOnclickValue={item.page.uuid}
         />
       ),
     };
@@ -154,6 +158,20 @@ export default function Index() {
     "row.pageStatus",
     "row.moreInfo",
   ];
+
+  useEffect(() => {
+    setTableDataFiltered(pagesData)
+  }, [pagesData.length])
+  
+  const filterTableData = () => {
+    setTableDataFiltered(
+      filterBusinessPagesData(
+        pagesData,
+        searchFilterOption,
+        searchFilterValue
+      )
+    )
+  }
 
   return (
     <div>
@@ -174,22 +192,13 @@ export default function Index() {
             <FilterData
               radioTarget={searchFilterOption}
               datePickerValues={datePickerValues}
+              FactorHandler={setSearchFilterValue}
               inputWidth="300px"
             />
           </div>
-
-          {/* <FilterData
-              userTypeData={(e) => setUserType(e)}
-              FactorHandler={setFactorHandler}
-              setDatePickerValues={setDatePickerValues}
-              datePickerValues={datePickerValues}
-              priceHandler={setPrice}
-              priceHandler1={setPrice2}
-            /> */}
         </div>
-
         <div className=" inline-block">
-          <AuthButton textButton={"اعمال"} />
+          <AuthButton textButton={"اعمال"} handlerClick={filterTableData}/>
         </div>
       </header>
 
@@ -198,8 +207,7 @@ export default function Index() {
         rowsItem={arrayOfTickets}
         rowKey={rowKey}
       />
-      {/* <div className=""> */}
-      {deleteItem.data.length>0 ? (
+      {false ? (//deleteItem.data.length>0
         <AuthButton
           textButton={
             <>
@@ -213,7 +221,7 @@ export default function Index() {
           classes="btn-delete mr-auto mt-4"
         />
       ) : null}
-      {deleteItem.showPopUp==true?<PopUp
+      {false?<PopUp //deleteItem.showPopUp==true
         image={ImageContainer.popupError}
         type={"error"}
         title="توجه !"
@@ -230,8 +238,6 @@ export default function Index() {
         }
       />:null}
       {addingKeyWordModal.showModal?<SetKeyWordsModal showModal={setAddingKeyWordModal}/>:null}
-      
-      {/* </div> */}
     </div>
   );
 }

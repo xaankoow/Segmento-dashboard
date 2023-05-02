@@ -35,7 +35,6 @@ const MainChart = ({
   const [chartType, setChartType] = useState("Bar");
 
   const lineChartData = useCallback(() => {
-    console.log({ mainChart });
     if (mainChart === mainChartTypes.allWordsCount) return averageAllWordsMemo;
     if (mainChart === mainChartTypes.increaseFromPrevWordsCount)
       return increaseFromPrevWordsCountMemo.arr;
@@ -54,7 +53,6 @@ const MainChart = ({
           pv: decreaseFromPrevWordsCountMemo.arr[indx].uv,
         };
       });
-      console.log({ xx });
       return xx;
     }
     // return [increaseFromPrevWordsCountMemo, decreaseFromPrevWordsCountMemo];
@@ -183,7 +181,6 @@ const MainChart = ({
               <YAxis tickMargin={40} />
               <Tooltip
                 content={({ active, payload, label }) => {
-                  console.log(payload, "yyy");
                   return (
                     <div className="p-2 border border-black">
                       <div className="label">{`${payload[0]?.value ?? ""} ${
