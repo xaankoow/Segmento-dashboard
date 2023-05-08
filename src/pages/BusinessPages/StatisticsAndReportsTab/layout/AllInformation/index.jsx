@@ -23,9 +23,6 @@ export default function index({ pageData, insight }) {
           chartData={insight && getAvgRankForCompanyInfoChart()}
         />
       </div>
-      {/* <div className=' mt-10'>
-          <CompanyDetails/>
-        </div> */}
       <div>
         {insight && (
           <SpeedInformation

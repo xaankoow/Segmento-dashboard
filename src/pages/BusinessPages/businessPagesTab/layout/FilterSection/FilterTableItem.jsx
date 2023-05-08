@@ -83,10 +83,8 @@ export default function Index() {
         <MultiProgress
           transitionTime={1.2}
           height="10px"
-          // className=" overflow-visible-force"
           elements={[
             {
-              // actual:65,
               value: 100-item.insight[0]?.performance||0,
               color: "#D9D9D9",
               showPercentage: false,
@@ -96,20 +94,14 @@ export default function Index() {
             },
             {
               actual: 65,
-
               value: item.insight[0]?.performance||0,
               color: "#10CCAE",
               showPercentage: false,
-              // textColor: "white",
               fontSize: 9,
               isBold: false,
-              // className: "my-custom-css-class",
             },
           ]}
           component={({ children, element, ...rest }) => {
-            // console.log(children, element, "iiiiiii");
-
-            // console.log({ xx }); progressBar__single
             return (
               <>
                 <div
@@ -207,7 +199,7 @@ export default function Index() {
         rowsItem={arrayOfTickets}
         rowKey={rowKey}
       />
-      {false ? (//deleteItem.data.length>0
+      {false ? (
         <AuthButton
           textButton={
             <>
@@ -221,7 +213,7 @@ export default function Index() {
           classes="btn-delete mr-auto mt-4"
         />
       ) : null}
-      {false?<PopUp //deleteItem.showPopUp==true
+      {false?<PopUp
         image={ImageContainer.popupError}
         type={"error"}
         title="توجه !"

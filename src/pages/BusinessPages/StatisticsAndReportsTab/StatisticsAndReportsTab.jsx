@@ -2,17 +2,13 @@ import React, { useEffect, useState } from "react";
 import TitleButton from "./layout/TitleButton";
 import AllInformation from "./layout/AllInformation";
 import TechnicalAnalysis from "./layout/TechnicalAnalysis";
-import ChartKeyWordRank from "./layout/ChartKeywordRank";
 import FilterTabel from "./layout/FilterSection/FIlterTabel";
-import Table from "./layout/Table";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 export default function StatisticsAndReportsTab() {
 
   const { pagesData } = useSelector(state => state.businessPagesState)
-
-  const navigate=useNavigate();
 
   const [pageInfoData, setPageInfoData] = useState({});
   const [filteredTableData, setFilteredTableData] = useState([]);
