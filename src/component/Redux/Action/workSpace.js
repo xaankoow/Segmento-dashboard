@@ -7,10 +7,7 @@ import {
   keywords,
   website,
 } from "../../service/workSpaceService";
-import {
-  showInputErrorToast,
-  showToast,
-} from "../../Utils/toastifyPromise";
+import { showInputErrorToast, showToast } from "../../Utils/toastifyPromise";
 
 export const ChackBusinessCustomer = () => {
   return async (dispatch, getState) => {
@@ -107,26 +104,45 @@ export const getAllWorkSpace = () => {
         }
 
         const workSpaces = await getAllWorkspace();
-        if (workSpaces.data.status == true && workSpaces.data.code == 200) {
+        workSpaces.data = [
+          {
+            uuid: "1b446b19-deb8-49e1-ac6f-87a97610a26a",
+            website: "https://segmento.ir",
+            status: true,
+          },
+          {
+            uuid: "d694c4dd-493c-48b0-a431-78df2bd14ba1",
+            website: "https://example.com",
+            status: true,
+          },
+          {
+            uuid: "c36e0f01-8e48-4801-81b6-9798c2b63949",
+            website: "https://hatishop.io",
+            status: true,
+          },
+        ];
+        if (workSpaces.status == 200) {
+          console.log(workSpaces);
           const state = { ...getState().workSpaceState };
-          state.allWorkSpace = workSpaces.data.data;
-          state.webAdress = workSpaces.data.data[0].website || "";
+          state.allWorkSpace = workSpaces.data;
+          state.webAdress = workSpaces.data[0].website || "";
           await dispatch({ type: "GET_ALL_WEB_ADRESS_DATA", payload: state });
         }
       }
     } catch (error) {
-      error.response.data.errors.forEach((element) => {
-        toastMessage += element + " / ";
-      });
-      toast.warn(toastMessage, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      console.log("error");
+      // error.response.data.errors.forEach((element) => {
+      //   toastMessage += element + " / ";
+      // });
+      // toast.warn(toastMessage, {
+      //   position: "top-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      // });
     }
     //handle hide loading
     {
@@ -666,7 +682,7 @@ export const allLimitDataFeature = ({ axiosController }) => {
           const limitPackage = await userLimit({ axiosController });
           if (
             limitPackage.data.code == 200 &&
-            limitPackage.data.status == true 
+            limitPackage.data.status == true
             // infoPackage.data.code == 200 &&
             // infoPackage.data.status == true
           ) {
