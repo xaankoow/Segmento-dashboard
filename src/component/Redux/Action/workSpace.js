@@ -29,7 +29,7 @@ export const ChackBusinessCustomer = () => {
         const state = { ...getState().workSpaceState };
         state.businessCustomer = {
           current:
-            userState.userData.package.type_text != "پکیج پایه" ? true : false,
+            userState.userData.package.type != 5 ? true : false,
           last: userState.userData.user_has_success_purchase,
           // last: findSuccessReport != -1 ? true : false
         };
@@ -92,15 +92,15 @@ export const getAllWorkSpace = () => {
       if (!loadingState.ProcessingDelay.includes("getAllWorkspace")) {
         //handle show loadin
         {
-          loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(
-            (item) => item != "getAllWorkspace"
-          );
-          loadingState.ProcessingDelay.push("getAllWorkspace");
-          loadingState.canRequest = false;
-          await dispatch({
-            type: "SET_PROCESSING_DELAY",
-            payload: loadingState,
-          });
+          // loadingState.ProcessingDelay = loadingState.ProcessingDelay.filter(
+          //   (item) => item != "getAllWorkspace"
+          // );
+          // loadingState.ProcessingDelay.push("getAllWorkspace");
+          // loadingState.canRequest = false;
+          // await dispatch({
+          //   type: "SET_PROCESSING_DELAY",
+          //   payload: loadingState,
+          // });
         }
 
         const workSpaces = await getAllWorkspace();
@@ -146,13 +146,13 @@ export const getAllWorkSpace = () => {
     }
     //handle hide loading
     {
-      const loadingState1 = { ...getState().loadingState };
-      var removeProcessingItem = loadingState1.ProcessingDelay.filter(
-        (item) => item != "getAllWorkspace"
-      );
-      loadingState1.ProcessingDelay = removeProcessingItem;
-      loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
-      await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 });
+      // const loadingState1 = { ...getState().loadingState };
+      // var removeProcessingItem = loadingState1.ProcessingDelay.filter(
+      //   (item) => item != "getAllWorkspace"
+      // );
+      // loadingState1.ProcessingDelay = removeProcessingItem;
+      // loadingState1.canRequest = removeProcessingItem.length > 0 ? false : true;
+      // await dispatch({ type: "SET_PROCESSING_DELAY", payload: loadingState1 });
     }
   };
 };
@@ -367,10 +367,10 @@ export const workSpaceWebsite = () => {
         {
           loadingState.ProcessingDelay.push("website");
           loadingState.canRequest = false;
-          await dispatch({
-            type: "SET_PROCESSING_DELAY",
-            payload: loadingState,
-          });
+          // await dispatch({
+          //   type: "SET_PROCESSING_DELAY",
+          //   payload: loadingState,
+          // });
         }
         var row = {
           website: webAdress,
