@@ -5,34 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9a41f2c-2f9e-4fec-8efb-b41413fabe06" name="Changes" comment="refactor : businessPages">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/Redux/Action/Business.action.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/Redux/Action/Http.actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/setupProxy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/constants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/css/DashboaedComponents.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/DashboaedComponents.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/FinancialReports/TableFinancialReports.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/PlanStatus/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Dashboard/DashboaedComponents/PlanStatus/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Redux/Action/workSpace.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Redux/Action/workSpace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Redux/Reducer/businessPages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Redux/Reducer/businessPages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/service/workSpaceService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/service/workSpaceService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/shared/table/Table.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/shared/table/Table.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/BusinessPages/StatisticsAndReportsTab/layout/FIlterTabel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/BusinessPages/StatisticsAndReportsTab/layout/FIlterTabel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/BusinessPages/businessPagesTab/layout/AddingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/BusinessPages/businessPagesTab/layout/AddingPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/BusinessPages/businessPagesTab/layout/FilterSection/FilterData.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/BusinessPages/businessPagesTab/layout/FilterSection/FilterData.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Utils/PopUp/PopUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Utils/PopUp/PopUp.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/BusinessPages/businessPagesTab/layout/FilterSection/FilterTableItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/BusinessPages/businessPagesTab/layout/FilterSection/FilterTableItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/BusinessPages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/BusinessPages/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/variables/businessPages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/variables/businessPages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -145,8 +120,16 @@
       <workItem from="1662492138917" duration="4000000" />
       <workItem from="1667930227634" duration="670000" />
       <workItem from="1686181921153" duration="1170000" />
-      <workItem from="1686198546959" duration="26686000" />
+      <workItem from="1686198546959" duration="27844000" />
     </task>
+    <task id="LOCAL-00001" summary="refactor : businessPages">
+      <created>1686225651113</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1686225651113</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

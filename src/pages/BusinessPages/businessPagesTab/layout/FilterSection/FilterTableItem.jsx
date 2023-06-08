@@ -236,10 +236,12 @@ export default function Index () {
         />
       ) : null}
       {deleteItem.showPopUp == true ? <PopUp
+
+        secoundText={'برای حذف کلی این صفحه باید به بخش مدیریت ورک‌اسپیس مراجعه کنید.'}
         image={ImageContainer.popupError}
         type={'error'}
         title="توجه !"
-        text="آیا برای حذف صفحات تجاری خود مطمعا هستید؟"
+        text="آیا برای متوقف کردن رهگیری این صفحه تجاری مطمعن هستید؟"
         createFooterTag={
           <div className="flex justify-between items-center mt-14 mb-2 w-full px-4">
             <span
@@ -247,7 +249,7 @@ export default function Index () {
               onClick={() => setDeleteItem({ data: [], showPopUp: false })}>
               نه! پشیمون شدم
             </span>
-            <AuthButton textButton={'باشه، حذف کن'}/>
+            <AuthButton textButton={'باشه، متوقف کن'}/>
           </div>
         }
       /> : null}
