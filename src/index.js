@@ -9,10 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./assets/css/style.css";
 import "./assets/css/iranyekan-font.css"
 import 'react-loading-skeleton/dist/skeleton.css'
+import 'swiper/swiper.min.css';
+import dayjs from 'dayjs'
+// import 'swiper/modules/pagination/pagination.min.css';
 
-import 'swiper/swiper.min.css'
-import 'swiper/modules/pagination/pagination.min.css'
-
+const  isBetween = require('dayjs/plugin/isBetween')
+dayjs.extend(isBetween);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>

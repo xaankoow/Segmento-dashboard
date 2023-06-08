@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AuthButton from "../../../Auth/authButton/AuthButton";
 import KeyWordsSearch from "../KeyWordsSearch/KeyWordsSearch";
-import ReactExport from "react-export-excel";
+import ReactExport from "react-export-excel-fixed-xlsx";
 import SetTitleTabBrowser from "../../../Utils/SetTitleTabBrowser";
 import PageTitle from "../pageTitle/pageTitle";
 import { setFormatPrice } from "../../../Utils/FORMAT/price";
@@ -255,9 +255,9 @@ export default function TableFinancialReports({ title }) {
                       className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                     >
                       {/* عملیات */}
-                      <p className=" w-28 text-center">                 
+                      <p className=" w-28 text-center">
                       <Skeleton/>
-                      
+
                       </p>
                       {/* وضعیت */}
                       <p className=" w-24 text-center">
@@ -293,9 +293,9 @@ export default function TableFinancialReports({ title }) {
                       className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                     >
                       {/* عملیات */}
-                      <p className=" w-28 text-center">                 
+                      <p className=" w-28 text-center">
                       <Skeleton/>
-                      
+
                       </p>
                       {/* وضعیت */}
                       <p className=" w-24 text-center">
@@ -331,9 +331,9 @@ export default function TableFinancialReports({ title }) {
                       className={`w-full h-[61px] border-b border-[#0000000D] text-xs font-normal flex justify-around flex-row-reverse items-center`}
                     >
                       {/* عملیات */}
-                      <p className=" w-28 text-center">                 
+                      <p className=" w-28 text-center">
                       <Skeleton/>
-                      
+
                       </p>
                       {/* وضعیت */}
                       <p className=" w-24 text-center">

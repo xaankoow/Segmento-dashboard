@@ -16,7 +16,7 @@ export const getAllWorkspace = () => {
   const headerRegisterUser = {
     Accept: "application/json",
   };
-  let response = http.get(`${config.xaankooApi}/api/v1/workspace`, headerRegisterUser);
+  let response = http.get(`${config.xaankooApi}/api/v2/workspaces`, headerRegisterUser);
   return response;
 };
 

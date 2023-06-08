@@ -12,7 +12,7 @@ import FilterData from '../../businessPagesTab/layout/FilterSection/FilterData';
 export default function Index({setFilteredTableData}) {
   const [searchFilterOption, setSearchFilterOption] = useState("شماره فاکتور");
 
-  const { pagesData } = useSelector(state => state.businessPagesState)
+  const { businessPages } = useSelector(state => state.businessPagesState)
 
   const [addingKeyWordModal, setAddingKeyWordModal] = useState({key:[],showModal:false});
 
@@ -23,7 +23,7 @@ export default function Index({setFilteredTableData}) {
     new DateObject().add(0, "days"),
   ]);
 
-  const arrayOfTickets = pagesData.map((item, index) => {
+  const arrayOfTickets = businessPages?.response?.data?.data.map((item, index) => {return null;
     return {
       id: (
         <p className=" w-11 text-center">
@@ -41,7 +41,7 @@ export default function Index({setFilteredTableData}) {
                     showPopUp:false}
                   );
                 }
-                
+
                 // handleCheckingInput(e.target.checked, item);
               }}
             />
@@ -69,8 +69,8 @@ export default function Index({setFilteredTableData}) {
       position: item.keyword.position||"ثبت نشده",
       performance: item.insight[0]?.performance,
       accessibility: item.insight[0]?.accessibility,
-      best_practices:  item.insight[0]?.best_practices,      
-      seo:  item.insight[0]?.seo,      
+      best_practices:  item.insight[0]?.best_practices,
+      seo:  item.insight[0]?.seo,
       pageStatus: (
         <MultiProgress
           transitionTime={1.2}
@@ -136,7 +136,7 @@ export default function Index({setFilteredTableData}) {
   useEffect(() => {
     setFilteredTableData(arrayOfTickets);
   }, [])
-  
+
   return (
     <header className="flex items-center justify-between h-10 w-full ">
     <div className=" w-96">

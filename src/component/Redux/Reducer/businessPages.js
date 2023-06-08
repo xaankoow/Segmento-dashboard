@@ -1,25 +1,30 @@
-export const businessReducer = (state =
-    {
-        pagesData:[]// table data in business pages
+import { BusinessActionName } from '../Action/Business.action'
+import { HTTP_REQUEST_ACTION, HTTP_RESPONSE_ACTION } from '../Action/Http.actions'
 
-    }, action) => {
-    switch (action.type) {
-        case "GET_ALL_BUSINESS_PAGES_DATA":
-            return { ...action.payload }
-        case "RESET_ALL_STATE":
-            return {
-                pagesData:[]
+const initialState = { [BusinessActionName]: { status: 'idle' } }
 
-            }
-        case "RESET_LOADING_STATE":
-            return {
-                pagesData:[]
-            }
-
-
-        default:
-            return state;
+const actionsNames = [BusinessActionName]
+export const businessReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case HTTP_REQUEST_ACTION: {
+      const { actionName } = payload
+      if (actionsNames.includes(actionName))
+        return {
+          ...state,
+          [actionName]: { status: 'loading' }
+        }
+    }
+    case HTTP_RESPONSE_ACTION: {
+      const { actionName, ...data } = payload
+      if (actionsNames.includes(actionName))
+        return {
+          ...state,
+          [actionName]: data
+        }
     }
 
+    default:
+      return state
+  }
 
 }

@@ -11,7 +11,7 @@ export default function Index() {
   return (
     <div className='flex justify-between items-center'>
         <span className='text-title text-lg'>لیست صفحات تجاری من</span>
-        <AuthButton classes={"btn-style"} disabled handlerClick={setShowAddBusindesPageModal} setOnclickValue={true} textButton={<><img src={ImageContainer.plus} alt="plus" className=' ml-4'/>افزودن صفحه</>}/>
+        <AuthButton classes={"btn-style"}  handlerClick={setShowAddBusindesPageModal} setOnclickValue={true} textButton={<><img src={ImageContainer.plus} alt="plus" className=' ml-4'/>افزودن صفحه</>}/>
         {/* <img src={ImageContainer} alt="" /> */}
         {showAddBusindesPageModal&&<AddingBusinessPagesModal showModal={setShowAddBusindesPageModal}/>}
     </div>
