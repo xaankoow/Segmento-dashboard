@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { DateObject } from 'react-multi-date-picker'
+import React from 'react'
 import { ImageContainer } from '../../../../../assets/img/IMG'
 import AuthButton from '../../../../../component/Auth/authButton/AuthButton'
 import ComboBox from '../../../../../component/shared/comboBox/ComboBox'
@@ -13,30 +12,17 @@ import MultiProgress from 'react-multi-progress'
 import { sampleChartColors } from '../../../../baghShahiRanck/configs/sampleChartData'
 import PopUp from '../../../../../component/Utils/PopUp/PopUp'
 import SetKeyWordsModal from '../../../addKeyWordModal'
-import { useSelector } from 'react-redux'
 import dayjs from 'dayjs'
+import { useBusiness } from '../../../../../hooks'
 
 export default function Index () {
+  const {
+    actions,
+    state,
+    business
+  } = useBusiness()
 
-  const { businessPages } = useSelector(state => state.businessPagesState)
-
-  const [searchFilterOption, setSearchFilterOption] = useState('بدون فیلتر')
-
-  const [addingKeyWordModal, setAddingKeyWordModal] = useState({ key: [], showModal: false })
-
-  const [deleteItem, setDeleteItem] = useState({ data: [], showPopUp: false })
-  const [datePickerValues, setDatePickerValues] = useState([
-    new DateObject().subtract(4, 'days'),
-    new DateObject().add(0, 'days'),
-  ])
-  const [filter, setFilter] = useState({ active: undefined, selected: undefined })
-  const arrayOfTickets = businessPages?.response?.data?.data.filter((item) => {
-    if (Array.isArray(filter.active) && filter.active.length === 2) {
-      console.log(dayjs(filter.active))
-      console.log(dayjs(item.updated_at).isBetween(dayjs(filter[0]), dayjs(filter[1]), 'day'))
-    }
-    return true
-  }).map((item, index) => {
+  const arrayOfTickets = business.data.map((item, index) => {
     return {
       id: (
         <div className="">
@@ -47,11 +33,11 @@ export default function Index () {
               // className="checkbox rounded border border-[#D9D9D9] bg-[#FCFCFB] w-[18px] h-[18px] cursor-pointer hover:border-[#0A65CD] hover:border"
               onClick={(e) => {
                 if (e.target.checked) {
-                  setDeleteItem({ data: [...deleteItem.data, item], showPopUp: false })
+                  actions.setDeleteValue({ data: [...state.deleteItem.data, item], showPopUp: false })
                 } else {
-                  setDeleteItem(
+                  actions.setDeleteValue(
                     {
-                      data: deleteItem.data.filter((copyItems) => copyItems != item),
+                      data: state.deleteItem.data.filter((copyItems) => copyItems != item),
                       showPopUp: false
                     }
                   )
@@ -64,7 +50,7 @@ export default function Index () {
         </div>
       ),
       index: index + 1,
-      link: item.link,
+      link:<div className="text-left">{item.link}</div>,
       addingKeyWord: item.keyword === 'ثبت نشده' ? (
         <AuthButton
           textButton={
@@ -75,23 +61,23 @@ export default function Index () {
             />
           }
           disabled
-          handlerClick={setAddingKeyWordModal}
+          handlerClick={actions.setModalValue}
           setOnclickValue={{ key: [item], showModal: true }}
           classes="btn-secondary m-auto py-3 px-6"
         />
       ) : item.keyword,
       position: <div className="flex justify-center"> {item.position || <AuthButton
         textButton={<img src={ImageContainer.bluePlus}/>}
-        classes="btn-secondary py-4 px-6"/>}
+        classes="btn-secondary py-4 px-6 w-20 h-14"/>}
       </div>,
-      updated_at: dayjs(item.updated_at).format('YYYY/MM/DD') || 'ثبت نشده',
+      updated_at: dayjs(item.updated_at).calendar('jalali').format('YYYY/MM/DD') || 'ثبت نشده',
       pageStatus: (
         <div className={'flex flex-col items-end pb-4'}>
           <span className="text-s">{item.page_status} درصد</span>
           <MultiProgress
             transitionTime={1.2}
             height="10px"
-            // className=" overflow-visible-force"
+            className={"w-[100px]"}
             elements={[
               {
                 // actual:65,
@@ -111,13 +97,10 @@ export default function Index () {
                 // textColor: "white",
                 fontSize: 9,
                 isBold: false,
-                // className: "my-custom-css-class",
               },
             ]}
             component={({ children, element, ...rest }) => {
-              // console.log(children, element, "iiiiiii");
 
-              // console.log({ xx }); progressBar__single
               return (
                 <>
                   <div
@@ -148,10 +131,12 @@ export default function Index () {
         </div>
       ),
       moreInfo: (
+        <div className="flex justify-center">
         <AuthButton
           textButton={<img src={ImageContainer.blueArrowBtn}/>}
-          classes="btn-secondary"
+          classes="btn-secondary w-20 h-14 mx-0"
         />
+        </div>
       ),
     }
   })
@@ -174,43 +159,28 @@ export default function Index () {
           <ComboBox
             placeholder={'فیلد جستجو'}
             radioTextItems={BUSINESS_PAGE_FILTER_TABEL_BUSINESS_TAB}
-            radioClickedHandler={(e) => {
-              setSearchFilterOption(e)
-              if (e === BUSINESS_PAGE_FILTER_TABEL_BUSINESS_TAB[3])
-                setFilter({ selected: datePickerValues })
-            }}
+            radioClickedHandler={actions.changeFilterName}
           />
         </div>
         <div className="flex items-center ">
-          {searchFilterOption !== 'بدون فیلتر' && (
+          {state.filters.selectedFilterName !== 'بدون فیلتر' && (
             <span className=" ml-2">مرتب سازی بر اساس</span>
           )}
 
           <div className=" inline">
             <FilterData
-              radioTarget={searchFilterOption}
-              datePickerValues={datePickerValues}
-              setDatePickerValues={(v) => {
-                setDatePickerValues(v)
-                setFilter({ selected: v.map((val) => `${val.year()}/${val.month()}/${val.day()}`) })
-              }}
+              radioTarget={state.filters.selectedFilterName}
+              datePickerValues={state.datePicker}
+              setDatePickerValues={actions.setDatepickerValue}
               inputWidth="300px"
-              onChange={(e) => setFilter({ ...filter, selected: e })}
+              onChange={actions.changeFilterValue}
             />
           </div>
 
-          {/* <FilterData
-              userTypeData={(e) => setUserType(e)}
-              FactorHandler={setFactorHandler}
-              setDatePickerValues={setDatePickerValues}
-              datePickerValues={datePickerValues}
-              priceHandler={setPrice}
-              priceHandler1={setPrice2}
-            /> */}
         </div>
 
         <div className=" inline-block">
-          <AuthButton textButton={'اعمال'} handlerClick={() => {}}/>
+          <AuthButton textButton={'اعمال'} handlerClick={actions.submitFilter} classes={"btn-secondary"}/>
         </div>
       </header>
 
@@ -221,7 +191,8 @@ export default function Index () {
 
       />
       {/* <div className=""> */}
-      {deleteItem.data.length > 0 ? (
+      {state.deleteItem.data.length > 0 ? (
+        <div className={"mb-16"}>
         <AuthButton
           textButton={
             <>
@@ -229,13 +200,14 @@ export default function Index () {
               توقف رهیگیری
             </>
           }
-          handlerClick={setDeleteItem}
-          setOnclickValue={{ data: deleteItem.data, showPopUp: true }}
+          handlerClick={actions.setDeleteValue}
+          setOnclickValue={{ data: state.deleteItem.data, showPopUp: true }}
 
           classes="btn-delete mr-auto mt-4"
         />
+        </div>
       ) : null}
-      {deleteItem.showPopUp == true ? <PopUp
+      {state.deleteItem.showPopUp ? <PopUp
 
         secoundText={'برای حذف کلی این صفحه باید به بخش مدیریت ورک‌اسپیس مراجعه کنید.'}
         image={ImageContainer.popupError}
@@ -246,14 +218,14 @@ export default function Index () {
           <div className="flex justify-between items-center mt-14 mb-2 w-full px-4">
             <span
               className=" cursor-pointer text-sm text-shortText"
-              onClick={() => setDeleteItem({ data: [], showPopUp: false })}>
+              onClick={() => actions.setDeleteValue({ ...state.deleteItem, showPopUp: false })}>
               نه! پشیمون شدم
             </span>
             <AuthButton textButton={'باشه، متوقف کن'}/>
           </div>
         }
       /> : null}
-      {addingKeyWordModal.showModal ? <SetKeyWordsModal showModal={setAddingKeyWordModal}/> : null}
+      {state.modal.showModal ? <SetKeyWordsModal showModal={actions.setModalValue}/> : null}
 
       {/* </div> */}
     </div>

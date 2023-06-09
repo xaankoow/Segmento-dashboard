@@ -24,3 +24,8 @@ yarn-error.log*
 /node_modules.zip
 /package-lock.json
 /yarn.lock
+
+.idea/*
+.idea
+.vscode/*
+.vscode

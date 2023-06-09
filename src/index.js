@@ -11,10 +11,12 @@ import "./assets/css/iranyekan-font.css"
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'swiper/swiper.min.css';
 import dayjs from 'dayjs'
-// import 'swiper/modules/pagination/pagination.min.css';
+import jalaliday from 'jalaliday'
+import isBetween from 'dayjs/plugin/isBetween';
 
-const  isBetween = require('dayjs/plugin/isBetween')
 dayjs.extend(isBetween);
+dayjs.extend(jalaliday);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>

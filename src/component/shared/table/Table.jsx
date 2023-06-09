@@ -7,45 +7,66 @@ export default function Table ({ columnItem, rowsItem, rowKey, classname }) {
     <div class={`w-full flex justify-center mx-auto ${classname}`}>
       <div class="flex flex-col w-full">
         <div class="w-full">
-          <div class=" rounded-lg border border-[#D9D9D9]  h-[672px] overflow-scroll w-full">
-            <table class="w-full rounded p-0 m-0" id="">
-              <tr
-                className="rounded"
-                style={{ backgroundColor: '#FCFCFB', borderRadius: '5px' }}
-              >
-                {columnItem &&
-                  columnItem.map((item) => {
+          <div class="max-h-[672px]  w-full overflow-y-scroll">
+            <div className="border border-[#D9D9D9] rounded">
+              <table class="w-full rounded border-collapse" id="">
+                <tr>
+                  {columnItem &&
+                    columnItem.map((item) => {
+                      return (
+                        <th
+                          className={`
+                        rounded
+                        px-8
+                        py-5
+                        text-sm 
+                        font-normal
+                        border
+                        border-[#D9D9D9]
+                        border-y-0
+                        bg-[#FCFCFB]
+                        ${item.class}`}
+                        >
+                          <span> {item.title}</span>
+                        </th>
+                      )
+                    })}
+                </tr>
+
+                <tbody class="bg-black">
+                {rowsItem &&
+                  rowsItem.map((row, rowIndex) => {
                     return (
-                      <th
-                        class={`px-8 py-5 text-sm font-normal  ${item.class}`}
-                      >
-                        <span> {item.title}</span>
-                      </th>
+                      <tr class="whitespace-nowrap mx-2 ">
+                        {rowKey.map((item, index) => {
+                          const key = item.split('.')[1]
+                          return (
+                            <td
+                              class={`
+                            px-6
+                            py-4
+                            text-xs
+                            font-normal
+                            text-center
+                            text-gray-500
+                            border
+                            border-[#D9D9D9]
+                            border-t-0
+                            rounded
+                            ${rowIndex < rowsItem.length - 1 ? '' : 'border-b-0'}
+                            ${columnItem[index].class} `}
+                            >
+                              {row[key]}
+                            </td>
+                          )
+                        })}
+                        <div className=" m-auto w-full"/>
+                      </tr>
                     )
                   })}
-              </tr>
-
-              <tbody class="bg-black  border-[#0000000D]">
-              {rowsItem &&
-                rowsItem.map((row, index) => {
-                  return (
-                    <tr class="whitespace-nowrap table-border  mx-2">
-                      {rowKey.map((item, index) => {
-                        const key = item.split('.')[1]
-                        return (
-                          <td
-                            class={`px-6 py-4 text-xs font-normal text-center text-gray-500 ${columnItem[index].class} `}
-                          >
-                            {row[key]}
-                          </td>
-                        )
-                      })}
-                      <div className=" m-auto w-full"/>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
